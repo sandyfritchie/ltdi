@@ -161,13 +161,6 @@ a.tile:hover { border-color: var(--muted); }
 .chip.prov i { width: 4px; height: 14px; border-radius: 2px; background: var(--p); }
 .chip.prov[aria-pressed="true"] i { background: var(--bg); }
 .tile { transition: opacity .15s; }
-section[class*="focus-google"] .tile[data-prov]:not([data-prov="google"]) { opacity: .3; }
-section[class*="focus-apple"] .tile[data-prov]:not([data-prov="apple"]) { opacity: .3; }
-section[class*="focus-microsoft"] .tile[data-prov]:not([data-prov="microsoft"]) { opacity: .3; }
-section[class*="focus-deepl"] .tile[data-prov]:not([data-prov="deepl"]) { opacity: .3; }
-section[class*="focus-openai"] .tile[data-prov]:not([data-prov="openai"]) { opacity: .3; }
-section[class*="focus-meta"] .tile[data-prov]:not([data-prov="meta"]) { opacity: .3; }
-section[class*="focus-anthropic"] .tile[data-prov]:not([data-prov="anthropic"]) { opacity: .3; }
 .tile.off b { color: var(--muted); }
 .ind { display: grid; gap: 4px; padding-block: 9px; border-top: 1px solid var(--rule); }
 .ind:first-of-type { border-top: 0; }
@@ -28706,6 +28699,9 @@ const SVC = {
 };
 // Commitment signatories first (Gates Foundation, Sept 2026), then other large companies, smaller ones, open source; tiles follow this order
 const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', meta: 'Meta', deepl: 'DeepL', open: 'Open source' };
+// Provider highlight: dim every other provider's tiles (one rule per provider, so new providers just work)
+document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k =>
+  `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}</style>`);
 let provFocus = null, moreOpen = false;  // remembered while moving between languages
 const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
   tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features',
