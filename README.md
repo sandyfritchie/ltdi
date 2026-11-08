@@ -84,6 +84,13 @@ Languages are grouped into Africa, South Asia, Rest of Asia, Europe, Americas
 and Oceania, from the UN M49 region of the country with the most speakers
 (South Asia is M49 Southern Asia), with overrides in `config/slice_languages.csv`.
 Every view on the site can be filtered by region.
+The Charts view can also be filtered by provider. A provider's view counts its
+own services only: the map and the region chart show the share of that
+provider's services (and published benchmarks) covering each language, the
+coverage bars show its services one technology at a time, and history appears
+where a source has one (DeepL; Meta's NLLB-200 and Belebele; OpenAI's Whisper).
+Shares aren't comparable across providers, since the number of services tracked
+differs (one for DeepL, fifteen for Google).
 
 The Charts view opens with a map: a dot for each of LinguaMeta's ~6,450
 individual languages with a location, placed in the country with most speakers

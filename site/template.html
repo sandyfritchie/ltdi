@@ -214,6 +214,7 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .legend.ord { margin: 4px 0 12px; }
 .covrows { display: grid; grid-template-columns: minmax(90px, 140px) minmax(0, 1fr); gap: 10px 14px; align-items: center; }
 .covrows .lab { font-size: 14px; font-weight: 600; }
+.covrows .lab small { display: block; font-weight: 400; font-size: 12px; color: var(--muted); }
 .stack { display: flex; gap: 2px; height: 26px; min-width: 0; }
 .seg { display: flex; align-items: center; justify-content: center; font: 600 12px var(--font-body); font-variant-numeric: tabular-nums; min-width: 0; overflow: hidden; cursor: default; }
 .seg:first-child { border-radius: 4px 0 0 4px; } .seg:last-child { border-radius: 0 4px 4px 0; } .seg:only-child { border-radius: 4px; }
@@ -717,6 +718,26 @@ function levelOf(l, key, t) {
   return c.length && o.some(has) ? 'open' : 'none';
 }
 
+// ---- provider filter (Charts) ----------------------------------------------
+// A provider's view counts its own services only: how many languages each one offers.
+let provider = 'All';
+const SERIES_PROV = { deepl: 'deepl', open_mt: 'meta', reading_bench: 'meta', open_asr: 'openai' };
+const offers = (l, id) => { const f = (DATA.facts[l.code] || {})[id]; return !!f && (f.unit === 'bool' ? !!f.value : true); };
+const provIds = (t, prov) => [...(t.consumer || []), ...(t.open || []), ...Object.keys(t.measured || {})].filter(id => (SVC[id] || [])[2] === prov);
+const PLEVELS = [['full', 'Offered'], ['part', 'In some of its services'], ['none', 'Not found']];
+function provLevel(l, ids) { const n = ids.filter(id => offers(l, id)).length; return n === ids.length ? 'full' : n ? 'part' : 'none'; }
+function provCoverage(l, prov) {
+  const ids = Object.values(CFG.tech.technologies).flatMap(t => provIds(t, prov));
+  const n = ids.filter(id => offers(l, id)).length;
+  return { n, of: ids.length, share: ids.length ? n / ids.length : 0 };
+}
+const provBench = prov => Object.values(CFG.tech.technologies).some(t => Object.keys(t.measured || {}).some(id => (SVC[id] || [])[2] === prov));
+const provWhat = prov => provBench(prov) ? 'services and benchmarks' : 'services';
+const covTier = v => v >= 0.9 ? 'vh' : v >= 0.6 ? 'h' : v >= 0.3 ? 'm' : 'l';
+function providerSelect(id) {
+  return `<select id="${id}" aria-label="Provider"><option value="All"${provider === 'All' ? ' selected' : ''}>All providers</option>${Object.entries(PROV).map(([k, n]) =>
+    `<option value="${k}"${k === provider ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select>`;
+}
 
 const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
 const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', l: '--t-l' };
@@ -733,21 +754,24 @@ function mapSection() {
   const r0 = Math.max(1.7, 0.9 / px), rs = Math.max(6.5, 4.5 / px), sw = Math.max(1.6, 1.1 / px);
   mapR = { r0, rs, sw };
   const bgPath = bgDots(bg, r0);
-  const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => a.ltdi - b.ltdi).map(l => {
-    const [c] = tierOf(l.ltdi), p = pt[l.code];
+  const P = provider !== 'All', pn = P ? PROV[provider] : '';
+  const val = l => P ? provCoverage(l, provider).share : l.ltdi;
+  const tierKey = l => P ? covTier(val(l)) : tierOf(l.ltdi)[0];
+  const tip = l => { if (!P) return `LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${l.rank}`;
+    const c = provCoverage(l, provider); return `${esc(pn)}: ${c.n} of ${c.of} ${provWhat(provider)}`; };
+  const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => val(a) - val(b)).map(l => {
+    const c = tierKey(l), p = pt[l.code];
     return `<a href="#lang-${l.code}"><circle class="sdot" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
-      opacity="${inRegion(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${l.rank}"/></a>`;
+      opacity="${inRegion(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`;
   }).join('');
   const counts = { vh: 0, h: 0, m: 0, l: 0 };
-  LANGS.filter(inRegion).forEach(l => counts[tierOf(l.ltdi)[0]]++);
+  LANGS.filter(inRegion).forEach(l => counts[tierKey(l)]++);
+  const legendLabels = P ? { vh: '90%+ of its services', h: '60–90%', m: '30–60%', l: 'Under 30%' } : { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
   return `<section class="chart">
     <h3>The world's languages</h3>
-    <p class="sub">Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length} languages scored so far; white dots are the ${bg.length.toLocaleString()} others in LinguaMeta, not yet scored. Hover for names; select a coloured dot for its profile.</p>
+    <p class="sub">Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length} languages scored so far${P ? `, coloured by the share of ${esc(pn)}'s services checked that offer each one` : ''}; white dots are the ${bg.length.toLocaleString()} others in LinguaMeta, not yet scored. Hover for names; select a coloured dot for its profile.</p>
     <div class="legend map">
-      <span><i class="dot" style="background:var(--t-vh)"></i>Very high · ${counts.vh}</span>
-      <span><i class="dot" style="background:var(--t-h)"></i>High · ${counts.h}</span>
-      <span><i class="dot" style="background:var(--t-m)"></i>Medium · ${counts.m}</span>
-      <span><i class="dot" style="background:var(--t-l)"></i>Low · ${counts.l}</span>
+      ${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not yet scored · ${bg.length.toLocaleString()}</span>
     </div>
     <div class="mapwrap"><div class="mapctl">
@@ -758,7 +782,7 @@ function mapSection() {
       ${dots}
     </svg></div>
     <p class="maphint">Drag to move · double-click or + to zoom in · Ctrl or ⌘ and scroll to zoom</p>
-    <p class="note">Tiers: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60. Locations from LinguaMeta; map from Natural Earth.</p>
+    <p class="note">${P ? `Share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? '; a benchmark counts where it publishes a result' : ''}.` : 'Tiers: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60.'} Locations from LinguaMeta; map from Natural Earth.</p>
   </section>`;
 }
 function bindMap() {
@@ -834,17 +858,24 @@ function charts() {
   const techs = Object.entries(CFG.tech.technologies);
   const names = ls => ls.map(l => esc(l.name)).join(', ') || '—';
 
-  // 1. Coverage now
-  const rows = techs.map(([k, t]) => {
-    const by = Object.fromEntries(LEVELS.map(([lv]) => [lv, langs.filter(l => levelOf(l, k, t) === lv)]));
-    const segs = LEVELS.filter(([lv]) => by[lv].length).map(([lv, lab]) => {
-      const n = by[lv].length, label = lab;
-      return `<div class="seg ${lv}" tabindex="0" style="flex:${n}" data-tip="<b>${esc(t.label)}: ${esc(label)}</b><br>${n} of ${N}: ${names(by[lv])}">${n / N >= 0.08 ? n : ''}</div>`;
+  // 1. Coverage now (for one provider: its own services only)
+  const P = provider !== 'All', pn = P ? PROV[provider] : '';
+  const LV = P ? PLEVELS : LEVELS;
+  const shown = P ? techs.map(([k, t]) => [k, t, provIds(t, provider)]).filter(([, , ids]) => ids.length) : techs.map(([k, t]) => [k, t, null]);
+  const absent = P ? techs.filter(([, t]) => !provIds(t, provider).length).map(([, t]) => t.label) : [];
+  const rows = shown.map(([k, t, ids]) => {
+    const lvl = l => P ? provLevel(l, ids) : levelOf(l, k, t);
+    const by = Object.fromEntries(LV.map(([lv]) => [lv, langs.filter(l => lvl(l) === lv)]));
+    const label = P ? `${t.label} (${ids.map(id => SVC[id][0]).join(', ')})` : t.label;
+    const bench = P && ids.every(id => CFG.tech.technologies[k].measured && id in CFG.tech.technologies[k].measured);
+    const segs = LV.filter(([lv]) => by[lv].length).map(([lv, lab0]) => {
+      const n = by[lv].length, lab = bench ? { full: 'Benchmark result published', part: 'Some benchmark results', none: 'No published result' }[lv] : lab0;
+      return `<div class="seg ${lv}" tabindex="0" style="flex:${n}" data-tip="<b>${esc(label)}: ${esc(lab)}</b><br>${n} of ${N}: ${names(by[lv])}">${n / N >= 0.08 ? n : ''}</div>`;
     }).join('');
-    return { k, t, by, html: `<div class="lab">${esc(t.label)}</div><div class="stack" role="img" aria-label="${esc(t.label)}: ${LEVELS.map(([lv, lab]) => `${by[lv].length} ${lab.toLowerCase()}`).join(', ')}">${segs}</div>` };
+    return { k, t, by, html: `<div class="lab">${esc(t.label)}${P ? `<small>${esc(ids.map(id => SVC[id][0]).join(', '))}</small>` : ''}</div><div class="stack" role="img" aria-label="${esc(label)}: ${LV.map(([lv, lab]) => `${by[lv].length} ${lab.toLowerCase()}`).join(', ')}">${segs}</div>` };
   });
-  const table1 = `<div class="tablebox"><table><thead><tr><th>Technology</th>${LEVELS.map(([, lab]) => `<th class="num">${esc(lab)}</th>`).join('')}</tr></thead>
-    <tbody>${rows.map(r => `<tr><td>${esc(r.t.label)}</td>${LEVELS.map(([lv]) => `<td class="num" title="${names(r.by[lv])}">${r.by[lv].length}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  const table1 = `<div class="tablebox"><table><thead><tr><th>Technology</th>${LV.map(([, lab]) => `<th class="num">${esc(lab)}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(r => `<tr><td>${esc(r.t.label)}</td>${LV.map(([lv]) => `<td class="num" title="${names(r.by[lv])}">${r.by[lv].length}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 
   // 2. Over time: small multiples
   const H = DATA.history;
@@ -853,7 +884,8 @@ function charts() {
     const P = H.periods, W = 300, Ht = 150, L = 30, R = 34, T = 12, B = 26;
     const x = i => L + i * (W - L - R) / (P.length - 1), y = v => T + (Ht - T - B) * (1 - v / Math.max(N, 1));
     const yearTicks = P.map((p, i) => [p, i]).filter(([p]) => p.endsWith('-12') && ['2019', '2022', '2025'].includes(p.slice(0, 4)));
-    multiples = Object.entries(H.series).map(([key, label]) => {
+    const series = Object.entries(H.series).filter(([key]) => !P || SERIES_PROV[key] === provider);
+    multiples = series.map(([key, label]) => {
       const vals = P.map(p => { const vs = langs.map(l => (H.values[key] || {})[l.code]?.[p]); return vs.every(v => v == null) ? null : vs.filter(v => v === 1).length; });
       const pts = vals.map((v, i) => v == null ? null : [x(i), y(v), v, i]).filter(Boolean);
       if (!pts.length) return '';
@@ -879,57 +911,61 @@ function charts() {
           ${hits}
         </svg></div>`;
     }).join('');
-    multiples = `<div class="multiples">${multiples}</div>`;
+    multiples = series.length ? `<div class="multiples">${multiples}</div>`
+      : `<p class="note">No history collected yet for ${esc(pn)}'s services. History so far comes from DeepL's docs, Meta's NLLB-200 and Belebele, OpenAI's Whisper, Common Voice and CLDR.</p>`;
   }
   const table2 = H ? `<div class="tablebox"><table><thead><tr><th>Kind of support</th>${H.periods.filter(p => p.endsWith('-12')).map(p => `<th class="num">${p.slice(0, 4)}</th>`).join('')}</tr></thead>
-    <tbody>${Object.entries(H.series).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.filter(p => p.endsWith('-12')).map(p => { const vs = langs.map(l => (H.values[k] || {})[l.code]?.[p]); return `<td class="num">${vs.every(v => v == null) ? '—' : vs.filter(v => v === 1).length}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
+    <tbody>${Object.entries(H.series).filter(([k]) => !P || SERIES_PROV[k] === provider).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.filter(p => p.endsWith('-12')).map(p => { const vs = langs.map(l => (H.values[k] || {})[l.code]?.[p]); return `<td class="num">${vs.every(v => v == null) ? '—' : vs.filter(v => v === 1).length}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
 
   // 3. LTDI by region: dot strip
   const regs = REGIONS.filter(r => region === 'All' || r === region);
-  const SW = Math.max(340, Math.min(720, (window.innerWidth || 720) - 70)), lab = SW < 500 ? 92 : 120, top = 26, rowH = 58, x0 = 0.3, x1 = 1.0;
+  const sval = l => P ? provCoverage(l, provider).share : l.ltdi;
+  const SW = Math.max(340, Math.min(720, (window.innerWidth || 720) - 70)), lab = SW < 500 ? 92 : 120, top = 26, rowH = 58, x0 = P ? 0 : 0.3, x1 = 1.0;
   const sx = v => lab + (Math.max(x0, v) - x0) / (x1 - x0) * (SW - lab - 30);
   const SH = top + regs.length * rowH + 24;
   const strip = `<svg viewBox="0 0 ${SW} ${SH}" role="img" aria-label="LTDI by region" style="width:100%;height:auto">
-    <g class="grid">${[0.4, 0.6, 0.8, 1.0].map(v => `<line x1="${sx(v)}" x2="${sx(v)}" y1="${top - 6}" y2="${SH - 22}"/><text x="${sx(v)}" y="${SH - 6}" text-anchor="middle">${v.toFixed(1)}</text>`).join('')}</g>
+    <g class="grid">${(P ? [0, 0.25, 0.5, 0.75, 1.0] : [0.4, 0.6, 0.8, 1.0]).map(v => `<line x1="${sx(v)}" x2="${sx(v)}" y1="${top - 6}" y2="${SH - 22}"/><text x="${sx(v)}" y="${SH - 6}" text-anchor="middle">${P ? Math.round(v * 100) + '%' : v.toFixed(1)}</text>`).join('')}</g>
     ${regs.map((r, i) => {
-      const ls = LANGS.filter(l => l.region === r).sort((a, b) => a.ltdi - b.ltdi), cy = top + i * rowH + rowH / 2;
+      const ls = LANGS.filter(l => l.region === r).sort((a, b) => sval(a) - sval(b)), cy = top + i * rowH + rowH / 2;
       const lo = ls[0], hi = ls[ls.length - 1];
       // nudge dots that would overlap above and below the row line
       let prevX = -99, flip = 1;
-      const dots = ls.map(l => { const x = sx(l.ltdi); let dy = 0; if (x - prevX < 13) { dy = 6 * flip; flip = -flip; } else flip = 1; prevX = x; return { l, x, y: cy + dy }; });
+      const dots = ls.map(l => { const x = sx(sval(l)); let dy = 0; if (x - prevX < 13) { dy = 6 * flip; flip = -flip; } else flip = 1; prevX = x; return { l, x, y: cy + dy }; });
       return `<text x="0" y="${cy + 4}" fill="var(--ink)" font-size="13" font-weight="600">${esc(r)}</text>
-        ${dots.map(d => `<a href="#lang-${d.l.code}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="6.5" fill="var(--accent)" fill-opacity="0.85" stroke="var(--surface)" stroke-width="2" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>LTDI ${d.l.ltdi.toFixed(3)} · rank ${d.l.rank}"/></a>`).join('')}
-        <text x="${sx(lo.ltdi)}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(lo.name)}</text>
-        ${ls.length > 1 ? `<text x="${Math.min(sx(hi.ltdi), SW - 4)}" y="${cy - 14}" text-anchor="${sx(hi.ltdi) > SW - 40 ? 'end' : 'middle'}" fill="var(--muted)" font-size="11">${esc(hi.name)}</text>` : ''}`;
+        ${dots.map(d => `<a href="#lang-${d.l.code}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="6.5" fill="var(--accent)" fill-opacity="0.85" stroke="var(--surface)" stroke-width="2" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>${P ? `${esc(pn)}: ${provCoverage(d.l, provider).n} of ${provCoverage(d.l, provider).of} ${provWhat(provider)}` : `LTDI ${d.l.ltdi.toFixed(3)} · rank ${d.l.rank}`}"/></a>`).join('')}
+        <text x="${sx(sval(lo))}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(lo.name)}</text>
+        ${ls.length > 1 ? `<text x="${Math.min(sx(sval(hi)), SW - 4)}" y="${cy - 14}" text-anchor="${sx(sval(hi)) > SW - 40 ? 'end' : 'middle'}" fill="var(--muted)" font-size="11">${esc(hi.name)}</text>` : ''}`;
     }).join('')}
   </svg>`;
 
   $('#view').innerHTML = `
-    <div class="controls">${regionSelect('csel')}<span class="note" style="margin:0">${N} languages</span></div>
+    <div class="controls">${regionSelect('csel')}${providerSelect('cpsel')}<span class="note" style="margin:0">${N} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span></div>
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
-      <p class="sub">Each bar splits the ${N} languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are AI assistant apps, and language identification counts open models. Hover a segment to see which languages.</p>
-      <div class="legend ord">${LEVELS.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
+      <p class="sub">${P ? `Each bar splits the ${N} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are AI assistant apps, and language identification counts open models.'} Hover a segment to see which languages.</p>
+      <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
+      ${absent.length ? `<p class="note">No ${esc(pn)} service tracked for: ${esc(absent.join(', '))}.</p>` : ''}
 
       <details class="tbl"><summary>Show as a table</summary>${table1}</details>
     </section>
-    <section class="chart">
+    ${P && !Object.keys(H ? H.series : {}).some(k => SERIES_PROV[k] === provider) ? '' : `<section class="chart">
       <h3>How support has grown since 2019</h3>
       <p class="sub">Number of these languages with each kind of support, at mid-year and year-end. Lines start when the source's history does. Hover for the languages added.</p>
       ${multiples}
       <p class="note">Common Voice, CLDR and DeepL from each project's release history. Open models and benchmarks are counted from their release dates using today's language lists.</p>
       <details class="tbl"><summary>Show as a table</summary>${table2}</details>
-    </section>
+    </section>`}
     <section class="chart">
       <h3>Where each language stands</h3>
-      <p class="sub">Language Technology Development Index by region. Each dot is a language, with the lowest named below its row and the highest above. Select a dot to open its profile.</p>
+      <p class="sub">${P ? `Share of ${esc(pn)}'s ${provWhat(provider)} tracked here that cover each language, by region.` : 'Language Technology Development Index by region.'} Each dot is a language, with the lowest named below its row and the highest above. Select a dot to open its profile.</p>
       ${strip}
     </section>`;
   bindTips($('#view'));
   bindMap();
   $('#csel').onchange = e => { region = e.target.value; charts(); };
+  $('#cpsel').onchange = e => { provider = e.target.value; charts(); };
 }
 
 function route() {
