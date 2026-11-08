@@ -131,7 +131,18 @@ a.indlink:hover { color: var(--accent); }
 .techrow { display: grid; gap: 6px; padding-block: 12px; border-top: 1px solid var(--rule); }
 .techrow:first-of-type { border-top: 0; padding-top: 0; }
 .tech-h { display: flex; align-items: center; gap: 8px; }
-.tech-h b { font-weight: 600; } .tech-h .ind-val { margin-left: auto; font-size: 14px; }
+.tech-h b { font-weight: 600; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+details.more-tech { border-top: 1px solid var(--rule); padding-top: 12px; }
+details.more-tech > summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
+details.more-tech > summary::-webkit-details-marker { display: none; }
+.mt-title { font-weight: 600; color: var(--accent); }
+.mt-title::before { content: '▸'; display: inline-block; width: 1.1em; }
+details.more-tech[open] .mt-title::before { content: '▾'; }
+.mt-peek { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
+.mt-peek > span { display: inline-flex; align-items: center; gap: 4px; }
+details.more-tech[open] .mt-peek { display: none; }
+details.more-tech .techrow:first-of-type { border-top: 1px solid var(--rule); padding-top: 12px; margin-top: 12px; } .tech-h .ind-val { margin-left: auto; font-size: 14px; }
 .ticon { width: 20px; height: 20px; color: var(--c); flex: none; }
 .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(190px, 46%), 1fr)); gap: 8px; margin-top: 2px; }
 .tile { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; text-decoration: none; color: var(--ink); min-width: 0; }
@@ -435,6 +446,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
      },
      "interface": {
       "label": "Interface language",
+      "group": "more",
       "consumer": [
        "ui_ios",
        "ui_windows",
@@ -451,6 +463,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
      },
      "ocr": {
       "label": "Text recognition (OCR)",
+      "group": "more",
       "consumer": [
        "ocr_google",
        "ocr_azure",
@@ -467,6 +480,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
      },
      "proofing": {
       "label": "Spelling and grammar",
+      "group": "more",
       "consumer": [
        "proof_office"
       ],
@@ -478,6 +492,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
      },
      "assistant": {
       "label": "Voice assistant",
+      "group": "more",
       "consumer": [
        "va_google_assistant",
        "va_siri"
@@ -487,6 +502,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
      },
      "langid": {
       "label": "Language identification",
+      "group": "more",
       "consumer": [],
       "open": [
        "lid_glotlid",
@@ -25145,7 +25161,7 @@ const SVC = {
   lid_cld3: ['CLD3', 'Open model', 'google'], lid_glotlid: ['GlotLID', 'Open model', 'open'],
 };
 const PROV = { google: 'Google', apple: 'Apple', microsoft: 'Microsoft', deepl: 'DeepL', openai: 'OpenAI', meta: 'Meta', anthropic: 'Anthropic', open: 'Open source' };
-let provFocus = null;
+let provFocus = null, moreOpen = false;  // remembered while moving between languages
 const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
   tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features',
   ui_windows: 'ui_windows_level', ui_office: 'ui_office_level', ocr_google: 'ocr_google_level', ocr_azure: 'ocr_azure_handwriting' };
@@ -25202,16 +25218,22 @@ function dimPanel(l, key, color) {
   if (key === 'tech') {
     body += `<div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries(PROV).map(([k, n]) =>
       `<button class="chip prov" id="pv-${k}" data-pv="${k}" aria-pressed="${provFocus === k}" style="--p:var(--prov-${k})"><i></i>${esc(n)}</button>`).join('')}</div>`;
+    const main = [], more = [], peek = [];
     for (const [tk, t] of Object.entries(cfg.technologies)) {
-      const s = d.indicators[tk];
+      const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
       const ids = t.measured ? Object.keys(t.measured) : [...t.consumer, ...t.open];
       const order = Object.keys(PROV), rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
       const tiles = [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id))).join('');
-      body += `<div class="techrow">
-        <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${s == null ? 'not measured' : s.toFixed(2)}</span></div>
+      const row = `<div class="techrow">
+        <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}</span></div>
         ${s == null ? '' : bar(s)}
         <div class="tiles">${tiles}</div></div>`;
+      if (t.group === 'more') { more.push(row); peek.push(`<span title="${esc(t.label)}">${TICON[tk] || ''}<span class="sr">${esc(t.label)}</span>${sv}</span>`); }
+      else main.push(row);
     }
+    body += main.join('');
+    if (more.length) body += `<details class="more-tech"${moreOpen ? ' open' : ''}>
+      <summary><span class="mt-title">More technologies</span><span class="mt-peek">${peek.join('')}</span></summary>${more.join('')}</details>`;
   } else {
     for (const [ik, spec] of Object.entries(cfg.indicators)) {
       const f = facts[ik], n = d.indicators[ik];
@@ -25259,6 +25281,8 @@ function language(code) {
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>.</p>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
+  const mt = $('#view').querySelector('details.more-tech');
+  if (mt) mt.ontoggle = () => { moreOpen = mt.open; };
   $('#view').querySelectorAll('[data-pv]').forEach(b => b.onclick = () => {
     provFocus = provFocus === b.dataset.pv ? null : b.dataset.pv;
     const sec = $('section.dim.wide');

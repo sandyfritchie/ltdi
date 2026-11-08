@@ -166,6 +166,7 @@
      },
      "interface": {
       "label": "Interface language",
+      "group": "more",
       "consumer": [
        "ui_ios",
        "ui_windows",
@@ -182,6 +183,7 @@
      },
      "ocr": {
       "label": "Text recognition (OCR)",
+      "group": "more",
       "consumer": [
        "ocr_google",
        "ocr_azure",
@@ -198,6 +200,7 @@
      },
      "proofing": {
       "label": "Spelling and grammar",
+      "group": "more",
       "consumer": [
        "proof_office"
       ],
@@ -209,6 +212,7 @@
      },
      "assistant": {
       "label": "Voice assistant",
+      "group": "more",
       "consumer": [
        "va_google_assistant",
        "va_siri"
@@ -218,6 +222,7 @@
      },
      "langid": {
       "label": "Language identification",
+      "group": "more",
       "consumer": [],
       "open": [
        "lid_glotlid",

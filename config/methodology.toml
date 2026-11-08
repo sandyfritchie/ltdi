@@ -118,6 +118,7 @@ weight = 1
 
 [dimensions.tech.technologies.interface]
 label = "Interface language"
+group = "more"  # shown under "More technologies" on the site
 consumer = ["ui_ios", "ui_windows", "ui_office"]
 open = ["ui_firefox"]
 depth = { ui_windows_level = 2, ui_office_level = 2 }  # 2 = fully translated, 1 = partly (over a base language)
@@ -125,6 +126,7 @@ weight = 1
 
 [dimensions.tech.technologies.ocr]
 label = "Text recognition (OCR)"
+group = "more"  # shown under "More technologies" on the site
 consumer = ["ocr_google", "ocr_azure", "ocr_apple"]
 open = ["ocr_open_tesseract"]
 depth = { ocr_google_level = 2, ocr_azure_handwriting = 1 }  # Google: 2 = supported, 1 = experimental
@@ -132,18 +134,21 @@ weight = 1
 
 [dimensions.tech.technologies.proofing]
 label = "Spelling and grammar"
+group = "more"  # shown under "More technologies" on the site
 consumer = ["proof_office"]
 open = ["proof_hunspell", "proof_languagetool"]
 weight = 1
 
 [dimensions.tech.technologies.assistant]
 label = "Voice assistant"
+group = "more"  # shown under "More technologies" on the site
 consumer = ["va_google_assistant", "va_siri"]
 open = []
 weight = 1
 
 [dimensions.tech.technologies.langid]
 label = "Language identification"
+group = "more"  # shown under "More technologies" on the site
 # Mostly invisible to users, but every web-scale data pipeline starts with it.
 consumer = []
 open = ["lid_glotlid", "lid_cld3"]
