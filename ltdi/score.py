@@ -37,26 +37,52 @@ def normalise(value: float, spec: dict) -> float:
 ANY = 0.25  # credit for any availability; the rest is shared across the services checked
 
 
-def presence(facts: dict[str, Record], ids: list[str]) -> float:
-    """0.25 for being offered at all, plus 0.75 x the share of these services that offer it."""
-    n = sum(1 for i in ids if i in facts and facts[i].value)
-    return round(ANY + (1 - ANY) * n / len(ids), 3) if n else 0.0
+def _depth_value(value: float, spec) -> float:
+    if isinstance(spec, dict):  # {min, max}; max < min inverts the scale (e.g. error rates)
+        return normalise(value, {"scale": "linear", **spec})
+    return min(1.0, value / spec)  # a plain number is the maximum count
+
+
+def owner(ind: str, tech: dict) -> str | None:
+    """The service a depth indicator describes, by name: tts_google_voice_types -> tts_google."""
+    services = tech.get("consumer", []) + tech.get("open", [])
+    return max((sv for sv in services if ind.startswith(sv + "_")), key=len, default=None)
+
+
+def credit(facts: dict[str, Record], tech: dict, service: str) -> float:
+    """How fully one service supports the language: 0 if not at all, 1 if fully.
+
+    A service with depth indicators (features, voice types, translation levels) earns
+    half for offering the language and half for the depth it offers, so adding a
+    service never lowers a score.
+    """
+    if not (service in facts and facts[service].value):
+        return 0.0
+    vals = [_depth_value(facts[i].value, spec) for i, spec in tech.get("depth", {}).items()
+            if i in facts and owner(i, tech) == service]
+    return 0.5 + 0.5 * sum(vals) / len(vals) if vals else 1.0
+
+
+def presence(facts: dict[str, Record], tech: dict, ids: list[str]) -> float:
+    """0.25 for being offered at all, plus 0.75 x the services' mean credit."""
+    credits = [credit(facts, tech, i) for i in ids]
+    return round(ANY + (1 - ANY) * sum(credits) / len(ids), 3) if any(credits) else 0.0
 
 
 def tier(facts: dict[str, Record], tech: dict) -> float | None:
     """Presence score for a technology (see methodology.toml); None if nothing was collected.
 
-    Commercial services count by share. Without any, an open model alone scores the
-    base 0.25. Technologies with no commercial sources (language identification)
-    count their open tools by share instead. LLMs combine product availability with
-    measured benchmark results (see tech_score).
+    Commercial services count by share, each weighted by its own depth. Without any,
+    an open model alone scores the base 0.25. Technologies with no commercial sources
+    (language identification) count their open tools instead. LLMs combine product
+    availability with measured benchmark results (see tech_score).
     """
     consumer, open_ = tech.get("consumer", []), tech.get("open", [])
     if not any(i in facts for i in consumer + open_):
         return None
     if not consumer:
-        return presence(facts, open_)
-    p = presence(facts, consumer)
+        return presence(facts, tech, open_)
+    p = presence(facts, tech, consumer)
     if p == 0 and any(i in facts and facts[i].value for i in open_):
         return ANY
     return p
@@ -69,24 +95,10 @@ def measured(facts: dict[str, Record], tech: dict) -> float | None:
 
 
 def depth(facts: dict[str, Record], tech: dict) -> float | None:
-    """Mean of the technology's depth indicators, each divided by its max; None if none collected.
-
-    A depth indicator named after a service (tts_google_voice_types belongs to tts_google)
-    only counts where that service offers the language: its absence is already counted
-    in the presence score.
-    """
-    vals = []
-    services = tech.get("consumer", []) + tech.get("open", [])
-    for ind, spec in tech.get("depth", {}).items():
-        if ind not in facts:
-            continue
-        owner = max((sv for sv in services if ind.startswith(sv + "_")), key=len, default=None)
-        if owner and not (owner in facts and facts[owner].value):
-            continue
-        if isinstance(spec, dict):  # {min, max}; max < min inverts the scale (e.g. error rates)
-            vals.append(normalise(facts[ind].value, {"scale": "linear", **spec}))
-        else:  # a plain number is the maximum count
-            vals.append(min(1.0, facts[ind].value / spec))
+    """Mean of the depth indicators that describe the technology rather than one service
+    (e.g. a published error rate); None if there are none."""
+    vals = [_depth_value(facts[i].value, spec) for i, spec in tech.get("depth", {}).items()
+            if i in facts and owner(i, tech) is None]
     return sum(vals) / len(vals) if vals else None
 
 

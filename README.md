@@ -49,10 +49,11 @@ No dependencies beyond the Python 3.11+ standard library.
 Each technology starts from a presence score: 0.25 for being offered at all,
 plus 0.75 times the share of the commercial services checked that offer it
 (one of four scores 0.44; all four score 1.0). An open model alone scores 0.25.
-Counting by share keeps scores comparable as more services are added. Where a
-technology has depth indicators (features, voice types, error rates), its score
-is the mean of presence and depth, and a service's depth only counts where that
-service offers the language. LLMs average availability in AI assistant apps with
+Counting by share keeps scores comparable as more services are added. A service
+with depth indicators (features, voice types, partial translation) earns half its
+share for offering the language and half for the depth it offers, so adding a
+service never lowers a score. Depth that describes the technology as a whole
+(a published error rate) is averaged with presence. LLMs average availability in AI assistant apps with
 measured benchmark quality. Language identification counts open models, at half weight.
 
 ## Sources in the slice

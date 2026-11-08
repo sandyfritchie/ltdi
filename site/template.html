@@ -325,7 +325,7 @@ function showValue(f) {
   if (f.unit === '% of English') return v + '% of English';
   if (/^features of \d+$/.test(f.unit)) return `${v} of ${f.unit.split(' ').pop()} features`;
   if (f.unit === 'accuracy') return (v * 100).toFixed(1) + '% accuracy';
-  if (f.unit === 'types of 8') return `${v} of 8 voice types`;
+  if (/^types of/.test(f.unit)) return `${v} of ${f.unit.split(' ').pop()} voice types`;
   if (f.unit === '% WER') return v >= 100 ? 'No published WER under 50%' : v + '% WER';
   if (f.unit === 'editors') return big(v) + ' active editors';
   return v;
@@ -553,9 +553,9 @@ function depthText(f, ind) {
     return f.value >= 2 ? 'Fully translated' : 'Partly translated';
   }
   if (ind === 'ocr_azure_handwriting') return f.value ? 'Printed and handwriting' : 'Printed text only';
-  if (/^features of/.test(f.unit) || f.unit === 'types of 8') {
+  if (/^features of/.test(f.unit) || /^types of/.test(f.unit)) {
     const has = (f.note || '').replace(/^Has: /, '');
-    const what = f.unit === 'types of 8' ? 'voice types' : 'features';
+    const what = /^types of/.test(f.unit) ? 'voice types' : 'features';
     const total = f.unit.split(' ').pop();
     return `${f.value} of ${total} ${what}`;
   }

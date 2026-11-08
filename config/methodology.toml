@@ -75,10 +75,11 @@ weight = 0.1
 # Counting by share keeps the score meaningful as more services are added.
 # A technology with no commercial sources (language identification) counts its
 # open tools by share instead.
-# Where a technology lists depth indicators, its score is the mean of the
-# presence score and the depth (each depth value divided by its max, averaged).
-# A depth indicator named after a service only counts where that service offers
-# the language. Depth only counts when the technology is present at all.
+# Depth indicators named after a service (tts_google_voice_types belongs to
+# tts_google) weight that service's share: it earns half for offering the
+# language and half for the depth it offers, so adding a service never lowers
+# a score. Depth that describes the technology as a whole (a published error
+# rate) is averaged with the presence score.
 # LLMs also use measured benchmark results (see [llm]).
 [dimensions.tech]
 label = "Technology support"
@@ -101,7 +102,7 @@ weight = 1
 label = "Text-to-speech"
 consumer = ["tts_google", "tts_azure", "tts_amazon"]
 open = ["tts_open_mms"]
-depth = { tts_google_voice_types = 8 }  # Standard, WaveNet, Neural2, Studio, Polyglot, News, Chirp HD, Chirp3-HD
+depth = { tts_google_voice_types = 9 }  # Standard, WaveNet, Neural2, Studio, Polyglot, News, Chirp HD, Chirp3-HD, Gemini-TTS
 weight = 1
 
 [dimensions.tech.technologies.mt]

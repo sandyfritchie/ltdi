@@ -70,25 +70,27 @@ class LlmTests(unittest.TestCase):
 
 
 class DepthTests(unittest.TestCase):
-    tech = {"consumer": ["a"], "open": [], "depth": {"feat": 4}}
+    tech = {"consumer": ["a", "b"], "open": [], "depth": {"a_feat": 4}}
 
-    def test_depth_averages_with_tier(self):
-        self.assertEqual(tech_score({"a": fact("a", 1), "feat": fact("feat", 2)}, self.tech), 0.75)
+    def test_service_depth_weights_that_services_credit(self):
+        fs = {"a": fact("a", 1), "b": fact("b", 0), "a_feat": fact("a_feat", 2)}
+        self.assertEqual(tech_score(fs, self.tech), 0.531)  # 0.25 + 0.75 x (0.5 + 0.5 x 0.5) / 2
 
-    def test_depth_ignored_when_absent(self):
-        self.assertEqual(tech_score({"a": fact("a", 0), "feat": fact("feat", 4)}, self.tech), 0.0)
+    def test_adding_a_thin_service_never_lowers_the_score(self):
+        without = tech_score({"a": fact("a", 0), "b": fact("b", 1), "a_feat": fact("a_feat", 0)}, self.tech)
+        with_a = tech_score({"a": fact("a", 1), "b": fact("b", 1), "a_feat": fact("a_feat", 0)}, self.tech)
+        self.assertGreater(with_a, without)
 
-    def test_inverted_depth_scale(self):
+    def test_service_depth_ignored_where_service_is_absent(self):
+        fs = {"a": fact("a", 0), "b": fact("b", 1), "a_feat": fact("a_feat", 4)}
+        self.assertEqual(tech_score(fs, self.tech), 0.625)
+
+    def test_technology_level_depth_averages_with_presence(self):
         tech = {"consumer": ["a"], "open": [], "depth": {"wer": {"min": 50, "max": 0}}}
         self.assertEqual(tech_score({"a": fact("a", 1), "wer": fact("wer", 25)}, tech), 0.75)
 
-    def test_service_depth_only_counts_where_the_service_offers_it(self):
-        tech = {"consumer": ["a", "b"], "open": [], "depth": {"a_feat": 4}}
-        fs = {"a": fact("a", 0), "b": fact("b", 1), "a_feat": fact("a_feat", 0)}
-        self.assertEqual(tech_score(fs, tech), 0.625)  # presence only; a's missing features aren't counted twice
-
-    def test_no_depth_record_keeps_tier(self):
-        self.assertEqual(tech_score({"a": fact("a", 1)}, self.tech), 1.0)
+    def test_no_depth_record_keeps_presence(self):
+        self.assertEqual(tech_score({"a": fact("a", 1)}, {"consumer": ["a"], "open": [], "depth": {"a_feat": 4}}), 1.0)
 
 
 if __name__ == "__main__":
