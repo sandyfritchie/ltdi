@@ -653,6 +653,7 @@
      "score": 1.0,
      "indicators": {
       "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
       "cv_validated_hours": 1.0,
       "flores200": 1.0,
       "belebele": 1.0
@@ -671,9 +672,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 1
   },
   {
@@ -927,6 +926,7 @@
      "score": 1.0,
      "indicators": {
       "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
       "cv_validated_hours": 1.0,
       "flores200": 1.0,
       "belebele": 1.0
@@ -945,9 +945,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 2
   },
   {
@@ -1082,7 +1080,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/es.json",
    "note": "",
-   "ltdi": 0.9922,
+   "ltdi": 0.9938,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1093,14 +1091,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9767,
+     "score": 0.9814,
      "indicators": {
       "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
       "cv_validated_hours": 0.926,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9767
+     "raw": 0.9814
     },
     "tech": {
      "score": 1.0,
@@ -1114,9 +1113,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 3
   },
   {
@@ -1141,7 +1138,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
    "note": "",
-   "ltdi": 0.9849,
+   "ltdi": 0.988,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1152,14 +1149,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9554,
+     "score": 0.9643,
      "indicators": {
       "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
       "cv_validated_hours": 0.857,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9554
+     "raw": 0.9643
     },
     "tech": {
      "score": 1.0,
@@ -1173,9 +1171,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 4
   },
   {
@@ -1216,7 +1212,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cmn.json",
    "note": "Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn",
-   "ltdi": 0.9826,
+   "ltdi": 0.9861,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1227,14 +1223,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9486,
+     "score": 0.9588,
      "indicators": {
       "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
       "cv_validated_hours": 0.835,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9486
+     "raw": 0.9588
     },
     "tech": {
      "score": 1.0,
@@ -1248,9 +1245,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 5
   },
   {
@@ -1295,7 +1290,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ru.json",
    "note": "",
-   "ltdi": 0.9791,
+   "ltdi": 0.9834,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1306,14 +1301,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9386,
+     "score": 0.9509,
      "indicators": {
       "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
       "cv_validated_hours": 0.804,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9386
+     "raw": 0.9509
     },
     "tech": {
      "score": 1.0,
@@ -1327,7 +1323,6 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
    "rank": 6
@@ -1379,7 +1374,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pt.json",
    "note": "",
-   "ltdi": 0.9743,
+   "ltdi": 0.9795,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1390,14 +1385,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9248,
+     "score": 0.9398,
      "indicators": {
       "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
       "cv_validated_hours": 0.759,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9248
+     "raw": 0.9398
     },
     "tech": {
      "score": 1.0,
@@ -1411,9 +1407,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 7
   },
   {
@@ -1598,7 +1592,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ar.json",
    "note": "Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar",
-   "ltdi": 0.952,
+   "ltdi": 0.962,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1609,14 +1603,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8629,
+     "score": 0.8903,
      "indicators": {
       "web_text_words": 0.931,
+      "wikipedia_articles": 1.0,
       "cv_validated_hours": 0.658,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8629
+     "raw": 0.8903
     },
     "tech": {
      "score": 1.0,
@@ -1630,9 +1625,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 8
   },
   {
@@ -1657,7 +1650,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/id.json",
    "note": "",
-   "ltdi": 0.9416,
+   "ltdi": 0.9521,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1668,14 +1661,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8349,
+     "score": 0.8632,
      "indicators": {
       "web_text_words": 0.969,
+      "wikipedia_articles": 0.976,
       "cv_validated_hours": 0.516,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8349
+     "raw": 0.8632
     },
     "tech": {
      "score": 1.0,
@@ -1689,9 +1683,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 9
   },
   {
@@ -1726,7 +1718,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ta.json",
    "note": "",
-   "ltdi": 0.9389,
+   "ltdi": 0.9383,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1737,14 +1729,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8276,
+     "score": 0.8262,
      "indicators": {
       "web_text_words": 0.755,
+      "wikipedia_articles": 0.821,
       "cv_validated_hours": 0.791,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8276
+     "raw": 0.8262
     },
     "tech": {
      "score": 1.0,
@@ -1758,74 +1751,9 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
    "rank": 10
-  },
-  {
-   "code": "bn",
-   "name": "Bengali",
-   "autonym": "বাংলা",
-   "iso_639_3": "ben",
-   "glottocode": "beng1280",
-   "scope": "LANGUAGE",
-   "speakers": 266000000,
-   "members": [],
-   "scripts": [
-    "beng"
-   ],
-   "countries": [
-    {
-     "code": "bd",
-     "name": "Bangladesh",
-     "speakers": 159000000
-    },
-    {
-     "code": "in",
-     "name": "India",
-     "speakers": 107000000
-    }
-   ],
-   "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
-   "note": "",
-   "ltdi": 0.9258,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.7935,
-     "indicators": {
-      "web_text_words": 0.827,
-      "cv_validated_hours": 0.581,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.7935
-    },
-    "tech": {
-     "score": 1.0,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0,
-      "llm": 1.0
-     },
-     "raw": 1.0
-    }
-   },
-   "missing": [
-    "wikipedia_articles"
-   ],
-   "rank": 11
   },
   {
    "code": "ur",
@@ -1854,7 +1782,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ur.json",
    "note": "",
-   "ltdi": 0.924,
+   "ltdi": 0.9374,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1865,14 +1793,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.789,
+     "score": 0.8237,
      "indicators": {
       "web_text_words": 0.778,
+      "wikipedia_articles": 0.962,
       "cv_validated_hours": 0.636,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.789
+     "raw": 0.8237
     },
     "tech": {
      "score": 1.0,
@@ -1886,9 +1815,71 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
+   "rank": 11
+  },
+  {
+   "code": "bn",
+   "name": "Bengali",
+   "autonym": "বাংলা",
+   "iso_639_3": "ben",
+   "glottocode": "beng1280",
+   "scope": "LANGUAGE",
+   "speakers": 266000000,
+   "members": [],
+   "scripts": [
+    "beng"
+   ],
+   "countries": [
+    {
+     "code": "bd",
+     "name": "Bangladesh",
+     "speakers": 159000000
+    },
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 107000000
+    }
+   ],
+   "region": "Asia",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
+   "note": "",
+   "ltdi": 0.9279,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.799,
+     "indicators": {
+      "web_text_words": 0.827,
+      "wikipedia_articles": 0.821,
+      "cv_validated_hours": 0.581,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.799
+    },
+    "tech": {
+     "score": 1.0,
+     "indicators": {
+      "keyboard": 1.0,
+      "speech_input": 1.0,
+      "tts": 1.0,
+      "mt": 1.0,
+      "llm": 1.0
+     },
+     "raw": 1.0
+    }
+   },
+   "missing": [],
    "rank": 12
   },
   {
@@ -1913,7 +1904,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hi.json",
    "note": "",
-   "ltdi": 0.9108,
+   "ltdi": 0.9151,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1924,14 +1915,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.7556,
+     "score": 0.7663,
      "indicators": {
       "web_text_words": 0.865,
+      "wikipedia_articles": 0.809,
       "cv_validated_hours": 0.408,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.7556
+     "raw": 0.7663
     },
     "tech": {
      "score": 1.0,
@@ -1945,9 +1937,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 13
   },
   {
@@ -1995,7 +1985,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sw.json",
    "note": "Macrolanguage; vendors label as sw",
-   "ltdi": 0.8681,
+   "ltdi": 0.8655,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2006,14 +1996,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8177,
+     "score": 0.8103,
      "indicators": {
       "web_text_words": 0.68,
+      "wikipedia_articles": 0.781,
       "cv_validated_hours": 0.865,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8177
+     "raw": 0.8103
     },
     "tech": {
      "score": 0.8,
@@ -2027,9 +2018,7 @@
      "raw": 0.8
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 14
   },
   {
@@ -2060,7 +2049,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pa.json",
    "note": "Gurmukhi and Shahmukhi scripts combined for the slice",
-   "ltdi": 0.8442,
+   "ltdi": 0.8608,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2071,14 +2060,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6017,
+     "score": 0.6379,
      "indicators": {
       "web_text_words": 0.676,
+      "wikipedia_articles": 0.783,
       "cv_validated_hours": 0.179,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.6017
+     "raw": 0.6379
     },
     "tech": {
      "score": 1.0,
@@ -2092,7 +2082,6 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
    "rank": 15
@@ -2119,7 +2108,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/is.json",
    "note": "Contrast case: few speakers, strong support",
-   "ltdi": 0.8362,
+   "ltdi": 0.8466,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2130,14 +2119,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5847,
+     "score": 0.6068,
      "indicators": {
       "web_text_words": 0.747,
+      "wikipedia_articles": 0.695,
       "cv_validated_hours": 0.025,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.5847
+     "raw": 0.6068
     },
     "tech": {
      "score": 1.0,
@@ -2151,7 +2141,6 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
    "rank": 16
@@ -2178,7 +2167,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cy.json",
    "note": "Contrast case: few speakers, strong support",
-   "ltdi": 0.7823,
+   "ltdi": 0.8003,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2189,14 +2178,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6384,
+     "score": 0.6834,
      "indicators": {
       "web_text_words": 0.674,
+      "wikipedia_articles": 0.864,
       "cv_validated_hours": 0.699,
       "flores200": 1.0,
       "belebele": 0.0
      },
-     "raw": 0.6384
+     "raw": 0.6834
     },
     "tech": {
      "score": 0.75,
@@ -2210,7 +2200,6 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
    "rank": 17
@@ -2242,7 +2231,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ha.json",
    "note": "",
-   "ltdi": 0.7384,
+   "ltdi": 0.7518,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2253,14 +2242,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6032,
+     "score": 0.6367,
      "indicators": {
       "web_text_words": 0.634,
+      "wikipedia_articles": 0.771,
       "cv_validated_hours": 0.243,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.6032
+     "raw": 0.6367
     },
     "tech": {
      "score": 0.6675,
@@ -2274,7 +2264,6 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
    "rank": 18
@@ -2301,7 +2290,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/yo.json",
    "note": "",
-   "ltdi": 0.7262,
+   "ltdi": 0.733,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2312,14 +2301,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5734,
+     "score": 0.5895,
      "indicators": {
       "web_text_words": 0.539,
+      "wikipedia_articles": 0.654,
       "cv_validated_hours": 0.281,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.5734
+     "raw": 0.5895
     },
     "tech": {
      "score": 0.668,
@@ -2333,69 +2323,8 @@
      "raw": 0.668
     }
    },
-   "missing": [
-    "wikipedia_articles"
-   ],
+   "missing": [],
    "rank": 19
-  },
-  {
-   "code": "am",
-   "name": "Amharic",
-   "autonym": "አማርኛ",
-   "iso_639_3": "amh",
-   "glottocode": "amha1245",
-   "scope": "LANGUAGE",
-   "speakers": 36000000,
-   "members": [],
-   "scripts": [
-    "ethi"
-   ],
-   "countries": [
-    {
-     "code": "et",
-     "name": "Ethiopia",
-     "speakers": 36000000
-    }
-   ],
-   "region": "Africa",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
-   "note": "",
-   "ltdi": 0.7257,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.5725,
-     "indicators": {
-      "web_text_words": 0.626,
-      "cv_validated_hours": 0.156,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.5725
-    },
-    "tech": {
-     "score": 0.6675,
-     "indicators": {
-      "keyboard": 0.67,
-      "speech_input": 1.0,
-      "tts": 0.0,
-      "mt": 1.0
-     },
-     "raw": 0.6675
-    }
-   },
-   "missing": [
-    "wikipedia_articles",
-    "llm_global_mmlu_rel"
-   ],
-   "rank": 20
   },
   {
    "code": "ig",
@@ -2419,7 +2348,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ig.json",
    "note": "",
-   "ltdi": 0.7175,
+   "ltdi": 0.7277,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2430,14 +2359,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5534,
+     "score": 0.5773,
      "indicators": {
       "web_text_words": 0.554,
+      "wikipedia_articles": 0.673,
       "cv_validated_hours": 0.195,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.5534
+     "raw": 0.5773
     },
     "tech": {
      "score": 0.6675,
@@ -2451,7 +2381,65 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 20
+  },
+  {
+   "code": "am",
+   "name": "Amharic",
+   "autonym": "አማርኛ",
+   "iso_639_3": "amh",
+   "glottocode": "amha1245",
+   "scope": "LANGUAGE",
+   "speakers": 36000000,
+   "members": [],
+   "scripts": [
+    "ethi"
+   ],
+   "countries": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 36000000
+    }
+   ],
+   "region": "Africa",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
+   "note": "",
+   "ltdi": 0.7237,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.5678,
+     "indicators": {
+      "web_text_words": 0.626,
+      "wikipedia_articles": 0.549,
+      "cv_validated_hours": 0.156,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.5678
+    },
+    "tech": {
+     "score": 0.6675,
+     "indicators": {
+      "keyboard": 0.67,
+      "speech_input": 1.0,
+      "tts": 0.0,
+      "mt": 1.0
+     },
+     "raw": 0.6675
+    }
+   },
+   "missing": [
     "llm_global_mmlu_rel"
    ],
    "rank": 21
@@ -2478,7 +2466,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/rw.json",
    "note": "",
-   "ltdi": 0.7143,
+   "ltdi": 0.6958,
    "dimensions": {
     "writing": {
      "score": 0.6667,
@@ -2489,14 +2477,15 @@
      "raw": 0.6667
     },
     "data": {
-     "score": 0.8191,
+     "score": 0.7568,
      "indicators": {
       "web_text_words": 0.587,
+      "wikipedia_articles": 0.508,
       "cv_validated_hours": 1.0,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8191
+     "raw": 0.7568
     },
     "tech": {
      "score": 0.6675,
@@ -2510,74 +2499,9 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
    "rank": 22
-  },
-  {
-   "code": "om",
-   "name": "Oromo",
-   "autonym": "Afaan Oromoo",
-   "iso_639_3": "orm",
-   "glottocode": null,
-   "scope": "MACROLANGUAGE",
-   "speakers": 42000000,
-   "members": [
-    "gax",
-    "gaz",
-    "hae",
-    "orc"
-   ],
-   "scripts": [
-    "latn"
-   ],
-   "countries": [
-    {
-     "code": "et",
-     "name": "Ethiopia",
-     "speakers": 42000000
-    }
-   ],
-   "region": "Africa",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
-   "note": "Macrolanguage; vendors label as om",
-   "ltdi": 0.6177,
-   "dimensions": {
-    "writing": {
-     "score": 0.6667,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 0.333
-     },
-     "raw": 0.6667
-    },
-    "data": {
-     "score": 0.6042,
-     "indicators": {
-      "web_text_words": 0.469,
-      "cv_validated_hours": 0.476,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.6042
-    },
-    "tech": {
-     "score": 0.585,
-     "indicators": {
-      "keyboard": 0.67,
-      "speech_input": 0.67,
-      "tts": 0.0,
-      "mt": 1.0
-     },
-     "raw": 0.585
-    }
-   },
-   "missing": [
-    "wikipedia_articles",
-    "llm_global_mmlu_rel"
-   ],
-   "rank": 23
   },
   {
    "code": "qu",
@@ -2649,7 +2573,7 @@
    "region": "Americas",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/qu.json",
    "note": "Macrolanguage; vendors label as qu",
-   "ltdi": 0.6105,
+   "ltdi": 0.6144,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2660,14 +2584,15 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5449,
+     "score": 0.5555,
      "indicators": {
       "web_text_words": 0.423,
+      "wikipedia_articles": 0.598,
       "cv_validated_hours": 0.751,
       "flores200": 1.0,
       "belebele": 0.0
      },
-     "raw": 0.5449
+     "raw": 0.5555
     },
     "tech": {
      "score": 0.4175,
@@ -2681,7 +2606,70 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 23
+  },
+  {
+   "code": "om",
+   "name": "Oromo",
+   "autonym": "Afaan Oromoo",
+   "iso_639_3": "orm",
+   "glottocode": null,
+   "scope": "MACROLANGUAGE",
+   "speakers": 42000000,
+   "members": [
+    "gax",
+    "gaz",
+    "hae",
+    "orc"
+   ],
+   "scripts": [
+    "latn"
+   ],
+   "countries": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 42000000
+    }
+   ],
+   "region": "Africa",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
+   "note": "Macrolanguage; vendors label as om",
+   "ltdi": 0.5979,
+   "dimensions": {
+    "writing": {
+     "score": 0.6667,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 0.333
+     },
+     "raw": 0.6667
+    },
+    "data": {
+     "score": 0.548,
+     "indicators": {
+      "web_text_words": 0.469,
+      "wikipedia_articles": 0.323,
+      "cv_validated_hours": 0.476,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.548
+    },
+    "tech": {
+     "score": 0.585,
+     "indicators": {
+      "keyboard": 0.67,
+      "speech_input": 0.67,
+      "tts": 0.0,
+      "mt": 1.0
+     },
+     "raw": 0.585
+    }
+   },
+   "missing": [
     "llm_global_mmlu_rel"
    ],
    "rank": 24
@@ -2724,7 +2712,7 @@
    "region": "Americas",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/gn.json",
    "note": "Macrolanguage; vendors label as gn",
-   "ltdi": 0.5037,
+   "ltdi": 0.4993,
    "dimensions": {
     "writing": {
      "score": 0.5,
@@ -2735,14 +2723,15 @@
      "raw": 0.5
     },
     "data": {
-     "score": 0.5113,
+     "score": 0.4979,
      "indicators": {
       "web_text_words": 0.409,
+      "wikipedia_articles": 0.445,
       "cv_validated_hours": 0.263,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.5113
+     "raw": 0.4979
     },
     "tech": {
      "score": 0.5,
@@ -2756,7 +2745,6 @@
     }
    },
    "missing": [
-    "wikipedia_articles",
     "llm_global_mmlu_rel"
    ],
    "rank": 25
@@ -2843,6 +2831,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 15736.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://am.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -2998,6 +2995,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 1339240.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://ar.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -3164,6 +3170,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 192440.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://bn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -3326,6 +3341,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 1565030.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://zh.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -3492,6 +3516,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 284858.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://cy.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -3645,6 +3678,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 7260924.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -3811,6 +3853,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 2148545.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://es.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 1.0,
     "unit": "bool",
@@ -3973,6 +4024,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 2788659.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://fr.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -4139,6 +4199,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 6038.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://gn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -4294,6 +4363,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 121663.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://ha.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -4447,6 +4525,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 172322.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://hi.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -4613,6 +4700,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 803961.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://id.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 1.0,
     "unit": "bool",
@@ -4777,6 +4873,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 49280.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://ig.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -4932,6 +5037,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 60614.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://is.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -5085,6 +5199,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 1526664.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://ja.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -5251,6 +5374,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 1970.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://om.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -5406,6 +5538,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 135558.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://pa.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json https://pnb.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -5559,6 +5700,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 1188101.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://pt.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -5725,6 +5875,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 24674.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://qu.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -5878,6 +6037,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 2127711.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://ru.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -6035,6 +6203,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 10796.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://rw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -6188,6 +6365,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 133073.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://sw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
@@ -6354,6 +6540,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 191872.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://ta.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -6509,6 +6704,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_articles": {
+    "value": 708135.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://ur.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": ""
+   },
    "asr_apple": {
     "value": 0.0,
     "unit": "bool",
@@ -6662,6 +6866,15 @@
     "url": "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py",
     "retrieved": "2026-11-07",
     "method": "download",
+    "note": ""
+   },
+   "wikipedia_articles": {
+    "value": 41393.0,
+    "unit": "articles",
+    "source": "Wikipedia",
+    "url": "https://yo.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
     "note": ""
    },
    "asr_apple": {
