@@ -28627,8 +28627,8 @@ const SVC = {
   tts_open_mms: ['MMS-TTS', 'Open model', 'meta'], va_alexa: ['Alexa', 'Voice assistant', 'amazon'],
   llm_app_gemini: ['Gemini', 'App languages', 'google'], llm_app_copilot: ['Copilot', 'App languages', 'microsoft'],
 };
-// Signatories of the Gates Foundation language commitment (Sept 2026) first, then others; tiles follow this order
-const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', deepl: 'DeepL', meta: 'Meta', open: 'Open source' };
+// Commitment signatories first (Gates Foundation, Sept 2026), then other large companies, smaller ones, open source; tiles follow this order
+const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', meta: 'Meta', deepl: 'DeepL', open: 'Open source' };
 let provFocus = null, moreOpen = false;  // remembered while moving between languages
 const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
   tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features',
