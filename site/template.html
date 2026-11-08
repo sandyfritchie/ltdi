@@ -203,7 +203,7 @@ function ranking() {
       <thead><tr><th>#</th><th>Language</th><th class="num hide-sm">Speakers</th><th class="hide-sm">Region</th><th>Dimensions</th><th class="num">LTDI</th><th>Tier</th></tr></thead>
       <tbody id="rows"></tbody>
     </table></div>
-    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. Wikipedia counts are not collected yet; LLM support is measured for 12 languages only, so the rest leave LLMs out of their technology score. Select a language to see every value and its source.</p>`;
+    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. LLM support is measured for 12 languages only, so the rest leave LLMs out of their technology score. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const rows = LANGS.filter(l => (region === 'All' || l.region === region) &&

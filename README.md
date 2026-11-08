@@ -51,7 +51,7 @@ No dependencies beyond the Python 3.11+ standard library.
 | Data | Transcribed speech (hours) | Mozilla Common Voice 27.0 | automated |
 | Data | MT evaluation set | FLORES-200 | automated |
 | Data | Reading-comprehension benchmark | Belebele | automated |
-| Data | Wikipedia articles | Wikimedia API | collector written, not yet run |
+| Data | Wikipedia articles | Wikimedia API | automated (run locally) |
 | Tech | Keyboard | Gboard, Apple iOS | manual |
 | Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation; Whisper (open) | manual; Whisper automated |
 | Tech | Text-to-speech | Google Cloud TTS | manual |
@@ -64,3 +64,4 @@ No dependencies beyond the Python 3.11+ standard library.
 - Common Voice is one speech source among many, so it under-credits Hindi and over-credits Kinyarwanda.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM support is measured for 12 of the 25 languages.
+- Wikipedia article counts include bot-generated stubs: Urdu (708K) outranks Hindi (172K).
