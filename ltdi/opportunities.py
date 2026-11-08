@@ -169,15 +169,43 @@ def find(f: dict[str, Record]) -> list[dict]:
     return out
 
 
-def rank(lang: dict, opps: list[dict], scores: dict) -> list[dict]:
-    """Priority = reach x gap x need / cost.
+VOICE = {"speech_input", "tts"}  # usable without reading or writing
 
-    reach: log10(speakers) - 4, so 10K speakers scores 0 and 1 billion scores 5.
+
+def users(lang: dict, facts: dict[str, Record], technology: str) -> dict:
+    """Potential users of a technology: all speakers, connected now, and connected in five years.
+
+    Text technologies count speakers online who can read and write text on a phone;
+    voice technologies count everyone online. Falls back to all speakers where
+    connectivity data is missing.
+    """
+    sp = float(lang.get("speakers") or 0)
+    kind = "voice" if technology in VOICE else "text"
+    now, later = facts.get(f"reach_{kind}_share"), facts.get(f"reach_{kind}_share_5y")
+    growth = facts["speaker_growth_5y"].value if "speaker_growth_5y" in facts else 1.0
+    if now is None or later is None:
+        return {"speakers": sp, "now": sp, "5y": sp, "kind": kind, "estimated": False}
+    return {"speakers": sp, "now": sp * now.value, "5y": sp * growth * later.value, "kind": kind, "estimated": True}
+
+
+def _reach(n: float) -> float:
+    """log10(people) - 4: 10K scores 0, 1 billion scores 5."""
+    return max(0.0, math.log10(max(n, 1)) - 4)
+
+
+def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | None = None) -> list[dict]:
+    """Priority = reach x gap x need / cost, computed three ways.
+
+    priority     reach from all speakers
+    priority_now reach from speakers who can use the technology today (see users)
+    priority_5y  reach from those expected to in five years, times momentum:
+                 1 + log2(growth in users) / 2, capped at 2, so a user base set to
+                 double scores 1.5x and one set to quadruple scores 2x
     need:  1 minus the language's current score for that technology (or its
            overall LTDI where unmeasured), floored at 0.1, so the same gap matters
            more where support is weakest.
     """
-    reach = max(0.0, math.log10(max(lang.get("speakers") or 1, 1)) - 4)
+    facts = facts or {}
     tech = scores["dimensions"]["tech"]["indicators"]
     for o in opps:
         t = TYPES[o["type"]]
@@ -190,6 +218,13 @@ def rank(lang: dict, opps: list[dict], scores: dict) -> list[dict]:
         else:
             current = scores["ltdi"]
         need = max(0.1, 1 - current)
-        o["priority"] = round(reach * o["gap"] * need / t["cost"], 3)
+        base = o["gap"] * need / t["cost"]
+        u = users(lang, facts, o["technology"])
+        momentum = min(2.0, 1 + math.log2(u["5y"] / u["now"]) / 2) if u["now"] > 0 and u["5y"] > u["now"] else 1.0
+        o["users"] = {k: (round(v) if isinstance(v, float) else v) for k, v in u.items()}
+        o["momentum"] = round(momentum, 3)
+        o["priority"] = round(_reach(u["speakers"]) * base, 3)
+        o["priority_now"] = round(_reach(u["now"]) * base, 3)
+        o["priority_5y"] = round(_reach(u["5y"]) * base * momentum, 3)
         o["workstream"] = t["workstream"]
-    return sorted(opps, key=lambda o: -o["priority"])
+    return sorted(opps, key=lambda o: -o["priority_5y"])

@@ -120,7 +120,7 @@ def main() -> None:
     for lang in langs:
         facts_l = by_lang.get(lang["code"], {})
         s = score_language(facts_l, cfg)
-        results.append({**lang, **s, "opportunities": rank(lang, find(facts_l), s)})
+        results.append({**lang, **s, "opportunities": rank(lang, find(facts_l), s, facts_l)})
     results.sort(key=lambda r: -r["ltdi"])
     for i, r in enumerate(results, 1):
         r["rank"] = i

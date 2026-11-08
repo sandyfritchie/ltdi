@@ -1488,7 +1488,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 170200000,
+      "now": 157588180,
+      "5y": 166088022,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.038,
      "priority": 0.423,
+     "priority_now": 0.42,
+     "priority_5y": 0.438,
      "workstream": "Measurement"
     }
    ],
@@ -1850,7 +1860,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 81530000,
+      "now": 24328552,
+      "5y": 29405520,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.137,
      "priority": 0.523,
+     "priority_now": 0.452,
+     "priority_5y": 0.527,
      "workstream": "Measurement"
     },
     {
@@ -1865,7 +1885,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 81530000,
+      "now": 56581820,
+      "5y": 68324090,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.136,
      "priority": 0.171,
+     "priority_now": 0.164,
+     "priority_5y": 0.19,
      "workstream": "Tools for builders"
     }
    ],
@@ -1938,7 +1968,17 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 544000000,
+      "now": 380800000,
+      "5y": 460272634,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.137,
      "priority": 0.042,
+     "priority_now": 0.041,
+     "priority_5y": 0.047,
      "workstream": "Open language data"
     }
    ],
@@ -2016,7 +2056,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 266000000,
+      "now": 159839400,
+      "5y": 203983068,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.176,
      "priority": 0.664,
+     "priority_now": 0.631,
+     "priority_5y": 0.76,
      "workstream": "Tools for builders"
     },
     {
@@ -2031,7 +2081,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 266000000,
+      "now": 159839400,
+      "5y": 203983068,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.176,
      "priority": 0.442,
+     "priority_now": 0.42,
+     "priority_5y": 0.506,
      "workstream": "Tools for builders"
     }
    ],
@@ -2111,7 +2171,17 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "users": {
+      "speakers": 288000000,
+      "now": 84384000,
+      "5y": 109642176,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.189,
      "priority": 1.254,
+     "priority_now": 1.104,
+     "priority_5y": 1.351,
      "workstream": "Tools for builders"
     },
     {
@@ -2121,7 +2191,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 288000000,
+      "now": 84384000,
+      "5y": 109642176,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.189,
      "priority": 0.791,
+     "priority_now": 0.696,
+     "priority_5y": 0.852,
      "workstream": "Measurement"
     },
     {
@@ -2136,7 +2216,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 288000000,
+      "now": 173289600,
+      "5y": 224720133,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.187,
      "priority": 0.214,
+     "priority_now": 0.203,
+     "priority_5y": 0.248,
      "workstream": "Tools for builders"
     }
    ],
@@ -2214,7 +2304,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 200000000,
+      "now": 58560000,
+      "5y": 76418724,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.192,
      "priority": 0.972,
+     "priority_now": 0.851,
+     "priority_5y": 1.046,
      "workstream": "Measurement"
     },
     {
@@ -2226,7 +2326,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 200000000,
+      "now": 119220000,
+      "5y": 155264462,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.191,
      "priority": 0.605,
+     "priority_now": 0.573,
+     "priority_5y": 0.702,
      "workstream": "Tools for builders"
     },
     {
@@ -2241,7 +2351,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 200000000,
+      "now": 119220000,
+      "5y": 155264462,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.191,
      "priority": 0.418,
+     "priority_now": 0.396,
+     "priority_5y": 0.485,
      "workstream": "Tools for builders"
     },
     {
@@ -2253,7 +2373,17 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 200000000,
+      "now": 119220000,
+      "5y": 155264462,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.191,
      "priority": 0.368,
+     "priority_now": 0.348,
+     "priority_5y": 0.426,
      "workstream": "Open language data"
     }
    ],
@@ -2325,7 +2455,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 350000,
+      "now": 343735,
+      "5y": 369788,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.053,
      "priority": 0.371,
+     "priority_now": 0.369,
+     "priority_5y": 0.396,
      "workstream": "Measurement"
     },
     {
@@ -2340,7 +2480,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 350000,
+      "now": 343735,
+      "5y": 369788,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.053,
      "priority": 0.139,
+     "priority_now": 0.139,
+     "priority_5y": 0.149,
      "workstream": "Tools for builders"
     },
     {
@@ -2352,7 +2502,17 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 350000,
+      "now": 343735,
+      "5y": 369788,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.053,
      "priority": 0.138,
+     "priority_now": 0.138,
+     "priority_5y": 0.148,
      "workstream": "Open language data"
     },
     {
@@ -2364,7 +2524,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 350000,
+      "now": 343735,
+      "5y": 369788,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.053,
      "priority": 0.107,
+     "priority_now": 0.106,
+     "priority_5y": 0.114,
      "workstream": "Tools for builders"
     }
    ],
@@ -2461,7 +2631,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 171000000,
+      "now": 41655600,
+      "5y": 62752298,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.296,
      "priority": 4.233,
+     "priority_now": 3.62,
+     "priority_5y": 4.92,
      "workstream": "Tools for builders"
     },
     {
@@ -2474,7 +2654,17 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "users": {
+      "speakers": 171000000,
+      "now": 29959200,
+      "5y": 45111168,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.295,
      "priority": 2.116,
+     "priority_now": 1.738,
+     "priority_5y": 2.367,
      "workstream": "Tools for builders"
     },
     {
@@ -2489,7 +2679,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 171000000,
+      "now": 41655600,
+      "5y": 62752298,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.296,
      "priority": 0.409,
+     "priority_now": 0.35,
+     "priority_5y": 0.475,
      "workstream": "Tools for builders"
     },
     {
@@ -2501,7 +2701,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 171000000,
+      "now": 41655600,
+      "5y": 62752298,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.296,
      "priority": 0.37,
+     "priority_now": 0.316,
+     "priority_5y": 0.43,
      "workstream": "Tools for builders"
     }
    ],
@@ -2576,7 +2786,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.014,
      "priority": 1.929,
+     "priority_now": 1.909,
+     "priority_5y": 1.945,
      "workstream": "Tools for builders"
     },
     {
@@ -2589,7 +2809,17 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.014,
      "priority": 0.965,
+     "priority_now": 0.955,
+     "priority_5y": 0.973,
      "workstream": "Tools for builders"
     },
     {
@@ -2599,7 +2829,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.014,
      "priority": 0.625,
+     "priority_now": 0.618,
+     "priority_5y": 0.63,
      "workstream": "Measurement"
     },
     {
@@ -2611,7 +2851,17 @@
      "evidence": [
       "belebele"
      ],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.014,
      "priority": 0.312,
+     "priority_now": 0.309,
+     "priority_5y": 0.315,
      "workstream": "Measurement"
     },
     {
@@ -2626,7 +2876,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.014,
      "priority": 0.152,
+     "priority_now": 0.15,
+     "priority_5y": 0.153,
      "workstream": "Tools for builders"
     },
     {
@@ -2638,7 +2898,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.014,
      "priority": 0.106,
+     "priority_now": 0.105,
+     "priority_5y": 0.107,
      "workstream": "Tools for builders"
     }
    ],
@@ -2711,7 +2981,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 2.292,
+     "priority_now": 2.036,
+     "priority_5y": 2.596,
      "workstream": "Measurement"
     },
     {
@@ -2724,7 +3004,17 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 1.724,
+     "priority_now": 1.448,
+     "priority_5y": 1.85,
      "workstream": "Tools for builders"
     },
     {
@@ -2739,7 +3029,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 1.529,
+     "priority_now": 1.358,
+     "priority_5y": 1.731,
      "workstream": "Tools for builders"
     },
     {
@@ -2752,7 +3052,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 1.149,
+     "priority_now": 1.021,
+     "priority_5y": 1.301,
      "workstream": "Open language data"
     },
     {
@@ -2764,7 +3074,17 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 0.536,
+     "priority_now": 0.477,
+     "priority_5y": 0.607,
      "workstream": "Open language data"
     },
     {
@@ -2780,7 +3100,17 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 0.526,
+     "priority_now": 0.442,
+     "priority_5y": 0.564,
      "workstream": "Tools for builders"
     },
     {
@@ -2793,7 +3123,17 @@
       "llm_global_mmlu_rel",
       "llm_mmmlu_openai"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 0.259,
+     "priority_now": 0.217,
+     "priority_5y": 0.277,
      "workstream": "Tools for builders"
     },
     {
@@ -2805,7 +3145,17 @@
      "evidence": [
       "wikipedia_active_editors"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 0.126,
+     "priority_now": 0.106,
+     "priority_5y": 0.135,
      "workstream": "Open language data"
     },
     {
@@ -2817,7 +3167,17 @@
      "evidence": [
       "web_text_words"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 0.029,
+     "priority_now": 0.025,
+     "priority_5y": 0.031,
      "workstream": "Open language data"
     }
    ],
@@ -2896,7 +3256,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 28250000,
+      "now": 11720925,
+      "5y": 15909631,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.22,
      "priority": 2.295,
+     "priority_now": 2.041,
+     "priority_5y": 2.598,
      "workstream": "Measurement"
     },
     {
@@ -2909,7 +3279,17 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "users": {
+      "speakers": 28250000,
+      "now": 7991925,
+      "5y": 10848329,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.22,
      "priority": 1.726,
+     "priority_now": 1.451,
+     "priority_5y": 1.852,
      "workstream": "Tools for builders"
     },
     {
@@ -2924,7 +3304,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28250000,
+      "now": 11720925,
+      "5y": 15909631,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.22,
      "priority": 1.531,
+     "priority_now": 1.361,
+     "priority_5y": 1.733,
      "workstream": "Tools for builders"
     },
     {
@@ -2934,7 +3324,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 28250000,
+      "now": 7991925,
+      "5y": 10848329,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.22,
      "priority": 1.4,
+     "priority_now": 1.178,
+     "priority_5y": 1.503,
      "workstream": "Measurement"
     },
     {
@@ -2947,7 +3347,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28250000,
+      "now": 11720925,
+      "5y": 15909631,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.22,
      "priority": 1.15,
+     "priority_now": 1.023,
+     "priority_5y": 1.302,
      "workstream": "Open language data"
     },
     {
@@ -2959,7 +3369,17 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28250000,
+      "now": 11720925,
+      "5y": 15909631,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.22,
      "priority": 0.598,
+     "priority_now": 0.532,
+     "priority_5y": 0.677,
      "workstream": "Open language data"
     }
    ],
@@ -3026,16 +3446,6 @@
    "opportunities": [
     {
      "type": "measure",
-     "technology": "llm",
-     "title": "No published LLM benchmark results",
-     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
-     "gap": 1.0,
-     "evidence": [],
-     "priority": 1.458,
-     "workstream": "Measurement"
-    },
-    {
-     "type": "measure",
      "technology": "speech_input",
      "title": "No published speech recognition error rate",
      "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
@@ -3043,7 +3453,37 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 36000000,
+      "now": 7898400,
+      "5y": 11220414,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 1.423,
+     "priority_now": 1.159,
+     "priority_5y": 1.529,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "users": {
+      "speakers": 36000000,
+      "now": 4111200,
+      "5y": 5838862,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
+     "priority": 1.458,
+     "priority_now": 1.072,
+     "priority_5y": 1.422,
      "workstream": "Measurement"
     },
     {
@@ -3056,7 +3496,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 36000000,
+      "now": 7898400,
+      "5y": 11220414,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 1.185,
+     "priority_now": 0.966,
+     "priority_5y": 1.274,
      "workstream": "Open language data"
     },
     {
@@ -3069,7 +3519,42 @@
       "kb_gboard",
       "kb_apple"
      ],
+     "users": {
+      "speakers": 36000000,
+      "now": 4111200,
+      "5y": 5838862,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 1.182,
+     "priority_now": 0.869,
+     "priority_5y": 1.153,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 1.9 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "users": {
+      "speakers": 36000000,
+      "now": 7898400,
+      "5y": 11220414,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.253,
+     "priority": 0.474,
+     "priority_now": 0.386,
+     "priority_5y": 0.509,
      "workstream": "Tools for builders"
     },
     {
@@ -3085,22 +3570,17 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "users": {
+      "speakers": 36000000,
+      "now": 4111200,
+      "5y": 5838862,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 0.519,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "share",
-     "technology": "speech_input",
-     "title": "Speech input is offered by 2 of 3 major services",
-     "detail": "Some services already recognise this language. Open training data includes 1.9 hours of transcribed speech on Common Voice.",
-     "gap": 0.333,
-     "evidence": [
-      "asr_google",
-      "asr_azure",
-      "asr_apple",
-      "cv_validated_hours"
-     ],
-     "priority": 0.474,
+     "priority_now": 0.381,
+     "priority_5y": 0.506,
      "workstream": "Tools for builders"
     },
     {
@@ -3112,7 +3592,17 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 36000000,
+      "now": 7898400,
+      "5y": 11220414,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 0.428,
+     "priority_now": 0.349,
+     "priority_5y": 0.46,
      "workstream": "Open language data"
     },
     {
@@ -3124,7 +3614,17 @@
      "evidence": [
       "wikipedia_active_editors"
      ],
+     "users": {
+      "speakers": 36000000,
+      "now": 4111200,
+      "5y": 5838862,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 0.219,
+     "priority_now": 0.161,
+     "priority_5y": 0.214,
      "workstream": "Open language data"
     }
    ],
@@ -3198,7 +3698,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 2.292,
+     "priority_now": 2.036,
+     "priority_5y": 2.596,
      "workstream": "Measurement"
     },
     {
@@ -3211,7 +3721,17 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 1.724,
+     "priority_now": 1.448,
+     "priority_5y": 1.85,
      "workstream": "Tools for builders"
     },
     {
@@ -3226,7 +3746,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 1.529,
+     "priority_now": 1.358,
+     "priority_5y": 1.731,
      "workstream": "Tools for builders"
     },
     {
@@ -3236,7 +3766,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 1.468,
+     "priority_now": 1.233,
+     "priority_5y": 1.575,
      "workstream": "Measurement"
     },
     {
@@ -3249,7 +3789,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 1.149,
+     "priority_now": 1.021,
+     "priority_5y": 1.301,
      "workstream": "Open language data"
     },
     {
@@ -3261,7 +3811,17 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 0.655,
+     "priority_now": 0.582,
+     "priority_5y": 0.741,
      "workstream": "Open language data"
     },
     {
@@ -3273,7 +3833,17 @@
      "evidence": [
       "web_text_words"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 0.016,
+     "priority_now": 0.013,
+     "priority_5y": 0.017,
      "workstream": "Open language data"
     },
     {
@@ -3285,7 +3855,17 @@
      "evidence": [
       "wikipedia_active_editors"
      ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.221,
      "priority": 0.016,
+     "priority_now": 0.013,
+     "priority_5y": 0.017,
      "workstream": "Open language data"
     }
    ],
@@ -3360,7 +3940,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 9800000,
+      "now": 3106600,
+      "5y": 4365227,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.245,
      "priority": 2.991,
+     "priority_now": 2.492,
+     "priority_5y": 3.288,
      "workstream": "Tools for builders"
     },
     {
@@ -3372,7 +3962,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 9800000,
+      "now": 3106600,
+      "5y": 4365227,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.245,
      "priority": 1.989,
+     "priority_now": 1.657,
+     "priority_5y": 2.186,
      "workstream": "Measurement"
     },
     {
@@ -3385,18 +3985,18 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "users": {
+      "speakers": 9800000,
+      "now": 2447060,
+      "5y": 3437848,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.245,
      "priority": 1.496,
+     "priority_now": 1.194,
+     "priority_5y": 1.579,
      "workstream": "Tools for builders"
-    },
-    {
-     "type": "measure",
-     "technology": "llm",
-     "title": "No published LLM benchmark results",
-     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
-     "gap": 1.0,
-     "evidence": [],
-     "priority": 1.333,
-     "workstream": "Measurement"
     },
     {
      "type": "share",
@@ -3410,8 +4010,38 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 9800000,
+      "now": 3106600,
+      "5y": 4365227,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.245,
      "priority": 1.327,
+     "priority_now": 1.105,
+     "priority_5y": 1.458,
      "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "users": {
+      "speakers": 9800000,
+      "now": 2447060,
+      "5y": 3437848,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.245,
+     "priority": 1.333,
+     "priority_now": 1.064,
+     "priority_5y": 1.407,
+     "workstream": "Measurement"
     },
     {
      "type": "standardise",
@@ -3422,7 +4052,17 @@
      "evidence": [
       "cldr_coverage"
      ],
+     "users": {
+      "speakers": 9800000,
+      "now": 2447060,
+      "5y": 3437848,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.245,
      "priority": 0.665,
+     "priority_now": 0.531,
+     "priority_5y": 0.702,
      "workstream": "Open language data"
     },
     {
@@ -3438,7 +4078,17 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "users": {
+      "speakers": 9800000,
+      "now": 2447060,
+      "5y": 3437848,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.245,
      "priority": 0.456,
+     "priority_now": 0.364,
+     "priority_5y": 0.482,
      "workstream": "Tools for builders"
     },
     {
@@ -3450,7 +4100,17 @@
      "evidence": [
       "wikipedia_active_editors"
      ],
+     "users": {
+      "speakers": 9800000,
+      "now": 2447060,
+      "5y": 3437848,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.245,
      "priority": 0.085,
+     "priority_now": 0.068,
+     "priority_5y": 0.089,
      "workstream": "Open language data"
     }
    ],
@@ -3576,7 +4236,17 @@
       "cv_validated_hours",
       "asr_open_whisper"
      ],
+     "users": {
+      "speakers": 8500000,
+      "now": 6883300,
+      "5y": 8083495,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 2.929,
+     "priority_now": 2.838,
+     "priority_5y": 3.245,
      "workstream": "Tools for builders"
     },
     {
@@ -3588,7 +4258,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 8500000,
+      "now": 6883300,
+      "5y": 8083495,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 2.929,
+     "priority_now": 2.838,
+     "priority_5y": 3.245,
      "workstream": "Measurement"
     },
     {
@@ -3601,7 +4281,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 8500000,
+      "now": 6883300,
+      "5y": 8083495,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 2.929,
+     "priority_now": 2.838,
+     "priority_5y": 3.245,
      "workstream": "Tools for builders"
     },
     {
@@ -3611,7 +4301,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 8500000,
+      "now": 5491000,
+      "5y": 6447871,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 1.522,
+     "priority_now": 1.423,
+     "priority_5y": 1.628,
      "workstream": "Measurement"
     },
     {
@@ -3624,7 +4324,17 @@
       "kb_gboard",
       "kb_apple"
      ],
+     "users": {
+      "speakers": 8500000,
+      "now": 5491000,
+      "5y": 6447871,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 0.974,
+     "priority_now": 0.911,
+     "priority_5y": 1.042,
      "workstream": "Tools for builders"
     },
     {
@@ -3636,7 +4346,17 @@
      "evidence": [
       "belebele"
      ],
+     "users": {
+      "speakers": 8500000,
+      "now": 5491000,
+      "5y": 6447871,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 0.761,
+     "priority_now": 0.711,
+     "priority_5y": 0.814,
      "workstream": "Measurement"
     },
     {
@@ -3652,7 +4372,17 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "users": {
+      "speakers": 8500000,
+      "now": 5491000,
+      "5y": 6447871,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 0.488,
+     "priority_now": 0.456,
+     "priority_5y": 0.522,
      "workstream": "Tools for builders"
     },
     {
@@ -3664,7 +4394,17 @@
      "evidence": [
       "wikipedia_active_editors"
      ],
+     "users": {
+      "speakers": 8500000,
+      "now": 5491000,
+      "5y": 6447871,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 0.165,
+     "priority_now": 0.154,
+     "priority_5y": 0.176,
      "workstream": "Open language data"
     },
     {
@@ -3676,7 +4416,17 @@
      "evidence": [
       "web_text_words"
      ],
+     "users": {
+      "speakers": 8500000,
+      "now": 5491000,
+      "5y": 6447871,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.116,
      "priority": 0.118,
+     "priority_now": 0.111,
+     "priority_5y": 0.127,
      "workstream": "Open language data"
     }
    ],
@@ -3756,7 +4506,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 42000000,
+      "now": 9214800,
+      "5y": 13090483,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 3.623,
+     "priority_now": 2.964,
+     "priority_5y": 3.906,
      "workstream": "Tools for builders"
     },
     {
@@ -3768,7 +4528,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 42000000,
+      "now": 9214800,
+      "5y": 13090483,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 2.409,
+     "priority_now": 1.971,
+     "priority_5y": 2.598,
      "workstream": "Measurement"
     },
     {
@@ -3778,7 +4548,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 42000000,
+      "now": 4796400,
+      "5y": 6812005,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 1.907,
+     "priority_now": 1.411,
+     "priority_5y": 1.869,
      "workstream": "Measurement"
     },
     {
@@ -3793,7 +4573,17 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 42000000,
+      "now": 9214800,
+      "5y": 13090483,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 1.607,
+     "priority_now": 1.315,
+     "priority_5y": 1.733,
      "workstream": "Tools for builders"
     },
     {
@@ -3806,7 +4596,17 @@
       "kb_gboard",
       "kb_apple"
      ],
+     "users": {
+      "speakers": 42000000,
+      "now": 4796400,
+      "5y": 6812005,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 1.205,
+     "priority_now": 0.891,
+     "priority_5y": 1.18,
      "workstream": "Tools for builders"
     },
     {
@@ -3818,7 +4618,17 @@
      "evidence": [
       "cldr_coverage"
      ],
+     "users": {
+      "speakers": 42000000,
+      "now": 4796400,
+      "5y": 6812005,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 0.805,
+     "priority_now": 0.596,
+     "priority_5y": 0.789,
      "workstream": "Open language data"
     },
     {
@@ -3834,7 +4644,17 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "users": {
+      "speakers": 42000000,
+      "now": 4796400,
+      "5y": 6812005,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 0.603,
+     "priority_now": 0.446,
+     "priority_5y": 0.591,
      "workstream": "Tools for builders"
     },
     {
@@ -3846,7 +4666,17 @@
      "evidence": [
       "wikipedia_active_editors"
      ],
+     "users": {
+      "speakers": 42000000,
+      "now": 4796400,
+      "5y": 6812005,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 0.396,
+     "priority_now": 0.293,
+     "priority_5y": 0.388,
      "workstream": "Open language data"
     },
     {
@@ -3858,7 +4688,17 @@
      "evidence": [
       "web_text_words"
      ],
+     "users": {
+      "speakers": 42000000,
+      "now": 4796400,
+      "5y": 6812005,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.253,
      "priority": 0.098,
+     "priority_now": 0.073,
+     "priority_5y": 0.096,
      "workstream": "Open language data"
     }
    ],
@@ -3948,7 +4788,17 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4772891,
+      "5y": 5363121,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.084,
      "priority": 2.767,
+     "priority_now": 2.679,
+     "priority_5y": 2.959,
      "workstream": "Measurement"
     },
     {
@@ -3958,7 +4808,17 @@
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "users": {
+      "speakers": 5852000,
+      "now": 4130342,
+      "5y": 4641162,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.084,
      "priority": 1.682,
+     "priority_now": 1.59,
+     "priority_5y": 1.757,
      "workstream": "Measurement"
     },
     {
@@ -3970,7 +4830,17 @@
      "evidence": [
       "cldr_coverage"
      ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4130342,
+      "5y": 4641162,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.084,
      "priority": 1.384,
+     "priority_now": 1.308,
+     "priority_5y": 1.445,
      "workstream": "Open language data"
     },
     {
@@ -3983,7 +4853,17 @@
       "tts_google",
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4772891,
+      "5y": 5363121,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.084,
      "priority": 0.922,
+     "priority_now": 0.893,
+     "priority_5y": 0.986,
      "workstream": "Open language data"
     },
     {
@@ -3995,7 +4875,17 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4772891,
+      "5y": 5363121,
+      "kind": "voice",
+      "estimated": true
+     },
+     "momentum": 1.084,
      "priority": 0.684,
+     "priority_now": 0.663,
+     "priority_5y": 0.732,
      "workstream": "Open language data"
     },
     {
@@ -4011,7 +4901,17 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4130342,
+      "5y": 4641162,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.084,
      "priority": 0.461,
+     "priority_now": 0.436,
+     "priority_5y": 0.481,
      "workstream": "Tools for builders"
     },
     {
@@ -4023,7 +4923,17 @@
      "evidence": [
       "wikipedia_active_editors"
      ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4130342,
+      "5y": 4641162,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.084,
      "priority": 0.344,
+     "priority_now": 0.325,
+     "priority_5y": 0.359,
      "workstream": "Open language data"
     },
     {
@@ -4035,7 +4945,17 @@
      "evidence": [
       "web_text_words"
      ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4130342,
+      "5y": 4641162,
+      "kind": "text",
+      "estimated": true
+     },
+     "momentum": 1.084,
      "priority": 0.136,
+     "priority_now": 0.128,
+     "priority_5y": 0.142,
      "workstream": "Open language data"
     }
    ],
@@ -4070,6 +4990,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.1142,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: ET"
+   },
+   "reach_text_share_5y": {
+    "value": 0.143,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: ET"
+   },
+   "reach_voice_share": {
+    "value": 0.2194,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: ET"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.2748,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: ET"
+   },
+   "speaker_growth_5y": {
+    "value": 1.1342,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: ET"
    },
    "mt_deepl": {
     "value": 0.0,
@@ -4297,6 +5262,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.5105,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 25 countries: EG, SA, DZ, SD, IQ, MA, YE, SY…"
+   },
+   "reach_text_share_5y": {
+    "value": 0.5455,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 25 countries: EG, SA, DZ, SD, IQ, MA, YE, SY…"
+   },
+   "reach_voice_share": {
+    "value": 0.6984,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 25 countries: EG, SA, DZ, SD, IQ, MA, YE, SY…"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.7547,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 25 countries: EG, SA, DZ, SD, IQ, MA, YE, SY…"
+   },
+   "speaker_growth_5y": {
+    "value": 1.1129,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 25 countries: EG, SA, DZ, SD, IQ, MA, YE, SY…"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -4543,6 +5553,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.236,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 2 countries: BD, IN"
+   },
+   "reach_text_share_5y": {
+    "value": 0.2846,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 2 countries: BD, IN"
+   },
+   "reach_voice_share": {
+    "value": 0.6009,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 2 countries: BD, IN"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.7266,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 2 countries: BD, IN"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0554,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 2 countries: BD, IN"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -4787,6 +5842,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.8867,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 3 countries: CN, HK, SG"
+   },
+   "reach_text_share_5y": {
+    "value": 0.9423,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 3 countries: CN, HK, SG"
+   },
+   "reach_voice_share": {
+    "value": 0.9163,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 3 countries: CN, HK, SG"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.9739,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 3 countries: CN, HK, SG"
+   },
+   "speaker_growth_5y": {
+    "value": 0.9918,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 3 countries: CN, HK, SG"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -5033,6 +6133,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.9547,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: GB"
+   },
+   "reach_text_share_5y": {
+    "value": 0.9596,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: GB"
+   },
+   "reach_voice_share": {
+    "value": 0.9547,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: GB"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.9596,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: GB"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0149,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: GB"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -5259,6 +6404,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.541,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 72 countries: US, IN, PK, NG, PH, GB, TZ, CA…"
+   },
+   "reach_text_share_5y": {
+    "value": 0.5814,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 72 countries: US, IN, PK, NG, PH, GB, TZ, CA…"
+   },
+   "reach_voice_share": {
+    "value": 0.7076,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 72 countries: US, IN, PK, NG, PH, GB, TZ, CA…"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.7795,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 72 countries: US, IN, PK, NG, PH, GB, TZ, CA…"
+   },
+   "speaker_growth_5y": {
+    "value": 1.057,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 72 countries: US, IN, PK, NG, PH, GB, TZ, CA…"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -5495,6 +6685,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.7181,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 23 countries: MX, ES, CO, AR, PH, US, PE, VE…"
+   },
+   "reach_text_share_5y": {
+    "value": 0.7617,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 23 countries: MX, ES, CO, AR, PH, US, PE, VE…"
+   },
+   "reach_voice_share": {
+    "value": 0.825,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 23 countries: MX, ES, CO, AR, PH, US, PE, VE…"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.8802,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 23 countries: MX, ES, CO, AR, PH, US, PE, VE…"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0396,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 23 countries: MX, ES, CO, AR, PH, US, PE, VE…"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -5741,6 +6976,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.4912,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 31 countries: FR, CM, MG, CI, CA, ML, BI, NE…"
+   },
+   "reach_text_share_5y": {
+    "value": 0.5225,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 31 countries: FR, CM, MG, CI, CA, ML, BI, NE…"
+   },
+   "reach_voice_share": {
+    "value": 0.5689,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 31 countries: FR, CM, MG, CI, CA, ML, BI, NE…"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.6205,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 31 countries: FR, CM, MG, CI, CA, ML, BI, NE…"
+   },
+   "speaker_growth_5y": {
+    "value": 1.086,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 31 countries: FR, CM, MG, CI, CA, ML, BI, NE…"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -5986,6 +7266,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.7058,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 2 countries: PY, BO"
+   },
+   "reach_text_share_5y": {
+    "value": 0.747,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 2 countries: PY, BO"
+   },
+   "reach_voice_share": {
+    "value": 0.8156,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 2 countries: PY, BO"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.8632,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 2 countries: PY, BO"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0617,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 2 countries: PY, BO"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -6213,6 +7538,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.2829,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 2 countries: NG, GH"
+   },
+   "reach_text_share_5y": {
+    "value": 0.3468,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 2 countries: NG, GH"
+   },
+   "reach_voice_share": {
+    "value": 0.4149,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 2 countries: NG, GH"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.5086,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 2 countries: NG, GH"
+   },
+   "speaker_growth_5y": {
+    "value": 1.1073,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 2 countries: NG, GH"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -6439,6 +7809,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.2953,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: IN"
+   },
+   "reach_text_share_5y": {
+    "value": 0.3415,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: IN"
+   },
+   "reach_voice_share": {
+    "value": 0.7,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: IN"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.8095,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: IN"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0452,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: IN"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -6685,6 +8100,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.6272,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: ID"
+   },
+   "reach_text_share_5y": {
+    "value": 0.7172,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: ID"
+   },
+   "reach_voice_share": {
+    "value": 0.7278,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: ID"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.8322,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: ID"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0399,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: ID"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -6930,6 +8390,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.2808,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: NG"
+   },
+   "reach_text_share_5y": {
+    "value": 0.3446,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: NG"
+   },
+   "reach_voice_share": {
+    "value": 0.4121,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: NG"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.5058,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: NG"
+   },
+   "speaker_growth_5y": {
+    "value": 1.1075,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: NG"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -7157,6 +8662,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.9821,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: IS"
+   },
+   "reach_text_share_5y": {
+    "value": 0.98,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: IS"
+   },
+   "reach_voice_share": {
+    "value": 0.9821,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: IS"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.98,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: IS"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0781,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: IS"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -7383,6 +8933,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.8554,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: JP"
+   },
+   "reach_text_share_5y": {
+    "value": 0.8554,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: JP"
+   },
+   "reach_voice_share": {
+    "value": 0.8554,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: JP"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.8554,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: JP"
+   },
+   "speaker_growth_5y": {
+    "value": 0.9756,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: JP"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -7629,6 +9224,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.1142,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: ET"
+   },
+   "reach_text_share_5y": {
+    "value": 0.143,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: ET"
+   },
+   "reach_voice_share": {
+    "value": 0.2194,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: ET"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.2748,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: ET"
+   },
+   "speaker_growth_5y": {
+    "value": 1.1342,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: ET"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -7856,6 +9496,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.2928,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 2 countries: PK, IN"
+   },
+   "reach_text_share_5y": {
+    "value": 0.3558,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 2 countries: PK, IN"
+   },
+   "reach_voice_share": {
+    "value": 0.5961,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 2 countries: PK, IN"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.7229,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 2 countries: PK, IN"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0739,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 2 countries: PK, IN"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -8082,6 +9767,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.6778,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 6 countries: BR, AO, PT, TL, MO, GQ"
+   },
+   "reach_text_share_5y": {
+    "value": 0.7091,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 6 countries: BR, AO, PT, TL, MO, GQ"
+   },
+   "reach_voice_share": {
+    "value": 0.802,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 6 countries: BR, AO, PT, TL, MO, GQ"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.8399,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 6 countries: BR, AO, PT, TL, MO, GQ"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0346,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 6 countries: BR, AO, PT, TL, MO, GQ"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -8328,6 +10058,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.646,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 2 countries: PE, BO"
+   },
+   "reach_text_share_5y": {
+    "value": 0.7155,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 2 countries: PE, BO"
+   },
+   "reach_voice_share": {
+    "value": 0.8098,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 2 countries: PE, BO"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.897,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 2 countries: PE, BO"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0602,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 2 countries: PE, BO"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -8554,6 +10329,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.9259,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 5 countries: RU, UA, KZ, KG, BY"
+   },
+   "reach_text_share_5y": {
+    "value": 0.9568,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 5 countries: RU, UA, KZ, KG, BY"
+   },
+   "reach_voice_share": {
+    "value": 0.9286,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 5 countries: RU, UA, KZ, KG, BY"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.9596,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 5 countries: RU, UA, KZ, KG, BY"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0199,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 5 countries: RU, UA, KZ, KG, BY"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -8782,6 +10602,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.2497,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: RW"
+   },
+   "reach_text_share_5y": {
+    "value": 0.3151,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: RW"
+   },
+   "reach_voice_share": {
+    "value": 0.317,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: RW"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.4001,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: RW"
+   },
+   "speaker_growth_5y": {
+    "value": 1.1133,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: RW"
+   },
    "mt_deepl": {
     "value": 0.0,
     "unit": "bool",
@@ -9008,6 +10873,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.1752,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 4 countries: TZ, CD, KE, UG"
+   },
+   "reach_text_share_5y": {
+    "value": 0.2304,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 4 countries: TZ, CD, KE, UG"
+   },
+   "reach_voice_share": {
+    "value": 0.2436,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 4 countries: TZ, CD, KE, UG"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.3205,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 4 countries: TZ, CD, KE, UG"
+   },
+   "speaker_growth_5y": {
+    "value": 1.145,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 4 countries: TZ, CD, KE, UG"
    },
    "mt_deepl": {
     "value": 1.0,
@@ -9254,6 +11164,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.2984,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 3 countries: IN, LK, SG"
+   },
+   "reach_text_share_5y": {
+    "value": 0.3462,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 3 countries: IN, LK, SG"
+   },
+   "reach_voice_share": {
+    "value": 0.694,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 3 countries: IN, LK, SG"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.8044,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 3 countries: IN, LK, SG"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0418,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 3 countries: IN, LK, SG"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -9481,6 +11436,51 @@
     "method": "download",
     "note": ""
    },
+   "reach_text_share": {
+    "value": 0.293,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 2 countries: PK, IN"
+   },
+   "reach_text_share_5y": {
+    "value": 0.355,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 2 countries: PK, IN"
+   },
+   "reach_voice_share": {
+    "value": 0.6017,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 2 countries: PK, IN"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.7276,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 2 countries: PK, IN"
+   },
+   "speaker_growth_5y": {
+    "value": 1.0724,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 2 countries: PK, IN"
+   },
    "mt_deepl": {
     "value": 1.0,
     "unit": "bool",
@@ -9707,6 +11707,51 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "reach_text_share": {
+    "value": 0.2808,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: NG"
+   },
+   "reach_text_share_5y": {
+    "value": 0.3446,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: NG"
+   },
+   "reach_voice_share": {
+    "value": 0.4121,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Speakers who use the internet. Weighted by speakers in 1 countries: NG"
+   },
+   "reach_voice_share_5y": {
+    "value": 0.5058,
+    "unit": "share",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: NG"
+   },
+   "speaker_growth_5y": {
+    "value": 1.1075,
+    "unit": "factor",
+    "source": "World Bank",
+    "url": "https://data.worldbank.org/indicator/IT.NET.USER.ZS",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Population growth over 5 years. Weighted by speakers in 1 countries: NG"
    },
    "mt_deepl": {
     "value": 0.0,

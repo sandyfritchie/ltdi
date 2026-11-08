@@ -148,6 +148,10 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .opp-head a { font-weight: 600; }
 .opp-title { font-weight: 600; }
 .opp-detail { color: var(--muted); font-size: 15px; max-width: 70ch; }
+.opp-users { font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.weightbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
+.reach { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 6px; font-size: 14px; color: var(--muted); }
+.reach b { color: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
 .opp-ev { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; }
 .opp-ev a { color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 2px 8px; text-decoration: none; }
 .opp-ev a:hover { color: var(--ink); border-color: var(--muted); }
@@ -227,15 +231,31 @@ function showValue(f) {
 const bar = (v, color) => `<div class="bar"><i style="width:${(v * 100).toFixed(1)}%;${color ? `background:var(${color})` : ''}"></i></div>`;
 
 // ---------------------------------------------------------- opportunities
+const WEIGHT = {
+  '5y': { key: 'priority_5y', label: 'Users in five years', note: 'speakers expected to be online in five years, with a boost where that number is growing fast' },
+  now: { key: 'priority_now', label: 'Users today', note: 'speakers who are online today' },
+  speakers: { key: 'priority', label: 'All speakers', note: 'every speaker, online or not' },
+};
+let weight = '5y';
+const prio = o => o[WEIGHT[weight].key] ?? o.priority;
+function usersLine(o) {
+  const u = o.users;
+  if (!u || !u.estimated) return '';
+  const kind = u.kind === 'voice' ? 'online' : 'online and able to text';
+  const growth = u['5y'] > u.now * 1.05 ? `, rising to ${people(u['5y'])} in five years` : '';
+  return `<div class="opp-users">${people(u.now)} speakers ${kind} today${growth}</div>`;
+}
+
 function oppItem(o, l, showLang) {
   const facts = DATA.facts[l.code] || {};
   const ev = o.evidence.map(id => facts[id] ? `<a href="${esc(facts[id].url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(facts[id].note || '')}">${esc(L[id] || facts[id].source)}: ${esc(showValue(facts[id]))}</a>` : '').join('');
   return `<li class="opp" style="--c:var(${OCOLOR[o.type]})">
-    <div class="prio">${o.priority.toFixed(2)}<small>priority</small></div>
+    <div class="prio">${prio(o).toFixed(2)}<small>priority</small></div>
     <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span>
       ${showLang ? `<a href="#lang-${l.code}">${esc(l.name)}</a><span>${people(l.speakers)} speakers</span>` : ''}<span>${esc(o.workstream)}</span></div>
     <div class="opp-title">${esc(o.title)}</div>
     <div class="opp-detail">${esc(o.detail)}</div>
+    ${usersLine(o)}
     ${ev ? `<div class="opp-ev">${ev}</div>` : ''}
   </li>`;
 }
@@ -244,13 +264,17 @@ let otype = 'all', showAll = false;
 function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
   const all = LANGS.filter(l => !focus || l === focus)
-    .flatMap(l => l.opportunities.map(o => ({ o, l }))).sort((a, b) => b.o.priority - a.o.priority);
+    .flatMap(l => l.opportunities.map(o => ({ o, l }))).sort((a, b) => prio(b.o) - prio(a.o));
   const counts = Object.fromEntries(Object.keys(OT).map(k => [k, all.filter(x => x.o.type === k).length]));
   const list = all.filter(x => otype === 'all' || x.o.type === otype);
   const shown = showAll ? list : list.slice(0, 30);
   $('#view').innerHTML = `
     <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)} · ${counts[k]}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
-    <p class="note">Priority weighs how many people speak the language, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Each opportunity is tagged with the coalition workstream it fits.</p>
+    <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. Each opportunity is tagged with the coalition workstream it fits.</p>
+    <div class="weightbar"><span>Count potential users as</span><div class="chips" role="group" aria-label="Weighting">
+      ${Object.entries(WEIGHT).map(([k, w]) => `<button class="chip" id="w-${k}" data-w="${k}" aria-pressed="${weight === k}">${esc(w.label)}</button>`).join('')}
+    </div></div>
+    <p class="note" id="wnote">Ranked by ${esc(WEIGHT[weight].note)}.</p>
     ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="#lang-${focus.code}">Language profile</a></div>` : ''}
     <div class="controls">
     <select id="olang" aria-label="Language"><option value="">All languages</option>${LANGS.map(l => `<option value="${l.code}"${focus === l ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
@@ -261,6 +285,7 @@ function opportunities(lang) {
     ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">No opportunities of this type.</p>'}
     ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}`;
   $('#view').querySelectorAll('[data-t]').forEach(b => b.onclick = () => { otype = b.dataset.t; showAll = false; opportunities(lang); });
+  $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); });
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
   $('#olang').onchange = e => { otype = 'all'; showAll = false; location.hash = e.target.value ? 'opportunities-' + e.target.value : 'opportunities'; };
 }
@@ -337,6 +362,18 @@ function dimPanel(l, key, color) {
   return `<section class="dim" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
 }
 
+function reachLine(l) {
+  const f = DATA.facts[l.code] || {}, sp = l.speakers || 0;
+  if (!f.reach_voice_share || !sp) return '';
+  const n = k => f[k] ? sp * f[k].value : null;
+  const g = f.speaker_growth_5y ? f.speaker_growth_5y.value : 1;
+  return `<div class="reach" title="${esc(f.reach_voice_share.note)}">
+    <span>Online today <b>${people(n('reach_voice_share'))}</b></span>
+    <span>Online and able to text <b>${people(n('reach_text_share'))}</b></span>
+    <span>Online in five years <b>${people(n('reach_voice_share_5y') * g)}</b></span>
+    <a href="${esc(f.reach_voice_share.url)}" target="_blank" rel="noopener">World Bank data</a></div>`;
+}
+
 function language(code) {
   const l = BY[code];
   if (!l) return ranking();
@@ -348,6 +385,7 @@ function language(code) {
         <div class="facts"><span><b>${people(l.speakers)}</b> speakers</span><span>Code <b class="code">${l.code}</b> · ISO 639-3 <b class="code">${esc(l.iso_639_3 || '')}</b></span>
         <span>Scripts <b>${l.scripts.map(s => s[0].toUpperCase() + s.slice(1)).join(', ')}</b></span>
         <span>Mainly in <b>${l.countries.slice(0, 3).map(c => esc(c.name)).join(', ')}</b></span></div>
+        ${reachLine(l)}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
       </div>
       <div style="text-align:right"><div class="eyebrow">Rank ${l.rank} of ${LANGS.length}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
@@ -356,7 +394,7 @@ function language(code) {
       <select id="cmpsel"><option value="">Choose a language</option>${others.map(o => `<option value="${o.code}">${esc(o.name)}</option>`).join('')}</select></div>
     <div class="dims">${DIMS.map(([k, , c]) => dimPanel(l, k, c)).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
-    ${l.opportunities.length ? `<ol class="opps">${l.opportunities.map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
+    ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>.</p>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
   $('#cmpsel').onchange = e => { if (e.target.value) location.hash = `compare-${code}-${e.target.value}`; };

@@ -71,8 +71,21 @@ needs, and proposes one of five kinds of action:
 | Improve | Support exists but quality lags | 2 |
 | Collect | The data really is scarce | 3 |
 
-Priority = reach × gap × need / cost, where reach is log10(speakers) − 4 and need
-is 1 minus the language's current score for that technology. Wording names
+Priority = reach × gap × need / cost, where reach is log10(potential users) − 4
+and need is 1 minus the language's current score for that technology.
+
+Potential users can be counted three ways (the site lets you switch):
+
+- **All speakers**, from LinguaMeta.
+- **Users today**: speakers online, from World Bank internet-use data weighted by
+  LinguaMeta's per-country speaker counts. Voice technologies count everyone
+  online; text technologies count only those who can also read and write text on
+  a phone (Global Findex), falling back to adult literacy.
+- **Users in five years** (default): internet use projected on its recent trend
+  (at most 4 points a year, slowing near saturation) times population growth,
+  with a momentum boost of 1 + log2(growth in users) / 2, capped at 2.
+
+`python -m ltdi.collectors connectivity` needs access to `api.worldbank.org`. Wording names
 platforms and open resources, never companies. Each opportunity is tagged with
 the coalition workstream it fits.
 
@@ -83,3 +96,4 @@ the coalition workstream it fits.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM support is measured for 12 of the 25 languages, by at most two benchmarks.
 - Wikipedia article counts include bot-generated stubs: Urdu (708K) outranks Hindi (172K).
+- Reach uses national averages, which overstate connectivity for rural and minority-language speakers (Quechua in Peru).

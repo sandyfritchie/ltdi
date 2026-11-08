@@ -1,0 +1,750 @@
+country,indicator,value,year,label
+ae,internet,100.0,2024,Individuals using the Internet (% of population)
+ae,literacy,98.81,2024,"Literacy rate, adult total (% age 15+)"
+ae,pop_growth,4.68,2025,Population growth (annual %)
+ae,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+ag,internet,72.73,2024,Individuals using the Internet (% of population)
+ag,literacy,98.95,2001,"Literacy rate, adult total (% age 15+)"
+ag,pop_growth,0.46,2025,Population growth (annual %)
+ag,internet_5y,73.53,2029,"Individuals using the Internet, projected (% of population)"
+ao,internet,40.7,2024,Individuals using the Internet (% of population)
+ao,literacy,68.18,2023,"Literacy rate, adult total (% age 15+)"
+ao,pop_growth,3.0,2025,Population growth (annual %)
+ao,internet_5y,47.07,2029,"Individuals using the Internet, projected (% of population)"
+ar,internet,89.67,2024,Individuals using the Internet (% of population)
+ar,phone,90.47,2024,Own a mobile phone (% age 15+)
+ar,can_text,85.65,2024,Can send a text message on a mobile phone (% age 15+)
+ar,literacy,99.14,2020,"Literacy rate, adult total (% age 15+)"
+ar,pop_growth,0.34,2025,Population growth (annual %)
+ar,internet_5y,92.47,2029,"Individuals using the Internet, projected (% of population)"
+as,literacy,97.34,1980,"Literacy rate, adult total (% age 15+)"
+as,pop_growth,-1.59,2025,Population growth (annual %)
+au,internet,96.13,2024,Individuals using the Internet (% of population)
+au,phone,95.49,2024,Own a mobile phone (% age 15+)
+au,pop_growth,1.53,2025,Population growth (annual %)
+au,internet_5y,96.58,2029,"Individuals using the Internet, projected (% of population)"
+bb,internet,70.36,2024,Individuals using the Internet (% of population)
+bb,literacy,99.27,1970,"Literacy rate, adult total (% age 15+)"
+bb,pop_growth,0.06,2025,Population growth (annual %)
+bb,internet_5y,70.36,2029,"Individuals using the Internet, projected (% of population)"
+bd,internet,53.42,2024,Individuals using the Internet (% of population)
+bd,phone,82.39,2024,Own a mobile phone (% age 15+)
+bd,can_text,30.25,2024,Can send a text message on a mobile phone (% age 15+)
+bd,literacy,79.0,2022,"Literacy rate, adult total (% age 15+)"
+bd,pop_growth,1.22,2025,Population growth (annual %)
+bd,internet_5y,67.07,2029,"Individuals using the Internet, projected (% of population)"
+be,internet,95.78,2024,Individuals using the Internet (% of population)
+be,phone,94.25,2024,Own a mobile phone (% age 15+)
+be,pop_growth,0.7,2025,Population growth (annual %)
+be,internet_5y,96.89,2029,"Individuals using the Internet, projected (% of population)"
+bf,internet,28.25,2024,Individuals using the Internet (% of population)
+bf,phone,87.82,2024,Own a mobile phone (% age 15+)
+bf,can_text,31.15,2024,Can send a text message on a mobile phone (% age 15+)
+bf,literacy,41.57,2023,"Literacy rate, adult total (% age 15+)"
+bf,pop_growth,2.21,2025,Population growth (annual %)
+bf,internet_5y,45.11,2029,"Individuals using the Internet, projected (% of population)"
+bh,internet,100.0,2024,Individuals using the Internet (% of population)
+bh,phone,97.71,2024,Own a mobile phone (% age 15+)
+bh,literacy,97.82,2024,"Literacy rate, adult total (% age 15+)"
+bh,pop_growth,0.73,2025,Population growth (annual %)
+bh,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+bi,internet,8.6,2024,Individuals using the Internet (% of population)
+bi,literacy,71.34,2020,"Literacy rate, adult total (% age 15+)"
+bi,pop_growth,2.41,2025,Population growth (annual %)
+bi,internet_5y,10.67,2029,"Individuals using the Internet, projected (% of population)"
+bj,internet,33.98,2024,Individuals using the Internet (% of population)
+bj,phone,77.03,2024,Own a mobile phone (% age 15+)
+bj,can_text,28.22,2024,Can send a text message on a mobile phone (% age 15+)
+bj,literacy,51.38,2022,"Literacy rate, adult total (% age 15+)"
+bj,pop_growth,2.4,2025,Population growth (annual %)
+bj,internet_5y,45.66,2029,"Individuals using the Internet, projected (% of population)"
+bm,internet,98.37,2017,Individuals using the Internet (% of population)
+bm,pop_growth,-0.13,2025,Population growth (annual %)
+bm,internet_5y,98.0,2022,"Individuals using the Internet, projected (% of population)"
+bn,internet,96.3,2024,Individuals using the Internet (% of population)
+bn,literacy,96.09,2011,"Literacy rate, adult total (% age 15+)"
+bn,pop_growth,0.78,2025,Population growth (annual %)
+bn,internet_5y,96.73,2029,"Individuals using the Internet, projected (% of population)"
+bo,internet,79.7,2024,Individuals using the Internet (% of population)
+bo,phone,87.38,2024,Own a mobile phone (% age 15+)
+bo,can_text,68.38,2024,Can send a text message on a mobile phone (% age 15+)
+bo,literacy,96.73,2024,"Literacy rate, adult total (% age 15+)"
+bo,pop_growth,1.35,2025,Population growth (annual %)
+bo,internet_5y,88.71,2029,"Individuals using the Internet, projected (% of population)"
+br,internet,84.46,2024,Individuals using the Internet (% of population)
+br,phone,92.05,2024,Own a mobile phone (% age 15+)
+br,can_text,78.16,2024,Can send a text message on a mobile phone (% age 15+)
+br,literacy,94.74,2024,"Literacy rate, adult total (% age 15+)"
+br,pop_growth,0.38,2025,Population growth (annual %)
+br,internet_5y,87.9,2029,"Individuals using the Internet, projected (% of population)"
+bs,internet,92.47,2024,Individuals using the Internet (% of population)
+bs,pop_growth,0.44,2025,Population growth (annual %)
+bs,internet_5y,92.81,2029,"Individuals using the Internet, projected (% of population)"
+bw,internet,57.46,2024,Individuals using the Internet (% of population)
+bw,phone,88.26,2024,Own a mobile phone (% age 15+)
+bw,can_text,63.22,2024,Can send a text message on a mobile phone (% age 15+)
+bw,literacy,81.19,2003,"Literacy rate, adult total (% age 15+)"
+bw,pop_growth,1.61,2025,Population growth (annual %)
+bw,internet_5y,64.19,2029,"Individuals using the Internet, projected (% of population)"
+by,internet,94.26,2024,Individuals using the Internet (% of population)
+by,literacy,99.87,2019,"Literacy rate, adult total (% age 15+)"
+by,pop_growth,-0.51,2025,Population growth (annual %)
+by,internet_5y,96.97,2029,"Individuals using the Internet, projected (% of population)"
+bz,internet,80.01,2024,Individuals using the Internet (% of population)
+bz,phone,86.36,2024,Own a mobile phone (% age 15+)
+bz,can_text,77.01,2024,Can send a text message on a mobile phone (% age 15+)
+bz,literacy,87.88,2022,"Literacy rate, adult total (% age 15+)"
+bz,pop_growth,1.39,2025,Population growth (annual %)
+bz,internet_5y,87.85,2029,"Individuals using the Internet, projected (% of population)"
+ca,internet,94.35,2024,Individuals using the Internet (% of population)
+ca,phone,89.44,2024,Own a mobile phone (% age 15+)
+ca,pop_growth,0.94,2025,Population growth (annual %)
+ca,internet_5y,94.96,2029,"Individuals using the Internet, projected (% of population)"
+cd,internet,19.67,2024,Individuals using the Internet (% of population)
+cd,phone,54.36,2024,Own a mobile phone (% age 15+)
+cd,can_text,38.71,2024,Can send a text message on a mobile phone (% age 15+)
+cd,literacy,68.5,2023,"Literacy rate, adult total (% age 15+)"
+cd,pop_growth,3.2,2025,Population growth (annual %)
+cd,internet_5y,25.87,2029,"Individuals using the Internet, projected (% of population)"
+cf,internet,13.78,2024,Individuals using the Internet (% of population)
+cf,literacy,42.44,2019,"Literacy rate, adult total (% age 15+)"
+cf,pop_growth,3.37,2025,Population growth (annual %)
+cf,internet_5y,21.11,2029,"Individuals using the Internet, projected (% of population)"
+cg,internet,47.25,2024,Individuals using the Internet (% of population)
+cg,phone,73.23,2024,Own a mobile phone (% age 15+)
+cg,can_text,34.96,2024,Can send a text message on a mobile phone (% age 15+)
+cg,literacy,76.11,2005,"Literacy rate, adult total (% age 15+)"
+cg,pop_growth,2.36,2025,Population growth (annual %)
+cg,internet_5y,61.78,2029,"Individuals using the Internet, projected (% of population)"
+ch,internet,97.32,2025,Individuals using the Internet (% of population)
+ch,phone,91.49,2024,Own a mobile phone (% age 15+)
+ch,pop_growth,0.96,2025,Population growth (annual %)
+ch,internet_5y,97.81,2030,"Individuals using the Internet, projected (% of population)"
+ci,internet,41.43,2024,Individuals using the Internet (% of population)
+ci,phone,89.19,2024,Own a mobile phone (% age 15+)
+ci,can_text,50.42,2024,Can send a text message on a mobile phone (% age 15+)
+ci,literacy,50.0,2021,"Literacy rate, adult total (% age 15+)"
+ci,pop_growth,2.4,2025,Population growth (annual %)
+ci,internet_5y,46.03,2029,"Individuals using the Internet, projected (% of population)"
+cl,internet,95.59,2024,Individuals using the Internet (% of population)
+cl,phone,95.57,2024,Own a mobile phone (% age 15+)
+cl,literacy,96.4,2017,"Literacy rate, adult total (% age 15+)"
+cl,pop_growth,0.48,2025,Population growth (annual %)
+cl,internet_5y,97.87,2029,"Individuals using the Internet, projected (% of population)"
+cm,internet,46.26,2024,Individuals using the Internet (% of population)
+cm,phone,77.83,2024,Own a mobile phone (% age 15+)
+cm,can_text,54.81,2024,Can send a text message on a mobile phone (% age 15+)
+cm,literacy,72.55,2018,"Literacy rate, adult total (% age 15+)"
+cm,pop_growth,2.56,2025,Population growth (annual %)
+cm,internet_5y,52.91,2029,"Individuals using the Internet, projected (% of population)"
+cn,internet,91.6,2025,Individuals using the Internet (% of population)
+cn,phone,96.65,2024,Own a mobile phone (% age 15+)
+cn,literacy,96.74,2020,"Literacy rate, adult total (% age 15+)"
+cn,pop_growth,-0.17,2025,Population growth (annual %)
+cn,internet_5y,97.4,2030,"Individuals using the Internet, projected (% of population)"
+co,internet,79.35,2024,Individuals using the Internet (% of population)
+co,phone,88.07,2024,Own a mobile phone (% age 15+)
+co,can_text,73.2,2024,Can send a text message on a mobile phone (% age 15+)
+co,literacy,95.34,2024,"Literacy rate, adult total (% age 15+)"
+co,pop_growth,1.01,2025,Population growth (annual %)
+co,internet_5y,85.45,2029,"Individuals using the Internet, projected (% of population)"
+cr,internet,87.17,2024,Individuals using the Internet (% of population)
+cr,phone,91.89,2024,Own a mobile phone (% age 15+)
+cr,can_text,83.48,2024,Can send a text message on a mobile phone (% age 15+)
+cr,literacy,97.41,2011,"Literacy rate, adult total (% age 15+)"
+cr,pop_growth,0.45,2025,Population growth (annual %)
+cr,internet_5y,89.44,2029,"Individuals using the Internet, projected (% of population)"
+cu,internet,70.48,2024,Individuals using the Internet (% of population)
+cu,literacy,97.65,2019,"Literacy rate, adult total (% age 15+)"
+cu,pop_growth,-0.39,2025,Population growth (annual %)
+cu,internet_5y,71.1,2029,"Individuals using the Internet, projected (% of population)"
+cw,internet,68.13,2017,Individuals using the Internet (% of population)
+cw,pop_growth,0.19,2025,Population growth (annual %)
+cw,internet_5y,79.42,2022,"Individuals using the Internet, projected (% of population)"
+dj,internet,65.3,2024,Individuals using the Internet (% of population)
+dj,pop_growth,1.31,2025,Population growth (annual %)
+dj,internet_5y,69.59,2029,"Individuals using the Internet, projected (% of population)"
+dm,internet,82.05,2024,Individuals using the Internet (% of population)
+dm,pop_growth,-0.51,2025,Population growth (annual %)
+dm,internet_5y,85.85,2029,"Individuals using the Internet, projected (% of population)"
+do,internet,91.0,2024,Individuals using the Internet (% of population)
+do,phone,89.17,2024,Own a mobile phone (% age 15+)
+do,can_text,74.68,2024,Can send a text message on a mobile phone (% age 15+)
+do,literacy,94.03,2024,"Literacy rate, adult total (% age 15+)"
+do,pop_growth,0.81,2025,Population growth (annual %)
+do,internet_5y,93.84,2029,"Individuals using the Internet, projected (% of population)"
+dz,internet,77.42,2024,Individuals using the Internet (% of population)
+dz,phone,98.34,2024,Own a mobile phone (% age 15+)
+dz,literacy,75.14,2008,"Literacy rate, adult total (% age 15+)"
+dz,pop_growth,1.32,2025,Population growth (annual %)
+dz,internet_5y,86.92,2029,"Individuals using the Internet, projected (% of population)"
+ec,internet,77.17,2024,Individuals using the Internet (% of population)
+ec,phone,88.18,2024,Own a mobile phone (% age 15+)
+ec,can_text,75.23,2024,Can send a text message on a mobile phone (% age 15+)
+ec,literacy,93.49,2024,"Literacy rate, adult total (% age 15+)"
+ec,pop_growth,0.85,2025,Population growth (annual %)
+ec,internet_5y,83.76,2029,"Individuals using the Internet, projected (% of population)"
+eg,internet,74.65,2024,Individuals using the Internet (% of population)
+eg,phone,84.56,2024,Own a mobile phone (% age 15+)
+eg,can_text,49.62,2024,Can send a text message on a mobile phone (% age 15+)
+eg,literacy,79.45,2022,"Literacy rate, adult total (% age 15+)"
+eg,pop_growth,1.56,2025,Population growth (annual %)
+eg,internet_5y,81.36,2029,"Individuals using the Internet, projected (% of population)"
+er,internet,14.35,2020,Individuals using the Internet (% of population)
+er,literacy,64.66,2008,"Literacy rate, adult total (% age 15+)"
+er,pop_growth,2.0,2025,Population growth (annual %)
+er,internet_5y,27.47,2025,"Individuals using the Internet, projected (% of population)"
+es,internet,95.76,2024,Individuals using the Internet (% of population)
+es,phone,97.48,2024,Own a mobile phone (% age 15+)
+es,literacy,99.7,2021,"Literacy rate, adult total (% age 15+)"
+es,pop_growth,1.03,2025,Population growth (annual %)
+es,internet_5y,96.71,2029,"Individuals using the Internet, projected (% of population)"
+et,internet,21.94,2024,Individuals using the Internet (% of population)
+et,phone,58.0,2024,Own a mobile phone (% age 15+)
+et,can_text,30.18,2024,Can send a text message on a mobile phone (% age 15+)
+et,literacy,60.46,2022,"Literacy rate, adult total (% age 15+)"
+et,pop_growth,2.55,2025,Population growth (annual %)
+et,internet_5y,27.48,2029,"Individuals using the Internet, projected (% of population)"
+fj,internet,74.71,2024,Individuals using the Internet (% of population)
+fj,pop_growth,0.47,2025,Population growth (annual %)
+fj,internet_5y,80.16,2029,"Individuals using the Internet, projected (% of population)"
+fm,internet,39.52,2024,Individuals using the Internet (% of population)
+fm,pop_growth,0.46,2025,Population growth (annual %)
+fm,internet_5y,41.08,2029,"Individuals using the Internet, projected (% of population)"
+fr,internet,88.65,2024,Individuals using the Internet (% of population)
+fr,phone,90.99,2024,Own a mobile phone (% age 15+)
+fr,pop_growth,0.25,2025,Population growth (annual %)
+fr,internet_5y,90.2,2029,"Individuals using the Internet, projected (% of population)"
+ga,internet,68.72,2024,Individuals using the Internet (% of population)
+ga,phone,87.22,2024,Own a mobile phone (% age 15+)
+ga,can_text,70.78,2024,Can send a text message on a mobile phone (% age 15+)
+ga,literacy,88.86,2021,"Literacy rate, adult total (% age 15+)"
+ga,pop_growth,2.11,2025,Population growth (annual %)
+ga,internet_5y,73.58,2029,"Individuals using the Internet, projected (% of population)"
+gb,internet,95.47,2024,Individuals using the Internet (% of population)
+gb,phone,91.78,2024,Own a mobile phone (% age 15+)
+gb,pop_growth,0.3,2025,Population growth (annual %)
+gb,internet_5y,95.96,2029,"Individuals using the Internet, projected (% of population)"
+gd,internet,70.16,2024,Individuals using the Internet (% of population)
+gd,literacy,97.79,1970,"Literacy rate, adult total (% age 15+)"
+gd,pop_growth,0.08,2025,Population growth (annual %)
+gd,internet_5y,73.43,2029,"Individuals using the Internet, projected (% of population)"
+gh,internet,72.18,2024,Individuals using the Internet (% of population)
+gh,phone,87.71,2024,Own a mobile phone (% age 15+)
+gh,can_text,62.6,2024,Can send a text message on a mobile phone (% age 15+)
+gh,literacy,76.49,2021,"Literacy rate, adult total (% age 15+)"
+gh,pop_growth,1.83,2025,Population growth (annual %)
+gh,internet_5y,82.73,2029,"Individuals using the Internet, projected (% of population)"
+gi,internet,94.44,2016,Individuals using the Internet (% of population)
+gi,pop_growth,2.01,2025,Population growth (annual %)
+gi,internet_5y,94.44,2021,"Individuals using the Internet, projected (% of population)"
+gm,internet,49.49,2024,Individuals using the Internet (% of population)
+gm,phone,79.83,2024,Own a mobile phone (% age 15+)
+gm,can_text,47.41,2024,Can send a text message on a mobile phone (% age 15+)
+gm,literacy,51.64,2021,"Literacy rate, adult total (% age 15+)"
+gm,pop_growth,2.23,2025,Population growth (annual %)
+gm,internet_5y,63.36,2029,"Individuals using the Internet, projected (% of population)"
+gn,internet,33.3,2024,Individuals using the Internet (% of population)
+gn,phone,82.24,2024,Own a mobile phone (% age 15+)
+gn,can_text,23.18,2024,Can send a text message on a mobile phone (% age 15+)
+gn,literacy,39.62,2018,"Literacy rate, adult total (% age 15+)"
+gn,pop_growth,2.31,2025,Population growth (annual %)
+gn,internet_5y,41.27,2029,"Individuals using the Internet, projected (% of population)"
+gq,internet,63.3,2024,Individuals using the Internet (% of population)
+gq,literacy,88.31,2000,"Literacy rate, adult total (% age 15+)"
+gq,pop_growth,2.4,2025,Population growth (annual %)
+gq,internet_5y,72.07,2029,"Individuals using the Internet, projected (% of population)"
+gt,internet,60.22,2024,Individuals using the Internet (% of population)
+gt,phone,80.97,2024,Own a mobile phone (% age 15+)
+gt,can_text,53.29,2024,Can send a text message on a mobile phone (% age 15+)
+gt,literacy,82.11,2024,"Literacy rate, adult total (% age 15+)"
+gt,pop_growth,1.52,2025,Population growth (annual %)
+gt,internet_5y,70.16,2029,"Individuals using the Internet, projected (% of population)"
+gu,internet,80.51,2017,Individuals using the Internet (% of population)
+gu,literacy,99.37,1990,"Literacy rate, adult total (% age 15+)"
+gu,pop_growth,0.73,2025,Population growth (annual %)
+gu,internet_5y,88.64,2022,"Individuals using the Internet, projected (% of population)"
+gy,internet,83.0,2024,Individuals using the Internet (% of population)
+gy,literacy,85.64,2020,"Literacy rate, adult total (% age 15+)"
+gy,pop_growth,0.59,2025,Population growth (annual %)
+gy,internet_5y,91.25,2029,"Individuals using the Internet, projected (% of population)"
+hk,internet,95.76,2024,Individuals using the Internet (% of population)
+hk,phone,98.37,2024,Own a mobile phone (% age 15+)
+hk,pop_growth,-0.34,2025,Population growth (annual %)
+hk,internet_5y,96.73,2029,"Individuals using the Internet, projected (% of population)"
+hn,internet,58.62,2024,Individuals using the Internet (% of population)
+hn,phone,80.73,2024,Own a mobile phone (% age 15+)
+hn,can_text,65.86,2024,Can send a text message on a mobile phone (% age 15+)
+hn,literacy,88.25,2024,"Literacy rate, adult total (% age 15+)"
+hn,pop_growth,1.65,2025,Population growth (annual %)
+hn,internet_5y,71.45,2029,"Individuals using the Internet, projected (% of population)"
+ht,internet,47.86,2024,Individuals using the Internet (% of population)
+ht,literacy,68.01,2017,"Literacy rate, adult total (% age 15+)"
+ht,pop_growth,1.13,2025,Population growth (annual %)
+ht,internet_5y,57.22,2029,"Individuals using the Internet, projected (% of population)"
+id,internet,72.78,2024,Individuals using the Internet (% of population)
+id,phone,80.34,2024,Own a mobile phone (% age 15+)
+id,can_text,69.24,2024,Can send a text message on a mobile phone (% age 15+)
+id,literacy,96.0,2020,"Literacy rate, adult total (% age 15+)"
+id,pop_growth,0.78,2025,Population growth (annual %)
+id,internet_5y,83.22,2029,"Individuals using the Internet, projected (% of population)"
+ie,internet,97.19,2024,Individuals using the Internet (% of population)
+ie,phone,92.71,2024,Own a mobile phone (% age 15+)
+ie,pop_growth,1.63,2025,Population growth (annual %)
+ie,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+il,internet,88.18,2024,Individuals using the Internet (% of population)
+il,phone,95.98,2024,Own a mobile phone (% age 15+)
+il,literacy,91.75,1983,"Literacy rate, adult total (% age 15+)"
+il,pop_growth,1.2,2025,Population growth (annual %)
+il,internet_5y,88.18,2029,"Individuals using the Internet, projected (% of population)"
+im,pop_growth,-0.05,2025,Population growth (annual %)
+in,internet,70.0,2025,Individuals using the Internet (% of population)
+in,phone,66.47,2024,Own a mobile phone (% age 15+)
+in,can_text,28.04,2024,Can send a text message on a mobile phone (% age 15+)
+in,literacy,78.16,2024,"Literacy rate, adult total (% age 15+)"
+in,pop_growth,0.89,2025,Population growth (annual %)
+in,internet_5y,80.95,2030,"Individuals using the Internet, projected (% of population)"
+iq,internet,81.47,2024,Individuals using the Internet (% of population)
+iq,phone,91.47,2024,Own a mobile phone (% age 15+)
+iq,can_text,66.82,2024,Can send a text message on a mobile phone (% age 15+)
+iq,literacy,84.06,2021,"Literacy rate, adult total (% age 15+)"
+iq,pop_growth,2.1,2025,Population growth (annual %)
+iq,internet_5y,90.08,2029,"Individuals using the Internet, projected (% of population)"
+is,internet,98.21,2024,Individuals using the Internet (% of population)
+is,phone,99.07,2024,Own a mobile phone (% age 15+)
+is,pop_growth,1.51,2025,Population growth (annual %)
+is,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+jm,internet,90.11,2024,Individuals using the Internet (% of population)
+jm,literacy,79.92,1999,"Literacy rate, adult total (% age 15+)"
+jm,pop_growth,-0.07,2025,Population growth (annual %)
+jm,internet_5y,96.36,2029,"Individuals using the Internet, projected (% of population)"
+jo,internet,95.62,2024,Individuals using the Internet (% of population)
+jo,phone,88.38,2024,Own a mobile phone (% age 15+)
+jo,can_text,72.01,2024,Can send a text message on a mobile phone (% age 15+)
+jo,literacy,94.44,2024,"Literacy rate, adult total (% age 15+)"
+jo,pop_growth,-0.28,2025,Population growth (annual %)
+jo,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+jp,internet,85.54,2024,Individuals using the Internet (% of population)
+jp,phone,93.85,2024,Own a mobile phone (% age 15+)
+jp,pop_growth,-0.49,2025,Population growth (annual %)
+jp,internet_5y,85.54,2029,"Individuals using the Internet, projected (% of population)"
+ke,internet,34.98,2024,Individuals using the Internet (% of population)
+ke,phone,92.73,2024,Own a mobile phone (% age 15+)
+ke,can_text,71.93,2024,Can send a text message on a mobile phone (% age 15+)
+ke,literacy,82.23,2000,"Literacy rate, adult total (% age 15+)"
+ke,pop_growth,1.93,2025,Population growth (annual %)
+ke,internet_5y,44.89,2029,"Individuals using the Internet, projected (% of population)"
+kg,internet,92.03,2024,Individuals using the Internet (% of population)
+kg,phone,95.98,2024,Own a mobile phone (% age 15+)
+kg,can_text,84.37,2024,Can send a text message on a mobile phone (% age 15+)
+kg,literacy,99.24,2009,"Literacy rate, adult total (% age 15+)"
+kg,pop_growth,1.66,2025,Population growth (annual %)
+kg,internet_5y,97.68,2029,"Individuals using the Internet, projected (% of population)"
+ki,internet,89.44,2024,Individuals using the Internet (% of population)
+ki,literacy,98.61,2020,"Literacy rate, adult total (% age 15+)"
+ki,pop_growth,1.45,2025,Population growth (annual %)
+ki,internet_5y,95.94,2029,"Individuals using the Internet, projected (% of population)"
+km,internet,32.52,2024,Individuals using the Internet (% of population)
+km,phone,71.89,2024,Own a mobile phone (% age 15+)
+km,can_text,37.27,2024,Can send a text message on a mobile phone (% age 15+)
+km,literacy,75.62,2021,"Literacy rate, adult total (% age 15+)"
+km,pop_growth,1.85,2025,Population growth (annual %)
+km,internet_5y,45.41,2029,"Individuals using the Internet, projected (% of population)"
+kn,internet,76.88,2024,Individuals using the Internet (% of population)
+kn,pop_growth,0.17,2025,Population growth (annual %)
+kn,internet_5y,80.84,2029,"Individuals using the Internet, projected (% of population)"
+kw,internet,100.0,2025,Individuals using the Internet (% of population)
+kw,phone,94.67,2024,Own a mobile phone (% age 15+)
+kw,literacy,96.46,2020,"Literacy rate, adult total (% age 15+)"
+kw,pop_growth,-0.65,2025,Population growth (annual %)
+kw,internet_5y,98.0,2030,"Individuals using the Internet, projected (% of population)"
+ky,internet,81.07,2017,Individuals using the Internet (% of population)
+ky,literacy,98.87,2017,"Literacy rate, adult total (% age 15+)"
+ky,pop_growth,1.85,2025,Population growth (annual %)
+ky,internet_5y,85.49,2022,"Individuals using the Internet, projected (% of population)"
+kz,internet,93.39,2024,Individuals using the Internet (% of population)
+kz,phone,92.17,2024,Own a mobile phone (% age 15+)
+kz,literacy,99.73,2009,"Literacy rate, adult total (% age 15+)"
+kz,pop_growth,1.21,2025,Population growth (annual %)
+kz,internet_5y,96.32,2029,"Individuals using the Internet, projected (% of population)"
+lb,internet,80.63,2024,Individuals using the Internet (% of population)
+lb,phone,93.98,2024,Own a mobile phone (% age 15+)
+lb,can_text,89.28,2024,Can send a text message on a mobile phone (% age 15+)
+lb,literacy,92.01,2019,"Literacy rate, adult total (% age 15+)"
+lb,pop_growth,0.75,2025,Population growth (annual %)
+lb,internet_5y,80.63,2029,"Individuals using the Internet, projected (% of population)"
+lc,internet,68.21,2024,Individuals using the Internet (% of population)
+lc,pop_growth,0.23,2025,Population growth (annual %)
+lc,internet_5y,72.69,2029,"Individuals using the Internet, projected (% of population)"
+lk,internet,54.59,2024,Individuals using the Internet (% of population)
+lk,phone,76.63,2024,Own a mobile phone (% age 15+)
+lk,can_text,48.72,2024,Can send a text message on a mobile phone (% age 15+)
+lk,literacy,92.74,2024,"Literacy rate, adult total (% age 15+)"
+lk,pop_growth,-0.73,2025,Population growth (annual %)
+lk,internet_5y,68.07,2029,"Individuals using the Internet, projected (% of population)"
+lr,internet,32.23,2024,Individuals using the Internet (% of population)
+lr,phone,70.0,2024,Own a mobile phone (% age 15+)
+lr,can_text,38.12,2024,Can send a text message on a mobile phone (% age 15+)
+lr,literacy,59.4,2010,"Literacy rate, adult total (% age 15+)"
+lr,pop_growth,2.09,2025,Population growth (annual %)
+lr,internet_5y,42.89,2029,"Individuals using the Internet, projected (% of population)"
+ls,internet,51.8,2024,Individuals using the Internet (% of population)
+ls,phone,78.98,2024,Own a mobile phone (% age 15+)
+ls,can_text,53.49,2024,Can send a text message on a mobile phone (% age 15+)
+ls,literacy,90.45,2024,"Literacy rate, adult total (% age 15+)"
+ls,pop_growth,1.1,2025,Population growth (annual %)
+ls,internet_5y,58.39,2029,"Individuals using the Internet, projected (% of population)"
+lu,internet,99.13,2025,Individuals using the Internet (% of population)
+lu,pop_growth,1.46,2025,Population growth (annual %)
+lu,internet_5y,98.0,2030,"Individuals using the Internet, projected (% of population)"
+ly,internet,81.95,2024,Individuals using the Internet (% of population)
+ly,phone,100.0,2024,Own a mobile phone (% age 15+)
+ly,literacy,60.16,1984,"Literacy rate, adult total (% age 15+)"
+ly,pop_growth,1.04,2025,Population growth (annual %)
+ly,internet_5y,86.76,2029,"Individuals using the Internet, projected (% of population)"
+ma,internet,91.2,2024,Individuals using the Internet (% of population)
+ma,phone,90.22,2024,Own a mobile phone (% age 15+)
+ma,can_text,54.84,2024,Can send a text message on a mobile phone (% age 15+)
+ma,literacy,64.26,2014,"Literacy rate, adult total (% age 15+)"
+ma,pop_growth,0.91,2025,Population growth (annual %)
+ma,internet_5y,93.65,2029,"Individuals using the Internet, projected (% of population)"
+mc,internet,99.04,2024,Individuals using the Internet (% of population)
+mc,pop_growth,-0.75,2025,Population growth (annual %)
+mc,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+mf,pop_growth,-4.65,2025,Population growth (annual %)
+mg,internet,18.68,2024,Individuals using the Internet (% of population)
+mg,phone,45.83,2024,Own a mobile phone (% age 15+)
+mg,can_text,32.76,2024,Can send a text message on a mobile phone (% age 15+)
+mg,literacy,74.69,2021,"Literacy rate, adult total (% age 15+)"
+mg,pop_growth,2.4,2025,Population growth (annual %)
+mg,internet_5y,27.85,2029,"Individuals using the Internet, projected (% of population)"
+mh,internet,65.92,2024,Individuals using the Internet (% of population)
+mh,literacy,95.76,2021,"Literacy rate, adult total (% age 15+)"
+mh,pop_growth,-3.43,2025,Population growth (annual %)
+mh,internet_5y,74.59,2029,"Individuals using the Internet, projected (% of population)"
+ml,internet,36.8,2024,Individuals using the Internet (% of population)
+ml,phone,84.24,2024,Own a mobile phone (% age 15+)
+ml,can_text,31.7,2024,Can send a text message on a mobile phone (% age 15+)
+ml,literacy,35.63,2024,"Literacy rate, adult total (% age 15+)"
+ml,pop_growth,2.9,2025,Population growth (annual %)
+ml,internet_5y,46.03,2029,"Individuals using the Internet, projected (% of population)"
+mo,internet,89.83,2024,Individuals using the Internet (% of population)
+mo,literacy,96.54,2016,"Literacy rate, adult total (% age 15+)"
+mo,pop_growth,-0.16,2025,Population growth (annual %)
+mo,internet_5y,90.96,2029,"Individuals using the Internet, projected (% of population)"
+mp,pop_growth,-1.68,2025,Population growth (annual %)
+mr,internet,45.78,2024,Individuals using the Internet (% of population)
+mr,phone,85.3,2024,Own a mobile phone (% age 15+)
+mr,can_text,53.16,2024,Can send a text message on a mobile phone (% age 15+)
+mr,literacy,59.53,2020,"Literacy rate, adult total (% age 15+)"
+mr,pop_growth,2.78,2025,Population growth (annual %)
+mr,internet_5y,60.51,2029,"Individuals using the Internet, projected (% of population)"
+mt,internet,93.86,2024,Individuals using the Internet (% of population)
+mt,phone,96.99,2024,Own a mobile phone (% age 15+)
+mt,literacy,93.31,2011,"Literacy rate, adult total (% age 15+)"
+mt,pop_growth,1.89,2025,Population growth (annual %)
+mt,internet_5y,95.99,2029,"Individuals using the Internet, projected (% of population)"
+mu,internet,73.31,2024,Individuals using the Internet (% of population)
+mu,phone,93.55,2024,Own a mobile phone (% age 15+)
+mu,literacy,94.29,2023,"Literacy rate, adult total (% age 15+)"
+mu,pop_growth,-0.16,2025,Population growth (annual %)
+mu,internet_5y,80.47,2029,"Individuals using the Internet, projected (% of population)"
+mw,internet,18.96,2024,Individuals using the Internet (% of population)
+mw,phone,58.99,2024,Own a mobile phone (% age 15+)
+mw,can_text,42.67,2024,Can send a text message on a mobile phone (% age 15+)
+mw,literacy,70.15,2020,"Literacy rate, adult total (% age 15+)"
+mw,pop_growth,2.56,2025,Population growth (annual %)
+mw,internet_5y,25.82,2029,"Individuals using the Internet, projected (% of population)"
+mx,internet,83.12,2024,Individuals using the Internet (% of population)
+mx,phone,83.26,2024,Own a mobile phone (% age 15+)
+mx,can_text,71.28,2024,Can send a text message on a mobile phone (% age 15+)
+mx,literacy,95.55,2024,"Literacy rate, adult total (% age 15+)"
+mx,pop_growth,0.83,2025,Population growth (annual %)
+mx,internet_5y,88.96,2029,"Individuals using the Internet, projected (% of population)"
+my,internet,98.02,2024,Individuals using the Internet (% of population)
+my,phone,94.68,2024,Own a mobile phone (% age 15+)
+my,can_text,83.96,2024,Can send a text message on a mobile phone (% age 15+)
+my,literacy,95.77,2022,"Literacy rate, adult total (% age 15+)"
+my,pop_growth,1.17,2025,Population growth (annual %)
+my,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+na,internet,64.87,2024,Individuals using the Internet (% of population)
+na,phone,80.13,2024,Own a mobile phone (% age 15+)
+na,can_text,52.92,2024,Can send a text message on a mobile phone (% age 15+)
+na,literacy,87.64,2023,"Literacy rate, adult total (% age 15+)"
+na,pop_growth,2.05,2025,Population growth (annual %)
+na,internet_5y,72.98,2029,"Individuals using the Internet, projected (% of population)"
+nc,internet,82.01,2017,Individuals using the Internet (% of population)
+nc,literacy,96.14,1996,"Literacy rate, adult total (% age 15+)"
+nc,pop_growth,0.92,2025,Population growth (annual %)
+nc,internet_5y,90.49,2022,"Individuals using the Internet, projected (% of population)"
+ne,internet,15.56,2024,Individuals using the Internet (% of population)
+ne,phone,53.71,2024,Own a mobile phone (% age 15+)
+ne,can_text,14.79,2024,Can send a text message on a mobile phone (% age 15+)
+ne,literacy,35.61,2022,"Literacy rate, adult total (% age 15+)"
+ne,pop_growth,3.22,2025,Population growth (annual %)
+ne,internet_5y,18.89,2029,"Individuals using the Internet, projected (% of population)"
+ng,internet,41.21,2024,Individuals using the Internet (% of population)
+ng,phone,83.77,2024,Own a mobile phone (% age 15+)
+ng,can_text,57.08,2024,Can send a text message on a mobile phone (% age 15+)
+ng,literacy,70.41,2024,"Literacy rate, adult total (% age 15+)"
+ng,pop_growth,2.06,2025,Population growth (annual %)
+ng,internet_5y,50.58,2029,"Individuals using the Internet, projected (% of population)"
+ni,internet,61.4,2024,Individuals using the Internet (% of population)
+ni,phone,85.3,2024,Own a mobile phone (% age 15+)
+ni,can_text,64.45,2024,Can send a text message on a mobile phone (% age 15+)
+ni,literacy,87.33,2014,"Literacy rate, adult total (% age 15+)"
+ni,pop_growth,1.31,2025,Population growth (annual %)
+ni,internet_5y,73.82,2029,"Individuals using the Internet, projected (% of population)"
+nr,internet,83.01,2024,Individuals using the Internet (% of population)
+nr,literacy,96.59,2023,"Literacy rate, adult total (% age 15+)"
+nr,pop_growth,0.65,2025,Population growth (annual %)
+nr,internet_5y,86.6,2029,"Individuals using the Internet, projected (% of population)"
+nz,internet,93.52,2024,Individuals using the Internet (% of population)
+nz,phone,94.38,2024,Own a mobile phone (% age 15+)
+nz,pop_growth,0.65,2025,Population growth (annual %)
+nz,internet_5y,94.49,2029,"Individuals using the Internet, projected (% of population)"
+om,internet,95.25,2024,Individuals using the Internet (% of population)
+om,phone,98.18,2024,Own a mobile phone (% age 15+)
+om,literacy,97.34,2022,"Literacy rate, adult total (% age 15+)"
+om,pop_growth,3.96,2025,Population growth (annual %)
+om,internet_5y,96.03,2029,"Individuals using the Internet, projected (% of population)"
+pa,internet,72.77,2024,Individuals using the Internet (% of population)
+pa,phone,83.61,2024,Own a mobile phone (% age 15+)
+pa,can_text,69.79,2024,Can send a text message on a mobile phone (% age 15+)
+pa,literacy,96.23,2024,"Literacy rate, adult total (% age 15+)"
+pa,pop_growth,1.22,2025,Population growth (annual %)
+pa,internet_5y,77.1,2029,"Individuals using the Internet, projected (% of population)"
+pe,internet,81.96,2024,Individuals using the Internet (% of population)
+pe,phone,85.74,2024,Own a mobile phone (% age 15+)
+pe,can_text,69.39,2024,Can send a text message on a mobile phone (% age 15+)
+pe,literacy,93.66,2024,"Literacy rate, adult total (% age 15+)"
+pe,pop_growth,1.04,2025,Population growth (annual %)
+pe,internet_5y,90.45,2029,"Individuals using the Internet, projected (% of population)"
+pf,internet,72.7,2017,Individuals using the Internet (% of population)
+pf,pop_growth,0.23,2025,Population growth (annual %)
+pf,internet_5y,83.15,2022,"Individuals using the Internet, projected (% of population)"
+pg,internet,18.81,2024,Individuals using the Internet (% of population)
+pg,literacy,87.0,2022,"Literacy rate, adult total (% age 15+)"
+pg,pop_growth,1.75,2025,Population growth (annual %)
+pg,internet_5y,23.74,2029,"Individuals using the Internet, projected (% of population)"
+ph,internet,67.26,2024,Individuals using the Internet (% of population)
+ph,phone,78.0,2024,Own a mobile phone (% age 15+)
+ph,can_text,39.07,2024,Can send a text message on a mobile phone (% age 15+)
+ph,literacy,98.47,2020,"Literacy rate, adult total (% age 15+)"
+ph,pop_growth,0.81,2025,Population growth (annual %)
+ph,internet_5y,78.71,2029,"Individuals using the Internet, projected (% of population)"
+pk,internet,57.25,2024,Individuals using the Internet (% of population)
+pk,phone,62.94,2024,Own a mobile phone (% age 15+)
+pk,can_text,32.13,2024,Can send a text message on a mobile phone (% age 15+)
+pk,literacy,58.86,2021,"Literacy rate, adult total (% age 15+)"
+pk,pop_growth,1.56,2025,Population growth (annual %)
+pk,internet_5y,70.33,2029,"Individuals using the Internet, projected (% of population)"
+pr,internet,87.29,2022,Individuals using the Internet (% of population)
+pr,literacy,92.39,2017,"Literacy rate, adult total (% age 15+)"
+pr,pop_growth,-0.55,2025,Population growth (annual %)
+pr,internet_5y,93.5,2027,"Individuals using the Internet, projected (% of population)"
+ps,internet,86.64,2023,Individuals using the Internet (% of population)
+ps,phone,94.86,2024,Own a mobile phone (% age 15+)
+ps,can_text,79.1,2024,Can send a text message on a mobile phone (% age 15+)
+ps,literacy,97.94,2024,"Literacy rate, adult total (% age 15+)"
+ps,pop_growth,2.33,2025,Population growth (annual %)
+ps,internet_5y,93.95,2028,"Individuals using the Internet, projected (% of population)"
+pt,internet,88.49,2024,Individuals using the Internet (% of population)
+pt,phone,94.74,2024,Own a mobile phone (% age 15+)
+pt,literacy,94.48,2011,"Literacy rate, adult total (% age 15+)"
+pt,pop_growth,1.03,2025,Population growth (annual %)
+pt,internet_5y,92.87,2029,"Individuals using the Internet, projected (% of population)"
+pw,internet,83.93,2024,Individuals using the Internet (% of population)
+pw,literacy,99.84,2020,"Literacy rate, adult total (% age 15+)"
+pw,pop_growth,-0.18,2025,Population growth (annual %)
+pw,internet_5y,85.29,2029,"Individuals using the Internet, projected (% of population)"
+py,internet,81.58,2024,Individuals using the Internet (% of population)
+py,phone,93.5,2024,Own a mobile phone (% age 15+)
+py,can_text,80.98,2024,Can send a text message on a mobile phone (% age 15+)
+py,literacy,94.86,2024,"Literacy rate, adult total (% age 15+)"
+py,pop_growth,1.2,2025,Population growth (annual %)
+py,internet_5y,86.3,2029,"Individuals using the Internet, projected (% of population)"
+qa,internet,98.09,2024,Individuals using the Internet (% of population)
+qa,literacy,97.75,2014,"Literacy rate, adult total (% age 15+)"
+qa,pop_growth,3.92,2025,Population growth (annual %)
+qa,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+ru,internet,94.36,2024,Individuals using the Internet (% of population)
+ru,phone,94.29,2024,Own a mobile phone (% age 15+)
+ru,literacy,99.93,2021,"Literacy rate, adult total (% age 15+)"
+ru,pop_growth,-0.11,2025,Population growth (annual %)
+ru,internet_5y,97.17,2029,"Individuals using the Internet, projected (% of population)"
+rw,internet,31.7,2024,Individuals using the Internet (% of population)
+rw,literacy,78.76,2022,"Literacy rate, adult total (% age 15+)"
+rw,pop_growth,2.17,2025,Population growth (annual %)
+rw,internet_5y,40.01,2029,"Individuals using the Internet, projected (% of population)"
+sa,internet,100.0,2024,Individuals using the Internet (% of population)
+sa,phone,97.93,2024,Own a mobile phone (% age 15+)
+sa,literacy,97.93,2024,"Literacy rate, adult total (% age 15+)"
+sa,pop_growth,4.63,2025,Population growth (annual %)
+sa,internet_5y,98.0,2029,"Individuals using the Internet, projected (% of population)"
+sb,internet,29.04,2024,Individuals using the Internet (% of population)
+sb,literacy,76.6,1999,"Literacy rate, adult total (% age 15+)"
+sb,pop_growth,2.35,2025,Population growth (annual %)
+sb,internet_5y,34.84,2029,"Individuals using the Internet, projected (% of population)"
+sc,internet,87.82,2024,Individuals using the Internet (% of population)
+sc,literacy,93.95,2010,"Literacy rate, adult total (% age 15+)"
+sc,pop_growth,1.13,2025,Population growth (annual %)
+sc,internet_5y,91.76,2029,"Individuals using the Internet, projected (% of population)"
+sd,internet,18.6,2017,Individuals using the Internet (% of population)
+sd,literacy,53.52,2008,"Literacy rate, adult total (% age 15+)"
+sd,pop_growth,2.38,2025,Population growth (annual %)
+sd,internet_5y,33.49,2022,"Individuals using the Internet, projected (% of population)"
+sg,internet,94.38,2024,Individuals using the Internet (% of population)
+sg,phone,97.16,2024,Own a mobile phone (% age 15+)
+sg,literacy,97.65,2021,"Literacy rate, adult total (% age 15+)"
+sg,pop_growth,1.22,2025,Population growth (annual %)
+sg,internet_5y,95.5,2029,"Individuals using the Internet, projected (% of population)"
+sl,internet,25.1,2024,Individuals using the Internet (% of population)
+sl,phone,59.13,2024,Own a mobile phone (% age 15+)
+sl,can_text,33.75,2024,Can send a text message on a mobile phone (% age 15+)
+sl,literacy,43.58,2019,"Literacy rate, adult total (% age 15+)"
+sl,pop_growth,2.04,2025,Population growth (annual %)
+sl,internet_5y,33.71,2029,"Individuals using the Internet, projected (% of population)"
+sn,internet,60.12,2024,Individuals using the Internet (% of population)
+sn,phone,87.31,2024,Own a mobile phone (% age 15+)
+sn,can_text,66.66,2024,Can send a text message on a mobile phone (% age 15+)
+sn,literacy,50.36,2023,"Literacy rate, adult total (% age 15+)"
+sn,pop_growth,2.3,2025,Population growth (annual %)
+sn,internet_5y,69.42,2029,"Individuals using the Internet, projected (% of population)"
+so,internet,27.94,2024,Individuals using the Internet (% of population)
+so,literacy,54.12,2022,"Literacy rate, adult total (% age 15+)"
+so,pop_growth,3.34,2025,Population growth (annual %)
+so,internet_5y,44.92,2029,"Individuals using the Internet, projected (% of population)"
+ss,internet,6.67,2019,Individuals using the Internet (% of population)
+ss,literacy,26.83,2008,"Literacy rate, adult total (% age 15+)"
+ss,pop_growth,2.03,2025,Population growth (annual %)
+ss,internet_5y,10.85,2024,"Individuals using the Internet, projected (% of population)"
+sv,internet,66.48,2024,Individuals using the Internet (% of population)
+sv,phone,87.42,2024,Own a mobile phone (% age 15+)
+sv,can_text,65.43,2024,Can send a text message on a mobile phone (% age 15+)
+sv,literacy,89.77,2024,"Literacy rate, adult total (% age 15+)"
+sv,pop_growth,0.43,2025,Population growth (annual %)
+sv,internet_5y,75.31,2029,"Individuals using the Internet, projected (% of population)"
+sx,pop_growth,1.31,2025,Population growth (annual %)
+sy,internet,33.77,2018,Individuals using the Internet (% of population)
+sy,literacy,94.42,2021,"Literacy rate, adult total (% age 15+)"
+sy,pop_growth,3.77,2025,Population growth (annual %)
+sy,internet_5y,38.73,2023,"Individuals using the Internet, projected (% of population)"
+sz,internet,63.4,2024,Individuals using the Internet (% of population)
+sz,phone,86.19,2024,Own a mobile phone (% age 15+)
+sz,can_text,57.47,2024,Can send a text message on a mobile phone (% age 15+)
+sz,literacy,90.75,2022,"Literacy rate, adult total (% age 15+)"
+sz,pop_growth,1.07,2025,Population growth (annual %)
+sz,internet_5y,75.3,2029,"Individuals using the Internet, projected (% of population)"
+tc,pop_growth,0.69,2025,Population growth (annual %)
+td,internet,12.63,2024,Individuals using the Internet (% of population)
+td,phone,53.41,2024,Own a mobile phone (% age 15+)
+td,can_text,13.92,2024,Can send a text message on a mobile phone (% age 15+)
+td,literacy,30.63,2019,"Literacy rate, adult total (% age 15+)"
+td,pop_growth,3.41,2025,Population growth (annual %)
+td,internet_5y,17.65,2029,"Individuals using the Internet, projected (% of population)"
+tg,internet,39.48,2024,Individuals using the Internet (% of population)
+tg,phone,82.55,2024,Own a mobile phone (% age 15+)
+tg,can_text,47.9,2024,Can send a text message on a mobile phone (% age 15+)
+tg,literacy,72.6,2022,"Literacy rate, adult total (% age 15+)"
+tg,pop_growth,2.18,2025,Population growth (annual %)
+tg,internet_5y,53.34,2029,"Individuals using the Internet, projected (% of population)"
+th,internet,90.87,2024,Individuals using the Internet (% of population)
+th,phone,92.08,2024,Own a mobile phone (% age 15+)
+th,can_text,50.64,2024,Can send a text message on a mobile phone (% age 15+)
+th,literacy,91.1,2022,"Literacy rate, adult total (% age 15+)"
+th,pop_growth,-0.07,2025,Population growth (annual %)
+th,internet_5y,96.91,2029,"Individuals using the Internet, projected (% of population)"
+tl,internet,35.04,2021,Individuals using the Internet (% of population)
+tl,literacy,69.4,2022,"Literacy rate, adult total (% age 15+)"
+tl,pop_growth,1.27,2025,Population growth (annual %)
+tl,internet_5y,45.76,2026,"Individuals using the Internet, projected (% of population)"
+tn,internet,76.5,2024,Individuals using the Internet (% of population)
+tn,phone,95.76,2024,Own a mobile phone (% age 15+)
+tn,can_text,65.27,2024,Can send a text message on a mobile phone (% age 15+)
+tn,literacy,86.25,2023,"Literacy rate, adult total (% age 15+)"
+tn,pop_growth,0.58,2025,Population growth (annual %)
+tn,internet_5y,82.74,2029,"Individuals using the Internet, projected (% of population)"
+to,internet,67.44,2024,Individuals using the Internet (% of population)
+to,literacy,99.48,2023,"Literacy rate, adult total (% age 15+)"
+to,pop_growth,-0.42,2025,Population growth (annual %)
+to,internet_5y,76.61,2029,"Individuals using the Internet, projected (% of population)"
+tt,internet,82.16,2024,Individuals using the Internet (% of population)
+tt,phone,91.82,2024,Own a mobile phone (% age 15+)
+tt,literacy,96.94,1990,"Literacy rate, adult total (% age 15+)"
+tt,pop_growth,-0.04,2025,Population growth (annual %)
+tt,internet_5y,85.01,2029,"Individuals using the Internet, projected (% of population)"
+tv,internet,35.2,2017,Individuals using the Internet (% of population)
+tv,literacy,100.0,2022,"Literacy rate, adult total (% age 15+)"
+tv,pop_growth,-1.61,2025,Population growth (annual %)
+tv,internet_5y,51.1,2022,"Individuals using the Internet, projected (% of population)"
+tz,internet,31.16,2024,Individuals using the Internet (% of population)
+tz,phone,77.79,2024,Own a mobile phone (% age 15+)
+tz,can_text,53.7,2024,Can send a text message on a mobile phone (% age 15+)
+tz,literacy,78.21,2022,"Literacy rate, adult total (% age 15+)"
+tz,pop_growth,2.86,2025,Population growth (annual %)
+tz,internet_5y,43.45,2029,"Individuals using the Internet, projected (% of population)"
+ua,internet,82.47,2024,Individuals using the Internet (% of population)
+ua,phone,97.04,2024,Own a mobile phone (% age 15+)
+ua,literacy,99.43,2001,"Literacy rate, adult total (% age 15+)"
+ua,pop_growth,2.92,2025,Population growth (annual %)
+ua,internet_5y,87.42,2029,"Individuals using the Internet, projected (% of population)"
+ug,internet,8.95,2024,Individuals using the Internet (% of population)
+ug,phone,78.64,2024,Own a mobile phone (% age 15+)
+ug,can_text,52.83,2024,Can send a text message on a mobile phone (% age 15+)
+ug,literacy,77.04,2024,"Literacy rate, adult total (% age 15+)"
+ug,pop_growth,2.7,2025,Population growth (annual %)
+ug,internet_5y,8.95,2029,"Individuals using the Internet, projected (% of population)"
+us,internet,94.69,2024,Individuals using the Internet (% of population)
+us,phone,98.01,2024,Own a mobile phone (% age 15+)
+us,pop_growth,0.52,2025,Population growth (annual %)
+us,internet_5y,95.92,2029,"Individuals using the Internet, projected (% of population)"
+uy,internet,91.99,2024,Individuals using the Internet (% of population)
+uy,phone,94.64,2024,Own a mobile phone (% age 15+)
+uy,literacy,98.91,2024,"Literacy rate, adult total (% age 15+)"
+uy,pop_growth,-0.06,2025,Population growth (annual %)
+uy,internet_5y,94.49,2029,"Individuals using the Internet, projected (% of population)"
+vc,internet,76.19,2024,Individuals using the Internet (% of population)
+vc,literacy,95.63,1970,"Literacy rate, adult total (% age 15+)"
+vc,pop_growth,-0.69,2025,Population growth (annual %)
+vc,internet_5y,84.94,2029,"Individuals using the Internet, projected (% of population)"
+ve,internet,76.68,2024,Individuals using the Internet (% of population)
+ve,phone,95.35,2024,Own a mobile phone (% age 15+)
+ve,can_text,84.54,2024,Can send a text message on a mobile phone (% age 15+)
+ve,literacy,97.18,2017,"Literacy rate, adult total (% age 15+)"
+ve,pop_growth,0.39,2025,Population growth (annual %)
+ve,internet_5y,86.34,2029,"Individuals using the Internet, projected (% of population)"
+vg,internet,77.7,2017,Individuals using the Internet (% of population)
+vg,pop_growth,0.66,2025,Population growth (annual %)
+vg,internet_5y,77.71,2022,"Individuals using the Internet, projected (% of population)"
+vi,internet,64.38,2017,Individuals using the Internet (% of population)
+vi,pop_growth,-0.56,2025,Population growth (annual %)
+vi,internet_5y,76.31,2022,"Individuals using the Internet, projected (% of population)"
+vu,internet,22.35,2015,Individuals using the Internet (% of population)
+vu,literacy,87.96,2023,"Literacy rate, adult total (% age 15+)"
+vu,pop_growth,2.23,2025,Population growth (annual %)
+vu,internet_5y,22.35,2020,"Individuals using the Internet, projected (% of population)"
+ws,literacy,97.99,2019,"Literacy rate, adult total (% age 15+)"
+ws,pop_growth,0.59,2025,Population growth (annual %)
+ye,internet,17.49,2019,Individuals using the Internet (% of population)
+ye,literacy,37.09,1994,"Literacy rate, adult total (% age 15+)"
+ye,pop_growth,2.89,2025,Population growth (annual %)
+ye,internet_5y,17.49,2024,"Individuals using the Internet, projected (% of population)"
+za,internet,78.36,2024,Individuals using the Internet (% of population)
+za,phone,86.97,2024,Own a mobile phone (% age 15+)
+za,can_text,73.19,2024,Can send a text message on a mobile phone (% age 15+)
+za,literacy,91.15,2024,"Literacy rate, adult total (% age 15+)"
+za,pop_growth,1.15,2025,Population growth (annual %)
+za,internet_5y,82.7,2029,"Individuals using the Internet, projected (% of population)"
+zm,internet,17.1,2024,Individuals using the Internet (% of population)
+zm,phone,78.81,2024,Own a mobile phone (% age 15+)
+zm,can_text,52.71,2024,Can send a text message on a mobile phone (% age 15+)
+zm,literacy,71.77,2024,"Literacy rate, adult total (% age 15+)"
+zm,pop_growth,2.77,2025,Population growth (annual %)
+zm,internet_5y,19.54,2029,"Individuals using the Internet, projected (% of population)"
+zw,internet,41.64,2024,Individuals using the Internet (% of population)
+zw,phone,81.63,2024,Own a mobile phone (% age 15+)
+zw,can_text,68.25,2024,Can send a text message on a mobile phone (% age 15+)
+zw,literacy,93.23,2019,"Literacy rate, adult total (% age 15+)"
+zw,pop_growth,1.88,2025,Population growth (annual %)
+zw,internet_5y,53.33,2029,"Individuals using the Internet, projected (% of population)"

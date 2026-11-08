@@ -55,5 +55,28 @@ class RankTests(unittest.TestCase):
         self.assertGreater(weak, strong)
 
 
+class ReachTests(unittest.TestCase):
+    base = {"ltdi": 0.5, "dimensions": {"tech": {"indicators": {}}, "writing": {"score": 1}, "data": {"score": 1}}}
+
+    def test_voice_reaches_more_than_text_where_texting_is_rare(self):
+        fs = facts(reach_voice_share=0.4, reach_text_share=0.2, reach_voice_share_5y=0.4,
+                   reach_text_share_5y=0.2, speaker_growth_5y=1.0)
+        opps = [{"type": "share", "technology": "tts", "gap": 1.0}, {"type": "share", "technology": "mt", "gap": 1.0}]
+        ranked = {o["technology"]: o for o in rank({"speakers": 1e7}, opps, self.base, fs)}
+        self.assertGreater(ranked["tts"]["priority_now"], ranked["mt"]["priority_now"])
+
+    def test_growing_user_base_ranks_higher_in_five_years(self):
+        opp = lambda: [{"type": "share", "technology": "tts", "gap": 1.0}]
+        flat = facts(reach_voice_share=0.4, reach_text_share=0.4, reach_voice_share_5y=0.4,
+                     reach_text_share_5y=0.4, speaker_growth_5y=1.0)
+        rising = facts(reach_voice_share=0.4, reach_text_share=0.4, reach_voice_share_5y=0.8,
+                       reach_text_share_5y=0.8, speaker_growth_5y=1.0)
+        a = rank({"speakers": 1e7}, opp(), self.base, flat)[0]
+        b = rank({"speakers": 1e7}, opp(), self.base, rising)[0]
+        self.assertEqual(a["priority_now"], b["priority_now"])
+        self.assertGreater(b["priority_5y"], a["priority_5y"])
+        self.assertEqual(b["momentum"], 1.5)
+
+
 if __name__ == "__main__":
     unittest.main()

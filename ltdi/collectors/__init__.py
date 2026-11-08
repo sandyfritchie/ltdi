@@ -16,7 +16,8 @@ from ..crosswalk import to_ltdi
 from ..records import Record, write_records
 
 AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu"]
-LOCAL_ONLY = ["wikipedia"]  # need network access the build sandbox lacks
+LOCAL_ONLY = ["wikipedia"]
+NEEDS_ALLOWLIST = ["connectivity"]  # api.worldbank.org  # need network access the build sandbox lacks
 
 
 def sum_by_language(pairs) -> dict[str, float]:
