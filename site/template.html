@@ -241,7 +241,7 @@ function dimPanel(l, key, color) {
         const label = f.unit === 'bool'
           ? `<span class="${f.value ? 'yes' : 'no'}">${esc(f.source)}</span>`
           : `<span class="yes">${esc(f.source)}: ${esc(showValue(f))}</span>`;
-        return `<div><a href="${esc(f.url)}" target="_blank" rel="noopener">${label}</a>${t.open.includes?.(id) ? ' <span class="code">open</span>' : ''}</div>`;
+        return `<div><a href="${esc(f.url)}" target="_blank" rel="noopener">${label}</a>${(t.open || []).includes(id) ? ' <span class="code">open</span>' : ''}</div>`;
       }).join('');
       body += `<div class="ind"><div class="ind-top"><b>${esc(t.label)}</b><span class="ind-val">${s == null ? '—' : s.toFixed(2)}</span></div>
         ${s == null ? '' : bar(s)}<div class="vendors">${vendors}</div></div>`;
