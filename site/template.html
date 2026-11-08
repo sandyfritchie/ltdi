@@ -1,0 +1,328 @@
+<title>Language Technology Development Index</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an index report. Masthead, then a ranked table that is the page; language and compare views replace the table in place. */
+:root {
+  --bg: #f5f7f6;
+  --surface: #ffffff;
+  --ink: #16201d;
+  --muted: #5b6763;
+  --rule: #d9e0dd;
+  --accent: #1f5f8b;
+  --writing: #b07a1c;
+  --data: #12806f;
+  --tech: #4a4fb8;
+  --tier-vh: #1f5f8b;
+  --tier-h: #4f87ad;
+  --tier-m: #8fb0c7;
+  --tier-l: #c9d7e1;
+  --tier-ink-light: #16201d;
+  --tier-ink-dark: #ffffff;
+  --track: #e6ebe9;
+  --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101614; --surface: #17201d; --ink: #e5ece9; --muted: #98a6a1; --rule: #2a3632;
+    --accent: #7db4dc; --writing: #d9a54a; --data: #3fbfa9; --tech: #9a9df0;
+    --tier-vh: #7db4dc; --tier-h: #4f87ad; --tier-m: #36607d; --tier-l: #263f50;
+    --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101614; --surface: #17201d; --ink: #e5ece9; --muted: #98a6a1; --rule: #2a3632;
+  --accent: #7db4dc; --writing: #d9a54a; --data: #3fbfa9; --tech: #9a9df0;
+  --tier-vh: #7db4dc; --tier-h: #4f87ad; --tier-m: #36607d; --tier-l: #263f50;
+  --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
+.wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--accent); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, tr:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+header.mast { display: grid; gap: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+.eyebrow { font: 500 12px/1.2 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 800 clamp(30px, 5vw, 50px)/1.02 var(--font-display); font-stretch: 78%; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+.lede { max-width: 66ch; margin: 0; color: var(--muted); }
+.formula { font-family: var(--font-mono); font-size: 13px; color: var(--ink); }
+.formula b { font-weight: 500; }
+.w { color: var(--writing); } .d { color: var(--data); } .t { color: var(--tech); }
+
+.controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-block: 20px 12px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 600 13px/1 var(--font-body); border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+  border-radius: 999px; padding: 7px 12px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+input[type=search], select { font: 15px var(--font-body); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px;
+  background: var(--surface); color: var(--ink); min-width: 0; }
+input[type=search] { width: 220px; max-width: 100%; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+
+.tablebox { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th { font: 600 11px/1.2 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+  text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.rank { font: 700 18px var(--font-display); font-stretch: 80%; color: var(--muted); width: 2.5em; }
+.lname { font-weight: 600; }
+.auto { color: var(--muted); font-size: 14px; }
+.code { font: 12px var(--font-mono); color: var(--muted); }
+.num { text-align: right; white-space: nowrap; }
+.score { font: 700 20px var(--font-display); font-stretch: 85%; }
+.tier { font: 600 11px/1 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; border-radius: 3px; padding: 4px 6px; white-space: nowrap; }
+.tier.vh { background: var(--tier-vh); color: var(--tier-ink-dark); }
+.tier.h  { background: var(--tier-h); color: #fff; }
+.tier.m  { background: var(--tier-m); color: var(--tier-ink-light); }
+.tier.l  { background: var(--tier-l); color: var(--tier-ink-light); }
+.bars { display: grid; gap: 3px; min-width: 150px; }
+.bar { height: 6px; background: var(--track); border-radius: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 3px; }
+.hide-sm { }
+@media (max-width: 640px) { .hide-sm { display: none; } .bars { min-width: 90px; } }
+
+.note { margin-top: 16px; font-size: 14px; color: var(--muted); max-width: 72ch; }
+.note strong { color: var(--ink); }
+
+/* Language view */
+.back { font: 600 14px var(--font-body); background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; margin-block: 18px 6px; }
+.lhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
+.lhead h2 { font: 800 clamp(28px, 4.5vw, 42px)/1.05 var(--font-display); font-stretch: 80%; margin: 0; }
+.big { font: 800 52px/1 var(--font-display); font-stretch: 80%; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
+.facts b { color: var(--ink); font-weight: 600; }
+.dims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+@media (max-width: 860px) { .dims { grid-template-columns: 1fr; } }
+.dim { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; min-width: 0; border-top: 4px solid var(--c); }
+.dim h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 0 12px; font: 700 17px var(--font-display); font-stretch: 90%; }
+.dim h3 span { font-size: 24px; color: var(--c); }
+.ind { display: grid; gap: 4px; padding-block: 9px; border-top: 1px solid var(--rule); }
+.ind:first-of-type { border-top: 0; }
+.ind-top { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
+.ind-top b { font-weight: 600; }
+.ind-val { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ind .bar i { background: var(--c); }
+.src { font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
+.vendors { display: grid; gap: 2px; font-size: 13px; color: var(--muted); }
+.vendors .yes { color: var(--ink); }
+.vendors .no { text-decoration: line-through; opacity: .7; }
+.missing { font-size: 13px; color: var(--muted); font-style: italic; }
+
+/* Compare */
+.cmpbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 18px; font-size: 14px; color: var(--muted); }
+.cmp td:first-child { color: var(--muted); font-size: 14px; }
+.cmp th.lang { font: 700 16px var(--font-display); font-stretch: 85%; text-transform: none; letter-spacing: 0; color: var(--ink); }
+.cmp .sect td { font: 600 11px var(--font-mono); text-transform: uppercase; letter-spacing: .06em; padding-top: 16px; }
+.gap { font: 500 12px var(--font-mono); }
+.gap.neg { color: #b4452f; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .gap.neg { color: #f0937c; } }
+:root[data-theme="dark"] .gap.neg { color: #f0937c; }
+@media (prefers-reduced-motion: no-preference) { .bar i { transition: width .4s ease; } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow" id="edition">Slice edition</div>
+    <h1>Language Technology Development Index</h1>
+    <p class="lede">How well technology supports each language, and how much data exists to build more. Three dimensions, each scored 0 to 1, combined with a geometric mean so a gap anywhere pulls the score down.</p>
+    <div class="formula">LTDI = (<b class="w">writing</b> × <b class="d">data</b> × <b class="t">technology</b>)<sup>1/3</sup></div>
+  </header>
+  <main id="view"></main>
+</div>
+
+<script id="ltdi-data" type="application/json">/*__DATA__*/</script>
+<script>
+const DATA = JSON.parse(document.getElementById('ltdi-data').textContent);
+const LANGS = DATA.languages, BY = Object.fromEntries(LANGS.map(l => [l.code, l]));
+const CFG = DATA.config.dimensions, L = DATA.labels;
+const DIMS = [['writing', 'w', '--writing'], ['data', 'd', '--data'], ['tech', 't', '--tech']];
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.getElementById('edition').textContent = `Edition ${DATA.edition} · ${LANGS.length} languages`;
+
+function tierOf(v) {
+  if (v >= 0.9) return ['vh', 'Very high'];
+  if (v >= 0.75) return ['h', 'High'];
+  if (v >= 0.6) return ['m', 'Medium'];
+  return ['l', 'Low'];
+}
+const tierChip = v => { const [c, t] = tierOf(v); return `<span class="tier ${c}">${t}</span>`; };
+function people(n) {
+  if (!n) return '—';
+  if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return (n / 1e6).toFixed(n >= 1e8 ? 0 : 1) + 'M';
+  if (n >= 1e3) return Math.round(n / 1e3) + 'K';
+  return String(n);
+}
+function big(n) {
+  if (n >= 1e12) return (n / 1e12).toFixed(1) + 'T';
+  if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+  if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+  return n.toLocaleString();
+}
+function showValue(f) {
+  if (!f) return 'not collected';
+  const v = f.value;
+  if (f.unit === 'bool') return v ? 'Yes' : 'No';
+  if (f.unit === 'level 0-3') return ['Not in CLDR', 'Basic', 'Moderate', 'Modern'][v] ?? v;
+  if (f.unit === 'words') return big(v) + ' words';
+  if (f.unit === 'hours') return (v >= 100 ? Math.round(v).toLocaleString() : v.toFixed(1)) + ' h';
+  if (f.unit === 'articles') return big(v) + ' articles';
+  if (f.unit === '% of English') return v + '% of English';
+  return v;
+}
+const bar = (v, color) => `<div class="bar"><i style="width:${(v * 100).toFixed(1)}%;${color ? `background:var(${color})` : ''}"></i></div>`;
+
+// ---------------------------------------------------------------- ranking
+let region = 'All', query = '';
+function ranking() {
+  const regions = ['All', ...new Set(LANGS.map(l => l.region).filter(Boolean))].sort((a, b) => a === 'All' ? -1 : b === 'All' ? 1 : a.localeCompare(b));
+  $('#view').innerHTML = `
+    <div class="controls">
+      <div class="chips" role="group" aria-label="Region">${regions.map(r => `<button class="chip" id="r-${esc(r)}" aria-pressed="${r === region}" data-r="${esc(r)}">${esc(r)}</button>`).join('')}</div>
+      <input type="search" id="q" placeholder="Find a language or code" value="${esc(query)}" aria-label="Find a language">
+    </div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--writing)"></i>Writing system</span>
+      <span><i class="sw" style="background:var(--data)"></i>Data</span>
+      <span><i class="sw" style="background:var(--tech)"></i>Technology</span>
+    </div>
+    <div class="tablebox"><table>
+      <thead><tr><th>#</th><th>Language</th><th class="num hide-sm">Speakers</th><th class="hide-sm">Region</th><th>Dimensions</th><th class="num">LTDI</th><th>Tier</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table></div>
+    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. Wikipedia counts are not collected yet; LLM support is measured for 12 languages only, so the rest leave LLMs out of their technology score. Select a language to see every value and its source.</p>`;
+  const draw = () => {
+    const q = query.trim().toLowerCase();
+    const rows = LANGS.filter(l => (region === 'All' || l.region === region) &&
+      (!q || [l.name, l.autonym, l.code, l.iso_639_3].some(s => (s || '').toLowerCase().includes(q))));
+    $('#rows').innerHTML = rows.map(l => `
+      <tr tabindex="0" data-code="${l.code}">
+        <td class="rank">${l.rank}</td>
+        <td><div class="lname">${esc(l.name)}</div><div class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">${l.code}</span></div></td>
+        <td class="num hide-sm">${people(l.speakers)}</td>
+        <td class="hide-sm">${esc(l.region || '')}</td>
+        <td><div class="bars" aria-label="Writing ${l.dimensions.writing.score}, data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
+          ${DIMS.map(([k, , c]) => bar(l.dimensions[k].score, c)).join('')}</div></td>
+        <td class="num score">${l.ltdi.toFixed(3)}</td>
+        <td>${tierChip(l.ltdi)}</td>
+      </tr>`).join('') || `<tr><td colspan="7">No language matches “${esc(query)}”.</td></tr>`;
+  };
+  draw();
+  $('#view').querySelectorAll('[data-r]').forEach(b => b.onclick = () => { region = b.dataset.r; ranking(); });
+  $('#q').oninput = e => { query = e.target.value; draw(); };
+  $('#rows').onclick = e => { const tr = e.target.closest('tr[data-code]'); if (tr) location.hash = 'lang-' + tr.dataset.code; };
+  $('#rows').onkeydown = e => { if (e.key === 'Enter') { const tr = e.target.closest('tr[data-code]'); if (tr) location.hash = 'lang-' + tr.dataset.code; } };
+}
+
+// --------------------------------------------------------------- language
+function dimPanel(l, key, color) {
+  const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
+  let body = '';
+  if (key === 'tech') {
+    for (const [tk, t] of Object.entries(cfg.technologies)) {
+      const s = d.indicators[tk];
+      const ids = t.measured ? [t.measured] : [...t.consumer, ...t.open];
+      const vendors = ids.map(id => {
+        const f = facts[id];
+        if (!f) return `<div class="missing">${t.measured ? 'Not benchmarked yet' : esc(id) + ': not collected'}</div>`;
+        const label = f.unit === 'bool'
+          ? `<span class="${f.value ? 'yes' : 'no'}">${esc(f.source)}</span>`
+          : `<span class="yes">${esc(f.source)}: ${esc(showValue(f))}</span>`;
+        return `<div><a href="${esc(f.url)}" target="_blank" rel="noopener">${label}</a>${t.open.includes?.(id) ? ' <span class="code">open</span>' : ''}</div>`;
+      }).join('');
+      body += `<div class="ind"><div class="ind-top"><b>${esc(t.label)}</b><span class="ind-val">${s == null ? '—' : s.toFixed(2)}</span></div>
+        ${s == null ? '' : bar(s)}<div class="vendors">${vendors}</div></div>`;
+    }
+  } else {
+    for (const [ik, spec] of Object.entries(cfg.indicators)) {
+      const f = facts[ik], n = d.indicators[ik];
+      body += `<div class="ind"><div class="ind-top"><b>${esc(spec.label)}</b><span class="ind-val">${esc(showValue(f))}</span></div>
+        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}
+        ${f ? `<div class="src"><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(f.source)}</a> · ${esc(f.retrieved)}${f.note ? ' · ' + esc(f.note) : ''}</div>` : ''}</div>`;
+    }
+  }
+  return `<section class="dim" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
+}
+
+function language(code) {
+  const l = BY[code];
+  if (!l) return ranking();
+  const others = LANGS.filter(o => o.code !== code);
+  $('#view').innerHTML = `
+    <button class="back" id="back">← All languages</button>
+    <div class="lhead">
+      <div><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span></h2>
+        <div class="facts"><span><b>${people(l.speakers)}</b> speakers</span><span>Code <b class="code">${l.code}</b> · ISO 639-3 <b class="code">${esc(l.iso_639_3 || '')}</b></span>
+        <span>Scripts <b>${l.scripts.map(s => s[0].toUpperCase() + s.slice(1)).join(', ')}</b></span>
+        <span>Mainly in <b>${l.countries.slice(0, 3).map(c => esc(c.name)).join(', ')}</b></span></div>
+        ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
+      </div>
+      <div style="text-align:right"><div class="eyebrow">Rank ${l.rank} of ${LANGS.length}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
+    </div>
+    <div class="cmpbar"><label for="cmpsel">Compare with</label>
+      <select id="cmpsel"><option value="">Choose a language</option>${others.map(o => `<option value="${o.code}">${esc(o.name)}</option>`).join('')}</select></div>
+    <div class="dims">${DIMS.map(([k, , c]) => dimPanel(l, k, c)).join('')}</div>
+    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>.</p>`;
+  $('#back').onclick = () => { location.hash = ''; };
+  $('#cmpsel').onchange = e => { if (e.target.value) location.hash = `compare-${code}-${e.target.value}`; };
+}
+
+// ---------------------------------------------------------------- compare
+function compare(a, b) {
+  const A = BY[a], B = BY[b];
+  if (!A || !B) return ranking();
+  const fa = DATA.facts[a] || {}, fb = DATA.facts[b] || {};
+  const diff = (x, y) => {
+    if (x == null || y == null) return '';
+    const g = y - x; return Math.abs(g) < 0.005 ? '<span class="gap">=</span>' : `<span class="gap ${g < 0 ? 'neg' : ''}">${g > 0 ? '+' : ''}${g.toFixed(2)}</span>`;
+  };
+  let rows = `<tr><td>LTDI</td><td class="num score">${A.ltdi.toFixed(3)}</td><td class="num score">${B.ltdi.toFixed(3)}</td><td class="num">${diff(A.ltdi, B.ltdi)}</td></tr>
+    <tr><td>Speakers</td><td class="num">${people(A.speakers)}</td><td class="num">${people(B.speakers)}</td><td></td></tr>`;
+  for (const [k, , c] of DIMS) {
+    const da = A.dimensions[k], db = B.dimensions[k];
+    rows += `<tr class="sect"><td colspan="4" style="color:var(${c})">${esc(CFG[k].label)} · ${da.score.toFixed(2)} vs ${db.score.toFixed(2)}</td></tr>`;
+    if (k === 'tech') {
+      for (const [tk, t] of Object.entries(CFG.tech.technologies)) {
+        const x = da.indicators[tk], y = db.indicators[tk];
+        rows += `<tr><td>${esc(t.label)}</td><td class="num">${x == null ? 'not measured' : x.toFixed(2)}</td><td class="num">${y == null ? 'not measured' : y.toFixed(2)}</td><td class="num">${diff(x, y)}</td></tr>`;
+      }
+    } else {
+      for (const [ik, spec] of Object.entries(CFG[k].indicators)) {
+        rows += `<tr><td>${esc(spec.label)}</td><td class="num">${esc(showValue(fa[ik]))}</td><td class="num">${esc(showValue(fb[ik]))}</td><td class="num">${diff(da.indicators[ik], db.indicators[ik])}</td></tr>`;
+      }
+    }
+  }
+  $('#view').innerHTML = `
+    <button class="back" id="back">← ${esc(A.name)}</button>
+    <div class="lhead"><h2>${esc(A.name)} and ${esc(B.name)}</h2></div>
+    <p class="note">Gap column shows ${esc(B.name)} minus ${esc(A.name)} on the 0–1 scale.</p>
+    <div class="tablebox"><table class="cmp">
+      <thead><tr><th></th><th class="lang num">${esc(A.name)}</th><th class="lang num">${esc(B.name)}</th><th class="num">Gap</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>`;
+  $('#back').onclick = () => { location.hash = 'lang-' + a; };
+}
+
+function route() {
+  const h = location.hash.slice(1);
+  let m;
+  if ((m = h.match(/^lang-([a-z]+)$/))) language(m[1]);
+  else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
+  else ranking();
+  window.scrollTo(0, 0);
+}
+addEventListener('hashchange', route);
+route();
+</script>

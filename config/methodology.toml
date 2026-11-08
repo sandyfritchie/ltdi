@@ -1,0 +1,103 @@
+# LTDI methodology config, slice edition.
+# Every number here is a draft for discussion; see the project plan doc.
+
+[meta]
+edition = "slice-2026-11"
+# Lowest value a dimension index can take, so one empty dimension doesn't zero the LTDI
+floor = 0.05
+
+# ---------------------------------------------------------------- writing ---
+[dimensions.writing]
+label = "Writing system readiness"
+
+[dimensions.writing.indicators.script_encoded]
+label = "Main script encoded in Unicode"
+scale = "bool"
+weight = 0.5
+
+[dimensions.writing.indicators.cldr_coverage]
+label = "CLDR locale data coverage"
+scale = "linear"
+min = 0
+max = 3
+weight = 0.5
+
+# ------------------------------------------------------------------- data ---
+# Missing indicators (e.g. Wikipedia before its collector has run) are left
+# out and the remaining weights rescaled; the language is flagged.
+[dimensions.data]
+label = "Data availability"
+
+[dimensions.data.indicators.web_text_words]
+label = "Web text (FineWeb-2 words)"
+scale = "log"
+min = 1e4
+max = 1e11
+weight = 0.35
+
+[dimensions.data.indicators.wikipedia_articles]
+label = "Wikipedia articles"
+scale = "log"
+min = 100
+max = 1e6
+weight = 0.2
+
+[dimensions.data.indicators.cv_validated_hours]
+label = "Transcribed speech (Common Voice hours)"
+scale = "log"
+min = 0
+max = 1000
+weight = 0.25
+
+[dimensions.data.indicators.flores200]
+label = "FLORES-200 MT evaluation set"
+scale = "bool"
+weight = 0.1
+
+[dimensions.data.indicators.belebele]
+label = "Belebele reading-comprehension benchmark"
+scale = "bool"
+weight = 0.1
+
+# ------------------------------------------------------------- technology ---
+# Each technology is scored in tiers:
+#   1.00  consumer products from at least min(2, number of consumer sources) vendors
+#   0.67  one consumer product
+#   0.33  open model only
+#   0     none
+# LLMs are scored from measured benchmark results instead (see [llm]).
+[dimensions.tech]
+label = "Technology support"
+
+[dimensions.tech.technologies.keyboard]
+label = "Keyboard"
+consumer = ["kb_gboard", "kb_apple"]
+open = []
+weight = 1
+
+[dimensions.tech.technologies.speech_input]
+label = "Speech input"
+consumer = ["asr_google", "asr_azure", "asr_apple"]
+open = ["asr_open_whisper"]
+weight = 1
+
+[dimensions.tech.technologies.tts]
+label = "Text-to-speech"
+consumer = ["tts_google"]
+open = []
+weight = 1
+
+[dimensions.tech.technologies.mt]
+label = "Machine translation"
+consumer = ["mt_google", "mt_azure", "mt_deepl"]
+open = ["mt_open_nllb"]
+weight = 1
+
+[dimensions.tech.technologies.llm]
+label = "LLMs"
+measured = "llm_global_mmlu_rel"
+# % of English score: >= high -> 1.0, >= mid -> 0.67, else 0.33.
+# Not benchmarked -> left out of the tech mean and flagged.
+mid = 90
+high = 97
+weight = 1

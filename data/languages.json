@@ -1,0 +1,1731 @@
+[
+ {
+  "code": "en",
+  "name": "English",
+  "autonym": "English",
+  "iso_639_3": "eng",
+  "glottocode": "stan1293",
+  "scope": "LANGUAGE",
+  "speakers": 1267445366,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "us",
+    "name": "United States of America",
+    "speakers": 319000000
+   },
+   {
+    "code": "in",
+    "name": "India",
+    "speakers": 252000000
+   },
+   {
+    "code": "pk",
+    "name": "Pakistan",
+    "speakers": 117000000
+   },
+   {
+    "code": "ng",
+    "name": "Nigeria",
+    "speakers": 113000000
+   },
+   {
+    "code": "ph",
+    "name": "Philippines",
+    "speakers": 70000000
+   },
+   {
+    "code": "gb",
+    "name": "United Kingdom",
+    "speakers": 64000000
+   },
+   {
+    "code": "tz",
+    "name": "Tanzania, United Republic of",
+    "speakers": 40000000
+   },
+   {
+    "code": "ca",
+    "name": "Canada",
+    "speakers": 32000000
+   },
+   {
+    "code": "bd",
+    "name": "Bangladesh",
+    "speakers": 29000000
+   },
+   {
+    "code": "sd",
+    "name": "Sudan",
+    "speakers": 28000000
+   },
+   {
+    "code": "au",
+    "name": "Australia",
+    "speakers": 24000000
+   },
+   {
+    "code": "id",
+    "name": "Indonesia",
+    "speakers": 23000000
+   },
+   {
+    "code": "th",
+    "name": "Thailand",
+    "speakers": 19000000
+   },
+   {
+    "code": "za",
+    "name": "South Africa",
+    "speakers": 18000000
+   },
+   {
+    "code": "mw",
+    "name": "Malawi",
+    "speakers": 13000000
+   },
+   {
+    "code": "cm",
+    "name": "Cameroon",
+    "speakers": 11000000
+   },
+   {
+    "code": "ke",
+    "name": "Kenya",
+    "speakers": 10000000
+   },
+   {
+    "code": "my",
+    "name": "Malaysia",
+    "speakers": 6900000
+   },
+   {
+    "code": "gh",
+    "name": "Ghana",
+    "speakers": 6200000
+   },
+   {
+    "code": "zw",
+    "name": "Zimbabwe",
+    "speakers": 6100000
+   },
+   {
+    "code": "sg",
+    "name": "Singapore",
+    "speakers": 5800000
+   },
+   {
+    "code": "ie",
+    "name": "Ireland",
+    "speakers": 5100000
+   },
+   {
+    "code": "mg",
+    "name": "Madagascar",
+    "speakers": 4900000
+   },
+   {
+    "code": "nz",
+    "name": "New Zealand",
+    "speakers": 4800000
+   },
+   {
+    "code": "lr",
+    "name": "Liberia",
+    "speakers": 4200000
+   },
+   {
+    "code": "hk",
+    "name": "Hong Kong",
+    "speakers": 3700000
+   },
+   {
+    "code": "er",
+    "name": "Eritrea",
+    "speakers": 3600000
+   },
+   {
+    "code": "pg",
+    "name": "Papua New Guinea",
+    "speakers": 3600000
+   },
+   {
+    "code": "ss",
+    "name": "South Sudan",
+    "speakers": 2900000
+   },
+   {
+    "code": "jm",
+    "name": "Jamaica",
+    "speakers": 2800000
+   },
+   {
+    "code": "zm",
+    "name": "Zambia",
+    "speakers": 2800000
+   },
+   {
+    "code": "lk",
+    "name": "Sri Lanka",
+    "speakers": 2300000
+   },
+   {
+    "code": "sl",
+    "name": "Sierra Leone",
+    "speakers": 2300000
+   },
+   {
+    "code": "bw",
+    "name": "Botswana",
+    "speakers": 1900000
+   },
+   {
+    "code": "rw",
+    "name": "Rwanda",
+    "speakers": 1900000
+   },
+   {
+    "code": "ug",
+    "name": "Uganda",
+    "speakers": 1700000
+   },
+   {
+    "code": "pr",
+    "name": "Puerto Rico",
+    "speakers": 1600000
+   },
+   {
+    "code": "tt",
+    "name": "Trinidad and Tobago",
+    "speakers": 1100000
+   },
+   {
+    "code": "mu",
+    "name": "Mauritius",
+    "speakers": 990000
+   },
+   {
+    "code": "fj",
+    "name": "Fiji",
+    "speakers": 880000
+   },
+   {
+    "code": "sz",
+    "name": "Eswatini",
+    "speakers": 880000
+   },
+   {
+    "code": "gm",
+    "name": "Gambia",
+    "speakers": 870000
+   },
+   {
+    "code": "gy",
+    "name": "Guyana",
+    "speakers": 750000
+   },
+   {
+    "code": "sb",
+    "name": "Solomon Islands",
+    "speakers": 690000
+   },
+   {
+    "code": "ls",
+    "name": "Lesotho",
+    "speakers": 530000
+   },
+   {
+    "code": "bz",
+    "name": "Belize",
+    "speakers": 400000
+   },
+   {
+    "code": "mt",
+    "name": "Malta",
+    "speakers": 400000
+   },
+   {
+    "code": "bs",
+    "name": "Bahamas",
+    "speakers": 340000
+   },
+   {
+    "code": "bb",
+    "name": "Barbados",
+    "speakers": 290000
+   },
+   {
+    "code": "vu",
+    "name": "Vanuatu",
+    "speakers": 250000
+   },
+   {
+    "code": "na",
+    "name": "Namibia",
+    "speakers": 180000
+   },
+   {
+    "code": "gu",
+    "name": "Guam",
+    "speakers": 150000
+   },
+   {
+    "code": "lc",
+    "name": "Saint Lucia",
+    "speakers": 150000
+   },
+   {
+    "code": "gd",
+    "name": "Grenada",
+    "speakers": 110000
+   },
+   {
+    "code": "ki",
+    "name": "Kiribati",
+    "speakers": 110000
+   },
+   {
+    "code": "vc",
+    "name": "Saint Vincent and the Grenadines",
+    "speakers": 97000
+   },
+   {
+    "code": "je",
+    "name": "Jersey",
+    "speakers": 96000
+   },
+   {
+    "code": "im",
+    "name": "Isle of Man",
+    "speakers": 90000
+   },
+   {
+    "code": "ag",
+    "name": "Antigua and Barbuda",
+    "speakers": 84000
+   },
+   {
+    "code": "vi",
+    "name": "Virgin Islands, U.S.",
+    "speakers": 80000
+   },
+   {
+    "code": "mh",
+    "name": "Marshall Islands",
+    "speakers": 72000
+   },
+   {
+    "code": "dm",
+    "name": "Dominica",
+    "speakers": 70000
+   },
+   {
+    "code": "gg",
+    "name": "Guernsey",
+    "speakers": 67000
+   },
+   {
+    "code": "bm",
+    "name": "Bermuda",
+    "speakers": 66000
+   },
+   {
+    "code": "ky",
+    "name": "Cayman Islands",
+    "speakers": 61000
+   },
+   {
+    "code": "fm",
+    "name": "Micronesia, Federated States of",
+    "speakers": 58000
+   },
+   {
+    "code": "tc",
+    "name": "Turks and Caicos Islands",
+    "speakers": 55000
+   },
+   {
+    "code": "kn",
+    "name": "Saint Kitts and Nevis",
+    "speakers": 53000
+   },
+   {
+    "code": "mp",
+    "name": "Northern Mariana Islands",
+    "speakers": 50000
+   },
+   {
+    "code": "as",
+    "name": "American Samoa",
+    "speakers": 48000
+   },
+   {
+    "code": "vg",
+    "name": "Virgin Islands, British",
+    "speakers": 37000
+   },
+   {
+    "code": "sc",
+    "name": "Seychelles",
+    "speakers": 36000
+   },
+   {
+    "code": "sx",
+    "name": "Sint Maarten (Dutch part)",
+    "speakers": 30000
+   },
+   {
+    "code": "to",
+    "name": "Tonga",
+    "speakers": 30000
+   },
+   {
+    "code": "gi",
+    "name": "Gibraltar",
+    "speakers": 24000
+   },
+   {
+    "code": "ai",
+    "name": "Anguilla",
+    "speakers": 17000
+   },
+   {
+    "code": "nr",
+    "name": "Nauru",
+    "speakers": 9400
+   },
+   {
+    "code": "ck",
+    "name": "Cook Islands",
+    "speakers": 8600
+   },
+   {
+    "code": "bn",
+    "name": "Brunei Darussalam",
+    "speakers": 7900
+   },
+   {
+    "code": "sh",
+    "name": "Saint Helena, Ascension and Tristan da Cunha",
+    "speakers": 5400
+   },
+   {
+    "code": "ws",
+    "name": "Samoa",
+    "speakers": 4300
+   },
+   {
+    "code": "io",
+    "name": "British Indian Ocean Territory",
+    "speakers": 3500
+   },
+   {
+    "code": "ms",
+    "name": "Montserrat",
+    "speakers": 3500
+   },
+   {
+    "code": "fk",
+    "name": "Falkland Islands (Malvinas)",
+    "speakers": 2800
+   },
+   {
+    "code": "pw",
+    "name": "Palau",
+    "speakers": 1900
+   },
+   {
+    "code": "nf",
+    "name": "Norfolk Island",
+    "speakers": 1700
+   },
+   {
+    "code": "cx",
+    "name": "Christmas Island",
+    "speakers": 1400
+   },
+   {
+    "code": "tk",
+    "name": "Tokelau",
+    "speakers": 1300
+   },
+   {
+    "code": "nu",
+    "name": "Niue",
+    "speakers": 1100
+   },
+   {
+    "code": "tv",
+    "name": "Tuvalu",
+    "speakers": 1100
+   },
+   {
+    "code": "um",
+    "name": "United States Minor Outlying Islands",
+    "speakers": 320
+   },
+   {
+    "code": "cc",
+    "name": "Cocos (Keeling) Islands",
+    "speakers": 100
+   },
+   {
+    "code": "pn",
+    "name": "Pitcairn",
+    "speakers": 46
+   },
+   {
+    "code": "bi",
+    "name": "Burundi",
+    "speakers": null
+   },
+   {
+    "code": "bq",
+    "name": "Bonaire, Sint Eustatius and Saba",
+    "speakers": null
+   },
+   {
+    "code": "cw",
+    "name": "Curaçao",
+    "speakers": null
+   },
+   {
+    "code": "gs",
+    "name": "South Georgia and the South Sandwich Islands",
+    "speakers": null
+   },
+   {
+    "code": "hm",
+    "name": "Heard Island and McDonald Islands",
+    "speakers": null
+   }
+  ],
+  "region": "Europe",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/en.json",
+  "note": ""
+ },
+ {
+  "code": "cmn",
+  "name": "Mandarin Chinese",
+  "autonym": "官话",
+  "iso_639_3": "cmn",
+  "glottocode": "mand1415",
+  "scope": "LANGUAGE",
+  "speakers": 1288700000,
+  "members": [],
+  "scripts": [
+   "hans",
+   "hant"
+  ],
+  "countries": [
+   {
+    "code": "cn",
+    "name": "China",
+    "speakers": 1255000000
+   },
+   {
+    "code": "tw",
+    "name": "Taiwan",
+    "speakers": 22000000
+   },
+   {
+    "code": "hk",
+    "name": "Hong Kong",
+    "speakers": 6900000
+   },
+   {
+    "code": "sg",
+    "name": "Singapore",
+    "speakers": 4800000
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cmn.json",
+  "note": "Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn"
+ },
+ {
+  "code": "es",
+  "name": "Spanish",
+  "autonym": "español",
+  "iso_639_3": "spa",
+  "glottocode": "stan1288",
+  "scope": "LANGUAGE",
+  "speakers": 468360000,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "mx",
+    "name": "Mexico",
+    "speakers": 107000000
+   },
+   {
+    "code": "es",
+    "name": "Spain",
+    "speakers": 50000000
+   },
+   {
+    "code": "co",
+    "name": "Colombia",
+    "speakers": 46000000
+   },
+   {
+    "code": "ar",
+    "name": "Argentina",
+    "speakers": 45000000
+   },
+   {
+    "code": "ph",
+    "name": "Philippines",
+    "speakers": 34000000
+   },
+   {
+    "code": "us",
+    "name": "United States of America",
+    "speakers": 32000000
+   },
+   {
+    "code": "pe",
+    "name": "Peru",
+    "speakers": 23000000
+   },
+   {
+    "code": "ve",
+    "name": "Venezuela, Bolivarian Republic of",
+    "speakers": 23000000
+   },
+   {
+    "code": "cl",
+    "name": "Chile",
+    "speakers": 18000000
+   },
+   {
+    "code": "ec",
+    "name": "Ecuador",
+    "speakers": 16000000
+   },
+   {
+    "code": "gt",
+    "name": "Guatemala",
+    "speakers": 16000000
+   },
+   {
+    "code": "cu",
+    "name": "Cuba",
+    "speakers": 11000000
+   },
+   {
+    "code": "do",
+    "name": "Dominican Republic",
+    "speakers": 8200000
+   },
+   {
+    "code": "hn",
+    "name": "Honduras",
+    "speakers": 7200000
+   },
+   {
+    "code": "bo",
+    "name": "Bolivia, Plurinational State of",
+    "speakers": 7100000
+   },
+   {
+    "code": "sv",
+    "name": "El Salvador",
+    "speakers": 5800000
+   },
+   {
+    "code": "cr",
+    "name": "Costa Rica",
+    "speakers": 4800000
+   },
+   {
+    "code": "ni",
+    "name": "Nicaragua",
+    "speakers": 4800000
+   },
+   {
+    "code": "uy",
+    "name": "Uruguay",
+    "speakers": 3000000
+   },
+   {
+    "code": "pr",
+    "name": "Puerto Rico",
+    "speakers": 2800000
+   },
+   {
+    "code": "pa",
+    "name": "Panama",
+    "speakers": 2700000
+   },
+   {
+    "code": "gq",
+    "name": "Equatorial Guinea",
+    "speakers": 730000
+   },
+   {
+    "code": "py",
+    "name": "Paraguay",
+    "speakers": 230000
+   }
+  ],
+  "region": "Europe",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/es.json",
+  "note": ""
+ },
+ {
+  "code": "hi",
+  "name": "Hindi",
+  "autonym": "हिन्दी",
+  "iso_639_3": "hin",
+  "glottocode": "hind1269",
+  "scope": "LANGUAGE",
+  "speakers": 544000000,
+  "members": [],
+  "scripts": [
+   "deva"
+  ],
+  "countries": [
+   {
+    "code": "in",
+    "name": "India",
+    "speakers": 544000000
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hi.json",
+  "note": ""
+ },
+ {
+  "code": "ar",
+  "name": "Arabic",
+  "autonym": "العربية",
+  "iso_639_3": "ara",
+  "glottocode": null,
+  "scope": "MACROLANGUAGE",
+  "speakers": 346277000,
+  "members": [
+   "aao",
+   "abh",
+   "abv",
+   "acm",
+   "acq",
+   "acw",
+   "acx",
+   "acy",
+   "adf",
+   "aeb",
+   "aec",
+   "afb",
+   "ajp",
+   "apc",
+   "apd",
+   "arb",
+   "arq",
+   "ars",
+   "ary",
+   "arz",
+   "auz",
+   "avl",
+   "ayh",
+   "ayl",
+   "ayn",
+   "ayp",
+   "pga",
+   "shu",
+   "ssh"
+  ],
+  "scripts": [
+   "arab"
+  ],
+  "countries": [
+   {
+    "code": "eg",
+    "name": "Egypt",
+    "speakers": 98000000
+   },
+   {
+    "code": "sa",
+    "name": "Saudi Arabia",
+    "speakers": 34000000
+   },
+   {
+    "code": "dz",
+    "name": "Algeria",
+    "speakers": 32000000
+   },
+   {
+    "code": "sd",
+    "name": "Sudan",
+    "speakers": 28000000
+   },
+   {
+    "code": "iq",
+    "name": "Iraq",
+    "speakers": 26000000
+   },
+   {
+    "code": "ma",
+    "name": "Morocco",
+    "speakers": 22000000
+   },
+   {
+    "code": "ye",
+    "name": "Yemen",
+    "speakers": 22000000
+   },
+   {
+    "code": "sy",
+    "name": "Syrian Arab Republic",
+    "speakers": 16000000
+   },
+   {
+    "code": "jo",
+    "name": "Jordan",
+    "speakers": 11000000
+   },
+   {
+    "code": "tn",
+    "name": "Tunisia",
+    "speakers": 11000000
+   },
+   {
+    "code": "ae",
+    "name": "United Arab Emirates",
+    "speakers": 7800000
+   },
+   {
+    "code": "ly",
+    "name": "Libya",
+    "speakers": 5100000
+   },
+   {
+    "code": "ps",
+    "name": "Palestine, State of",
+    "speakers": 4800000
+   },
+   {
+    "code": "lb",
+    "name": "Lebanon",
+    "speakers": 4700000
+   },
+   {
+    "code": "so",
+    "name": "Somalia",
+    "speakers": 4000000
+   },
+   {
+    "code": "om",
+    "name": "Oman",
+    "speakers": 3800000
+   },
+   {
+    "code": "mr",
+    "name": "Mauritania",
+    "speakers": 3400000
+   },
+   {
+    "code": "kw",
+    "name": "Kuwait",
+    "speakers": 3000000
+   },
+   {
+    "code": "td",
+    "name": "Chad",
+    "speakers": 2900000
+   },
+   {
+    "code": "qa",
+    "name": "Qatar",
+    "speakers": 2200000
+   },
+   {
+    "code": "il",
+    "name": "Israel",
+    "speakers": 1700000
+   },
+   {
+    "code": "bh",
+    "name": "Bahrain",
+    "speakers": 1300000
+   },
+   {
+    "code": "eh",
+    "name": "Western Sahara",
+    "speakers": 650000
+   },
+   {
+    "code": "km",
+    "name": "Comoros",
+    "speakers": 560000
+   },
+   {
+    "code": "er",
+    "name": "Eritrea",
+    "speakers": 300000
+   },
+   {
+    "code": "dj",
+    "name": "Djibouti",
+    "speakers": 67000
+   },
+   {
+    "code": "xa",
+    "name": "xa",
+    "speakers": null
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ar.json",
+  "note": "Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar"
+ },
+ {
+  "code": "fr",
+  "name": "French",
+  "autonym": "français",
+  "iso_639_3": "fra",
+  "glottocode": "stan1290",
+  "scope": "LANGUAGE",
+  "speakers": 203194940,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "fr",
+    "name": "France",
+    "speakers": 67000000
+   },
+   {
+    "code": "cm",
+    "name": "Cameroon",
+    "speakers": 19000000
+   },
+   {
+    "code": "mg",
+    "name": "Madagascar",
+    "speakers": 19000000
+   },
+   {
+    "code": "ci",
+    "name": "Côte d'Ivoire",
+    "speakers": 13000000
+   },
+   {
+    "code": "ca",
+    "name": "Canada",
+    "speakers": 11000000
+   },
+   {
+    "code": "ml",
+    "name": "Mali",
+    "speakers": 9000000
+   },
+   {
+    "code": "bi",
+    "name": "Burundi",
+    "speakers": 7000000
+   },
+   {
+    "code": "ne",
+    "name": "Niger",
+    "speakers": 6600000
+   },
+   {
+    "code": "sn",
+    "name": "Senegal",
+    "speakers": 6100000
+   },
+   {
+    "code": "tg",
+    "name": "Togo",
+    "speakers": 5300000
+   },
+   {
+    "code": "bf",
+    "name": "Burkina Faso",
+    "speakers": 4600000
+   },
+   {
+    "code": "be",
+    "name": "Belgium",
+    "speakers": 4500000
+   },
+   {
+    "code": "bj",
+    "name": "Benin",
+    "speakers": 4500000
+   },
+   {
+    "code": "cg",
+    "name": "Congo",
+    "speakers": 4400000
+   },
+   {
+    "code": "td",
+    "name": "Chad",
+    "speakers": 4400000
+   },
+   {
+    "code": "cd",
+    "name": "Congo, the Democratic Republic of the",
+    "speakers": 3900000
+   },
+   {
+    "code": "gn",
+    "name": "Guinea",
+    "speakers": 3600000
+   },
+   {
+    "code": "cf",
+    "name": "Central African Republic",
+    "speakers": 2900000
+   },
+   {
+    "code": "ch",
+    "name": "Switzerland",
+    "speakers": 1800000
+   },
+   {
+    "code": "ga",
+    "name": "Gabon",
+    "speakers": 1400000
+   },
+   {
+    "code": "re",
+    "name": "Réunion",
+    "speakers": 700000
+   },
+   {
+    "code": "lu",
+    "name": "Luxembourg",
+    "speakers": 550000
+   },
+   {
+    "code": "ht",
+    "name": "Haiti",
+    "speakers": 520000
+   },
+   {
+    "code": "km",
+    "name": "Comoros",
+    "speakers": 470000
+   },
+   {
+    "code": "mq",
+    "name": "Martinique",
+    "speakers": 430000
+   },
+   {
+    "code": "gp",
+    "name": "Guadeloupe",
+    "speakers": 410000
+   },
+   {
+    "code": "nc",
+    "name": "New Caledonia",
+    "speakers": 280000
+   },
+   {
+    "code": "pf",
+    "name": "French Polynesia",
+    "speakers": 180000
+   },
+   {
+    "code": "gf",
+    "name": "French Guiana",
+    "speakers": 150000
+   },
+   {
+    "code": "vu",
+    "name": "Vanuatu",
+    "speakers": 150000
+   },
+   {
+    "code": "yt",
+    "name": "Mayotte",
+    "speakers": 110000
+   },
+   {
+    "code": "gq",
+    "name": "Equatorial Guinea",
+    "speakers": 74000
+   },
+   {
+    "code": "sc",
+    "name": "Seychelles",
+    "speakers": 58000
+   },
+   {
+    "code": "mc",
+    "name": "Monaco",
+    "speakers": 39000
+   },
+   {
+    "code": "mf",
+    "name": "Saint Martin (French part)",
+    "speakers": 33000
+   },
+   {
+    "code": "dj",
+    "name": "Djibouti",
+    "speakers": 19000
+   },
+   {
+    "code": "wf",
+    "name": "Wallis and Futuna",
+    "speakers": 7600
+   },
+   {
+    "code": "bl",
+    "name": "Saint Barthélemy",
+    "speakers": 6800
+   },
+   {
+    "code": "pm",
+    "name": "Saint Pierre and Miquelon",
+    "speakers": 5100
+   },
+   {
+    "code": "rw",
+    "name": "Rwanda",
+    "speakers": 2300
+   },
+   {
+    "code": "tf",
+    "name": "French Southern Territories",
+    "speakers": 140
+   },
+   {
+    "code": "gg",
+    "name": "Guernsey",
+    "speakers": null
+   },
+   {
+    "code": "je",
+    "name": "Jersey",
+    "speakers": null
+   },
+   {
+    "code": "mu",
+    "name": "Mauritius",
+    "speakers": null
+   }
+  ],
+  "region": "Europe",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/fr.json",
+  "note": ""
+ },
+ {
+  "code": "bn",
+  "name": "Bengali",
+  "autonym": "বাংলা",
+  "iso_639_3": "ben",
+  "glottocode": "beng1280",
+  "scope": "LANGUAGE",
+  "speakers": 266000000,
+  "members": [],
+  "scripts": [
+   "beng"
+  ],
+  "countries": [
+   {
+    "code": "bd",
+    "name": "Bangladesh",
+    "speakers": 159000000
+   },
+   {
+    "code": "in",
+    "name": "India",
+    "speakers": 107000000
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
+  "note": ""
+ },
+ {
+  "code": "pt",
+  "name": "Portuguese",
+  "autonym": "português",
+  "iso_639_3": "por",
+  "glottocode": "port1283",
+  "scope": "LANGUAGE",
+  "speakers": 225751001,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "br",
+    "name": "Brazil",
+    "speakers": 193000000
+   },
+   {
+    "code": "ao",
+    "name": "Angola",
+    "speakers": 22000000
+   },
+   {
+    "code": "pt",
+    "name": "Portugal",
+    "speakers": 9900000
+   },
+   {
+    "code": "tl",
+    "name": "Timor-Leste",
+    "speakers": 820000
+   },
+   {
+    "code": "mo",
+    "name": "Macao",
+    "speakers": 31000
+   },
+   {
+    "code": "gq",
+    "name": "Equatorial Guinea",
+    "speakers": 1
+   }
+  ],
+  "region": "Europe",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pt.json",
+  "note": ""
+ },
+ {
+  "code": "ru",
+  "name": "Russian",
+  "autonym": "русский",
+  "iso_639_3": "rus",
+  "glottocode": "russ1263",
+  "scope": "LANGUAGE",
+  "speakers": 170200000,
+  "members": [],
+  "scripts": [
+   "cyrl"
+  ],
+  "countries": [
+   {
+    "code": "ru",
+    "name": "Russian Federation",
+    "speakers": 133000000
+   },
+   {
+    "code": "ua",
+    "name": "Ukraine",
+    "speakers": 20000000
+   },
+   {
+    "code": "kz",
+    "name": "Kazakhstan",
+    "speakers": 14000000
+   },
+   {
+    "code": "kg",
+    "name": "Kyrgyzstan",
+    "speakers": 2100000
+   },
+   {
+    "code": "by",
+    "name": "Belarus",
+    "speakers": 1100000
+   }
+  ],
+  "region": "Europe",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ru.json",
+  "note": ""
+ },
+ {
+  "code": "ja",
+  "name": "Japanese",
+  "autonym": "日本語",
+  "iso_639_3": "jpn",
+  "glottocode": "nucl1643",
+  "scope": "LANGUAGE",
+  "speakers": 119000000,
+  "members": [],
+  "scripts": [
+   "jpan"
+  ],
+  "countries": [
+   {
+    "code": "jp",
+    "name": "Japan",
+    "speakers": 119000000
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
+  "note": ""
+ },
+ {
+  "code": "id",
+  "name": "Indonesian",
+  "autonym": "Bahasa Indonesia",
+  "iso_639_3": "ind",
+  "glottocode": "indo1316",
+  "scope": "LANGUAGE",
+  "speakers": 171000000,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "id",
+    "name": "Indonesia",
+    "speakers": 171000000
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/id.json",
+  "note": ""
+ },
+ {
+  "code": "ur",
+  "name": "Urdu",
+  "autonym": "اردو",
+  "iso_639_3": "urd",
+  "glottocode": "urdu1245",
+  "scope": "LANGUAGE",
+  "speakers": 288000000,
+  "members": [],
+  "scripts": [
+   "arab"
+  ],
+  "countries": [
+   {
+    "code": "pk",
+    "name": "Pakistan",
+    "speakers": 222000000
+   },
+   {
+    "code": "in",
+    "name": "India",
+    "speakers": 66000000
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ur.json",
+  "note": ""
+ },
+ {
+  "code": "ta",
+  "name": "Tamil",
+  "autonym": "தமிழ்",
+  "iso_639_3": "tam",
+  "glottocode": "tami1289",
+  "scope": "LANGUAGE",
+  "speakers": 81530000,
+  "members": [],
+  "scripts": [
+   "taml"
+  ],
+  "countries": [
+   {
+    "code": "in",
+    "name": "India",
+    "speakers": 78000000
+   },
+   {
+    "code": "lk",
+    "name": "Sri Lanka",
+    "speakers": 3400000
+   },
+   {
+    "code": "sg",
+    "name": "Singapore",
+    "speakers": 130000
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ta.json",
+  "note": ""
+ },
+ {
+  "code": "pa",
+  "name": "Punjabi",
+  "autonym": "ਪੰਜਾਬੀ",
+  "iso_639_3": "pan",
+  "glottocode": "panj1256",
+  "scope": "LANGUAGE",
+  "speakers": 200000000,
+  "members": [],
+  "scripts": [
+   "arab",
+   "guru"
+  ],
+  "countries": [
+   {
+    "code": "pk",
+    "name": "Pakistan",
+    "speakers": 163000000
+   },
+   {
+    "code": "in",
+    "name": "India",
+    "speakers": 37000000
+   }
+  ],
+  "region": "Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pa.json",
+  "note": "Gurmukhi and Shahmukhi scripts combined for the slice"
+ },
+ {
+  "code": "sw",
+  "name": "Swahili",
+  "autonym": "Kiswahili",
+  "iso_639_3": "swa",
+  "glottocode": null,
+  "scope": "MACROLANGUAGE",
+  "speakers": 171000000,
+  "members": [
+   "swc",
+   "swh"
+  ],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "tz",
+    "name": "Tanzania, United Republic of",
+    "speakers": 53000000
+   },
+   {
+    "code": "cd",
+    "name": "Congo, the Democratic Republic of the",
+    "speakers": 51000000
+   },
+   {
+    "code": "ke",
+    "name": "Kenya",
+    "speakers": 35000000
+   },
+   {
+    "code": "ug",
+    "name": "Uganda",
+    "speakers": 32000000
+   },
+   {
+    "code": "rw",
+    "name": "Rwanda",
+    "speakers": null
+   }
+  ],
+  "region": "Africa",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sw.json",
+  "note": "Macrolanguage; vendors label as sw"
+ },
+ {
+  "code": "ha",
+  "name": "Hausa",
+  "autonym": "Hausa",
+  "iso_639_3": "hau",
+  "glottocode": "haus1257",
+  "scope": "LANGUAGE",
+  "speakers": 28250000,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "ng",
+    "name": "Nigeria",
+    "speakers": 28000000
+   },
+   {
+    "code": "gh",
+    "name": "Ghana",
+    "speakers": 250000
+   }
+  ],
+  "region": "Africa",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ha.json",
+  "note": ""
+ },
+ {
+  "code": "yo",
+  "name": "Yoruba",
+  "autonym": "Èdè Yorùbá",
+  "iso_639_3": "yor",
+  "glottocode": "yoru1245",
+  "scope": "LANGUAGE",
+  "speakers": 28000000,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "ng",
+    "name": "Nigeria",
+    "speakers": 28000000
+   }
+  ],
+  "region": "Africa",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/yo.json",
+  "note": ""
+ },
+ {
+  "code": "ig",
+  "name": "Igbo",
+  "autonym": "Igbo",
+  "iso_639_3": "ibo",
+  "glottocode": "nucl1417",
+  "scope": "LANGUAGE",
+  "speakers": 28000000,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "ng",
+    "name": "Nigeria",
+    "speakers": 28000000
+   }
+  ],
+  "region": "Africa",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ig.json",
+  "note": ""
+ },
+ {
+  "code": "am",
+  "name": "Amharic",
+  "autonym": "አማርኛ",
+  "iso_639_3": "amh",
+  "glottocode": "amha1245",
+  "scope": "LANGUAGE",
+  "speakers": 36000000,
+  "members": [],
+  "scripts": [
+   "ethi"
+  ],
+  "countries": [
+   {
+    "code": "et",
+    "name": "Ethiopia",
+    "speakers": 36000000
+   }
+  ],
+  "region": "Africa",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
+  "note": ""
+ },
+ {
+  "code": "om",
+  "name": "Oromo",
+  "autonym": "Afaan Oromoo",
+  "iso_639_3": "orm",
+  "glottocode": null,
+  "scope": "MACROLANGUAGE",
+  "speakers": 42000000,
+  "members": [
+   "gax",
+   "gaz",
+   "hae",
+   "orc"
+  ],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "et",
+    "name": "Ethiopia",
+    "speakers": 42000000
+   }
+  ],
+  "region": "Africa",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
+  "note": "Macrolanguage; vendors label as om"
+ },
+ {
+  "code": "rw",
+  "name": "Kinyarwanda",
+  "autonym": "Ikinyarwanda",
+  "iso_639_3": "kin",
+  "glottocode": "kiny1244",
+  "scope": "LANGUAGE",
+  "speakers": 9800000,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "rw",
+    "name": "Rwanda",
+    "speakers": 9800000
+   }
+  ],
+  "region": "Africa",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/rw.json",
+  "note": ""
+ },
+ {
+  "code": "is",
+  "name": "Icelandic",
+  "autonym": "íslenska",
+  "iso_639_3": "isl",
+  "glottocode": "icel1247",
+  "scope": "LANGUAGE",
+  "speakers": 350000,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "is",
+    "name": "Iceland",
+    "speakers": 350000
+   }
+  ],
+  "region": "Europe",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/is.json",
+  "note": "Contrast case: few speakers, strong support"
+ },
+ {
+  "code": "cy",
+  "name": "Welsh",
+  "autonym": "Cymraeg",
+  "iso_639_3": "cym",
+  "glottocode": "wels1247",
+  "scope": "LANGUAGE",
+  "speakers": 850000,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "gb",
+    "name": "United Kingdom",
+    "speakers": 850000
+   }
+  ],
+  "region": "Europe",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cy.json",
+  "note": "Contrast case: few speakers, strong support"
+ },
+ {
+  "code": "qu",
+  "name": "Quechua",
+  "autonym": "Runa Simi",
+  "iso_639_3": "que",
+  "glottocode": null,
+  "scope": "MACROLANGUAGE",
+  "speakers": 8500000,
+  "members": [
+   "qub",
+   "qud",
+   "quf",
+   "qug",
+   "quh",
+   "quk",
+   "qul",
+   "qup",
+   "qur",
+   "qus",
+   "quw",
+   "qux",
+   "quy",
+   "quz",
+   "qva",
+   "qvc",
+   "qve",
+   "qvh",
+   "qvi",
+   "qvj",
+   "qvl",
+   "qvm",
+   "qvn",
+   "qvo",
+   "qvp",
+   "qvs",
+   "qvw",
+   "qvz",
+   "qwa",
+   "qwh",
+   "qws",
+   "qxa",
+   "qxc",
+   "qxh",
+   "qxl",
+   "qxn",
+   "qxo",
+   "qxp",
+   "qxr",
+   "qxt",
+   "qxu",
+   "qxw"
+  ],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "pe",
+    "name": "Peru",
+    "speakers": 4800000
+   },
+   {
+    "code": "bo",
+    "name": "Bolivia, Plurinational State of",
+    "speakers": 3700000
+   }
+  ],
+  "region": "Americas",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/qu.json",
+  "note": "Macrolanguage; vendors label as qu"
+ },
+ {
+  "code": "gn",
+  "name": "Guarani",
+  "autonym": "avañeʼẽ",
+  "iso_639_3": "grn",
+  "glottocode": null,
+  "scope": "MACROLANGUAGE",
+  "speakers": 5852000,
+  "members": [
+   "gnw",
+   "gug",
+   "gui",
+   "gun",
+   "nhd"
+  ],
+  "scripts": [
+   "latn"
+  ],
+  "countries": [
+   {
+    "code": "py",
+    "name": "Paraguay",
+    "speakers": 5800000
+   },
+   {
+    "code": "bo",
+    "name": "Bolivia, Plurinational State of",
+    "speakers": 52000
+   },
+   {
+    "code": "br",
+    "name": "Brazil",
+    "speakers": null
+   }
+  ],
+  "region": "Americas",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/gn.json",
+  "note": "Macrolanguage; vendors label as gn"
+ }
+]

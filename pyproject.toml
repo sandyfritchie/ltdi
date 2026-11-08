@@ -1,0 +1,9 @@
+[project]
+name = "ltdi"
+version = "0.1.0"
+description = "Language Technology Development Index"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.setuptools]
+packages = ["ltdi", "ltdi.collectors"]

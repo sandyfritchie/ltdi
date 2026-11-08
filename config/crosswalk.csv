@@ -1,0 +1,17 @@
+label,ltdi,note
+zh,cmn,Vendor "Chinese" is Mandarin
+zh-cn,cmn,
+zh-tw,cmn,Mandarin in Traditional script (Taiwan)
+zh-hans,cmn,
+zh-hant,cmn,
+zho,cmn,
+cmn-hans,cmn,
+cmn-hant,cmn,
+zh-hk,-,Common Voice zh-HK is Cantonese: excluded until yue is in scope
+yue,-,Cantonese: not in the slice
+ara,ar,
+arb,ar,Modern Standard Arabic is credited to Arabic
+pnb,pa,Western Punjabi (Shahmukhi) credited to Punjabi for the slice
+pa-in,pa,
+pa-pk,pa,
+fil,-,

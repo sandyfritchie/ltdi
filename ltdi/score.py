@@ -1,0 +1,125 @@
+"""Scoring engine: records + methodology config -> per-language indices.
+
+Run:  python -m ltdi.score
+Reads data/records/*.csv and data/manual/*.csv, writes data/scores.json.
+"""
+
+from __future__ import annotations
+
+import json
+import math
+import tomllib
+from collections import defaultdict
+
+from . import CONFIG, DATA
+from .records import Record, read_dir
+
+
+def load_config() -> dict:
+    with (CONFIG / "methodology.toml").open("rb") as f:
+        return tomllib.load(f)
+
+
+def normalise(value: float, spec: dict) -> float:
+    scale = spec.get("scale", "linear")
+    if scale == "bool":
+        return 1.0 if value else 0.0
+    lo, hi = float(spec["min"]), float(spec["max"])
+    if scale == "log":
+        v, lo, hi = math.log10(value + 1), math.log10(lo + 1), math.log10(hi + 1)
+    else:
+        v = value
+    return min(1.0, max(0.0, (v - lo) / (hi - lo)))
+
+
+def tier(facts: dict[str, Record], tech: dict) -> float | None:
+    if "measured" in tech:
+        r = facts.get(tech["measured"])
+        if r is None:
+            return None
+        return 1.0 if r.value >= tech["high"] else 0.67 if r.value >= tech["mid"] else 0.33
+    consumer = sum(1 for i in tech["consumer"] if i in facts and facts[i].value)
+    has_open = any(i in facts and facts[i].value for i in tech["open"])
+    if consumer >= min(2, len(tech["consumer"])):
+        return 1.0
+    if consumer >= 1:
+        return 0.67
+    return 0.33 if has_open else 0.0
+
+
+def weighted_mean(parts: list[tuple[float, float]]) -> float:
+    total = sum(w for _, w in parts)
+    return sum(v * w for v, w in parts) / total if total else 0.0
+
+
+def score_language(facts: dict[str, Record], cfg: dict) -> dict:
+    floor = cfg["meta"]["floor"]
+    dims, missing = {}, []
+
+    for key in ("writing", "data"):
+        d = cfg["dimensions"][key]
+        parts, detail = [], {}
+        for ind, spec in d["indicators"].items():
+            if ind not in facts:
+                missing.append(ind)
+                continue
+            n = normalise(facts[ind].value, spec)
+            parts.append((n, spec["weight"]))
+            detail[ind] = round(n, 3)
+        dims[key] = {"score": weighted_mean(parts), "indicators": detail}
+
+    t = cfg["dimensions"]["tech"]
+    parts, detail = [], {}
+    for name, tech in t["technologies"].items():
+        s = tier(facts, tech)
+        if s is None:
+            missing.append(tech.get("measured", name))
+            continue
+        parts.append((s, tech["weight"]))
+        detail[name] = s
+    dims["tech"] = {"score": weighted_mean(parts), "indicators": detail}
+
+    for d in dims.values():
+        d["raw"] = round(d["score"], 4)
+        d["score"] = round(max(floor, d["score"]), 4)
+    ltdi = math.prod(d["score"] for d in dims.values()) ** (1 / len(dims))
+    return {"ltdi": round(ltdi, 4), "dimensions": dims, "missing": missing}
+
+
+def main() -> None:
+    cfg = load_config()
+    records = read_dir(DATA / "records") + read_dir(DATA / "manual")
+    by_lang: dict[str, dict[str, Record]] = defaultdict(dict)
+    for r in records:
+        by_lang[r.language][r.indicator] = r
+
+    langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
+    results = []
+    for lang in langs:
+        s = score_language(by_lang.get(lang["code"], {}), cfg)
+        results.append({**lang, **s})
+    results.sort(key=lambda r: -r["ltdi"])
+    for i, r in enumerate(results, 1):
+        r["rank"] = i
+
+    facts = {
+        code: {i: {k: getattr(r, k) for k in ("value", "unit", "source", "url", "retrieved", "method", "note")}
+               for i, r in inds.items()}
+        for code, inds in by_lang.items()
+    }
+    labels = {
+        **{i: s["label"] for d in ("writing", "data") for i, s in cfg["dimensions"][d]["indicators"].items()},
+        **{k: v["label"] for k, v in cfg["dimensions"]["tech"]["technologies"].items()},
+        **{k: cfg["dimensions"][k]["label"] for k in ("writing", "data", "tech")},
+    }
+    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg,
+           "languages": results, "facts": facts}
+    (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    for r in results:
+        d = r["dimensions"]
+        print(f"{r['rank']:>2} {r['code']:<4} {r['name']:<18} LTDI {r['ltdi']:.3f}  "
+              f"W {d['writing']['score']:.2f}  D {d['data']['score']:.2f}  T {d['tech']['score']:.2f}")
+
+
+if __name__ == "__main__":
+    main()
