@@ -99,31 +99,56 @@ sw,kb_apple,1.0,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feat
 ta,kb_apple,1.0,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-07,manual,
 ur,kb_apple,1.0,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-07,manual,
 yo,kb_apple,1.0,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-07,manual,
-am,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-ar,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-bn,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-cmn,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-cy,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-en,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-es,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-fr,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-gn,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-ha,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-hi,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-id,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-ig,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-is,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-ja,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-om,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-pa,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-pt,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-qu,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-ru,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-rw,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-sw,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-ta,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-ur,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
-yo,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+am,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+ar,kb_apple_features,3.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, QuickPath"
+bn,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+cmn,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+cy,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+en,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+es,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+fr,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+gn,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+ha,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+hi,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+id,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+ig,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+is,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+ja,kb_apple_features,3.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing"
+om,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+pa,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+pt,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+qu,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+ru,kb_apple_features,2.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing"
+rw,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+sw,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+ta,kb_apple_features,4.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,"Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+ur,kb_apple_features,1.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,Has: Autocorrection
+yo,kb_apple_features,0.0,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-07,manual,None of the four
+am,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+ar,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+bn,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+cmn,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+cy,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+en,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+es,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+fr,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+gn,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+ha,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+hi,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+id,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+ig,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+is,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+ja,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+om,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+pa,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+pt,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+qu,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+ru,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+rw,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+sw,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+ta,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+ur,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
+yo,kb_gboard,1.0,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730#languages,2026-11-07,manual,
 ar,llm_global_mmlu_rel,98.7,% of English,"Anthropic multilingual support (Claude Fable 5.1, Global-MMLU)",https://platform.claude.com/docs/en/build-with-claude/multilingual-support,2026-11-07,manual,Zero-shot Global-MMLU score as a percentage of the model's English score; pt is Brazilian Portuguese
 bn,llm_global_mmlu_rel,98.3,% of English,"Anthropic multilingual support (Claude Fable 5.1, Global-MMLU)",https://platform.claude.com/docs/en/build-with-claude/multilingual-support,2026-11-07,manual,Zero-shot Global-MMLU score as a percentage of the model's English score; pt is Brazilian Portuguese
 cmn,llm_global_mmlu_rel,98.8,% of English,"Anthropic multilingual support (Claude Fable 5.1, Global-MMLU)",https://platform.claude.com/docs/en/build-with-claude/multilingual-support,2026-11-07,manual,Zero-shot Global-MMLU score as a percentage of the model's English score; pt is Brazilian Portuguese
@@ -211,3 +236,28 @@ sw,tts_google,0.0,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com
 ta,tts_google,1.0,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,
 ur,tts_google,1.0,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,
 yo,tts_google,0.0,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,
+am,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+ar,tts_google_voice_types,3,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
+bn,tts_google_voice_types,3,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
+cmn,tts_google_voice_types,3,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
+cy,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+en,tts_google_voice_types,8,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp HD, Chirp3-HD, Neural2, News, Polyglot, Standard, Studio, WaveNet"
+es,tts_google_voice_types,8,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp HD, Chirp3-HD, Neural2, News, Polyglot, Standard, Studio, WaveNet"
+fr,tts_google_voice_types,7,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp HD, Chirp3-HD, Neural2, Polyglot, Standard, Studio, WaveNet"
+gn,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+ha,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+hi,tts_google_voice_types,4,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Neural2, Standard, WaveNet"
+id,tts_google_voice_types,3,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
+ig,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+is,tts_google_voice_types,1,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,Standard
+ja,tts_google_voice_types,4,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Neural2, Standard, WaveNet"
+om,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+pa,tts_google_voice_types,3,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
+pt,tts_google_voice_types,4,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Neural2, Standard, WaveNet"
+qu,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+ru,tts_google_voice_types,3,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
+rw,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+sw,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+ta,tts_google_voice_types,3,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
+ur,tts_google_voice_types,3,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
+yo,tts_google_voice_types,0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices

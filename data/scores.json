@@ -5,6 +5,7 @@
   "cldr_coverage": "CLDR locale data coverage",
   "web_text_words": "Web text (FineWeb-2 words)",
   "wikipedia_articles": "Wikipedia articles",
+  "wikipedia_active_editors": "Wikipedia active editors",
   "cv_validated_hours": "Transcribed speech (Common Voice hours)",
   "flores200": "FLORES-200 MT evaluation set",
   "belebele": "Belebele reading-comprehension benchmark",
@@ -55,7 +56,14 @@
       "scale": "log",
       "min": 100,
       "max": 1000000.0,
-      "weight": 0.2
+      "weight": 0.1
+     },
+     "wikipedia_active_editors": {
+      "label": "Wikipedia active editors",
+      "scale": "log",
+      "min": 0,
+      "max": 100000.0,
+      "weight": 0.1
      },
      "cv_validated_hours": {
       "label": "Transcribed speech (Common Voice hours)",
@@ -86,6 +94,9 @@
        "kb_apple"
       ],
       "open": [],
+      "depth": {
+       "kb_apple_features": 4
+      },
       "weight": 1
      },
      "speech_input": {
@@ -106,6 +117,9 @@
        "tts_google"
       ],
       "open": [],
+      "depth": {
+       "tts_google_voice_types": 8
+      },
       "weight": 1
      },
      "mt": {
@@ -118,13 +132,16 @@
       "open": [
        "mt_open_nllb"
       ],
+      "depth": {
+       "mt_deepl_features": 4
+      },
       "weight": 1
      },
      "llm": {
       "label": "LLMs",
       "measured": "llm_global_mmlu_rel",
-      "mid": 90,
-      "high": 97,
+      "min": 70,
+      "max": 100,
       "weight": 1
      }
     }
@@ -672,7 +689,9 @@
      "raw": 1.0
     }
    },
-   "missing": [],
+   "missing": [
+    "wikipedia_active_editors"
+   ],
    "rank": 1
   },
   {
@@ -912,7 +931,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/fr.json",
    "note": "",
-   "ltdi": 1.0,
+   "ltdi": 0.9936,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -934,18 +953,20 @@
      "raw": 1.0
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.981,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
-      "tts": 1.0,
+      "tts": 0.938,
       "mt": 1.0,
-      "llm": 1.0
+      "llm": 0.967
      },
-     "raw": 1.0
+     "raw": 0.981
     }
    },
-   "missing": [],
+   "missing": [
+    "wikipedia_active_editors"
+   ],
    "rank": 2
   },
   {
@@ -1080,7 +1101,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/es.json",
    "note": "",
-   "ltdi": 0.9938,
+   "ltdi": 0.9917,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1091,7 +1112,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9814,
+     "score": 0.9793,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
@@ -1099,80 +1120,24 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9814
+     "raw": 0.9793
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.996,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
       "tts": 1.0,
       "mt": 1.0,
-      "llm": 1.0
+      "llm": 0.98
      },
-     "raw": 1.0
+     "raw": 0.996
     }
    },
-   "missing": [],
+   "missing": [
+    "wikipedia_active_editors"
+   ],
    "rank": 3
-  },
-  {
-   "code": "ja",
-   "name": "Japanese",
-   "autonym": "日本語",
-   "iso_639_3": "jpn",
-   "glottocode": "nucl1643",
-   "scope": "LANGUAGE",
-   "speakers": 119000000,
-   "members": [],
-   "scripts": [
-    "jpan"
-   ],
-   "countries": [
-    {
-     "code": "jp",
-     "name": "Japan",
-     "speakers": 119000000
-    }
-   ],
-   "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
-   "note": "",
-   "ltdi": 0.988,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.9643,
-     "indicators": {
-      "web_text_words": 1.0,
-      "wikipedia_articles": 1.0,
-      "cv_validated_hours": 0.857,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.9643
-    },
-    "tech": {
-     "score": 1.0,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0,
-      "llm": 1.0
-     },
-     "raw": 1.0
-    }
-   },
-   "missing": [],
-   "rank": 4
   },
   {
    "code": "cmn",
@@ -1212,7 +1177,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cmn.json",
    "note": "Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn",
-   "ltdi": 0.9861,
+   "ltdi": 0.9609,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1223,7 +1188,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9588,
+     "score": 0.9543,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
@@ -1231,101 +1196,24 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9588
+     "raw": 0.9543
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.9296,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
-      "tts": 1.0,
+      "tts": 0.688,
       "mt": 1.0,
-      "llm": 1.0
+      "llm": 0.96
      },
-     "raw": 1.0
-    }
-   },
-   "missing": [],
-   "rank": 5
-  },
-  {
-   "code": "ru",
-   "name": "Russian",
-   "autonym": "русский",
-   "iso_639_3": "rus",
-   "glottocode": "russ1263",
-   "scope": "LANGUAGE",
-   "speakers": 170200000,
-   "members": [],
-   "scripts": [
-    "cyrl"
-   ],
-   "countries": [
-    {
-     "code": "ru",
-     "name": "Russian Federation",
-     "speakers": 133000000
-    },
-    {
-     "code": "ua",
-     "name": "Ukraine",
-     "speakers": 20000000
-    },
-    {
-     "code": "kz",
-     "name": "Kazakhstan",
-     "speakers": 14000000
-    },
-    {
-     "code": "kg",
-     "name": "Kyrgyzstan",
-     "speakers": 2100000
-    },
-    {
-     "code": "by",
-     "name": "Belarus",
-     "speakers": 1100000
-    }
-   ],
-   "region": "Europe",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ru.json",
-   "note": "",
-   "ltdi": 0.9834,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.9509,
-     "indicators": {
-      "web_text_words": 1.0,
-      "wikipedia_articles": 1.0,
-      "cv_validated_hours": 0.804,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.9509
-    },
-    "tech": {
-     "score": 1.0,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0
-     },
-     "raw": 1.0
+     "raw": 0.9296
     }
    },
    "missing": [
-    "llm_global_mmlu_rel"
+    "wikipedia_active_editors"
    ],
-   "rank": 6
+   "rank": 4
   },
   {
    "code": "pt",
@@ -1374,7 +1262,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pt.json",
    "note": "",
-   "ltdi": 0.9795,
+   "ltdi": 0.9584,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1385,7 +1273,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9398,
+     "score": 0.9332,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
@@ -1393,21 +1281,163 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9398
+     "raw": 0.9332
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.9434,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
-      "tts": 1.0,
+      "tts": 0.75,
       "mt": 1.0,
-      "llm": 1.0
+      "llm": 0.967
      },
-     "raw": 1.0
+     "raw": 0.9434
     }
    },
-   "missing": [],
+   "missing": [
+    "wikipedia_active_editors"
+   ],
+   "rank": 5
+  },
+  {
+   "code": "ja",
+   "name": "Japanese",
+   "autonym": "日本語",
+   "iso_639_3": "jpn",
+   "glottocode": "nucl1643",
+   "scope": "LANGUAGE",
+   "speakers": 119000000,
+   "members": [],
+   "scripts": [
+    "jpan"
+   ],
+   "countries": [
+    {
+     "code": "jp",
+     "name": "Japan",
+     "speakers": 119000000
+    }
+   ],
+   "region": "Asia",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
+   "note": "",
+   "ltdi": 0.9583,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.9604,
+     "indicators": {
+      "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
+      "cv_validated_hours": 0.857,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.9604
+    },
+    "tech": {
+     "score": 0.9164,
+     "indicators": {
+      "keyboard": 0.875,
+      "speech_input": 1.0,
+      "tts": 0.75,
+      "mt": 1.0,
+      "llm": 0.957
+     },
+     "raw": 0.9164
+    }
+   },
+   "missing": [
+    "wikipedia_active_editors"
+   ],
+   "rank": 6
+  },
+  {
+   "code": "ru",
+   "name": "Russian",
+   "autonym": "русский",
+   "iso_639_3": "rus",
+   "glottocode": "russ1263",
+   "scope": "LANGUAGE",
+   "speakers": 170200000,
+   "members": [],
+   "scripts": [
+    "cyrl"
+   ],
+   "countries": [
+    {
+     "code": "ru",
+     "name": "Russian Federation",
+     "speakers": 133000000
+    },
+    {
+     "code": "ua",
+     "name": "Ukraine",
+     "speakers": 20000000
+    },
+    {
+     "code": "kz",
+     "name": "Kazakhstan",
+     "speakers": 14000000
+    },
+    {
+     "code": "kg",
+     "name": "Kyrgyzstan",
+     "speakers": 2100000
+    },
+    {
+     "code": "by",
+     "name": "Belarus",
+     "speakers": 1100000
+    }
+   ],
+   "region": "Europe",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ru.json",
+   "note": "",
+   "ltdi": 0.9217,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.9455,
+     "indicators": {
+      "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
+      "cv_validated_hours": 0.804,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.9455
+    },
+    "tech": {
+     "score": 0.8282,
+     "indicators": {
+      "keyboard": 0.75,
+      "speech_input": 1.0,
+      "tts": 0.688,
+      "mt": 0.875
+     },
+     "raw": 0.8282
+    }
+   },
+   "missing": [
+    "wikipedia_active_editors",
+    "llm_global_mmlu_rel"
+   ],
    "rank": 7
   },
   {
@@ -1592,7 +1622,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ar.json",
    "note": "Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar",
-   "ltdi": 0.962,
+   "ltdi": 0.9173,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1603,7 +1633,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8903,
+     "score": 0.8782,
      "indicators": {
       "web_text_words": 0.931,
       "wikipedia_articles": 1.0,
@@ -1611,21 +1641,23 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8903
+     "raw": 0.8782
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.879,
      "indicators": {
-      "keyboard": 1.0,
+      "keyboard": 0.875,
       "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0,
-      "llm": 1.0
+      "tts": 0.688,
+      "mt": 0.875,
+      "llm": 0.957
      },
-     "raw": 1.0
+     "raw": 0.879
     }
    },
-   "missing": [],
+   "missing": [
+    "wikipedia_active_editors"
+   ],
    "rank": 8
   },
   {
@@ -1650,7 +1682,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/id.json",
    "note": "",
-   "ltdi": 0.9521,
+   "ltdi": 0.9166,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1661,7 +1693,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8632,
+     "score": 0.8506,
      "indicators": {
       "web_text_words": 0.969,
       "wikipedia_articles": 0.976,
@@ -1669,21 +1701,23 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8632
+     "raw": 0.8506
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.9052,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0,
-      "llm": 1.0
+      "tts": 0.688,
+      "mt": 0.875,
+      "llm": 0.963
      },
-     "raw": 1.0
+     "raw": 0.9052
     }
    },
-   "missing": [],
+   "missing": [
+    "wikipedia_active_editors"
+   ],
    "rank": 9
   },
   {
@@ -1718,7 +1752,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ta.json",
    "note": "",
-   "ltdi": 0.9383,
+   "ltdi": 0.8702,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1729,7 +1763,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8262,
+     "score": 0.8268,
      "indicators": {
       "web_text_words": 0.755,
       "wikipedia_articles": 0.821,
@@ -1737,87 +1771,24 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8262
+     "raw": 0.8268
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.797,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0
+      "tts": 0.688,
+      "mt": 0.5
      },
-     "raw": 1.0
+     "raw": 0.797
     }
    },
    "missing": [
+    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 10
-  },
-  {
-   "code": "ur",
-   "name": "Urdu",
-   "autonym": "اردو",
-   "iso_639_3": "urd",
-   "glottocode": "urdu1245",
-   "scope": "LANGUAGE",
-   "speakers": 288000000,
-   "members": [],
-   "scripts": [
-    "arab"
-   ],
-   "countries": [
-    {
-     "code": "pk",
-     "name": "Pakistan",
-     "speakers": 222000000
-    },
-    {
-     "code": "in",
-     "name": "India",
-     "speakers": 66000000
-    }
-   ],
-   "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ur.json",
-   "note": "",
-   "ltdi": 0.9374,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.8237,
-     "indicators": {
-      "web_text_words": 0.778,
-      "wikipedia_articles": 0.962,
-      "cv_validated_hours": 0.636,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.8237
-    },
-    "tech": {
-     "score": 1.0,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0
-     },
-     "raw": 1.0
-    }
-   },
-   "missing": [
-    "llm_global_mmlu_rel"
-   ],
-   "rank": 11
   },
   {
    "code": "bn",
@@ -1846,7 +1817,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
    "note": "",
-   "ltdi": 0.9279,
+   "ltdi": 0.8698,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1857,7 +1828,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.799,
+     "score": 0.7965,
      "indicators": {
       "web_text_words": 0.827,
       "wikipedia_articles": 0.821,
@@ -1865,22 +1836,24 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.799
+     "raw": 0.7965
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.8262,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0,
-      "llm": 1.0
+      "tts": 0.688,
+      "mt": 0.5,
+      "llm": 0.943
      },
-     "raw": 1.0
+     "raw": 0.8262
     }
    },
-   "missing": [],
-   "rank": 12
+   "missing": [
+    "wikipedia_active_editors"
+   ],
+   "rank": 11
   },
   {
    "code": "hi",
@@ -1904,7 +1877,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hi.json",
    "note": "",
-   "ltdi": 0.9151,
+   "ltdi": 0.8625,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1915,7 +1888,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.7663,
+     "score": 0.7615,
      "indicators": {
       "web_text_words": 0.865,
       "wikipedia_articles": 0.809,
@@ -1923,22 +1896,155 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.7663
+     "raw": 0.7615
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.8426,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0,
-      "llm": 1.0
+      "tts": 0.75,
+      "mt": 0.5,
+      "llm": 0.963
      },
-     "raw": 1.0
+     "raw": 0.8426
     }
    },
-   "missing": [],
+   "missing": [
+    "wikipedia_active_editors"
+   ],
+   "rank": 12
+  },
+  {
+   "code": "ur",
+   "name": "Urdu",
+   "autonym": "اردو",
+   "iso_639_3": "urd",
+   "glottocode": "urdu1245",
+   "scope": "LANGUAGE",
+   "speakers": 288000000,
+   "members": [],
+   "scripts": [
+    "arab"
+   ],
+   "countries": [
+    {
+     "code": "pk",
+     "name": "Pakistan",
+     "speakers": 222000000
+    },
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 66000000
+    }
+   ],
+   "region": "Asia",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ur.json",
+   "note": "",
+   "ltdi": 0.8284,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.8083,
+     "indicators": {
+      "web_text_words": 0.778,
+      "wikipedia_articles": 0.962,
+      "cv_validated_hours": 0.636,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.8083
+    },
+    "tech": {
+     "score": 0.7032,
+     "indicators": {
+      "keyboard": 0.625,
+      "speech_input": 1.0,
+      "tts": 0.688,
+      "mt": 0.5
+     },
+     "raw": 0.7032
+    }
+   },
+   "missing": [
+    "wikipedia_active_editors",
+    "llm_global_mmlu_rel"
+   ],
    "rank": 13
+  },
+  {
+   "code": "pa",
+   "name": "Punjabi",
+   "autonym": "ਪੰਜਾਬੀ",
+   "iso_639_3": "pan",
+   "glottocode": "panj1256",
+   "scope": "LANGUAGE",
+   "speakers": 200000000,
+   "members": [],
+   "scripts": [
+    "arab",
+    "guru"
+   ],
+   "countries": [
+    {
+     "code": "pk",
+     "name": "Pakistan",
+     "speakers": 163000000
+    },
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 37000000
+    }
+   ],
+   "region": "Asia",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pa.json",
+   "note": "Gurmukhi and Shahmukhi scripts combined for the slice",
+   "ltdi": 0.7914,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.6218,
+     "indicators": {
+      "web_text_words": 0.676,
+      "wikipedia_articles": 0.783,
+      "cv_validated_hours": 0.179,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.6218
+    },
+    "tech": {
+     "score": 0.797,
+     "indicators": {
+      "keyboard": 1.0,
+      "speech_input": 1.0,
+      "tts": 0.688,
+      "mt": 0.5
+     },
+     "raw": 0.797
+    }
+   },
+   "missing": [
+    "wikipedia_active_editors",
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 14
   },
   {
    "code": "sw",
@@ -1985,7 +2091,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sw.json",
    "note": "Macrolanguage; vendors label as sw",
-   "ltdi": 0.8655,
+   "ltdi": 0.7806,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1996,7 +2102,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8103,
+     "score": 0.8136,
      "indicators": {
       "web_text_words": 0.68,
       "wikipedia_articles": 0.781,
@@ -2004,85 +2110,22 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8103
+     "raw": 0.8136
     },
     "tech": {
-     "score": 0.8,
+     "score": 0.5846,
      "indicators": {
-      "keyboard": 1.0,
+      "keyboard": 0.5,
       "speech_input": 1.0,
       "tts": 0.0,
-      "mt": 1.0,
-      "llm": 1.0
+      "mt": 0.5,
+      "llm": 0.923
      },
-     "raw": 0.8
-    }
-   },
-   "missing": [],
-   "rank": 14
-  },
-  {
-   "code": "pa",
-   "name": "Punjabi",
-   "autonym": "ਪੰਜਾਬੀ",
-   "iso_639_3": "pan",
-   "glottocode": "panj1256",
-   "scope": "LANGUAGE",
-   "speakers": 200000000,
-   "members": [],
-   "scripts": [
-    "arab",
-    "guru"
-   ],
-   "countries": [
-    {
-     "code": "pk",
-     "name": "Pakistan",
-     "speakers": 163000000
-    },
-    {
-     "code": "in",
-     "name": "India",
-     "speakers": 37000000
-    }
-   ],
-   "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pa.json",
-   "note": "Gurmukhi and Shahmukhi scripts combined for the slice",
-   "ltdi": 0.8608,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.6379,
-     "indicators": {
-      "web_text_words": 0.676,
-      "wikipedia_articles": 0.783,
-      "cv_validated_hours": 0.179,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.6379
-    },
-    "tech": {
-     "score": 1.0,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0
-     },
-     "raw": 1.0
+     "raw": 0.5846
     }
    },
    "missing": [
-    "llm_global_mmlu_rel"
+    "wikipedia_active_editors"
    ],
    "rank": 15
   },
@@ -2108,7 +2151,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/is.json",
    "note": "Contrast case: few speakers, strong support",
-   "ltdi": 0.8466,
+   "ltdi": 0.7703,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2119,7 +2162,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6068,
+     "score": 0.597,
      "indicators": {
       "web_text_words": 0.747,
       "wikipedia_articles": 0.695,
@@ -2127,20 +2170,21 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.6068
+     "raw": 0.597
     },
     "tech": {
-     "score": 1.0,
+     "score": 0.7655,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
-      "tts": 1.0,
-      "mt": 1.0
+      "tts": 0.562,
+      "mt": 0.5
      },
-     "raw": 1.0
+     "raw": 0.7655
     }
    },
    "missing": [
+    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 16
@@ -2167,7 +2211,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cy.json",
    "note": "Contrast case: few speakers, strong support",
-   "ltdi": 0.8003,
+   "ltdi": 0.6922,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2178,7 +2222,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6834,
+     "score": 0.6634,
      "indicators": {
       "web_text_words": 0.674,
       "wikipedia_articles": 0.864,
@@ -2186,23 +2230,144 @@
       "flores200": 1.0,
       "belebele": 0.0
      },
-     "raw": 0.6834
+     "raw": 0.6634
     },
     "tech": {
-     "score": 0.75,
+     "score": 0.5,
      "indicators": {
-      "keyboard": 1.0,
+      "keyboard": 0.5,
       "speech_input": 1.0,
       "tts": 0.0,
-      "mt": 1.0
+      "mt": 0.5
      },
-     "raw": 0.75
+     "raw": 0.5
     }
    },
    "missing": [
+    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 17
+  },
+  {
+   "code": "yo",
+   "name": "Yoruba",
+   "autonym": "Èdè Yorùbá",
+   "iso_639_3": "yor",
+   "glottocode": "yoru1245",
+   "scope": "LANGUAGE",
+   "speakers": 28000000,
+   "members": [],
+   "scripts": [
+    "latn"
+   ],
+   "countries": [
+    {
+     "code": "ng",
+     "name": "Nigeria",
+     "speakers": 28000000
+    }
+   ],
+   "region": "Africa",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/yo.json",
+   "note": "",
+   "ltdi": 0.6634,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.5823,
+     "indicators": {
+      "web_text_words": 0.539,
+      "wikipedia_articles": 0.654,
+      "cv_validated_hours": 0.281,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.5823
+    },
+    "tech": {
+     "score": 0.5014,
+     "indicators": {
+      "keyboard": 0.5,
+      "speech_input": 0.67,
+      "tts": 0.0,
+      "mt": 0.5,
+      "llm": 0.837
+     },
+     "raw": 0.5014
+    }
+   },
+   "missing": [
+    "wikipedia_active_editors"
+   ],
+   "rank": 18
+  },
+  {
+   "code": "am",
+   "name": "Amharic",
+   "autonym": "አማርኛ",
+   "iso_639_3": "amh",
+   "glottocode": "amha1245",
+   "scope": "LANGUAGE",
+   "speakers": 36000000,
+   "members": [],
+   "scripts": [
+    "ethi"
+   ],
+   "countries": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 36000000
+    }
+   ],
+   "region": "Africa",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
+   "note": "",
+   "ltdi": 0.6394,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.5699,
+     "indicators": {
+      "web_text_words": 0.626,
+      "wikipedia_articles": 0.549,
+      "cv_validated_hours": 0.156,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.5699
+    },
+    "tech": {
+     "score": 0.4587,
+     "indicators": {
+      "keyboard": 0.335,
+      "speech_input": 1.0,
+      "tts": 0.0,
+      "mt": 0.5
+     },
+     "raw": 0.4587
+    }
+   },
+   "missing": [
+    "wikipedia_active_editors",
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 19
   },
   {
    "code": "ha",
@@ -2231,7 +2396,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ha.json",
    "note": "",
-   "ltdi": 0.7518,
+   "ltdi": 0.6379,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2242,7 +2407,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6367,
+     "score": 0.6218,
      "indicators": {
       "web_text_words": 0.634,
       "wikipedia_articles": 0.771,
@@ -2250,81 +2415,24 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.6367
+     "raw": 0.6218
     },
     "tech": {
-     "score": 0.6675,
+     "score": 0.4175,
      "indicators": {
-      "keyboard": 1.0,
+      "keyboard": 0.5,
       "speech_input": 0.67,
       "tts": 0.0,
-      "mt": 1.0
+      "mt": 0.5
      },
-     "raw": 0.6675
+     "raw": 0.4175
     }
    },
    "missing": [
+    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
-   "rank": 18
-  },
-  {
-   "code": "yo",
-   "name": "Yoruba",
-   "autonym": "Èdè Yorùbá",
-   "iso_639_3": "yor",
-   "glottocode": "yoru1245",
-   "scope": "LANGUAGE",
-   "speakers": 28000000,
-   "members": [],
-   "scripts": [
-    "latn"
-   ],
-   "countries": [
-    {
-     "code": "ng",
-     "name": "Nigeria",
-     "speakers": 28000000
-    }
-   ],
-   "region": "Africa",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/yo.json",
-   "note": "",
-   "ltdi": 0.733,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.5895,
-     "indicators": {
-      "web_text_words": 0.539,
-      "wikipedia_articles": 0.654,
-      "cv_validated_hours": 0.281,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.5895
-    },
-    "tech": {
-     "score": 0.668,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 0.67,
-      "tts": 0.0,
-      "mt": 1.0,
-      "llm": 0.67
-     },
-     "raw": 0.668
-    }
-   },
-   "missing": [],
-   "rank": 19
+   "rank": 20
   },
   {
    "code": "ig",
@@ -2348,7 +2456,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ig.json",
    "note": "",
-   "ltdi": 0.7277,
+   "ltdi": 0.6185,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2359,7 +2467,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5773,
+     "score": 0.5666,
      "indicators": {
       "web_text_words": 0.554,
       "wikipedia_articles": 0.673,
@@ -2367,79 +2475,21 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.5773
+     "raw": 0.5666
     },
     "tech": {
-     "score": 0.6675,
+     "score": 0.4175,
      "indicators": {
-      "keyboard": 1.0,
+      "keyboard": 0.5,
       "speech_input": 0.67,
       "tts": 0.0,
-      "mt": 1.0
+      "mt": 0.5
      },
-     "raw": 0.6675
+     "raw": 0.4175
     }
    },
    "missing": [
-    "llm_global_mmlu_rel"
-   ],
-   "rank": 20
-  },
-  {
-   "code": "am",
-   "name": "Amharic",
-   "autonym": "አማርኛ",
-   "iso_639_3": "amh",
-   "glottocode": "amha1245",
-   "scope": "LANGUAGE",
-   "speakers": 36000000,
-   "members": [],
-   "scripts": [
-    "ethi"
-   ],
-   "countries": [
-    {
-     "code": "et",
-     "name": "Ethiopia",
-     "speakers": 36000000
-    }
-   ],
-   "region": "Africa",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
-   "note": "",
-   "ltdi": 0.7237,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.5678,
-     "indicators": {
-      "web_text_words": 0.626,
-      "wikipedia_articles": 0.549,
-      "cv_validated_hours": 0.156,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.5678
-    },
-    "tech": {
-     "score": 0.6675,
-     "indicators": {
-      "keyboard": 0.67,
-      "speech_input": 1.0,
-      "tts": 0.0,
-      "mt": 1.0
-     },
-     "raw": 0.6675
-    }
-   },
-   "missing": [
+    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 21
@@ -2466,7 +2516,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/rw.json",
    "note": "",
-   "ltdi": 0.6958,
+   "ltdi": 0.6022,
    "dimensions": {
     "writing": {
      "score": 0.6667,
@@ -2477,7 +2527,7 @@
      "raw": 0.6667
     },
     "data": {
-     "score": 0.7568,
+     "score": 0.7845,
      "indicators": {
       "web_text_words": 0.587,
       "wikipedia_articles": 0.508,
@@ -2485,23 +2535,89 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.7568
+     "raw": 0.7845
     },
     "tech": {
-     "score": 0.6675,
+     "score": 0.4175,
      "indicators": {
-      "keyboard": 1.0,
+      "keyboard": 0.5,
       "speech_input": 0.67,
       "tts": 0.0,
-      "mt": 1.0
+      "mt": 0.5
      },
-     "raw": 0.6675
+     "raw": 0.4175
     }
    },
    "missing": [
+    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 22
+  },
+  {
+   "code": "om",
+   "name": "Oromo",
+   "autonym": "Afaan Oromoo",
+   "iso_639_3": "orm",
+   "glottocode": null,
+   "scope": "MACROLANGUAGE",
+   "speakers": 42000000,
+   "members": [
+    "gax",
+    "gaz",
+    "hae",
+    "orc"
+   ],
+   "scripts": [
+    "latn"
+   ],
+   "countries": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 42000000
+    }
+   ],
+   "region": "Africa",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
+   "note": "Macrolanguage; vendors label as om",
+   "ltdi": 0.5238,
+   "dimensions": {
+    "writing": {
+     "score": 0.6667,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 0.333
+     },
+     "raw": 0.6667
+    },
+    "data": {
+     "score": 0.573,
+     "indicators": {
+      "web_text_words": 0.469,
+      "wikipedia_articles": 0.323,
+      "cv_validated_hours": 0.476,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.573
+    },
+    "tech": {
+     "score": 0.3763,
+     "indicators": {
+      "keyboard": 0.335,
+      "speech_input": 0.67,
+      "tts": 0.0,
+      "mt": 0.5
+     },
+     "raw": 0.3763
+    }
+   },
+   "missing": [
+    "wikipedia_active_editors",
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 23
   },
   {
    "code": "qu",
@@ -2573,7 +2689,7 @@
    "region": "Americas",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/qu.json",
    "note": "Macrolanguage; vendors label as qu",
-   "ltdi": 0.6144,
+   "ltdi": 0.4862,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2584,7 +2700,7 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5555,
+     "score": 0.5508,
      "indicators": {
       "web_text_words": 0.423,
       "wikipedia_articles": 0.598,
@@ -2592,84 +2708,21 @@
       "flores200": 1.0,
       "belebele": 0.0
      },
-     "raw": 0.5555
+     "raw": 0.5508
     },
     "tech": {
-     "score": 0.4175,
+     "score": 0.2087,
      "indicators": {
-      "keyboard": 0.67,
+      "keyboard": 0.335,
       "speech_input": 0.0,
       "tts": 0.0,
-      "mt": 1.0
+      "mt": 0.5
      },
-     "raw": 0.4175
+     "raw": 0.2087
     }
    },
    "missing": [
-    "llm_global_mmlu_rel"
-   ],
-   "rank": 23
-  },
-  {
-   "code": "om",
-   "name": "Oromo",
-   "autonym": "Afaan Oromoo",
-   "iso_639_3": "orm",
-   "glottocode": null,
-   "scope": "MACROLANGUAGE",
-   "speakers": 42000000,
-   "members": [
-    "gax",
-    "gaz",
-    "hae",
-    "orc"
-   ],
-   "scripts": [
-    "latn"
-   ],
-   "countries": [
-    {
-     "code": "et",
-     "name": "Ethiopia",
-     "speakers": 42000000
-    }
-   ],
-   "region": "Africa",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
-   "note": "Macrolanguage; vendors label as om",
-   "ltdi": 0.5979,
-   "dimensions": {
-    "writing": {
-     "score": 0.6667,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 0.333
-     },
-     "raw": 0.6667
-    },
-    "data": {
-     "score": 0.548,
-     "indicators": {
-      "web_text_words": 0.469,
-      "wikipedia_articles": 0.323,
-      "cv_validated_hours": 0.476,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.548
-    },
-    "tech": {
-     "score": 0.585,
-     "indicators": {
-      "keyboard": 0.67,
-      "speech_input": 0.67,
-      "tts": 0.0,
-      "mt": 1.0
-     },
-     "raw": 0.585
-    }
-   },
-   "missing": [
+    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 24
@@ -2712,7 +2765,7 @@
    "region": "Americas",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/gn.json",
    "note": "Macrolanguage; vendors label as gn",
-   "ltdi": 0.4993,
+   "ltdi": 0.3979,
    "dimensions": {
     "writing": {
      "score": 0.5,
@@ -2723,7 +2776,7 @@
      "raw": 0.5
     },
     "data": {
-     "score": 0.4979,
+     "score": 0.5039,
      "indicators": {
       "web_text_words": 0.409,
       "wikipedia_articles": 0.445,
@@ -2731,20 +2784,21 @@
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.4979
+     "raw": 0.5039
     },
     "tech": {
-     "score": 0.5,
+     "score": 0.25,
      "indicators": {
-      "keyboard": 1.0,
+      "keyboard": 0.5,
       "speech_input": 0.0,
       "tts": 0.0,
-      "mt": 1.0
+      "mt": 0.5
      },
-     "raw": 0.5
+     "raw": 0.25
     }
    },
    "missing": [
+    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 25
@@ -2787,6 +2841,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 239936286.0,
@@ -2878,6 +2941,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -2913,6 +2985,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "ar": {
@@ -2951,6 +3032,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 3.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, translationMemory"
    },
    "web_text_words": {
     "value": 32814575344.0,
@@ -3042,6 +3132,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 3.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -3086,6 +3185,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 3.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Standard, WaveNet"
    }
   },
   "bn": {
@@ -3124,6 +3232,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 6168602578.0,
@@ -3215,6 +3332,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -3259,6 +3385,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 3.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Standard, WaveNet"
    }
   },
   "cmn": {
@@ -3297,6 +3432,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, textImprovement, translationMemory"
    },
    "web_text_words": {
     "value": 543543038750.0,
@@ -3388,6 +3532,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -3432,6 +3585,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 3.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Standard, WaveNet"
    }
   },
   "cy": {
@@ -3470,6 +3632,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 523226616.0,
@@ -3561,6 +3732,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -3596,6 +3776,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "en": {
@@ -3634,6 +3823,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, textImprovement, translationMemory"
    },
    "web_text_words": {
     "value": 1000000000000.0,
@@ -3725,6 +3923,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -3769,6 +3976,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 8.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp HD, Chirp3-HD, Neural2, News, Polyglot, Standard, Studio, WaveNet"
    }
   },
   "es": {
@@ -3807,6 +4023,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, textImprovement, translationMemory"
    },
    "web_text_words": {
     "value": 261523749595.0,
@@ -3898,6 +4123,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -3942,6 +4176,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 8.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp HD, Chirp3-HD, Neural2, News, Polyglot, Standard, Studio, WaveNet"
    }
   },
   "fr": {
@@ -3980,6 +4223,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, textImprovement, translationMemory"
    },
    "web_text_words": {
     "value": 220662584640.0,
@@ -4071,6 +4323,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -4115,6 +4376,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 7.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp HD, Chirp3-HD, Neural2, Polyglot, Standard, Studio, WaveNet"
    }
   },
   "gn": {
@@ -4153,6 +4423,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 7316329.0,
@@ -4244,6 +4523,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -4279,6 +4567,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "ha": {
@@ -4317,6 +4614,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 273435030.0,
@@ -4408,6 +4714,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -4443,6 +4758,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "hi": {
@@ -4481,6 +4805,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 11274656708.0,
@@ -4572,6 +4905,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -4616,6 +4958,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 4.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Neural2, Standard, WaveNet"
    }
   },
   "id": {
@@ -4654,6 +5005,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 3.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, translationMemory"
    },
    "web_text_words": {
     "value": 60264322142.0,
@@ -4745,6 +5105,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -4789,6 +5158,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 3.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Standard, WaveNet"
    }
   },
   "ig": {
@@ -4827,6 +5205,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 75573291.0,
@@ -4918,6 +5305,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -4953,6 +5349,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "is": {
@@ -4991,6 +5396,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 1696354360.0,
@@ -5082,6 +5496,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -5117,6 +5540,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 1.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Standard"
    }
   },
   "ja": {
@@ -5155,6 +5587,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, textImprovement, translationMemory"
    },
    "web_text_words": {
     "value": 331144301801.0,
@@ -5246,6 +5687,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 3.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -5290,6 +5740,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 4.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Neural2, Standard, WaveNet"
    }
   },
   "om": {
@@ -5328,6 +5787,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 19299452.0,
@@ -5419,6 +5887,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -5454,6 +5931,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "pa": {
@@ -5492,6 +5978,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 541063722.0,
@@ -5583,6 +6078,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -5618,6 +6122,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 3.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Standard, WaveNet"
    }
   },
   "pt": {
@@ -5656,6 +6169,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, textImprovement, translationMemory"
    },
    "web_text_words": {
     "value": 109536087117.0,
@@ -5747,6 +6269,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -5791,6 +6322,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 4.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Neural2, Standard, WaveNet"
    }
   },
   "qu": {
@@ -5829,6 +6369,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 9209378.0,
@@ -5920,6 +6469,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -5955,6 +6513,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "ru": {
@@ -5993,6 +6560,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 3.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Has: glossaries, styleRules, translationMemory"
    },
    "web_text_words": {
     "value": 588579493780.0,
@@ -6084,6 +6660,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 2.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -6119,6 +6704,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 3.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Standard, WaveNet"
    }
   },
   "rw": {
@@ -6157,6 +6751,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 127575978.0,
@@ -6248,6 +6851,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -6283,6 +6895,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "sw": {
@@ -6321,6 +6942,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 574259861.0,
@@ -6412,6 +7042,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -6456,6 +7095,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   },
   "ta": {
@@ -6494,6 +7142,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 1941748291.0,
@@ -6585,6 +7242,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 4.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection, Predictive typing, Multilingual typing, QuickPath"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -6620,6 +7286,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 3.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Standard, WaveNet"
    }
   },
   "ur": {
@@ -6658,6 +7333,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 2791076552.0,
@@ -6749,6 +7433,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 1.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Has: Autocorrection"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -6784,6 +7477,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 3.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "Chirp3-HD, Standard, WaveNet"
    }
   },
   "yo": {
@@ -6822,6 +7524,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "mt_deepl_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "DeepL language features",
+    "url": "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "None of the four"
    },
    "web_text_words": {
     "value": 58861990.0,
@@ -6913,6 +7624,15 @@
     "method": "manual",
     "note": ""
    },
+   "kb_apple_features": {
+    "value": 0.0,
+    "unit": "features of 4",
+    "source": "Apple iOS QuickType keyboard features",
+    "url": "https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "None of the four"
+   },
    "kb_gboard": {
     "value": 1.0,
     "unit": "bool",
@@ -6957,6 +7677,15 @@
     "retrieved": "2026-11-07",
     "method": "manual",
     "note": ""
+   },
+   "tts_google_voice_types": {
+    "value": 0.0,
+    "unit": "types of 8",
+    "source": "Google Cloud TTS voice types",
+    "url": "https://docs.cloud.google.com/text-to-speech/docs/voices",
+    "retrieved": "2026-11-07",
+    "method": "manual",
+    "note": "No voices"
    }
   }
  }

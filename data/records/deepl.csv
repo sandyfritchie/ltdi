@@ -24,3 +24,28 @@ sw,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/mai
 ta,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,
 ur,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,
 yo,mt_deepl,0,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,
+am,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+ar,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, translationMemory"
+bn,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+cmn,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+cy,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+en,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+es,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+fr,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+gn,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+ha,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+hi,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+id,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, translationMemory"
+ig,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+is,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+ja,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+om,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+pa,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+pt,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+qu,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+ru,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,"Has: glossaries, styleRules, translationMemory"
+rw,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+sw,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+ta,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+ur,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four
+yo,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-07,download,None of the four

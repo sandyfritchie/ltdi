@@ -40,7 +40,14 @@ label = "Wikipedia articles"
 scale = "log"
 min = 100
 max = 1e6
-weight = 0.2
+weight = 0.1
+
+[dimensions.data.indicators.wikipedia_active_editors]
+label = "Wikipedia active editors"
+scale = "log"
+min = 0
+max = 1e5
+weight = 0.1
 
 [dimensions.data.indicators.cv_validated_hours]
 label = "Transcribed speech (Common Voice hours)"
@@ -60,11 +67,14 @@ scale = "bool"
 weight = 0.1
 
 # ------------------------------------------------------------- technology ---
-# Each technology is scored in tiers:
+# Each technology starts from a presence tier:
 #   1.00  consumer products from at least min(2, number of consumer sources) vendors
 #   0.67  one consumer product
 #   0.33  open model only
 #   0     none
+# Where a technology lists depth indicators, its score is the mean of the tier
+# and the depth (each depth value divided by its max, averaged). Depth only
+# counts when the technology is present at all.
 # LLMs are scored from measured benchmark results instead (see [llm]).
 [dimensions.tech]
 label = "Technology support"
@@ -73,6 +83,7 @@ label = "Technology support"
 label = "Keyboard"
 consumer = ["kb_gboard", "kb_apple"]
 open = []
+depth = { kb_apple_features = 4 }  # autocorrection, predictive, multilingual, QuickPath
 weight = 1
 
 [dimensions.tech.technologies.speech_input]
@@ -85,19 +96,21 @@ weight = 1
 label = "Text-to-speech"
 consumer = ["tts_google"]
 open = []
+depth = { tts_google_voice_types = 8 }  # Standard, WaveNet, Neural2, Studio, Polyglot, News, Chirp HD, Chirp3-HD
 weight = 1
 
 [dimensions.tech.technologies.mt]
 label = "Machine translation"
 consumer = ["mt_google", "mt_azure", "mt_deepl"]
 open = ["mt_open_nllb"]
+depth = { mt_deepl_features = 4 }  # glossaries, translation memory, style rules, text improvement
 weight = 1
 
 [dimensions.tech.technologies.llm]
 label = "LLMs"
 measured = "llm_global_mmlu_rel"
-# % of English score: >= high -> 1.0, >= mid -> 0.67, else 0.33.
+# % of English score, scaled linearly between min and max.
 # Not benchmarked -> left out of the tech mean and flagged.
-mid = 90
-high = 97
+min = 70
+max = 100
 weight = 1

@@ -51,16 +51,17 @@ No dependencies beyond the Python 3.11+ standard library.
 | Data | Transcribed speech (hours) | Mozilla Common Voice 27.0 | automated |
 | Data | MT evaluation set | FLORES-200 | automated |
 | Data | Reading-comprehension benchmark | Belebele | automated |
-| Data | Wikipedia articles | Wikimedia API | automated (run locally) |
-| Tech | Keyboard | Gboard, Apple iOS | manual |
+| Data | Wikipedia articles and active editors | Wikimedia API | automated (run locally) |
+| Tech | Keyboard | Gboard, Apple iOS; depth: Apple's four keyboard feature lists | manual |
 | Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation; Whisper (open) | manual; Whisper automated |
-| Tech | Text-to-speech | Google Cloud TTS | manual |
-| Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open) | manual; DeepL and NLLB automated |
+| Tech | Text-to-speech | Google Cloud TTS; depth: number of voice types | manual |
+| Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL's per-language features | manual; DeepL and NLLB automated |
 | Tech | LLMs | Global-MMLU relative to English, from Anthropic's published table | manual |
 
 ## Known limitations of the slice
 
-- Technology tiers count presence, so they saturate: Hindi scores the same as English on technology.
+- Depth comes from one vendor per technology (Apple, Google, DeepL), so it reflects each vendor's priorities.
+- Speech input has no depth measure yet: Apple's Siri list is organised by country, not language.
 - Common Voice is one speech source among many, so it under-credits Hindi and over-credits Kinyarwanda.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM support is measured for 12 of the 25 languages.

@@ -33,11 +33,12 @@ def normalise(value: float, spec: dict) -> float:
 
 
 def tier(facts: dict[str, Record], tech: dict) -> float | None:
+    """Presence tier for a technology, or the measured score for LLMs."""
     if "measured" in tech:
         r = facts.get(tech["measured"])
         if r is None:
             return None
-        return 1.0 if r.value >= tech["high"] else 0.67 if r.value >= tech["mid"] else 0.33
+        return round(normalise(r.value, {"scale": "linear", "min": tech["min"], "max": tech["max"]}), 3)
     consumer = sum(1 for i in tech["consumer"] if i in facts and facts[i].value)
     has_open = any(i in facts and facts[i].value for i in tech["open"])
     if consumer >= min(2, len(tech["consumer"])):
@@ -45,6 +46,20 @@ def tier(facts: dict[str, Record], tech: dict) -> float | None:
     if consumer >= 1:
         return 0.67
     return 0.33 if has_open else 0.0
+
+
+def depth(facts: dict[str, Record], tech: dict) -> float | None:
+    """Mean of the technology's depth indicators, each divided by its max; None if none collected."""
+    vals = [min(1.0, facts[i].value / m) for i, m in tech.get("depth", {}).items() if i in facts]
+    return sum(vals) / len(vals) if vals else None
+
+
+def tech_score(facts: dict[str, Record], tech: dict) -> float | None:
+    t = tier(facts, tech)
+    if t is None or "measured" in tech or t == 0:
+        return t
+    d = depth(facts, tech)
+    return t if d is None else round((t + d) / 2, 3)
 
 
 def weighted_mean(parts: list[tuple[float, float]]) -> float:
@@ -71,7 +86,7 @@ def score_language(facts: dict[str, Record], cfg: dict) -> dict:
     t = cfg["dimensions"]["tech"]
     parts, detail = [], {}
     for name, tech in t["technologies"].items():
-        s = tier(facts, tech)
+        s = tech_score(facts, tech)
         if s is None:
             missing.append(tech.get("measured", name))
             continue

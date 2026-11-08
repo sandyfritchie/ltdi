@@ -181,6 +181,9 @@ function showValue(f) {
   if (f.unit === 'hours') return (v >= 100 ? Math.round(v).toLocaleString() : v.toFixed(1)) + ' h';
   if (f.unit === 'articles') return big(v) + ' articles';
   if (f.unit === '% of English') return v + '% of English';
+  if (f.unit === 'features of 4') return `${v} of 4 features`;
+  if (f.unit === 'types of 8') return `${v} of 8 voice types`;
+  if (f.unit === 'editors') return big(v) + ' active editors';
   return v;
 }
 const bar = (v, color) => `<div class="bar"><i style="width:${(v * 100).toFixed(1)}%;${color ? `background:var(${color})` : ''}"></i></div>`;
@@ -203,7 +206,7 @@ function ranking() {
       <thead><tr><th>#</th><th>Language</th><th class="num hide-sm">Speakers</th><th class="hide-sm">Region</th><th>Dimensions</th><th class="num">LTDI</th><th>Tier</th></tr></thead>
       <tbody id="rows"></tbody>
     </table></div>
-    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. LLM support is measured for 12 languages only, so the rest leave LLMs out of their technology score. Select a language to see every value and its source.</p>`;
+    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. Each technology scores half for presence and half for depth (keyboard features, voice types, translation features). LLM support is measured for 12 languages only, so the rest leave LLMs out of their technology score. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const rows = LANGS.filter(l => (region === 'All' || l.region === region) &&
@@ -234,14 +237,14 @@ function dimPanel(l, key, color) {
   if (key === 'tech') {
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk];
-      const ids = t.measured ? [t.measured] : [...t.consumer, ...t.open];
+      const ids = t.measured ? [t.measured] : [...t.consumer, ...t.open, ...Object.keys(t.depth || {})];
       const vendors = ids.map(id => {
         const f = facts[id];
         if (!f) return `<div class="missing">${t.measured ? 'Not benchmarked yet' : esc(id) + ': not collected'}</div>`;
         const label = f.unit === 'bool'
           ? `<span class="${f.value ? 'yes' : 'no'}">${esc(f.source)}</span>`
           : `<span class="yes">${esc(f.source)}: ${esc(showValue(f))}</span>`;
-        return `<div><a href="${esc(f.url)}" target="_blank" rel="noopener">${label}</a>${(t.open || []).includes(id) ? ' <span class="code">open</span>' : ''}</div>`;
+        return `<div title="${esc(f.note || '')}"><a href="${esc(f.url)}" target="_blank" rel="noopener">${label}</a>${(t.open || []).includes(id) ? ' <span class="code">open</span>' : ''}</div>`;
       }).join('');
       body += `<div class="ind"><div class="ind-top"><b>${esc(t.label)}</b><span class="ind-val">${s == null ? '—' : s.toFixed(2)}</span></div>
         ${s == null ? '' : bar(s)}<div class="vendors">${vendors}</div></div>`;

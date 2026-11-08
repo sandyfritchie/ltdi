@@ -1,4 +1,7 @@
-"""Wikipedia: number of articles in each language edition (Wikimedia API).
+"""Wikipedia: articles and active editors in each language edition (Wikimedia API).
+
+Article counts measure volume but include bot-generated stubs; active editors
+(registered users who edited in the last 30 days) measure the living community.
 
 Needs open network access to *.wikipedia.org, so run it locally:
     python -m ltdi.collectors wikipedia
@@ -23,14 +26,18 @@ API = "https://{wiki}.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=
 def collect() -> list[Record]:
     out = []
     for code in ltdi_codes():
-        total, urls = 0, []
+        articles, editors, urls = 0, 0, []
         for wiki in EDITIONS.get(code, [code]):
             url = API.format(wiki=wiki)
             try:
-                total += fetch_json(url, cache=False)["query"]["statistics"]["articles"]
+                stats = fetch_json(url, cache=False)["query"]["statistics"]
+                articles += stats["articles"]
+                editors += stats["activeusers"]
                 urls.append(url)
             except Exception as e:  # edition doesn't exist, or network failure
                 print(f"  {wiki}: {e}")
-        out.append(Record(code, "wikipedia_articles", total, "articles", "Wikipedia",
-                          " ".join(urls) or API.format(wiki=code), method="api"))
+        src = " ".join(urls) or API.format(wiki=code)
+        out.append(Record(code, "wikipedia_articles", articles, "articles", "Wikipedia", src, method="api"))
+        out.append(Record(code, "wikipedia_active_editors", editors, "editors", "Wikipedia", src, method="api",
+                          note="Registered users with an edit in the last 30 days"))
     return out

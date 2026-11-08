@@ -2,7 +2,7 @@ import math
 import unittest
 
 from ltdi.records import Record
-from ltdi.score import normalise, tier
+from ltdi.score import normalise, tech_score, tier
 
 
 def fact(ind, value):
@@ -40,7 +40,23 @@ class TierTests(unittest.TestCase):
         self.assertEqual(tier({"a": fact("a", 1)}, {"consumer": ["a"], "open": []}), 1.0)
 
     def test_unmeasured_llm_is_none(self):
-        self.assertIsNone(tier({}, {"measured": "m", "mid": 90, "high": 97}))
+        self.assertIsNone(tier({}, {"measured": "m", "min": 70, "max": 100}))
+
+    def test_measured_llm_is_linear(self):
+        self.assertAlmostEqual(tier({"m": fact("m", 85)}, {"measured": "m", "min": 70, "max": 100}), 0.5)
+
+
+class DepthTests(unittest.TestCase):
+    tech = {"consumer": ["a"], "open": [], "depth": {"feat": 4}}
+
+    def test_depth_averages_with_tier(self):
+        self.assertEqual(tech_score({"a": fact("a", 1), "feat": fact("feat", 2)}, self.tech), 0.75)
+
+    def test_depth_ignored_when_absent(self):
+        self.assertEqual(tech_score({"a": fact("a", 0), "feat": fact("feat", 4)}, self.tech), 0.0)
+
+    def test_no_depth_record_keeps_tier(self):
+        self.assertEqual(tech_score({"a": fact("a", 1)}, self.tech), 1.0)
 
 
 if __name__ == "__main__":
