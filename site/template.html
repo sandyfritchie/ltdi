@@ -24,7 +24,7 @@
   --track: #e6ebe9;
   --ord-full: #184f95; --ord-part: #3987e5; --ord-open: #86b6ef; --ord-none: #e3e8e6;
   --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
-  --t-vh: #1d7a43; --t-h: #74c27a; --t-m: #f0b13a; --t-l: #cf3434; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
+  --t-vh: #1c5cab; --t-h: #6da7ec; --t-m: #ea9447; --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
   --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
@@ -39,7 +39,7 @@
     --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
     --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
     --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
-    --t-vh: #34b46a; --t-h: #9bd69e; --t-m: #f3bd52; --t-l: #e65d5d; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
+    --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
     --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
   }
 }
@@ -50,7 +50,7 @@
   --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
   --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
   --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
-  --t-vh: #34b46a; --t-h: #9bd69e; --t-m: #f3bd52; --t-l: #e65d5d; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
+  --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
     --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
@@ -215,7 +215,13 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .seg:first-child { border-radius: 4px 0 0 4px; } .seg:last-child { border-radius: 0 4px 4px 0; } .seg:only-child { border-radius: 4px; }
 .seg.full { background: var(--ord-full); color: var(--on-full); } .seg.part { background: var(--ord-part); color: var(--on-part); }
 .seg.open { background: var(--ord-open); color: var(--on-open); } .seg.none { background: var(--ord-none); color: var(--muted); }
-.mapwrap { position: relative; }
+.mapwrap { position: relative; border-radius: 6px; overflow: hidden; touch-action: none; }
+.mapwrap svg { cursor: grab; } .mapwrap svg.dragging { cursor: grabbing; }
+.mapctl { position: absolute; top: 8px; right: 8px; display: grid; gap: 4px; }
+.mapctl button { width: 32px; height: 32px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); font: 600 17px/1 var(--font-body); cursor: pointer; display: grid; place-items: center; }
+.mapctl button:hover { border-color: var(--muted); }
+.mapctl button.reset { font-size: 11px; font-weight: 600; }
+.maphint { font-size: 12px; color: var(--muted); margin-top: 6px; }
 .mapwrap svg { width: 100%; height: auto; display: block; }
 .legend.map i.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
 .multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
@@ -675,6 +681,8 @@ function levelOf(l, key, t) {
 
 const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
 const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', l: '--t-l' };
+const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
+let mapR = null;  // base radii for the current render
 function mapSection() {
   if (!GEO) return '';
   const { width: W, height: Hh, path } = GEO.basemap;
@@ -684,10 +692,11 @@ function mapSection() {
   // keep dots a readable size on screen whatever the map's rendered width
   const px = Math.max(300, Math.min(1000, (window.innerWidth || 1000) - 70)) / W;
   const r0 = Math.max(1.7, 0.9 / px), rs = Math.max(6.5, 4.5 / px), sw = Math.max(1.6, 1.1 / px);
-  const bgPath = bg.map(p => `M${p[2] - r0},${p[3]}a${r0},${r0} 0 1,0 ${2 * r0},0a${r0},${r0} 0 1,0 ${-2 * r0},0`).join('');
+  mapR = { r0, rs, sw };
+  const bgPath = bgDots(bg, r0);
   const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => a.ltdi - b.ltdi).map(l => {
     const [c] = tierOf(l.ltdi), p = pt[l.code];
-    return `<a href="#lang-${l.code}"><circle cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
+    return `<a href="#lang-${l.code}"><circle class="sdot" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
       opacity="${inRegion(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${l.rank}"/></a>`;
   }).join('');
   const counts = { vh: 0, h: 0, m: 0, l: 0 };
@@ -702,11 +711,14 @@ function mapSection() {
       <span><i class="dot" style="background:var(--t-l)"></i>Low · ${counts.l}</span>
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not yet scored · ${bg.length.toLocaleString()}</span>
     </div>
-    <div class="mapwrap"><svg id="worldmap" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
-      <path d="${path}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.6"/>
-      <path d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
+    <div class="mapwrap"><div class="mapctl">
+        <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
+      </div><svg id="worldmap" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
+      <path d="${path}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
+      <path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
       ${dots}
     </svg></div>
+    <p class="maphint">Drag to move · double-click or + to zoom in · Ctrl or ⌘ and scroll to zoom</p>
     <p class="note">Tiers: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60. Locations from LinguaMeta; map from Natural Earth.</p>
   </section>`;
 }
@@ -715,12 +727,63 @@ function bindMap() {
   if (!svg || !GEO || !svg.getScreenCTM) return;
   const scored = new Set(LANGS.map(l => l.code));
   const bg = GEO.points.filter(p => !scored.has(p[0]));
+  const { width: W, height: H } = GEO.basemap;
+  let vb = { x: 0, y: 0, w: W, h: H }, raf = 0;
+  const k = () => W / vb.w;
+  const apply = () => {
+    svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(() => {   // keep dots the same size on screen
+      const z = k();
+      svg.querySelectorAll('circle.sdot').forEach(c => { c.setAttribute('r', (mapR.rs / Math.sqrt(z)).toFixed(2)); c.setAttribute('stroke-width', (mapR.sw / Math.sqrt(z)).toFixed(2)); });
+      const bgEl = document.getElementById('bgdots');
+      if (bgEl) { bgEl.setAttribute('d', bgDots(bg, mapR.r0 / Math.sqrt(z))); bgEl.setAttribute('stroke-width', (0.4 / z).toFixed(3)); }
+    });
+  };
+  const clamp = () => {
+    vb.w = Math.min(W, Math.max(W / 16, vb.w)); vb.h = vb.w * H / W;
+    vb.x = Math.min(W - vb.w, Math.max(0, vb.x)); vb.y = Math.min(H - vb.h, Math.max(0, vb.y));
+  };
+  const toMap = (cx, cy) => { const pnt = svg.createSVGPoint(); pnt.x = cx; pnt.y = cy; return pnt.matrixTransform(svg.getScreenCTM().inverse()); };
+  const zoomAt = (factor, mx, my) => {
+    const nw = Math.min(W, Math.max(W / 16, vb.w / factor)), nh = nw * H / W;
+    vb.x = mx - (mx - vb.x) * nw / vb.w; vb.y = my - (my - vb.y) * nh / vb.h; vb.w = nw; vb.h = nh;
+    clamp(); apply();
+  };
+  const centre = () => [vb.x + vb.w / 2, vb.y + vb.h / 2];
+  document.getElementById('zin').onclick = () => zoomAt(2, ...centre());
+  document.getElementById('zout').onclick = () => zoomAt(0.5, ...centre());
+  document.getElementById('zreset').onclick = () => { vb = { x: 0, y: 0, w: W, h: H }; apply(); };
+  svg.addEventListener('dblclick', e => { e.preventDefault(); const q = toMap(e.clientX, e.clientY); zoomAt(2, q.x, q.y); });
+  svg.addEventListener('wheel', e => {
+    if (!(e.ctrlKey || e.metaKey)) return;   // plain scrolling scrolls the page
+    e.preventDefault(); const q = toMap(e.clientX, e.clientY); zoomAt(Math.exp(-e.deltaY * 0.0025), q.x, q.y);
+  }, { passive: false });
+  // drag to pan, pinch to zoom
+  const pts = new Map(); let last = null, moved = false, pinch = null;
+  svg.addEventListener('pointerdown', e => { pts.set(e.pointerId, [e.clientX, e.clientY]); last = [e.clientX, e.clientY]; moved = false;
+    if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = Math.hypot(a[0] - b[0], a[1] - b[1]); } });
+  svg.addEventListener('pointermove', e => {
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId, [e.clientX, e.clientY]);
+    if (pts.size === 2 && pinch) {
+      const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]);
+      const q = toMap((a[0] + b[0]) / 2, (a[1] + b[1]) / 2); zoomAt(d / pinch, q.x, q.y); pinch = d; moved = true; return;
+    }
+    const dx = e.clientX - last[0], dy = e.clientY - last[1];
+    if (!moved && Math.hypot(dx, dy) < 4) return;
+    if (!moved) { moved = true; svg.setPointerCapture(e.pointerId); svg.classList.add('dragging'); tipHide(); }
+    const s = vb.w / svg.getBoundingClientRect().width;
+    vb.x -= dx * s; vb.y -= dy * s; last = [e.clientX, e.clientY]; clamp(); apply();
+  });
+  const end = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; svg.classList.remove('dragging'); };
+  svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end);
+  svg.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  // hover names for the unscored languages
   svg.addEventListener('mousemove', e => {
-    if (e.target.tagName === 'circle') return;  // scored dots have their own tooltip
-    const m = svg.getScreenCTM(); if (!m) return;
-    const pnt = svg.createSVGPoint(); pnt.x = e.clientX; pnt.y = e.clientY;
-    const q = pnt.matrixTransform(m.inverse());
-    let best = null, bd = 36;
+    if (svg.classList.contains('dragging') || e.target.tagName === 'circle') return;
+    const q = toMap(e.clientX, e.clientY), lim = (6 / k()) ** 2;
+    let best = null, bd = lim;
     for (const p of bg) { const d = (p[2] - q.x) ** 2 + (p[3] - q.y) ** 2; if (d < bd) { bd = d; best = p; } }
     if (best) tipShow(e, `<b>${esc(best[1])}</b><br>${best[4] ? people(best[4]) + ' speakers · ' : ''}not yet scored`); else tipHide();
   });

@@ -70,7 +70,7 @@ Every view on the site can be filtered by region.
 The Charts view opens with a map: a dot for each of LinguaMeta's ~6,450
 individual languages with a location, placed in the country with most speakers
 (or the origin country given in `config/slice_languages.csv`). Scored languages
-are coloured by tier from green (very high) to red (low); the rest are white.
+are coloured by tier from dark blue (very high) to dark orange (low); the rest are white.
 The basemap is Natural Earth (via world-atlas) in the Equal Earth projection.
 
 The Charts view shows how many languages each technology reaches today, how
