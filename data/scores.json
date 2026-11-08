@@ -671,6 +671,7 @@
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 1.0,
       "cv_validated_hours": 1.0,
       "flores200": 1.0,
       "belebele": 1.0
@@ -689,9 +690,7 @@
      "raw": 1.0
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 1
   },
   {
@@ -931,7 +930,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/fr.json",
    "note": "",
-   "ltdi": 0.9936,
+   "ltdi": 0.9907,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -942,15 +941,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 1.0,
+     "score": 0.9912,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 0.912,
       "cv_validated_hours": 1.0,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 1.0
+     "raw": 0.9912
     },
     "tech": {
      "score": 0.981,
@@ -964,9 +964,7 @@
      "raw": 0.981
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 2
   },
   {
@@ -1101,7 +1099,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/es.json",
    "note": "",
-   "ltdi": 0.9917,
+   "ltdi": 0.9897,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1112,15 +1110,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9793,
+     "score": 0.9732,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 0.918,
       "cv_validated_hours": 0.926,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9793
+     "raw": 0.9732
     },
     "tech": {
      "score": 0.996,
@@ -1134,9 +1133,7 @@
      "raw": 0.996
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 3
   },
   {
@@ -1177,7 +1174,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cmn.json",
    "note": "Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn",
-   "ltdi": 0.9609,
+   "ltdi": 0.9565,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1188,15 +1185,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9543,
+     "score": 0.9413,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 0.825,
       "cv_validated_hours": 0.835,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9543
+     "raw": 0.9413
     },
     "tech": {
      "score": 0.9296,
@@ -1210,10 +1208,67 @@
      "raw": 0.9296
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 4
+  },
+  {
+   "code": "ja",
+   "name": "Japanese",
+   "autonym": "日本語",
+   "iso_639_3": "jpn",
+   "glottocode": "nucl1643",
+   "scope": "LANGUAGE",
+   "speakers": 119000000,
+   "members": [],
+   "scripts": [
+    "jpan"
+   ],
+   "countries": [
+    {
+     "code": "jp",
+     "name": "Japan",
+     "speakers": 119000000
+    }
+   ],
+   "region": "Asia",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
+   "note": "",
+   "ltdi": 0.9554,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.9516,
+     "indicators": {
+      "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 0.873,
+      "cv_validated_hours": 0.857,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.9516
+    },
+    "tech": {
+     "score": 0.9164,
+     "indicators": {
+      "keyboard": 0.875,
+      "speech_input": 1.0,
+      "tts": 0.75,
+      "mt": 1.0,
+      "llm": 0.957
+     },
+     "raw": 0.9164
+    }
+   },
+   "missing": [],
+   "rank": 5
   },
   {
    "code": "pt",
@@ -1262,7 +1317,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pt.json",
    "note": "",
-   "ltdi": 0.9584,
+   "ltdi": 0.9529,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1273,15 +1328,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9332,
+     "score": 0.9172,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 0.774,
       "cv_validated_hours": 0.759,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9332
+     "raw": 0.9172
     },
     "tech": {
      "score": 0.9434,
@@ -1295,69 +1351,7 @@
      "raw": 0.9434
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
-   "rank": 5
-  },
-  {
-   "code": "ja",
-   "name": "Japanese",
-   "autonym": "日本語",
-   "iso_639_3": "jpn",
-   "glottocode": "nucl1643",
-   "scope": "LANGUAGE",
-   "speakers": 119000000,
-   "members": [],
-   "scripts": [
-    "jpan"
-   ],
-   "countries": [
-    {
-     "code": "jp",
-     "name": "Japan",
-     "speakers": 119000000
-    }
-   ],
-   "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
-   "note": "",
-   "ltdi": 0.9583,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.9604,
-     "indicators": {
-      "web_text_words": 1.0,
-      "wikipedia_articles": 1.0,
-      "cv_validated_hours": 0.857,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.9604
-    },
-    "tech": {
-     "score": 0.9164,
-     "indicators": {
-      "keyboard": 0.875,
-      "speech_input": 1.0,
-      "tts": 0.75,
-      "mt": 1.0,
-      "llm": 0.957
-     },
-     "raw": 0.9164
-    }
-   },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 6
   },
   {
@@ -1402,7 +1396,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ru.json",
    "note": "",
-   "ltdi": 0.9217,
+   "ltdi": 0.9185,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1413,15 +1407,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9455,
+     "score": 0.9357,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 0.848,
       "cv_validated_hours": 0.804,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9455
+     "raw": 0.9357
     },
     "tech": {
      "score": 0.8282,
@@ -1435,7 +1430,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 7
@@ -1622,7 +1616,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ar.json",
    "note": "Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar",
-   "ltdi": 0.9173,
+   "ltdi": 0.9127,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1633,15 +1627,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8782,
+     "score": 0.8651,
      "indicators": {
       "web_text_words": 0.931,
       "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 0.748,
       "cv_validated_hours": 0.658,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8782
+     "raw": 0.8651
     },
     "tech": {
      "score": 0.879,
@@ -1655,9 +1650,7 @@
      "raw": 0.879
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 8
   },
   {
@@ -1682,7 +1675,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/id.json",
    "note": "",
-   "ltdi": 0.9166,
+   "ltdi": 0.9124,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1693,15 +1686,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8506,
+     "score": 0.8391,
      "indicators": {
       "web_text_words": 0.969,
       "wikipedia_articles": 0.976,
+      "wikipedia_active_editors": 0.736,
       "cv_validated_hours": 0.516,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8506
+     "raw": 0.8391
     },
     "tech": {
      "score": 0.9052,
@@ -1715,10 +1709,72 @@
      "raw": 0.9052
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 9
+  },
+  {
+   "code": "bn",
+   "name": "Bengali",
+   "autonym": "বাংলা",
+   "iso_639_3": "ben",
+   "glottocode": "beng1280",
+   "scope": "LANGUAGE",
+   "speakers": 266000000,
+   "members": [],
+   "scripts": [
+    "beng"
+   ],
+   "countries": [
+    {
+     "code": "bd",
+     "name": "Bangladesh",
+     "speakers": 159000000
+    },
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 107000000
+    }
+   ],
+   "region": "Asia",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
+   "note": "",
+   "ltdi": 0.8644,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.7817,
+     "indicators": {
+      "web_text_words": 0.827,
+      "wikipedia_articles": 0.821,
+      "wikipedia_active_editors": 0.648,
+      "cv_validated_hours": 0.581,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.7817
+    },
+    "tech": {
+     "score": 0.8262,
+     "indicators": {
+      "keyboard": 1.0,
+      "speech_input": 1.0,
+      "tts": 0.688,
+      "mt": 0.5,
+      "llm": 0.943
+     },
+     "raw": 0.8262
+    }
+   },
+   "missing": [],
+   "rank": 10
   },
   {
    "code": "ta",
@@ -1752,7 +1808,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ta.json",
    "note": "",
-   "ltdi": 0.8702,
+   "ltdi": 0.8596,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1763,15 +1819,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8268,
+     "score": 0.7969,
      "indicators": {
       "web_text_words": 0.755,
       "wikipedia_articles": 0.821,
+      "wikipedia_active_editors": 0.527,
       "cv_validated_hours": 0.791,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8268
+     "raw": 0.7969
     },
     "tech": {
      "score": 0.797,
@@ -1785,73 +1842,7 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
-   ],
-   "rank": 10
-  },
-  {
-   "code": "bn",
-   "name": "Bengali",
-   "autonym": "বাংলা",
-   "iso_639_3": "ben",
-   "glottocode": "beng1280",
-   "scope": "LANGUAGE",
-   "speakers": 266000000,
-   "members": [],
-   "scripts": [
-    "beng"
-   ],
-   "countries": [
-    {
-     "code": "bd",
-     "name": "Bangladesh",
-     "speakers": 159000000
-    },
-    {
-     "code": "in",
-     "name": "India",
-     "speakers": 107000000
-    }
-   ],
-   "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
-   "note": "",
-   "ltdi": 0.8698,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.7965,
-     "indicators": {
-      "web_text_words": 0.827,
-      "wikipedia_articles": 0.821,
-      "cv_validated_hours": 0.581,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.7965
-    },
-    "tech": {
-     "score": 0.8262,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 0.688,
-      "mt": 0.5,
-      "llm": 0.943
-     },
-     "raw": 0.8262
-    }
-   },
-   "missing": [
-    "wikipedia_active_editors"
    ],
    "rank": 11
   },
@@ -1877,7 +1868,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hi.json",
    "note": "",
-   "ltdi": 0.8625,
+   "ltdi": 0.8559,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1888,15 +1879,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.7615,
+     "score": 0.7442,
      "indicators": {
       "web_text_words": 0.865,
       "wikipedia_articles": 0.809,
+      "wikipedia_active_editors": 0.588,
       "cv_validated_hours": 0.408,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.7615
+     "raw": 0.7442
     },
     "tech": {
      "score": 0.8426,
@@ -1910,9 +1902,7 @@
      "raw": 0.8426
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 12
   },
   {
@@ -1942,7 +1932,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ur.json",
    "note": "",
-   "ltdi": 0.8284,
+   "ltdi": 0.8184,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1953,15 +1943,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8083,
+     "score": 0.7796,
      "indicators": {
       "web_text_words": 0.778,
       "wikipedia_articles": 0.962,
+      "wikipedia_active_editors": 0.521,
       "cv_validated_hours": 0.636,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8083
+     "raw": 0.7796
     },
     "tech": {
      "score": 0.7032,
@@ -1975,7 +1966,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 13
@@ -2008,7 +1998,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pa.json",
    "note": "Gurmukhi and Shahmukhi scripts combined for the slice",
-   "ltdi": 0.7914,
+   "ltdi": 0.7845,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2019,15 +2009,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6218,
+     "score": 0.6057,
      "indicators": {
       "web_text_words": 0.676,
       "wikipedia_articles": 0.783,
+      "wikipedia_active_editors": 0.46,
       "cv_validated_hours": 0.179,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.6218
+     "raw": 0.6057
     },
     "tech": {
      "score": 0.797,
@@ -2041,7 +2032,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 14
@@ -2091,7 +2081,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sw.json",
    "note": "Macrolanguage; vendors label as sw",
-   "ltdi": 0.7806,
+   "ltdi": 0.7692,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2102,15 +2092,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.8136,
+     "score": 0.7785,
      "indicators": {
       "web_text_words": 0.68,
       "wikipedia_articles": 0.781,
+      "wikipedia_active_editors": 0.463,
       "cv_validated_hours": 0.865,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.8136
+     "raw": 0.7785
     },
     "tech": {
      "score": 0.5846,
@@ -2124,9 +2115,7 @@
      "raw": 0.5846
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 15
   },
   {
@@ -2151,7 +2140,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/is.json",
    "note": "Contrast case: few speakers, strong support",
-   "ltdi": 0.7703,
+   "ltdi": 0.7653,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2162,15 +2151,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.597,
+     "score": 0.5855,
      "indicators": {
       "web_text_words": 0.747,
       "wikipedia_articles": 0.695,
+      "wikipedia_active_editors": 0.482,
       "cv_validated_hours": 0.025,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.597
+     "raw": 0.5855
     },
     "tech": {
      "score": 0.7655,
@@ -2184,7 +2174,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 16
@@ -2211,7 +2200,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cy.json",
    "note": "Contrast case: few speakers, strong support",
-   "ltdi": 0.6922,
+   "ltdi": 0.684,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2222,15 +2211,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6634,
+     "score": 0.6401,
      "indicators": {
       "web_text_words": 0.674,
       "wikipedia_articles": 0.864,
+      "wikipedia_active_editors": 0.43,
       "cv_validated_hours": 0.699,
       "flores200": 1.0,
       "belebele": 0.0
      },
-     "raw": 0.6634
+     "raw": 0.6401
     },
     "tech": {
      "score": 0.5,
@@ -2244,7 +2234,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 17
@@ -2271,7 +2260,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/yo.json",
    "note": "",
-   "ltdi": 0.6634,
+   "ltdi": 0.6555,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2282,15 +2271,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5823,
+     "score": 0.5617,
      "indicators": {
       "web_text_words": 0.539,
       "wikipedia_articles": 0.654,
+      "wikipedia_active_editors": 0.376,
       "cv_validated_hours": 0.281,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.5823
+     "raw": 0.5617
     },
     "tech": {
      "score": 0.5014,
@@ -2304,70 +2294,8 @@
      "raw": 0.5014
     }
    },
-   "missing": [
-    "wikipedia_active_editors"
-   ],
+   "missing": [],
    "rank": 18
-  },
-  {
-   "code": "am",
-   "name": "Amharic",
-   "autonym": "አማርኛ",
-   "iso_639_3": "amh",
-   "glottocode": "amha1245",
-   "scope": "LANGUAGE",
-   "speakers": 36000000,
-   "members": [],
-   "scripts": [
-    "ethi"
-   ],
-   "countries": [
-    {
-     "code": "et",
-     "name": "Ethiopia",
-     "speakers": 36000000
-    }
-   ],
-   "region": "Africa",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
-   "note": "",
-   "ltdi": 0.6394,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.5699,
-     "indicators": {
-      "web_text_words": 0.626,
-      "wikipedia_articles": 0.549,
-      "cv_validated_hours": 0.156,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.5699
-    },
-    "tech": {
-     "score": 0.4587,
-     "indicators": {
-      "keyboard": 0.335,
-      "speech_input": 1.0,
-      "tts": 0.0,
-      "mt": 0.5
-     },
-     "raw": 0.4587
-    }
-   },
-   "missing": [
-    "wikipedia_active_editors",
-    "llm_global_mmlu_rel"
-   ],
-   "rank": 19
   },
   {
    "code": "ha",
@@ -2396,7 +2324,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ha.json",
    "note": "",
-   "ltdi": 0.6379,
+   "ltdi": 0.6336,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2407,15 +2335,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.6218,
+     "score": 0.6093,
      "indicators": {
       "web_text_words": 0.634,
       "wikipedia_articles": 0.771,
+      "wikipedia_active_editors": 0.497,
       "cv_validated_hours": 0.243,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.6218
+     "raw": 0.6093
     },
     "tech": {
      "score": 0.4175,
@@ -2429,7 +2358,66 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 19
+  },
+  {
+   "code": "am",
+   "name": "Amharic",
+   "autonym": "አማርኛ",
+   "iso_639_3": "amh",
+   "glottocode": "amha1245",
+   "scope": "LANGUAGE",
+   "speakers": 36000000,
+   "members": [],
+   "scripts": [
+    "ethi"
+   ],
+   "countries": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 36000000
+    }
+   ],
+   "region": "Africa",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
+   "note": "",
+   "ltdi": 0.6313,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.5485,
+     "indicators": {
+      "web_text_words": 0.626,
+      "wikipedia_articles": 0.549,
+      "wikipedia_active_editors": 0.356,
+      "cv_validated_hours": 0.156,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.5485
+    },
+    "tech": {
+     "score": 0.4587,
+     "indicators": {
+      "keyboard": 0.335,
+      "speech_input": 1.0,
+      "tts": 0.0,
+      "mt": 0.5
+     },
+     "raw": 0.4587
+    }
+   },
+   "missing": [
     "llm_global_mmlu_rel"
    ],
    "rank": 20
@@ -2456,7 +2444,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ig.json",
    "note": "",
-   "ltdi": 0.6185,
+   "ltdi": 0.6123,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2467,15 +2455,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5666,
+     "score": 0.5498,
      "indicators": {
       "web_text_words": 0.554,
       "wikipedia_articles": 0.673,
+      "wikipedia_active_editors": 0.398,
       "cv_validated_hours": 0.195,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.5666
+     "raw": 0.5498
     },
     "tech": {
      "score": 0.4175,
@@ -2489,7 +2478,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 21
@@ -2516,7 +2504,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/rw.json",
    "note": "",
-   "ltdi": 0.6022,
+   "ltdi": 0.5913,
    "dimensions": {
     "writing": {
      "score": 0.6667,
@@ -2527,15 +2515,16 @@
      "raw": 0.6667
     },
     "data": {
-     "score": 0.7845,
+     "score": 0.7427,
      "indicators": {
       "web_text_words": 0.587,
       "wikipedia_articles": 0.508,
+      "wikipedia_active_editors": 0.367,
       "cv_validated_hours": 1.0,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.7845
+     "raw": 0.7427
     },
     "tech": {
      "score": 0.4175,
@@ -2549,7 +2538,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 22
@@ -2581,7 +2569,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
    "note": "Macrolanguage; vendors label as om",
-   "ltdi": 0.5238,
+   "ltdi": 0.5151,
    "dimensions": {
     "writing": {
      "score": 0.6667,
@@ -2592,15 +2580,16 @@
      "raw": 0.6667
     },
     "data": {
-     "score": 0.573,
+     "score": 0.5449,
      "indicators": {
       "web_text_words": 0.469,
       "wikipedia_articles": 0.323,
+      "wikipedia_active_editors": 0.292,
       "cv_validated_hours": 0.476,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.573
+     "raw": 0.5449
     },
     "tech": {
      "score": 0.3763,
@@ -2614,7 +2603,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 23
@@ -2689,7 +2677,7 @@
    "region": "Americas",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/qu.json",
    "note": "Macrolanguage; vendors label as qu",
-   "ltdi": 0.4862,
+   "ltdi": 0.4806,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2700,15 +2688,16 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.5508,
+     "score": 0.532,
      "indicators": {
       "web_text_words": 0.423,
       "wikipedia_articles": 0.598,
+      "wikipedia_active_editors": 0.363,
       "cv_validated_hours": 0.751,
       "flores200": 1.0,
       "belebele": 0.0
      },
-     "raw": 0.5508
+     "raw": 0.532
     },
     "tech": {
      "score": 0.2087,
@@ -2722,7 +2711,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 24
@@ -2765,7 +2753,7 @@
    "region": "Americas",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/gn.json",
    "note": "Macrolanguage; vendors label as gn",
-   "ltdi": 0.3979,
+   "ltdi": 0.3922,
    "dimensions": {
     "writing": {
      "score": 0.5,
@@ -2776,15 +2764,16 @@
      "raw": 0.5
     },
     "data": {
-     "score": 0.5039,
+     "score": 0.4827,
      "indicators": {
       "web_text_words": 0.409,
       "wikipedia_articles": 0.445,
+      "wikipedia_active_editors": 0.292,
       "cv_validated_hours": 0.263,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.5039
+     "raw": 0.4827
     },
     "tech": {
      "score": 0.25,
@@ -2798,7 +2787,6 @@
     }
    },
    "missing": [
-    "wikipedia_active_editors",
     "llm_global_mmlu_rel"
    ],
    "rank": 25
@@ -2895,6 +2883,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "wikipedia_active_editors": {
+    "value": 59.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://am.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
    },
    "wikipedia_articles": {
     "value": 15736.0,
@@ -3086,6 +3083,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "wikipedia_active_editors": {
+    "value": 5491.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://ar.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
    },
    "wikipedia_articles": {
     "value": 1339240.0,
@@ -3287,6 +3293,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 1735.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://bn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 192440.0,
     "unit": "articles",
@@ -3487,8 +3502,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 13286.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://zh.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 1565030.0,
+    "value": 1565033.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://zh.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
@@ -3687,6 +3711,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 141.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://cy.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 284858.0,
     "unit": "articles",
@@ -3878,8 +3911,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 265650.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 7260924.0,
+    "value": 7260928.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
@@ -4078,8 +4120,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 38823.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://es.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 2148545.0,
+    "value": 2148546.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://es.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
@@ -4277,6 +4328,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "wikipedia_active_editors": {
+    "value": 36332.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://fr.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
    },
    "wikipedia_articles": {
     "value": 2788659.0,
@@ -4478,6 +4538,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 28.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://gn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 6038.0,
     "unit": "articles",
@@ -4669,6 +4738,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 304.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://ha.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 121663.0,
     "unit": "articles",
@@ -4859,6 +4937,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "wikipedia_active_editors": {
+    "value": 869.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://hi.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
    },
    "wikipedia_articles": {
     "value": 172322.0,
@@ -5060,8 +5147,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 4773.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://id.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 803961.0,
+    "value": 803962.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://id.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
@@ -5260,6 +5356,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 97.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://ig.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 49280.0,
     "unit": "articles",
@@ -5450,6 +5555,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "wikipedia_active_editors": {
+    "value": 255.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://is.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
    },
    "wikipedia_articles": {
     "value": 60614.0,
@@ -5642,8 +5756,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 23160.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://ja.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 1526664.0,
+    "value": 1526667.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://ja.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
@@ -5842,6 +5965,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 28.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://om.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 1970.0,
     "unit": "articles",
@@ -6033,6 +6165,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 199.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://pa.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json https://pnb.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 135558.0,
     "unit": "articles",
@@ -6223,6 +6364,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "wikipedia_active_editors": {
+    "value": 7408.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://pt.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
    },
    "wikipedia_articles": {
     "value": 1188101.0,
@@ -6424,6 +6574,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 64.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://qu.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 24674.0,
     "unit": "articles",
@@ -6615,8 +6774,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 17314.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://ru.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 2127711.0,
+    "value": 2127710.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://ru.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
@@ -6806,8 +6974,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 67.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://rw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 10796.0,
+    "value": 10797.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://rw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
@@ -6997,8 +7174,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 206.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://sw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 133073.0,
+    "value": 133074.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://sw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
@@ -7197,6 +7383,15 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 431.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://ta.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
     "value": 191872.0,
     "unit": "articles",
@@ -7387,6 +7582,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "wikipedia_active_editors": {
+    "value": 404.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://ur.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
    },
    "wikipedia_articles": {
     "value": 708135.0,
@@ -7579,8 +7783,17 @@
     "method": "download",
     "note": ""
    },
+   "wikipedia_active_editors": {
+    "value": 75.0,
+    "unit": "editors",
+    "source": "Wikipedia",
+    "url": "https://yo.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
+    "retrieved": "2026-11-07",
+    "method": "api",
+    "note": "Registered users with an edit in the last 30 days"
+   },
    "wikipedia_articles": {
-    "value": 41393.0,
+    "value": 41392.0,
     "unit": "articles",
     "source": "Wikipedia",
     "url": "https://yo.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json",
