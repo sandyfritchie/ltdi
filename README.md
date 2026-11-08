@@ -58,6 +58,24 @@ No dependencies beyond the Python 3.11+ standard library.
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | manual; DeepL and NLLB automated |
 | Tech | LLMs | Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | manual; OpenAI automated |
 
+## Opportunities
+
+`ltdi/opportunities.py` compares what each language has with what each technology
+needs, and proposes one of five kinds of action:
+
+| Type | Meaning | Cost |
+| --- | --- | --- |
+| Share or ship | The data or models exist; open them in a shared format, or launch the product | 1 |
+| Measure | No public benchmark or error rate yet | 1 |
+| Standardise | Foundational locale data (CLDR) is incomplete | 1 |
+| Improve | Support exists but quality lags | 2 |
+| Collect | The data really is scarce | 3 |
+
+Priority = reach × gap × need / cost, where reach is log10(speakers) − 4 and need
+is 1 minus the language's current score for that technology. Wording names
+platforms and open resources, never companies. Each opportunity is tagged with
+the coalition workstream it fits.
+
 ## Known limitations of the slice
 
 - Keyboard and text-to-speech depth still come from one vendor each (Apple, Google); speech, translation and LLMs have two.

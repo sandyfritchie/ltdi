@@ -163,6 +163,33 @@
    }
   }
  },
+ "opportunity_types": {
+  "share": {
+   "label": "Share or ship",
+   "cost": 1,
+   "workstream": "Tools for builders"
+  },
+  "measure": {
+   "label": "Measure",
+   "cost": 1,
+   "workstream": "Measurement"
+  },
+  "standardise": {
+   "label": "Standardise",
+   "cost": 1,
+   "workstream": "Open language data"
+  },
+  "improve": {
+   "label": "Improve",
+   "cost": 2,
+   "workstream": "Tools for builders"
+  },
+  "collect": {
+   "label": "Collect",
+   "cost": 3,
+   "workstream": "Open language data"
+  }
+ },
  "languages": [
   {
    "code": "en",
@@ -706,6 +733,7 @@
     }
    },
    "missing": [],
+   "opportunities": [],
    "rank": 1
   },
   {
@@ -980,6 +1008,7 @@
     }
    },
    "missing": [],
+   "opportunities": [],
    "rank": 2
   },
   {
@@ -1149,6 +1178,7 @@
     }
    },
    "missing": [],
+   "opportunities": [],
    "rank": 3
   },
   {
@@ -1233,6 +1263,7 @@
     }
    },
    "missing": [],
+   "opportunities": [],
    "rank": 4
   },
   {
@@ -1308,6 +1339,7 @@
     }
    },
    "missing": [],
+   "opportunities": [],
    "rank": 5
   },
   {
@@ -1367,6 +1399,7 @@
     }
    },
    "missing": [],
+   "opportunities": [],
    "rank": 6
   },
   {
@@ -1447,6 +1480,18 @@
    "missing": [
     "llm"
    ],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 0.423,
+     "workstream": "Measurement"
+    }
+   ],
    "rank": 7
   },
   {
@@ -1506,6 +1551,7 @@
     }
    },
    "missing": [],
+   "opportunities": [],
    "rank": 8
   },
   {
@@ -1725,6 +1771,7 @@
     }
    },
    "missing": [],
+   "opportunities": [],
    "rank": 9
   },
   {
@@ -1795,6 +1842,33 @@
    "missing": [
     "llm"
    ],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 0.523,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 235 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 0.171,
+     "workstream": "Tools for builders"
+    }
+   ],
    "rank": 10
   },
   {
@@ -1854,6 +1928,20 @@
     }
    },
    "missing": [],
+   "opportunities": [
+    {
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 16 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.214,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "priority": 0.042,
+     "workstream": "Open language data"
+    }
+   ],
    "rank": 11
   },
   {
@@ -1918,6 +2006,35 @@
     }
    },
    "missing": [],
+   "opportunities": [
+    {
+     "type": "improve",
+     "technology": "speech_input",
+     "title": "Speech recognition makes about 50 errors per 100 words",
+     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 0.664,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 54 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 0.442,
+     "workstream": "Tools for builders"
+    }
+   ],
    "rank": 12
   },
   {
@@ -1982,6 +2099,46 @@
    },
    "missing": [
     "llm"
+   ],
+   "opportunities": [
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "Predictive text and autocorrect could be built from open text",
+     "detail": "The iOS keyboard has 1 of 4 typing features. FineWeb-2 holds about 3 billion words of openly licensed web text, enough to train word prediction.",
+     "gap": 0.75,
+     "evidence": [
+      "kb_apple_features",
+      "web_text_words"
+     ],
+     "priority": 1.254,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 0.791,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 80 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 0.214,
+     "workstream": "Tools for builders"
+    }
    ],
    "rank": 13
   },
@@ -2049,6 +2206,57 @@
    "missing": [
     "llm"
    ],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 0.972,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "improve",
+     "technology": "speech_input",
+     "title": "Speech recognition makes about 48 errors per 100 words",
+     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
+     "gap": 0.963,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 0.605,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 2.4 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 0.418,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 2.4 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.878,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "priority": 0.368,
+     "workstream": "Open language data"
+    }
+   ],
    "rank": 14
   },
   {
@@ -2108,6 +2316,57 @@
    },
    "missing": [
     "llm"
+   ],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 0.371,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 0.2 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 0.139,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 0.2 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.991,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "priority": 0.138,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "improve",
+     "technology": "speech_input",
+     "title": "Speech recognition makes about 30 errors per 100 words",
+     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
+     "gap": 0.51,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 0.107,
+     "workstream": "Tools for builders"
+    }
    ],
    "rank": 15
   },
@@ -2191,6 +2450,61 @@
     }
    },
    "missing": [],
+   "opportunities": [
+    {
+     "type": "share",
+     "technology": "tts",
+     "title": "No cloud text-to-speech voice, though open speech data exists",
+     "detail": "Common Voice holds 392 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 4.233,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "Predictive text and autocorrect could be built from open text",
+     "detail": "The iOS keyboard has 0 of 4 typing features. FineWeb-2 holds about 574 million words of openly licensed web text, enough to train word prediction.",
+     "gap": 1.0,
+     "evidence": [
+      "kb_apple_features",
+      "web_text_words"
+     ],
+     "priority": 2.116,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 392 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 0.409,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "improve",
+     "technology": "speech_input",
+     "title": "Speech recognition makes about 34 errors per 100 words",
+     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
+     "gap": 0.603,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 0.37,
+     "workstream": "Tools for builders"
+    }
+   ],
    "rank": 16
   },
   {
@@ -2251,6 +2565,83 @@
    "missing": [
     "llm"
    ],
+   "opportunities": [
+    {
+     "type": "share",
+     "technology": "tts",
+     "title": "No cloud text-to-speech voice, though open speech data exists",
+     "detail": "Common Voice holds 124 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 1.929,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "Predictive text and autocorrect could be built from open text",
+     "detail": "The iOS keyboard has 0 of 4 typing features. FineWeb-2 holds about 523 million words of openly licensed web text, enough to train word prediction.",
+     "gap": 1.0,
+     "evidence": [
+      "kb_apple_features",
+      "web_text_words"
+     ],
+     "priority": 0.965,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 0.625,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No reading-comprehension benchmark",
+     "detail": "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
+     "gap": 0.5,
+     "evidence": [
+      "belebele"
+     ],
+     "priority": 0.312,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 124 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 0.152,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "improve",
+     "technology": "speech_input",
+     "title": "Speech recognition makes about 29 errors per 100 words",
+     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
+     "gap": 0.465,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 0.106,
+     "workstream": "Tools for builders"
+    }
+   ],
    "rank": 17
   },
   {
@@ -2310,6 +2701,126 @@
     }
    },
    "missing": [],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 2.292,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "Predictive text and autocorrect could be built from open text",
+     "detail": "The iOS keyboard has 0 of 4 typing features. FineWeb-2 holds about 59 million words of openly licensed web text, enough to train word prediction.",
+     "gap": 1.0,
+     "evidence": [
+      "kb_apple_features",
+      "web_text_words"
+     ],
+     "priority": 1.724,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 1 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 6.0 hours of transcribed speech on Common Voice.",
+     "gap": 0.667,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 1.529,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 1.149,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 6.0 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.702,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "priority": 0.536,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "share",
+     "technology": "mt",
+     "title": "Translation is offered by 2 of 3 major services",
+     "detail": "An open model and the FLORES-200 evaluation set already cover this language, so the main remaining step is a product launch.",
+     "gap": 0.333,
+     "evidence": [
+      "mt_google",
+      "mt_azure",
+      "mt_deepl",
+      "mt_open_nllb",
+      "flores200"
+     ],
+     "priority": 0.526,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "improve",
+     "technology": "llm",
+     "title": "LLMs lag behind their English performance",
+     "detail": "Benchmark results: 95% of English; 78% accuracy.",
+     "gap": 0.5,
+     "evidence": [
+      "llm_global_mmlu_rel",
+      "llm_mmmlu_openai"
+     ],
+     "priority": 0.259,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Wikipedia has 75 active editors",
+     "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
+     "gap": 0.25,
+     "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "priority": 0.126,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Only about 59 million words of open web text",
+     "detail": "Little text online limits language models and word prediction. Digitising books and news archives is often the fastest route.",
+     "gap": 0.058,
+     "evidence": [
+      "web_text_words"
+     ],
+     "priority": 0.029,
+     "workstream": "Open language data"
+    }
+   ],
    "rank": 18
   },
   {
@@ -2375,6 +2886,83 @@
    "missing": [
     "llm"
    ],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 2.295,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "Predictive text and autocorrect could be built from open text",
+     "detail": "The iOS keyboard has 0 of 4 typing features. FineWeb-2 holds about 273 million words of openly licensed web text, enough to train word prediction.",
+     "gap": 1.0,
+     "evidence": [
+      "kb_apple_features",
+      "web_text_words"
+     ],
+     "priority": 1.726,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 1 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 4.3 hours of transcribed speech on Common Voice.",
+     "gap": 0.667,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 1.531,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 1.4,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 1.15,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 4.3 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.782,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "priority": 0.598,
+     "workstream": "Open language data"
+    }
+   ],
    "rank": 19
   },
   {
@@ -2434,6 +3022,111 @@
    },
    "missing": [
     "llm"
+   ],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 1.458,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 1.423,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 1.185,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "A keyboard layout exists but isn't on every major platform",
+     "detail": "A layout ships on Android but not yet on iOS. Contributing it to CLDR Keyboards, the open interchange format for layouts, would let any platform adopt it.",
+     "gap": 0.5,
+     "evidence": [
+      "kb_gboard",
+      "kb_apple"
+     ],
+     "priority": 1.182,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "mt",
+     "title": "Translation is offered by 2 of 3 major services",
+     "detail": "An open model and the FLORES-200 evaluation set already cover this language, so the main remaining step is a product launch.",
+     "gap": 0.333,
+     "evidence": [
+      "mt_google",
+      "mt_azure",
+      "mt_deepl",
+      "mt_open_nllb",
+      "flores200"
+     ],
+     "priority": 0.519,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 2 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 1.9 hours of transcribed speech on Common Voice.",
+     "gap": 0.333,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 0.474,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 1.9 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.903,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "priority": 0.428,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Wikipedia has 59 active editors",
+     "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
+     "gap": 0.41,
+     "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "priority": 0.219,
+     "workstream": "Open language data"
+    }
    ],
    "rank": 20
   },
@@ -2495,6 +3188,107 @@
    "missing": [
     "llm"
    ],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 2.292,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "Predictive text and autocorrect could be built from open text",
+     "detail": "The iOS keyboard has 0 of 4 typing features. FineWeb-2 holds about 76 million words of openly licensed web text, enough to train word prediction.",
+     "gap": 1.0,
+     "evidence": [
+      "kb_apple_features",
+      "web_text_words"
+     ],
+     "priority": 1.724,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 1 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 2.9 hours of transcribed speech on Common Voice.",
+     "gap": 0.667,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 1.529,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 1.468,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 1.149,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 2.9 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.857,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "priority": 0.655,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Only about 76 million words of open web text",
+     "detail": "Little text online limits language models and word prediction. Digitising books and news archives is often the fastest route.",
+     "gap": 0.03,
+     "evidence": [
+      "web_text_words"
+     ],
+     "priority": 0.016,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Wikipedia has 97 active editors",
+     "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
+     "gap": 0.03,
+     "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "priority": 0.016,
+     "workstream": "Open language data"
+    }
+   ],
    "rank": 21
   },
   {
@@ -2554,6 +3348,111 @@
    },
    "missing": [
     "llm"
+   ],
+   "opportunities": [
+    {
+     "type": "share",
+     "technology": "tts",
+     "title": "No cloud text-to-speech voice, though open speech data exists",
+     "detail": "Common Voice holds 2,002 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 2.991,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 1.989,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "Predictive text and autocorrect could be built from open text",
+     "detail": "The iOS keyboard has 0 of 4 typing features. FineWeb-2 holds about 128 million words of openly licensed web text, enough to train word prediction.",
+     "gap": 1.0,
+     "evidence": [
+      "kb_apple_features",
+      "web_text_words"
+     ],
+     "priority": 1.496,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 1.333,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 1 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 2,002 hours of transcribed speech on Common Voice.",
+     "gap": 0.667,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 1.327,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "standardise",
+     "technology": "writing",
+     "title": "Locale data in Unicode CLDR is basic",
+     "detail": "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, keyboards and reading numbers aloud in text-to-speech.",
+     "gap": 0.667,
+     "evidence": [
+      "cldr_coverage"
+     ],
+     "priority": 0.665,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "share",
+     "technology": "mt",
+     "title": "Translation is offered by 2 of 3 major services",
+     "detail": "An open model and the FLORES-200 evaluation set already cover this language, so the main remaining step is a product launch.",
+     "gap": 0.333,
+     "evidence": [
+      "mt_google",
+      "mt_azure",
+      "mt_deepl",
+      "mt_open_nllb",
+      "flores200"
+     ],
+     "priority": 0.456,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Wikipedia has 67 active editors",
+     "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
+     "gap": 0.33,
+     "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "priority": 0.085,
+     "workstream": "Open language data"
+    }
    ],
    "rank": 22
   },
@@ -2663,6 +3562,124 @@
    "missing": [
     "llm"
    ],
+   "opportunities": [
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "No major speech input service, though open resources exist",
+     "detail": "Common Voice holds 178 hours of transcribed speech.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
+     "priority": 2.929,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 2.929,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "tts",
+     "title": "No cloud text-to-speech voice, though open speech data exists",
+     "detail": "Common Voice holds 178 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 2.929,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 1.522,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "A keyboard layout exists but isn't on every major platform",
+     "detail": "A layout ships on Android but not yet on iOS. Contributing it to CLDR Keyboards, the open interchange format for layouts, would let any platform adopt it.",
+     "gap": 0.5,
+     "evidence": [
+      "kb_gboard",
+      "kb_apple"
+     ],
+     "priority": 0.974,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No reading-comprehension benchmark",
+     "detail": "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
+     "gap": 0.5,
+     "evidence": [
+      "belebele"
+     ],
+     "priority": 0.761,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "mt",
+     "title": "Translation is offered by 2 of 3 major services",
+     "detail": "An open model and the FLORES-200 evaluation set already cover this language, so the main remaining step is a product launch.",
+     "gap": 0.333,
+     "evidence": [
+      "mt_google",
+      "mt_azure",
+      "mt_deepl",
+      "mt_open_nllb",
+      "flores200"
+     ],
+     "priority": 0.488,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Wikipedia has 64 active editors",
+     "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
+     "gap": 0.36,
+     "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "priority": 0.165,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Only about 9 million words of open web text",
+     "detail": "Little text online limits language models and word prediction. Digitising books and news archives is often the fastest route.",
+     "gap": 0.259,
+     "evidence": [
+      "web_text_words"
+     ],
+     "priority": 0.118,
+     "workstream": "Open language data"
+    }
+   ],
    "rank": 23
   },
   {
@@ -2727,6 +3744,123 @@
    },
    "missing": [
     "llm"
+   ],
+   "opportunities": [
+    {
+     "type": "share",
+     "technology": "tts",
+     "title": "No cloud text-to-speech voice, though open speech data exists",
+     "detail": "Common Voice holds 26 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 3.623,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 2.409,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 1.907,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "share",
+     "technology": "speech_input",
+     "title": "Speech input is offered by 1 of 3 major services",
+     "detail": "Some services already recognise this language. Open training data includes 26 hours of transcribed speech on Common Voice.",
+     "gap": 0.667,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "cv_validated_hours"
+     ],
+     "priority": 1.607,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "share",
+     "technology": "keyboard",
+     "title": "A keyboard layout exists but isn't on every major platform",
+     "detail": "A layout ships on Android but not yet on iOS. Contributing it to CLDR Keyboards, the open interchange format for layouts, would let any platform adopt it.",
+     "gap": 0.5,
+     "evidence": [
+      "kb_gboard",
+      "kb_apple"
+     ],
+     "priority": 1.205,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "standardise",
+     "technology": "writing",
+     "title": "Locale data in Unicode CLDR is basic",
+     "detail": "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, keyboards and reading numbers aloud in text-to-speech.",
+     "gap": 0.667,
+     "evidence": [
+      "cldr_coverage"
+     ],
+     "priority": 0.805,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "share",
+     "technology": "mt",
+     "title": "Translation is offered by 2 of 3 major services",
+     "detail": "An open model and the FLORES-200 evaluation set already cover this language, so the main remaining step is a product launch.",
+     "gap": 0.333,
+     "evidence": [
+      "mt_google",
+      "mt_azure",
+      "mt_deepl",
+      "mt_open_nllb",
+      "flores200"
+     ],
+     "priority": 0.603,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Wikipedia has 28 active editors",
+     "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
+     "gap": 0.72,
+     "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "priority": 0.396,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Only about 19 million words of open web text",
+     "detail": "Little text online limits language models and word prediction. Digitising books and news archives is often the fastest route.",
+     "gap": 0.179,
+     "evidence": [
+      "web_text_words"
+     ],
+     "priority": 0.098,
+     "workstream": "Open language data"
+    }
    ],
    "rank": 24
   },
@@ -2803,6 +3937,107 @@
    },
    "missing": [
     "llm"
+   ],
+   "opportunities": [
+    {
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "priority": 2.767,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "priority": 1.682,
+     "workstream": "Measurement"
+    },
+    {
+     "type": "standardise",
+     "technology": "writing",
+     "title": "Locale data in Unicode CLDR is missing",
+     "detail": "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, keyboards and reading numbers aloud in text-to-speech.",
+     "gap": 1.0,
+     "evidence": [
+      "cldr_coverage"
+     ],
+     "priority": 1.384,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "priority": 0.922,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 5.2 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.742,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "priority": 0.684,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "share",
+     "technology": "mt",
+     "title": "Translation is offered by 2 of 3 major services",
+     "detail": "An open model and the FLORES-200 evaluation set already cover this language, so the main remaining step is a product launch.",
+     "gap": 0.333,
+     "evidence": [
+      "mt_google",
+      "mt_azure",
+      "mt_deepl",
+      "mt_open_nllb",
+      "flores200"
+     ],
+     "priority": 0.461,
+     "workstream": "Tools for builders"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Wikipedia has 28 active editors",
+     "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
+     "gap": 0.72,
+     "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "priority": 0.344,
+     "workstream": "Open language data"
+    },
+    {
+     "type": "collect",
+     "technology": "data",
+     "title": "Only about 7 million words of open web text",
+     "detail": "Little text online limits language models and word prediction. Digitising books and news archives is often the fastest route.",
+     "gap": 0.284,
+     "evidence": [
+      "web_text_words"
+     ],
+     "priority": 0.136,
+     "workstream": "Open language data"
+    }
    ],
    "rank": 25
   }

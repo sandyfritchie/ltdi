@@ -129,6 +129,31 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .gap.neg { color: #f0937c; } }
 :root[data-theme="dark"] .gap.neg { color: #f0937c; }
 @media (prefers-reduced-motion: no-preference) { .bar i { transition: width .4s ease; } }
+
+/* Tabs */
+nav.tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--rule); margin-top: 6px; }
+nav.tabs a { font: 700 15px var(--font-display); font-stretch: 90%; color: var(--muted); text-decoration: none; padding: 12px 0 10px; border-bottom: 3px solid transparent; margin-bottom: -1px; }
+nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* Opportunities */
+.otypes { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-block: 18px 6px; }
+.otype-card { background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--c); border-radius: 6px; padding: 10px 12px; font-size: 13px; color: var(--muted); min-width: 0; }
+.otype-card b { display: block; color: var(--ink); font: 700 14px var(--font-display); font-stretch: 90%; margin-bottom: 2px; }
+.opps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.opp { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 4px 14px; }
+.opp .prio { grid-row: span 4; font: 800 22px/1 var(--font-display); font-stretch: 80%; text-align: right; font-variant-numeric: tabular-nums; }
+.opp .prio small { display: block; font: 500 10px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.opp-head { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--muted); }
+.otype { font: 600 11px/1 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--c); border: 1px solid var(--c); border-radius: 3px; padding: 3px 6px; }
+.opp-head a { font-weight: 600; }
+.opp-title { font-weight: 600; }
+.opp-detail { color: var(--muted); font-size: 15px; max-width: 70ch; }
+.opp-ev { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; }
+.opp-ev a { color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 2px 8px; text-decoration: none; }
+.opp-ev a:hover { color: var(--ink); border-color: var(--muted); }
+.more { margin-top: 12px; }
+.panel-h { font: 700 20px var(--font-display); font-stretch: 85%; margin: 28px 0 10px; }
+@media (max-width: 520px) { .opp { grid-template-columns: 1fr; } .opp .prio { grid-row: auto; text-align: left; } .opp .prio small { display: inline; margin-left: 6px; } }
 </style>
 
 <div class="wrap">
@@ -138,6 +163,7 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
     <p class="lede">How well technology supports each language, and how much data exists to build more. Three dimensions, each scored 0 to 1, combined with a geometric mean so a gap anywhere pulls the score down.</p>
     <div class="formula">LTDI = (<b class="w">writing</b> × <b class="d">data</b> × <b class="t">technology</b>)<sup>1/3</sup></div>
   </header>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#opportunities" id="tab-opportunities">Opportunities</a></nav>
   <main id="view"></main>
 </div>
 
@@ -149,6 +175,16 @@ const CFG = DATA.config.dimensions, L = DATA.labels;
 const DIMS = [['writing', 'w', '--writing'], ['data', 'd', '--data'], ['tech', 't', '--tech']];
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const OT = DATA.opportunity_types;
+const OCOLOR = { share: '--tech', measure: '--accent', standardise: '--writing', improve: '--tier-h', collect: '--data' };
+const OBLURB = {
+  share: 'The data or models exist. Open them up in a shared format, or launch the product.',
+  measure: 'No public benchmark or error rate yet, so nobody can tell how good support is.',
+  standardise: 'Foundational locale data is incomplete, which blocks other work.',
+  improve: 'Support exists, but quality lags well behind English.',
+  collect: 'The data really is scarce and has to be created.',
+};
+const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs', writing: 'Writing system', data: 'Data' };
 document.getElementById('edition').textContent = `Edition ${DATA.edition} · ${LANGS.length} languages`;
 
 function tierOf(v) {
@@ -189,6 +225,39 @@ function showValue(f) {
   return v;
 }
 const bar = (v, color) => `<div class="bar"><i style="width:${(v * 100).toFixed(1)}%;${color ? `background:var(${color})` : ''}"></i></div>`;
+
+// ---------------------------------------------------------- opportunities
+function oppItem(o, l, showLang) {
+  const facts = DATA.facts[l.code] || {};
+  const ev = o.evidence.map(id => facts[id] ? `<a href="${esc(facts[id].url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(facts[id].note || '')}">${esc(L[id] || facts[id].source)}: ${esc(showValue(facts[id]))}</a>` : '').join('');
+  return `<li class="opp" style="--c:var(${OCOLOR[o.type]})">
+    <div class="prio">${o.priority.toFixed(2)}<small>priority</small></div>
+    <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span>
+      ${showLang ? `<a href="#lang-${l.code}">${esc(l.name)}</a><span>${people(l.speakers)} speakers</span>` : ''}<span>${esc(o.workstream)}</span></div>
+    <div class="opp-title">${esc(o.title)}</div>
+    <div class="opp-detail">${esc(o.detail)}</div>
+    ${ev ? `<div class="opp-ev">${ev}</div>` : ''}
+  </li>`;
+}
+
+let otype = 'all', showAll = false;
+function opportunities() {
+  const all = LANGS.flatMap(l => l.opportunities.map(o => ({ o, l }))).sort((a, b) => b.o.priority - a.o.priority);
+  const counts = Object.fromEntries(Object.keys(OT).map(k => [k, all.filter(x => x.o.type === k).length]));
+  const list = all.filter(x => otype === 'all' || x.o.type === otype);
+  const shown = showAll ? list : list.slice(0, 30);
+  $('#view').innerHTML = `
+    <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)} · ${counts[k]}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
+    <p class="note">Priority weighs how many people speak the language, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Each opportunity is tagged with the coalition workstream it fits.</p>
+    <div class="controls"><div class="chips" role="group" aria-label="Type">
+      <button class="chip" id="ot-all" data-t="all" aria-pressed="${otype === 'all'}">All · ${all.length}</button>
+      ${Object.entries(OT).map(([k, t]) => `<button class="chip" id="ot-${k}" data-t="${k}" aria-pressed="${otype === k}">${esc(t.label)} · ${counts[k]}</button>`).join('')}
+    </div></div>
+    <ol class="opps">${shown.map(x => oppItem(x.o, x.l, true)).join('')}</ol>
+    ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}`;
+  $('#view').querySelectorAll('[data-t]').forEach(b => b.onclick = () => { otype = b.dataset.t; showAll = false; opportunities(); });
+  const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(); };
+}
 
 // ---------------------------------------------------------------- ranking
 let region = 'All', query = '';
@@ -280,8 +349,10 @@ function language(code) {
     <div class="cmpbar"><label for="cmpsel">Compare with</label>
       <select id="cmpsel"><option value="">Choose a language</option>${others.map(o => `<option value="${o.code}">${esc(o.name)}</option>`).join('')}</select></div>
     <div class="dims">${DIMS.map(([k, , c]) => dimPanel(l, k, c)).join('')}</div>
+    <h3 class="panel-h">Opportunities</h3>
+    ${l.opportunities.length ? `<ol class="opps">${l.opportunities.map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>.</p>`;
-  $('#back').onclick = () => { location.hash = ''; };
+  $('#back').onclick = () => { location.hash = 'ranking'; };
   $('#cmpsel').onchange = e => { if (e.target.value) location.hash = `compare-${code}-${e.target.value}`; };
 }
 
@@ -325,7 +396,13 @@ function route() {
   let m;
   if ((m = h.match(/^lang-([a-z]+)$/))) language(m[1]);
   else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
+  else if (h === 'opportunities') opportunities();
   else ranking();
+  const tab = h === 'opportunities' ? 'opportunities' : (h === '' || h === 'ranking') ? 'ranking' : '';
+  for (const t of ['ranking', 'opportunities']) {
+    const a = document.getElementById('tab-' + t);
+    if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
+  }
   window.scrollTo(0, 0);
 }
 addEventListener('hashchange', route);

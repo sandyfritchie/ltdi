@@ -12,6 +12,7 @@ import tomllib
 from collections import defaultdict
 
 from . import CONFIG, DATA
+from .opportunities import TYPES, find, rank
 from .records import Record, read_dir
 
 
@@ -117,8 +118,9 @@ def main() -> None:
     langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
     results = []
     for lang in langs:
-        s = score_language(by_lang.get(lang["code"], {}), cfg)
-        results.append({**lang, **s})
+        facts_l = by_lang.get(lang["code"], {})
+        s = score_language(facts_l, cfg)
+        results.append({**lang, **s, "opportunities": rank(lang, find(facts_l), s)})
     results.sort(key=lambda r: -r["ltdi"])
     for i, r in enumerate(results, 1):
         r["rank"] = i
@@ -133,7 +135,7 @@ def main() -> None:
         **{k: v["label"] for k, v in cfg["dimensions"]["tech"]["technologies"].items()},
         **{k: cfg["dimensions"][k]["label"] for k in ("writing", "data", "tech")},
     }
-    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg,
+    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "opportunity_types": TYPES,
            "languages": results, "facts": facts}
     (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     for r in results:
