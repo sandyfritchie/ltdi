@@ -156,6 +156,18 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .opp-ev a { color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 2px 8px; text-decoration: none; }
 .opp-ev a:hover { color: var(--ink); border-color: var(--muted); }
 .more { margin-top: 12px; }
+.ws-lede { margin-top: 18px; }
+.teampick { display: grid; gap: 8px; margin-top: 18px; }
+a.opp-title { color: var(--ink); text-decoration: none; }
+a.opp-title:hover { text-decoration: underline; }
+.opp-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 6px 14px; font-size: 13px; color: var(--muted); }
+.opp-foot a { font-weight: 600; }
+details.method { margin-top: 24px; border-top: 1px solid var(--rule); padding-top: 12px; }
+details.method summary { cursor: pointer; font: 700 15px var(--font-display); font-stretch: 90%; }
+.opp-hero { background: var(--surface); border: 1px solid var(--rule); border-top: 4px solid var(--c); border-radius: 8px; padding: 16px 18px; display: grid; gap: 8px; margin-top: 8px; }
+.opp-hero h2 { font: 800 clamp(24px, 4vw, 34px)/1.1 var(--font-display); font-stretch: 82%; margin: 0; text-wrap: balance; }
+.why { font-size: 18px; margin: 0; max-width: 64ch; }
+.needed { font-size: 17px; margin: 0 0 6px; max-width: 64ch; }
 .panel-h { font: 700 20px var(--font-display); font-stretch: 85%; margin: 28px 0 10px; }
 @media (max-width: 520px) { .opp { grid-template-columns: 1fr; } .opp .prio { grid-row: auto; text-align: left; } .opp .prio small { display: inline; margin-left: 6px; } }
 </style>
@@ -167,7 +179,7 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
     <p class="lede">How well technology supports each language, and how much data exists to build more. Three dimensions, each scored 0 to 1, combined with a geometric mean so a gap anywhere pulls the score down.</p>
     <div class="formula">LTDI = (<b class="w">writing</b> × <b class="d">data</b> × <b class="t">technology</b>)<sup>1/3</sup></div>
   </header>
-  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#opportunities" id="tab-opportunities">Opportunities</a></nav>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a></nav>
   <main id="view"></main>
 </div>
 
@@ -246,48 +258,107 @@ function usersLine(o) {
   return `<div class="opp-users">${people(u.now)} speakers ${kind} today${growth}</div>`;
 }
 
+const TEAMS = DATA.teams;
 function oppItem(o, l, showLang) {
-  const facts = DATA.facts[l.code] || {};
-  const ev = o.evidence.map(id => facts[id] ? `<a href="${esc(facts[id].url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(facts[id].note || '')}">${esc(L[id] || facts[id].source)}: ${esc(showValue(facts[id]))}</a>` : '').join('');
   return `<li class="opp" style="--c:var(${OCOLOR[o.type]})">
     <div class="prio">${prio(o).toFixed(2)}<small>priority</small></div>
     <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span>
-      ${showLang ? `<a href="#lang-${l.code}">${esc(l.name)}</a><span>${people(l.speakers)} speakers</span>` : ''}<span>${esc(o.workstream)}</span></div>
-    <div class="opp-title">${esc(o.title)}</div>
-    <div class="opp-detail">${esc(o.detail)}</div>
-    ${usersLine(o)}
-    ${ev ? `<div class="opp-ev">${ev}</div>` : ''}
+      ${showLang ? `<a href="#lang-${l.code}">${esc(l.name)}</a>` : ''}</div>
+    <a class="opp-title" href="#opp-${o.id}">${esc(o.title)}</a>
+    <div class="opp-detail">${esc(o.why)}</div>
+    <div class="opp-foot"><span>${o.teams.map(t => esc(TEAMS[t])).join(' · ')}</span><a href="#opp-${o.id}">Starter kit and details →</a></div>
   </li>`;
 }
 
-let otype = 'all', showAll = false;
+let otype = 'all', team = 'all', showAll = false;
 function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
   const all = LANGS.filter(l => !focus || l === focus)
     .flatMap(l => l.opportunities.map(o => ({ o, l }))).sort((a, b) => prio(b.o) - prio(a.o));
-  const counts = Object.fromEntries(Object.keys(OT).map(k => [k, all.filter(x => x.o.type === k).length]));
-  const list = all.filter(x => otype === 'all' || x.o.type === otype);
-  const shown = showAll ? list : list.slice(0, 30);
+  const byTeam = all.filter(x => team === 'all' || x.o.teams.includes(team));
+  const tcount = Object.fromEntries(Object.keys(TEAMS).map(k => [k, all.filter(x => x.o.teams.includes(k)).length]));
+  const counts = Object.fromEntries(Object.keys(OT).map(k => [k, byTeam.filter(x => x.o.type === k).length]));
+  const list = byTeam.filter(x => otype === 'all' || x.o.type === otype);
+  const shown = showAll ? list : list.slice(0, 25);
   $('#view').innerHTML = `
-    <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)} · ${counts[k]}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
-    <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. Each opportunity is tagged with the coalition workstream it fits.</p>
-    <div class="weightbar"><span>Count potential users as</span><div class="chips" role="group" aria-label="Weighting">
-      ${Object.entries(WEIGHT).map(([k, w]) => `<button class="chip" id="w-${k}" data-w="${k}" aria-pressed="${weight === k}">${esc(w.label)}</button>`).join('')}
-    </div></div>
-    <p class="note" id="wnote">Ranked by ${esc(WEIGHT[weight].note)}.</p>
-    ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="#lang-${focus.code}">Language profile</a></div>` : ''}
+    ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="#lang-${focus.code}">Language profile</a></div>`
+            : `<p class="lede ws-lede">Where a team can make the biggest difference next. Each opportunity says why it matters, which open resources are ready to start from, and what's still missing.</p>`}
+    <div class="teampick"><span class="eyebrow">What does your team work on?</span>
+      <div class="chips" role="group" aria-label="Team">
+        <button class="chip" id="tm-all" data-tm="all" aria-pressed="${team === 'all'}">Everything · ${all.length}</button>
+        ${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<button class="chip" id="tm-${k}" data-tm="${k}" aria-pressed="${team === k}">${esc(t)} · ${tcount[k]}</button>`).join('')}
+      </div></div>
     <div class="controls">
-    <select id="olang" aria-label="Language"><option value="">All languages</option>${LANGS.map(l => `<option value="${l.code}"${focus === l ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
-    <div class="chips" role="group" aria-label="Type">
-      <button class="chip" id="ot-all" data-t="all" aria-pressed="${otype === 'all'}">All · ${all.length}</button>
-      ${Object.entries(OT).map(([k, t]) => `<button class="chip" id="ot-${k}" data-t="${k}" aria-pressed="${otype === k}">${esc(t.label)} · ${counts[k]}</button>`).join('')}
-    </div></div>
-    ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">No opportunities of this type.</p>'}
-    ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}`;
-  $('#view').querySelectorAll('[data-t]').forEach(b => b.onclick = () => { otype = b.dataset.t; showAll = false; opportunities(lang); });
-  $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); });
+      <select id="olang" aria-label="Language"><option value="">All languages</option>${LANGS.map(l => `<option value="${l.code}"${focus === l ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
+      <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
+    </div>
+    ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">Nothing matches these filters.</p>'}
+    ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}
+    <details class="method"><summary>How opportunities are ranked</summary>
+      <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
+      <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. The costs are rough guides, not estimates.</p>
+      <div class="weightbar"><span>Count potential users as</span><div class="chips" role="group" aria-label="Weighting">
+        ${Object.entries(WEIGHT).map(([k, w]) => `<button class="chip" id="w-${k}" data-w="${k}" aria-pressed="${weight === k}">${esc(w.label)}</button>`).join('')}
+      </div></div>
+      <p class="note">Currently ranked by ${esc(WEIGHT[weight].note)}.</p>
+    </details>`;
+  $('#view').querySelectorAll('[data-tm]').forEach(b => b.onclick = () => { team = b.dataset.tm; otype = 'all'; showAll = false; opportunities(lang); });
+  $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
+  $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
-  $('#olang').onchange = e => { otype = 'all'; showAll = false; location.hash = e.target.value ? 'opportunities-' + e.target.value : 'opportunities'; };
+  $('#olang').onchange = e => { showAll = false; location.hash = e.target.value ? 'opportunities-' + e.target.value : 'opportunities'; };
+}
+
+function oppDetail(id) {
+  let o, l;
+  for (const x of LANGS) { const f = x.opportunities.find(y => y.id === id); if (f) { o = f; l = x; break; } }
+  if (!o) return opportunities();
+  const facts = DATA.facts[l.code] || {};
+  const pct = v => v == null ? '—' : Math.round(v * 100) + '%';
+  const kit = o.kit.length ? `<div class="tablebox"><table>
+      <thead><tr><th>Resource</th><th>What it is</th><th>For ${esc(l.name)}</th><th>Licence</th></tr></thead>
+      <tbody>${o.kit.map(k => `<tr><td><a href="${esc(k.link)}" target="_blank" rel="noopener">${esc(k.name)}</a></td><td>${esc(k.what)}</td><td>${esc(k.size)}</td><td>${esc(k.licence || '—')}</td></tr>`).join('')}</tbody></table></div>
+      <p class="note">Licences as published by each project; check the terms for your use before building on them.</p>`
+    : '<p class="note">No open resources found yet in the sources tracked.</p>';
+  const countries = l.reach_by_country.length ? `<div class="tablebox"><table>
+      <thead><tr><th>Country</th><th class="num">Speakers</th><th class="num">Online today</th><th class="num">Online and able to text</th><th class="num">Online in five years</th></tr></thead>
+      <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td><td class="num">${pct(c.online)}</td><td class="num">${pct(c.text)}</td><td class="num">${pct(c.online_5y)}</td></tr>`).join('')}</tbody></table></div>
+      <p class="note">Speaker counts from LinguaMeta; internet use, mobile texting and literacy from the World Bank. National averages overstate connectivity for rural and minority-language speakers.</p>` : '';
+  const ev = o.evidence.map(i => facts[i] ? `<a href="${esc(facts[i].url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(facts[i].note || '')}">${esc(L[i] || facts[i].source)}: ${esc(showValue(facts[i]))}</a>` : '').join('');
+  const u = o.users || {};
+  const factors = [
+    ['Potential users counted', u.estimated ? `${people(u['5y'])} in five years (${people(u.now)} today) · ${u.kind === 'voice' ? 'voice: everyone online' : 'text: online and able to text'}` : `${people(u.speakers)} speakers`],
+    ['Reach score', `${(o.reach || {})['5y']?.toFixed(2) ?? '—'} (log of users, 10K = 0, 1 billion = 5)`],
+    ['Gap', `${o.gap.toFixed(2)} (how much of the problem is unsolved)`],
+    ['Need', `${o.need?.toFixed(2) ?? '—'} (1 minus current score for ${esc(TECHL[o.technology] || o.technology)})`],
+    ['Momentum', `${o.momentum.toFixed(2)} (boost for a fast-growing user base)`],
+    ['Cost', `${o.cost} (${esc(OT[o.type].label)})`],
+    ['Priority', `${o.priority_5y.toFixed(2)} in five years · ${o.priority_now.toFixed(2)} today · ${o.priority.toFixed(2)} all speakers`],
+  ];
+  const others = l.opportunities.filter(x => x.id !== o.id);
+  $('#view').innerHTML = `
+    <button class="back" id="back">← ${esc(l.name)} opportunities</button>
+    <div class="opp-hero" style="--c:var(${OCOLOR[o.type]})">
+      <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span><a href="#lang-${l.code}">${esc(l.name)}</a><span>${esc(o.workstream)}</span></div>
+      <h2>${esc(o.title)}</h2>
+      <p class="why">${esc(o.why.split(' Ready to use:')[0])}</p>
+      <div class="opp-foot"><span>For teams working on ${o.teams.map(t => esc(TEAMS[t].toLowerCase())).join(', ')}</span><button class="chip" id="copylink">Copy link</button></div>
+    </div>
+    <h3 class="panel-h">Ready to use</h3>${kit}
+    <h3 class="panel-h">Still needed</h3><p class="needed">${esc(o.missing)}</p>
+    <p class="note">${esc(o.detail)}</p>
+    ${countries ? `<h3 class="panel-h">Who it would reach</h3>${countries}` : ''}
+    <h3 class="panel-h">Evidence</h3>${ev ? `<div class="opp-ev">${ev}</div>` : '<p class="note">Based on the absence of published results in the sources tracked.</p>'}
+    <details class="method"><summary>How this ranks</summary>
+      <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
+      <p class="note">Priority = reach × gap × need × momentum ÷ cost.</p></details>
+    ${others.length ? `<h3 class="panel-h">Other opportunities for ${esc(l.name)}</h3><ol class="opps">${others.map(x => oppItem(x, l, false)).join('')}</ol>` : ''}`;
+  $('#back').onclick = () => { location.hash = 'opportunities-' + l.code; };
+  $('#copylink').onclick = async e => {
+    const url = location.href.split('#')[0] + '#opp-' + o.id;
+    try { await navigator.clipboard.writeText(url); e.target.textContent = 'Link copied'; }
+    catch { e.target.textContent = url; }
+  };
 }
 
 // ---------------------------------------------------------------- ranking
@@ -442,12 +513,13 @@ function route() {
   else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
   else if (h === 'opportunities') opportunities();
   else if ((m = h.match(/^opportunities-([a-z]+)$/))) opportunities(m[1]);
+  else if ((m = h.match(/^opp-([a-z0-9-]+)$/))) oppDetail(m[1]);
   else ranking();
   // From a language (or compare) page, the Opportunities tab opens that language's opportunities
-  const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^compare-([a-z]+)-/) || [])[1];
+  const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
   const otab = document.getElementById('tab-opportunities');
   if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
-  const tab = h.startsWith('opportunities') ? 'opportunities' : (h === '' || h === 'ranking') ? 'ranking' : '';
+  const tab = h.startsWith('opp') ? 'opportunities' : (h === '' || h === 'ranking') ? 'ranking' : '';
   for (const t of ['ranking', 'opportunities']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');

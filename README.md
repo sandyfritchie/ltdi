@@ -85,7 +85,24 @@ Potential users can be counted three ways (the site lets you switch):
   (at most 4 points a year, slowing near saturation) times population growth,
   with a momentum boost of 1 + log2(growth in users) / 2, capped at 2.
 
-`python -m ltdi.collectors connectivity` needs access to `api.worldbank.org`. Wording names
+`python -m ltdi.collectors connectivity` needs access to `api.worldbank.org`.
+
+### For builders
+
+Each opportunity also carries what a team needs to decide whether to act:
+
+- **Teams** that could take it on (keyboards, speech, text-to-speech, translation,
+  LLMs, data collection, evaluation, standards, funding), so the site can filter
+  by "what does your team work on?".
+- **A plain-language reason**: who it would reach, now and in five years, and
+  which open resources are ready.
+- **A starter kit**: the open datasets and models available for that language,
+  with sizes and licences, from `config/resources.csv`.
+- **What's still missing**, in concrete terms.
+- **Reach by country**, and the full ranking breakdown.
+
+Every opportunity has its own shareable page at `#opp-<language>-<rule>`, for
+example `#opp-sw-tts-share`. Wording names
 platforms and open resources, never companies. Each opportunity is tagged with
 the coalition workstream it fits.
 

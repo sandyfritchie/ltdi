@@ -1,0 +1,11 @@
+indicator,name,what,licence,link
+cv_validated_hours,Mozilla Common Voice,Transcribed read speech from many volunteers,CC0 1.0,https://commonvoice.mozilla.org/en/datasets
+web_text_words,FineWeb-2,Filtered web text,ODC-By 1.0,https://huggingface.co/datasets/HuggingFaceFW/fineweb-2
+wikipedia_articles,Wikipedia,Encyclopedia articles,CC BY-SA 4.0,https://dumps.wikimedia.org/
+wikipedia_active_editors,Wikipedia editing community,Editors active in the last 30 days,,https://stats.wikimedia.org/
+flores200,FLORES-200,Professionally translated evaluation sentences,CC BY-SA 4.0,https://github.com/facebookresearch/flores
+belebele,Belebele,Reading-comprehension questions,CC BY-SA 4.0,https://github.com/facebookresearch/belebele
+mt_open_nllb,NLLB-200,Open translation model,CC BY-NC 4.0 (non-commercial),https://github.com/facebookresearch/fairseq/tree/nllb
+asr_open_whisper,Whisper,Open speech recognition model,MIT,https://github.com/openai/whisper
+cldr_coverage,Unicode CLDR,"Locale data: names, dates, numbers, character set",Unicode License v3,https://cldr.unicode.org/
+kb_gboard,Android keyboard layout,A layout already shipping on Android,Not openly licensed,https://support.google.com/gboard/answer/6380730

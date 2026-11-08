@@ -190,6 +190,17 @@
    "workstream": "Open language data"
   }
  },
+ "teams": {
+  "keyboards": "Keyboards and input",
+  "speech": "Speech recognition",
+  "tts": "Text-to-speech",
+  "translation": "Translation",
+  "llm": "LLMs",
+  "data": "Data collection",
+  "evaluation": "Evaluation and benchmarks",
+  "standards": "Standards and localisation",
+  "funding": "Funding"
+ },
  "languages": [
   {
    "code": "en",
@@ -734,6 +745,56 @@
    },
    "missing": [],
    "opportunities": [],
+   "reach_by_country": [
+    {
+     "code": "us",
+     "name": "United States of America",
+     "speakers": 319000000,
+     "online": 0.947,
+     "text": 0.947,
+     "online_5y": 0.959
+    },
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 252000000,
+     "online": 0.7,
+     "text": 0.295,
+     "online_5y": 0.809
+    },
+    {
+     "code": "pk",
+     "name": "Pakistan",
+     "speakers": 117000000,
+     "online": 0.573,
+     "text": 0.292,
+     "online_5y": 0.703
+    },
+    {
+     "code": "ng",
+     "name": "Nigeria",
+     "speakers": 113000000,
+     "online": 0.412,
+     "text": 0.281,
+     "online_5y": 0.506
+    },
+    {
+     "code": "ph",
+     "name": "Philippines",
+     "speakers": 70000000,
+     "online": 0.673,
+     "text": 0.337,
+     "online_5y": 0.787
+    },
+    {
+     "code": "gb",
+     "name": "United Kingdom",
+     "speakers": 64000000,
+     "online": 0.955,
+     "text": 0.955,
+     "online_5y": 0.96
+    }
+   ],
    "rank": 1
   },
   {
@@ -1009,6 +1070,56 @@
    },
    "missing": [],
    "opportunities": [],
+   "reach_by_country": [
+    {
+     "code": "fr",
+     "name": "France",
+     "speakers": 67000000,
+     "online": 0.887,
+     "text": 0.887,
+     "online_5y": 0.902
+    },
+    {
+     "code": "cm",
+     "name": "Cameroon",
+     "speakers": 19000000,
+     "online": 0.463,
+     "text": 0.326,
+     "online_5y": 0.529
+    },
+    {
+     "code": "mg",
+     "name": "Madagascar",
+     "speakers": 19000000,
+     "online": 0.187,
+     "text": 0.134,
+     "online_5y": 0.279
+    },
+    {
+     "code": "ci",
+     "name": "Côte d'Ivoire",
+     "speakers": 13000000,
+     "online": 0.414,
+     "text": 0.234,
+     "online_5y": 0.46
+    },
+    {
+     "code": "ca",
+     "name": "Canada",
+     "speakers": 11000000,
+     "online": 0.943,
+     "text": 0.943,
+     "online_5y": 0.95
+    },
+    {
+     "code": "ml",
+     "name": "Mali",
+     "speakers": 9000000,
+     "online": 0.368,
+     "text": 0.138,
+     "online_5y": 0.46
+    }
+   ],
    "rank": 2
   },
   {
@@ -1179,6 +1290,56 @@
    },
    "missing": [],
    "opportunities": [],
+   "reach_by_country": [
+    {
+     "code": "mx",
+     "name": "Mexico",
+     "speakers": 107000000,
+     "online": 0.831,
+     "text": 0.712,
+     "online_5y": 0.89
+    },
+    {
+     "code": "es",
+     "name": "Spain",
+     "speakers": 50000000,
+     "online": 0.958,
+     "text": 0.955,
+     "online_5y": 0.967
+    },
+    {
+     "code": "co",
+     "name": "Colombia",
+     "speakers": 46000000,
+     "online": 0.793,
+     "text": 0.66,
+     "online_5y": 0.855
+    },
+    {
+     "code": "ar",
+     "name": "Argentina",
+     "speakers": 45000000,
+     "online": 0.897,
+     "text": 0.849,
+     "online_5y": 0.925
+    },
+    {
+     "code": "ph",
+     "name": "Philippines",
+     "speakers": 34000000,
+     "online": 0.673,
+     "text": 0.337,
+     "online_5y": 0.787
+    },
+    {
+     "code": "us",
+     "name": "United States of America",
+     "speakers": 32000000,
+     "online": 0.947,
+     "text": 0.947,
+     "online_5y": 0.959
+    }
+   ],
    "rank": 3
   },
   {
@@ -1264,6 +1425,56 @@
    },
    "missing": [],
    "opportunities": [],
+   "reach_by_country": [
+    {
+     "code": "br",
+     "name": "Brazil",
+     "speakers": 193000000,
+     "online": 0.845,
+     "text": 0.717,
+     "online_5y": 0.879
+    },
+    {
+     "code": "ao",
+     "name": "Angola",
+     "speakers": 22000000,
+     "online": 0.407,
+     "text": 0.277,
+     "online_5y": 0.471
+    },
+    {
+     "code": "pt",
+     "name": "Portugal",
+     "speakers": 9900000,
+     "online": 0.885,
+     "text": 0.836,
+     "online_5y": 0.929
+    },
+    {
+     "code": "tl",
+     "name": "Timor-Leste",
+     "speakers": 820000,
+     "online": 0.35,
+     "text": 0.243,
+     "online_5y": 0.458
+    },
+    {
+     "code": "mo",
+     "name": "Macao",
+     "speakers": 31000,
+     "online": 0.898,
+     "text": 0.867,
+     "online_5y": 0.91
+    },
+    {
+     "code": "gq",
+     "name": "Equatorial Guinea",
+     "speakers": 1,
+     "online": 0.633,
+     "text": 0.559,
+     "online_5y": 0.721
+    }
+   ],
    "rank": 4
   },
   {
@@ -1340,6 +1551,32 @@
    },
    "missing": [],
    "opportunities": [],
+   "reach_by_country": [
+    {
+     "code": "cn",
+     "name": "China",
+     "speakers": 1255000000,
+     "online": 0.916,
+     "text": 0.886,
+     "online_5y": 0.974
+    },
+    {
+     "code": "hk",
+     "name": "Hong Kong",
+     "speakers": 6900000,
+     "online": 0.958,
+     "text": 0.958,
+     "online_5y": 0.967
+    },
+    {
+     "code": "sg",
+     "name": "Singapore",
+     "speakers": 4800000,
+     "online": 0.944,
+     "text": 0.922,
+     "online_5y": 0.955
+    }
+   ],
    "rank": 5
   },
   {
@@ -1400,6 +1637,16 @@
    },
    "missing": [],
    "opportunities": [],
+   "reach_by_country": [
+    {
+     "code": "jp",
+     "name": "Japan",
+     "speakers": 119000000,
+     "online": 0.855,
+     "text": 0.855,
+     "online_5y": 0.855
+    }
+   ],
    "rank": 6
   },
   {
@@ -1482,12 +1729,23 @@
    ],
    "opportunities": [
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 170200000,
       "now": 157588180,
@@ -1495,11 +1753,88 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.1,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.231,
+      "now": 4.198,
+      "5y": 4.22
+     },
      "momentum": 1.038,
      "priority": 0.423,
      "priority_now": 0.42,
      "priority_5y": 0.438,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "ru-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "589 billion words"
+      }
+     ],
+     "why": "About 158 million Russian speakers are online and able to text today, and that should reach 166 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "ru",
+     "name": "Russian Federation",
+     "speakers": 133000000,
+     "online": 0.944,
+     "text": 0.943,
+     "online_5y": 0.972
+    },
+    {
+     "code": "ua",
+     "name": "Ukraine",
+     "speakers": 20000000,
+     "online": 0.825,
+     "text": 0.82,
+     "online_5y": 0.874
+    },
+    {
+     "code": "kz",
+     "name": "Kazakhstan",
+     "speakers": 14000000,
+     "online": 0.934,
+     "text": 0.931,
+     "online_5y": 0.963
+    },
+    {
+     "code": "kg",
+     "name": "Kyrgyzstan",
+     "speakers": 2100000,
+     "online": 0.92,
+     "text": 0.809,
+     "online_5y": 0.977
+    },
+    {
+     "code": "by",
+     "name": "Belarus",
+     "speakers": 1100000,
+     "online": 0.943,
+     "text": 0.941,
+     "online_5y": 0.97
     }
    ],
    "rank": 7
@@ -1562,6 +1897,16 @@
    },
    "missing": [],
    "opportunities": [],
+   "reach_by_country": [
+    {
+     "code": "id",
+     "name": "Indonesia",
+     "speakers": 171000000,
+     "online": 0.728,
+     "text": 0.627,
+     "online_5y": 0.832
+    }
+   ],
    "rank": 8
   },
   {
@@ -1782,6 +2127,56 @@
    },
    "missing": [],
    "opportunities": [],
+   "reach_by_country": [
+    {
+     "code": "eg",
+     "name": "Egypt",
+     "speakers": 98000000,
+     "online": 0.747,
+     "text": 0.438,
+     "online_5y": 0.814
+    },
+    {
+     "code": "sa",
+     "name": "Saudi Arabia",
+     "speakers": 34000000,
+     "online": 1.0,
+     "text": 0.979,
+     "online_5y": 0.98
+    },
+    {
+     "code": "dz",
+     "name": "Algeria",
+     "speakers": 32000000,
+     "online": 0.774,
+     "text": 0.582,
+     "online_5y": 0.869
+    },
+    {
+     "code": "sd",
+     "name": "Sudan",
+     "speakers": 28000000,
+     "online": 0.186,
+     "text": 0.1,
+     "online_5y": 0.335
+    },
+    {
+     "code": "iq",
+     "name": "Iraq",
+     "speakers": 26000000,
+     "online": 0.815,
+     "text": 0.595,
+     "online_5y": 0.901
+    },
+    {
+     "code": "ma",
+     "name": "Morocco",
+     "speakers": 22000000,
+     "online": 0.912,
+     "text": 0.554,
+     "online_5y": 0.937
+    }
+   ],
    "rank": 9
   },
   {
@@ -1854,12 +2249,23 @@
    ],
    "opportunities": [
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 81530000,
       "now": 24328552,
@@ -1867,13 +2273,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.134,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.911,
+      "now": 3.386,
+      "5y": 3.468
+     },
      "momentum": 1.137,
      "priority": 0.523,
      "priority_now": 0.452,
      "priority_5y": 0.527,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "ta-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "2 billion words"
+      }
+     ],
+     "why": "About 24 million Tamil speakers are online and able to text today, and that should reach 29 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 2 of 3 major services",
@@ -1885,6 +2327,14 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
      "users": {
       "speakers": 81530000,
       "now": 56581820,
@@ -1892,11 +2342,64 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.131,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.911,
+      "now": 3.753,
+      "5y": 3.835
+     },
      "momentum": 1.136,
      "priority": 0.171,
      "priority_now": 0.164,
      "priority_5y": 0.19,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "ta-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "235 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 57 million Tamil speakers are online today, and that should reach 68 million within five years. Ready to use: Mozilla Common Voice (235 hours of transcribed speech); Whisper (covers this language)."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 78000000,
+     "online": 0.7,
+     "text": 0.295,
+     "online_5y": 0.809
+    },
+    {
+     "code": "lk",
+     "name": "Sri Lanka",
+     "speakers": 3400000,
+     "online": 0.546,
+     "text": 0.347,
+     "online_5y": 0.681
+    },
+    {
+     "code": "sg",
+     "name": "Singapore",
+     "speakers": 130000,
+     "online": 0.944,
+     "text": 0.922,
+     "online_5y": 0.955
     }
    ],
    "rank": 10
@@ -1960,6 +2463,7 @@
    "missing": [],
    "opportunities": [
     {
+     "key": "asr-collect",
      "type": "collect",
      "technology": "speech_input",
      "title": "Only 16 hours of open transcribed speech",
@@ -1968,6 +2472,16 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "teams": [
+      "data",
+      "funding",
+      "speech"
+     ],
+     "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an open licence.",
+     "starter": [
+      "cv_validated_hours",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 544000000,
       "now": 380800000,
@@ -1975,11 +2489,48 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.124,
+     "cost": 3,
+     "reach": {
+      "speakers": 4.736,
+      "now": 4.581,
+      "5y": 4.663
+     },
      "momentum": 1.137,
      "priority": 0.042,
      "priority_now": 0.041,
      "priority_5y": 0.047,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "hi-asr-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "16 hours of transcribed speech"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "11 billion words"
+      }
+     ],
+     "why": "About 381 million Hindi speakers are online today, and that should reach 460 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 544000000,
+     "online": 0.7,
+     "text": 0.295,
+     "online_5y": 0.809
     }
    ],
    "rank": 11
@@ -2048,6 +2599,7 @@
    "missing": [],
    "opportunities": [
     {
+     "key": "asr-improve",
      "type": "improve",
      "technology": "speech_input",
      "title": "Speech recognition makes about 50 errors per 100 words",
@@ -2056,6 +2608,15 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "teams": [
+      "speech",
+      "data"
+     ],
+     "missing": "More transcribed speech in everyday domains, and fine-tuning of open models on it.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
      "users": {
       "speakers": 266000000,
       "now": 159839400,
@@ -2063,13 +2624,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.3,
+     "cost": 2,
+     "reach": {
+      "speakers": 4.425,
+      "now": 4.204,
+      "5y": 4.31
+     },
      "momentum": 1.176,
      "priority": 0.664,
      "priority_now": 0.631,
      "priority_5y": 0.76,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "bn-asr-improve",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "54 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 160 million Bengali speakers are online today, and that should reach 204 million within five years. Ready to use: Mozilla Common Voice (54 hours of transcribed speech); Whisper (covers this language)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 2 of 3 major services",
@@ -2081,6 +2670,14 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
      "users": {
       "speakers": 266000000,
       "now": 159839400,
@@ -2088,11 +2685,56 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.3,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.425,
+      "now": 4.204,
+      "5y": 4.31
+     },
      "momentum": 1.176,
      "priority": 0.442,
      "priority_now": 0.42,
      "priority_5y": 0.506,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "bn-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "54 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 160 million Bengali speakers are online today, and that should reach 204 million within five years. Ready to use: Mozilla Common Voice (54 hours of transcribed speech); Whisper (covers this language)."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "bd",
+     "name": "Bangladesh",
+     "speakers": 159000000,
+     "online": 0.534,
+     "text": 0.196,
+     "online_5y": 0.671
+    },
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 107000000,
+     "online": 0.7,
+     "text": 0.295,
+     "online_5y": 0.809
     }
    ],
    "rank": 12
@@ -2162,6 +2804,7 @@
    ],
    "opportunities": [
     {
+     "key": "kb-features",
      "type": "share",
      "technology": "keyboard",
      "title": "Predictive text and autocorrect could be built from open text",
@@ -2171,6 +2814,14 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "teams": [
+      "keyboards"
+     ],
+     "missing": "A word list and prediction model built from the open text, and native speakers to review the suggestions.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 288000000,
       "now": 84384000,
@@ -2178,19 +2829,57 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.375,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.459,
+      "now": 3.926,
+      "5y": 4.04
+     },
      "momentum": 1.189,
      "priority": 1.254,
      "priority_now": 1.104,
      "priority_5y": 1.351,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "ur-kb-features",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "3 billion words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "708 thousand articles"
+      }
+     ],
+     "why": "About 84 million Urdu speakers are online and able to text today, and that should reach 110 million within five years. Ready to use: FineWeb-2 (3 billion words); Wikipedia (708 thousand articles)."
     },
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 288000000,
       "now": 84384000,
@@ -2198,13 +2887,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.177,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.459,
+      "now": 3.926,
+      "5y": 4.04
+     },
      "momentum": 1.189,
      "priority": 0.791,
      "priority_now": 0.696,
      "priority_5y": 0.852,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "ur-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "3 billion words"
+      }
+     ],
+     "why": "About 84 million Urdu speakers are online and able to text today, and that should reach 110 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 2 of 3 major services",
@@ -2216,6 +2941,14 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
      "users": {
       "speakers": 288000000,
       "now": 173289600,
@@ -2223,11 +2956,56 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.144,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.459,
+      "now": 4.239,
+      "5y": 4.352
+     },
      "momentum": 1.187,
      "priority": 0.214,
      "priority_now": 0.203,
      "priority_5y": 0.248,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "ur-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "80 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 173 million Urdu speakers are online today, and that should reach 225 million within five years. Ready to use: Mozilla Common Voice (80 hours of transcribed speech); Whisper (covers this language)."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "pk",
+     "name": "Pakistan",
+     "speakers": 222000000,
+     "online": 0.573,
+     "text": 0.292,
+     "online_5y": 0.703
+    },
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 66000000,
+     "online": 0.7,
+     "text": 0.295,
+     "online_5y": 0.809
     }
    ],
    "rank": 13
@@ -2298,12 +3076,23 @@
    ],
    "opportunities": [
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 200000000,
       "now": 58560000,
@@ -2311,13 +3100,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.226,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.301,
+      "now": 3.768,
+      "5y": 3.883
+     },
      "momentum": 1.192,
      "priority": 0.972,
      "priority_now": 0.851,
      "priority_5y": 1.046,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "pa-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "541 million words"
+      }
+     ],
+     "why": "About 59 million Punjabi speakers are online and able to text today, and that should reach 76 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
+     "key": "asr-improve",
      "type": "improve",
      "technology": "speech_input",
      "title": "Speech recognition makes about 48 errors per 100 words",
@@ -2326,6 +3151,15 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "teams": [
+      "speech",
+      "data"
+     ],
+     "missing": "More transcribed speech in everyday domains, and fine-tuning of open models on it.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
      "users": {
       "speakers": 200000000,
       "now": 119220000,
@@ -2333,13 +3167,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.292,
+     "cost": 2,
+     "reach": {
+      "speakers": 4.301,
+      "now": 4.076,
+      "5y": 4.191
+     },
      "momentum": 1.191,
      "priority": 0.605,
      "priority_now": 0.573,
      "priority_5y": 0.702,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "pa-asr-improve",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2.4 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 119 million Punjabi speakers are online today, and that should reach 155 million within five years. Ready to use: Mozilla Common Voice (2.4 hours of transcribed speech); Whisper (covers this language)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 2 of 3 major services",
@@ -2351,27 +3213,13 @@
       "asr_apple",
       "cv_validated_hours"
      ],
-     "users": {
-      "speakers": 200000000,
-      "now": 119220000,
-      "5y": 155264462,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.191,
-     "priority": 0.418,
-     "priority_now": 0.396,
-     "priority_5y": 0.485,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "collect",
-     "technology": "speech_input",
-     "title": "Only 2.4 hours of open transcribed speech",
-     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
-     "gap": 0.878,
-     "evidence": [
-      "cv_validated_hours"
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
      ],
      "users": {
       "speakers": 200000000,
@@ -2380,11 +3228,116 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.292,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.301,
+      "now": 4.076,
+      "5y": 4.191
+     },
+     "momentum": 1.191,
+     "priority": 0.418,
+     "priority_now": 0.396,
+     "priority_5y": 0.485,
+     "workstream": "Tools for builders",
+     "id": "pa-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2.4 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 119 million Punjabi speakers are online today, and that should reach 155 million within five years. Ready to use: Mozilla Common Voice (2.4 hours of transcribed speech); Whisper (covers this language)."
+    },
+    {
+     "key": "asr-collect",
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 2.4 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.878,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "teams": [
+      "data",
+      "funding",
+      "speech"
+     ],
+     "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an open licence.",
+     "starter": [
+      "cv_validated_hours",
+      "web_text_words"
+     ],
+     "users": {
+      "speakers": 200000000,
+      "now": 119220000,
+      "5y": 155264462,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 0.292,
+     "cost": 3,
+     "reach": {
+      "speakers": 4.301,
+      "now": 4.076,
+      "5y": 4.191
+     },
      "momentum": 1.191,
      "priority": 0.368,
      "priority_now": 0.348,
      "priority_5y": 0.426,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "pa-asr-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2.4 hours of transcribed speech"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "541 million words"
+      }
+     ],
+     "why": "About 119 million Punjabi speakers are online today, and that should reach 155 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "pk",
+     "name": "Pakistan",
+     "speakers": 163000000,
+     "online": 0.573,
+     "text": 0.292,
+     "online_5y": 0.703
+    },
+    {
+     "code": "in",
+     "name": "India",
+     "speakers": 37000000,
+     "online": 0.7,
+     "text": 0.295,
+     "online_5y": 0.809
     }
    ],
    "rank": 14
@@ -2449,12 +3402,23 @@
    ],
    "opportunities": [
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 350000,
       "now": 343735,
@@ -2462,13 +3426,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.24,
+     "cost": 1,
+     "reach": {
+      "speakers": 1.544,
+      "now": 1.536,
+      "5y": 1.568
+     },
      "momentum": 1.053,
      "priority": 0.371,
      "priority_now": 0.369,
      "priority_5y": 0.396,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "is-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "2 billion words"
+      }
+     ],
+     "why": "About 344 thousand Icelandic speakers are online and able to text today, and that should reach 370 thousand within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 2 of 3 major services",
@@ -2480,6 +3480,14 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
      "users": {
       "speakers": 350000,
       "now": 343735,
@@ -2487,13 +3495,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.271,
+     "cost": 1,
+     "reach": {
+      "speakers": 1.544,
+      "now": 1.536,
+      "5y": 1.568
+     },
      "momentum": 1.053,
      "priority": 0.139,
      "priority_now": 0.139,
      "priority_5y": 0.149,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "is-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "0.2 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 344 thousand Icelandic speakers are online today, and that should reach 370 thousand within five years. Ready to use: Mozilla Common Voice (0.2 hours of transcribed speech); Whisper (covers this language)."
     },
     {
+     "key": "asr-collect",
      "type": "collect",
      "technology": "speech_input",
      "title": "Only 0.2 hours of open transcribed speech",
@@ -2502,27 +3538,15 @@
      "evidence": [
       "cv_validated_hours"
      ],
-     "users": {
-      "speakers": 350000,
-      "now": 343735,
-      "5y": 369788,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.053,
-     "priority": 0.138,
-     "priority_now": 0.138,
-     "priority_5y": 0.148,
-     "workstream": "Open language data"
-    },
-    {
-     "type": "improve",
-     "technology": "speech_input",
-     "title": "Speech recognition makes about 30 errors per 100 words",
-     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
-     "gap": 0.51,
-     "evidence": [
-      "asr_whisper_fleurs_wer"
+     "teams": [
+      "data",
+      "funding",
+      "speech"
+     ],
+     "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an open licence.",
+     "starter": [
+      "cv_validated_hours",
+      "web_text_words"
      ],
      "users": {
       "speakers": 350000,
@@ -2531,11 +3555,107 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.271,
+     "cost": 3,
+     "reach": {
+      "speakers": 1.544,
+      "now": 1.536,
+      "5y": 1.568
+     },
+     "momentum": 1.053,
+     "priority": 0.138,
+     "priority_now": 0.138,
+     "priority_5y": 0.148,
+     "workstream": "Open language data",
+     "id": "is-asr-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "0.2 hours of transcribed speech"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "2 billion words"
+      }
+     ],
+     "why": "About 344 thousand Icelandic speakers are online today, and that should reach 370 thousand within five years."
+    },
+    {
+     "key": "asr-improve",
+     "type": "improve",
+     "technology": "speech_input",
+     "title": "Speech recognition makes about 30 errors per 100 words",
+     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
+     "gap": 0.51,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "teams": [
+      "speech",
+      "data"
+     ],
+     "missing": "More transcribed speech in everyday domains, and fine-tuning of open models on it.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
+     "users": {
+      "speakers": 350000,
+      "now": 343735,
+      "5y": 369788,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 0.271,
+     "cost": 2,
+     "reach": {
+      "speakers": 1.544,
+      "now": 1.536,
+      "5y": 1.568
+     },
      "momentum": 1.053,
      "priority": 0.107,
      "priority_now": 0.106,
      "priority_5y": 0.114,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "is-asr-improve",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "0.2 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 344 thousand Icelandic speakers are online today, and that should reach 370 thousand within five years. Ready to use: Mozilla Common Voice (0.2 hours of transcribed speech); Whisper (covers this language)."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "is",
+     "name": "Iceland",
+     "speakers": 350000,
+     "online": 0.982,
+     "text": 0.982,
+     "online_5y": 0.98
     }
    ],
    "rank": 15
@@ -2622,14 +3742,23 @@
    "missing": [],
    "opportunities": [
     {
+     "key": "tts-share",
      "type": "share",
      "technology": "tts",
-     "title": "No cloud text-to-speech voice, though open speech data exists",
-     "detail": "Common Voice holds 392 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "title": "No cloud text-to-speech voice found, though open speech data exists",
+     "detail": "The cloud TTS service checked so far has no voice for this language. Common Voice holds 392 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
      "gap": 1.0,
      "evidence": [
       "tts_google",
       "cv_validated_hours"
+     ],
+     "teams": [
+      "tts"
+     ],
+     "missing": "Studio-quality recordings from one or two voice talents for a production voice, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
      ],
      "users": {
       "speakers": 171000000,
@@ -2638,13 +3767,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 1.0,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.233,
+      "now": 3.62,
+      "5y": 3.798
+     },
      "momentum": 1.296,
      "priority": 4.233,
      "priority_now": 3.62,
      "priority_5y": 4.92,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "sw-tts-share",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "392 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      }
+     ],
+     "why": "About 42 million Swahili speakers are online today, and that should reach 63 million within five years. Ready to use: Mozilla Common Voice (392 hours of transcribed speech); Unicode CLDR (modern coverage)."
     },
     {
+     "key": "kb-features",
      "type": "share",
      "technology": "keyboard",
      "title": "Predictive text and autocorrect could be built from open text",
@@ -2654,6 +3811,14 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "teams": [
+      "keyboards"
+     ],
+     "missing": "A word list and prediction model built from the open text, and native speakers to review the suggestions.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 171000000,
       "now": 29959200,
@@ -2661,13 +3826,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.233,
+      "now": 3.477,
+      "5y": 3.654
+     },
      "momentum": 1.295,
      "priority": 2.116,
      "priority_now": 1.738,
      "priority_5y": 2.367,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "sw-kb-features",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "574 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "133 thousand articles"
+      }
+     ],
+     "why": "About 30 million Swahili speakers are online and able to text today, and that should reach 45 million within five years. Ready to use: FineWeb-2 (574 million words); Wikipedia (133 thousand articles)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 2 of 3 major services",
@@ -2679,27 +3872,13 @@
       "asr_apple",
       "cv_validated_hours"
      ],
-     "users": {
-      "speakers": 171000000,
-      "now": 41655600,
-      "5y": 62752298,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.296,
-     "priority": 0.409,
-     "priority_now": 0.35,
-     "priority_5y": 0.475,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "improve",
-     "technology": "speech_input",
-     "title": "Speech recognition makes about 34 errors per 100 words",
-     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
-     "gap": 0.603,
-     "evidence": [
-      "asr_whisper_fleurs_wer"
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
      ],
      "users": {
       "speakers": 171000000,
@@ -2708,11 +3887,131 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.29,
+     "cost": 1,
+     "reach": {
+      "speakers": 4.233,
+      "now": 3.62,
+      "5y": 3.798
+     },
+     "momentum": 1.296,
+     "priority": 0.409,
+     "priority_now": 0.35,
+     "priority_5y": 0.475,
+     "workstream": "Tools for builders",
+     "id": "sw-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "392 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 42 million Swahili speakers are online today, and that should reach 63 million within five years. Ready to use: Mozilla Common Voice (392 hours of transcribed speech); Whisper (covers this language)."
+    },
+    {
+     "key": "asr-improve",
+     "type": "improve",
+     "technology": "speech_input",
+     "title": "Speech recognition makes about 34 errors per 100 words",
+     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
+     "gap": 0.603,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "teams": [
+      "speech",
+      "data"
+     ],
+     "missing": "More transcribed speech in everyday domains, and fine-tuning of open models on it.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
+     "users": {
+      "speakers": 171000000,
+      "now": 41655600,
+      "5y": 62752298,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 0.29,
+     "cost": 2,
+     "reach": {
+      "speakers": 4.233,
+      "now": 3.62,
+      "5y": 3.798
+     },
      "momentum": 1.296,
      "priority": 0.37,
      "priority_now": 0.316,
      "priority_5y": 0.43,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "sw-asr-improve",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "392 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 42 million Swahili speakers are online today, and that should reach 63 million within five years. Ready to use: Mozilla Common Voice (392 hours of transcribed speech); Whisper (covers this language)."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "tz",
+     "name": "Tanzania, United Republic of",
+     "speakers": 53000000,
+     "online": 0.312,
+     "text": 0.215,
+     "online_5y": 0.435
+    },
+    {
+     "code": "cd",
+     "name": "Congo, the Democratic Republic of the",
+     "speakers": 51000000,
+     "online": 0.197,
+     "text": 0.14,
+     "online_5y": 0.259
+    },
+    {
+     "code": "ke",
+     "name": "Kenya",
+     "speakers": 35000000,
+     "online": 0.35,
+     "text": 0.271,
+     "online_5y": 0.449
+    },
+    {
+     "code": "ug",
+     "name": "Uganda",
+     "speakers": 32000000,
+     "online": 0.089,
+     "text": 0.06,
+     "online_5y": 0.089
     }
    ],
    "rank": 16
@@ -2777,14 +4076,23 @@
    ],
    "opportunities": [
     {
+     "key": "tts-share",
      "type": "share",
      "technology": "tts",
-     "title": "No cloud text-to-speech voice, though open speech data exists",
-     "detail": "Common Voice holds 124 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "title": "No cloud text-to-speech voice found, though open speech data exists",
+     "detail": "The cloud TTS service checked so far has no voice for this language. Common Voice holds 124 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
      "gap": 1.0,
      "evidence": [
       "tts_google",
       "cv_validated_hours"
+     ],
+     "teams": [
+      "tts"
+     ],
+     "missing": "Studio-quality recordings from one or two voice talents for a production voice, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
      ],
      "users": {
       "speakers": 850000,
@@ -2793,13 +4101,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 1.0,
+     "cost": 1,
+     "reach": {
+      "speakers": 1.929,
+      "now": 1.909,
+      "5y": 1.918
+     },
      "momentum": 1.014,
      "priority": 1.929,
      "priority_now": 1.909,
      "priority_5y": 1.945,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "cy-tts-share",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "124 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      }
+     ],
+     "why": "About 811 thousand Welsh speakers are online today. Ready to use: Mozilla Common Voice (124 hours of transcribed speech); Unicode CLDR (modern coverage)."
     },
     {
+     "key": "kb-features",
      "type": "share",
      "technology": "keyboard",
      "title": "Predictive text and autocorrect could be built from open text",
@@ -2809,47 +4145,13 @@
       "kb_apple_features",
       "web_text_words"
      ],
-     "users": {
-      "speakers": 850000,
-      "now": 811495,
-      "5y": 827813,
-      "kind": "text",
-      "estimated": true
-     },
-     "momentum": 1.014,
-     "priority": 0.965,
-     "priority_now": 0.955,
-     "priority_5y": 0.973,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "measure",
-     "technology": "llm",
-     "title": "No published LLM benchmark results",
-     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
-     "gap": 1.0,
-     "evidence": [],
-     "users": {
-      "speakers": 850000,
-      "now": 811495,
-      "5y": 827813,
-      "kind": "text",
-      "estimated": true
-     },
-     "momentum": 1.014,
-     "priority": 0.625,
-     "priority_now": 0.618,
-     "priority_5y": 0.63,
-     "workstream": "Measurement"
-    },
-    {
-     "type": "measure",
-     "technology": "llm",
-     "title": "No reading-comprehension benchmark",
-     "detail": "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
-     "gap": 0.5,
-     "evidence": [
-      "belebele"
+     "teams": [
+      "keyboards"
+     ],
+     "missing": "A word list and prediction model built from the open text, and native speakers to review the suggestions.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
      ],
      "users": {
       "speakers": 850000,
@@ -2858,13 +4160,147 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 1.929,
+      "now": 1.909,
+      "5y": 1.918
+     },
+     "momentum": 1.014,
+     "priority": 0.965,
+     "priority_now": 0.955,
+     "priority_5y": 0.973,
+     "workstream": "Tools for builders",
+     "id": "cy-kb-features",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "523 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "285 thousand articles"
+      }
+     ],
+     "why": "About 811 thousand Welsh speakers are online and able to text today. Ready to use: FineWeb-2 (523 million words); Wikipedia (285 thousand articles)."
+    },
+    {
+     "key": "llm-measure",
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "web_text_words"
+     ],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 0.324,
+     "cost": 1,
+     "reach": {
+      "speakers": 1.929,
+      "now": 1.909,
+      "5y": 1.918
+     },
+     "momentum": 1.014,
+     "priority": 0.625,
+     "priority_now": 0.618,
+     "priority_5y": 0.63,
+     "workstream": "Measurement",
+     "id": "cy-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "523 million words"
+      }
+     ],
+     "why": "About 811 thousand Welsh speakers are online and able to text today. Ready to use: FLORES-200 (covers this language); FineWeb-2 (523 million words)."
+    },
+    {
+     "key": "llm-reading",
+     "type": "measure",
+     "technology": "llm",
+     "title": "No reading-comprehension benchmark",
+     "detail": "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
+     "gap": 0.5,
+     "evidence": [
+      "belebele"
+     ],
+     "teams": [
+      "evaluation"
+     ],
+     "missing": "Belebele's questions translated into this language. Belebele is built on FLORES-200 passages, so where those exist only the questions are needed.",
+     "starter": [
+      "flores200"
+     ],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 0.324,
+     "cost": 1,
+     "reach": {
+      "speakers": 1.929,
+      "now": 1.909,
+      "5y": 1.918
+     },
      "momentum": 1.014,
      "priority": 0.312,
      "priority_now": 0.309,
      "priority_5y": 0.315,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "cy-llm-reading",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 811 thousand Welsh speakers are online and able to text today. Ready to use: FLORES-200 (covers this language)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 2 of 3 major services",
@@ -2876,27 +4312,13 @@
       "asr_apple",
       "cv_validated_hours"
      ],
-     "users": {
-      "speakers": 850000,
-      "now": 811495,
-      "5y": 827813,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.014,
-     "priority": 0.152,
-     "priority_now": 0.15,
-     "priority_5y": 0.153,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "improve",
-     "technology": "speech_input",
-     "title": "Speech recognition makes about 29 errors per 100 words",
-     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
-     "gap": 0.465,
-     "evidence": [
-      "asr_whisper_fleurs_wer"
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
      ],
      "users": {
       "speakers": 850000,
@@ -2905,11 +4327,107 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.236,
+     "cost": 1,
+     "reach": {
+      "speakers": 1.929,
+      "now": 1.909,
+      "5y": 1.918
+     },
+     "momentum": 1.014,
+     "priority": 0.152,
+     "priority_now": 0.15,
+     "priority_5y": 0.153,
+     "workstream": "Tools for builders",
+     "id": "cy-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "124 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 811 thousand Welsh speakers are online today. Ready to use: Mozilla Common Voice (124 hours of transcribed speech); Whisper (covers this language)."
+    },
+    {
+     "key": "asr-improve",
+     "type": "improve",
+     "technology": "speech_input",
+     "title": "Speech recognition makes about 29 errors per 100 words",
+     "detail": "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
+     "gap": 0.465,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "teams": [
+      "speech",
+      "data"
+     ],
+     "missing": "More transcribed speech in everyday domains, and fine-tuning of open models on it.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
+     "users": {
+      "speakers": 850000,
+      "now": 811495,
+      "5y": 827813,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 0.236,
+     "cost": 2,
+     "reach": {
+      "speakers": 1.929,
+      "now": 1.909,
+      "5y": 1.918
+     },
      "momentum": 1.014,
      "priority": 0.106,
      "priority_now": 0.105,
      "priority_5y": 0.107,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "cy-asr-improve",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "124 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 811 thousand Welsh speakers are online today. Ready to use: Mozilla Common Voice (124 hours of transcribed speech); Whisper (covers this language)."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "gb",
+     "name": "United Kingdom",
+     "speakers": 850000,
+     "online": 0.955,
+     "text": 0.955,
+     "online_5y": 0.96
     }
    ],
    "rank": 17
@@ -2973,6 +4491,7 @@
    "missing": [],
    "opportunities": [
     {
+     "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
      "title": "No published speech recognition error rate",
@@ -2981,6 +4500,15 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "teams": [
+      "evaluation",
+      "speech"
+     ],
+     "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error rates for open and commercial models.",
+     "starter": [
+      "cv_validated_hours",
+      "flores200"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 11538800,
@@ -2988,13 +4516,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.447,
+      "now": 3.062,
+      "5y": 3.195
+     },
      "momentum": 1.221,
      "priority": 2.292,
      "priority_now": 2.036,
      "priority_5y": 2.596,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "yo-asr-measure",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "6.0 hours of transcribed speech"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 12 million Yoruba speakers are online today, and that should reach 16 million within five years. Ready to use: Mozilla Common Voice (6.0 hours of transcribed speech); FLORES-200 (covers this language)."
     },
     {
+     "key": "kb-features",
      "type": "share",
      "technology": "keyboard",
      "title": "Predictive text and autocorrect could be built from open text",
@@ -3004,6 +4560,14 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "teams": [
+      "keyboards"
+     ],
+     "missing": "A word list and prediction model built from the open text, and native speakers to review the suggestions.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 7862400,
@@ -3011,13 +4575,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
      "momentum": 1.221,
      "priority": 1.724,
      "priority_now": 1.448,
      "priority_5y": 1.85,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "yo-kb-features",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "59 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "41 thousand articles"
+      }
+     ],
+     "why": "About 7.9 million Yoruba speakers are online and able to text today, and that should reach 11 million within five years. Ready to use: FineWeb-2 (59 million words); Wikipedia (41 thousand articles)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 1 of 3 major services",
@@ -3029,28 +4621,13 @@
       "asr_apple",
       "cv_validated_hours"
      ],
-     "users": {
-      "speakers": 28000000,
-      "now": 11538800,
-      "5y": 15684858,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.221,
-     "priority": 1.529,
-     "priority_now": 1.358,
-     "priority_5y": 1.731,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "collect",
-     "technology": "tts",
-     "title": "Record a single-speaker voice for text-to-speech",
-     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
-     "gap": 1.0,
-     "evidence": [
-      "tts_google",
-      "cv_validated_hours"
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
      ],
      "users": {
       "speakers": 28000000,
@@ -3059,13 +4636,102 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.447,
+      "now": 3.062,
+      "5y": 3.195
+     },
+     "momentum": 1.221,
+     "priority": 1.529,
+     "priority_now": 1.358,
+     "priority_5y": 1.731,
+     "workstream": "Tools for builders",
+     "id": "yo-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "6.0 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 12 million Yoruba speakers are online today, and that should reach 16 million within five years. Ready to use: Mozilla Common Voice (6.0 hours of transcribed speech); Whisper (covers this language)."
+    },
+    {
+     "key": "tts-collect",
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice was found and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "teams": [
+      "tts",
+      "data",
+      "funding"
+     ],
+     "missing": "Several hours of clean single-speaker studio recordings, licensed for commercial use, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
+     ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 1.0,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.447,
+      "now": 3.062,
+      "5y": 3.195
+     },
      "momentum": 1.221,
      "priority": 1.149,
      "priority_now": 1.021,
      "priority_5y": 1.301,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "yo-tts-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "6.0 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      }
+     ],
+     "why": "About 12 million Yoruba speakers are online today, and that should reach 16 million within five years."
     },
     {
+     "key": "asr-collect",
      "type": "collect",
      "technology": "speech_input",
      "title": "Only 6.0 hours of open transcribed speech",
@@ -3074,6 +4740,16 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "teams": [
+      "data",
+      "funding",
+      "speech"
+     ],
+     "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an open licence.",
+     "starter": [
+      "cv_validated_hours",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 11538800,
@@ -3081,13 +4757,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.447,
+      "now": 3.062,
+      "5y": 3.195
+     },
      "momentum": 1.221,
      "priority": 0.536,
      "priority_now": 0.477,
      "priority_5y": 0.607,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "yo-asr-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "6.0 hours of transcribed speech"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "59 million words"
+      }
+     ],
+     "why": "About 12 million Yoruba speakers are online today, and that should reach 16 million within five years."
     },
     {
+     "key": "mt-vendors",
      "type": "share",
      "technology": "mt",
      "title": "Translation is offered by 2 of 3 major services",
@@ -3100,6 +4804,15 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "teams": [
+      "translation"
+     ],
+     "missing": "Launches in the remaining services. The open model's licence is non-commercial, so a product needs its own training data; FLORES-200 gives a shared yardstick for quality.",
+     "starter": [
+      "mt_open_nllb",
+      "flores200",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 7862400,
@@ -3107,13 +4820,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.458,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
      "momentum": 1.221,
      "priority": 0.526,
      "priority_now": 0.442,
      "priority_5y": 0.564,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "yo-mt-vendors",
+     "kit": [
+      {
+       "indicator": "mt_open_nllb",
+       "name": "NLLB-200",
+       "what": "Open translation model",
+       "licence": "CC BY-NC 4.0 (non-commercial)",
+       "link": "https://github.com/facebookresearch/fairseq/tree/nllb",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "41 thousand articles"
+      }
+     ],
+     "why": "About 7.9 million Yoruba speakers are online and able to text today, and that should reach 11 million within five years. Ready to use: NLLB-200 (covers this language); FLORES-200 (covers this language)."
     },
     {
+     "key": "llm-improve",
      "type": "improve",
      "technology": "llm",
      "title": "LLMs lag behind their English performance",
@@ -3123,6 +4872,15 @@
       "llm_global_mmlu_rel",
       "llm_mmmlu_openai"
      ],
+     "teams": [
+      "llm",
+      "data"
+     ],
+     "missing": "More high-quality text and instruction data, and evaluation by native speakers.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 7862400,
@@ -3130,19 +4888,56 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.3,
+     "cost": 2,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
      "momentum": 1.221,
      "priority": 0.259,
      "priority_now": 0.217,
      "priority_5y": 0.277,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "yo-llm-improve",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "59 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "41 thousand articles"
+      }
+     ],
+     "why": "About 7.9 million Yoruba speakers are online and able to text today, and that should reach 11 million within five years. Ready to use: FineWeb-2 (59 million words); Wikipedia (41 thousand articles)."
     },
     {
+     "key": "wiki-community",
      "type": "collect",
      "technology": "data",
      "title": "Wikipedia has 75 active editors",
      "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
      "gap": 0.25,
      "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Editor training and outreach with universities and community groups.",
+     "starter": [
+      "wikipedia_articles",
       "wikipedia_active_editors"
      ],
      "users": {
@@ -3152,13 +4947,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.438,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
      "momentum": 1.221,
      "priority": 0.126,
      "priority_now": 0.106,
      "priority_5y": 0.135,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "yo-wiki-community",
+     "kit": [
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "41 thousand articles"
+      },
+      {
+       "indicator": "wikipedia_active_editors",
+       "name": "Wikipedia editing community",
+       "what": "Editors active in the last 30 days",
+       "licence": "",
+       "link": "https://stats.wikimedia.org/",
+       "size": "75 active editors"
+      }
+     ],
+     "why": "About 7.9 million Yoruba speakers are online and able to text today, and that should reach 11 million within five years."
     },
     {
+     "key": "text-collect",
      "type": "collect",
      "technology": "data",
      "title": "Only about 59 million words of open web text",
@@ -3167,6 +4990,15 @@
      "evidence": [
       "web_text_words"
      ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Digitised books, news and public-sector text, with OCR where needed and clear licences.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 7862400,
@@ -3174,11 +5006,48 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.438,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
      "momentum": 1.221,
      "priority": 0.029,
      "priority_now": 0.025,
      "priority_5y": 0.031,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "yo-text-collect",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "59 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "41 thousand articles"
+      }
+     ],
+     "why": "About 7.9 million Yoruba speakers are online and able to text today, and that should reach 11 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "ng",
+     "name": "Nigeria",
+     "speakers": 28000000,
+     "online": 0.412,
+     "text": 0.281,
+     "online_5y": 0.506
     }
    ],
    "rank": 18
@@ -3248,6 +5117,7 @@
    ],
    "opportunities": [
     {
+     "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
      "title": "No published speech recognition error rate",
@@ -3256,6 +5126,15 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "teams": [
+      "evaluation",
+      "speech"
+     ],
+     "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error rates for open and commercial models.",
+     "starter": [
+      "cv_validated_hours",
+      "flores200"
+     ],
      "users": {
       "speakers": 28250000,
       "now": 11720925,
@@ -3263,13 +5142,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.451,
+      "now": 3.069,
+      "5y": 3.202
+     },
      "momentum": 1.22,
      "priority": 2.295,
      "priority_now": 2.041,
      "priority_5y": 2.598,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "ha-asr-measure",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "4.3 hours of transcribed speech"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 12 million Hausa speakers are online today, and that should reach 16 million within five years. Ready to use: Mozilla Common Voice (4.3 hours of transcribed speech); FLORES-200 (covers this language)."
     },
     {
+     "key": "kb-features",
      "type": "share",
      "technology": "keyboard",
      "title": "Predictive text and autocorrect could be built from open text",
@@ -3279,6 +5186,14 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "teams": [
+      "keyboards"
+     ],
+     "missing": "A word list and prediction model built from the open text, and native speakers to review the suggestions.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 28250000,
       "now": 7991925,
@@ -3286,13 +5201,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.451,
+      "now": 2.903,
+      "5y": 3.035
+     },
      "momentum": 1.22,
      "priority": 1.726,
      "priority_now": 1.451,
      "priority_5y": 1.852,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "ha-kb-features",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "273 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "122 thousand articles"
+      }
+     ],
+     "why": "About 8.0 million Hausa speakers are online and able to text today, and that should reach 11 million within five years. Ready to use: FineWeb-2 (273 million words); Wikipedia (122 thousand articles)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 1 of 3 major services",
@@ -3304,48 +5247,13 @@
       "asr_apple",
       "cv_validated_hours"
      ],
-     "users": {
-      "speakers": 28250000,
-      "now": 11720925,
-      "5y": 15909631,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.22,
-     "priority": 1.531,
-     "priority_now": 1.361,
-     "priority_5y": 1.733,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "measure",
-     "technology": "llm",
-     "title": "No published LLM benchmark results",
-     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
-     "gap": 1.0,
-     "evidence": [],
-     "users": {
-      "speakers": 28250000,
-      "now": 7991925,
-      "5y": 10848329,
-      "kind": "text",
-      "estimated": true
-     },
-     "momentum": 1.22,
-     "priority": 1.4,
-     "priority_now": 1.178,
-     "priority_5y": 1.503,
-     "workstream": "Measurement"
-    },
-    {
-     "type": "collect",
-     "technology": "tts",
-     "title": "Record a single-speaker voice for text-to-speech",
-     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
-     "gap": 1.0,
-     "evidence": [
-      "tts_google",
-      "cv_validated_hours"
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
      ],
      "users": {
       "speakers": 28250000,
@@ -3354,13 +5262,168 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.451,
+      "now": 3.069,
+      "5y": 3.202
+     },
+     "momentum": 1.22,
+     "priority": 1.531,
+     "priority_now": 1.361,
+     "priority_5y": 1.733,
+     "workstream": "Tools for builders",
+     "id": "ha-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "4.3 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 12 million Hausa speakers are online today, and that should reach 16 million within five years. Ready to use: Mozilla Common Voice (4.3 hours of transcribed speech); Whisper (covers this language)."
+    },
+    {
+     "key": "llm-measure",
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
+     "users": {
+      "speakers": 28250000,
+      "now": 7991925,
+      "5y": 10848329,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 0.406,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.451,
+      "now": 2.903,
+      "5y": 3.035
+     },
+     "momentum": 1.22,
+     "priority": 1.4,
+     "priority_now": 1.178,
+     "priority_5y": 1.503,
+     "workstream": "Measurement",
+     "id": "ha-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "273 million words"
+      }
+     ],
+     "why": "About 8.0 million Hausa speakers are online and able to text today, and that should reach 11 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
+    },
+    {
+     "key": "tts-collect",
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice was found and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "teams": [
+      "tts",
+      "data",
+      "funding"
+     ],
+     "missing": "Several hours of clean single-speaker studio recordings, licensed for commercial use, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
+     ],
+     "users": {
+      "speakers": 28250000,
+      "now": 11720925,
+      "5y": 15909631,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 1.0,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.451,
+      "now": 3.069,
+      "5y": 3.202
+     },
      "momentum": 1.22,
      "priority": 1.15,
      "priority_now": 1.023,
      "priority_5y": 1.302,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "ha-tts-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "4.3 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      }
+     ],
+     "why": "About 12 million Hausa speakers are online today, and that should reach 16 million within five years."
     },
     {
+     "key": "asr-collect",
      "type": "collect",
      "technology": "speech_input",
      "title": "Only 4.3 hours of open transcribed speech",
@@ -3369,6 +5432,16 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "teams": [
+      "data",
+      "funding",
+      "speech"
+     ],
+     "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an open licence.",
+     "starter": [
+      "cv_validated_hours",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 28250000,
       "now": 11720925,
@@ -3376,11 +5449,56 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.451,
+      "now": 3.069,
+      "5y": 3.202
+     },
      "momentum": 1.22,
      "priority": 0.598,
      "priority_now": 0.532,
      "priority_5y": 0.677,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "ha-asr-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "4.3 hours of transcribed speech"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "273 million words"
+      }
+     ],
+     "why": "About 12 million Hausa speakers are online today, and that should reach 16 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "ng",
+     "name": "Nigeria",
+     "speakers": 28000000,
+     "online": 0.412,
+     "text": 0.281,
+     "online_5y": 0.506
+    },
+    {
+     "code": "gh",
+     "name": "Ghana",
+     "speakers": 250000,
+     "online": 0.722,
+     "text": 0.515,
+     "online_5y": 0.827
     }
    ],
    "rank": 19
@@ -3445,6 +5563,7 @@
    ],
    "opportunities": [
     {
+     "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
      "title": "No published speech recognition error rate",
@@ -3453,48 +5572,14 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
-     "users": {
-      "speakers": 36000000,
-      "now": 7898400,
-      "5y": 11220414,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.253,
-     "priority": 1.423,
-     "priority_now": 1.159,
-     "priority_5y": 1.529,
-     "workstream": "Measurement"
-    },
-    {
-     "type": "measure",
-     "technology": "llm",
-     "title": "No published LLM benchmark results",
-     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
-     "gap": 1.0,
-     "evidence": [],
-     "users": {
-      "speakers": 36000000,
-      "now": 4111200,
-      "5y": 5838862,
-      "kind": "text",
-      "estimated": true
-     },
-     "momentum": 1.253,
-     "priority": 1.458,
-     "priority_now": 1.072,
-     "priority_5y": 1.422,
-     "workstream": "Measurement"
-    },
-    {
-     "type": "collect",
-     "technology": "tts",
-     "title": "Record a single-speaker voice for text-to-speech",
-     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
-     "gap": 1.0,
-     "evidence": [
-      "tts_google",
-      "cv_validated_hours"
+     "teams": [
+      "evaluation",
+      "speech"
+     ],
+     "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error rates for open and commercial models.",
+     "starter": [
+      "cv_validated_hours",
+      "flores200"
      ],
      "users": {
       "speakers": 36000000,
@@ -3503,13 +5588,168 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.4,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.556,
+      "now": 2.898,
+      "5y": 3.05
+     },
+     "momentum": 1.253,
+     "priority": 1.423,
+     "priority_now": 1.159,
+     "priority_5y": 1.529,
+     "workstream": "Measurement",
+     "id": "am-asr-measure",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "1.9 hours of transcribed speech"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 7.9 million Amharic speakers are online today, and that should reach 11 million within five years. Ready to use: Mozilla Common Voice (1.9 hours of transcribed speech); FLORES-200 (covers this language)."
+    },
+    {
+     "key": "llm-measure",
+     "type": "measure",
+     "technology": "llm",
+     "title": "No published LLM benchmark results",
+     "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
+     "gap": 1.0,
+     "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
+     "users": {
+      "speakers": 36000000,
+      "now": 4111200,
+      "5y": 5838862,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 0.41,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.556,
+      "now": 2.614,
+      "5y": 2.766
+     },
+     "momentum": 1.253,
+     "priority": 1.458,
+     "priority_now": 1.072,
+     "priority_5y": 1.422,
+     "workstream": "Measurement",
+     "id": "am-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "240 million words"
+      }
+     ],
+     "why": "About 4.1 million Amharic speakers are online and able to text today, and that should reach 5.8 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
+    },
+    {
+     "key": "tts-collect",
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice was found and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "teams": [
+      "tts",
+      "data",
+      "funding"
+     ],
+     "missing": "Several hours of clean single-speaker studio recordings, licensed for commercial use, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
+     ],
+     "users": {
+      "speakers": 36000000,
+      "now": 7898400,
+      "5y": 11220414,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 1.0,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.556,
+      "now": 2.898,
+      "5y": 3.05
+     },
      "momentum": 1.253,
      "priority": 1.185,
      "priority_now": 0.966,
      "priority_5y": 1.274,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "am-tts-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "1.9 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      }
+     ],
+     "why": "About 7.9 million Amharic speakers are online today, and that should reach 11 million within five years."
     },
     {
+     "key": "kb-platform",
      "type": "share",
      "technology": "keyboard",
      "title": "A keyboard layout exists but isn't on every major platform",
@@ -3519,6 +5759,16 @@
       "kb_gboard",
       "kb_apple"
      ],
+     "teams": [
+      "keyboards",
+      "standards"
+     ],
+     "missing": "An openly licensed version of the layout in CLDR Keyboards format, then a launch on the remaining platforms.",
+     "starter": [
+      "kb_gboard",
+      "cldr_coverage",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 36000000,
       "now": 4111200,
@@ -3526,13 +5776,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.556,
+      "now": 2.614,
+      "5y": 2.766
+     },
      "momentum": 1.253,
      "priority": 1.182,
      "priority_now": 0.869,
      "priority_5y": 1.153,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "am-kb-platform",
+     "kit": [
+      {
+       "indicator": "kb_gboard",
+       "name": "Android keyboard layout",
+       "what": "A layout already shipping on Android",
+       "licence": "Not openly licensed",
+       "link": "https://support.google.com/gboard/answer/6380730",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "240 million words"
+      }
+     ],
+     "why": "About 4.1 million Amharic speakers are online and able to text today, and that should reach 5.8 million within five years. Ready to use: Unicode CLDR (modern coverage); FineWeb-2 (240 million words)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 2 of 3 major services",
@@ -3544,6 +5830,14 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours",
+      "asr_open_whisper"
+     ],
      "users": {
       "speakers": 36000000,
       "now": 7898400,
@@ -3551,13 +5845,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.4,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.556,
+      "now": 2.898,
+      "5y": 3.05
+     },
      "momentum": 1.253,
      "priority": 0.474,
      "priority_now": 0.386,
      "priority_5y": 0.509,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "am-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "1.9 hours of transcribed speech"
+      },
+      {
+       "indicator": "asr_open_whisper",
+       "name": "Whisper",
+       "what": "Open speech recognition model",
+       "licence": "MIT",
+       "link": "https://github.com/openai/whisper",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 7.9 million Amharic speakers are online today, and that should reach 11 million within five years. Ready to use: Mozilla Common Voice (1.9 hours of transcribed speech); Whisper (covers this language)."
     },
     {
+     "key": "mt-vendors",
      "type": "share",
      "technology": "mt",
      "title": "Translation is offered by 2 of 3 major services",
@@ -3570,6 +5892,15 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "teams": [
+      "translation"
+     ],
+     "missing": "Launches in the remaining services. The open model's licence is non-commercial, so a product needs its own training data; FLORES-200 gives a shared yardstick for quality.",
+     "starter": [
+      "mt_open_nllb",
+      "flores200",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 36000000,
       "now": 4111200,
@@ -3577,13 +5908,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.438,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.556,
+      "now": 2.614,
+      "5y": 2.766
+     },
      "momentum": 1.253,
      "priority": 0.519,
      "priority_now": 0.381,
      "priority_5y": 0.506,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "am-mt-vendors",
+     "kit": [
+      {
+       "indicator": "mt_open_nllb",
+       "name": "NLLB-200",
+       "what": "Open translation model",
+       "licence": "CC BY-NC 4.0 (non-commercial)",
+       "link": "https://github.com/facebookresearch/fairseq/tree/nllb",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "16 thousand articles"
+      }
+     ],
+     "why": "About 4.1 million Amharic speakers are online and able to text today, and that should reach 5.8 million within five years. Ready to use: NLLB-200 (covers this language); FLORES-200 (covers this language)."
     },
     {
+     "key": "asr-collect",
      "type": "collect",
      "technology": "speech_input",
      "title": "Only 1.9 hours of open transcribed speech",
@@ -3592,6 +5959,16 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "teams": [
+      "data",
+      "funding",
+      "speech"
+     ],
+     "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an open licence.",
+     "starter": [
+      "cv_validated_hours",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 36000000,
       "now": 7898400,
@@ -3599,19 +5976,56 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.4,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.556,
+      "now": 2.898,
+      "5y": 3.05
+     },
      "momentum": 1.253,
      "priority": 0.428,
      "priority_now": 0.349,
      "priority_5y": 0.46,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "am-asr-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "1.9 hours of transcribed speech"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "240 million words"
+      }
+     ],
+     "why": "About 7.9 million Amharic speakers are online today, and that should reach 11 million within five years."
     },
     {
+     "key": "wiki-community",
      "type": "collect",
      "technology": "data",
      "title": "Wikipedia has 59 active editors",
      "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
      "gap": 0.41,
      "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Editor training and outreach with universities and community groups.",
+     "starter": [
+      "wikipedia_articles",
       "wikipedia_active_editors"
      ],
      "users": {
@@ -3621,11 +6035,48 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.452,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.556,
+      "now": 2.614,
+      "5y": 2.766
+     },
      "momentum": 1.253,
      "priority": 0.219,
      "priority_now": 0.161,
      "priority_5y": 0.214,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "am-wiki-community",
+     "kit": [
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "16 thousand articles"
+      },
+      {
+       "indicator": "wikipedia_active_editors",
+       "name": "Wikipedia editing community",
+       "what": "Editors active in the last 30 days",
+       "licence": "",
+       "link": "https://stats.wikimedia.org/",
+       "size": "59 active editors"
+      }
+     ],
+     "why": "About 4.1 million Amharic speakers are online and able to text today, and that should reach 5.8 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 36000000,
+     "online": 0.219,
+     "text": 0.114,
+     "online_5y": 0.275
     }
    ],
    "rank": 20
@@ -3690,6 +6141,7 @@
    ],
    "opportunities": [
     {
+     "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
      "title": "No published speech recognition error rate",
@@ -3698,6 +6150,15 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "teams": [
+      "evaluation",
+      "speech"
+     ],
+     "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error rates for open and commercial models.",
+     "starter": [
+      "cv_validated_hours",
+      "flores200"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 11538800,
@@ -3705,13 +6166,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.447,
+      "now": 3.062,
+      "5y": 3.195
+     },
      "momentum": 1.221,
      "priority": 2.292,
      "priority_now": 2.036,
      "priority_5y": 2.596,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "ig-asr-measure",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2.9 hours of transcribed speech"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 12 million Igbo speakers are online today, and that should reach 16 million within five years. Ready to use: Mozilla Common Voice (2.9 hours of transcribed speech); FLORES-200 (covers this language)."
     },
     {
+     "key": "kb-features",
      "type": "share",
      "technology": "keyboard",
      "title": "Predictive text and autocorrect could be built from open text",
@@ -3721,6 +6210,14 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "teams": [
+      "keyboards"
+     ],
+     "missing": "A word list and prediction model built from the open text, and native speakers to review the suggestions.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 7862400,
@@ -3728,13 +6225,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
      "momentum": 1.221,
      "priority": 1.724,
      "priority_now": 1.448,
      "priority_5y": 1.85,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "ig-kb-features",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "76 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "49 thousand articles"
+      }
+     ],
+     "why": "About 7.9 million Igbo speakers are online and able to text today, and that should reach 11 million within five years. Ready to use: FineWeb-2 (76 million words); Wikipedia (49 thousand articles)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 1 of 3 major services",
@@ -3746,6 +6271,13 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours"
+     ],
      "users": {
       "speakers": 28000000,
       "now": 11538800,
@@ -3753,84 +6285,47 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.447,
+      "now": 3.062,
+      "5y": 3.195
+     },
      "momentum": 1.221,
      "priority": 1.529,
      "priority_now": 1.358,
      "priority_5y": 1.731,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "ig-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2.9 hours of transcribed speech"
+      }
+     ],
+     "why": "About 12 million Igbo speakers are online today, and that should reach 16 million within five years. Ready to use: Mozilla Common Voice (2.9 hours of transcribed speech)."
     },
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
-     "users": {
-      "speakers": 28000000,
-      "now": 7862400,
-      "5y": 10686046,
-      "kind": "text",
-      "estimated": true
-     },
-     "momentum": 1.221,
-     "priority": 1.468,
-     "priority_now": 1.233,
-     "priority_5y": 1.575,
-     "workstream": "Measurement"
-    },
-    {
-     "type": "collect",
-     "technology": "tts",
-     "title": "Record a single-speaker voice for text-to-speech",
-     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
-     "gap": 1.0,
-     "evidence": [
-      "tts_google",
-      "cv_validated_hours"
+     "teams": [
+      "evaluation",
+      "llm"
      ],
-     "users": {
-      "speakers": 28000000,
-      "now": 11538800,
-      "5y": 15684858,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.221,
-     "priority": 1.149,
-     "priority_now": 1.021,
-     "priority_5y": 1.301,
-     "workstream": "Open language data"
-    },
-    {
-     "type": "collect",
-     "technology": "speech_input",
-     "title": "Only 2.9 hours of open transcribed speech",
-     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
-     "gap": 0.857,
-     "evidence": [
-      "cv_validated_hours"
-     ],
-     "users": {
-      "speakers": 28000000,
-      "now": 11538800,
-      "5y": 15684858,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.221,
-     "priority": 0.655,
-     "priority_now": 0.582,
-     "priority_5y": 0.741,
-     "workstream": "Open language data"
-    },
-    {
-     "type": "collect",
-     "technology": "data",
-     "title": "Only about 76 million words of open web text",
-     "detail": "Little text online limits language models and word prediction. Digitising books and news archives is often the fastest route.",
-     "gap": 0.03,
-     "evidence": [
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
       "web_text_words"
      ],
      "users": {
@@ -3840,19 +6335,244 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.426,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
+     "momentum": 1.221,
+     "priority": 1.468,
+     "priority_now": 1.233,
+     "priority_5y": 1.575,
+     "workstream": "Measurement",
+     "id": "ig-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "76 million words"
+      }
+     ],
+     "why": "About 7.9 million Igbo speakers are online and able to text today, and that should reach 11 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
+    },
+    {
+     "key": "tts-collect",
+     "type": "collect",
+     "technology": "tts",
+     "title": "Record a single-speaker voice for text-to-speech",
+     "detail": "No cloud voice was found and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "teams": [
+      "tts",
+      "data",
+      "funding"
+     ],
+     "missing": "Several hours of clean single-speaker studio recordings, licensed for commercial use, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
+     ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 1.0,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.447,
+      "now": 3.062,
+      "5y": 3.195
+     },
+     "momentum": 1.221,
+     "priority": 1.149,
+     "priority_now": 1.021,
+     "priority_5y": 1.301,
+     "workstream": "Open language data",
+     "id": "ig-tts-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2.9 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      }
+     ],
+     "why": "About 12 million Igbo speakers are online today, and that should reach 16 million within five years."
+    },
+    {
+     "key": "asr-collect",
+     "type": "collect",
+     "technology": "speech_input",
+     "title": "Only 2.9 hours of open transcribed speech",
+     "detail": "Common Voice is one source among several; other corpora may exist and should be checked first. Image-prompted field collection has worked at scale for Indian and African languages.",
+     "gap": 0.857,
+     "evidence": [
+      "cv_validated_hours"
+     ],
+     "teams": [
+      "data",
+      "funding",
+      "speech"
+     ],
+     "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an open licence.",
+     "starter": [
+      "cv_validated_hours",
+      "web_text_words"
+     ],
+     "users": {
+      "speakers": 28000000,
+      "now": 11538800,
+      "5y": 15684858,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 0.665,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.447,
+      "now": 3.062,
+      "5y": 3.195
+     },
+     "momentum": 1.221,
+     "priority": 0.655,
+     "priority_now": 0.582,
+     "priority_5y": 0.741,
+     "workstream": "Open language data",
+     "id": "ig-asr-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2.9 hours of transcribed speech"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "76 million words"
+      }
+     ],
+     "why": "About 12 million Igbo speakers are online today, and that should reach 16 million within five years."
+    },
+    {
+     "key": "text-collect",
+     "type": "collect",
+     "technology": "data",
+     "title": "Only about 76 million words of open web text",
+     "detail": "Little text online limits language models and word prediction. Digitising books and news archives is often the fastest route.",
+     "gap": 0.03,
+     "evidence": [
+      "web_text_words"
+     ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Digitised books, news and public-sector text, with OCR where needed and clear licences.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
+     "users": {
+      "speakers": 28000000,
+      "now": 7862400,
+      "5y": 10686046,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 0.45,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
      "momentum": 1.221,
      "priority": 0.016,
      "priority_now": 0.013,
      "priority_5y": 0.017,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "ig-text-collect",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "76 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "49 thousand articles"
+      }
+     ],
+     "why": "About 7.9 million Igbo speakers are online and able to text today, and that should reach 11 million within five years."
     },
     {
+     "key": "wiki-community",
      "type": "collect",
      "technology": "data",
      "title": "Wikipedia has 97 active editors",
      "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
      "gap": 0.03,
      "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Editor training and outreach with universities and community groups.",
+     "starter": [
+      "wikipedia_articles",
       "wikipedia_active_editors"
      ],
      "users": {
@@ -3862,11 +6582,48 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.45,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.447,
+      "now": 2.896,
+      "5y": 3.029
+     },
      "momentum": 1.221,
      "priority": 0.016,
      "priority_now": 0.013,
      "priority_5y": 0.017,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "ig-wiki-community",
+     "kit": [
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "49 thousand articles"
+      },
+      {
+       "indicator": "wikipedia_active_editors",
+       "name": "Wikipedia editing community",
+       "what": "Editors active in the last 30 days",
+       "licence": "",
+       "link": "https://stats.wikimedia.org/",
+       "size": "97 active editors"
+      }
+     ],
+     "why": "About 7.9 million Igbo speakers are online and able to text today, and that should reach 11 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "ng",
+     "name": "Nigeria",
+     "speakers": 28000000,
+     "online": 0.412,
+     "text": 0.281,
+     "online_5y": 0.506
     }
    ],
    "rank": 21
@@ -3931,14 +6688,23 @@
    ],
    "opportunities": [
     {
+     "key": "tts-share",
      "type": "share",
      "technology": "tts",
-     "title": "No cloud text-to-speech voice, though open speech data exists",
-     "detail": "Common Voice holds 2,002 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "title": "No cloud text-to-speech voice found, though open speech data exists",
+     "detail": "The cloud TTS service checked so far has no voice for this language. Common Voice holds 2,002 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
      "gap": 1.0,
      "evidence": [
       "tts_google",
       "cv_validated_hours"
+     ],
+     "teams": [
+      "tts"
+     ],
+     "missing": "Studio-quality recordings from one or two voice talents for a production voice, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
      ],
      "users": {
       "speakers": 9800000,
@@ -3947,13 +6713,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 1.0,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.991,
+      "now": 2.492,
+      "5y": 2.64
+     },
      "momentum": 1.245,
      "priority": 2.991,
      "priority_now": 2.492,
      "priority_5y": 3.288,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "rw-tts-share",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2,002 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "basic coverage"
+      }
+     ],
+     "why": "About 3.1 million Kinyarwanda speakers are online today, and that should reach 4.4 million within five years. Ready to use: Mozilla Common Voice (2,002 hours of transcribed speech); Unicode CLDR (basic coverage)."
     },
     {
+     "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
      "title": "No published speech recognition error rate",
@@ -3962,6 +6756,15 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "teams": [
+      "evaluation",
+      "speech"
+     ],
+     "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error rates for open and commercial models.",
+     "starter": [
+      "cv_validated_hours",
+      "flores200"
+     ],
      "users": {
       "speakers": 9800000,
       "now": 3106600,
@@ -3969,13 +6772,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.991,
+      "now": 2.492,
+      "5y": 2.64
+     },
      "momentum": 1.245,
      "priority": 1.989,
      "priority_now": 1.657,
      "priority_5y": 2.186,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "rw-asr-measure",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2,002 hours of transcribed speech"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 3.1 million Kinyarwanda speakers are online today, and that should reach 4.4 million within five years. Ready to use: Mozilla Common Voice (2,002 hours of transcribed speech); FLORES-200 (covers this language)."
     },
     {
+     "key": "kb-features",
      "type": "share",
      "technology": "keyboard",
      "title": "Predictive text and autocorrect could be built from open text",
@@ -3985,6 +6816,14 @@
       "kb_apple_features",
       "web_text_words"
      ],
+     "teams": [
+      "keyboards"
+     ],
+     "missing": "A word list and prediction model built from the open text, and native speakers to review the suggestions.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 9800000,
       "now": 2447060,
@@ -3992,13 +6831,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.991,
+      "now": 2.389,
+      "5y": 2.536
+     },
      "momentum": 1.245,
      "priority": 1.496,
      "priority_now": 1.194,
      "priority_5y": 1.579,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "rw-kb-features",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "128 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "11 thousand articles"
+      }
+     ],
+     "why": "About 2.4 million Kinyarwanda speakers are online and able to text today, and that should reach 3.4 million within five years. Ready to use: FineWeb-2 (128 million words); Wikipedia (11 thousand articles)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 1 of 3 major services",
@@ -4010,6 +6877,13 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours"
+     ],
      "users": {
       "speakers": 9800000,
       "now": 3106600,
@@ -4017,19 +6891,49 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.991,
+      "now": 2.492,
+      "5y": 2.64
+     },
      "momentum": 1.245,
      "priority": 1.327,
      "priority_now": 1.105,
      "priority_5y": 1.458,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "rw-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "2,002 hours of transcribed speech"
+      }
+     ],
+     "why": "About 3.1 million Kinyarwanda speakers are online today, and that should reach 4.4 million within five years. Ready to use: Mozilla Common Voice (2,002 hours of transcribed speech)."
     },
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 9800000,
       "now": 2447060,
@@ -4037,19 +6941,63 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.446,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.991,
+      "now": 2.389,
+      "5y": 2.536
+     },
      "momentum": 1.245,
      "priority": 1.333,
      "priority_now": 1.064,
      "priority_5y": 1.407,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "rw-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "128 million words"
+      }
+     ],
+     "why": "About 2.4 million Kinyarwanda speakers are online and able to text today, and that should reach 3.4 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
+     "key": "cldr",
      "type": "standardise",
      "technology": "writing",
      "title": "Locale data in Unicode CLDR is basic",
      "detail": "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, keyboards and reading numbers aloud in text-to-speech.",
      "gap": 0.667,
      "evidence": [
+      "cldr_coverage"
+     ],
+     "teams": [
+      "standards",
+      "keyboards"
+     ],
+     "missing": "Native speakers contributing through the CLDR Survey Tool to reach modern coverage.",
+     "starter": [
       "cldr_coverage"
      ],
      "users": {
@@ -4059,13 +7007,33 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.333,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.991,
+      "now": 2.389,
+      "5y": 2.536
+     },
      "momentum": 1.245,
      "priority": 0.665,
      "priority_now": 0.531,
      "priority_5y": 0.702,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "rw-cldr",
+     "kit": [
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "basic coverage"
+      }
+     ],
+     "why": "About 2.4 million Kinyarwanda speakers are online and able to text today, and that should reach 3.4 million within five years. Ready to use: Unicode CLDR (basic coverage)."
     },
     {
+     "key": "mt-vendors",
      "type": "share",
      "technology": "mt",
      "title": "Translation is offered by 2 of 3 major services",
@@ -4078,6 +7046,15 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "teams": [
+      "translation"
+     ],
+     "missing": "Launches in the remaining services. The open model's licence is non-commercial, so a product needs its own training data; FLORES-200 gives a shared yardstick for quality.",
+     "starter": [
+      "mt_open_nllb",
+      "flores200",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 9800000,
       "now": 2447060,
@@ -4085,19 +7062,64 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.458,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.991,
+      "now": 2.389,
+      "5y": 2.536
+     },
      "momentum": 1.245,
      "priority": 0.456,
      "priority_now": 0.364,
      "priority_5y": 0.482,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "rw-mt-vendors",
+     "kit": [
+      {
+       "indicator": "mt_open_nllb",
+       "name": "NLLB-200",
+       "what": "Open translation model",
+       "licence": "CC BY-NC 4.0 (non-commercial)",
+       "link": "https://github.com/facebookresearch/fairseq/tree/nllb",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "11 thousand articles"
+      }
+     ],
+     "why": "About 2.4 million Kinyarwanda speakers are online and able to text today, and that should reach 3.4 million within five years. Ready to use: NLLB-200 (covers this language); FLORES-200 (covers this language)."
     },
     {
+     "key": "wiki-community",
      "type": "collect",
      "technology": "data",
      "title": "Wikipedia has 67 active editors",
      "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
      "gap": 0.33,
      "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Editor training and outreach with universities and community groups.",
+     "starter": [
+      "wikipedia_articles",
       "wikipedia_active_editors"
      ],
      "users": {
@@ -4107,11 +7129,48 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.257,
+     "cost": 3,
+     "reach": {
+      "speakers": 2.991,
+      "now": 2.389,
+      "5y": 2.536
+     },
      "momentum": 1.245,
      "priority": 0.085,
      "priority_now": 0.068,
      "priority_5y": 0.089,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "rw-wiki-community",
+     "kit": [
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "11 thousand articles"
+      },
+      {
+       "indicator": "wikipedia_active_editors",
+       "name": "Wikipedia editing community",
+       "what": "Editors active in the last 30 days",
+       "licence": "",
+       "link": "https://stats.wikimedia.org/",
+       "size": "67 active editors"
+      }
+     ],
+     "why": "About 2.4 million Kinyarwanda speakers are online and able to text today, and that should reach 3.4 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "rw",
+     "name": "Rwanda",
+     "speakers": 9800000,
+     "online": 0.317,
+     "text": 0.25,
+     "online_5y": 0.4
     }
    ],
    "rank": 22
@@ -4224,6 +7283,7 @@
    ],
    "opportunities": [
     {
+     "key": "asr-none",
      "type": "share",
      "technology": "speech_input",
      "title": "No major speech input service, though open resources exist",
@@ -4236,49 +7296,11 @@
       "cv_validated_hours",
       "asr_open_whisper"
      ],
-     "users": {
-      "speakers": 8500000,
-      "now": 6883300,
-      "5y": 8083495,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.116,
-     "priority": 2.929,
-     "priority_now": 2.838,
-     "priority_5y": 3.245,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "measure",
-     "technology": "speech_input",
-     "title": "No published speech recognition error rate",
-     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
-     "gap": 1.0,
-     "evidence": [
-      "asr_whisper_fleurs_wer"
+     "teams": [
+      "speech"
      ],
-     "users": {
-      "speakers": 8500000,
-      "now": 6883300,
-      "5y": 8083495,
-      "kind": "voice",
-      "estimated": true
-     },
-     "momentum": 1.116,
-     "priority": 2.929,
-     "priority_now": 2.838,
-     "priority_5y": 3.245,
-     "workstream": "Measurement"
-    },
-    {
-     "type": "share",
-     "technology": "tts",
-     "title": "No cloud text-to-speech voice, though open speech data exists",
-     "detail": "Common Voice holds 178 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
-     "gap": 1.0,
-     "evidence": [
-      "tts_google",
+     "missing": "A production model and a launch. If the open recordings come from few speakers, more varied voices first.",
+     "starter": [
       "cv_validated_hours"
      ],
      "users": {
@@ -4288,19 +7310,166 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 1.0,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.838,
+      "5y": 2.908
+     },
      "momentum": 1.116,
      "priority": 2.929,
      "priority_now": 2.838,
      "priority_5y": 3.245,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "qu-asr-none",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "178 hours of transcribed speech"
+      }
+     ],
+     "why": "About 6.9 million Quechua speakers are online today, and that should reach 8.1 million within five years. Ready to use: Mozilla Common Voice (178 hours of transcribed speech)."
     },
     {
+     "key": "asr-measure",
+     "type": "measure",
+     "technology": "speech_input",
+     "title": "No published speech recognition error rate",
+     "detail": "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't tell how usable open speech recognition is.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_whisper_fleurs_wer"
+     ],
+     "teams": [
+      "evaluation",
+      "speech"
+     ],
+     "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error rates for open and commercial models.",
+     "starter": [
+      "cv_validated_hours",
+      "flores200"
+     ],
+     "users": {
+      "speakers": 8500000,
+      "now": 6883300,
+      "5y": 8083495,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 1.0,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.838,
+      "5y": 2.908
+     },
+     "momentum": 1.116,
+     "priority": 2.929,
+     "priority_now": 2.838,
+     "priority_5y": 3.245,
+     "workstream": "Measurement",
+     "id": "qu-asr-measure",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "178 hours of transcribed speech"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 6.9 million Quechua speakers are online today, and that should reach 8.1 million within five years. Ready to use: Mozilla Common Voice (178 hours of transcribed speech); FLORES-200 (covers this language)."
+    },
+    {
+     "key": "tts-share",
+     "type": "share",
+     "technology": "tts",
+     "title": "No cloud text-to-speech voice found, though open speech data exists",
+     "detail": "The cloud TTS service checked so far has no voice for this language. Common Voice holds 178 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "gap": 1.0,
+     "evidence": [
+      "tts_google",
+      "cv_validated_hours"
+     ],
+     "teams": [
+      "tts"
+     ],
+     "missing": "Studio-quality recordings from one or two voice talents for a production voice, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
+     ],
+     "users": {
+      "speakers": 8500000,
+      "now": 6883300,
+      "5y": 8083495,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 1.0,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.838,
+      "5y": 2.908
+     },
+     "momentum": 1.116,
+     "priority": 2.929,
+     "priority_now": 2.838,
+     "priority_5y": 3.245,
+     "workstream": "Tools for builders",
+     "id": "qu-tts-share",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "178 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      }
+     ],
+     "why": "About 6.9 million Quechua speakers are online today, and that should reach 8.1 million within five years. Ready to use: Mozilla Common Voice (178 hours of transcribed speech); Unicode CLDR (modern coverage)."
+    },
+    {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 8500000,
       "now": 5491000,
@@ -4308,13 +7477,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.519,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.74,
+      "5y": 2.809
+     },
      "momentum": 1.116,
      "priority": 1.522,
      "priority_now": 1.423,
      "priority_5y": 1.628,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "qu-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "9 million words"
+      }
+     ],
+     "why": "About 5.5 million Quechua speakers are online and able to text today, and that should reach 6.4 million within five years. Ready to use: FLORES-200 (covers this language); FineWeb-2 (9 million words)."
     },
     {
+     "key": "kb-platform",
      "type": "share",
      "technology": "keyboard",
      "title": "A keyboard layout exists but isn't on every major platform",
@@ -4324,27 +7521,15 @@
       "kb_gboard",
       "kb_apple"
      ],
-     "users": {
-      "speakers": 8500000,
-      "now": 5491000,
-      "5y": 6447871,
-      "kind": "text",
-      "estimated": true
-     },
-     "momentum": 1.116,
-     "priority": 0.974,
-     "priority_now": 0.911,
-     "priority_5y": 1.042,
-     "workstream": "Tools for builders"
-    },
-    {
-     "type": "measure",
-     "technology": "llm",
-     "title": "No reading-comprehension benchmark",
-     "detail": "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
-     "gap": 0.5,
-     "evidence": [
-      "belebele"
+     "teams": [
+      "keyboards",
+      "standards"
+     ],
+     "missing": "An openly licensed version of the layout in CLDR Keyboards format, then a launch on the remaining platforms.",
+     "starter": [
+      "kb_gboard",
+      "cldr_coverage",
+      "web_text_words"
      ],
      "users": {
       "speakers": 8500000,
@@ -4353,13 +7538,98 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.74,
+      "5y": 2.809
+     },
+     "momentum": 1.116,
+     "priority": 0.974,
+     "priority_now": 0.911,
+     "priority_5y": 1.042,
+     "workstream": "Tools for builders",
+     "id": "qu-kb-platform",
+     "kit": [
+      {
+       "indicator": "kb_gboard",
+       "name": "Android keyboard layout",
+       "what": "A layout already shipping on Android",
+       "licence": "Not openly licensed",
+       "link": "https://support.google.com/gboard/answer/6380730",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "9 million words"
+      }
+     ],
+     "why": "About 5.5 million Quechua speakers are online and able to text today, and that should reach 6.4 million within five years. Ready to use: Unicode CLDR (modern coverage); FineWeb-2 (9 million words)."
+    },
+    {
+     "key": "llm-reading",
+     "type": "measure",
+     "technology": "llm",
+     "title": "No reading-comprehension benchmark",
+     "detail": "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
+     "gap": 0.5,
+     "evidence": [
+      "belebele"
+     ],
+     "teams": [
+      "evaluation"
+     ],
+     "missing": "Belebele's questions translated into this language. Belebele is built on FLORES-200 passages, so where those exist only the questions are needed.",
+     "starter": [
+      "flores200"
+     ],
+     "users": {
+      "speakers": 8500000,
+      "now": 5491000,
+      "5y": 6447871,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 0.519,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.74,
+      "5y": 2.809
+     },
      "momentum": 1.116,
      "priority": 0.761,
      "priority_now": 0.711,
      "priority_5y": 0.814,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "qu-llm-reading",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 5.5 million Quechua speakers are online and able to text today, and that should reach 6.4 million within five years. Ready to use: FLORES-200 (covers this language)."
     },
     {
+     "key": "mt-vendors",
      "type": "share",
      "technology": "mt",
      "title": "Translation is offered by 2 of 3 major services",
@@ -4372,6 +7642,15 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "teams": [
+      "translation"
+     ],
+     "missing": "Launches in the remaining services. The open model's licence is non-commercial, so a product needs its own training data; FLORES-200 gives a shared yardstick for quality.",
+     "starter": [
+      "mt_open_nllb",
+      "flores200",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 8500000,
       "now": 5491000,
@@ -4379,19 +7658,64 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.74,
+      "5y": 2.809
+     },
      "momentum": 1.116,
      "priority": 0.488,
      "priority_now": 0.456,
      "priority_5y": 0.522,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "qu-mt-vendors",
+     "kit": [
+      {
+       "indicator": "mt_open_nllb",
+       "name": "NLLB-200",
+       "what": "Open translation model",
+       "licence": "CC BY-NC 4.0 (non-commercial)",
+       "link": "https://github.com/facebookresearch/fairseq/tree/nllb",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "25 thousand articles"
+      }
+     ],
+     "why": "About 5.5 million Quechua speakers are online and able to text today, and that should reach 6.4 million within five years. Ready to use: NLLB-200 (covers this language); FLORES-200 (covers this language)."
     },
     {
+     "key": "wiki-community",
      "type": "collect",
      "technology": "data",
      "title": "Wikipedia has 64 active editors",
      "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
      "gap": 0.36,
      "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Editor training and outreach with universities and community groups.",
+     "starter": [
+      "wikipedia_articles",
       "wikipedia_active_editors"
      ],
      "users": {
@@ -4401,13 +7725,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.468,
+     "cost": 3,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.74,
+      "5y": 2.809
+     },
      "momentum": 1.116,
      "priority": 0.165,
      "priority_now": 0.154,
      "priority_5y": 0.176,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "qu-wiki-community",
+     "kit": [
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "25 thousand articles"
+      },
+      {
+       "indicator": "wikipedia_active_editors",
+       "name": "Wikipedia editing community",
+       "what": "Editors active in the last 30 days",
+       "licence": "",
+       "link": "https://stats.wikimedia.org/",
+       "size": "64 active editors"
+      }
+     ],
+     "why": "About 5.5 million Quechua speakers are online and able to text today, and that should reach 6.4 million within five years."
     },
     {
+     "key": "text-collect",
      "type": "collect",
      "technology": "data",
      "title": "Only about 9 million words of open web text",
@@ -4416,6 +7768,15 @@
      "evidence": [
       "web_text_words"
      ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Digitised books, news and public-sector text, with OCR where needed and clear licences.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 8500000,
       "now": 5491000,
@@ -4423,11 +7784,56 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.468,
+     "cost": 3,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.74,
+      "5y": 2.809
+     },
      "momentum": 1.116,
      "priority": 0.118,
      "priority_now": 0.111,
      "priority_5y": 0.127,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "qu-text-collect",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "9 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "25 thousand articles"
+      }
+     ],
+     "why": "About 5.5 million Quechua speakers are online and able to text today, and that should reach 6.4 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "pe",
+     "name": "Peru",
+     "speakers": 4800000,
+     "online": 0.82,
+     "text": 0.663,
+     "online_5y": 0.905
+    },
+    {
+     "code": "bo",
+     "name": "Bolivia, Plurinational State of",
+     "speakers": 3700000,
+     "online": 0.797,
+     "text": 0.624,
+     "online_5y": 0.887
     }
    ],
    "rank": 23
@@ -4497,14 +7903,23 @@
    ],
    "opportunities": [
     {
+     "key": "tts-share",
      "type": "share",
      "technology": "tts",
-     "title": "No cloud text-to-speech voice, though open speech data exists",
-     "detail": "Common Voice holds 26 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
+     "title": "No cloud text-to-speech voice found, though open speech data exists",
+     "detail": "The cloud TTS service checked so far has no voice for this language. Common Voice holds 26 hours of speech. Multi-speaker crowd recordings suit recognition more than synthesis, but open multilingual TTS models can adapt from them.",
      "gap": 1.0,
      "evidence": [
       "tts_google",
       "cv_validated_hours"
+     ],
+     "teams": [
+      "tts"
+     ],
+     "missing": "Studio-quality recordings from one or two voice talents for a production voice, plus rules for reading numbers and dates aloud.",
+     "starter": [
+      "cv_validated_hours",
+      "cldr_coverage"
      ],
      "users": {
       "speakers": 42000000,
@@ -4513,13 +7928,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 1.0,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.964,
+      "5y": 3.117
+     },
      "momentum": 1.253,
      "priority": 3.623,
      "priority_now": 2.964,
      "priority_5y": 3.906,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "om-tts-share",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "26 hours of transcribed speech"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "basic coverage"
+      }
+     ],
+     "why": "About 9.2 million Oromo speakers are online today, and that should reach 13 million within five years. Ready to use: Mozilla Common Voice (26 hours of transcribed speech); Unicode CLDR (basic coverage)."
     },
     {
+     "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
      "title": "No published speech recognition error rate",
@@ -4528,6 +7971,15 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "teams": [
+      "evaluation",
+      "speech"
+     ],
+     "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error rates for open and commercial models.",
+     "starter": [
+      "cv_validated_hours",
+      "flores200"
+     ],
      "users": {
       "speakers": 42000000,
       "now": 9214800,
@@ -4535,19 +7987,57 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.964,
+      "5y": 3.117
+     },
      "momentum": 1.253,
      "priority": 2.409,
      "priority_now": 1.971,
      "priority_5y": 2.598,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "om-asr-measure",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "26 hours of transcribed speech"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 9.2 million Oromo speakers are online today, and that should reach 13 million within five years. Ready to use: Mozilla Common Voice (26 hours of transcribed speech); FLORES-200 (covers this language)."
     },
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 42000000,
       "now": 4796400,
@@ -4555,13 +8045,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.526,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.681,
+      "5y": 2.833
+     },
      "momentum": 1.253,
      "priority": 1.907,
      "priority_now": 1.411,
      "priority_5y": 1.869,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "om-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "19 million words"
+      }
+     ],
+     "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
+     "key": "asr-vendors",
      "type": "share",
      "technology": "speech_input",
      "title": "Speech input is offered by 1 of 3 major services",
@@ -4573,6 +8099,13 @@
       "asr_apple",
       "cv_validated_hours"
      ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "Launches in the remaining services, each checked against a held-out test set in the main regional accents.",
+     "starter": [
+      "cv_validated_hours"
+     ],
      "users": {
       "speakers": 42000000,
       "now": 9214800,
@@ -4580,13 +8113,33 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.964,
+      "5y": 3.117
+     },
      "momentum": 1.253,
      "priority": 1.607,
      "priority_now": 1.315,
      "priority_5y": 1.733,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "om-asr-vendors",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "26 hours of transcribed speech"
+      }
+     ],
+     "why": "About 9.2 million Oromo speakers are online today, and that should reach 13 million within five years. Ready to use: Mozilla Common Voice (26 hours of transcribed speech)."
     },
     {
+     "key": "kb-platform",
      "type": "share",
      "technology": "keyboard",
      "title": "A keyboard layout exists but isn't on every major platform",
@@ -4596,6 +8149,16 @@
       "kb_gboard",
       "kb_apple"
      ],
+     "teams": [
+      "keyboards",
+      "standards"
+     ],
+     "missing": "An openly licensed version of the layout in CLDR Keyboards format, then a launch on the remaining platforms.",
+     "starter": [
+      "kb_gboard",
+      "cldr_coverage",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 42000000,
       "now": 4796400,
@@ -4603,19 +8166,63 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.665,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.681,
+      "5y": 2.833
+     },
      "momentum": 1.253,
      "priority": 1.205,
      "priority_now": 0.891,
      "priority_5y": 1.18,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "om-kb-platform",
+     "kit": [
+      {
+       "indicator": "kb_gboard",
+       "name": "Android keyboard layout",
+       "what": "A layout already shipping on Android",
+       "licence": "Not openly licensed",
+       "link": "https://support.google.com/gboard/answer/6380730",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "basic coverage"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "19 million words"
+      }
+     ],
+     "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years. Ready to use: Unicode CLDR (basic coverage); FineWeb-2 (19 million words)."
     },
     {
+     "key": "cldr",
      "type": "standardise",
      "technology": "writing",
      "title": "Locale data in Unicode CLDR is basic",
      "detail": "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, keyboards and reading numbers aloud in text-to-speech.",
      "gap": 0.667,
      "evidence": [
+      "cldr_coverage"
+     ],
+     "teams": [
+      "standards",
+      "keyboards"
+     ],
+     "missing": "Native speakers contributing through the CLDR Survey Tool to reach modern coverage.",
+     "starter": [
       "cldr_coverage"
      ],
      "users": {
@@ -4625,13 +8232,33 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.333,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.681,
+      "5y": 2.833
+     },
      "momentum": 1.253,
      "priority": 0.805,
      "priority_now": 0.596,
      "priority_5y": 0.789,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "om-cldr",
+     "kit": [
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "basic coverage"
+      }
+     ],
+     "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years. Ready to use: Unicode CLDR (basic coverage)."
     },
     {
+     "key": "mt-vendors",
      "type": "share",
      "technology": "mt",
      "title": "Translation is offered by 2 of 3 major services",
@@ -4644,6 +8271,15 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "teams": [
+      "translation"
+     ],
+     "missing": "Launches in the remaining services. The open model's licence is non-commercial, so a product needs its own training data; FLORES-200 gives a shared yardstick for quality.",
+     "starter": [
+      "mt_open_nllb",
+      "flores200",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 42000000,
       "now": 4796400,
@@ -4651,19 +8287,64 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.681,
+      "5y": 2.833
+     },
      "momentum": 1.253,
      "priority": 0.603,
      "priority_now": 0.446,
      "priority_5y": 0.591,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "om-mt-vendors",
+     "kit": [
+      {
+       "indicator": "mt_open_nllb",
+       "name": "NLLB-200",
+       "what": "Open translation model",
+       "licence": "CC BY-NC 4.0 (non-commercial)",
+       "link": "https://github.com/facebookresearch/fairseq/tree/nllb",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "2 thousand articles"
+      }
+     ],
+     "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years. Ready to use: NLLB-200 (covers this language); FLORES-200 (covers this language)."
     },
     {
+     "key": "wiki-community",
      "type": "collect",
      "technology": "data",
      "title": "Wikipedia has 28 active editors",
      "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
      "gap": 0.72,
      "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Editor training and outreach with universities and community groups.",
+     "starter": [
+      "wikipedia_articles",
       "wikipedia_active_editors"
      ],
      "users": {
@@ -4673,13 +8354,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.455,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.681,
+      "5y": 2.833
+     },
      "momentum": 1.253,
      "priority": 0.396,
      "priority_now": 0.293,
      "priority_5y": 0.388,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "om-wiki-community",
+     "kit": [
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "2 thousand articles"
+      },
+      {
+       "indicator": "wikipedia_active_editors",
+       "name": "Wikipedia editing community",
+       "what": "Editors active in the last 30 days",
+       "licence": "",
+       "link": "https://stats.wikimedia.org/",
+       "size": "28 active editors"
+      }
+     ],
+     "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years."
     },
     {
+     "key": "text-collect",
      "type": "collect",
      "technology": "data",
      "title": "Only about 19 million words of open web text",
@@ -4688,6 +8397,15 @@
      "evidence": [
       "web_text_words"
      ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Digitised books, news and public-sector text, with OCR where needed and clear licences.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 42000000,
       "now": 4796400,
@@ -4695,11 +8413,48 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.455,
+     "cost": 3,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.681,
+      "5y": 2.833
+     },
      "momentum": 1.253,
      "priority": 0.098,
      "priority_now": 0.073,
      "priority_5y": 0.096,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "om-text-collect",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "19 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "2 thousand articles"
+      }
+     ],
+     "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 42000000,
+     "online": 0.219,
+     "text": 0.114,
+     "online_5y": 0.275
     }
    ],
    "rank": 24
@@ -4780,6 +8535,7 @@
    ],
    "opportunities": [
     {
+     "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
      "title": "No published speech recognition error rate",
@@ -4788,6 +8544,15 @@
      "evidence": [
       "asr_whisper_fleurs_wer"
      ],
+     "teams": [
+      "evaluation",
+      "speech"
+     ],
+     "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error rates for open and commercial models.",
+     "starter": [
+      "cv_validated_hours",
+      "flores200"
+     ],
      "users": {
       "speakers": 5852000,
       "now": 4772891,
@@ -4795,19 +8560,57 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 1.0,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.679,
+      "5y": 2.729
+     },
      "momentum": 1.084,
      "priority": 2.767,
      "priority_now": 2.679,
      "priority_5y": 2.959,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "gn-asr-measure",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "5.2 hours of transcribed speech"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 4.8 million Guarani speakers are online today, and that should reach 5.4 million within five years. Ready to use: Mozilla Common Voice (5.2 hours of transcribed speech); FLORES-200 (covers this language)."
     },
     {
+     "key": "llm-measure",
      "type": "measure",
      "technology": "llm",
      "title": "No published LLM benchmark results",
      "detail": "Neither of the two multilingual benchmarks we track reports this language. Adding it would give builders and buyers a baseline.",
      "gap": 1.0,
      "evidence": [],
+     "teams": [
+      "evaluation",
+      "llm"
+     ],
+     "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and published results for leading models.",
+     "starter": [
+      "flores200",
+      "belebele",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 5852000,
       "now": 4130342,
@@ -4815,13 +8618,49 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.608,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.616,
+      "5y": 2.667
+     },
      "momentum": 1.084,
      "priority": 1.682,
      "priority_now": 1.59,
      "priority_5y": 1.757,
-     "workstream": "Measurement"
+     "workstream": "Measurement",
+     "id": "gn-llm-measure",
+     "kit": [
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "belebele",
+       "name": "Belebele",
+       "what": "Reading-comprehension questions",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/belebele",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "7 million words"
+      }
+     ],
+     "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
+     "key": "cldr",
      "type": "standardise",
      "technology": "writing",
      "title": "Locale data in Unicode CLDR is missing",
@@ -4830,6 +8669,12 @@
      "evidence": [
       "cldr_coverage"
      ],
+     "teams": [
+      "standards",
+      "keyboards"
+     ],
+     "missing": "Native speakers contributing through the CLDR Survey Tool to reach modern coverage.",
+     "starter": [],
      "users": {
       "speakers": 5852000,
       "now": 4130342,
@@ -4837,20 +8682,40 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.616,
+      "5y": 2.667
+     },
      "momentum": 1.084,
      "priority": 1.384,
      "priority_now": 1.308,
      "priority_5y": 1.445,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "gn-cldr",
+     "kit": [],
+     "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years."
     },
     {
+     "key": "tts-collect",
      "type": "collect",
      "technology": "tts",
      "title": "Record a single-speaker voice for text-to-speech",
-     "detail": "No cloud voice exists and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
+     "detail": "No cloud voice was found and open speech data is thin. A few hours of clean single-speaker recordings would unlock a usable voice.",
      "gap": 1.0,
      "evidence": [
       "tts_google",
+      "cv_validated_hours"
+     ],
+     "teams": [
+      "tts",
+      "data",
+      "funding"
+     ],
+     "missing": "Several hours of clean single-speaker studio recordings, licensed for commercial use, plus rules for reading numbers and dates aloud.",
+     "starter": [
       "cv_validated_hours"
      ],
      "users": {
@@ -4860,13 +8725,33 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 1.0,
+     "cost": 3,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.679,
+      "5y": 2.729
+     },
      "momentum": 1.084,
      "priority": 0.922,
      "priority_now": 0.893,
      "priority_5y": 0.986,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "gn-tts-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "5.2 hours of transcribed speech"
+      }
+     ],
+     "why": "About 4.8 million Guarani speakers are online today, and that should reach 5.4 million within five years."
     },
     {
+     "key": "asr-collect",
      "type": "collect",
      "technology": "speech_input",
      "title": "Only 5.2 hours of open transcribed speech",
@@ -4875,6 +8760,16 @@
      "evidence": [
       "cv_validated_hours"
      ],
+     "teams": [
+      "data",
+      "funding",
+      "speech"
+     ],
+     "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an open licence.",
+     "starter": [
+      "cv_validated_hours",
+      "web_text_words"
+     ],
      "users": {
       "speakers": 5852000,
       "now": 4772891,
@@ -4882,13 +8777,41 @@
       "kind": "voice",
       "estimated": true
      },
+     "need": 1.0,
+     "cost": 3,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.679,
+      "5y": 2.729
+     },
      "momentum": 1.084,
      "priority": 0.684,
      "priority_now": 0.663,
      "priority_5y": 0.732,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "gn-asr-collect",
+     "kit": [
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "5.2 hours of transcribed speech"
+      },
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "7 million words"
+      }
+     ],
+     "why": "About 4.8 million Guarani speakers are online today, and that should reach 5.4 million within five years."
     },
     {
+     "key": "mt-vendors",
      "type": "share",
      "technology": "mt",
      "title": "Translation is offered by 2 of 3 major services",
@@ -4901,6 +8824,15 @@
       "mt_open_nllb",
       "flores200"
      ],
+     "teams": [
+      "translation"
+     ],
+     "missing": "Launches in the remaining services. The open model's licence is non-commercial, so a product needs its own training data; FLORES-200 gives a shared yardstick for quality.",
+     "starter": [
+      "mt_open_nllb",
+      "flores200",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 5852000,
       "now": 4130342,
@@ -4908,19 +8840,64 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.5,
+     "cost": 1,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.616,
+      "5y": 2.667
+     },
      "momentum": 1.084,
      "priority": 0.461,
      "priority_now": 0.436,
      "priority_5y": 0.481,
-     "workstream": "Tools for builders"
+     "workstream": "Tools for builders",
+     "id": "gn-mt-vendors",
+     "kit": [
+      {
+       "indicator": "mt_open_nllb",
+       "name": "NLLB-200",
+       "what": "Open translation model",
+       "licence": "CC BY-NC 4.0 (non-commercial)",
+       "link": "https://github.com/facebookresearch/fairseq/tree/nllb",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "flores200",
+       "name": "FLORES-200",
+       "what": "Professionally translated evaluation sentences",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://github.com/facebookresearch/flores",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "6 thousand articles"
+      }
+     ],
+     "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years. Ready to use: NLLB-200 (covers this language); FLORES-200 (covers this language)."
     },
     {
+     "key": "wiki-community",
      "type": "collect",
      "technology": "data",
      "title": "Wikipedia has 28 active editors",
      "detail": "A small editing community limits new open text. Edit-a-thons and translation drives with universities have grown communities elsewhere.",
      "gap": 0.72,
      "evidence": [
+      "wikipedia_active_editors"
+     ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Editor training and outreach with universities and community groups.",
+     "starter": [
+      "wikipedia_articles",
       "wikipedia_active_editors"
      ],
      "users": {
@@ -4930,13 +8907,41 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.517,
+     "cost": 3,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.616,
+      "5y": 2.667
+     },
      "momentum": 1.084,
      "priority": 0.344,
      "priority_now": 0.325,
      "priority_5y": 0.359,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "gn-wiki-community",
+     "kit": [
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "6 thousand articles"
+      },
+      {
+       "indicator": "wikipedia_active_editors",
+       "name": "Wikipedia editing community",
+       "what": "Editors active in the last 30 days",
+       "licence": "",
+       "link": "https://stats.wikimedia.org/",
+       "size": "28 active editors"
+      }
+     ],
+     "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years."
     },
     {
+     "key": "text-collect",
      "type": "collect",
      "technology": "data",
      "title": "Only about 7 million words of open web text",
@@ -4945,6 +8950,15 @@
      "evidence": [
       "web_text_words"
      ],
+     "teams": [
+      "data",
+      "funding"
+     ],
+     "missing": "Digitised books, news and public-sector text, with OCR where needed and clear licences.",
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
      "users": {
       "speakers": 5852000,
       "now": 4130342,
@@ -4952,11 +8966,56 @@
       "kind": "text",
       "estimated": true
      },
+     "need": 0.517,
+     "cost": 3,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.616,
+      "5y": 2.667
+     },
      "momentum": 1.084,
      "priority": 0.136,
      "priority_now": 0.128,
      "priority_5y": 0.142,
-     "workstream": "Open language data"
+     "workstream": "Open language data",
+     "id": "gn-text-collect",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "7 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "6 thousand articles"
+      }
+     ],
+     "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years."
+    }
+   ],
+   "reach_by_country": [
+    {
+     "code": "py",
+     "name": "Paraguay",
+     "speakers": 5800000,
+     "online": 0.816,
+     "text": 0.707,
+     "online_5y": 0.863
+    },
+    {
+     "code": "bo",
+     "name": "Bolivia, Plurinational State of",
+     "speakers": 52000,
+     "online": 0.797,
+     "text": 0.624,
+     "online_5y": 0.887
     }
    ],
    "rank": 25

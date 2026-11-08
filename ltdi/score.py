@@ -6,13 +6,14 @@ Reads data/records/*.csv and data/manual/*.csv, writes data/scores.json.
 
 from __future__ import annotations
 
+import csv
 import json
 import math
 import tomllib
 from collections import defaultdict
 
 from . import CONFIG, DATA
-from .opportunities import TYPES, find, rank
+from .opportunities import RULES, TEAMS, TYPES, explain, find, rank, reach_by_country, starter_kit
 from .records import Record, read_dir
 
 
@@ -116,11 +117,21 @@ def main() -> None:
         by_lang[r.language][r.indicator] = r
 
     langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
+    countries: dict[str, dict[str, float]] = defaultdict(dict)
+    if (DATA / "countries.csv").exists():
+        with (DATA / "countries.csv").open(encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                countries[row["country"]][row["indicator"]] = float(row["value"])
     results = []
     for lang in langs:
         facts_l = by_lang.get(lang["code"], {})
         s = score_language(facts_l, cfg)
-        results.append({**lang, **s, "opportunities": rank(lang, find(facts_l), s, facts_l)})
+        opps = rank(lang, find(facts_l), s, facts_l)
+        for o in opps:
+            o["id"] = f"{lang['code']}-{o['key']}"
+            o["kit"] = starter_kit(o, facts_l)
+            o["why"] = explain(lang, o, facts_l)
+        results.append({**lang, **s, "opportunities": opps, "reach_by_country": reach_by_country(lang, countries)})
     results.sort(key=lambda r: -r["ltdi"])
     for i, r in enumerate(results, 1):
         r["rank"] = i
@@ -135,7 +146,7 @@ def main() -> None:
         **{k: v["label"] for k, v in cfg["dimensions"]["tech"]["technologies"].items()},
         **{k: cfg["dimensions"][k]["label"] for k in ("writing", "data", "tech")},
     }
-    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "opportunity_types": TYPES,
+    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "opportunity_types": TYPES, "teams": TEAMS,
            "languages": results, "facts": facts}
     (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     for r in results:
