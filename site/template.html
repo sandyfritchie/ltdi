@@ -539,7 +539,8 @@ function dimPanel(l, key, color) {
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk];
       const ids = t.measured ? Object.keys(t.measured) : [...t.consumer, ...t.open];
-      const tiles = ids.map(id => svcTile(id, facts, (t.open || []).includes(id))).join('');
+      const order = Object.keys(PROV), rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
+      const tiles = [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id))).join('');
       body += `<div class="techrow">
         <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${s == null ? 'not measured' : s.toFixed(2)}</span></div>
         ${s == null ? '' : bar(s)}
