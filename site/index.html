@@ -196,12 +196,14 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .otype-card b { display: block; color: var(--ink); font: 700 14px var(--font-display); font-stretch: 90%; margin-bottom: 2px; }
 .opps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .opp { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 4px 14px; }
-.opp .prio { grid-row: span 4; font: 800 22px/1 var(--font-display); font-stretch: 80%; text-align: right; font-variant-numeric: tabular-nums; }
+.opp .prio { grid-row: span 5; font: 800 22px/1 var(--font-display); font-stretch: 80%; text-align: right; font-variant-numeric: tabular-nums; }
 .opp .prio small { display: block; font: 500 10px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 .opp-head { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--muted); }
 .otype { font: 600 11px/1 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--c); border: 1px solid var(--c); border-radius: 3px; padding: 3px 6px; }
 .opp-head a { font-weight: 600; }
 .opp-title { font-weight: 600; }
+.opp-prov { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink); }
+.opp-prov i { width: 4px; height: 14px; border-radius: 2px; background: var(--p); flex: none; }
 .opp-detail { color: var(--muted); font-size: 15px; max-width: 70ch; }
 .opp-users { font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
 .weightbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
@@ -28535,6 +28537,7 @@ function oppItem(o, l, showLang) {
       ${showLang ? `<a href="#lang-${l.code}">${esc(l.name)}</a>` : ''}</div>
     <a class="opp-title" href="#opp-${o.id}">${esc(o.title)}</a>
     <div class="opp-detail">${esc(o.why)}</div>
+    ${provider !== 'All' ? `<div class="opp-prov" style="--p:var(--prov-${provider})"><i></i>Not yet in ${esc(provMissing(o, l, provider).join(', '))}</div>` : ''}
     <div class="opp-foot"><span>${o.teams.map(t => esc(TEAMS[t])).join(' · ')}</span><a href="#opp-${o.id}">Starter kit and details →</a></div>
   </li>`;
 }
@@ -28543,7 +28546,9 @@ let otype = 'all', team = 'all', showAll = false;
 function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
   const all = LANGS.filter(l => focus ? l === focus : inRegion(l))
-    .flatMap(l => l.opportunities.map(o => ({ o, l }))).sort((a, b) => prio(b.o) - prio(a.o));
+    .flatMap(l => l.opportunities.map(o => ({ o, l })))
+    .filter(x => provider === 'All' || provMissing(x.o, x.l, provider).length)
+    .sort((a, b) => prio(b.o) - prio(a.o));
   const byTeam = all.filter(x => team === 'all' || x.o.teams.includes(team));
   const tcount = Object.fromEntries(Object.keys(TEAMS).map(k => [k, all.filter(x => x.o.teams.includes(k)).length]));
   const counts = Object.fromEntries(Object.keys(OT).map(k => [k, byTeam.filter(x => x.o.type === k).length]));
@@ -28560,8 +28565,10 @@ function opportunities(lang) {
     <div class="controls">
       ${focus ? '' : regionSelect('orsel')}
       <select id="olang" aria-label="Language"><option value="">All languages</option>${LANGS.filter(l => focus || inRegion(l)).map(l => `<option value="${l.code}"${focus === l ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
+      ${providerSelect('opsel')}
       <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
     </div>
+    ${provider !== 'All' ? `<p class="note" style="margin-top:0">Opportunities where a ${esc(PROV[provider])} service tracked here doesn't yet cover the language.</p>` : ''}
     ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">Nothing matches these filters.</p>'}
     ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}
     <details class="method"><summary>How opportunities are ranked</summary>
@@ -28576,6 +28583,7 @@ function opportunities(lang) {
   $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
   $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
   const rs = $('#orsel'); if (rs) rs.onchange = e => { region = e.target.value; showAll = false; opportunities(lang); };
+  $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; otype = 'all'; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
   $('#olang').onchange = e => { showAll = false; location.hash = e.target.value ? 'opportunities-' + e.target.value : 'opportunities'; };
 }
@@ -28911,6 +28919,13 @@ function provCoverage(l, prov) {
 const provBench = prov => Object.values(CFG.tech.technologies).some(t => Object.keys(t.measured || {}).some(id => (SVC[id] || [])[2] === prov));
 const provWhat = prov => provBench(prov) ? 'services and benchmarks' : 'services';
 const covTier = v => v >= 0.9 ? 'vh' : v >= 0.6 ? 'h' : v >= 0.3 ? 'm' : 'l';
+function provMissing(o, l, prov) {  // the provider's services for this opportunity's technology that lack the language
+  const t = CFG.tech.technologies[o.technology];
+  const label = id => { const [name, kind] = SVC[id];
+    if (t.measured && id in t.measured) return `${kind} results`;
+    return /^(iOS|Google Cloud|Azure|Microsoft 365)$/.test(name) ? `${name} ${/[A-Z]/.test(kind.slice(1)) ? kind : kind.toLowerCase()}` : name; };
+  return t ? provIds(t, prov).filter(id => !offers(l, id)).map(label) : [];
+}
 function providerSelect(id) {
   return `<select id="${id}" aria-label="Provider"><option value="All"${provider === 'All' ? ' selected' : ''}>All providers</option>${Object.entries(PROV).map(([k, n]) =>
     `<option value="${k}"${k === provider ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select>`;
@@ -28946,7 +28961,7 @@ function mapSection() {
   const legendLabels = P ? { vh: '90%+ of its services', h: '60–90%', m: '30–60%', l: 'Under 30%' } : { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
   return `<section class="chart">
     <h3>The world's languages</h3>
-    <p class="sub">Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length} languages scored so far${P ? `, coloured by the share of ${esc(pn)}'s services checked that offer each one` : ''}; white dots are the ${bg.length.toLocaleString()} others in LinguaMeta, not yet scored. Hover for names; select a coloured dot for its profile.</p>
+    <p class="sub">Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length} languages scored so far; white dots are the ${bg.length.toLocaleString()} others in LinguaMeta, not yet scored. Hover for names; select a coloured dot for its profile.</p>
     <div class="legend map">
       ${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not yet scored · ${bg.length.toLocaleString()}</span>
@@ -28959,7 +28974,7 @@ function mapSection() {
       ${dots}
     </svg></div>
     <p class="maphint">Drag to move · double-click or + to zoom in · Ctrl or ⌘ and scroll to zoom</p>
-    <p class="note">${P ? `Share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? '; a benchmark counts where it publishes a result' : ''}.` : 'Tiers: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60.'} Locations from LinguaMeta; map from Natural Earth.</p>
+    <p class="note">${P ? `Coloured by the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? '; a benchmark counts where it publishes a result' : ''}.` : 'Coloured by LTDI tier: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60.'} Locations from LinguaMeta; map from Natural Earth.</p>
   </section>`;
 }
 function bindMap() {

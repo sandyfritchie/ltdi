@@ -92,6 +92,10 @@ where a source has one (DeepL; Meta's NLLB-200 and Belebele; OpenAI's Whisper).
 Shares aren't comparable across providers, since the number of services tracked
 differs (one for DeepL, fifteen for Google).
 
+The opportunities list can be filtered by provider too: it then shows only
+opportunities whose technology includes a service from that provider that
+doesn't yet cover the language, and names the service on each card.
+
 The Charts view opens with a map: a dot for each of LinguaMeta's ~6,450
 individual languages with a location, placed in the country with most speakers
 (or the origin country given in `config/slice_languages.csv`). Scored languages
