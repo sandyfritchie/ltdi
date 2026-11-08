@@ -50,7 +50,14 @@ def tier(facts: dict[str, Record], tech: dict) -> float | None:
 
 def depth(facts: dict[str, Record], tech: dict) -> float | None:
     """Mean of the technology's depth indicators, each divided by its max; None if none collected."""
-    vals = [min(1.0, facts[i].value / m) for i, m in tech.get("depth", {}).items() if i in facts]
+    vals = []
+    for ind, spec in tech.get("depth", {}).items():
+        if ind not in facts:
+            continue
+        if isinstance(spec, dict):  # {min, max}; max < min inverts the scale (e.g. error rates)
+            vals.append(normalise(facts[ind].value, {"scale": "linear", **spec}))
+        else:  # a plain number is the maximum count
+            vals.append(min(1.0, facts[ind].value / spec))
     return sum(vals) / len(vals) if vals else None
 
 

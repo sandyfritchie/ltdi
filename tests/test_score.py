@@ -55,6 +55,10 @@ class DepthTests(unittest.TestCase):
     def test_depth_ignored_when_absent(self):
         self.assertEqual(tech_score({"a": fact("a", 0), "feat": fact("feat", 4)}, self.tech), 0.0)
 
+    def test_inverted_depth_scale(self):
+        tech = {"consumer": ["a"], "open": [], "depth": {"wer": {"min": 50, "max": 0}}}
+        self.assertEqual(tech_score({"a": fact("a", 1), "wer": fact("wer", 25)}, tech), 0.75)
+
     def test_no_depth_record_keeps_tier(self):
         self.assertEqual(tech_score({"a": fact("a", 1)}, self.tech), 1.0)
 

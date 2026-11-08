@@ -109,6 +109,12 @@
       "open": [
        "asr_open_whisper"
       ],
+      "depth": {
+       "asr_whisper_fleurs_wer": {
+        "min": 50,
+        "max": 3
+       }
+      },
       "weight": 1
      },
      "tts": {
@@ -656,7 +662,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/en.json",
    "note": "",
-   "ltdi": 1.0,
+   "ltdi": 0.9992,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -679,19 +685,188 @@
      "raw": 1.0
     },
     "tech": {
+     "score": 0.9976,
+     "indicators": {
+      "keyboard": 1.0,
+      "speech_input": 0.988,
+      "tts": 1.0,
+      "mt": 1.0,
+      "llm": 1.0
+     },
+     "raw": 0.9976
+    }
+   },
+   "missing": [],
+   "rank": 1
+  },
+  {
+   "code": "es",
+   "name": "Spanish",
+   "autonym": "español",
+   "iso_639_3": "spa",
+   "glottocode": "stan1288",
+   "scope": "LANGUAGE",
+   "speakers": 468360000,
+   "members": [],
+   "scripts": [
+    "latn"
+   ],
+   "countries": [
+    {
+     "code": "mx",
+     "name": "Mexico",
+     "speakers": 107000000
+    },
+    {
+     "code": "es",
+     "name": "Spain",
+     "speakers": 50000000
+    },
+    {
+     "code": "co",
+     "name": "Colombia",
+     "speakers": 46000000
+    },
+    {
+     "code": "ar",
+     "name": "Argentina",
+     "speakers": 45000000
+    },
+    {
+     "code": "ph",
+     "name": "Philippines",
+     "speakers": 34000000
+    },
+    {
+     "code": "us",
+     "name": "United States of America",
+     "speakers": 32000000
+    },
+    {
+     "code": "pe",
+     "name": "Peru",
+     "speakers": 23000000
+    },
+    {
+     "code": "ve",
+     "name": "Venezuela, Bolivarian Republic of",
+     "speakers": 23000000
+    },
+    {
+     "code": "cl",
+     "name": "Chile",
+     "speakers": 18000000
+    },
+    {
+     "code": "ec",
+     "name": "Ecuador",
+     "speakers": 16000000
+    },
+    {
+     "code": "gt",
+     "name": "Guatemala",
+     "speakers": 16000000
+    },
+    {
+     "code": "cu",
+     "name": "Cuba",
+     "speakers": 11000000
+    },
+    {
+     "code": "do",
+     "name": "Dominican Republic",
+     "speakers": 8200000
+    },
+    {
+     "code": "hn",
+     "name": "Honduras",
+     "speakers": 7200000
+    },
+    {
+     "code": "bo",
+     "name": "Bolivia, Plurinational State of",
+     "speakers": 7100000
+    },
+    {
+     "code": "sv",
+     "name": "El Salvador",
+     "speakers": 5800000
+    },
+    {
+     "code": "cr",
+     "name": "Costa Rica",
+     "speakers": 4800000
+    },
+    {
+     "code": "ni",
+     "name": "Nicaragua",
+     "speakers": 4800000
+    },
+    {
+     "code": "uy",
+     "name": "Uruguay",
+     "speakers": 3000000
+    },
+    {
+     "code": "pr",
+     "name": "Puerto Rico",
+     "speakers": 2800000
+    },
+    {
+     "code": "pa",
+     "name": "Panama",
+     "speakers": 2700000
+    },
+    {
+     "code": "gq",
+     "name": "Equatorial Guinea",
+     "speakers": 730000
+    },
+    {
+     "code": "py",
+     "name": "Paraguay",
+     "speakers": 230000
+    }
+   ],
+   "region": "Europe",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/es.json",
+   "note": "",
+   "ltdi": 0.9897,
+   "dimensions": {
+    "writing": {
      "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.9732,
+     "indicators": {
+      "web_text_words": 1.0,
+      "wikipedia_articles": 1.0,
+      "wikipedia_active_editors": 0.918,
+      "cv_validated_hours": 0.926,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.9732
+    },
+    "tech": {
+     "score": 0.996,
      "indicators": {
       "keyboard": 1.0,
       "speech_input": 1.0,
       "tts": 1.0,
       "mt": 1.0,
-      "llm": 1.0
+      "llm": 0.98
      },
-     "raw": 1.0
+     "raw": 0.996
     }
    },
    "missing": [],
-   "rank": 1
+   "rank": 2
   },
   {
    "code": "fr",
@@ -930,7 +1105,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/fr.json",
    "note": "",
-   "ltdi": 0.9907,
+   "ltdi": 0.9891,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -953,153 +1128,43 @@
      "raw": 0.9912
     },
     "tech": {
-     "score": 0.981,
+     "score": 0.9762,
      "indicators": {
       "keyboard": 1.0,
-      "speech_input": 1.0,
+      "speech_input": 0.976,
       "tts": 0.938,
       "mt": 1.0,
       "llm": 0.967
      },
-     "raw": 0.981
+     "raw": 0.9762
     }
    },
    "missing": [],
-   "rank": 2
+   "rank": 3
   },
   {
-   "code": "es",
-   "name": "Spanish",
-   "autonym": "español",
-   "iso_639_3": "spa",
-   "glottocode": "stan1288",
+   "code": "ja",
+   "name": "Japanese",
+   "autonym": "日本語",
+   "iso_639_3": "jpn",
+   "glottocode": "nucl1643",
    "scope": "LANGUAGE",
-   "speakers": 468360000,
+   "speakers": 119000000,
    "members": [],
    "scripts": [
-    "latn"
+    "jpan"
    ],
    "countries": [
     {
-     "code": "mx",
-     "name": "Mexico",
-     "speakers": 107000000
-    },
-    {
-     "code": "es",
-     "name": "Spain",
-     "speakers": 50000000
-    },
-    {
-     "code": "co",
-     "name": "Colombia",
-     "speakers": 46000000
-    },
-    {
-     "code": "ar",
-     "name": "Argentina",
-     "speakers": 45000000
-    },
-    {
-     "code": "ph",
-     "name": "Philippines",
-     "speakers": 34000000
-    },
-    {
-     "code": "us",
-     "name": "United States of America",
-     "speakers": 32000000
-    },
-    {
-     "code": "pe",
-     "name": "Peru",
-     "speakers": 23000000
-    },
-    {
-     "code": "ve",
-     "name": "Venezuela, Bolivarian Republic of",
-     "speakers": 23000000
-    },
-    {
-     "code": "cl",
-     "name": "Chile",
-     "speakers": 18000000
-    },
-    {
-     "code": "ec",
-     "name": "Ecuador",
-     "speakers": 16000000
-    },
-    {
-     "code": "gt",
-     "name": "Guatemala",
-     "speakers": 16000000
-    },
-    {
-     "code": "cu",
-     "name": "Cuba",
-     "speakers": 11000000
-    },
-    {
-     "code": "do",
-     "name": "Dominican Republic",
-     "speakers": 8200000
-    },
-    {
-     "code": "hn",
-     "name": "Honduras",
-     "speakers": 7200000
-    },
-    {
-     "code": "bo",
-     "name": "Bolivia, Plurinational State of",
-     "speakers": 7100000
-    },
-    {
-     "code": "sv",
-     "name": "El Salvador",
-     "speakers": 5800000
-    },
-    {
-     "code": "cr",
-     "name": "Costa Rica",
-     "speakers": 4800000
-    },
-    {
-     "code": "ni",
-     "name": "Nicaragua",
-     "speakers": 4800000
-    },
-    {
-     "code": "uy",
-     "name": "Uruguay",
-     "speakers": 3000000
-    },
-    {
-     "code": "pr",
-     "name": "Puerto Rico",
-     "speakers": 2800000
-    },
-    {
-     "code": "pa",
-     "name": "Panama",
-     "speakers": 2700000
-    },
-    {
-     "code": "gq",
-     "name": "Equatorial Guinea",
-     "speakers": 730000
-    },
-    {
-     "code": "py",
-     "name": "Paraguay",
-     "speakers": 230000
+     "code": "jp",
+     "name": "Japan",
+     "speakers": 119000000
     }
    ],
-   "region": "Europe",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/es.json",
+   "region": "Asia",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
    "note": "",
-   "ltdi": 0.9897,
+   "ltdi": 0.954,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1110,31 +1175,31 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.9732,
+     "score": 0.9516,
      "indicators": {
       "web_text_words": 1.0,
       "wikipedia_articles": 1.0,
-      "wikipedia_active_editors": 0.918,
-      "cv_validated_hours": 0.926,
+      "wikipedia_active_editors": 0.873,
+      "cv_validated_hours": 0.857,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.9732
+     "raw": 0.9516
     },
     "tech": {
-     "score": 0.996,
+     "score": 0.9124,
      "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 1.0,
+      "keyboard": 0.875,
+      "speech_input": 0.98,
+      "tts": 0.75,
       "mt": 1.0,
-      "llm": 0.98
+      "llm": 0.957
      },
-     "raw": 0.996
+     "raw": 0.9124
     }
    },
    "missing": [],
-   "rank": 3
+   "rank": 4
   },
   {
    "code": "cmn",
@@ -1174,7 +1239,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cmn.json",
    "note": "Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn",
-   "ltdi": 0.9565,
+   "ltdi": 0.953,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1197,74 +1262,15 @@
      "raw": 0.9413
     },
     "tech": {
-     "score": 0.9296,
+     "score": 0.9196,
      "indicators": {
       "keyboard": 1.0,
-      "speech_input": 1.0,
+      "speech_input": 0.95,
       "tts": 0.688,
       "mt": 1.0,
       "llm": 0.96
      },
-     "raw": 0.9296
-    }
-   },
-   "missing": [],
-   "rank": 4
-  },
-  {
-   "code": "ja",
-   "name": "Japanese",
-   "autonym": "日本語",
-   "iso_639_3": "jpn",
-   "glottocode": "nucl1643",
-   "scope": "LANGUAGE",
-   "speakers": 119000000,
-   "members": [],
-   "scripts": [
-    "jpan"
-   ],
-   "countries": [
-    {
-     "code": "jp",
-     "name": "Japan",
-     "speakers": 119000000
-    }
-   ],
-   "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
-   "note": "",
-   "ltdi": 0.9554,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.9516,
-     "indicators": {
-      "web_text_words": 1.0,
-      "wikipedia_articles": 1.0,
-      "wikipedia_active_editors": 0.873,
-      "cv_validated_hours": 0.857,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.9516
-    },
-    "tech": {
-     "score": 0.9164,
-     "indicators": {
-      "keyboard": 0.875,
-      "speech_input": 1.0,
-      "tts": 0.75,
-      "mt": 1.0,
-      "llm": 0.957
-     },
-     "raw": 0.9164
+     "raw": 0.9196
     }
    },
    "missing": [],
@@ -1317,7 +1323,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pt.json",
    "note": "",
-   "ltdi": 0.9529,
+   "ltdi": 0.9521,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1340,15 +1346,15 @@
      "raw": 0.9172
     },
     "tech": {
-     "score": 0.9434,
+     "score": 0.941,
      "indicators": {
       "keyboard": 1.0,
-      "speech_input": 1.0,
+      "speech_input": 0.988,
       "tts": 0.75,
       "mt": 1.0,
       "llm": 0.967
      },
-     "raw": 0.9434
+     "raw": 0.941
     }
    },
    "missing": [],
@@ -1396,7 +1402,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ru.json",
    "note": "",
-   "ltdi": 0.9185,
+   "ltdi": 0.9166,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1419,20 +1425,79 @@
      "raw": 0.9357
     },
     "tech": {
-     "score": 0.8282,
+     "score": 0.823,
      "indicators": {
       "keyboard": 0.75,
-      "speech_input": 1.0,
+      "speech_input": 0.979,
       "tts": 0.688,
       "mt": 0.875
      },
-     "raw": 0.8282
+     "raw": 0.823
     }
    },
    "missing": [
     "llm_global_mmlu_rel"
    ],
    "rank": 7
+  },
+  {
+   "code": "id",
+   "name": "Indonesian",
+   "autonym": "Bahasa Indonesia",
+   "iso_639_3": "ind",
+   "glottocode": "indo1316",
+   "scope": "LANGUAGE",
+   "speakers": 171000000,
+   "members": [],
+   "scripts": [
+    "latn"
+   ],
+   "countries": [
+    {
+     "code": "id",
+     "name": "Indonesia",
+     "speakers": 171000000
+    }
+   ],
+   "region": "Asia",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/id.json",
+   "note": "",
+   "ltdi": 0.9102,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.8391,
+     "indicators": {
+      "web_text_words": 0.969,
+      "wikipedia_articles": 0.976,
+      "wikipedia_active_editors": 0.736,
+      "cv_validated_hours": 0.516,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.8391
+    },
+    "tech": {
+     "score": 0.8986,
+     "indicators": {
+      "keyboard": 1.0,
+      "speech_input": 0.967,
+      "tts": 0.688,
+      "mt": 0.875,
+      "llm": 0.963
+     },
+     "raw": 0.8986
+    }
+   },
+   "missing": [],
+   "rank": 8
   },
   {
    "code": "ar",
@@ -1616,7 +1681,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ar.json",
    "note": "Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar",
-   "ltdi": 0.9127,
+   "ltdi": 0.9079,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1639,107 +1704,43 @@
      "raw": 0.8651
     },
     "tech": {
-     "score": 0.879,
+     "score": 0.865,
      "indicators": {
       "keyboard": 0.875,
-      "speech_input": 1.0,
+      "speech_input": 0.93,
       "tts": 0.688,
       "mt": 0.875,
       "llm": 0.957
      },
-     "raw": 0.879
-    }
-   },
-   "missing": [],
-   "rank": 8
-  },
-  {
-   "code": "id",
-   "name": "Indonesian",
-   "autonym": "Bahasa Indonesia",
-   "iso_639_3": "ind",
-   "glottocode": "indo1316",
-   "scope": "LANGUAGE",
-   "speakers": 171000000,
-   "members": [],
-   "scripts": [
-    "latn"
-   ],
-   "countries": [
-    {
-     "code": "id",
-     "name": "Indonesia",
-     "speakers": 171000000
-    }
-   ],
-   "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/id.json",
-   "note": "",
-   "ltdi": 0.9124,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.8391,
-     "indicators": {
-      "web_text_words": 0.969,
-      "wikipedia_articles": 0.976,
-      "wikipedia_active_editors": 0.736,
-      "cv_validated_hours": 0.516,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.8391
-    },
-    "tech": {
-     "score": 0.9052,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 0.688,
-      "mt": 0.875,
-      "llm": 0.963
-     },
-     "raw": 0.9052
+     "raw": 0.865
     }
    },
    "missing": [],
    "rank": 9
   },
   {
-   "code": "bn",
-   "name": "Bengali",
-   "autonym": "বাংলা",
-   "iso_639_3": "ben",
-   "glottocode": "beng1280",
+   "code": "hi",
+   "name": "Hindi",
+   "autonym": "हिन्दी",
+   "iso_639_3": "hin",
+   "glottocode": "hind1269",
    "scope": "LANGUAGE",
-   "speakers": 266000000,
+   "speakers": 544000000,
    "members": [],
    "scripts": [
-    "beng"
+    "deva"
    ],
    "countries": [
     {
-     "code": "bd",
-     "name": "Bangladesh",
-     "speakers": 159000000
-    },
-    {
      "code": "in",
      "name": "India",
-     "speakers": 107000000
+     "speakers": 544000000
     }
    ],
    "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hi.json",
    "note": "",
-   "ltdi": 0.8644,
+   "ltdi": 0.8457,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1750,27 +1751,27 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.7817,
+     "score": 0.7442,
      "indicators": {
-      "web_text_words": 0.827,
-      "wikipedia_articles": 0.821,
-      "wikipedia_active_editors": 0.648,
-      "cv_validated_hours": 0.581,
+      "web_text_words": 0.865,
+      "wikipedia_articles": 0.809,
+      "wikipedia_active_editors": 0.588,
+      "cv_validated_hours": 0.408,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.7817
+     "raw": 0.7442
     },
     "tech": {
-     "score": 0.8262,
+     "score": 0.8128,
      "indicators": {
       "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 0.688,
+      "speech_input": 0.851,
+      "tts": 0.75,
       "mt": 0.5,
-      "llm": 0.943
+      "llm": 0.963
      },
-     "raw": 0.8262
+     "raw": 0.8128
     }
    },
    "missing": [],
@@ -1808,7 +1809,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ta.json",
    "note": "",
-   "ltdi": 0.8596,
+   "ltdi": 0.8447,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1831,14 +1832,14 @@
      "raw": 0.7969
     },
     "tech": {
-     "score": 0.797,
+     "score": 0.7562,
      "indicators": {
       "keyboard": 1.0,
-      "speech_input": 1.0,
+      "speech_input": 0.837,
       "tts": 0.688,
       "mt": 0.5
      },
-     "raw": 0.797
+     "raw": 0.7562
     }
    },
    "missing": [
@@ -1847,28 +1848,33 @@
    "rank": 11
   },
   {
-   "code": "hi",
-   "name": "Hindi",
-   "autonym": "हिन्दी",
-   "iso_639_3": "hin",
-   "glottocode": "hind1269",
+   "code": "bn",
+   "name": "Bengali",
+   "autonym": "বাংলা",
+   "iso_639_3": "ben",
+   "glottocode": "beng1280",
    "scope": "LANGUAGE",
-   "speakers": 544000000,
+   "speakers": 266000000,
    "members": [],
    "scripts": [
-    "deva"
+    "beng"
    ],
    "countries": [
     {
+     "code": "bd",
+     "name": "Bangladesh",
+     "speakers": 159000000
+    },
+    {
      "code": "in",
      "name": "India",
-     "speakers": 544000000
+     "speakers": 107000000
     }
    ],
    "region": "Asia",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hi.json",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
    "note": "",
-   "ltdi": 0.8559,
+   "ltdi": 0.828,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1879,27 +1885,27 @@
      "raw": 1.0
     },
     "data": {
-     "score": 0.7442,
+     "score": 0.7817,
      "indicators": {
-      "web_text_words": 0.865,
-      "wikipedia_articles": 0.809,
-      "wikipedia_active_editors": 0.588,
-      "cv_validated_hours": 0.408,
+      "web_text_words": 0.827,
+      "wikipedia_articles": 0.821,
+      "wikipedia_active_editors": 0.648,
+      "cv_validated_hours": 0.581,
       "flores200": 1.0,
       "belebele": 1.0
      },
-     "raw": 0.7442
+     "raw": 0.7817
     },
     "tech": {
-     "score": 0.8426,
+     "score": 0.7262,
      "indicators": {
       "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 0.75,
+      "speech_input": 0.5,
+      "tts": 0.688,
       "mt": 0.5,
-      "llm": 0.963
+      "llm": 0.943
      },
-     "raw": 0.8426
+     "raw": 0.7262
     }
    },
    "missing": [],
@@ -1932,7 +1938,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ur.json",
    "note": "",
-   "ltdi": 0.8184,
+   "ltdi": 0.7999,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -1955,14 +1961,14 @@
      "raw": 0.7796
     },
     "tech": {
-     "score": 0.7032,
+     "score": 0.6565,
      "indicators": {
       "keyboard": 0.625,
-      "speech_input": 1.0,
+      "speech_input": 0.813,
       "tts": 0.688,
       "mt": 0.5
      },
-     "raw": 0.7032
+     "raw": 0.6565
     }
    },
    "missing": [
@@ -1998,7 +2004,7 @@
    "region": "Asia",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pa.json",
    "note": "Gurmukhi and Shahmukhi scripts combined for the slice",
-   "ltdi": 0.7845,
+   "ltdi": 0.7426,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2021,20 +2027,80 @@
      "raw": 0.6057
     },
     "tech": {
-     "score": 0.797,
+     "score": 0.676,
      "indicators": {
       "keyboard": 1.0,
-      "speech_input": 1.0,
+      "speech_input": 0.516,
       "tts": 0.688,
       "mt": 0.5
      },
-     "raw": 0.797
+     "raw": 0.676
     }
    },
    "missing": [
     "llm_global_mmlu_rel"
    ],
    "rank": 14
+  },
+  {
+   "code": "is",
+   "name": "Icelandic",
+   "autonym": "íslenska",
+   "iso_639_3": "isl",
+   "glottocode": "icel1247",
+   "scope": "LANGUAGE",
+   "speakers": 350000,
+   "members": [],
+   "scripts": [
+    "latn"
+   ],
+   "countries": [
+    {
+     "code": "is",
+     "name": "Iceland",
+     "speakers": 350000
+    }
+   ],
+   "region": "Europe",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/is.json",
+   "note": "Contrast case: few speakers, strong support",
+   "ltdi": 0.7402,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.5855,
+     "indicators": {
+      "web_text_words": 0.747,
+      "wikipedia_articles": 0.695,
+      "wikipedia_active_editors": 0.482,
+      "cv_validated_hours": 0.025,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.5855
+    },
+    "tech": {
+     "score": 0.6927,
+     "indicators": {
+      "keyboard": 1.0,
+      "speech_input": 0.709,
+      "tts": 0.562,
+      "mt": 0.5
+     },
+     "raw": 0.6927
+    }
+   },
+   "missing": [
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 15
   },
   {
    "code": "sw",
@@ -2081,7 +2147,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sw.json",
    "note": "Macrolanguage; vendors label as sw",
-   "ltdi": 0.7692,
+   "ltdi": 0.739,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2104,78 +2170,18 @@
      "raw": 0.7785
     },
     "tech": {
-     "score": 0.5846,
+     "score": 0.5184,
      "indicators": {
       "keyboard": 0.5,
-      "speech_input": 1.0,
+      "speech_input": 0.669,
       "tts": 0.0,
       "mt": 0.5,
       "llm": 0.923
      },
-     "raw": 0.5846
+     "raw": 0.5184
     }
    },
    "missing": [],
-   "rank": 15
-  },
-  {
-   "code": "is",
-   "name": "Icelandic",
-   "autonym": "íslenska",
-   "iso_639_3": "isl",
-   "glottocode": "icel1247",
-   "scope": "LANGUAGE",
-   "speakers": 350000,
-   "members": [],
-   "scripts": [
-    "latn"
-   ],
-   "countries": [
-    {
-     "code": "is",
-     "name": "Iceland",
-     "speakers": 350000
-    }
-   ],
-   "region": "Europe",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/is.json",
-   "note": "Contrast case: few speakers, strong support",
-   "ltdi": 0.7653,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.5855,
-     "indicators": {
-      "web_text_words": 0.747,
-      "wikipedia_articles": 0.695,
-      "wikipedia_active_editors": 0.482,
-      "cv_validated_hours": 0.025,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.5855
-    },
-    "tech": {
-     "score": 0.7655,
-     "indicators": {
-      "keyboard": 1.0,
-      "speech_input": 1.0,
-      "tts": 0.562,
-      "mt": 0.5
-     },
-     "raw": 0.7655
-    }
-   },
-   "missing": [
-    "llm_global_mmlu_rel"
-   ],
    "rank": 16
   },
   {
@@ -2200,7 +2206,7 @@
    "region": "Europe",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cy.json",
    "note": "Contrast case: few speakers, strong support",
-   "ltdi": 0.684,
+   "ltdi": 0.6515,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2223,14 +2229,14 @@
      "raw": 0.6401
     },
     "tech": {
-     "score": 0.5,
+     "score": 0.432,
      "indicators": {
       "keyboard": 0.5,
-      "speech_input": 1.0,
+      "speech_input": 0.728,
       "tts": 0.0,
       "mt": 0.5
      },
-     "raw": 0.5
+     "raw": 0.432
     }
    },
    "missing": [
@@ -2260,7 +2266,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/yo.json",
    "note": "",
-   "ltdi": 0.6555,
+   "ltdi": 0.6249,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2283,15 +2289,15 @@
      "raw": 0.5617
     },
     "tech": {
-     "score": 0.5014,
+     "score": 0.4344,
      "indicators": {
       "keyboard": 0.5,
-      "speech_input": 0.67,
+      "speech_input": 0.335,
       "tts": 0.0,
       "mt": 0.5,
       "llm": 0.837
      },
-     "raw": 0.5014
+     "raw": 0.4344
     }
    },
    "missing": [],
@@ -2324,7 +2330,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ha.json",
    "note": "",
-   "ltdi": 0.6336,
+   "ltdi": 0.588,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2347,80 +2353,20 @@
      "raw": 0.6093
     },
     "tech": {
-     "score": 0.4175,
+     "score": 0.3337,
      "indicators": {
       "keyboard": 0.5,
-      "speech_input": 0.67,
+      "speech_input": 0.335,
       "tts": 0.0,
       "mt": 0.5
      },
-     "raw": 0.4175
+     "raw": 0.3337
     }
    },
    "missing": [
     "llm_global_mmlu_rel"
    ],
    "rank": 19
-  },
-  {
-   "code": "am",
-   "name": "Amharic",
-   "autonym": "አማርኛ",
-   "iso_639_3": "amh",
-   "glottocode": "amha1245",
-   "scope": "LANGUAGE",
-   "speakers": 36000000,
-   "members": [],
-   "scripts": [
-    "ethi"
-   ],
-   "countries": [
-    {
-     "code": "et",
-     "name": "Ethiopia",
-     "speakers": 36000000
-    }
-   ],
-   "region": "Africa",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
-   "note": "",
-   "ltdi": 0.6313,
-   "dimensions": {
-    "writing": {
-     "score": 1.0,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 1.0
-     },
-     "raw": 1.0
-    },
-    "data": {
-     "score": 0.5485,
-     "indicators": {
-      "web_text_words": 0.626,
-      "wikipedia_articles": 0.549,
-      "wikipedia_active_editors": 0.356,
-      "cv_validated_hours": 0.156,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.5485
-    },
-    "tech": {
-     "score": 0.4587,
-     "indicators": {
-      "keyboard": 0.335,
-      "speech_input": 1.0,
-      "tts": 0.0,
-      "mt": 0.5
-     },
-     "raw": 0.4587
-    }
-   },
-   "missing": [
-    "llm_global_mmlu_rel"
-   ],
-   "rank": 20
   },
   {
    "code": "ig",
@@ -2444,7 +2390,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ig.json",
    "note": "",
-   "ltdi": 0.6123,
+   "ltdi": 0.5682,
    "dimensions": {
     "writing": {
      "score": 1.0,
@@ -2467,14 +2413,74 @@
      "raw": 0.5498
     },
     "tech": {
-     "score": 0.4175,
+     "score": 0.3337,
      "indicators": {
       "keyboard": 0.5,
-      "speech_input": 0.67,
+      "speech_input": 0.335,
       "tts": 0.0,
       "mt": 0.5
      },
-     "raw": 0.4175
+     "raw": 0.3337
+    }
+   },
+   "missing": [
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 20
+  },
+  {
+   "code": "am",
+   "name": "Amharic",
+   "autonym": "አማርኛ",
+   "iso_639_3": "amh",
+   "glottocode": "amha1245",
+   "scope": "LANGUAGE",
+   "speakers": 36000000,
+   "members": [],
+   "scripts": [
+    "ethi"
+   ],
+   "countries": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 36000000
+    }
+   ],
+   "region": "Africa",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/am.json",
+   "note": "",
+   "ltdi": 0.5678,
+   "dimensions": {
+    "writing": {
+     "score": 1.0,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 1.0
+     },
+     "raw": 1.0
+    },
+    "data": {
+     "score": 0.5485,
+     "indicators": {
+      "web_text_words": 0.626,
+      "wikipedia_articles": 0.549,
+      "wikipedia_active_editors": 0.356,
+      "cv_validated_hours": 0.156,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.5485
+    },
+    "tech": {
+     "score": 0.3337,
+     "indicators": {
+      "keyboard": 0.335,
+      "speech_input": 0.5,
+      "tts": 0.0,
+      "mt": 0.5
+     },
+     "raw": 0.3337
     }
    },
    "missing": [
@@ -2504,7 +2510,7 @@
    "region": "Africa",
    "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/rw.json",
    "note": "",
-   "ltdi": 0.5913,
+   "ltdi": 0.5487,
    "dimensions": {
     "writing": {
      "score": 0.6667,
@@ -2527,85 +2533,20 @@
      "raw": 0.7427
     },
     "tech": {
-     "score": 0.4175,
+     "score": 0.3337,
      "indicators": {
       "keyboard": 0.5,
-      "speech_input": 0.67,
+      "speech_input": 0.335,
       "tts": 0.0,
       "mt": 0.5
      },
-     "raw": 0.4175
+     "raw": 0.3337
     }
    },
    "missing": [
     "llm_global_mmlu_rel"
    ],
    "rank": 22
-  },
-  {
-   "code": "om",
-   "name": "Oromo",
-   "autonym": "Afaan Oromoo",
-   "iso_639_3": "orm",
-   "glottocode": null,
-   "scope": "MACROLANGUAGE",
-   "speakers": 42000000,
-   "members": [
-    "gax",
-    "gaz",
-    "hae",
-    "orc"
-   ],
-   "scripts": [
-    "latn"
-   ],
-   "countries": [
-    {
-     "code": "et",
-     "name": "Ethiopia",
-     "speakers": 42000000
-    }
-   ],
-   "region": "Africa",
-   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
-   "note": "Macrolanguage; vendors label as om",
-   "ltdi": 0.5151,
-   "dimensions": {
-    "writing": {
-     "score": 0.6667,
-     "indicators": {
-      "script_encoded": 1.0,
-      "cldr_coverage": 0.333
-     },
-     "raw": 0.6667
-    },
-    "data": {
-     "score": 0.5449,
-     "indicators": {
-      "web_text_words": 0.469,
-      "wikipedia_articles": 0.323,
-      "wikipedia_active_editors": 0.292,
-      "cv_validated_hours": 0.476,
-      "flores200": 1.0,
-      "belebele": 1.0
-     },
-     "raw": 0.5449
-    },
-    "tech": {
-     "score": 0.3763,
-     "indicators": {
-      "keyboard": 0.335,
-      "speech_input": 0.67,
-      "tts": 0.0,
-      "mt": 0.5
-     },
-     "raw": 0.3763
-    }
-   },
-   "missing": [
-    "llm_global_mmlu_rel"
-   ],
-   "rank": 23
   },
   {
    "code": "qu",
@@ -2708,6 +2649,71 @@
       "mt": 0.5
      },
      "raw": 0.2087
+    }
+   },
+   "missing": [
+    "llm_global_mmlu_rel"
+   ],
+   "rank": 23
+  },
+  {
+   "code": "om",
+   "name": "Oromo",
+   "autonym": "Afaan Oromoo",
+   "iso_639_3": "orm",
+   "glottocode": null,
+   "scope": "MACROLANGUAGE",
+   "speakers": 42000000,
+   "members": [
+    "gax",
+    "gaz",
+    "hae",
+    "orc"
+   ],
+   "scripts": [
+    "latn"
+   ],
+   "countries": [
+    {
+     "code": "et",
+     "name": "Ethiopia",
+     "speakers": 42000000
+    }
+   ],
+   "region": "Africa",
+   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
+   "note": "Macrolanguage; vendors label as om",
+   "ltdi": 0.4737,
+   "dimensions": {
+    "writing": {
+     "score": 0.6667,
+     "indicators": {
+      "script_encoded": 1.0,
+      "cldr_coverage": 0.333
+     },
+     "raw": 0.6667
+    },
+    "data": {
+     "score": 0.5449,
+     "indicators": {
+      "web_text_words": 0.469,
+      "wikipedia_articles": 0.323,
+      "wikipedia_active_editors": 0.292,
+      "cv_validated_hours": 0.476,
+      "flores200": 1.0,
+      "belebele": 1.0
+     },
+     "raw": 0.5449
+    },
+    "tech": {
+     "score": 0.2925,
+     "indicators": {
+      "keyboard": 0.335,
+      "speech_input": 0.335,
+      "tts": 0.0,
+      "mt": 0.5
+     },
+     "raw": 0.2925
     }
    },
    "missing": [
@@ -2883,6 +2889,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 100.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
    },
    "wikipedia_active_editors": {
     "value": 59.0,
@@ -3083,6 +3098,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 9.6,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 5491.0,
@@ -3293,6 +3317,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 50.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+   },
    "wikipedia_active_editors": {
     "value": 1735.0,
     "unit": "editors",
@@ -3501,6 +3534,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 7.7,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 13286.0,
@@ -3711,6 +3753,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 28.6,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+   },
    "wikipedia_active_editors": {
     "value": 141.0,
     "unit": "editors",
@@ -3910,6 +3961,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 4.1,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 265650.0,
@@ -4120,6 +4180,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 2.8,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+   },
    "wikipedia_active_editors": {
     "value": 38823.0,
     "unit": "editors",
@@ -4328,6 +4397,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 5.3,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 36332.0,
@@ -4538,6 +4616,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 100.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
+   },
    "wikipedia_active_editors": {
     "value": 28.0,
     "unit": "editors",
@@ -4738,6 +4825,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 100.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
+   },
    "wikipedia_active_editors": {
     "value": 304.0,
     "unit": "editors",
@@ -4937,6 +5033,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 17.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 869.0,
@@ -5147,6 +5252,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 6.1,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+   },
    "wikipedia_active_editors": {
     "value": 4773.0,
     "unit": "editors",
@@ -5356,6 +5470,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 100.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
+   },
    "wikipedia_active_editors": {
     "value": 97.0,
     "unit": "editors",
@@ -5556,6 +5679,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 30.4,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+   },
    "wikipedia_active_editors": {
     "value": 255.0,
     "unit": "editors",
@@ -5755,6 +5887,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 4.9,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 23160.0,
@@ -5965,6 +6106,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 100.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
+   },
    "wikipedia_active_editors": {
     "value": 28.0,
     "unit": "editors",
@@ -6165,6 +6315,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 48.5,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+   },
    "wikipedia_active_editors": {
     "value": 199.0,
     "unit": "editors",
@@ -6364,6 +6523,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 4.1,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 7408.0,
@@ -6574,6 +6742,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 100.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
+   },
    "wikipedia_active_editors": {
     "value": 64.0,
     "unit": "editors",
@@ -6773,6 +6950,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 5.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 17314.0,
@@ -6974,6 +7160,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 100.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
+   },
    "wikipedia_active_editors": {
     "value": 67.0,
     "unit": "editors",
@@ -7173,6 +7368,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 34.1,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
    },
    "wikipedia_active_editors": {
     "value": 206.0,
@@ -7383,6 +7587,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 18.3,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+   },
    "wikipedia_active_editors": {
     "value": 431.0,
     "unit": "editors",
@@ -7583,6 +7796,15 @@
     "method": "download",
     "note": ""
    },
+   "asr_whisper_fleurs_wer": {
+    "value": 20.6,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+   },
    "wikipedia_active_editors": {
     "value": 404.0,
     "unit": "editors",
@@ -7782,6 +8004,15 @@
     "retrieved": "2026-11-07",
     "method": "download",
     "note": ""
+   },
+   "asr_whisper_fleurs_wer": {
+    "value": 100.0,
+    "unit": "% WER",
+    "source": "Whisper large-v3 on FLEURS",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg",
+    "retrieved": "2026-11-07",
+    "method": "download",
+    "note": "Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
    },
    "wikipedia_active_editors": {
     "value": 75.0,

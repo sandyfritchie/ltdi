@@ -183,6 +183,7 @@ function showValue(f) {
   if (f.unit === '% of English') return v + '% of English';
   if (f.unit === 'features of 4') return `${v} of 4 features`;
   if (f.unit === 'types of 8') return `${v} of 8 voice types`;
+  if (f.unit === '% WER') return v >= 100 ? 'No published WER under 50%' : v + '% WER';
   if (f.unit === 'editors') return big(v) + ' active editors';
   return v;
 }
@@ -206,7 +207,7 @@ function ranking() {
       <thead><tr><th>#</th><th>Language</th><th class="num hide-sm">Speakers</th><th class="hide-sm">Region</th><th>Dimensions</th><th class="num">LTDI</th><th>Tier</th></tr></thead>
       <tbody id="rows"></tbody>
     </table></div>
-    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. Each technology scores half for presence and half for depth (keyboard features, voice types, translation features). LLM support is measured for 12 languages only, so the rest leave LLMs out of their technology score. Select a language to see every value and its source.</p>`;
+    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. Each technology scores half for presence and half for depth (keyboard features, speech recognition error rates, voice types, translation features). LLM support is measured for 12 languages only, so the rest leave LLMs out of their technology score. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const rows = LANGS.filter(l => (region === 'All' || l.region === region) &&
