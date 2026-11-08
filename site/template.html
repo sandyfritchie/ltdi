@@ -635,7 +635,7 @@ function language(code) {
     <div class="lhead">
       <div><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span></h2>
         <div class="facts"><span><b>${people(l.speakers)}</b> speakers</span><span>Code <b class="code">${l.code}</b> · ISO 639-3 <b class="code">${esc(l.iso_639_3 || '')}</b></span>
-        <span>Scripts <b>${l.scripts.map(s => s[0].toUpperCase() + s.slice(1)).join(', ')}</b></span>
+        <span>${(l.script_names || l.scripts).length > 1 ? 'Scripts' : 'Script'} <b>${esc((l.script_names || l.scripts).join(', '))}</b></span>
         <span>Mainly in <b>${l.countries.slice(0, 3).map(c => esc(c.name)).join(', ')}</b></span></div>
         ${reachLine(l)}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}

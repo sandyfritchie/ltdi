@@ -13,6 +13,11 @@ from . import CONFIG, DATA
 from .http import fetch_json
 
 LINGUAMETA = "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data"
+CLDR_TERRITORIES = ("https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/"
+                    "cldr-localenames-full/main/en/territories.json")
+# Short country names for display: CLDR's English names, with these overrides
+SHORT_NAMES = {"HK": "Hong Kong", "MO": "Macao", "MM": "Myanmar", "PS": "Palestine",
+               "CD": "DR Congo", "CG": "Republic of the Congo"}
 
 # UN M49 region codes used in LinguaMeta's locales.json
 REGIONS = {"002": "Africa", "019": "Americas", "142": "Asia", "150": "Europe", "009": "Oceania"}
@@ -42,6 +47,22 @@ def _locales() -> dict[str, dict]:
             "subregion": entry.get("subregion"),
         }
     return out
+
+
+COUNTRY: dict[str, str] = {}
+SCRIPT: dict[str, str] = {}
+
+
+def country_names() -> dict[str, str]:
+    """ISO 3166 code (lower case) -> short English name: CLDR's, with SHORT_NAMES overrides."""
+    t = fetch_json(CLDR_TERRITORIES)["main"]["en"]["localeDisplayNames"]["territories"]
+    return {k.lower(): SHORT_NAMES.get(k, v) for k, v in t.items() if len(k) == 2 and "-alt-" not in k}
+
+
+def script_names() -> dict[str, str]:
+    """ISO 15924 code -> full name from LinguaMeta, e.g. latn -> Latin, hans -> Han (Simplified)."""
+    data = fetch_json(f"{LINGUAMETA}/scripts.json")["script_map"]
+    return {e["script"]["name"]: e["script"]["full_name"].replace(" variant)", ")") for e in data}
 
 
 def load_language(code: str, locales: dict[str, dict]) -> dict:
@@ -79,8 +100,9 @@ def load_language(code: str, locales: dict[str, dict]) -> dict:
         "speakers": d.get("total_population"),
         "members": d.get("individual_language_bcp_47_codes", []),
         "scripts": sorted(scripts, key=lambda s: (not scripts[s], s)),
+        "script_names": [SCRIPT.get(sc, sc.title()) for sc in sorted(scripts, key=lambda s: (not scripts[s], s))],
         "countries": [
-            {"code": c, "name": locales.get(c, {}).get("name", c), "speakers": n}
+            {"code": c, "name": COUNTRY.get(c) or locales.get(c, {}).get("name", c), "speakers": n}
             for c, n in top
         ],
         "region": next(
@@ -94,6 +116,8 @@ def load_language(code: str, locales: dict[str, dict]) -> dict:
 
 def main() -> None:
     locales = _locales()
+    COUNTRY.update(country_names())
+    SCRIPT.update(script_names())
     langs = []
     for row in slice_languages():
         lang = load_language(row["code"], locales)

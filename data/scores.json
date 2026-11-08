@@ -2095,10 +2095,13 @@
    "scripts": [
     "latn"
    ],
+   "script_names": [
+    "Latin"
+   ],
    "countries": [
     {
      "code": "us",
-     "name": "United States of America",
+     "name": "United States",
      "speakers": 319000000
     },
     {
@@ -2128,7 +2131,7 @@
     },
     {
      "code": "tz",
-     "name": "Tanzania, United Republic of",
+     "name": "Tanzania",
      "speakers": 40000000
     },
     {
@@ -2283,7 +2286,7 @@
     },
     {
      "code": "tt",
-     "name": "Trinidad and Tobago",
+     "name": "Trinidad & Tobago",
      "speakers": 1100000
     },
     {
@@ -2358,7 +2361,7 @@
     },
     {
      "code": "lc",
-     "name": "Saint Lucia",
+     "name": "St. Lucia",
      "speakers": 150000
     },
     {
@@ -2373,7 +2376,7 @@
     },
     {
      "code": "vc",
-     "name": "Saint Vincent and the Grenadines",
+     "name": "St. Vincent & Grenadines",
      "speakers": 97000
     },
     {
@@ -2388,12 +2391,12 @@
     },
     {
      "code": "ag",
-     "name": "Antigua and Barbuda",
+     "name": "Antigua & Barbuda",
      "speakers": 84000
     },
     {
      "code": "vi",
-     "name": "Virgin Islands, U.S.",
+     "name": "U.S. Virgin Islands",
      "speakers": 80000
     },
     {
@@ -2423,17 +2426,17 @@
     },
     {
      "code": "fm",
-     "name": "Micronesia, Federated States of",
+     "name": "Micronesia",
      "speakers": 58000
     },
     {
      "code": "tc",
-     "name": "Turks and Caicos Islands",
+     "name": "Turks & Caicos Islands",
      "speakers": 55000
     },
     {
      "code": "kn",
-     "name": "Saint Kitts and Nevis",
+     "name": "St. Kitts & Nevis",
      "speakers": 53000
     },
     {
@@ -2448,7 +2451,7 @@
     },
     {
      "code": "vg",
-     "name": "Virgin Islands, British",
+     "name": "British Virgin Islands",
      "speakers": 37000
     },
     {
@@ -2458,7 +2461,7 @@
     },
     {
      "code": "sx",
-     "name": "Sint Maarten (Dutch part)",
+     "name": "Sint Maarten",
      "speakers": 30000
     },
     {
@@ -2488,12 +2491,12 @@
     },
     {
      "code": "bn",
-     "name": "Brunei Darussalam",
+     "name": "Brunei",
      "speakers": 7900
     },
     {
      "code": "sh",
-     "name": "Saint Helena, Ascension and Tristan da Cunha",
+     "name": "St. Helena, Ascension & Tristan da Cunha",
      "speakers": 5400
     },
     {
@@ -2513,7 +2516,7 @@
     },
     {
      "code": "fk",
-     "name": "Falkland Islands (Malvinas)",
+     "name": "Falkland Islands",
      "speakers": 2800
     },
     {
@@ -2548,7 +2551,7 @@
     },
     {
      "code": "um",
-     "name": "United States Minor Outlying Islands",
+     "name": "U.S. Outlying Islands",
      "speakers": 320
     },
     {
@@ -2558,7 +2561,7 @@
     },
     {
      "code": "pn",
-     "name": "Pitcairn",
+     "name": "Pitcairn Islands",
      "speakers": 46
     },
     {
@@ -2568,7 +2571,7 @@
     },
     {
      "code": "bq",
-     "name": "Bonaire, Sint Eustatius and Saba",
+     "name": "Caribbean Netherlands",
      "speakers": null
     },
     {
@@ -2578,12 +2581,12 @@
     },
     {
      "code": "gs",
-     "name": "South Georgia and the South Sandwich Islands",
+     "name": "South Georgia & South Sandwich Islands",
      "speakers": null
     },
     {
      "code": "hm",
-     "name": "Heard Island and McDonald Islands",
+     "name": "Heard Island & McDonald Islands",
      "speakers": null
     }
    ],
@@ -2634,7 +2637,7 @@
    "reach_by_country": [
     {
      "code": "us",
-     "name": "United States of America",
+     "name": "United States",
      "speakers": 319000000,
      "online": 0.947,
      "text": 0.947,
@@ -2695,6 +2698,9 @@
    "scripts": [
     "latn"
    ],
+   "script_names": [
+    "Latin"
+   ],
    "countries": [
     {
      "code": "fr",
@@ -2713,7 +2719,7 @@
     },
     {
      "code": "ci",
-     "name": "Côte d'Ivoire",
+     "name": "Côte d’Ivoire",
      "speakers": 13000000
     },
     {
@@ -2763,7 +2769,7 @@
     },
     {
      "code": "cg",
-     "name": "Congo",
+     "name": "Republic of the Congo",
      "speakers": 4400000
     },
     {
@@ -2773,7 +2779,7 @@
     },
     {
      "code": "cd",
-     "name": "Congo, the Democratic Republic of the",
+     "name": "DR Congo",
      "speakers": 3900000
     },
     {
@@ -2868,7 +2874,7 @@
     },
     {
      "code": "mf",
-     "name": "Saint Martin (French part)",
+     "name": "St. Martin",
      "speakers": 33000
     },
     {
@@ -2878,17 +2884,17 @@
     },
     {
      "code": "wf",
-     "name": "Wallis and Futuna",
+     "name": "Wallis & Futuna",
      "speakers": 7600
     },
     {
      "code": "bl",
-     "name": "Saint Barthélemy",
+     "name": "St. Barthélemy",
      "speakers": 6800
     },
     {
      "code": "pm",
-     "name": "Saint Pierre and Miquelon",
+     "name": "St. Pierre & Miquelon",
      "speakers": 5100
     },
     {
@@ -2898,7 +2904,7 @@
     },
     {
      "code": "tf",
-     "name": "French Southern Territories",
+     "name": "French Southern and Antarctic Lands",
      "speakers": 140
     },
     {
@@ -2988,7 +2994,7 @@
     },
     {
      "code": "ci",
-     "name": "Côte d'Ivoire",
+     "name": "Côte d’Ivoire",
      "speakers": 13000000,
      "online": 0.414,
      "text": 0.234,
@@ -3025,6 +3031,9 @@
    "scripts": [
     "latn"
    ],
+   "script_names": [
+    "Latin"
+   ],
    "countries": [
     {
      "code": "mx",
@@ -3053,7 +3062,7 @@
     },
     {
      "code": "us",
-     "name": "United States of America",
+     "name": "United States",
      "speakers": 32000000
     },
     {
@@ -3063,7 +3072,7 @@
     },
     {
      "code": "ve",
-     "name": "Venezuela, Bolivarian Republic of",
+     "name": "Venezuela",
      "speakers": 23000000
     },
     {
@@ -3098,7 +3107,7 @@
     },
     {
      "code": "bo",
-     "name": "Bolivia, Plurinational State of",
+     "name": "Bolivia",
      "speakers": 7100000
     },
     {
@@ -3229,7 +3238,7 @@
     },
     {
      "code": "us",
-     "name": "United States of America",
+     "name": "United States",
      "speakers": 32000000,
      "online": 0.947,
      "text": 0.947,
@@ -3249,6 +3258,9 @@
    "members": [],
    "scripts": [
     "jpan"
+   ],
+   "script_names": [
+    "Japanese"
    ],
    "countries": [
     {
@@ -3324,6 +3336,9 @@
    "members": [],
    "scripts": [
     "latn"
+   ],
+   "script_names": [
+    "Latin"
    ],
    "countries": [
     {
@@ -3465,6 +3480,10 @@
    "scripts": [
     "hans",
     "hant"
+   ],
+   "script_names": [
+    "Han (Simplified)",
+    "Han (Traditional)"
    ],
    "countries": [
     {
@@ -3624,10 +3643,13 @@
    "scripts": [
     "cyrl"
    ],
+   "script_names": [
+    "Cyrillic"
+   ],
    "countries": [
     {
      "code": "ru",
-     "name": "Russian Federation",
+     "name": "Russia",
      "speakers": 133000000
     },
     {
@@ -3816,7 +3838,7 @@
    "reach_by_country": [
     {
      "code": "ru",
-     "name": "Russian Federation",
+     "name": "Russia",
      "speakers": 133000000,
      "online": 0.944,
      "text": 0.943,
@@ -3899,6 +3921,9 @@
    "scripts": [
     "arab"
    ],
+   "script_names": [
+    "Arabic"
+   ],
    "countries": [
     {
      "code": "eg",
@@ -3937,7 +3962,7 @@
     },
     {
      "code": "sy",
-     "name": "Syrian Arab Republic",
+     "name": "Syria",
      "speakers": 16000000
     },
     {
@@ -3962,7 +3987,7 @@
     },
     {
      "code": "ps",
-     "name": "Palestine, State of",
+     "name": "Palestine",
      "speakers": 4800000
     },
     {
@@ -4032,7 +4057,7 @@
     },
     {
      "code": "xa",
-     "name": "xa",
+     "name": "Pseudo-Accents",
      "speakers": null
     }
    ],
@@ -4257,6 +4282,9 @@
    "scripts": [
     "latn"
    ],
+   "script_names": [
+    "Latin"
+   ],
    "countries": [
     {
      "code": "id",
@@ -4444,6 +4472,9 @@
    "members": [],
    "scripts": [
     "deva"
+   ],
+   "script_names": [
+    "Devanagari"
    ],
    "countries": [
     {
@@ -4692,6 +4723,9 @@
    "members": [],
    "scripts": [
     "taml"
+   ],
+   "script_names": [
+    "Tamil"
    ],
    "countries": [
     {
@@ -5172,6 +5206,9 @@
    "members": [],
    "scripts": [
     "arab"
+   ],
+   "script_names": [
+    "Arabic"
    ],
    "countries": [
     {
@@ -5699,6 +5736,9 @@
    "scripts": [
     "beng"
    ],
+   "script_names": [
+    "Bengali"
+   ],
    "countries": [
     {
      "code": "bd",
@@ -6164,15 +6204,18 @@
    "scripts": [
     "latn"
    ],
+   "script_names": [
+    "Latin"
+   ],
    "countries": [
     {
      "code": "tz",
-     "name": "Tanzania, United Republic of",
+     "name": "Tanzania",
      "speakers": 53000000
     },
     {
      "code": "cd",
-     "name": "Congo, the Democratic Republic of the",
+     "name": "DR Congo",
      "speakers": 51000000
     },
     {
@@ -6723,7 +6766,7 @@
    "reach_by_country": [
     {
      "code": "tz",
-     "name": "Tanzania, United Republic of",
+     "name": "Tanzania",
      "speakers": 53000000,
      "online": 0.312,
      "text": 0.215,
@@ -6731,7 +6774,7 @@
     },
     {
      "code": "cd",
-     "name": "Congo, the Democratic Republic of the",
+     "name": "DR Congo",
      "speakers": 51000000,
      "online": 0.197,
      "text": 0.14,
@@ -6767,6 +6810,9 @@
    "members": [],
    "scripts": [
     "latn"
+   ],
+   "script_names": [
+    "Latin"
    ],
    "countries": [
     {
@@ -7280,6 +7326,9 @@
    "members": [],
    "scripts": [
     "latn"
+   ],
+   "script_names": [
+    "Latin"
    ],
    "countries": [
     {
@@ -7946,6 +7995,10 @@
     "arab",
     "guru"
    ],
+   "script_names": [
+    "Arabic",
+    "Gurmukhi"
+   ],
    "countries": [
     {
      "code": "pk",
@@ -8531,6 +8584,9 @@
    "members": [],
    "scripts": [
     "latn"
+   ],
+   "script_names": [
+    "Latin"
    ],
    "countries": [
     {
@@ -9342,6 +9398,9 @@
    "members": [],
    "scripts": [
     "ethi"
+   ],
+   "script_names": [
+    "Ethiopic"
    ],
    "countries": [
     {
@@ -10230,6 +10289,9 @@
    "scripts": [
     "latn"
    ],
+   "script_names": [
+    "Latin"
+   ],
    "countries": [
     {
      "code": "ng",
@@ -10810,6 +10872,9 @@
    "members": [],
    "scripts": [
     "latn"
+   ],
+   "script_names": [
+    "Latin"
    ],
    "countries": [
     {
@@ -11479,6 +11544,9 @@
    "members": [],
    "scripts": [
     "latn"
+   ],
+   "script_names": [
+    "Latin"
    ],
    "countries": [
     {
@@ -12202,6 +12270,9 @@
    "scripts": [
     "latn"
    ],
+   "script_names": [
+    "Latin"
+   ],
    "countries": [
     {
      "code": "pe",
@@ -12210,7 +12281,7 @@
     },
     {
      "code": "bo",
-     "name": "Bolivia, Plurinational State of",
+     "name": "Bolivia",
      "speakers": 3700000
     }
    ],
@@ -12934,7 +13005,7 @@
     },
     {
      "code": "bo",
-     "name": "Bolivia, Plurinational State of",
+     "name": "Bolivia",
      "speakers": 3700000,
      "online": 0.797,
      "text": 0.624,
@@ -12959,6 +13030,9 @@
    ],
    "scripts": [
     "latn"
+   ],
+   "script_names": [
+    "Latin"
    ],
    "countries": [
     {
@@ -13787,6 +13861,9 @@
    "scripts": [
     "latn"
    ],
+   "script_names": [
+    "Latin"
+   ],
    "countries": [
     {
      "code": "py",
@@ -13795,7 +13872,7 @@
     },
     {
      "code": "bo",
-     "name": "Bolivia, Plurinational State of",
+     "name": "Bolivia",
      "speakers": 52000
     },
     {
@@ -14547,7 +14624,7 @@
     },
     {
      "code": "bo",
-     "name": "Bolivia, Plurinational State of",
+     "name": "Bolivia",
      "speakers": 52000,
      "online": 0.797,
      "text": 0.624,
