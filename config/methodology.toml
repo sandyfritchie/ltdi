@@ -90,7 +90,7 @@ weight = 1
 label = "Speech input"
 consumer = ["asr_google", "asr_azure", "asr_apple"]
 open = ["asr_open_whisper"]
-depth = { asr_whisper_fleurs_wer = { min = 50, max = 3 } }  # WER: 50% scores 0, 3% scores 1
+depth = { asr_whisper_fleurs_wer = { min = 50, max = 3 }, asr_azure_features = 10 }  # WER: 50% scores 0, 3% scores 1
 weight = 1
 
 [dimensions.tech.technologies.tts]
@@ -104,14 +104,12 @@ weight = 1
 label = "Machine translation"
 consumer = ["mt_google", "mt_azure", "mt_deepl"]
 open = ["mt_open_nllb"]
-depth = { mt_deepl_features = 4 }  # glossaries, translation memory, style rules, text improvement
+depth = { mt_deepl_features = 4, mt_azure_features = 6 }  # DeepL: glossaries, TM, style rules, Write; Azure: see records
 weight = 1
 
 [dimensions.tech.technologies.llm]
 label = "LLMs"
-measured = "llm_global_mmlu_rel"
-# % of English score, scaled linearly between min and max.
-# Not benchmarked -> left out of the tech mean and flagged.
-min = 70
-max = 100
+# Mean of the measured benchmarks available for the language, each scaled linearly
+# between its min and max. Not benchmarked at all -> left out of the tech mean and flagged.
+measured = { llm_global_mmlu_rel = { min = 70, max = 100 }, llm_mmmlu_openai = { min = 0.6, max = 0.92 } }
 weight = 1

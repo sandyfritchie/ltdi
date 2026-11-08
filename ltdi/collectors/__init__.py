@@ -15,7 +15,7 @@ from .. import DATA
 from ..crosswalk import to_ltdi
 from ..records import Record, write_records
 
-AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl"]
+AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu"]
 LOCAL_ONLY = ["wikipedia"]  # need network access the build sandbox lacks
 
 

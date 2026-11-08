@@ -53,15 +53,15 @@ No dependencies beyond the Python 3.11+ standard library.
 | Data | Reading-comprehension benchmark | Belebele | automated |
 | Data | Wikipedia articles and active editors | Wikimedia API | automated (run locally) |
 | Tech | Keyboard | Gboard, Apple iOS; depth: Apple's four keyboard feature lists | manual |
-| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation; Whisper (open); depth: Whisper large-v3 FLEURS WER | manual; Whisper automated |
+| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation; Whisper (open); depth: Whisper large-v3 FLEURS WER, Azure speech-to-text features | manual; Whisper automated |
 | Tech | Text-to-speech | Google Cloud TTS; depth: number of voice types | manual |
-| Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL's per-language features | manual; DeepL and NLLB automated |
-| Tech | LLMs | Global-MMLU relative to English, from Anthropic's published table | manual |
+| Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | manual; DeepL and NLLB automated |
+| Tech | LLMs | Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | manual; OpenAI automated |
 
 ## Known limitations of the slice
 
-- Depth comes from one vendor per technology (Apple, Google, DeepL), so it reflects each vendor's priorities.
+- Keyboard and text-to-speech depth still come from one vendor each (Apple, Google); speech, translation and LLMs have two.
 - Common Voice is one speech source among many, so it under-credits Hindi and over-credits Kinyarwanda.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
-- LLM support is measured for 12 of the 25 languages.
+- LLM support is measured for 12 of the 25 languages, by at most two benchmarks.
 - Wikipedia article counts include bot-generated stubs: Urdu (708K) outranks Hindi (172K).

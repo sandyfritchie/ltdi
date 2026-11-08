@@ -35,10 +35,9 @@ def normalise(value: float, spec: dict) -> float:
 def tier(facts: dict[str, Record], tech: dict) -> float | None:
     """Presence tier for a technology, or the measured score for LLMs."""
     if "measured" in tech:
-        r = facts.get(tech["measured"])
-        if r is None:
-            return None
-        return round(normalise(r.value, {"scale": "linear", "min": tech["min"], "max": tech["max"]}), 3)
+        vals = [normalise(facts[i].value, {"scale": "linear", **spec})
+                for i, spec in tech["measured"].items() if i in facts]
+        return round(sum(vals) / len(vals), 3) if vals else None
     consumer = sum(1 for i in tech["consumer"] if i in facts and facts[i].value)
     has_open = any(i in facts and facts[i].value for i in tech["open"])
     if consumer >= min(2, len(tech["consumer"])):
@@ -95,7 +94,7 @@ def score_language(facts: dict[str, Record], cfg: dict) -> dict:
     for name, tech in t["technologies"].items():
         s = tech_score(facts, tech)
         if s is None:
-            missing.append(tech.get("measured", name))
+            missing.append(name)
             continue
         parts.append((s, tech["weight"]))
         detail[name] = s

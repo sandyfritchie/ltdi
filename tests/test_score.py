@@ -40,10 +40,14 @@ class TierTests(unittest.TestCase):
         self.assertEqual(tier({"a": fact("a", 1)}, {"consumer": ["a"], "open": []}), 1.0)
 
     def test_unmeasured_llm_is_none(self):
-        self.assertIsNone(tier({}, {"measured": "m", "min": 70, "max": 100}))
+        self.assertIsNone(tier({}, {"measured": {"m": {"min": 70, "max": 100}}}))
 
     def test_measured_llm_is_linear(self):
-        self.assertAlmostEqual(tier({"m": fact("m", 85)}, {"measured": "m", "min": 70, "max": 100}), 0.5)
+        self.assertAlmostEqual(tier({"m": fact("m", 85)}, {"measured": {"m": {"min": 70, "max": 100}}}), 0.5)
+
+    def test_measured_llm_averages_benchmarks(self):
+        spec = {"measured": {"m": {"min": 70, "max": 100}, "n": {"min": 0.5, "max": 1.0}}}
+        self.assertAlmostEqual(tier({"m": fact("m", 100), "n": fact("n", 0.5)}, spec), 0.5)
 
 
 class DepthTests(unittest.TestCase):
