@@ -139,8 +139,8 @@ details.more-tech[open] .mt-title::before { content: '▾'; }
 details.more-tech[open] .mt-peek { display: none; }
 details.more-tech .techrow:first-of-type { border-top: 1px solid var(--rule); padding-top: 12px; margin-top: 12px; } .tech-h .ind-val { margin-left: auto; font-size: 14px; }
 .ticon { width: 20px; height: 20px; color: var(--c); flex: none; }
-.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(190px, 46%), 1fr)); gap: 8px; margin-top: 2px; }
-.tile { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; text-decoration: none; color: var(--ink); min-width: 0; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(160px, 46%), 1fr)); gap: 8px; margin-top: 2px; }
+.tile { display: flex; gap: 8px; align-items: flex-start; border: 1px solid var(--rule); border-radius: 6px; padding: 8px 9px; text-decoration: none; color: var(--ink); min-width: 0; }
 a.tile:hover { border-color: var(--muted); }
 .tile b { display: block; font-weight: 600; font-size: 14px; }
 .tile small { display: block; font-size: 12px; color: var(--muted); }
@@ -512,7 +512,7 @@ const SVC = {
   tts_google: ['Google Cloud', 'Text-to-Speech', 'google'],
   mt_google: ['Google Cloud', 'Translation', 'google'], mt_azure: ['Azure', 'Translator', 'microsoft'],
   mt_deepl: ['DeepL', 'Translator', 'deepl'], mt_open_nllb: ['NLLB-200', 'Open model', 'meta'],
-  llm_global_mmlu_rel: ['Claude', 'Global-MMLU benchmark', 'anthropic'], llm_mmmlu_openai: ['OpenAI o3', 'MMMLU benchmark', 'openai'],
+  llm_global_mmlu_rel: ['Claude', 'Global-MMLU', 'anthropic'], llm_mmmlu_openai: ['OpenAI o3', 'MMMLU', 'openai'],
   ui_ios: ['iOS', 'System language', 'apple'], ui_windows: ['Windows', 'Display language', 'microsoft'],
   ui_office: ['Microsoft 365', 'Display language', 'microsoft'], ui_firefox: ['Firefox', 'Volunteer translation', 'open'],
   ocr_google: ['Google Cloud', 'Vision OCR', 'google'], ocr_apple: ['iOS', 'Live Text', 'apple'],
@@ -522,8 +522,8 @@ const SVC = {
   va_google_assistant: ['Google Assistant', 'Speakers and displays', 'google'], va_siri: ['Siri', 'Voice assistant', 'apple'],
   lid_cld3: ['CLD3', 'Open model', 'google'], lid_glotlid: ['GlotLID', 'Open model', 'open'],
   kb_swiftkey: ['SwiftKey', 'Android keyboard', 'microsoft'], kb_open_keyman: ['Keyman', 'Open layouts', 'open'],
-  asr_amazon: ['Amazon Transcribe', 'Speech to text', 'amazon'], asr_open_mms: ['MMS', 'Open model', 'meta'],
-  tts_azure: ['Azure AI Speech', 'Text to speech', 'microsoft'], tts_amazon: ['Amazon Polly', 'Text to speech', 'amazon'],
+  asr_amazon: ['Transcribe', 'Speech to text', 'amazon'], asr_open_mms: ['MMS', 'Open model', 'meta'],
+  tts_azure: ['Azure AI Speech', 'Text to speech', 'microsoft'], tts_amazon: ['Polly', 'Text to speech', 'amazon'],
   tts_open_mms: ['MMS-TTS', 'Open model', 'meta'], va_alexa: ['Alexa', 'Voice assistant', 'amazon'],
   llm_app_gemini: ['Gemini', 'App languages', 'google'], llm_app_copilot: ['Copilot', 'App languages', 'microsoft'],
 };
@@ -548,7 +548,7 @@ const TICON = {
 };
 function depthText(f, ind) {
   if (!f) return '';
-  if (f.unit === '% WER') return f.value >= 100 ? 'No published error rate' : `${f.value}% word error rate`;
+  if (f.unit === '% WER') return f.value >= 100 ? 'No published error rate' : `${Math.round(f.value)}% word error rate`;
   if (f.unit === 'levels of 2') {
     if (ind === 'ocr_google_level') return f.value >= 2 ? '' : 'Experimental';
     return f.value >= 2 ? 'Fully translated' : 'Partly translated';
@@ -569,8 +569,8 @@ function svcTile(id, facts, open) {
   if (!f) return `<div class="tile off"${pv}><span class="mark" aria-hidden="true">–</span><div>${by}<b>${esc(name)}</b><small>${esc(kind)} · not benchmarked</small></div></div>`;
   const on = f.unit === 'bool' ? !!f.value : true;
   let detail = '';
-  if (f.unit === '% of English') detail = `${f.value}% of its English score`;
-  else if (f.unit === 'accuracy') detail = `${(f.value * 100).toFixed(1)}% accuracy`;
+  if (f.unit === '% of English') detail = `${Math.round(f.value)}% of English`;
+  else if (f.unit === 'accuracy') detail = `${Math.round(f.value * 100)}% accuracy`;
   else if (on && DEPTH_OF[id]) detail = depthText(facts[DEPTH_OF[id]], DEPTH_OF[id]);
   const measured = f.unit === '% of English' || f.unit === 'accuracy';
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : null;
