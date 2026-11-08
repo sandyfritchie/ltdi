@@ -15,3 +15,6 @@ proof_hunspell,LibreOffice dictionaries,Hunspell spelling dictionaries and hyphe
 proof_languagetool,LanguageTool,Open grammar and style checker,LGPL 2.1,https://github.com/languagetool-org/languagetool
 lid_glotlid,GlotLID,Open language identification for 2000+ languages,Apache 2.0,https://github.com/cisnlp/GlotLID
 lid_cld3,CLD3,Compact open language identifier,Apache 2.0,https://github.com/google/cld3
+kb_open_keyman,Keyman keyboards,Open keyboard layouts from SIL and contributors,MIT (most layouts),https://github.com/keymanapp/keyboards
+asr_open_mms,MMS speech recognition,Open speech recognition for 1100+ languages,CC BY-NC 4.0,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
+tts_open_mms,MMS text-to-speech,Open text-to-speech models for 1100+ languages,CC BY-NC 4.0,https://github.com/facebookresearch/fairseq/tree/main/examples/mms

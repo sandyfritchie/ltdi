@@ -17,7 +17,8 @@ FULL = dict(kb_gboard=1, kb_apple=1, kb_apple_features=4, asr_google=1, asr_azur
             mt_deepl=1, mt_open_nllb=1, llm_global_mmlu_rel=100, belebele=1, cldr_coverage=3,
             web_text_words=1e12, wikipedia_active_editors=100000,
             ui_ios=1, ui_windows=1, ui_office=1, ocr_google=1, ocr_azure=1, ocr_apple=1, proof_office=1,
-            va_google_assistant=1, va_siri=1, lid_glotlid=1, lid_cld3=1)
+            va_google_assistant=1, va_siri=1, lid_glotlid=1, lid_cld3=1, kb_swiftkey=1, asr_amazon=1,
+            tts_azure=1, tts_amazon=1, va_alexa=1, llm_app_gemini=1, llm_app_copilot=1)
 
 
 class FindTests(unittest.TestCase):
@@ -29,8 +30,10 @@ class FindTests(unittest.TestCase):
         self.assertIn("A keyboard layout exists but isn't on every major platform", titles(fs, "share"))
 
     def test_tts_gap_is_share_with_data_and_collect_without(self):
-        self.assertTrue(any("text-to-speech" in t for t in titles(facts(**{**FULL, "tts_google": 0}), "share")))
-        thin = facts(**{**FULL, "tts_google": 0, "cv_validated_hours": 3})
+        none = {"tts_google": 0, "tts_azure": 0, "tts_amazon": 0}
+        self.assertTrue(any("text-to-speech" in t for t in titles(facts(**{**FULL, **none}), "share")))
+        self.assertIn("Text-to-speech is offered by 2 of 3 major services", titles(facts(**{**FULL, "tts_amazon": 0}), "share"))
+        thin = facts(**{**FULL, **none, "cv_validated_hours": 3})
         self.assertIn("Record a single-speaker voice for text-to-speech", titles(thin, "collect"))
 
     def test_open_ocr_without_a_service_is_share(self):
@@ -46,10 +49,19 @@ class FindTests(unittest.TestCase):
         self.assertIn("A spell-checker could be built from open text", titles(fs))
 
     def test_assistant_follows_speech_and_voice(self):
-        fs = facts(**{**FULL, "va_google_assistant": 0, "va_siri": 0})
+        no_va = {"va_google_assistant": 0, "va_siri": 0, "va_alexa": 0}
+        fs = facts(**{**FULL, **no_va})
         self.assertIn("The building blocks for a voice assistant exist", titles(fs, "share"))
-        self.assertEqual(titles(facts(**{**FULL, "va_google_assistant": 0, "va_siri": 0, "tts_google": 0}), "share")
+        self.assertEqual(titles(facts(**{**FULL, **no_va, "tts_google": 0, "tts_azure": 0, "tts_amazon": 0}), "share")
                          .count("The building blocks for a voice assistant exist"), 0)
+
+    def test_open_keyboard_without_a_platform_is_share(self):
+        fs = facts(**{**FULL, "kb_gboard": 0, "kb_apple": 0, "kb_swiftkey": 0, "kb_open_keyman": 1})
+        self.assertIn("Open keyboard layouts exist, but no major phone keyboard", titles(fs, "share"))
+
+    def test_benchmarked_language_missing_from_apps_is_share(self):
+        fs = facts(**{**FULL, "llm_app_copilot": 0})
+        self.assertIn("1 of 2 major AI assistant apps list this language", titles(fs, "share"))
 
     def test_interface_from_volunteer_translation(self):
         fs = facts(**{**FULL, "ui_ios": 0, "ui_windows": 0, "ui_office": 0, "ui_firefox": 1})
@@ -64,10 +76,13 @@ class FindTests(unittest.TestCase):
                        web_text_words=1e7, cldr_coverage=1, asr_whisper_fleurs_wer=100, mt_google=1,
                        mt_open_nllb=1, wikipedia_active_editors=5, ui_ios=0, ui_windows=1, ui_office=0,
                        ocr_google=1, ocr_azure=0, ocr_apple=0, proof_office=0, proof_hunspell=1,
-                       va_google_assistant=1, va_siri=0, lid_glotlid=0, lid_cld3=0)
+                       va_google_assistant=1, va_siri=0, lid_glotlid=0, lid_cld3=0, kb_swiftkey=0,
+                       kb_open_keyman=1, tts_azure=1, tts_amazon=0, tts_open_mms=1, llm_app_gemini=1,
+                       llm_app_copilot=0, llm_global_mmlu_rel=80)
         text = " ".join(o["title"] + " " + o["detail"] for o in find(sparse))
         for name in ("Apple", "Google", "Microsoft", "Azure", "DeepL", "OpenAI", "Anthropic", "Meta", "Gboard",
-                     "Siri", "Windows", "Firefox", "Mozilla", "Tesseract", "Hunspell", "LanguageTool", "Office"):
+                     "Siri", "Windows", "Firefox", "Mozilla", "Tesseract", "Hunspell", "LanguageTool", "Office",
+                     "Amazon", "Alexa", "Polly", "SwiftKey", "Keyman", "Gemini", "Copilot", "MMS", "Whisper"):
             self.assertNotIn(name, text)
 
 

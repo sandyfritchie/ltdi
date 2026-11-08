@@ -34,29 +34,54 @@ def normalise(value: float, spec: dict) -> float:
     return min(1.0, max(0.0, (v - lo) / (hi - lo)))
 
 
+ANY = 0.25  # credit for any availability; the rest is shared across the services checked
+
+
+def presence(facts: dict[str, Record], ids: list[str]) -> float:
+    """0.25 for being offered at all, plus 0.75 x the share of these services that offer it."""
+    n = sum(1 for i in ids if i in facts and facts[i].value)
+    return round(ANY + (1 - ANY) * n / len(ids), 3) if n else 0.0
+
+
 def tier(facts: dict[str, Record], tech: dict) -> float | None:
-    """Presence tier for a technology, or the measured score for LLMs."""
-    if "measured" in tech:
-        vals = [normalise(facts[i].value, {"scale": "linear", **spec})
-                for i, spec in tech["measured"].items() if i in facts]
-        return round(sum(vals) / len(vals), 3) if vals else None
-    if not tech["consumer"]:  # open tools only (e.g. language identification): they are the products
-        n = sum(1 for i in tech["open"] if i in facts and facts[i].value)
-        return 1.0 if n >= min(2, len(tech["open"])) else 0.67 if n else 0.0
-    consumer = sum(1 for i in tech["consumer"] if i in facts and facts[i].value)
-    has_open = any(i in facts and facts[i].value for i in tech["open"])
-    if consumer >= min(2, len(tech["consumer"])):
-        return 1.0
-    if consumer >= 1:
-        return 0.67
-    return 0.33 if has_open else 0.0
+    """Presence score for a technology (see methodology.toml); None if nothing was collected.
+
+    Commercial services count by share. Without any, an open model alone scores the
+    base 0.25. Technologies with no commercial sources (language identification)
+    count their open tools by share instead. LLMs combine product availability with
+    measured benchmark results (see tech_score).
+    """
+    consumer, open_ = tech.get("consumer", []), tech.get("open", [])
+    if not any(i in facts for i in consumer + open_):
+        return None
+    if not consumer:
+        return presence(facts, open_)
+    p = presence(facts, consumer)
+    if p == 0 and any(i in facts and facts[i].value for i in open_):
+        return ANY
+    return p
+
+
+def measured(facts: dict[str, Record], tech: dict) -> float | None:
+    vals = [normalise(facts[i].value, {"scale": "linear", **spec})
+            for i, spec in tech.get("measured", {}).items() if i in facts]
+    return round(sum(vals) / len(vals), 3) if vals else None
 
 
 def depth(facts: dict[str, Record], tech: dict) -> float | None:
-    """Mean of the technology's depth indicators, each divided by its max; None if none collected."""
+    """Mean of the technology's depth indicators, each divided by its max; None if none collected.
+
+    A depth indicator named after a service (tts_google_voice_types belongs to tts_google)
+    only counts where that service offers the language: its absence is already counted
+    in the presence score.
+    """
     vals = []
+    services = tech.get("consumer", []) + tech.get("open", [])
     for ind, spec in tech.get("depth", {}).items():
         if ind not in facts:
+            continue
+        owner = max((sv for sv in services if ind.startswith(sv + "_")), key=len, default=None)
+        if owner and not (owner in facts and facts[owner].value):
             continue
         if isinstance(spec, dict):  # {min, max}; max < min inverts the scale (e.g. error rates)
             vals.append(normalise(facts[ind].value, {"scale": "linear", **spec}))
@@ -66,8 +91,11 @@ def depth(facts: dict[str, Record], tech: dict) -> float | None:
 
 
 def tech_score(facts: dict[str, Record], tech: dict) -> float | None:
-    t = tier(facts, tech)
-    if t is None or "measured" in tech or t == 0:
+    t = tier(facts, tech) if tech.get("consumer") or tech.get("open") else None
+    if "measured" in tech:  # LLMs: mean of product availability and benchmark quality, whichever exist
+        parts = [v for v in (t, measured(facts, tech)) if v is not None]
+        return round(sum(parts) / len(parts), 3) if parts else None
+    if t is None or t == 0:
         return t
     d = depth(facts, tech)
     return t if d is None else round((t + d) / 2, 3)

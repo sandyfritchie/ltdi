@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import csv
 import math
+import tomllib
 from functools import lru_cache
 
 from . import CONFIG
@@ -51,9 +52,12 @@ TEAMS = {
 # Per rule: which teams can act, which open resources to start from, what's still missing, and
 # optionally a cost that overrides the type's (building a voice assistant is more than a launch).
 RULES = {
-    "kb-platform": {"teams": ["keyboards", "standards"], "starter": ["kb_gboard", "cldr_coverage", "web_text_words"],
+    "kb-platform": {"teams": ["keyboards", "standards"], "starter": ["kb_open_keyman", "cldr_coverage", "web_text_words"],
         "missing": "An openly licensed version of the layout in CLDR Keyboards format, then a launch on the "
                    "remaining platforms."},
+    "kb-open": {"teams": ["keyboards", "standards"], "starter": ["kb_open_keyman", "cldr_coverage", "web_text_words"],
+        "missing": "Agreement from speakers on one layout, converted to CLDR Keyboards format, then a launch on the "
+                   "major phone keyboards."},
     "kb-features": {"teams": ["keyboards"], "starter": ["web_text_words", "wikipedia_articles"],
         "missing": "A word list and prediction model built from the open text, and native speakers to review the "
                    "suggestions."},
@@ -71,7 +75,10 @@ RULES = {
     "asr-collect": {"teams": ["data", "funding", "speech"], "starter": ["cv_validated_hours", "web_text_words"],
         "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an "
                    "open licence."},
-    "tts-share": {"teams": ["tts"], "starter": ["cv_validated_hours", "cldr_coverage"],
+    "tts-vendors": {"teams": ["tts"], "starter": ["tts_open_mms", "cv_validated_hours"],
+        "missing": "Launches in the remaining services, with native speakers rating naturalness and how numbers "
+                   "and names are read."},
+    "tts-share": {"teams": ["tts"], "starter": ["tts_open_mms", "cv_validated_hours", "cldr_coverage"],
         "missing": "Studio-quality recordings from one or two voice talents for a production voice, plus rules for "
                    "reading numbers and dates aloud."},
     "tts-collect": {"teams": ["tts", "data", "funding"], "starter": ["cv_validated_hours", "cldr_coverage"],
@@ -83,6 +90,9 @@ RULES = {
     "llm-measure": {"teams": ["evaluation", "llm"], "starter": ["flores200", "belebele", "web_text_words"],
         "missing": "Professionally translated benchmark items, for example a Global-MMLU or MMMLU edition, and "
                    "published results for leading models."},
+    "llm-apps": {"teams": ["llm", "evaluation"], "starter": ["belebele", "flores200"],
+        "missing": "Testing by native speakers on everyday tasks, then listing the language in the apps' "
+                   "supported languages."},
     "llm-improve": {"teams": ["llm", "data"], "starter": ["web_text_words", "wikipedia_articles"],
         "missing": "More high-quality text and instruction data, and evaluation by native speakers."},
     "llm-reading": {"teams": ["evaluation"], "starter": ["flores200"],
@@ -129,13 +139,22 @@ RULES = {
         "missing": "Editor training and outreach with universities and community groups."},
 }
 
-ASR = ["asr_google", "asr_azure", "asr_apple"]
-MT = ["mt_google", "mt_azure", "mt_deepl"]
-LLM = ["llm_global_mmlu_rel", "llm_mmmlu_openai"]
-UI = ["ui_ios", "ui_windows", "ui_office"]
-OCR = ["ocr_google", "ocr_azure", "ocr_apple"]
-VA = ["va_google_assistant", "va_siri"]
-LID = ["lid_glotlid", "lid_cld3"]
+def _consumer(tech: str, key: str = "consumer") -> list[str]:
+    """A technology's service list from config/methodology.toml, so rules follow the config."""
+    with (CONFIG / "methodology.toml").open("rb") as fh:
+        return list(tomllib.load(fh)["dimensions"]["tech"]["technologies"][tech].get(key, []))
+
+
+KB = _consumer("keyboard")
+ASR = _consumer("speech_input")
+TTS = _consumer("tts")
+MT = _consumer("mt")
+LLM = list(_consumer("llm", "measured"))
+APPS = _consumer("llm")
+UI = _consumer("interface")
+OCR = _consumer("ocr")
+VA = _consumer("assistant")
+LID = _consumer("langid", "open")
 
 
 def _v(f: dict[str, Record], ind: str) -> float | None:
@@ -171,11 +190,17 @@ def find(f: dict[str, Record]) -> list[dict]:
     words = _v(f, "web_text_words") or 0
 
     # Keyboards
-    if _v(f, "kb_gboard") and not _v(f, "kb_apple"):
+    kb_n = sum(1 for i in KB if _v(f, i))
+    if 0 < kb_n < len(KB):
         add("kb-platform", "share", "keyboard", "A keyboard layout exists but isn't on every major platform",
-            "A layout ships on Android but not yet on iOS. Contributing it to CLDR Keyboards, the open "
+            f"A layout ships on {kb_n} of {len(KB)} major keyboards. Contributing it to CLDR Keyboards, the open "
             "interchange format for layouts, would let any platform adopt it.",
-            0.5, ["kb_gboard", "kb_apple"])
+            (len(KB) - kb_n) / len(KB), KB + ["kb_open_keyman"])
+    elif kb_n == 0 and _v(f, "kb_open_keyman"):
+        add("kb-open", "share", "keyboard", "Open keyboard layouts exist, but no major phone keyboard",
+            "Community layouts are published under an open licence. Converting one to CLDR Keyboards format "
+            "would let phone keyboards adopt it.",
+            1.0, KB + ["kb_open_keyman"])
     feats = _v(f, "kb_apple_features")
     if _v(f, "kb_apple") and feats is not None and feats < 2 and words >= 1e7:
         add("kb-features", "share", "keyboard", "Predictive text and autocorrect could be built from open text",
@@ -190,11 +215,12 @@ def find(f: dict[str, Record]) -> list[dict]:
             f"Some services already recognise this language. Open training data includes {_hours(cv)} "
             "of transcribed speech on Common Voice.",
             (len(ASR) - asr_n) / len(ASR), ASR + ["cv_validated_hours"])
-    elif asr_n == 0 and (cv >= 20 or _v(f, "asr_open_whisper")):
+    elif asr_n == 0 and (cv >= 20 or _v(f, "asr_open_whisper") or _v(f, "asr_open_mms")):
         add("asr-none", "share", "speech_input", "No major speech input service, though open resources exist",
             f"Common Voice holds {_hours(cv)} of transcribed speech"
-            + (", and an open model lists the language" if _v(f, "asr_open_whisper") else "") + ".",
-            1.0, ASR + ["cv_validated_hours", "asr_open_whisper"])
+            + (", and an open model lists the language" if _v(f, "asr_open_whisper") or _v(f, "asr_open_mms") else "")
+            + ".",
+            1.0, ASR + ["cv_validated_hours", "asr_open_whisper", "asr_open_mms"])
     wer = _v(f, "asr_whisper_fleurs_wer")
     if wer is not None and wer >= 100:
         add("asr-measure", "measure", "speech_input", "No published speech recognition error rate",
@@ -212,18 +238,24 @@ def find(f: dict[str, Record]) -> list[dict]:
             1 - cv / 20, ["cv_validated_hours"])
 
     # Text-to-speech
-    if not _v(f, "tts_google"):
-        if cv >= 10:
-            add("tts-share", "share", "tts", "No cloud text-to-speech voice found, though open speech data exists",
-                f"The cloud TTS service checked so far has no voice for this language. Common Voice holds "
-                f"{_hours(cv)} of speech. Multi-speaker crowd recordings suit recognition more than synthesis, "
-                "but open multilingual TTS models can adapt from them.",
-                1.0, ["tts_google", "cv_validated_hours"])
-        else:
-            add("tts-collect", "collect", "tts", "Record a single-speaker voice for text-to-speech",
-                "No cloud voice was found and open speech data is thin. A few hours of clean single-speaker "
-                "recordings would unlock a usable voice.",
-                1.0, ["tts_google", "cv_validated_hours"])
+    tts_n = sum(1 for i in TTS if _v(f, i))
+    open_tts = _v(f, "tts_open_mms")
+    if 0 < tts_n < len(TTS):
+        add("tts-vendors", "share", "tts", f"Text-to-speech is offered by {tts_n} of {len(TTS)} major services",
+            "Some cloud services already have a voice for this language"
+            + (", and an open model can speak it." if open_tts else "."),
+            (len(TTS) - tts_n) / len(TTS), TTS + ["tts_open_mms"])
+    elif tts_n == 0 and (cv >= 10 or open_tts):
+        add("tts-share", "share", "tts", "No cloud text-to-speech voice found, though open resources exist",
+            "None of the cloud services checked has a voice for this language. "
+            + ("An open text-to-speech model already speaks it. " if open_tts else "")
+            + f"Common Voice holds {_hours(cv)} of speech.",
+            1.0, TTS + ["tts_open_mms", "cv_validated_hours"])
+    elif tts_n == 0:
+        add("tts-collect", "collect", "tts", "Record a single-speaker voice for text-to-speech",
+            "No cloud or open voice was found and open speech data is thin. A few hours of clean single-speaker "
+            "recordings would unlock a usable voice.",
+            1.0, TTS + ["cv_validated_hours"])
 
     # Translation
     mt_n = sum(1 for i in MT if _v(f, i))
@@ -248,6 +280,13 @@ def find(f: dict[str, Record]) -> list[dict]:
         if weak:
             add("llm-improve", "improve", "llm", "LLMs lag behind their English performance",
                 "Benchmark results: " + "; ".join(weak) + ".", 0.5, llm)
+    apps_n = sum(1 for i in APPS if _v(f, i))
+    if any(i in f for i in APPS) and apps_n < len(APPS) and (apps_n or llm):
+        add("llm-apps", "share", "llm", f"{apps_n} of {len(APPS)} major AI assistant apps list this language",
+            ("Some assistant apps already offer it. " if apps_n else "")
+            + ("Benchmarks show models can work in it, so the gap is mainly a product decision."
+               if llm else "Listing it would tell speakers they can rely on it."),
+            (len(APPS) - apps_n) / len(APPS), APPS + llm)
     if not _v(f, "belebele"):
         add("llm-reading", "measure", "llm", "No reading-comprehension benchmark",
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
@@ -310,11 +349,11 @@ def find(f: dict[str, Record]) -> list[dict]:
                 "One assistant already works in this language, so speech recognition, a voice and language "
                 "understanding have been shown to be feasible.",
                 (len(VA) - va_n) / len(VA), VA)
-        elif va_n == 0 and asr_n and _v(f, "tts_google"):
+        elif va_n == 0 and asr_n and tts_n:
             add("va-ready", "share", "assistant", "The building blocks for a voice assistant exist",
                 "Commercial speech recognition and a synthetic voice both exist, but no major assistant "
                 "understands spoken requests in this language yet.",
-                1.0, VA + ASR + ["tts_google"])
+                1.0, VA + ASR + TTS)
 
     # Language identification
     if any(i in f for i in LID) and not any(_v(f, i) for i in LID) and words:

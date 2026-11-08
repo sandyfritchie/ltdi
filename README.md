@@ -22,6 +22,7 @@ The point of the slice is to test the method before scaling up.
 python -m ltdi.backbone        # LinguaMeta metadata for the languages in config/slice_languages.csv
 python -m ltdi.collectors      # automated collectors -> data/records/*.csv (open_tools reads three repos with git)
 python -m ltdi.collectors wikipedia   # needs open network access; run locally
+python -m ltdi.collectors mms        # needs dl.fbaipublicfiles.com
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
@@ -43,6 +44,17 @@ No dependencies beyond the Python 3.11+ standard library.
 | `data/manual/` | Values read from vendor pages by hand, with URL and date |
 | `site/` | Static site template and build output |
 
+## Technology scores
+
+Each technology starts from a presence score: 0.25 for being offered at all,
+plus 0.75 times the share of the commercial services checked that offer it
+(one of four scores 0.44; all four score 1.0). An open model alone scores 0.25.
+Counting by share keeps scores comparable as more services are added. Where a
+technology has depth indicators (features, voice types, error rates), its score
+is the mean of presence and depth, and a service's depth only counts where that
+service offers the language. LLMs average availability in AI assistant apps with
+measured benchmark quality. Language identification counts open models, at half weight.
+
 ## Sources in the slice
 
 | Dimension | Indicator | Source | Method |
@@ -54,15 +66,15 @@ No dependencies beyond the Python 3.11+ standard library.
 | Data | MT evaluation set | FLORES-200 | automated |
 | Data | Reading-comprehension benchmark | Belebele | automated |
 | Data | Wikipedia articles and active editors | Wikimedia API | automated (run locally) |
-| Tech | Keyboard | Gboard, Apple iOS; depth: Apple's four keyboard feature lists | manual |
-| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation; Whisper (open); depth: Whisper large-v3 FLEURS WER, Azure speech-to-text features | manual; Whisper automated |
-| Tech | Text-to-speech | Google Cloud TTS; depth: number of voice types | manual |
+| Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | manual; Keyman automated |
+| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation, Amazon Transcribe; Whisper and MMS (open); depth: Whisper large-v3 FLEURS WER, Azure speech-to-text features | manual; Whisper automated |
+| Tech | Text-to-speech | Google Cloud TTS, Azure Speech, Amazon Polly; MMS-TTS (open); depth: number of Google voice types | manual; MMS automated |
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | manual; DeepL and NLLB automated |
-| Tech | LLMs | Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | manual; OpenAI automated |
+| Tech | LLMs | Availability: Gemini and Copilot app language lists. Quality: Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | manual; OpenAI automated |
 | Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | manual; Firefox automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | manual; Tesseract automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | manual; open tools automated |
-| Tech | Voice assistant | Google Assistant (speakers and displays), Siri | manual |
+| Tech | Voice assistant | Google Assistant (speakers and displays), Siri, Alexa | manual |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
 
 ## Charts and regions
@@ -141,6 +153,8 @@ the coalition workstream it fits.
 ## Known limitations of the slice
 
 - Keyboard and text-to-speech depth still come from one vendor each (Apple, Google); speech, translation and LLMs have two.
+- Azure's text-to-speech voice list was read from a third-party copy, since Microsoft's page loads it separately.
+- AI assistant app lists cover Gemini and Copilot; ChatGPT's and Meta AI's official lists couldn't be read from here.
 - Spelling and grammar has one commercial source, so it alone gives full presence. Google's assistant list covers
   speakers and displays; Gemini Live on phones has no full public language list yet. Siri's list is by country,
   so Portuguese, Russian and Japanese are inferred from Brazil, Russia and Japan.

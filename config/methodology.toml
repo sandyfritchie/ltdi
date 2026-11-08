@@ -67,38 +67,40 @@ scale = "bool"
 weight = 0.1
 
 # ------------------------------------------------------------- technology ---
-# Each technology starts from a presence tier:
-#   1.00  consumer products from at least min(2, number of consumer sources) vendors
-#   0.67  one consumer product
-#   0.33  open model only
-#   0     none
-# A technology with no consumer sources (language identification) counts its
-# open tools instead: 1.00 for at least two, 0.67 for one.
-# Where a technology lists depth indicators, its score is the mean of the tier
-# and the depth (each depth value divided by its max, averaged). Depth only
-# counts when the technology is present at all.
-# LLMs are scored from measured benchmark results instead (see [llm]).
+# Each technology starts from a presence score:
+#   0.25 for being offered by any of the services checked, plus
+#   0.75 x the share of commercial services that offer it
+#   (so one of four services scores 0.44, all four score 1.0);
+#   0.25 for an open model alone; 0 for nothing found.
+# Counting by share keeps the score meaningful as more services are added.
+# A technology with no commercial sources (language identification) counts its
+# open tools by share instead.
+# Where a technology lists depth indicators, its score is the mean of the
+# presence score and the depth (each depth value divided by its max, averaged).
+# A depth indicator named after a service only counts where that service offers
+# the language. Depth only counts when the technology is present at all.
+# LLMs also use measured benchmark results (see [llm]).
 [dimensions.tech]
 label = "Technology support"
 
 [dimensions.tech.technologies.keyboard]
 label = "Keyboard"
-consumer = ["kb_gboard", "kb_apple"]
-open = []
+consumer = ["kb_gboard", "kb_apple", "kb_swiftkey"]
+open = ["kb_open_keyman"]
 depth = { kb_apple_features = 4 }  # autocorrection, predictive, multilingual, QuickPath
 weight = 1
 
 [dimensions.tech.technologies.speech_input]
 label = "Speech input"
-consumer = ["asr_google", "asr_azure", "asr_apple"]
-open = ["asr_open_whisper"]
+consumer = ["asr_google", "asr_azure", "asr_apple", "asr_amazon"]
+open = ["asr_open_whisper", "asr_open_mms"]
 depth = { asr_whisper_fleurs_wer = { min = 50, max = 3 }, asr_azure_features = 10 }  # WER: 50% scores 0, 3% scores 1
 weight = 1
 
 [dimensions.tech.technologies.tts]
 label = "Text-to-speech"
-consumer = ["tts_google"]
-open = []
+consumer = ["tts_google", "tts_azure", "tts_amazon"]
+open = ["tts_open_mms"]
 depth = { tts_google_voice_types = 8 }  # Standard, WaveNet, Neural2, Studio, Polyglot, News, Chirp HD, Chirp3-HD
 weight = 1
 
@@ -111,8 +113,11 @@ weight = 1
 
 [dimensions.tech.technologies.llm]
 label = "LLMs"
-# Mean of the measured benchmarks available for the language, each scaled linearly
-# between its min and max. Not benchmarked at all -> left out of the tech mean and flagged.
+# Mean of two parts: availability in assistant apps (presence score over the
+# products below), and quality: the measured benchmarks available for the
+# language, each scaled linearly between its min and max.
+consumer = ["llm_app_gemini", "llm_app_copilot"]
+open = []
 measured = { llm_global_mmlu_rel = { min = 70, max = 100 }, llm_mmmlu_openai = { min = 0.6, max = 0.92 } }
 weight = 1
 
@@ -142,7 +147,7 @@ weight = 1
 [dimensions.tech.technologies.assistant]
 label = "Voice assistant"
 group = "more"  # shown under "More technologies" on the site
-consumer = ["va_google_assistant", "va_siri"]
+consumer = ["va_google_assistant", "va_siri", "va_alexa"]
 open = []
 weight = 1
 

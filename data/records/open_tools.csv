@@ -1,4 +1,29 @@
 language,indicator,value,unit,source,url,retrieved,method,note
+am,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,13 keyboard packages
+ar,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,10 keyboard packages
+bn,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,11 keyboard packages
+cmn,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,5 keyboard packages
+cy,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,5 keyboard packages
+en,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,30 keyboard packages
+es,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,8 keyboard packages
+fr,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,16 keyboard packages
+gn,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,4 keyboard packages
+ha,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,12 keyboard packages
+hi,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,18 keyboard packages
+id,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,9 keyboard packages
+ig,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,6 keyboard packages
+is,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,3 keyboard packages
+ja,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
+om,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,4 keyboard packages
+pa,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,9 keyboard packages
+pt,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,11 keyboard packages
+qu,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,4 keyboard packages
+ru,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,7 keyboard packages
+rw,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
+sw,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,8 keyboard packages
+ta,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,15 keyboard packages
+ur,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,10 keyboard packages
+yo,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,11 keyboard packages
 am,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 ar,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 bn,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,

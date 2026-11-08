@@ -26,7 +26,7 @@
   --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
   --t-vh: #1c5cab; --t-h: #6da7ec; --t-m: #ea9447; --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
-  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-open: #c3b28f;
+  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -40,7 +40,7 @@
     --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
     --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
     --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
-    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-open: #c3b28f;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f;
   }
 }
 :root[data-theme="dark"] {
@@ -51,7 +51,7 @@
   --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
   --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
   --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
-    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-open: #c3b28f;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;
@@ -521,8 +521,13 @@ const SVC = {
   proof_languagetool: ['LanguageTool', 'Grammar checker', 'open'],
   va_google_assistant: ['Google Assistant', 'Speakers and displays', 'google'], va_siri: ['Siri', 'Voice assistant', 'apple'],
   lid_cld3: ['CLD3', 'Open model', 'google'], lid_glotlid: ['GlotLID', 'Open model', 'open'],
+  kb_swiftkey: ['SwiftKey', 'Android keyboard', 'microsoft'], kb_open_keyman: ['Keyman', 'Open layouts', 'open'],
+  asr_amazon: ['Amazon Transcribe', 'Speech to text', 'amazon'], asr_open_mms: ['MMS', 'Open model', 'meta'],
+  tts_azure: ['Azure AI Speech', 'Text to speech', 'microsoft'], tts_amazon: ['Amazon Polly', 'Text to speech', 'amazon'],
+  tts_open_mms: ['MMS-TTS', 'Open model', 'meta'], va_alexa: ['Alexa', 'Voice assistant', 'amazon'],
+  llm_app_gemini: ['Gemini', 'App languages', 'google'], llm_app_copilot: ['Copilot', 'App languages', 'microsoft'],
 };
-const PROV = { google: 'Google', apple: 'Apple', microsoft: 'Microsoft', deepl: 'DeepL', openai: 'OpenAI', meta: 'Meta', anthropic: 'Anthropic', open: 'Open source' };
+const PROV = { google: 'Google', apple: 'Apple', microsoft: 'Microsoft', amazon: 'Amazon', deepl: 'DeepL', openai: 'OpenAI', meta: 'Meta', anthropic: 'Anthropic', open: 'Open source' };
 let provFocus = null, moreOpen = false;  // remembered while moving between languages
 const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
   tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features',
@@ -583,7 +588,7 @@ function dimPanel(l, key, color) {
     const main = [], more = [], peek = [];
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
-      const ids = t.measured ? Object.keys(t.measured) : [...t.consumer, ...t.open];
+      const ids = [...(t.consumer || []), ...(t.open || []), ...Object.keys(t.measured || {})];
       const order = Object.keys(PROV), rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
       const tiles = [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id))).join('');
       const row = `<div class="techrow">
@@ -707,18 +712,12 @@ function bindTips(root) {
 const LEVELS = [['full', 'Widely available'], ['part', 'In some services'], ['open', 'Open model only'], ['none', 'None found']];
 function levelOf(l, key, t) {
   const f = DATA.facts[l.code] || {}, has = i => f[i] && f[i].value;
-  if (t.measured) {
-    const s = l.dimensions.tech.indicators[key];
-    return s == null ? 'none' : s >= 0.9 ? 'full' : 'part';
-  }
-  if (!t.consumer.length) {  // open tools only (language identification)
-    const m = t.open.filter(has).length;
-    return m >= Math.min(2, t.open.length) && m ? 'full' : m ? 'part' : 'none';
-  }
-  const n = t.consumer.filter(has).length;
-  if (n >= Math.min(2, t.consumer.length)) return 'full';
-  if (n >= 1) return 'part';
-  return t.open.some(has) ? 'open' : 'none';
+  const c = t.consumer || [], o = t.open || [];
+  const src = c.length ? c : o;  // language identification: the open tools are the products
+  const n = src.filter(has).length;
+  if (n && n / src.length >= 0.5) return 'full';
+  if (n) return 'part';
+  return c.length && o.some(has) ? 'open' : 'none';
 }
 
 
@@ -842,7 +841,7 @@ function charts() {
   const rows = techs.map(([k, t]) => {
     const by = Object.fromEntries(LEVELS.map(([lv]) => [lv, langs.filter(l => levelOf(l, k, t) === lv)]));
     const segs = LEVELS.filter(([lv]) => by[lv].length).map(([lv, lab]) => {
-      const n = by[lv].length, label = t.measured ? { full: 'Benchmarked at 90%+', part: 'Benchmarked, lower', none: 'No public benchmark' }[lv] || lab : lab;
+      const n = by[lv].length, label = lab;
       return `<div class="seg ${lv}" tabindex="0" style="flex:${n}" data-tip="<b>${esc(t.label)}: ${esc(label)}</b><br>${n} of ${N}: ${names(by[lv])}">${n / N >= 0.08 ? n : ''}</div>`;
     }).join('');
     return { k, t, by, html: `<div class="lab">${esc(t.label)}</div><div class="stack" role="img" aria-label="${esc(t.label)}: ${LEVELS.map(([lv, lab]) => `${by[lv].length} ${lab.toLowerCase()}`).join(', ')}">${segs}</div>` };
@@ -913,10 +912,10 @@ function charts() {
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
-      <p class="sub">Each bar splits the ${N} languages by how widely a technology is available in them. Widely available means in at least two of the major services checked, or in the only one checked; language identification counts open models instead. Hover a segment to see which languages.</p>
+      <p class="sub">Each bar splits the ${N} languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are AI assistant apps, and language identification counts open models. Hover a segment to see which languages.</p>
       <div class="legend ord">${LEVELS.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
-      <p class="note">LLMs are counted by published benchmark results instead: dark for 90% or more of the best score, mid-blue for lower scores, grey for no public benchmark.</p>
+
       <details class="tbl"><summary>Show as a table</summary>${table1}</details>
     </section>
     <section class="chart">
