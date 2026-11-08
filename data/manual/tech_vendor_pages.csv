@@ -49,31 +49,31 @@ sw,asr_azure,1.0,bool,Azure AI Speech (speech to text),https://learn.microsoft.c
 ta,asr_azure,1.0,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,
 ur,asr_azure,1.0,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,
 yo,asr_azure,0.0,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,
-am,asr_azure_features,4,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-ar,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-bn,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-cmn,asr_azure_features,9,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-cy,asr_azure_features,6,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-en,asr_azure_features,10,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-es,asr_azure_features,10,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-fr,asr_azure_features,10,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-gn,asr_azure_features,0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
-ha,asr_azure_features,0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
-hi,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-id,asr_azure_features,9,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-ig,asr_azure_features,0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
-is,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-ja,asr_azure_features,9,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-om,asr_azure_features,0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
-pa,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-pt,asr_azure_features,10,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-qu,asr_azure_features,0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
-ru,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-rw,asr_azure_features,0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
-sw,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-ta,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-ur,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
-yo,asr_azure_features,0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
+am,asr_azure_features,4.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+ar,asr_azure_features,8.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+bn,asr_azure_features,8.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+cmn,asr_azure_features,9.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+cy,asr_azure_features,6.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+en,asr_azure_features,10.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+es,asr_azure_features,10.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+fr,asr_azure_features,10.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+gn,asr_azure_features,0.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
+ha,asr_azure_features,0.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
+hi,asr_azure_features,8.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+id,asr_azure_features,9.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+ig,asr_azure_features,0.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
+is,asr_azure_features,5.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+ja,asr_azure_features,9.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+om,asr_azure_features,0.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
+pa,asr_azure_features,8.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+pt,asr_azure_features,10.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+qu,asr_azure_features,0.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
+ru,asr_azure_features,8.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+rw,asr_azure_features,0.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
+sw,asr_azure_features,5.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+ta,asr_azure_features,8.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+ur,asr_azure_features,8.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,"Counts real-time, batch, fast transcription, mono- and multilingual refinement, LLM speech, MAI-Transcribe, custom speech with labeled audio, custom pronunciation, display format"
+yo,asr_azure_features,0.0,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-07,manual,Not supported
 am,asr_google,1.0,bool,Google Cloud Speech-to-Text V2,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-07,manual,Any model or region counts; om and ig are on chirp_2 in one region only
 ar,asr_google,1.0,bool,Google Cloud Speech-to-Text V2,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-07,manual,Any model or region counts; om and ig are on chirp_2 in one region only
 bn,asr_google,1.0,bool,Google Cloud Speech-to-Text V2,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-07,manual,Any model or region counts; om and ig are on chirp_2 in one region only
@@ -212,30 +212,30 @@ ta,mt_azure,1.0,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-se
 ur,mt_azure,1.0,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,
 yo,mt_azure,1.0,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,
 am,mt_azure_features,1.5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-ar,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-bn,mt_azure_features,4,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-cmn,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-cy,mt_azure_features,4,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-en,mt_azure_features,6,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-es,mt_azure_features,6,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-fr,mt_azure_features,6,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-gn,mt_azure_features,0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,Not supported
-ha,mt_azure_features,1,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-hi,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-id,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-ig,mt_azure_features,1,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-is,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-ja,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-om,mt_azure_features,0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,Not supported
-pa,mt_azure_features,4,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-pt,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-qu,mt_azure_features,0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,Not supported
-ru,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-rw,mt_azure_features,1,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-sw,mt_azure_features,4,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-ta,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+ar,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+bn,mt_azure_features,4.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+cmn,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+cy,mt_azure_features,4.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+en,mt_azure_features,6.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+es,mt_azure_features,6.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+fr,mt_azure_features,6.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+gn,mt_azure_features,0.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,Not supported
+ha,mt_azure_features,1.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+hi,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+id,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+ig,mt_azure_features,1.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+is,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+ja,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+om,mt_azure_features,0.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,Not supported
+pa,mt_azure_features,4.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+pt,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+qu,mt_azure_features,0.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,Not supported
+ru,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+rw,mt_azure_features,1.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+sw,mt_azure_features,4.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+ta,mt_azure_features,5.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
 ur,mt_azure_features,4.5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
-yo,mt_azure_features,1,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
+yo,mt_azure_features,1.0,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-07,manual,"Counts Custom Translator, auto language detection, dictionary, LLM translation, adaptive custom translation, scanned-document translation; source-only counts half"
 am,mt_google,1.0,bool,Google Cloud Translation (NMT),https://docs.cloud.google.com/translate/docs/languages,2026-11-07,manual,
 ar,mt_google,1.0,bool,Google Cloud Translation (NMT),https://docs.cloud.google.com/translate/docs/languages,2026-11-07,manual,
 bn,mt_google,1.0,bool,Google Cloud Translation (NMT),https://docs.cloud.google.com/translate/docs/languages,2026-11-07,manual,
@@ -261,6 +261,156 @@ sw,mt_google,1.0,bool,Google Cloud Translation (NMT),https://docs.cloud.google.c
 ta,mt_google,1.0,bool,Google Cloud Translation (NMT),https://docs.cloud.google.com/translate/docs/languages,2026-11-07,manual,
 ur,mt_google,1.0,bool,Google Cloud Translation (NMT),https://docs.cloud.google.com/translate/docs/languages,2026-11-07,manual,
 yo,mt_google,1.0,bool,Google Cloud Translation (NMT),https://docs.cloud.google.com/translate/docs/languages,2026-11-07,manual,
+am,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+ar,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+bn,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+cmn,ocr_apple,1,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+cy,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+en,ocr_apple,1,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+es,ocr_apple,1,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+fr,ocr_apple,1,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+gn,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+ha,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+hi,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+id,ocr_apple,1,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+ig,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+is,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+ja,ocr_apple,1,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+om,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+pa,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+pt,ocr_apple,1,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+qu,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+ru,ocr_apple,1,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+rw,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+sw,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+ta,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+ur,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+yo,ocr_apple,0,bool,Apple iOS Live Text,https://www.apple.com/ios/feature-availability/#live-text,2026-11-08,manual,
+am,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ar,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+bn,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+cmn,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+cy,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+en,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+es,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+fr,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+gn,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ha,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+hi,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+id,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ig,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+is,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ja,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+om,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+pa,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+pt,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+qu,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ru,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+rw,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+sw,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ta,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ur,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+yo,ocr_azure,0,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+am,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ar,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+bn,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+cmn,ocr_azure_handwriting,1,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+cy,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+en,ocr_azure_handwriting,1,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+es,ocr_azure_handwriting,1,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+fr,ocr_azure_handwriting,1,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+gn,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ha,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+hi,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+id,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ig,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+is,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ja,ocr_azure_handwriting,1,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+om,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+pa,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+pt,ocr_azure_handwriting,1,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+qu,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ru,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+rw,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+sw,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ta,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+ur,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+yo,ocr_azure_handwriting,0,bool,Azure AI Vision OCR (handwriting),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,manual,
+am,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,Experimental
+ar,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+bn,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+cmn,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+cy,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,Experimental
+en,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+es,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+fr,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+gn,ocr_google,0,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ha,ocr_google,0,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+hi,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+id,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ig,ocr_google,0,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+is,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ja,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+om,ocr_google,0,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+pa,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+pt,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+qu,ocr_google,0,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ru,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+rw,ocr_google,0,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+sw,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,Experimental
+ta,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ur,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,Experimental
+yo,ocr_google,0,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+am,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,Experimental support
+ar,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+bn,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+cmn,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+cy,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,Experimental support
+en,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+es,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+fr,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+gn,ocr_google_level,0,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ha,ocr_google_level,0,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+hi,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+id,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ig,ocr_google_level,0,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+is,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ja,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+om,ocr_google_level,0,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+pa,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+pt,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+qu,ocr_google_level,0,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ru,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+rw,ocr_google_level,0,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+sw,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,Experimental support
+ta,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+ur,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,Experimental support
+yo,ocr_google_level,0,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,manual,
+am,proof_office,0,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ar,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+bn,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+cmn,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+cy,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+en,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+es,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+fr,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+gn,proof_office,0,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ha,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+hi,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+id,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ig,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+is,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ja,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+om,proof_office,0,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+pa,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+pt,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+qu,proof_office,0,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ru,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+rw,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+sw,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ta,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ur,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+yo,proof_office,1,bool,Microsoft 365 proofing tools,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
 am,tts_google,0.0,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,
 ar,tts_google,1.0,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,
 bn,tts_google,1.0,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,
@@ -311,3 +461,178 @@ sw,tts_google_voice_types,0.0,types of 8,Google Cloud TTS voice types,https://do
 ta,tts_google_voice_types,3.0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
 ur,tts_google_voice_types,3.0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,"Chirp3-HD, Standard, WaveNet"
 yo,tts_google_voice_types,0.0,types of 8,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices,2026-11-07,manual,No voices
+am,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+ar,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+bn,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+cmn,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+cy,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+en,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+es,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+fr,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+gn,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+ha,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+hi,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+id,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+ig,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+is,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+ja,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+om,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+pa,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+pt,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+qu,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+ru,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+rw,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+sw,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+ta,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+ur,ui_ios,1,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+yo,ui_ios,0,bool,Apple iOS system language,https://www.apple.com/ios/feature-availability/#system-language,2026-11-08,manual,
+am,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ar,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+bn,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+cmn,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+cy,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+en,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+es,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+fr,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+gn,ui_office,0,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ha,ui_office,0,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+hi,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+id,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ig,ui_office,0,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+is,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ja,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+om,ui_office,0,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+pa,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+pt,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+qu,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ru,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+rw,ui_office,0,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+sw,ui_office,0,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ta,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ur,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+yo,ui_office,0,bool,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+am,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,Partial: some apps and menus stay in another language
+ar,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+bn,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,Partial: some apps and menus stay in another language
+cmn,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+cy,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,Partial: some apps and menus stay in another language
+en,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+es,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+fr,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+gn,ui_office_level,0,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ha,ui_office_level,0,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+hi,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+id,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ig,ui_office_level,0,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+is,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,Partial: some apps and menus stay in another language
+ja,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+om,ui_office_level,0,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+pa,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,Partial: some apps and menus stay in another language
+pt,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+qu,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,Partial: some apps and menus stay in another language
+ru,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+rw,ui_office_level,0,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+sw,ui_office_level,0,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+ta,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,Partial: some apps and menus stay in another language
+ur,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,Partial: some apps and menus stay in another language
+yo,ui_office_level,0,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-US/office/language-accessory-pack-for-microsoft-365,2026-11-08,manual,
+am,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+ar,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+bn,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+cmn,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+cy,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+en,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+es,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+fr,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+gn,ui_windows,0,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+ha,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+hi,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+id,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+ig,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+is,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+ja,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+om,ui_windows,0,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+pa,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+pt,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+qu,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+ru,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+rw,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+sw,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+ta,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+ur,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+yo,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+am,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+ar,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+bn,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+cmn,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+cy,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+en,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+es,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+fr,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+gn,ui_windows_level,0,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+ha,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+hi,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+id,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+ig,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+is,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+ja,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+om,ui_windows_level,0,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+pa,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+pt,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+qu,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+ru,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,
+rw,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+sw,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+ta,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+ur,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+yo,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,manual,"Language interface pack: partly translated, over a base language"
+am,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+ar,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+bn,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+cmn,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,Taiwan only
+cy,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+en,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+es,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+fr,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+gn,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+ha,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+hi,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,Some features only
+id,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,Some features only
+ig,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+is,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+ja,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+om,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+pa,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+pt,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,Brazil only
+qu,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+ru,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+rw,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+sw,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+ta,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+ur,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+yo,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-08,manual,
+am,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+ar,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+bn,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+cmn,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+cy,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+en,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+es,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+fr,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+gn,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+ha,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+hi,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+id,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+ig,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+is,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+ja,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,Inferred from Siri's country list
+om,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+pa,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+pt,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,Inferred from Siri's country list
+qu,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+ru,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,Inferred from Siri's country list
+rw,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+sw,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+ta,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+ur,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,
+yo,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-08,manual,

@@ -26,7 +26,7 @@
   --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
   --t-vh: #1c5cab; --t-h: #6da7ec; --t-m: #ea9447; --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
-  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
+  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-open: #c3b28f;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -40,7 +40,7 @@
     --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
     --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
     --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
-    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-open: #c3b28f;
   }
 }
 :root[data-theme="dark"] {
@@ -51,7 +51,7 @@
   --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
   --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
   --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
-    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-open: #c3b28f;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;
@@ -278,7 +278,8 @@ const OBLURB = {
   improve: 'Support exists, but quality lags well behind English.',
   collect: 'The data really is scarce and has to be created.',
 };
-const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs', writing: 'Writing system', data: 'Data' };
+const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs',
+  interface: 'Interface language', ocr: 'Text recognition', proofing: 'Spelling and grammar', assistant: 'Voice assistant', langid: 'Language identification', writing: 'Writing system', data: 'Data' };
 document.getElementById('edition').textContent = `Edition ${DATA.edition} · ${LANGS.length} languages`;
 
 function tierOf(v) {
@@ -420,7 +421,7 @@ function oppDetail(id) {
     ['Gap', `${o.gap.toFixed(2)} (how much of the problem is unsolved)`],
     ['Need', `${o.need?.toFixed(2) ?? '—'} (1 minus current score for ${esc(TECHL[o.technology] || o.technology)})`],
     ['Momentum', `${o.momentum.toFixed(2)} (boost for a fast-growing user base)`],
-    ['Cost', `${o.cost} (${esc(OT[o.type].label)})`],
+    ['Cost', `${o.cost} (${esc(OT[o.type].label)}${o.cost !== OT[o.type].cost ? ', a bigger build than most of its type' : ''})`],
     ['Priority', `${o.priority_5y.toFixed(2)} in five years · ${o.priority_now.toFixed(2)} today · ${o.priority.toFixed(2)} all speakers`],
   ];
   const others = l.opportunities.filter(x => x.id !== o.id);
@@ -501,11 +502,20 @@ const SVC = {
   mt_google: ['Google Cloud', 'Translation', 'google'], mt_azure: ['Azure', 'Translator', 'microsoft'],
   mt_deepl: ['DeepL', 'Translator', 'deepl'], mt_open_nllb: ['NLLB-200', 'Open model', 'meta'],
   llm_global_mmlu_rel: ['Claude', 'Global-MMLU benchmark', 'anthropic'], llm_mmmlu_openai: ['OpenAI o3', 'MMMLU benchmark', 'openai'],
+  ui_ios: ['iOS', 'System language', 'apple'], ui_windows: ['Windows', 'Display language', 'microsoft'],
+  ui_office: ['Microsoft 365', 'Display language', 'microsoft'], ui_firefox: ['Firefox', 'Volunteer translation', 'open'],
+  ocr_google: ['Google Cloud', 'Vision OCR', 'google'], ocr_apple: ['iOS', 'Live Text', 'apple'],
+  ocr_azure: ['Azure AI Vision', 'OCR', 'microsoft'], ocr_open_tesseract: ['Tesseract', 'Open model', 'open'],
+  proof_office: ['Microsoft 365', 'Proofing tools', 'microsoft'], proof_hunspell: ['LibreOffice', 'Spelling dictionary', 'open'],
+  proof_languagetool: ['LanguageTool', 'Grammar checker', 'open'],
+  va_google_assistant: ['Google Assistant', 'Speakers and displays', 'google'], va_siri: ['Siri', 'Voice assistant', 'apple'],
+  lid_cld3: ['CLD3', 'Open model', 'google'], lid_glotlid: ['GlotLID', 'Open model', 'open'],
 };
-const PROV = { google: 'Google', apple: 'Apple', microsoft: 'Microsoft', deepl: 'DeepL', openai: 'OpenAI', meta: 'Meta', anthropic: 'Anthropic' };
+const PROV = { google: 'Google', apple: 'Apple', microsoft: 'Microsoft', deepl: 'DeepL', openai: 'OpenAI', meta: 'Meta', anthropic: 'Anthropic', open: 'Open source' };
 let provFocus = null;
 const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
-  tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features' };
+  tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features',
+  ui_windows: 'ui_windows_level', ui_office: 'ui_office_level', ocr_google: 'ocr_google_level', ocr_azure: 'ocr_azure_handwriting' };
 const ICON = p => `<svg class="ticon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const TICON = {
   keyboard: ICON('<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M9.5 10h.01M13 10h.01M16.5 10h.01M7 14h10"/>'),
@@ -513,10 +523,20 @@ const TICON = {
   tts: ICON('<path d="M4 10v4h3.5L12 18V6L7.5 10H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>'),
   mt: ICON('<path d="M3.5 5.5h9v7h-5l-3 2.5v-2.5h-1z"/><path d="M12.5 9.5h8v7h-1V19l-3-2.5h-4z"/>'),
   llm: ICON('<path d="M4 5.5h16v10H9l-4 3.5v-3.5H4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/>'),
+  interface: ICON('<rect x="3" y="4.5" width="18" height="12" rx="1.5"/><path d="M8.5 20h7M12 16.5V20M7 9h6M7 12h10"/>'),
+  ocr: ICON('<path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><path d="M8 9.5h8M8 12h8M8 14.5h5"/>'),
+  proofing: ICON('<path d="M4 15l3.5-9L11 15M5.3 12h4.4"/><path d="M13 14.5l2.5 2.5 5-6"/>'),
+  assistant: ICON('<path d="M12 3.5l1.6 3.9 3.9 1.6-3.9 1.6L12 14.5l-1.6-3.9L6.5 9l3.9-1.6z"/><path d="M5 17.5c1.5 1.8 4 3 7 3s5.5-1.2 7-3"/>'),
+  langid: ICON('<circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L20 20M8 11h6M11 8v6"/>'),
 };
-function depthText(f) {
+function depthText(f, ind) {
   if (!f) return '';
   if (f.unit === '% WER') return f.value >= 100 ? 'No published error rate' : `${f.value}% word error rate`;
+  if (f.unit === 'levels of 2') {
+    if (ind === 'ocr_google_level') return f.value >= 2 ? '' : 'Experimental';
+    return f.value >= 2 ? 'Fully translated' : 'Partly translated';
+  }
+  if (ind === 'ocr_azure_handwriting') return f.value ? 'Printed and handwriting' : 'Printed text only';
   if (/^features of/.test(f.unit) || f.unit === 'types of 8') {
     const has = (f.note || '').replace(/^Has: /, '');
     const what = f.unit === 'types of 8' ? 'voice types' : 'features';
@@ -534,7 +554,7 @@ function svcTile(id, facts, open) {
   let detail = '';
   if (f.unit === '% of English') detail = `${f.value}% of its English score`;
   else if (f.unit === 'accuracy') detail = `${(f.value * 100).toFixed(1)}% accuracy`;
-  else if (on && DEPTH_OF[id]) detail = depthText(facts[DEPTH_OF[id]]);
+  else if (on && DEPTH_OF[id]) detail = depthText(facts[DEPTH_OF[id]], DEPTH_OF[id]);
   const measured = f.unit === '% of English' || f.unit === 'accuracy';
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : null;
   const hover = [f.source, dep && dep.note ? dep.note : f.note].filter(Boolean).join('\n');
@@ -671,6 +691,10 @@ function levelOf(l, key, t) {
   if (t.measured) {
     const s = l.dimensions.tech.indicators[key];
     return s == null ? 'none' : s >= 0.9 ? 'full' : 'part';
+  }
+  if (!t.consumer.length) {  // open tools only (language identification)
+    const m = t.open.filter(has).length;
+    return m >= Math.min(2, t.open.length) && m ? 'full' : m ? 'part' : 'none';
   }
   const n = t.consumer.filter(has).length;
   if (n >= Math.min(2, t.consumer.length)) return 'full';
@@ -870,7 +894,7 @@ function charts() {
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
-      <p class="sub">Each bar splits the ${N} languages by how widely a technology is available in them. Widely available means in at least two of the major services checked, or in the only one checked. Hover a segment to see which languages.</p>
+      <p class="sub">Each bar splits the ${N} languages by how widely a technology is available in them. Widely available means in at least two of the major services checked, or in the only one checked; language identification counts open models instead. Hover a segment to see which languages.</p>
       <div class="legend ord">${LEVELS.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
       <p class="note">LLMs are counted by published benchmark results instead: dark for 90% or more of the best score, mid-blue for lower scores, grey for no public benchmark.</p>

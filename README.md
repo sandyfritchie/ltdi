@@ -13,14 +13,14 @@ with language metadata from [LinguaMeta](https://github.com/google-research/url-
 
 ## Status: vertical slice
 
-25 languages, about 20 indicators, scored end to end with a static site.
+25 languages, ten technologies and about 50 indicators, scored end to end with a static site.
 The point of the slice is to test the method before scaling up.
 
 ## Pipeline
 
 ```
 python -m ltdi.backbone        # LinguaMeta metadata for the languages in config/slice_languages.csv
-python -m ltdi.collectors      # automated collectors -> data/records/*.csv
+python -m ltdi.collectors      # automated collectors -> data/records/*.csv (open_tools reads three repos with git)
 python -m ltdi.collectors wikipedia   # needs open network access; run locally
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
@@ -59,6 +59,11 @@ No dependencies beyond the Python 3.11+ standard library.
 | Tech | Text-to-speech | Google Cloud TTS; depth: number of voice types | manual |
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | manual; DeepL and NLLB automated |
 | Tech | LLMs | Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | manual; OpenAI automated |
+| Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | manual; Firefox automated |
+| Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | manual; Tesseract automated |
+| Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | manual; open tools automated |
+| Tech | Voice assistant | Google Assistant (speakers and displays), Siri | manual |
+| Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
 
 ## Charts and regions
 
@@ -118,7 +123,8 @@ Potential users can be counted three ways (the site lets you switch):
 Each opportunity also carries what a team needs to decide whether to act:
 
 - **Teams** that could take it on (keyboards, speech, text-to-speech, translation,
-  LLMs, data collection, evaluation, standards, funding), so the site can filter
+  LLMs, text recognition, spelling and grammar, voice assistants, data collection,
+  evaluation, standards and localisation, funding), so the site can filter
   by "what does your team work on?".
 - **A plain-language reason**: who it would reach, now and in five years, and
   which open resources are ready.
@@ -135,6 +141,9 @@ the coalition workstream it fits.
 ## Known limitations of the slice
 
 - Keyboard and text-to-speech depth still come from one vendor each (Apple, Google); speech, translation and LLMs have two.
+- Spelling and grammar has one commercial source, so it alone gives full presence. Google's assistant list covers
+  speakers and displays; Gemini Live on phones has no full public language list yet. Siri's list is by country,
+  so Portuguese, Russian and Japanese are inferred from Brazil, Russia and Japan.
 - Common Voice is one speech source among many, so it under-credits Hindi and over-credits Kinyarwanda.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM support is measured for 12 of the 25 languages, by at most two benchmarks.

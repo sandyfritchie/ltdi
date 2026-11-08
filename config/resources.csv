@@ -9,3 +9,9 @@ mt_open_nllb,NLLB-200,Open translation model,CC BY-NC 4.0 (non-commercial),https
 asr_open_whisper,Whisper,Open speech recognition model,MIT,https://github.com/openai/whisper
 cldr_coverage,Unicode CLDR,"Locale data: names, dates, numbers, character set",Unicode License v3,https://cldr.unicode.org/
 kb_gboard,Android keyboard layout,A layout already shipping on Android,Not openly licensed,https://support.google.com/gboard/answer/6380730
+ui_firefox,Firefox localisation (Pontoon),Volunteer interface translations and terminology for the browser,MPL 2.0,https://pontoon.mozilla.org/
+ocr_open_tesseract,Tesseract OCR,Open text recognition model (tessdata_best),Apache 2.0,https://github.com/tesseract-ocr/tessdata_best
+proof_hunspell,LibreOffice dictionaries,Hunspell spelling dictionaries and hyphenation patterns,Varies by language (GPL/LGPL/MPL),https://github.com/LibreOffice/dictionaries
+proof_languagetool,LanguageTool,Open grammar and style checker,LGPL 2.1,https://github.com/languagetool-org/languagetool
+lid_glotlid,GlotLID,Open language identification for 2000+ languages,Apache 2.0,https://github.com/cisnlp/GlotLID
+lid_cld3,CLD3,Compact open language identifier,Apache 2.0,https://github.com/google/cld3

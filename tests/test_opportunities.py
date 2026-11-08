@@ -15,7 +15,9 @@ def titles(fs, type_=None):
 FULL = dict(kb_gboard=1, kb_apple=1, kb_apple_features=4, asr_google=1, asr_azure=1, asr_apple=1,
             asr_whisper_fleurs_wer=4, cv_validated_hours=2000, tts_google=1, mt_google=1, mt_azure=1,
             mt_deepl=1, mt_open_nllb=1, llm_global_mmlu_rel=100, belebele=1, cldr_coverage=3,
-            web_text_words=1e12, wikipedia_active_editors=100000)
+            web_text_words=1e12, wikipedia_active_editors=100000,
+            ui_ios=1, ui_windows=1, ui_office=1, ocr_google=1, ocr_azure=1, ocr_apple=1, proof_office=1,
+            va_google_assistant=1, va_siri=1, lid_glotlid=1, lid_cld3=1)
 
 
 class FindTests(unittest.TestCase):
@@ -31,6 +33,28 @@ class FindTests(unittest.TestCase):
         thin = facts(**{**FULL, "tts_google": 0, "cv_validated_hours": 3})
         self.assertIn("Record a single-speaker voice for text-to-speech", titles(thin, "collect"))
 
+    def test_open_ocr_without_a_service_is_share(self):
+        fs = facts(**{**FULL, "ocr_google": 0, "ocr_azure": 0, "ocr_apple": 0, "ocr_open_tesseract": 1})
+        self.assertIn("An open text recognition model exists, but no major service", titles(fs, "share"))
+        fs = facts(**{**FULL, "ocr_google": 0, "ocr_azure": 0, "ocr_apple": 0, "ocr_open_tesseract": 0})
+        self.assertIn("No text recognition, open or commercial", titles(fs, "collect"))
+
+    def test_proofing_shares_open_dictionary_or_builds_from_text(self):
+        fs = facts(**{**FULL, "proof_office": 0, "proof_hunspell": 1})
+        self.assertIn("An open spell-checker exists that more word processors could adopt", titles(fs, "share"))
+        fs = facts(**{**FULL, "proof_office": 0, "proof_hunspell": 0, "web_text_words": 5e7})
+        self.assertIn("A spell-checker could be built from open text", titles(fs))
+
+    def test_assistant_follows_speech_and_voice(self):
+        fs = facts(**{**FULL, "va_google_assistant": 0, "va_siri": 0})
+        self.assertIn("The building blocks for a voice assistant exist", titles(fs, "share"))
+        self.assertEqual(titles(facts(**{**FULL, "va_google_assistant": 0, "va_siri": 0, "tts_google": 0}), "share")
+                         .count("The building blocks for a voice assistant exist"), 0)
+
+    def test_interface_from_volunteer_translation(self):
+        fs = facts(**{**FULL, "ui_ios": 0, "ui_windows": 0, "ui_office": 0, "ui_firefox": 1})
+        self.assertIn("Volunteers translate an open browser, but no major platform", titles(fs, "share"))
+
     def test_unmeasured_llm_is_measure(self):
         fs = facts(**{k: v for k, v in FULL.items() if k != "llm_global_mmlu_rel"})
         self.assertIn("No published LLM benchmark results", titles(fs, "measure"))
@@ -38,9 +62,12 @@ class FindTests(unittest.TestCase):
     def test_wording_never_names_companies(self):
         sparse = facts(kb_gboard=1, kb_apple=1, kb_apple_features=0, asr_google=1, cv_validated_hours=30,
                        web_text_words=1e7, cldr_coverage=1, asr_whisper_fleurs_wer=100, mt_google=1,
-                       mt_open_nllb=1, wikipedia_active_editors=5)
+                       mt_open_nllb=1, wikipedia_active_editors=5, ui_ios=0, ui_windows=1, ui_office=0,
+                       ocr_google=1, ocr_azure=0, ocr_apple=0, proof_office=0, proof_hunspell=1,
+                       va_google_assistant=1, va_siri=0, lid_glotlid=0, lid_cld3=0)
         text = " ".join(o["title"] + " " + o["detail"] for o in find(sparse))
-        for name in ("Apple", "Google", "Microsoft", "Azure", "DeepL", "OpenAI", "Anthropic", "Meta", "Gboard"):
+        for name in ("Apple", "Google", "Microsoft", "Azure", "DeepL", "OpenAI", "Anthropic", "Meta", "Gboard",
+                     "Siri", "Windows", "Firefox", "Mozilla", "Tesseract", "Hunspell", "LanguageTool", "Office"):
             self.assertNotIn(name, text)
 
 

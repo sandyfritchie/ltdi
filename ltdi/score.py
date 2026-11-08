@@ -40,6 +40,9 @@ def tier(facts: dict[str, Record], tech: dict) -> float | None:
         vals = [normalise(facts[i].value, {"scale": "linear", **spec})
                 for i, spec in tech["measured"].items() if i in facts]
         return round(sum(vals) / len(vals), 3) if vals else None
+    if not tech["consumer"]:  # open tools only (e.g. language identification): they are the products
+        n = sum(1 for i in tech["open"] if i in facts and facts[i].value)
+        return 1.0 if n >= min(2, len(tech["open"])) else 0.67 if n else 0.0
     consumer = sum(1 for i in tech["consumer"] if i in facts and facts[i].value)
     has_open = any(i in facts and facts[i].value for i in tech["open"])
     if consumer >= min(2, len(tech["consumer"])):

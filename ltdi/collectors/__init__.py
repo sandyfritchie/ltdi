@@ -15,7 +15,7 @@ from .. import DATA
 from ..crosswalk import to_ltdi
 from ..records import Record, write_records
 
-AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu"]
+AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "open_tools"]
 LOCAL_ONLY = ["wikipedia"]
 NEEDS_ALLOWLIST = ["connectivity"]  # api.worldbank.org  # need network access the build sandbox lacks
 

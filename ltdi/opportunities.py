@@ -42,10 +42,14 @@ TEAMS = {
     "data": "Data collection",
     "evaluation": "Evaluation and benchmarks",
     "standards": "Standards and localisation",
+    "ocr": "Text recognition (OCR)",
+    "proofing": "Spelling and grammar",
+    "assistants": "Voice assistants",
     "funding": "Funding",
 }
 
-# Per rule: which teams can act, which open resources to start from, and what's still missing.
+# Per rule: which teams can act, which open resources to start from, what's still missing, and
+# optionally a cost that overrides the type's (building a voice assistant is more than a launch).
 RULES = {
     "kb-platform": {"teams": ["keyboards", "standards"], "starter": ["kb_gboard", "cldr_coverage", "web_text_words"],
         "missing": "An openly licensed version of the layout in CLDR Keyboards format, then a launch on the "
@@ -88,6 +92,39 @@ RULES = {
         "missing": "Native speakers contributing through the CLDR Survey Tool to reach modern coverage."},
     "text-collect": {"teams": ["data", "funding"], "starter": ["web_text_words", "wikipedia_articles"],
         "missing": "Digitised books, news and public-sector text, with OCR where needed and clear licences."},
+    "ui-platforms": {"teams": ["standards"], "starter": ["ui_firefox", "cldr_coverage"],
+        "missing": "Translators and reviewers for the remaining platforms, and a shared glossary of interface terms "
+                   "so the same button reads the same everywhere."},
+    "ui-community": {"teams": ["standards"], "starter": ["ui_firefox", "cldr_coverage"],
+        "missing": "Permission to reuse the volunteer translations and terminology, and paid review before a "
+                   "platform launch."},
+    "ui-none": {"teams": ["standards", "funding"], "starter": ["cldr_coverage", "web_text_words"],
+        "missing": "A localisation community: a terminology list, a few paid translators, and an open project "
+                   "(such as a browser or office suite) to start on."},
+    "ocr-vendors": {"teams": ["ocr"], "starter": ["ocr_open_tesseract", "web_text_words"],
+        "missing": "Launches in the remaining services, tested on scanned books and phone photos of signs and "
+                   "forms."},
+    "ocr-open": {"teams": ["ocr"], "starter": ["ocr_open_tesseract", "web_text_words"],
+        "missing": "A production model trained on the open model's data or on rendered text, and a test set of "
+                   "real scans."},
+    "ocr-collect": {"teams": ["ocr", "data", "funding"], "starter": ["web_text_words", "cldr_coverage"],
+        "missing": "A few thousand scanned or photographed pages with transcriptions, under an open licence. "
+                   "Text rendered in common fonts can bootstrap a first model."},
+    "proof-share": {"teams": ["proofing"], "starter": ["proof_hunspell", "proof_languagetool"],
+        "missing": "Checking the open dictionary's licence and quality with native speakers, then packaging it "
+                   "for the major office suites and phone keyboards."},
+    "proof-build": {"teams": ["proofing", "data"], "starter": ["web_text_words", "wikipedia_articles"],
+        "missing": "A word list built from the open text and reviewed by native speakers, in the open Hunspell "
+                   "format that most spell-checkers read."},
+    "va-vendors": {"teams": ["assistants"], "starter": ["cv_validated_hours"],
+        "missing": "Launches on the remaining assistants, with test commands from speakers of the main regional "
+                   "accents."},
+    "va-ready": {"teams": ["assistants", "speech"], "starter": ["cv_validated_hours", "asr_open_whisper"], "cost": 2,
+        "missing": "Spoken-command data (how people actually phrase requests), and local content such as names, "
+                   "places and services."},
+    "lid-none": {"teams": ["data", "evaluation"], "starter": ["web_text_words", "wikipedia_articles"],
+        "missing": "A few thousand sentences of verified text, contributed to an open language identification "
+                   "model's training set."},
     "wiki-community": {"teams": ["data", "funding"], "starter": ["wikipedia_articles", "wikipedia_active_editors"],
         "missing": "Editor training and outreach with universities and community groups."},
 }
@@ -95,6 +132,10 @@ RULES = {
 ASR = ["asr_google", "asr_azure", "asr_apple"]
 MT = ["mt_google", "mt_azure", "mt_deepl"]
 LLM = ["llm_global_mmlu_rel", "llm_mmmlu_openai"]
+UI = ["ui_ios", "ui_windows", "ui_office"]
+OCR = ["ocr_google", "ocr_azure", "ocr_apple"]
+VA = ["va_google_assistant", "va_siri"]
+LID = ["lid_glotlid", "lid_cld3"]
 
 
 def _v(f: dict[str, Record], ind: str) -> float | None:
@@ -123,7 +164,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             rule = RULES[key]
             out.append({"key": key, "type": type_, "technology": tech, "title": title, "detail": detail,
                         "gap": round(min(1.0, gap), 3), "evidence": [e for e in evidence if e in f],
-                        "teams": rule["teams"], "missing": rule["missing"],
+                        "teams": rule["teams"], "missing": rule["missing"], "cost": rule.get("cost"),
                         "starter": [i for i in rule["starter"] if _v(f, i)]})
 
     cv = _v(f, "cv_validated_hours") or 0
@@ -212,6 +253,76 @@ def find(f: dict[str, Record]) -> list[dict]:
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
             0.5, ["belebele"])
 
+    # Interface language
+    ui_n = sum(1 for i in UI if _v(f, i))
+    if any(i in f for i in UI):
+        if 0 < ui_n < len(UI):
+            add("ui-platforms", "share", "interface", f"The interface is translated on {ui_n} of {len(UI)} major platforms",
+                "People can already use some phone and computer platforms in this language. Shared terminology "
+                "would make the remaining ones faster to translate.",
+                (len(UI) - ui_n) / len(UI), UI + ["ui_firefox"])
+        elif ui_n == 0 and _v(f, "ui_firefox"):
+            add("ui-community", "share", "interface", "Volunteers translate an open browser, but no major platform",
+                "A volunteer community already maintains a full browser translation, with terminology a platform "
+                "could build on.",
+                1.0, UI + ["ui_firefox"])
+        elif ui_n == 0:
+            add("ui-none", "standardise", "interface", "No major platform or open project offers this interface language",
+                "Phones and computers can't be set to this language, so every app is used in a second language.",
+                1.0, UI + ["ui_firefox"])
+
+    # Text recognition
+    ocr_n = sum(1 for i in OCR if _v(f, i))
+    if any(i in f for i in OCR):
+        if 0 < ocr_n < len(OCR):
+            add("ocr-vendors", "share", "ocr", f"Text recognition is offered by {ocr_n} of {len(OCR)} major services",
+                "Some services already read printed text in this language"
+                + (", and an open OCR model covers it." if _v(f, "ocr_open_tesseract") else "."),
+                (len(OCR) - ocr_n) / len(OCR), OCR + ["ocr_open_tesseract"])
+        elif ocr_n == 0 and _v(f, "ocr_open_tesseract"):
+            add("ocr-open", "share", "ocr", "An open text recognition model exists, but no major service",
+                "An open OCR model reads printed text in this language. Text recognition also turns printed books "
+                "into training data for every other technology.",
+                1.0, OCR + ["ocr_open_tesseract"])
+        elif ocr_n == 0:
+            add("ocr-collect", "collect", "ocr", "No text recognition, open or commercial",
+                "Printed books, signs and forms can't be read by phone cameras or digitised at scale.",
+                1.0, OCR + ["ocr_open_tesseract"])
+
+    # Spelling and grammar
+    if "proof_office" in f and not _v(f, "proof_office"):
+        if _v(f, "proof_hunspell") or _v(f, "proof_languagetool"):
+            add("proof-share", "share", "proofing", "An open spell-checker exists that more word processors could adopt",
+                "An open dictionary or grammar checker covers this language, but the most widely used word "
+                "processors don't check it yet.",
+                1.0, ["proof_office", "proof_hunspell", "proof_languagetool"])
+        elif words >= 1e7:
+            add("proof-build", "share", "proofing", "A spell-checker could be built from open text",
+                f"No spell-checker was found. FineWeb-2 holds about {_words(words)} words of open web text, "
+                "enough for a first word list.",
+                1.0, ["proof_office", "proof_hunspell", "web_text_words"])
+
+    # Voice assistants
+    va_n = sum(1 for i in VA if _v(f, i))
+    if any(i in f for i in VA):
+        if 0 < va_n < len(VA):
+            add("va-vendors", "share", "assistant", f"{va_n} of {len(VA)} major voice assistants understand this language",
+                "One assistant already works in this language, so speech recognition, a voice and language "
+                "understanding have been shown to be feasible.",
+                (len(VA) - va_n) / len(VA), VA)
+        elif va_n == 0 and asr_n and _v(f, "tts_google"):
+            add("va-ready", "share", "assistant", "The building blocks for a voice assistant exist",
+                "Commercial speech recognition and a synthetic voice both exist, but no major assistant "
+                "understands spoken requests in this language yet.",
+                1.0, VA + ASR + ["tts_google"])
+
+    # Language identification
+    if any(i in f for i in LID) and not any(_v(f, i) for i in LID) and words:
+        add("lid-none", "share", "langid", "Open language identifiers don't recognise this language",
+            "Web-scale data collection starts by identifying each page's language, so text in this language "
+            "is lost from open datasets.",
+            1.0, LID + ["web_text_words"])
+
     # Writing system
     cldr = _v(f, "cldr_coverage")
     if cldr is not None and cldr < 3:
@@ -236,7 +347,7 @@ def find(f: dict[str, Record]) -> list[dict]:
     return out
 
 
-VOICE = {"speech_input", "tts"}  # usable without reading or writing
+VOICE = {"speech_input", "tts", "assistant"}  # usable without reading or writing
 
 
 def users(lang: dict, facts: dict[str, Record], technology: str) -> dict:
@@ -285,12 +396,13 @@ def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | 
         else:
             current = scores["ltdi"]
         need = max(0.1, 1 - current)
-        base = o["gap"] * need / t["cost"]
+        cost = o.get("cost") or t["cost"]  # a rule can override its type's cost (an assistant is a bigger build)
+        base = o["gap"] * need / cost
         u = users(lang, facts, o["technology"])
         momentum = min(2.0, 1 + math.log2(u["5y"] / u["now"]) / 2) if u["now"] > 0 and u["5y"] > u["now"] else 1.0
         o["users"] = {k: (round(v) if isinstance(v, float) else v) for k, v in u.items()}
         o["need"] = round(need, 3)
-        o["cost"] = t["cost"]
+        o["cost"] = cost
         o["reach"] = {"speakers": round(_reach(u["speakers"]), 3), "now": round(_reach(u["now"]), 3),
                       "5y": round(_reach(u["5y"]), 3)}
         o["momentum"] = round(momentum, 3)

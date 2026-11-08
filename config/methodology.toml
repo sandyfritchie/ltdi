@@ -72,6 +72,8 @@ weight = 0.1
 #   0.67  one consumer product
 #   0.33  open model only
 #   0     none
+# A technology with no consumer sources (language identification) counts its
+# open tools instead: 1.00 for at least two, 0.67 for one.
 # Where a technology lists depth indicators, its score is the mean of the tier
 # and the depth (each depth value divided by its max, averaged). Depth only
 # counts when the technology is present at all.
@@ -113,3 +115,36 @@ label = "LLMs"
 # between its min and max. Not benchmarked at all -> left out of the tech mean and flagged.
 measured = { llm_global_mmlu_rel = { min = 70, max = 100 }, llm_mmmlu_openai = { min = 0.6, max = 0.92 } }
 weight = 1
+
+[dimensions.tech.technologies.interface]
+label = "Interface language"
+consumer = ["ui_ios", "ui_windows", "ui_office"]
+open = ["ui_firefox"]
+depth = { ui_windows_level = 2, ui_office_level = 2 }  # 2 = fully translated, 1 = partly (over a base language)
+weight = 1
+
+[dimensions.tech.technologies.ocr]
+label = "Text recognition (OCR)"
+consumer = ["ocr_google", "ocr_azure", "ocr_apple"]
+open = ["ocr_open_tesseract"]
+depth = { ocr_google_level = 2, ocr_azure_handwriting = 1 }  # Google: 2 = supported, 1 = experimental
+weight = 1
+
+[dimensions.tech.technologies.proofing]
+label = "Spelling and grammar"
+consumer = ["proof_office"]
+open = ["proof_hunspell", "proof_languagetool"]
+weight = 1
+
+[dimensions.tech.technologies.assistant]
+label = "Voice assistant"
+consumer = ["va_google_assistant", "va_siri"]
+open = []
+weight = 1
+
+[dimensions.tech.technologies.langid]
+label = "Language identification"
+# Mostly invisible to users, but every web-scale data pipeline starts with it.
+consumer = []
+open = ["lid_glotlid", "lid_cld3"]
+weight = 0.5

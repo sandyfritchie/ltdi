@@ -39,6 +39,12 @@ class TierTests(unittest.TestCase):
     def test_single_source_technology_can_reach_full(self):
         self.assertEqual(tier({"a": fact("a", 1)}, {"consumer": ["a"], "open": []}), 1.0)
 
+    def test_open_only_technology_counts_open_tools(self):
+        lid = {"consumer": [], "open": ["g", "c"]}
+        self.assertEqual(tier({"g": fact("g", 1), "c": fact("c", 1)}, lid), 1.0)
+        self.assertEqual(tier({"g": fact("g", 1), "c": fact("c", 0)}, lid), 0.67)
+        self.assertEqual(tier({"g": fact("g", 0)}, lid), 0.0)
+
     def test_unmeasured_llm_is_none(self):
         self.assertIsNone(tier({}, {"measured": {"m": {"min": 70, "max": 100}}}))
 
