@@ -1,26 +1,26 @@
-code,name,region,note
-en,English,Europe,
-cmn,Mandarin Chinese,,Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn
-es,Spanish,Europe,
-hi,Hindi,,
-ar,Arabic,Rest of Asia,Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar
-fr,French,Europe,
-bn,Bengali,,
-pt,Portuguese,Europe,
-ru,Russian,,
-ja,Japanese,,
-id,Indonesian,,
-ur,Urdu,,
-ta,Tamil,,
-pa,Punjabi,,Gurmukhi and Shahmukhi scripts combined for the slice
-sw,Swahili,,Macrolanguage; vendors label as sw
-ha,Hausa,,
-yo,Yoruba,,
-ig,Igbo,,
-am,Amharic,,
-om,Oromo,,Macrolanguage; vendors label as om
-rw,Kinyarwanda,,
-is,Icelandic,,"Contrast case: few speakers, strong support"
-cy,Welsh,,"Contrast case: few speakers, strong support"
-qu,Quechua,,Macrolanguage; vendors label as qu
-gn,Guarani,,Macrolanguage; vendors label as gn
+code,name,region,origin,note
+en,English,Europe,gb,
+cmn,Mandarin Chinese,,,Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn
+es,Spanish,Europe,es,
+hi,Hindi,,,
+ar,Arabic,Rest of Asia,sa,Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar
+fr,French,Europe,fr,
+bn,Bengali,,,
+pt,Portuguese,Europe,pt,
+ru,Russian,,ru,
+ja,Japanese,,,
+id,Indonesian,,,
+ur,Urdu,,,
+ta,Tamil,,,
+pa,Punjabi,,,Gurmukhi and Shahmukhi scripts combined for the slice
+sw,Swahili,,,Macrolanguage; vendors label as sw
+ha,Hausa,,,
+yo,Yoruba,,,
+ig,Igbo,,,
+am,Amharic,,,
+om,Oromo,,,Macrolanguage; vendors label as om
+rw,Kinyarwanda,,,
+is,Icelandic,,,"Contrast case: few speakers, strong support"
+cy,Welsh,,,"Contrast case: few speakers, strong support"
+qu,Quechua,,,Macrolanguage; vendors label as qu
+gn,Guarani,,,Macrolanguage; vendors label as gn

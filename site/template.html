@@ -24,6 +24,7 @@
   --track: #e6ebe9;
   --ord-full: #184f95; --ord-part: #3987e5; --ord-open: #86b6ef; --ord-none: #e3e8e6;
   --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
+  --t-vh: #1d7a43; --t-h: #74c27a; --t-m: #f0b13a; --t-l: #cf3434; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
   --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
@@ -38,6 +39,7 @@
     --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
     --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
     --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
+    --t-vh: #34b46a; --t-h: #9bd69e; --t-m: #f3bd52; --t-l: #e65d5d; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
     --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
   }
 }
@@ -48,7 +50,8 @@
   --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
   --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
   --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
-  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
+  --t-vh: #34b46a; --t-h: #9bd69e; --t-m: #f3bd52; --t-l: #e65d5d; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;
@@ -212,6 +215,9 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .seg:first-child { border-radius: 4px 0 0 4px; } .seg:last-child { border-radius: 0 4px 4px 0; } .seg:only-child { border-radius: 4px; }
 .seg.full { background: var(--ord-full); color: var(--on-full); } .seg.part { background: var(--ord-part); color: var(--on-part); }
 .seg.open { background: var(--ord-open); color: var(--on-open); } .seg.none { background: var(--ord-none); color: var(--muted); }
+.mapwrap { position: relative; }
+.mapwrap svg { width: 100%; height: auto; display: block; }
+.legend.map i.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
 .multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
 .panel { min-width: 0; }
 .panel h4 { margin: 0; font-size: 14px; font-weight: 600; }
@@ -249,6 +255,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 </div>
 
 <script id="ltdi-data" type="application/json">/*__DATA__*/</script>
+<script id="ltdi-map" type="application/json">/*__MAP__*/</script>
 <script>
 const DATA = JSON.parse(document.getElementById('ltdi-data').textContent);
 const LANGS = DATA.languages, BY = Object.fromEntries(LANGS.map(l => [l.code, l]));
@@ -665,6 +672,61 @@ function levelOf(l, key, t) {
   return t.open.some(has) ? 'open' : 'none';
 }
 
+
+const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
+const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', l: '--t-l' };
+function mapSection() {
+  if (!GEO) return '';
+  const { width: W, height: Hh, path } = GEO.basemap;
+  const scored = new Set(LANGS.map(l => l.code));
+  const pt = Object.fromEntries(GEO.points.map(p => [p[0], p]));
+  const bg = GEO.points.filter(p => !scored.has(p[0]));
+  // keep dots a readable size on screen whatever the map's rendered width
+  const px = Math.max(300, Math.min(1000, (window.innerWidth || 1000) - 70)) / W;
+  const r0 = Math.max(1.7, 0.9 / px), rs = Math.max(6.5, 4.5 / px), sw = Math.max(1.6, 1.1 / px);
+  const bgPath = bg.map(p => `M${p[2] - r0},${p[3]}a${r0},${r0} 0 1,0 ${2 * r0},0a${r0},${r0} 0 1,0 ${-2 * r0},0`).join('');
+  const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => a.ltdi - b.ltdi).map(l => {
+    const [c] = tierOf(l.ltdi), p = pt[l.code];
+    return `<a href="#lang-${l.code}"><circle cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
+      opacity="${inRegion(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${l.rank}"/></a>`;
+  }).join('');
+  const counts = { vh: 0, h: 0, m: 0, l: 0 };
+  LANGS.filter(inRegion).forEach(l => counts[tierOf(l.ltdi)[0]]++);
+  return `<section class="chart">
+    <h3>The world's languages</h3>
+    <p class="sub">Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length} languages scored so far; white dots are the ${bg.length.toLocaleString()} others in LinguaMeta, not yet scored. Hover for names; select a coloured dot for its profile.</p>
+    <div class="legend map">
+      <span><i class="dot" style="background:var(--t-vh)"></i>Very high · ${counts.vh}</span>
+      <span><i class="dot" style="background:var(--t-h)"></i>High · ${counts.h}</span>
+      <span><i class="dot" style="background:var(--t-m)"></i>Medium · ${counts.m}</span>
+      <span><i class="dot" style="background:var(--t-l)"></i>Low · ${counts.l}</span>
+      <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not yet scored · ${bg.length.toLocaleString()}</span>
+    </div>
+    <div class="mapwrap"><svg id="worldmap" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
+      <path d="${path}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.6"/>
+      <path d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
+      ${dots}
+    </svg></div>
+    <p class="note">Tiers: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60. Locations from LinguaMeta; map from Natural Earth.</p>
+  </section>`;
+}
+function bindMap() {
+  const svg = document.getElementById('worldmap');
+  if (!svg || !GEO || !svg.getScreenCTM) return;
+  const scored = new Set(LANGS.map(l => l.code));
+  const bg = GEO.points.filter(p => !scored.has(p[0]));
+  svg.addEventListener('mousemove', e => {
+    if (e.target.tagName === 'circle') return;  // scored dots have their own tooltip
+    const m = svg.getScreenCTM(); if (!m) return;
+    const pnt = svg.createSVGPoint(); pnt.x = e.clientX; pnt.y = e.clientY;
+    const q = pnt.matrixTransform(m.inverse());
+    let best = null, bd = 36;
+    for (const p of bg) { const d = (p[2] - q.x) ** 2 + (p[3] - q.y) ** 2; if (d < bd) { bd = d; best = p; } }
+    if (best) tipShow(e, `<b>${esc(best[1])}</b><br>${best[4] ? people(best[4]) + ' speakers · ' : ''}not yet scored`); else tipHide();
+  });
+  svg.addEventListener('mouseleave', tipHide);
+}
+
 function charts() {
   const langs = LANGS.filter(inRegion), N = langs.length;
   const techs = Object.entries(CFG.tech.technologies);
@@ -742,6 +804,7 @@ function charts() {
 
   $('#view').innerHTML = `
     <div class="controls">${regionSelect('csel')}<span class="note" style="margin:0">${N} languages</span></div>
+    ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
       <p class="sub">Each bar splits the ${N} languages by how widely a technology is available in them. Widely available means in at least two of the major services checked, or in the only one checked. Hover a segment to see which languages.</p>
@@ -763,6 +826,7 @@ function charts() {
       ${strip}
     </section>`;
   bindTips($('#view'));
+  bindMap();
   $('#csel').onchange = e => { region = e.target.value; charts(); };
 }
 

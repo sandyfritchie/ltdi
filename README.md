@@ -23,6 +23,7 @@ python -m ltdi.backbone        # LinguaMeta metadata for the languages in config
 python -m ltdi.collectors      # automated collectors -> data/records/*.csv
 python -m ltdi.collectors wikipedia   # needs open network access; run locally
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
+python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
 python -m ltdi.build_site      # data/scores.json -> site/index.html
 ```
@@ -65,6 +66,12 @@ Languages are grouped into Africa, South Asia, Rest of Asia, Europe, Americas
 and Oceania, from the UN M49 region of the country with the most speakers
 (South Asia is M49 Southern Asia), with overrides in `config/slice_languages.csv`.
 Every view on the site can be filtered by region.
+
+The Charts view opens with a map: a dot for each of LinguaMeta's ~6,450
+individual languages with a location, placed in the country with most speakers
+(or the origin country given in `config/slice_languages.csv`). Scored languages
+are coloured by tier from green (very high) to red (low); the rest are white.
+The basemap is Natural Earth (via world-atlas) in the Equal Earth projection.
 
 The Charts view shows how many languages each technology reaches today, how
 coverage has grown since 2019, and where each language stands by region. The

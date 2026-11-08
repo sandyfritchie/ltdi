@@ -13,6 +13,12 @@ def main() -> None:
     template = (ROOT / "site" / "template.html").read_text(encoding="utf-8")
     data = (DATA / "scores.json").read_text(encoding="utf-8").replace("</", "<\\/")
     page = template.replace("/*__DATA__*/", data)
+    if (DATA / "basemap.json").exists() and (DATA / "world_languages.json").exists():
+        geo = '{"basemap":' + (DATA / "basemap.json").read_text(encoding="utf-8") + ',"points":' + \
+              (DATA / "world_languages.json").read_text(encoding="utf-8") + '}'
+        page = page.replace("/*__MAP__*/", geo.replace("</", "<\\/"))
+    else:
+        page = page.replace("/*__MAP__*/", "null")
     # The template is written as an artifact body; wrap it as a full document for standalone use.
     head, _, body = page.partition('<div class="wrap">')
     html = (
