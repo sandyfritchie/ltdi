@@ -108,7 +108,9 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
 .big { font: 800 52px/1 var(--font-display); font-stretch: 80%; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
 .facts b { color: var(--ink); font-weight: 600; }
-.dims { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+.dims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
+a.indlink { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--muted); }
+a.indlink:hover { color: var(--accent); }
 @media (max-width: 860px) { .dims { grid-template-columns: 1fr; } }
 .dim { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; min-width: 0; border-top: 4px solid var(--c); }
 .dim h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 0 12px; font: 700 17px var(--font-display); font-stretch: 90%; }
@@ -486,7 +488,7 @@ function depthText(f) {
     const has = (f.note || '').replace(/^Has: /, '');
     const what = f.unit === 'types of 8' ? 'voice types' : 'features';
     const total = f.unit.split(' ').pop();
-    return `${f.value} of ${total} ${what}${f.value && has && !/^None|^Not supported|^No voices/.test(has) && has.length < 90 ? ': ' + has.toLowerCase() : ''}`;
+    return `${f.value} of ${total} ${what}`;
   }
   return showValue(f);
 }
@@ -499,10 +501,11 @@ function svcTile(id, facts, open) {
   else if (f.unit === 'accuracy') detail = `${(f.value * 100).toFixed(1)}% accuracy`;
   else if (on && DEPTH_OF[id]) detail = depthText(facts[DEPTH_OF[id]]);
   const measured = f.unit === '% of English' || f.unit === 'accuracy';
-  const status = measured ? 'Benchmarked' : on ? 'Available' : 'Not yet';
-  return `<a class="tile ${on ? 'on' : 'off'}" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(f.source + (f.note ? ' · ' + f.note : ''))}">
+  const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : null;
+  const hover = [f.source, dep && dep.note ? dep.note : f.note].filter(Boolean).join('\n');
+  return `<a class="tile ${on ? 'on' : 'off'}" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${on ? '✓' : '–'}</span>
-    <div><b>${esc(name)}</b><small>${esc(kind)} · <span class="vis">${status}</span></small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+    <div><b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
 function dimPanel(l, key, color) {
@@ -521,9 +524,10 @@ function dimPanel(l, key, color) {
   } else {
     for (const [ik, spec] of Object.entries(cfg.indicators)) {
       const f = facts[ik], n = d.indicators[ik];
-      body += `<div class="ind"><div class="ind-top"><b>${esc(spec.label)}</b><span class="ind-val">${esc(showValue(f))}</span></div>
-        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}
-        ${f ? `<div class="src"><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(f.source)}</a> · ${esc(f.retrieved)}${f.note ? ' · ' + esc(f.note) : ''}</div>` : ''}</div>`;
+      const hover = f ? [f.source, 'Retrieved ' + f.retrieved, f.note].filter(Boolean).join('\n') : '';
+      const lab = f ? `<a class="indlink" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">${esc(spec.label)}</a>` : esc(spec.label);
+      body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>
+        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}</div>`;
     }
   }
   return `<section class="dim${key === 'tech' ? ' wide' : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
@@ -559,7 +563,7 @@ function language(code) {
     </div>
     <div class="cmpbar"><label for="cmpsel">Compare with</label>
       <select id="cmpsel"><option value="">Choose a language</option>${others.map(o => `<option value="${o.code}">${esc(o.name)}</option>`).join('')}</select></div>
-    <div class="dims">${DIMS.map(([k, , c]) => dimPanel(l, k, c)).join('')}</div>
+    <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>.</p>`;
