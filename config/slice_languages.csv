@@ -3,7 +3,7 @@ en,English,Europe,
 cmn,Mandarin Chinese,,Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn
 es,Spanish,Europe,
 hi,Hindi,,
-ar,Arabic,Asia,Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar
+ar,Arabic,Rest of Asia,Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar
 fr,French,Europe,
 bn,Bengali,,
 pt,Portuguese,Europe,

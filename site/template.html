@@ -22,6 +22,8 @@
   --tier-ink-light: #16201d;
   --tier-ink-dark: #ffffff;
   --track: #e6ebe9;
+  --ord-full: #184f95; --ord-part: #3987e5; --ord-open: #86b6ef; --ord-none: #e3e8e6;
+  --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -32,6 +34,8 @@
     --accent: #7db4dc; --writing: #d9a54a; --data: #3fbfa9; --tech: #9a9df0;
     --tier-vh: #7db4dc; --tier-h: #4f87ad; --tier-m: #36607d; --tier-l: #263f50;
     --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
+    --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
+    --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
   }
 }
 :root[data-theme="dark"] {
@@ -39,6 +43,8 @@
   --accent: #7db4dc; --writing: #d9a54a; --data: #3fbfa9; --tech: #9a9df0;
   --tier-vh: #7db4dc; --tier-h: #4f87ad; --tier-m: #36607d; --tier-l: #263f50;
   --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
+  --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
+  --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;
@@ -157,6 +163,27 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .opp-ev a:hover { color: var(--ink); border-color: var(--muted); }
 .more { margin-top: 12px; }
 .ws-lede { margin-top: 18px; }
+/* Charts */
+.chart { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; margin-top: 18px; min-width: 0; }
+.chart h3 { margin: 0; font: 700 18px var(--font-display); font-stretch: 88%; }
+.chart .sub { margin: 4px 0 12px; color: var(--muted); font-size: 14px; max-width: 70ch; }
+.legend.ord { margin: 4px 0 12px; }
+.covrows { display: grid; grid-template-columns: minmax(90px, 140px) minmax(0, 1fr); gap: 10px 14px; align-items: center; }
+.covrows .lab { font-size: 14px; font-weight: 600; }
+.stack { display: flex; gap: 2px; height: 26px; min-width: 0; }
+.seg { display: flex; align-items: center; justify-content: center; font: 600 12px var(--font-body); font-variant-numeric: tabular-nums; min-width: 0; overflow: hidden; cursor: default; }
+.seg:first-child { border-radius: 4px 0 0 4px; } .seg:last-child { border-radius: 0 4px 4px 0; } .seg:only-child { border-radius: 4px; }
+.seg.full { background: var(--ord-full); color: var(--on-full); } .seg.part { background: var(--ord-part); color: var(--on-part); }
+.seg.open { background: var(--ord-open); color: var(--on-open); } .seg.none { background: var(--ord-none); color: var(--muted); }
+.multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+.panel { min-width: 0; }
+.panel h4 { margin: 0; font-size: 14px; font-weight: 600; }
+.panel .now { font-size: 13px; color: var(--muted); }
+.panel svg { width: 100%; height: auto; display: block; }
+.axis text, .grid text { fill: var(--muted); font: 11px var(--font-body); }
+.grid line { stroke: var(--rule); }
+.tbl { margin-top: 10px; } .tbl summary { cursor: pointer; color: var(--accent); font-size: 14px; }
+#tip { position: fixed; z-index: 20; pointer-events: none; background: var(--ink); color: var(--bg); font: 13px/1.4 var(--font-body); padding: 7px 9px; border-radius: 6px; max-width: 280px; box-shadow: 0 2px 8px rgb(0 0 0 / .15); }
 .teampick { display: grid; gap: 8px; margin-top: 18px; }
 a.opp-title { color: var(--ink); text-decoration: none; }
 a.opp-title:hover { text-decoration: underline; }
@@ -179,8 +206,9 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
     <p class="lede">How well technology supports each language, and how much data exists to build more. Three dimensions, each scored 0 to 1, combined with a geometric mean so a gap anywhere pulls the score down.</p>
     <div class="formula">LTDI = (<b class="w">writing</b> × <b class="d">data</b> × <b class="t">technology</b>)<sup>1/3</sup></div>
   </header>
-  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a></nav>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a></nav>
   <main id="view"></main>
+  <div id="tip" hidden></div>
 </div>
 
 <script id="ltdi-data" type="application/json">/*__DATA__*/</script>
@@ -259,6 +287,14 @@ function usersLine(o) {
 }
 
 const TEAMS = DATA.teams;
+const REGION_ORDER = ['Africa', 'South Asia', 'Rest of Asia', 'Europe', 'Americas', 'Oceania'];
+const REGIONS = REGION_ORDER.filter(r => LANGS.some(l => l.region === r));
+let region = 'All';
+const inRegion = l => region === 'All' || l.region === region;
+function regionSelect(id) {
+  return `<select id="${id}" aria-label="Region"><option value="All">All regions</option>${REGIONS.map(r =>
+    `<option value="${esc(r)}"${r === region ? ' selected' : ''}>${esc(r)} (${LANGS.filter(l => l.region === r).length})</option>`).join('')}</select>`;
+}
 function oppItem(o, l, showLang) {
   return `<li class="opp" style="--c:var(${OCOLOR[o.type]})">
     <div class="prio">${prio(o).toFixed(2)}<small>priority</small></div>
@@ -273,7 +309,7 @@ function oppItem(o, l, showLang) {
 let otype = 'all', team = 'all', showAll = false;
 function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
-  const all = LANGS.filter(l => !focus || l === focus)
+  const all = LANGS.filter(l => focus ? l === focus : inRegion(l))
     .flatMap(l => l.opportunities.map(o => ({ o, l }))).sort((a, b) => prio(b.o) - prio(a.o));
   const byTeam = all.filter(x => team === 'all' || x.o.teams.includes(team));
   const tcount = Object.fromEntries(Object.keys(TEAMS).map(k => [k, all.filter(x => x.o.teams.includes(k)).length]));
@@ -289,7 +325,8 @@ function opportunities(lang) {
         ${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<button class="chip" id="tm-${k}" data-tm="${k}" aria-pressed="${team === k}">${esc(t)} · ${tcount[k]}</button>`).join('')}
       </div></div>
     <div class="controls">
-      <select id="olang" aria-label="Language"><option value="">All languages</option>${LANGS.map(l => `<option value="${l.code}"${focus === l ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
+      ${focus ? '' : regionSelect('orsel')}
+      <select id="olang" aria-label="Language"><option value="">All languages</option>${LANGS.filter(l => focus || inRegion(l)).map(l => `<option value="${l.code}"${focus === l ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
       <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
     </div>
     ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">Nothing matches these filters.</p>'}
@@ -305,6 +342,7 @@ function opportunities(lang) {
   $('#view').querySelectorAll('[data-tm]').forEach(b => b.onclick = () => { team = b.dataset.tm; otype = 'all'; showAll = false; opportunities(lang); });
   $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
   $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
+  const rs = $('#orsel'); if (rs) rs.onchange = e => { region = e.target.value; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
   $('#olang').onchange = e => { showAll = false; location.hash = e.target.value ? 'opportunities-' + e.target.value : 'opportunities'; };
 }
@@ -362,12 +400,11 @@ function oppDetail(id) {
 }
 
 // ---------------------------------------------------------------- ranking
-let region = 'All', query = '';
+let query = '';
 function ranking() {
-  const regions = ['All', ...new Set(LANGS.map(l => l.region).filter(Boolean))].sort((a, b) => a === 'All' ? -1 : b === 'All' ? 1 : a.localeCompare(b));
   $('#view').innerHTML = `
     <div class="controls">
-      <div class="chips" role="group" aria-label="Region">${regions.map(r => `<button class="chip" id="r-${esc(r)}" aria-pressed="${r === region}" data-r="${esc(r)}">${esc(r)}</button>`).join('')}</div>
+      ${regionSelect('rsel')}
       <input type="search" id="q" placeholder="Find a language or code" value="${esc(query)}" aria-label="Find a language">
     </div>
     <div class="legend">
@@ -382,7 +419,7 @@ function ranking() {
     <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. Each technology scores half for presence and half for depth (keyboard features, speech recognition error rates, voice types, translation features). LLM support is measured for 12 languages only, so the rest leave LLMs out of their technology score. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
-    const rows = LANGS.filter(l => (region === 'All' || l.region === region) &&
+    const rows = LANGS.filter(l => inRegion(l) &&
       (!q || [l.name, l.autonym, l.code, l.iso_639_3].some(s => (s || '').toLowerCase().includes(q))));
     $('#rows').innerHTML = rows.map(l => `
       <tr tabindex="0" data-code="${l.code}">
@@ -397,7 +434,7 @@ function ranking() {
       </tr>`).join('') || `<tr><td colspan="7">No language matches “${esc(query)}”.</td></tr>`;
   };
   draw();
-  $('#view').querySelectorAll('[data-r]').forEach(b => b.onclick = () => { region = b.dataset.r; ranking(); });
+  $('#rsel').onchange = e => { region = e.target.value; ranking(); };
   $('#q').oninput = e => { query = e.target.value; draw(); };
   $('#rows').onclick = e => { const tr = e.target.closest('tr[data-code]'); if (tr) location.hash = 'lang-' + tr.dataset.code; };
   $('#rows').onkeydown = e => { if (e.key === 'Enter') { const tr = e.target.closest('tr[data-code]'); if (tr) location.hash = 'lang-' + tr.dataset.code; } };
@@ -506,11 +543,141 @@ function compare(a, b) {
   $('#back').onclick = () => { location.hash = 'lang-' + a; };
 }
 
+
+// ----------------------------------------------------------------- charts
+const tipEl = () => document.getElementById('tip');
+function tipShow(e, html) { const t = tipEl(); if (!t) return; t.innerHTML = html; t.hidden = false;
+  const x = Math.min(e.clientX + 14, window.innerWidth - 300), y = e.clientY + 14; t.style.left = x + 'px'; t.style.top = y + 'px'; }
+function tipHide() { const t = tipEl(); if (t) t.hidden = true; }
+function bindTips(root) {
+  root.querySelectorAll('[data-tip]').forEach(el => {
+    el.addEventListener('mousemove', e => tipShow(e, el.getAttribute('data-tip')));
+    el.addEventListener('mouseleave', tipHide);
+    el.addEventListener('focus', e => { const r = el.getBoundingClientRect(); tipShow({ clientX: r.left, clientY: r.bottom }, el.getAttribute('data-tip')); });
+    el.addEventListener('blur', tipHide);
+  });
+}
+
+const LEVELS = [['full', 'Widely available'], ['part', 'In some services'], ['open', 'Open model only'], ['none', 'None found']];
+function levelOf(l, key, t) {
+  const f = DATA.facts[l.code] || {}, has = i => f[i] && f[i].value;
+  if (t.measured) {
+    const s = l.dimensions.tech.indicators[key];
+    return s == null ? 'none' : s >= 0.9 ? 'full' : 'part';
+  }
+  const n = t.consumer.filter(has).length;
+  if (n >= Math.min(2, t.consumer.length)) return 'full';
+  if (n >= 1) return 'part';
+  return t.open.some(has) ? 'open' : 'none';
+}
+
+function charts() {
+  const langs = LANGS.filter(inRegion), N = langs.length;
+  const techs = Object.entries(CFG.tech.technologies);
+  const names = ls => ls.map(l => esc(l.name)).join(', ') || '—';
+
+  // 1. Coverage now
+  const rows = techs.map(([k, t]) => {
+    const by = Object.fromEntries(LEVELS.map(([lv]) => [lv, langs.filter(l => levelOf(l, k, t) === lv)]));
+    const segs = LEVELS.filter(([lv]) => by[lv].length).map(([lv, lab]) => {
+      const n = by[lv].length, label = t.measured ? { full: 'Benchmarked at 90%+', part: 'Benchmarked, lower', none: 'No public benchmark' }[lv] || lab : lab;
+      return `<div class="seg ${lv}" tabindex="0" style="flex:${n}" data-tip="<b>${esc(t.label)}: ${esc(label)}</b><br>${n} of ${N}: ${names(by[lv])}">${n / N >= 0.08 ? n : ''}</div>`;
+    }).join('');
+    return { k, t, by, html: `<div class="lab">${esc(t.label)}</div><div class="stack" role="img" aria-label="${esc(t.label)}: ${LEVELS.map(([lv, lab]) => `${by[lv].length} ${lab.toLowerCase()}`).join(', ')}">${segs}</div>` };
+  });
+  const table1 = `<div class="tablebox"><table><thead><tr><th>Technology</th>${LEVELS.map(([, lab]) => `<th class="num">${esc(lab)}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(r => `<tr><td>${esc(r.t.label)}</td>${LEVELS.map(([lv]) => `<td class="num" title="${names(r.by[lv])}">${r.by[lv].length}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+
+  // 2. Over time: small multiples
+  const H = DATA.history;
+  let multiples = '<p class="note">No history collected yet.</p>';
+  if (H) {
+    const P = H.periods, W = 300, Ht = 150, L = 30, R = 34, T = 12, B = 26;
+    const x = i => L + i * (W - L - R) / (P.length - 1), y = v => T + (Ht - T - B) * (1 - v / Math.max(N, 1));
+    const yearTicks = P.map((p, i) => [p, i]).filter(([p]) => p.endsWith('-12') && ['2019', '2022', '2025'].includes(p.slice(0, 4)));
+    multiples = Object.entries(H.series).map(([key, label]) => {
+      const vals = P.map(p => { const vs = langs.map(l => (H.values[key] || {})[l.code]?.[p]); return vs.every(v => v == null) ? null : vs.filter(v => v === 1).length; });
+      const pts = vals.map((v, i) => v == null ? null : [x(i), y(v), v, i]).filter(Boolean);
+      if (!pts.length) return '';
+      const step = pts.map(([px, py], j) => j ? `H${px.toFixed(1)}V${py.toFixed(1)}` : `M${px.toFixed(1)},${py.toFixed(1)}`).join('');
+      const area = `${step}V${y(0)}H${pts[0][0].toFixed(1)}Z`;
+      const last = pts[pts.length - 1];
+      const hits = pts.map(([px, , v, i], j) => {
+        const prev = j ? vals[pts[j - 1][3]] : null;
+        const gained = j ? langs.filter(l => (H.values[key][l.code] || {})[P[i]] === 1 && (H.values[key][l.code] || {})[P[pts[j - 1][3]]] !== 1) : [];
+        const when = (P[i].endsWith('-06') ? 'Mid ' : 'End ') + P[i].slice(0, 4);
+        const tip = `<b>${when}</b><br>${v} of ${N} languages${gained.length ? `<br>New: ${names(gained)}` : ''}`;
+        const w = (W - L - R) / (P.length - 1);
+        return `<rect x="${(px - w / 2).toFixed(1)}" y="${T}" width="${w.toFixed(1)}" height="${Ht - T - B}" fill="transparent" data-tip="${esc(tip)}"/>`;
+      }).join('');
+      return `<div class="panel"><h4>${esc(label)}</h4><div class="now">${last[2]} of ${N} languages now</div>
+        <svg viewBox="0 0 ${W} ${Ht}" role="img" aria-label="${esc(label)}: ${pts.map(([, , v, i]) => `${P[i]} ${v}`).join(', ')}">
+          <g class="grid">${[0, N].map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join('')}</g>
+          <g class="axis">${yearTicks.map(([p, i]) => `<text x="${x(i)}" y="${Ht - 8}" text-anchor="middle">${p.slice(0, 4)}</text>`).join('')}</g>
+          <path d="${area}" fill="var(--accent)" fill-opacity="0.12"/>
+          <path d="${step}" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="${last[0]}" cy="${last[1]}" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
+          <text x="${last[0] + 8}" y="${last[1] + 4}" fill="var(--ink)" font-size="12" font-weight="600">${last[2]}</text>
+          ${hits}
+        </svg></div>`;
+    }).join('');
+    multiples = `<div class="multiples">${multiples}</div>`;
+  }
+  const table2 = H ? `<div class="tablebox"><table><thead><tr><th>Kind of support</th>${H.periods.filter(p => p.endsWith('-12')).map(p => `<th class="num">${p.slice(0, 4)}</th>`).join('')}</tr></thead>
+    <tbody>${Object.entries(H.series).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.filter(p => p.endsWith('-12')).map(p => { const vs = langs.map(l => (H.values[k] || {})[l.code]?.[p]); return `<td class="num">${vs.every(v => v == null) ? '—' : vs.filter(v => v === 1).length}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
+
+  // 3. LTDI by region: dot strip
+  const regs = REGIONS.filter(r => region === 'All' || r === region);
+  const SW = Math.max(340, Math.min(720, (window.innerWidth || 720) - 70)), lab = SW < 500 ? 92 : 120, top = 26, rowH = 58, x0 = 0.3, x1 = 1.0;
+  const sx = v => lab + (Math.max(x0, v) - x0) / (x1 - x0) * (SW - lab - 30);
+  const SH = top + regs.length * rowH + 24;
+  const strip = `<svg viewBox="0 0 ${SW} ${SH}" role="img" aria-label="LTDI by region" style="width:100%;height:auto">
+    <g class="grid">${[0.4, 0.6, 0.8, 1.0].map(v => `<line x1="${sx(v)}" x2="${sx(v)}" y1="${top - 6}" y2="${SH - 22}"/><text x="${sx(v)}" y="${SH - 6}" text-anchor="middle">${v.toFixed(1)}</text>`).join('')}</g>
+    ${regs.map((r, i) => {
+      const ls = LANGS.filter(l => l.region === r).sort((a, b) => a.ltdi - b.ltdi), cy = top + i * rowH + rowH / 2;
+      const lo = ls[0], hi = ls[ls.length - 1];
+      // nudge dots that would overlap above and below the row line
+      let prevX = -99, flip = 1;
+      const dots = ls.map(l => { const x = sx(l.ltdi); let dy = 0; if (x - prevX < 13) { dy = 6 * flip; flip = -flip; } else flip = 1; prevX = x; return { l, x, y: cy + dy }; });
+      return `<text x="0" y="${cy + 4}" fill="var(--ink)" font-size="13" font-weight="600">${esc(r)}</text>
+        ${dots.map(d => `<a href="#lang-${d.l.code}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="6.5" fill="var(--accent)" fill-opacity="0.85" stroke="var(--surface)" stroke-width="2" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>LTDI ${d.l.ltdi.toFixed(3)} · rank ${d.l.rank}"/></a>`).join('')}
+        <text x="${sx(lo.ltdi)}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(lo.name)}</text>
+        ${ls.length > 1 ? `<text x="${Math.min(sx(hi.ltdi), SW - 4)}" y="${cy - 14}" text-anchor="${sx(hi.ltdi) > SW - 40 ? 'end' : 'middle'}" fill="var(--muted)" font-size="11">${esc(hi.name)}</text>` : ''}`;
+    }).join('')}
+  </svg>`;
+
+  $('#view').innerHTML = `
+    <div class="controls">${regionSelect('csel')}<span class="note" style="margin:0">${N} languages</span></div>
+    <section class="chart">
+      <h3>How many languages each technology reaches today</h3>
+      <p class="sub">Each bar splits the ${N} languages by how widely a technology is available in them. Widely available means in at least two of the major services checked, or in the only one checked. Hover a segment to see which languages.</p>
+      <div class="legend ord">${LEVELS.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
+      <div class="covrows">${rows.map(r => r.html).join('')}</div>
+      <p class="note">LLMs are counted by published benchmark results instead: dark for 90% or more of the best score, mid-blue for lower scores, grey for no public benchmark.</p>
+      <details class="tbl"><summary>Show as a table</summary>${table1}</details>
+    </section>
+    <section class="chart">
+      <h3>How support has grown since 2019</h3>
+      <p class="sub">Number of these languages with each kind of support, at mid-year and year-end. Lines start when the source's history does. Hover for the languages added.</p>
+      ${multiples}
+      <p class="note">Common Voice, CLDR and DeepL from each project's release history. Open models and benchmarks are counted from their release dates using today's language lists.</p>
+      <details class="tbl"><summary>Show as a table</summary>${table2}</details>
+    </section>
+    <section class="chart">
+      <h3>Where each language stands</h3>
+      <p class="sub">Language Technology Development Index by region. Each dot is a language, with the lowest named below its row and the highest above. Select a dot to open its profile.</p>
+      ${strip}
+    </section>`;
+  bindTips($('#view'));
+  $('#csel').onchange = e => { region = e.target.value; charts(); };
+}
+
 function route() {
   const h = location.hash.slice(1);
   let m;
   if ((m = h.match(/^lang-([a-z]+)$/))) language(m[1]);
   else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
+  else if (h === 'charts') charts();
   else if (h === 'opportunities') opportunities();
   else if ((m = h.match(/^opportunities-([a-z]+)$/))) opportunities(m[1]);
   else if ((m = h.match(/^opp-([a-z0-9-]+)$/))) oppDetail(m[1]);
@@ -519,8 +686,9 @@ function route() {
   const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
   const otab = document.getElementById('tab-opportunities');
   if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
-  const tab = h.startsWith('opp') ? 'opportunities' : (h === '' || h === 'ranking') ? 'ranking' : '';
-  for (const t of ['ranking', 'opportunities']) {
+  const tab = h.startsWith('opp') ? 'opportunities' : h === 'charts' ? 'charts' : (h === '' || h === 'ranking') ? 'ranking' : '';
+  tipHide();
+  for (const t of ['ranking', 'charts', 'opportunities']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   }

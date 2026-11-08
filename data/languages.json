@@ -542,7 +542,7 @@
     "speakers": 4800000
    }
   ],
-  "region": "Asia",
+  "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cmn.json",
   "note": "Vendors label as zh / zh-CN / zh-Hans; crosswalk maps to cmn"
  },
@@ -698,7 +698,7 @@
     "speakers": 544000000
    }
   ],
-  "region": "Asia",
+  "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hi.json",
   "note": ""
  },
@@ -881,7 +881,7 @@
     "speakers": null
    }
   ],
-  "region": "Asia",
+  "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ar.json",
   "note": "Macrolanguage; vendors ship Modern Standard Arabic (arb) but LinguaMeta speaker counts sit on ar"
  },
@@ -1147,7 +1147,7 @@
     "speakers": 107000000
    }
   ],
-  "region": "Asia",
+  "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bn.json",
   "note": ""
  },
@@ -1261,7 +1261,7 @@
     "speakers": 119000000
    }
   ],
-  "region": "Asia",
+  "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ja.json",
   "note": ""
  },
@@ -1284,7 +1284,7 @@
     "speakers": 171000000
    }
   ],
-  "region": "Asia",
+  "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/id.json",
   "note": ""
  },
@@ -1312,7 +1312,7 @@
     "speakers": 66000000
    }
   ],
-  "region": "Asia",
+  "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ur.json",
   "note": ""
  },
@@ -1345,7 +1345,7 @@
     "speakers": 130000
    }
   ],
-  "region": "Asia",
+  "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ta.json",
   "note": ""
  },
@@ -1374,7 +1374,7 @@
     "speakers": 37000000
    }
   ],
-  "region": "Asia",
+  "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pa.json",
   "note": "Gurmukhi and Shahmukhi scripts combined for the slice"
  },

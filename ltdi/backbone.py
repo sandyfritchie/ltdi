@@ -16,6 +16,14 @@ LINGUAMETA = "https://raw.githubusercontent.com/google-research/url-nlp/main/lin
 
 # UN M49 region codes used in LinguaMeta's locales.json
 REGIONS = {"002": "Africa", "019": "Americas", "142": "Asia", "150": "Europe", "009": "Oceania"}
+SOUTH_ASIA = "034"  # M49 Southern Asia
+
+
+def region_group(region: str | None, subregion: str | None) -> str | None:
+    """Regions for filtering, with South Asia split out from the rest of Asia."""
+    if region == "Asia":
+        return "South Asia" if subregion == SOUTH_ASIA else "Rest of Asia"
+    return region
 
 
 def slice_languages() -> list[dict]:
@@ -76,7 +84,8 @@ def load_language(code: str, locales: dict[str, dict]) -> dict:
             for c, n in top
         ],
         "region": next(
-            (locales.get(c, {}).get("region") for c, _ in top if locales.get(c, {}).get("region")),
+            (region_group(locales[c]["region"], locales[c]["subregion"])
+             for c, _ in top if locales.get(c, {}).get("region")),
             None,
         ),
         "source": f"{LINGUAMETA}/{code}.json",
@@ -90,7 +99,7 @@ def main() -> None:
         lang = load_language(row["code"], locales)
         lang["name"] = row["name"] or lang["name"]
         lang["note"] = row["note"]
-        if row.get("region"):  # origin region, where the largest-country rule misleads
+        if row.get("region"):  # origin region group, where the largest-country rule misleads
             lang["region"] = row["region"]
         langs.append(lang)
     DATA.mkdir(exist_ok=True)

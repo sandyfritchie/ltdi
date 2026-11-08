@@ -1,0 +1,1451 @@
+language,series,period,value,source
+am,cldr_modern,2020-12,1,Unicode CLDR releases
+am,cldr_modern,2021-06,1,Unicode CLDR releases
+am,cldr_modern,2021-12,1,Unicode CLDR releases
+am,cldr_modern,2022-06,1,Unicode CLDR releases
+am,cldr_modern,2022-12,1,Unicode CLDR releases
+am,cldr_modern,2023-06,1,Unicode CLDR releases
+am,cldr_modern,2023-12,1,Unicode CLDR releases
+am,cldr_modern,2024-06,1,Unicode CLDR releases
+am,cldr_modern,2024-12,1,Unicode CLDR releases
+am,cldr_modern,2025-06,1,Unicode CLDR releases
+am,cldr_modern,2025-12,1,Unicode CLDR releases
+am,cldr_modern,2026-06,1,Unicode CLDR releases
+am,cldr_modern,2026-12,1,Unicode CLDR releases
+am,cv_10h,2019-06,0,Common Voice releases
+am,cv_10h,2019-12,0,Common Voice releases
+am,cv_10h,2020-06,0,Common Voice releases
+am,cv_10h,2020-12,0,Common Voice releases
+am,cv_10h,2021-06,0,Common Voice releases
+am,cv_10h,2021-12,0,Common Voice releases
+am,cv_10h,2022-06,0,Common Voice releases
+am,cv_10h,2022-12,0,Common Voice releases
+am,cv_10h,2023-06,0,Common Voice releases
+am,cv_10h,2023-12,0,Common Voice releases
+am,cv_10h,2024-06,0,Common Voice releases
+am,cv_10h,2024-12,0,Common Voice releases
+am,cv_10h,2025-06,0,Common Voice releases
+am,cv_10h,2025-12,0,Common Voice releases
+am,cv_10h,2026-06,0,Common Voice releases
+am,cv_10h,2026-12,0,Common Voice releases
+am,deepl,2025-06,0,DeepL docs history
+am,deepl,2025-12,0,DeepL docs history
+am,deepl,2026-06,0,DeepL docs history
+am,deepl,2026-12,0,DeepL docs history
+am,open_asr,2022-12,1,Released 2022-09
+am,open_asr,2023-06,1,Released 2022-09
+am,open_asr,2023-12,1,Released 2022-09
+am,open_asr,2024-06,1,Released 2022-09
+am,open_asr,2024-12,1,Released 2022-09
+am,open_asr,2025-06,1,Released 2022-09
+am,open_asr,2025-12,1,Released 2022-09
+am,open_asr,2026-06,1,Released 2022-09
+am,open_asr,2026-12,1,Released 2022-09
+am,open_mt,2022-12,1,Released 2022-07
+am,open_mt,2023-06,1,Released 2022-07
+am,open_mt,2023-12,1,Released 2022-07
+am,open_mt,2024-06,1,Released 2022-07
+am,open_mt,2024-12,1,Released 2022-07
+am,open_mt,2025-06,1,Released 2022-07
+am,open_mt,2025-12,1,Released 2022-07
+am,open_mt,2026-06,1,Released 2022-07
+am,open_mt,2026-12,1,Released 2022-07
+am,reading_bench,2023-12,1,Released 2023-08
+am,reading_bench,2024-06,1,Released 2023-08
+am,reading_bench,2024-12,1,Released 2023-08
+am,reading_bench,2025-06,1,Released 2023-08
+am,reading_bench,2025-12,1,Released 2023-08
+am,reading_bench,2026-06,1,Released 2023-08
+am,reading_bench,2026-12,1,Released 2023-08
+ar,cldr_modern,2020-12,1,Unicode CLDR releases
+ar,cldr_modern,2021-06,1,Unicode CLDR releases
+ar,cldr_modern,2021-12,1,Unicode CLDR releases
+ar,cldr_modern,2022-06,1,Unicode CLDR releases
+ar,cldr_modern,2022-12,1,Unicode CLDR releases
+ar,cldr_modern,2023-06,1,Unicode CLDR releases
+ar,cldr_modern,2023-12,1,Unicode CLDR releases
+ar,cldr_modern,2024-06,1,Unicode CLDR releases
+ar,cldr_modern,2024-12,1,Unicode CLDR releases
+ar,cldr_modern,2025-06,1,Unicode CLDR releases
+ar,cldr_modern,2025-12,1,Unicode CLDR releases
+ar,cldr_modern,2026-06,1,Unicode CLDR releases
+ar,cldr_modern,2026-12,1,Unicode CLDR releases
+ar,cv_10h,2019-06,0,Common Voice releases
+ar,cv_10h,2019-12,0,Common Voice releases
+ar,cv_10h,2020-06,1,Common Voice releases
+ar,cv_10h,2020-12,1,Common Voice releases
+ar,cv_10h,2021-06,1,Common Voice releases
+ar,cv_10h,2021-12,1,Common Voice releases
+ar,cv_10h,2022-06,1,Common Voice releases
+ar,cv_10h,2022-12,1,Common Voice releases
+ar,cv_10h,2023-06,1,Common Voice releases
+ar,cv_10h,2023-12,1,Common Voice releases
+ar,cv_10h,2024-06,1,Common Voice releases
+ar,cv_10h,2024-12,1,Common Voice releases
+ar,cv_10h,2025-06,1,Common Voice releases
+ar,cv_10h,2025-12,1,Common Voice releases
+ar,cv_10h,2026-06,1,Common Voice releases
+ar,cv_10h,2026-12,1,Common Voice releases
+ar,deepl,2025-06,1,DeepL docs history
+ar,deepl,2025-12,1,DeepL docs history
+ar,deepl,2026-06,1,DeepL docs history
+ar,deepl,2026-12,1,DeepL docs history
+ar,open_asr,2022-12,1,Released 2022-09
+ar,open_asr,2023-06,1,Released 2022-09
+ar,open_asr,2023-12,1,Released 2022-09
+ar,open_asr,2024-06,1,Released 2022-09
+ar,open_asr,2024-12,1,Released 2022-09
+ar,open_asr,2025-06,1,Released 2022-09
+ar,open_asr,2025-12,1,Released 2022-09
+ar,open_asr,2026-06,1,Released 2022-09
+ar,open_asr,2026-12,1,Released 2022-09
+ar,open_mt,2022-12,1,Released 2022-07
+ar,open_mt,2023-06,1,Released 2022-07
+ar,open_mt,2023-12,1,Released 2022-07
+ar,open_mt,2024-06,1,Released 2022-07
+ar,open_mt,2024-12,1,Released 2022-07
+ar,open_mt,2025-06,1,Released 2022-07
+ar,open_mt,2025-12,1,Released 2022-07
+ar,open_mt,2026-06,1,Released 2022-07
+ar,open_mt,2026-12,1,Released 2022-07
+ar,reading_bench,2023-12,1,Released 2023-08
+ar,reading_bench,2024-06,1,Released 2023-08
+ar,reading_bench,2024-12,1,Released 2023-08
+ar,reading_bench,2025-06,1,Released 2023-08
+ar,reading_bench,2025-12,1,Released 2023-08
+ar,reading_bench,2026-06,1,Released 2023-08
+ar,reading_bench,2026-12,1,Released 2023-08
+bn,cldr_modern,2020-12,1,Unicode CLDR releases
+bn,cldr_modern,2021-06,1,Unicode CLDR releases
+bn,cldr_modern,2021-12,1,Unicode CLDR releases
+bn,cldr_modern,2022-06,1,Unicode CLDR releases
+bn,cldr_modern,2022-12,1,Unicode CLDR releases
+bn,cldr_modern,2023-06,1,Unicode CLDR releases
+bn,cldr_modern,2023-12,1,Unicode CLDR releases
+bn,cldr_modern,2024-06,1,Unicode CLDR releases
+bn,cldr_modern,2024-12,1,Unicode CLDR releases
+bn,cldr_modern,2025-06,1,Unicode CLDR releases
+bn,cldr_modern,2025-12,1,Unicode CLDR releases
+bn,cldr_modern,2026-06,1,Unicode CLDR releases
+bn,cldr_modern,2026-12,1,Unicode CLDR releases
+bn,cv_10h,2019-06,0,Common Voice releases
+bn,cv_10h,2019-12,0,Common Voice releases
+bn,cv_10h,2020-06,0,Common Voice releases
+bn,cv_10h,2020-12,0,Common Voice releases
+bn,cv_10h,2021-06,0,Common Voice releases
+bn,cv_10h,2021-12,0,Common Voice releases
+bn,cv_10h,2022-06,1,Common Voice releases
+bn,cv_10h,2022-12,1,Common Voice releases
+bn,cv_10h,2023-06,1,Common Voice releases
+bn,cv_10h,2023-12,1,Common Voice releases
+bn,cv_10h,2024-06,1,Common Voice releases
+bn,cv_10h,2024-12,1,Common Voice releases
+bn,cv_10h,2025-06,1,Common Voice releases
+bn,cv_10h,2025-12,1,Common Voice releases
+bn,cv_10h,2026-06,1,Common Voice releases
+bn,cv_10h,2026-12,1,Common Voice releases
+bn,deepl,2025-06,0,DeepL docs history
+bn,deepl,2025-12,1,DeepL docs history
+bn,deepl,2026-06,1,DeepL docs history
+bn,deepl,2026-12,1,DeepL docs history
+bn,open_asr,2022-12,1,Released 2022-09
+bn,open_asr,2023-06,1,Released 2022-09
+bn,open_asr,2023-12,1,Released 2022-09
+bn,open_asr,2024-06,1,Released 2022-09
+bn,open_asr,2024-12,1,Released 2022-09
+bn,open_asr,2025-06,1,Released 2022-09
+bn,open_asr,2025-12,1,Released 2022-09
+bn,open_asr,2026-06,1,Released 2022-09
+bn,open_asr,2026-12,1,Released 2022-09
+bn,open_mt,2022-12,1,Released 2022-07
+bn,open_mt,2023-06,1,Released 2022-07
+bn,open_mt,2023-12,1,Released 2022-07
+bn,open_mt,2024-06,1,Released 2022-07
+bn,open_mt,2024-12,1,Released 2022-07
+bn,open_mt,2025-06,1,Released 2022-07
+bn,open_mt,2025-12,1,Released 2022-07
+bn,open_mt,2026-06,1,Released 2022-07
+bn,open_mt,2026-12,1,Released 2022-07
+bn,reading_bench,2023-12,1,Released 2023-08
+bn,reading_bench,2024-06,1,Released 2023-08
+bn,reading_bench,2024-12,1,Released 2023-08
+bn,reading_bench,2025-06,1,Released 2023-08
+bn,reading_bench,2025-12,1,Released 2023-08
+bn,reading_bench,2026-06,1,Released 2023-08
+bn,reading_bench,2026-12,1,Released 2023-08
+cmn,cldr_modern,2020-12,1,Unicode CLDR releases
+cmn,cldr_modern,2021-06,1,Unicode CLDR releases
+cmn,cldr_modern,2021-12,1,Unicode CLDR releases
+cmn,cldr_modern,2022-06,1,Unicode CLDR releases
+cmn,cldr_modern,2022-12,1,Unicode CLDR releases
+cmn,cldr_modern,2023-06,1,Unicode CLDR releases
+cmn,cldr_modern,2023-12,1,Unicode CLDR releases
+cmn,cldr_modern,2024-06,1,Unicode CLDR releases
+cmn,cldr_modern,2024-12,1,Unicode CLDR releases
+cmn,cldr_modern,2025-06,1,Unicode CLDR releases
+cmn,cldr_modern,2025-12,1,Unicode CLDR releases
+cmn,cldr_modern,2026-06,1,Unicode CLDR releases
+cmn,cldr_modern,2026-12,1,Unicode CLDR releases
+cmn,cv_10h,2019-06,1,Common Voice releases
+cmn,cv_10h,2019-12,1,Common Voice releases
+cmn,cv_10h,2020-06,1,Common Voice releases
+cmn,cv_10h,2020-12,1,Common Voice releases
+cmn,cv_10h,2021-06,1,Common Voice releases
+cmn,cv_10h,2021-12,1,Common Voice releases
+cmn,cv_10h,2022-06,1,Common Voice releases
+cmn,cv_10h,2022-12,1,Common Voice releases
+cmn,cv_10h,2023-06,1,Common Voice releases
+cmn,cv_10h,2023-12,1,Common Voice releases
+cmn,cv_10h,2024-06,1,Common Voice releases
+cmn,cv_10h,2024-12,1,Common Voice releases
+cmn,cv_10h,2025-06,1,Common Voice releases
+cmn,cv_10h,2025-12,1,Common Voice releases
+cmn,cv_10h,2026-06,1,Common Voice releases
+cmn,cv_10h,2026-12,1,Common Voice releases
+cmn,deepl,2025-06,1,DeepL docs history
+cmn,deepl,2025-12,1,DeepL docs history
+cmn,deepl,2026-06,1,DeepL docs history
+cmn,deepl,2026-12,1,DeepL docs history
+cmn,open_asr,2022-12,1,Released 2022-09
+cmn,open_asr,2023-06,1,Released 2022-09
+cmn,open_asr,2023-12,1,Released 2022-09
+cmn,open_asr,2024-06,1,Released 2022-09
+cmn,open_asr,2024-12,1,Released 2022-09
+cmn,open_asr,2025-06,1,Released 2022-09
+cmn,open_asr,2025-12,1,Released 2022-09
+cmn,open_asr,2026-06,1,Released 2022-09
+cmn,open_asr,2026-12,1,Released 2022-09
+cmn,open_mt,2022-12,1,Released 2022-07
+cmn,open_mt,2023-06,1,Released 2022-07
+cmn,open_mt,2023-12,1,Released 2022-07
+cmn,open_mt,2024-06,1,Released 2022-07
+cmn,open_mt,2024-12,1,Released 2022-07
+cmn,open_mt,2025-06,1,Released 2022-07
+cmn,open_mt,2025-12,1,Released 2022-07
+cmn,open_mt,2026-06,1,Released 2022-07
+cmn,open_mt,2026-12,1,Released 2022-07
+cmn,reading_bench,2023-12,1,Released 2023-08
+cmn,reading_bench,2024-06,1,Released 2023-08
+cmn,reading_bench,2024-12,1,Released 2023-08
+cmn,reading_bench,2025-06,1,Released 2023-08
+cmn,reading_bench,2025-12,1,Released 2023-08
+cmn,reading_bench,2026-06,1,Released 2023-08
+cmn,reading_bench,2026-12,1,Released 2023-08
+cy,cldr_modern,2020-12,1,Unicode CLDR releases
+cy,cldr_modern,2021-06,1,Unicode CLDR releases
+cy,cldr_modern,2021-12,1,Unicode CLDR releases
+cy,cldr_modern,2022-06,1,Unicode CLDR releases
+cy,cldr_modern,2022-12,1,Unicode CLDR releases
+cy,cldr_modern,2023-06,1,Unicode CLDR releases
+cy,cldr_modern,2023-12,1,Unicode CLDR releases
+cy,cldr_modern,2024-06,1,Unicode CLDR releases
+cy,cldr_modern,2024-12,1,Unicode CLDR releases
+cy,cldr_modern,2025-06,1,Unicode CLDR releases
+cy,cldr_modern,2025-12,1,Unicode CLDR releases
+cy,cldr_modern,2026-06,1,Unicode CLDR releases
+cy,cldr_modern,2026-12,1,Unicode CLDR releases
+cy,cv_10h,2019-06,1,Common Voice releases
+cy,cv_10h,2019-12,1,Common Voice releases
+cy,cv_10h,2020-06,1,Common Voice releases
+cy,cv_10h,2020-12,1,Common Voice releases
+cy,cv_10h,2021-06,1,Common Voice releases
+cy,cv_10h,2021-12,1,Common Voice releases
+cy,cv_10h,2022-06,1,Common Voice releases
+cy,cv_10h,2022-12,1,Common Voice releases
+cy,cv_10h,2023-06,1,Common Voice releases
+cy,cv_10h,2023-12,1,Common Voice releases
+cy,cv_10h,2024-06,1,Common Voice releases
+cy,cv_10h,2024-12,1,Common Voice releases
+cy,cv_10h,2025-06,1,Common Voice releases
+cy,cv_10h,2025-12,1,Common Voice releases
+cy,cv_10h,2026-06,1,Common Voice releases
+cy,cv_10h,2026-12,1,Common Voice releases
+cy,deepl,2025-06,0,DeepL docs history
+cy,deepl,2025-12,1,DeepL docs history
+cy,deepl,2026-06,1,DeepL docs history
+cy,deepl,2026-12,1,DeepL docs history
+cy,open_asr,2022-12,1,Released 2022-09
+cy,open_asr,2023-06,1,Released 2022-09
+cy,open_asr,2023-12,1,Released 2022-09
+cy,open_asr,2024-06,1,Released 2022-09
+cy,open_asr,2024-12,1,Released 2022-09
+cy,open_asr,2025-06,1,Released 2022-09
+cy,open_asr,2025-12,1,Released 2022-09
+cy,open_asr,2026-06,1,Released 2022-09
+cy,open_asr,2026-12,1,Released 2022-09
+cy,open_mt,2022-12,1,Released 2022-07
+cy,open_mt,2023-06,1,Released 2022-07
+cy,open_mt,2023-12,1,Released 2022-07
+cy,open_mt,2024-06,1,Released 2022-07
+cy,open_mt,2024-12,1,Released 2022-07
+cy,open_mt,2025-06,1,Released 2022-07
+cy,open_mt,2025-12,1,Released 2022-07
+cy,open_mt,2026-06,1,Released 2022-07
+cy,open_mt,2026-12,1,Released 2022-07
+cy,reading_bench,2023-12,0,Released 2023-08
+cy,reading_bench,2024-06,0,Released 2023-08
+cy,reading_bench,2024-12,0,Released 2023-08
+cy,reading_bench,2025-06,0,Released 2023-08
+cy,reading_bench,2025-12,0,Released 2023-08
+cy,reading_bench,2026-06,0,Released 2023-08
+cy,reading_bench,2026-12,0,Released 2023-08
+en,cldr_modern,2020-12,1,Unicode CLDR releases
+en,cldr_modern,2021-06,1,Unicode CLDR releases
+en,cldr_modern,2021-12,1,Unicode CLDR releases
+en,cldr_modern,2022-06,1,Unicode CLDR releases
+en,cldr_modern,2022-12,1,Unicode CLDR releases
+en,cldr_modern,2023-06,1,Unicode CLDR releases
+en,cldr_modern,2023-12,1,Unicode CLDR releases
+en,cldr_modern,2024-06,1,Unicode CLDR releases
+en,cldr_modern,2024-12,1,Unicode CLDR releases
+en,cldr_modern,2025-06,1,Unicode CLDR releases
+en,cldr_modern,2025-12,1,Unicode CLDR releases
+en,cldr_modern,2026-06,1,Unicode CLDR releases
+en,cldr_modern,2026-12,1,Unicode CLDR releases
+en,cv_10h,2019-06,1,Common Voice releases
+en,cv_10h,2019-12,1,Common Voice releases
+en,cv_10h,2020-06,1,Common Voice releases
+en,cv_10h,2020-12,1,Common Voice releases
+en,cv_10h,2021-06,1,Common Voice releases
+en,cv_10h,2021-12,1,Common Voice releases
+en,cv_10h,2022-06,1,Common Voice releases
+en,cv_10h,2022-12,1,Common Voice releases
+en,cv_10h,2023-06,1,Common Voice releases
+en,cv_10h,2023-12,1,Common Voice releases
+en,cv_10h,2024-06,1,Common Voice releases
+en,cv_10h,2024-12,1,Common Voice releases
+en,cv_10h,2025-06,1,Common Voice releases
+en,cv_10h,2025-12,1,Common Voice releases
+en,cv_10h,2026-06,1,Common Voice releases
+en,cv_10h,2026-12,1,Common Voice releases
+en,deepl,2025-06,1,DeepL docs history
+en,deepl,2025-12,1,DeepL docs history
+en,deepl,2026-06,1,DeepL docs history
+en,deepl,2026-12,1,DeepL docs history
+en,open_asr,2022-12,1,Released 2022-09
+en,open_asr,2023-06,1,Released 2022-09
+en,open_asr,2023-12,1,Released 2022-09
+en,open_asr,2024-06,1,Released 2022-09
+en,open_asr,2024-12,1,Released 2022-09
+en,open_asr,2025-06,1,Released 2022-09
+en,open_asr,2025-12,1,Released 2022-09
+en,open_asr,2026-06,1,Released 2022-09
+en,open_asr,2026-12,1,Released 2022-09
+en,open_mt,2022-12,1,Released 2022-07
+en,open_mt,2023-06,1,Released 2022-07
+en,open_mt,2023-12,1,Released 2022-07
+en,open_mt,2024-06,1,Released 2022-07
+en,open_mt,2024-12,1,Released 2022-07
+en,open_mt,2025-06,1,Released 2022-07
+en,open_mt,2025-12,1,Released 2022-07
+en,open_mt,2026-06,1,Released 2022-07
+en,open_mt,2026-12,1,Released 2022-07
+en,reading_bench,2023-12,1,Released 2023-08
+en,reading_bench,2024-06,1,Released 2023-08
+en,reading_bench,2024-12,1,Released 2023-08
+en,reading_bench,2025-06,1,Released 2023-08
+en,reading_bench,2025-12,1,Released 2023-08
+en,reading_bench,2026-06,1,Released 2023-08
+en,reading_bench,2026-12,1,Released 2023-08
+es,cldr_modern,2020-12,1,Unicode CLDR releases
+es,cldr_modern,2021-06,1,Unicode CLDR releases
+es,cldr_modern,2021-12,1,Unicode CLDR releases
+es,cldr_modern,2022-06,1,Unicode CLDR releases
+es,cldr_modern,2022-12,1,Unicode CLDR releases
+es,cldr_modern,2023-06,1,Unicode CLDR releases
+es,cldr_modern,2023-12,1,Unicode CLDR releases
+es,cldr_modern,2024-06,1,Unicode CLDR releases
+es,cldr_modern,2024-12,1,Unicode CLDR releases
+es,cldr_modern,2025-06,1,Unicode CLDR releases
+es,cldr_modern,2025-12,1,Unicode CLDR releases
+es,cldr_modern,2026-06,1,Unicode CLDR releases
+es,cldr_modern,2026-12,1,Unicode CLDR releases
+es,cv_10h,2019-06,1,Common Voice releases
+es,cv_10h,2019-12,1,Common Voice releases
+es,cv_10h,2020-06,1,Common Voice releases
+es,cv_10h,2020-12,1,Common Voice releases
+es,cv_10h,2021-06,1,Common Voice releases
+es,cv_10h,2021-12,1,Common Voice releases
+es,cv_10h,2022-06,1,Common Voice releases
+es,cv_10h,2022-12,1,Common Voice releases
+es,cv_10h,2023-06,1,Common Voice releases
+es,cv_10h,2023-12,1,Common Voice releases
+es,cv_10h,2024-06,1,Common Voice releases
+es,cv_10h,2024-12,1,Common Voice releases
+es,cv_10h,2025-06,1,Common Voice releases
+es,cv_10h,2025-12,1,Common Voice releases
+es,cv_10h,2026-06,1,Common Voice releases
+es,cv_10h,2026-12,1,Common Voice releases
+es,deepl,2025-06,1,DeepL docs history
+es,deepl,2025-12,1,DeepL docs history
+es,deepl,2026-06,1,DeepL docs history
+es,deepl,2026-12,1,DeepL docs history
+es,open_asr,2022-12,1,Released 2022-09
+es,open_asr,2023-06,1,Released 2022-09
+es,open_asr,2023-12,1,Released 2022-09
+es,open_asr,2024-06,1,Released 2022-09
+es,open_asr,2024-12,1,Released 2022-09
+es,open_asr,2025-06,1,Released 2022-09
+es,open_asr,2025-12,1,Released 2022-09
+es,open_asr,2026-06,1,Released 2022-09
+es,open_asr,2026-12,1,Released 2022-09
+es,open_mt,2022-12,1,Released 2022-07
+es,open_mt,2023-06,1,Released 2022-07
+es,open_mt,2023-12,1,Released 2022-07
+es,open_mt,2024-06,1,Released 2022-07
+es,open_mt,2024-12,1,Released 2022-07
+es,open_mt,2025-06,1,Released 2022-07
+es,open_mt,2025-12,1,Released 2022-07
+es,open_mt,2026-06,1,Released 2022-07
+es,open_mt,2026-12,1,Released 2022-07
+es,reading_bench,2023-12,1,Released 2023-08
+es,reading_bench,2024-06,1,Released 2023-08
+es,reading_bench,2024-12,1,Released 2023-08
+es,reading_bench,2025-06,1,Released 2023-08
+es,reading_bench,2025-12,1,Released 2023-08
+es,reading_bench,2026-06,1,Released 2023-08
+es,reading_bench,2026-12,1,Released 2023-08
+fr,cldr_modern,2020-12,1,Unicode CLDR releases
+fr,cldr_modern,2021-06,1,Unicode CLDR releases
+fr,cldr_modern,2021-12,1,Unicode CLDR releases
+fr,cldr_modern,2022-06,1,Unicode CLDR releases
+fr,cldr_modern,2022-12,1,Unicode CLDR releases
+fr,cldr_modern,2023-06,1,Unicode CLDR releases
+fr,cldr_modern,2023-12,1,Unicode CLDR releases
+fr,cldr_modern,2024-06,1,Unicode CLDR releases
+fr,cldr_modern,2024-12,1,Unicode CLDR releases
+fr,cldr_modern,2025-06,1,Unicode CLDR releases
+fr,cldr_modern,2025-12,1,Unicode CLDR releases
+fr,cldr_modern,2026-06,1,Unicode CLDR releases
+fr,cldr_modern,2026-12,1,Unicode CLDR releases
+fr,cv_10h,2019-06,1,Common Voice releases
+fr,cv_10h,2019-12,1,Common Voice releases
+fr,cv_10h,2020-06,1,Common Voice releases
+fr,cv_10h,2020-12,1,Common Voice releases
+fr,cv_10h,2021-06,1,Common Voice releases
+fr,cv_10h,2021-12,1,Common Voice releases
+fr,cv_10h,2022-06,1,Common Voice releases
+fr,cv_10h,2022-12,1,Common Voice releases
+fr,cv_10h,2023-06,1,Common Voice releases
+fr,cv_10h,2023-12,1,Common Voice releases
+fr,cv_10h,2024-06,1,Common Voice releases
+fr,cv_10h,2024-12,1,Common Voice releases
+fr,cv_10h,2025-06,1,Common Voice releases
+fr,cv_10h,2025-12,1,Common Voice releases
+fr,cv_10h,2026-06,1,Common Voice releases
+fr,cv_10h,2026-12,1,Common Voice releases
+fr,deepl,2025-06,1,DeepL docs history
+fr,deepl,2025-12,1,DeepL docs history
+fr,deepl,2026-06,1,DeepL docs history
+fr,deepl,2026-12,1,DeepL docs history
+fr,open_asr,2022-12,1,Released 2022-09
+fr,open_asr,2023-06,1,Released 2022-09
+fr,open_asr,2023-12,1,Released 2022-09
+fr,open_asr,2024-06,1,Released 2022-09
+fr,open_asr,2024-12,1,Released 2022-09
+fr,open_asr,2025-06,1,Released 2022-09
+fr,open_asr,2025-12,1,Released 2022-09
+fr,open_asr,2026-06,1,Released 2022-09
+fr,open_asr,2026-12,1,Released 2022-09
+fr,open_mt,2022-12,1,Released 2022-07
+fr,open_mt,2023-06,1,Released 2022-07
+fr,open_mt,2023-12,1,Released 2022-07
+fr,open_mt,2024-06,1,Released 2022-07
+fr,open_mt,2024-12,1,Released 2022-07
+fr,open_mt,2025-06,1,Released 2022-07
+fr,open_mt,2025-12,1,Released 2022-07
+fr,open_mt,2026-06,1,Released 2022-07
+fr,open_mt,2026-12,1,Released 2022-07
+fr,reading_bench,2023-12,1,Released 2023-08
+fr,reading_bench,2024-06,1,Released 2023-08
+fr,reading_bench,2024-12,1,Released 2023-08
+fr,reading_bench,2025-06,1,Released 2023-08
+fr,reading_bench,2025-12,1,Released 2023-08
+fr,reading_bench,2026-06,1,Released 2023-08
+fr,reading_bench,2026-12,1,Released 2023-08
+gn,cldr_modern,2020-12,0,Unicode CLDR releases
+gn,cldr_modern,2021-06,0,Unicode CLDR releases
+gn,cldr_modern,2021-12,0,Unicode CLDR releases
+gn,cldr_modern,2022-06,0,Unicode CLDR releases
+gn,cldr_modern,2022-12,0,Unicode CLDR releases
+gn,cldr_modern,2023-06,0,Unicode CLDR releases
+gn,cldr_modern,2023-12,0,Unicode CLDR releases
+gn,cldr_modern,2024-06,0,Unicode CLDR releases
+gn,cldr_modern,2024-12,0,Unicode CLDR releases
+gn,cldr_modern,2025-06,0,Unicode CLDR releases
+gn,cldr_modern,2025-12,0,Unicode CLDR releases
+gn,cldr_modern,2026-06,0,Unicode CLDR releases
+gn,cldr_modern,2026-12,0,Unicode CLDR releases
+gn,cv_10h,2019-06,0,Common Voice releases
+gn,cv_10h,2019-12,0,Common Voice releases
+gn,cv_10h,2020-06,0,Common Voice releases
+gn,cv_10h,2020-12,0,Common Voice releases
+gn,cv_10h,2021-06,0,Common Voice releases
+gn,cv_10h,2021-12,0,Common Voice releases
+gn,cv_10h,2022-06,0,Common Voice releases
+gn,cv_10h,2022-12,0,Common Voice releases
+gn,cv_10h,2023-06,0,Common Voice releases
+gn,cv_10h,2023-12,0,Common Voice releases
+gn,cv_10h,2024-06,0,Common Voice releases
+gn,cv_10h,2024-12,0,Common Voice releases
+gn,cv_10h,2025-06,0,Common Voice releases
+gn,cv_10h,2025-12,0,Common Voice releases
+gn,cv_10h,2026-06,0,Common Voice releases
+gn,cv_10h,2026-12,0,Common Voice releases
+gn,deepl,2025-06,0,DeepL docs history
+gn,deepl,2025-12,1,DeepL docs history
+gn,deepl,2026-06,1,DeepL docs history
+gn,deepl,2026-12,1,DeepL docs history
+gn,open_asr,2022-12,0,Released 2022-09
+gn,open_asr,2023-06,0,Released 2022-09
+gn,open_asr,2023-12,0,Released 2022-09
+gn,open_asr,2024-06,0,Released 2022-09
+gn,open_asr,2024-12,0,Released 2022-09
+gn,open_asr,2025-06,0,Released 2022-09
+gn,open_asr,2025-12,0,Released 2022-09
+gn,open_asr,2026-06,0,Released 2022-09
+gn,open_asr,2026-12,0,Released 2022-09
+gn,open_mt,2022-12,1,Released 2022-07
+gn,open_mt,2023-06,1,Released 2022-07
+gn,open_mt,2023-12,1,Released 2022-07
+gn,open_mt,2024-06,1,Released 2022-07
+gn,open_mt,2024-12,1,Released 2022-07
+gn,open_mt,2025-06,1,Released 2022-07
+gn,open_mt,2025-12,1,Released 2022-07
+gn,open_mt,2026-06,1,Released 2022-07
+gn,open_mt,2026-12,1,Released 2022-07
+gn,reading_bench,2023-12,1,Released 2023-08
+gn,reading_bench,2024-06,1,Released 2023-08
+gn,reading_bench,2024-12,1,Released 2023-08
+gn,reading_bench,2025-06,1,Released 2023-08
+gn,reading_bench,2025-12,1,Released 2023-08
+gn,reading_bench,2026-06,1,Released 2023-08
+gn,reading_bench,2026-12,1,Released 2023-08
+ha,cldr_modern,2020-12,0,Unicode CLDR releases
+ha,cldr_modern,2021-06,0,Unicode CLDR releases
+ha,cldr_modern,2021-12,0,Unicode CLDR releases
+ha,cldr_modern,2022-06,0,Unicode CLDR releases
+ha,cldr_modern,2022-12,1,Unicode CLDR releases
+ha,cldr_modern,2023-06,1,Unicode CLDR releases
+ha,cldr_modern,2023-12,1,Unicode CLDR releases
+ha,cldr_modern,2024-06,1,Unicode CLDR releases
+ha,cldr_modern,2024-12,1,Unicode CLDR releases
+ha,cldr_modern,2025-06,1,Unicode CLDR releases
+ha,cldr_modern,2025-12,1,Unicode CLDR releases
+ha,cldr_modern,2026-06,1,Unicode CLDR releases
+ha,cldr_modern,2026-12,1,Unicode CLDR releases
+ha,cv_10h,2019-06,0,Common Voice releases
+ha,cv_10h,2019-12,0,Common Voice releases
+ha,cv_10h,2020-06,0,Common Voice releases
+ha,cv_10h,2020-12,0,Common Voice releases
+ha,cv_10h,2021-06,0,Common Voice releases
+ha,cv_10h,2021-12,0,Common Voice releases
+ha,cv_10h,2022-06,0,Common Voice releases
+ha,cv_10h,2022-12,0,Common Voice releases
+ha,cv_10h,2023-06,0,Common Voice releases
+ha,cv_10h,2023-12,0,Common Voice releases
+ha,cv_10h,2024-06,0,Common Voice releases
+ha,cv_10h,2024-12,0,Common Voice releases
+ha,cv_10h,2025-06,0,Common Voice releases
+ha,cv_10h,2025-12,0,Common Voice releases
+ha,cv_10h,2026-06,0,Common Voice releases
+ha,cv_10h,2026-12,0,Common Voice releases
+ha,deepl,2025-06,0,DeepL docs history
+ha,deepl,2025-12,1,DeepL docs history
+ha,deepl,2026-06,1,DeepL docs history
+ha,deepl,2026-12,1,DeepL docs history
+ha,open_asr,2022-12,1,Released 2022-09
+ha,open_asr,2023-06,1,Released 2022-09
+ha,open_asr,2023-12,1,Released 2022-09
+ha,open_asr,2024-06,1,Released 2022-09
+ha,open_asr,2024-12,1,Released 2022-09
+ha,open_asr,2025-06,1,Released 2022-09
+ha,open_asr,2025-12,1,Released 2022-09
+ha,open_asr,2026-06,1,Released 2022-09
+ha,open_asr,2026-12,1,Released 2022-09
+ha,open_mt,2022-12,1,Released 2022-07
+ha,open_mt,2023-06,1,Released 2022-07
+ha,open_mt,2023-12,1,Released 2022-07
+ha,open_mt,2024-06,1,Released 2022-07
+ha,open_mt,2024-12,1,Released 2022-07
+ha,open_mt,2025-06,1,Released 2022-07
+ha,open_mt,2025-12,1,Released 2022-07
+ha,open_mt,2026-06,1,Released 2022-07
+ha,open_mt,2026-12,1,Released 2022-07
+ha,reading_bench,2023-12,1,Released 2023-08
+ha,reading_bench,2024-06,1,Released 2023-08
+ha,reading_bench,2024-12,1,Released 2023-08
+ha,reading_bench,2025-06,1,Released 2023-08
+ha,reading_bench,2025-12,1,Released 2023-08
+ha,reading_bench,2026-06,1,Released 2023-08
+ha,reading_bench,2026-12,1,Released 2023-08
+hi,cldr_modern,2020-12,1,Unicode CLDR releases
+hi,cldr_modern,2021-06,1,Unicode CLDR releases
+hi,cldr_modern,2021-12,1,Unicode CLDR releases
+hi,cldr_modern,2022-06,1,Unicode CLDR releases
+hi,cldr_modern,2022-12,1,Unicode CLDR releases
+hi,cldr_modern,2023-06,1,Unicode CLDR releases
+hi,cldr_modern,2023-12,1,Unicode CLDR releases
+hi,cldr_modern,2024-06,1,Unicode CLDR releases
+hi,cldr_modern,2024-12,1,Unicode CLDR releases
+hi,cldr_modern,2025-06,1,Unicode CLDR releases
+hi,cldr_modern,2025-12,1,Unicode CLDR releases
+hi,cldr_modern,2026-06,1,Unicode CLDR releases
+hi,cldr_modern,2026-12,1,Unicode CLDR releases
+hi,cv_10h,2019-06,0,Common Voice releases
+hi,cv_10h,2019-12,0,Common Voice releases
+hi,cv_10h,2020-06,0,Common Voice releases
+hi,cv_10h,2020-12,0,Common Voice releases
+hi,cv_10h,2021-06,0,Common Voice releases
+hi,cv_10h,2021-12,0,Common Voice releases
+hi,cv_10h,2022-06,1,Common Voice releases
+hi,cv_10h,2022-12,1,Common Voice releases
+hi,cv_10h,2023-06,1,Common Voice releases
+hi,cv_10h,2023-12,1,Common Voice releases
+hi,cv_10h,2024-06,1,Common Voice releases
+hi,cv_10h,2024-12,1,Common Voice releases
+hi,cv_10h,2025-06,1,Common Voice releases
+hi,cv_10h,2025-12,1,Common Voice releases
+hi,cv_10h,2026-06,1,Common Voice releases
+hi,cv_10h,2026-12,1,Common Voice releases
+hi,deepl,2025-06,0,DeepL docs history
+hi,deepl,2025-12,1,DeepL docs history
+hi,deepl,2026-06,1,DeepL docs history
+hi,deepl,2026-12,1,DeepL docs history
+hi,open_asr,2022-12,1,Released 2022-09
+hi,open_asr,2023-06,1,Released 2022-09
+hi,open_asr,2023-12,1,Released 2022-09
+hi,open_asr,2024-06,1,Released 2022-09
+hi,open_asr,2024-12,1,Released 2022-09
+hi,open_asr,2025-06,1,Released 2022-09
+hi,open_asr,2025-12,1,Released 2022-09
+hi,open_asr,2026-06,1,Released 2022-09
+hi,open_asr,2026-12,1,Released 2022-09
+hi,open_mt,2022-12,1,Released 2022-07
+hi,open_mt,2023-06,1,Released 2022-07
+hi,open_mt,2023-12,1,Released 2022-07
+hi,open_mt,2024-06,1,Released 2022-07
+hi,open_mt,2024-12,1,Released 2022-07
+hi,open_mt,2025-06,1,Released 2022-07
+hi,open_mt,2025-12,1,Released 2022-07
+hi,open_mt,2026-06,1,Released 2022-07
+hi,open_mt,2026-12,1,Released 2022-07
+hi,reading_bench,2023-12,1,Released 2023-08
+hi,reading_bench,2024-06,1,Released 2023-08
+hi,reading_bench,2024-12,1,Released 2023-08
+hi,reading_bench,2025-06,1,Released 2023-08
+hi,reading_bench,2025-12,1,Released 2023-08
+hi,reading_bench,2026-06,1,Released 2023-08
+hi,reading_bench,2026-12,1,Released 2023-08
+id,cldr_modern,2020-12,1,Unicode CLDR releases
+id,cldr_modern,2021-06,1,Unicode CLDR releases
+id,cldr_modern,2021-12,1,Unicode CLDR releases
+id,cldr_modern,2022-06,1,Unicode CLDR releases
+id,cldr_modern,2022-12,1,Unicode CLDR releases
+id,cldr_modern,2023-06,1,Unicode CLDR releases
+id,cldr_modern,2023-12,1,Unicode CLDR releases
+id,cldr_modern,2024-06,1,Unicode CLDR releases
+id,cldr_modern,2024-12,1,Unicode CLDR releases
+id,cldr_modern,2025-06,1,Unicode CLDR releases
+id,cldr_modern,2025-12,1,Unicode CLDR releases
+id,cldr_modern,2026-06,1,Unicode CLDR releases
+id,cldr_modern,2026-12,1,Unicode CLDR releases
+id,cv_10h,2019-06,0,Common Voice releases
+id,cv_10h,2019-12,0,Common Voice releases
+id,cv_10h,2020-06,0,Common Voice releases
+id,cv_10h,2020-12,0,Common Voice releases
+id,cv_10h,2021-06,0,Common Voice releases
+id,cv_10h,2021-12,1,Common Voice releases
+id,cv_10h,2022-06,1,Common Voice releases
+id,cv_10h,2022-12,1,Common Voice releases
+id,cv_10h,2023-06,1,Common Voice releases
+id,cv_10h,2023-12,1,Common Voice releases
+id,cv_10h,2024-06,1,Common Voice releases
+id,cv_10h,2024-12,1,Common Voice releases
+id,cv_10h,2025-06,1,Common Voice releases
+id,cv_10h,2025-12,1,Common Voice releases
+id,cv_10h,2026-06,1,Common Voice releases
+id,cv_10h,2026-12,1,Common Voice releases
+id,deepl,2025-06,1,DeepL docs history
+id,deepl,2025-12,1,DeepL docs history
+id,deepl,2026-06,1,DeepL docs history
+id,deepl,2026-12,1,DeepL docs history
+id,open_asr,2022-12,1,Released 2022-09
+id,open_asr,2023-06,1,Released 2022-09
+id,open_asr,2023-12,1,Released 2022-09
+id,open_asr,2024-06,1,Released 2022-09
+id,open_asr,2024-12,1,Released 2022-09
+id,open_asr,2025-06,1,Released 2022-09
+id,open_asr,2025-12,1,Released 2022-09
+id,open_asr,2026-06,1,Released 2022-09
+id,open_asr,2026-12,1,Released 2022-09
+id,open_mt,2022-12,1,Released 2022-07
+id,open_mt,2023-06,1,Released 2022-07
+id,open_mt,2023-12,1,Released 2022-07
+id,open_mt,2024-06,1,Released 2022-07
+id,open_mt,2024-12,1,Released 2022-07
+id,open_mt,2025-06,1,Released 2022-07
+id,open_mt,2025-12,1,Released 2022-07
+id,open_mt,2026-06,1,Released 2022-07
+id,open_mt,2026-12,1,Released 2022-07
+id,reading_bench,2023-12,1,Released 2023-08
+id,reading_bench,2024-06,1,Released 2023-08
+id,reading_bench,2024-12,1,Released 2023-08
+id,reading_bench,2025-06,1,Released 2023-08
+id,reading_bench,2025-12,1,Released 2023-08
+id,reading_bench,2026-06,1,Released 2023-08
+id,reading_bench,2026-12,1,Released 2023-08
+ig,cldr_modern,2020-12,0,Unicode CLDR releases
+ig,cldr_modern,2021-06,0,Unicode CLDR releases
+ig,cldr_modern,2021-12,0,Unicode CLDR releases
+ig,cldr_modern,2022-06,0,Unicode CLDR releases
+ig,cldr_modern,2022-12,1,Unicode CLDR releases
+ig,cldr_modern,2023-06,1,Unicode CLDR releases
+ig,cldr_modern,2023-12,1,Unicode CLDR releases
+ig,cldr_modern,2024-06,1,Unicode CLDR releases
+ig,cldr_modern,2024-12,1,Unicode CLDR releases
+ig,cldr_modern,2025-06,1,Unicode CLDR releases
+ig,cldr_modern,2025-12,1,Unicode CLDR releases
+ig,cldr_modern,2026-06,1,Unicode CLDR releases
+ig,cldr_modern,2026-12,1,Unicode CLDR releases
+ig,cv_10h,2019-06,0,Common Voice releases
+ig,cv_10h,2019-12,0,Common Voice releases
+ig,cv_10h,2020-06,0,Common Voice releases
+ig,cv_10h,2020-12,0,Common Voice releases
+ig,cv_10h,2021-06,0,Common Voice releases
+ig,cv_10h,2021-12,0,Common Voice releases
+ig,cv_10h,2022-06,0,Common Voice releases
+ig,cv_10h,2022-12,0,Common Voice releases
+ig,cv_10h,2023-06,0,Common Voice releases
+ig,cv_10h,2023-12,0,Common Voice releases
+ig,cv_10h,2024-06,0,Common Voice releases
+ig,cv_10h,2024-12,0,Common Voice releases
+ig,cv_10h,2025-06,0,Common Voice releases
+ig,cv_10h,2025-12,0,Common Voice releases
+ig,cv_10h,2026-06,0,Common Voice releases
+ig,cv_10h,2026-12,0,Common Voice releases
+ig,deepl,2025-06,0,DeepL docs history
+ig,deepl,2025-12,1,DeepL docs history
+ig,deepl,2026-06,1,DeepL docs history
+ig,deepl,2026-12,1,DeepL docs history
+ig,open_asr,2022-12,0,Released 2022-09
+ig,open_asr,2023-06,0,Released 2022-09
+ig,open_asr,2023-12,0,Released 2022-09
+ig,open_asr,2024-06,0,Released 2022-09
+ig,open_asr,2024-12,0,Released 2022-09
+ig,open_asr,2025-06,0,Released 2022-09
+ig,open_asr,2025-12,0,Released 2022-09
+ig,open_asr,2026-06,0,Released 2022-09
+ig,open_asr,2026-12,0,Released 2022-09
+ig,open_mt,2022-12,1,Released 2022-07
+ig,open_mt,2023-06,1,Released 2022-07
+ig,open_mt,2023-12,1,Released 2022-07
+ig,open_mt,2024-06,1,Released 2022-07
+ig,open_mt,2024-12,1,Released 2022-07
+ig,open_mt,2025-06,1,Released 2022-07
+ig,open_mt,2025-12,1,Released 2022-07
+ig,open_mt,2026-06,1,Released 2022-07
+ig,open_mt,2026-12,1,Released 2022-07
+ig,reading_bench,2023-12,1,Released 2023-08
+ig,reading_bench,2024-06,1,Released 2023-08
+ig,reading_bench,2024-12,1,Released 2023-08
+ig,reading_bench,2025-06,1,Released 2023-08
+ig,reading_bench,2025-12,1,Released 2023-08
+ig,reading_bench,2026-06,1,Released 2023-08
+ig,reading_bench,2026-12,1,Released 2023-08
+is,cldr_modern,2020-12,1,Unicode CLDR releases
+is,cldr_modern,2021-06,1,Unicode CLDR releases
+is,cldr_modern,2021-12,1,Unicode CLDR releases
+is,cldr_modern,2022-06,1,Unicode CLDR releases
+is,cldr_modern,2022-12,1,Unicode CLDR releases
+is,cldr_modern,2023-06,1,Unicode CLDR releases
+is,cldr_modern,2023-12,1,Unicode CLDR releases
+is,cldr_modern,2024-06,1,Unicode CLDR releases
+is,cldr_modern,2024-12,1,Unicode CLDR releases
+is,cldr_modern,2025-06,1,Unicode CLDR releases
+is,cldr_modern,2025-12,1,Unicode CLDR releases
+is,cldr_modern,2026-06,1,Unicode CLDR releases
+is,cldr_modern,2026-12,1,Unicode CLDR releases
+is,cv_10h,2019-06,0,Common Voice releases
+is,cv_10h,2019-12,0,Common Voice releases
+is,cv_10h,2020-06,0,Common Voice releases
+is,cv_10h,2020-12,0,Common Voice releases
+is,cv_10h,2021-06,0,Common Voice releases
+is,cv_10h,2021-12,0,Common Voice releases
+is,cv_10h,2022-06,0,Common Voice releases
+is,cv_10h,2022-12,0,Common Voice releases
+is,cv_10h,2023-06,0,Common Voice releases
+is,cv_10h,2023-12,0,Common Voice releases
+is,cv_10h,2024-06,0,Common Voice releases
+is,cv_10h,2024-12,0,Common Voice releases
+is,cv_10h,2025-06,0,Common Voice releases
+is,cv_10h,2025-12,0,Common Voice releases
+is,cv_10h,2026-06,0,Common Voice releases
+is,cv_10h,2026-12,0,Common Voice releases
+is,deepl,2025-06,0,DeepL docs history
+is,deepl,2025-12,1,DeepL docs history
+is,deepl,2026-06,1,DeepL docs history
+is,deepl,2026-12,1,DeepL docs history
+is,open_asr,2022-12,1,Released 2022-09
+is,open_asr,2023-06,1,Released 2022-09
+is,open_asr,2023-12,1,Released 2022-09
+is,open_asr,2024-06,1,Released 2022-09
+is,open_asr,2024-12,1,Released 2022-09
+is,open_asr,2025-06,1,Released 2022-09
+is,open_asr,2025-12,1,Released 2022-09
+is,open_asr,2026-06,1,Released 2022-09
+is,open_asr,2026-12,1,Released 2022-09
+is,open_mt,2022-12,1,Released 2022-07
+is,open_mt,2023-06,1,Released 2022-07
+is,open_mt,2023-12,1,Released 2022-07
+is,open_mt,2024-06,1,Released 2022-07
+is,open_mt,2024-12,1,Released 2022-07
+is,open_mt,2025-06,1,Released 2022-07
+is,open_mt,2025-12,1,Released 2022-07
+is,open_mt,2026-06,1,Released 2022-07
+is,open_mt,2026-12,1,Released 2022-07
+is,reading_bench,2023-12,1,Released 2023-08
+is,reading_bench,2024-06,1,Released 2023-08
+is,reading_bench,2024-12,1,Released 2023-08
+is,reading_bench,2025-06,1,Released 2023-08
+is,reading_bench,2025-12,1,Released 2023-08
+is,reading_bench,2026-06,1,Released 2023-08
+is,reading_bench,2026-12,1,Released 2023-08
+ja,cldr_modern,2020-12,1,Unicode CLDR releases
+ja,cldr_modern,2021-06,1,Unicode CLDR releases
+ja,cldr_modern,2021-12,1,Unicode CLDR releases
+ja,cldr_modern,2022-06,1,Unicode CLDR releases
+ja,cldr_modern,2022-12,1,Unicode CLDR releases
+ja,cldr_modern,2023-06,1,Unicode CLDR releases
+ja,cldr_modern,2023-12,1,Unicode CLDR releases
+ja,cldr_modern,2024-06,1,Unicode CLDR releases
+ja,cldr_modern,2024-12,1,Unicode CLDR releases
+ja,cldr_modern,2025-06,1,Unicode CLDR releases
+ja,cldr_modern,2025-12,1,Unicode CLDR releases
+ja,cldr_modern,2026-06,1,Unicode CLDR releases
+ja,cldr_modern,2026-12,1,Unicode CLDR releases
+ja,cv_10h,2019-06,0,Common Voice releases
+ja,cv_10h,2019-12,0,Common Voice releases
+ja,cv_10h,2020-06,0,Common Voice releases
+ja,cv_10h,2020-12,0,Common Voice releases
+ja,cv_10h,2021-06,0,Common Voice releases
+ja,cv_10h,2021-12,1,Common Voice releases
+ja,cv_10h,2022-06,1,Common Voice releases
+ja,cv_10h,2022-12,1,Common Voice releases
+ja,cv_10h,2023-06,1,Common Voice releases
+ja,cv_10h,2023-12,1,Common Voice releases
+ja,cv_10h,2024-06,1,Common Voice releases
+ja,cv_10h,2024-12,1,Common Voice releases
+ja,cv_10h,2025-06,1,Common Voice releases
+ja,cv_10h,2025-12,1,Common Voice releases
+ja,cv_10h,2026-06,1,Common Voice releases
+ja,cv_10h,2026-12,1,Common Voice releases
+ja,deepl,2025-06,1,DeepL docs history
+ja,deepl,2025-12,1,DeepL docs history
+ja,deepl,2026-06,1,DeepL docs history
+ja,deepl,2026-12,1,DeepL docs history
+ja,open_asr,2022-12,1,Released 2022-09
+ja,open_asr,2023-06,1,Released 2022-09
+ja,open_asr,2023-12,1,Released 2022-09
+ja,open_asr,2024-06,1,Released 2022-09
+ja,open_asr,2024-12,1,Released 2022-09
+ja,open_asr,2025-06,1,Released 2022-09
+ja,open_asr,2025-12,1,Released 2022-09
+ja,open_asr,2026-06,1,Released 2022-09
+ja,open_asr,2026-12,1,Released 2022-09
+ja,open_mt,2022-12,1,Released 2022-07
+ja,open_mt,2023-06,1,Released 2022-07
+ja,open_mt,2023-12,1,Released 2022-07
+ja,open_mt,2024-06,1,Released 2022-07
+ja,open_mt,2024-12,1,Released 2022-07
+ja,open_mt,2025-06,1,Released 2022-07
+ja,open_mt,2025-12,1,Released 2022-07
+ja,open_mt,2026-06,1,Released 2022-07
+ja,open_mt,2026-12,1,Released 2022-07
+ja,reading_bench,2023-12,1,Released 2023-08
+ja,reading_bench,2024-06,1,Released 2023-08
+ja,reading_bench,2024-12,1,Released 2023-08
+ja,reading_bench,2025-06,1,Released 2023-08
+ja,reading_bench,2025-12,1,Released 2023-08
+ja,reading_bench,2026-06,1,Released 2023-08
+ja,reading_bench,2026-12,1,Released 2023-08
+om,cldr_modern,2020-12,0,Unicode CLDR releases
+om,cldr_modern,2021-06,0,Unicode CLDR releases
+om,cldr_modern,2021-12,0,Unicode CLDR releases
+om,cldr_modern,2022-06,0,Unicode CLDR releases
+om,cldr_modern,2022-12,0,Unicode CLDR releases
+om,cldr_modern,2023-06,0,Unicode CLDR releases
+om,cldr_modern,2023-12,0,Unicode CLDR releases
+om,cldr_modern,2024-06,0,Unicode CLDR releases
+om,cldr_modern,2024-12,0,Unicode CLDR releases
+om,cldr_modern,2025-06,0,Unicode CLDR releases
+om,cldr_modern,2025-12,0,Unicode CLDR releases
+om,cldr_modern,2026-06,0,Unicode CLDR releases
+om,cldr_modern,2026-12,0,Unicode CLDR releases
+om,cv_10h,2019-06,0,Common Voice releases
+om,cv_10h,2019-12,0,Common Voice releases
+om,cv_10h,2020-06,0,Common Voice releases
+om,cv_10h,2020-12,0,Common Voice releases
+om,cv_10h,2021-06,0,Common Voice releases
+om,cv_10h,2021-12,0,Common Voice releases
+om,cv_10h,2022-06,0,Common Voice releases
+om,cv_10h,2022-12,0,Common Voice releases
+om,cv_10h,2023-06,0,Common Voice releases
+om,cv_10h,2023-12,0,Common Voice releases
+om,cv_10h,2024-06,0,Common Voice releases
+om,cv_10h,2024-12,0,Common Voice releases
+om,cv_10h,2025-06,0,Common Voice releases
+om,cv_10h,2025-12,0,Common Voice releases
+om,cv_10h,2026-06,1,Common Voice releases
+om,cv_10h,2026-12,1,Common Voice releases
+om,deepl,2025-06,0,DeepL docs history
+om,deepl,2025-12,1,DeepL docs history
+om,deepl,2026-06,1,DeepL docs history
+om,deepl,2026-12,1,DeepL docs history
+om,open_asr,2022-12,0,Released 2022-09
+om,open_asr,2023-06,0,Released 2022-09
+om,open_asr,2023-12,0,Released 2022-09
+om,open_asr,2024-06,0,Released 2022-09
+om,open_asr,2024-12,0,Released 2022-09
+om,open_asr,2025-06,0,Released 2022-09
+om,open_asr,2025-12,0,Released 2022-09
+om,open_asr,2026-06,0,Released 2022-09
+om,open_asr,2026-12,0,Released 2022-09
+om,open_mt,2022-12,1,Released 2022-07
+om,open_mt,2023-06,1,Released 2022-07
+om,open_mt,2023-12,1,Released 2022-07
+om,open_mt,2024-06,1,Released 2022-07
+om,open_mt,2024-12,1,Released 2022-07
+om,open_mt,2025-06,1,Released 2022-07
+om,open_mt,2025-12,1,Released 2022-07
+om,open_mt,2026-06,1,Released 2022-07
+om,open_mt,2026-12,1,Released 2022-07
+om,reading_bench,2023-12,1,Released 2023-08
+om,reading_bench,2024-06,1,Released 2023-08
+om,reading_bench,2024-12,1,Released 2023-08
+om,reading_bench,2025-06,1,Released 2023-08
+om,reading_bench,2025-12,1,Released 2023-08
+om,reading_bench,2026-06,1,Released 2023-08
+om,reading_bench,2026-12,1,Released 2023-08
+pa,cldr_modern,2020-12,1,Unicode CLDR releases
+pa,cldr_modern,2021-06,1,Unicode CLDR releases
+pa,cldr_modern,2021-12,1,Unicode CLDR releases
+pa,cldr_modern,2022-06,1,Unicode CLDR releases
+pa,cldr_modern,2022-12,1,Unicode CLDR releases
+pa,cldr_modern,2023-06,1,Unicode CLDR releases
+pa,cldr_modern,2023-12,1,Unicode CLDR releases
+pa,cldr_modern,2024-06,1,Unicode CLDR releases
+pa,cldr_modern,2024-12,1,Unicode CLDR releases
+pa,cldr_modern,2025-06,1,Unicode CLDR releases
+pa,cldr_modern,2025-12,1,Unicode CLDR releases
+pa,cldr_modern,2026-06,1,Unicode CLDR releases
+pa,cldr_modern,2026-12,1,Unicode CLDR releases
+pa,cv_10h,2019-06,0,Common Voice releases
+pa,cv_10h,2019-12,0,Common Voice releases
+pa,cv_10h,2020-06,0,Common Voice releases
+pa,cv_10h,2020-12,0,Common Voice releases
+pa,cv_10h,2021-06,0,Common Voice releases
+pa,cv_10h,2021-12,0,Common Voice releases
+pa,cv_10h,2022-06,0,Common Voice releases
+pa,cv_10h,2022-12,0,Common Voice releases
+pa,cv_10h,2023-06,0,Common Voice releases
+pa,cv_10h,2023-12,0,Common Voice releases
+pa,cv_10h,2024-06,0,Common Voice releases
+pa,cv_10h,2024-12,0,Common Voice releases
+pa,cv_10h,2025-06,0,Common Voice releases
+pa,cv_10h,2025-12,0,Common Voice releases
+pa,cv_10h,2026-06,0,Common Voice releases
+pa,cv_10h,2026-12,0,Common Voice releases
+pa,deepl,2025-06,0,DeepL docs history
+pa,deepl,2025-12,1,DeepL docs history
+pa,deepl,2026-06,1,DeepL docs history
+pa,deepl,2026-12,1,DeepL docs history
+pa,open_asr,2022-12,1,Released 2022-09
+pa,open_asr,2023-06,1,Released 2022-09
+pa,open_asr,2023-12,1,Released 2022-09
+pa,open_asr,2024-06,1,Released 2022-09
+pa,open_asr,2024-12,1,Released 2022-09
+pa,open_asr,2025-06,1,Released 2022-09
+pa,open_asr,2025-12,1,Released 2022-09
+pa,open_asr,2026-06,1,Released 2022-09
+pa,open_asr,2026-12,1,Released 2022-09
+pa,open_mt,2022-12,1,Released 2022-07
+pa,open_mt,2023-06,1,Released 2022-07
+pa,open_mt,2023-12,1,Released 2022-07
+pa,open_mt,2024-06,1,Released 2022-07
+pa,open_mt,2024-12,1,Released 2022-07
+pa,open_mt,2025-06,1,Released 2022-07
+pa,open_mt,2025-12,1,Released 2022-07
+pa,open_mt,2026-06,1,Released 2022-07
+pa,open_mt,2026-12,1,Released 2022-07
+pa,reading_bench,2023-12,1,Released 2023-08
+pa,reading_bench,2024-06,1,Released 2023-08
+pa,reading_bench,2024-12,1,Released 2023-08
+pa,reading_bench,2025-06,1,Released 2023-08
+pa,reading_bench,2025-12,1,Released 2023-08
+pa,reading_bench,2026-06,1,Released 2023-08
+pa,reading_bench,2026-12,1,Released 2023-08
+pt,cldr_modern,2020-12,1,Unicode CLDR releases
+pt,cldr_modern,2021-06,1,Unicode CLDR releases
+pt,cldr_modern,2021-12,1,Unicode CLDR releases
+pt,cldr_modern,2022-06,1,Unicode CLDR releases
+pt,cldr_modern,2022-12,1,Unicode CLDR releases
+pt,cldr_modern,2023-06,1,Unicode CLDR releases
+pt,cldr_modern,2023-12,1,Unicode CLDR releases
+pt,cldr_modern,2024-06,1,Unicode CLDR releases
+pt,cldr_modern,2024-12,1,Unicode CLDR releases
+pt,cldr_modern,2025-06,1,Unicode CLDR releases
+pt,cldr_modern,2025-12,1,Unicode CLDR releases
+pt,cldr_modern,2026-06,1,Unicode CLDR releases
+pt,cldr_modern,2026-12,1,Unicode CLDR releases
+pt,cv_10h,2019-06,0,Common Voice releases
+pt,cv_10h,2019-12,1,Common Voice releases
+pt,cv_10h,2020-06,1,Common Voice releases
+pt,cv_10h,2020-12,1,Common Voice releases
+pt,cv_10h,2021-06,1,Common Voice releases
+pt,cv_10h,2021-12,1,Common Voice releases
+pt,cv_10h,2022-06,1,Common Voice releases
+pt,cv_10h,2022-12,1,Common Voice releases
+pt,cv_10h,2023-06,1,Common Voice releases
+pt,cv_10h,2023-12,1,Common Voice releases
+pt,cv_10h,2024-06,1,Common Voice releases
+pt,cv_10h,2024-12,1,Common Voice releases
+pt,cv_10h,2025-06,1,Common Voice releases
+pt,cv_10h,2025-12,1,Common Voice releases
+pt,cv_10h,2026-06,1,Common Voice releases
+pt,cv_10h,2026-12,1,Common Voice releases
+pt,deepl,2025-06,1,DeepL docs history
+pt,deepl,2025-12,1,DeepL docs history
+pt,deepl,2026-06,1,DeepL docs history
+pt,deepl,2026-12,1,DeepL docs history
+pt,open_asr,2022-12,1,Released 2022-09
+pt,open_asr,2023-06,1,Released 2022-09
+pt,open_asr,2023-12,1,Released 2022-09
+pt,open_asr,2024-06,1,Released 2022-09
+pt,open_asr,2024-12,1,Released 2022-09
+pt,open_asr,2025-06,1,Released 2022-09
+pt,open_asr,2025-12,1,Released 2022-09
+pt,open_asr,2026-06,1,Released 2022-09
+pt,open_asr,2026-12,1,Released 2022-09
+pt,open_mt,2022-12,1,Released 2022-07
+pt,open_mt,2023-06,1,Released 2022-07
+pt,open_mt,2023-12,1,Released 2022-07
+pt,open_mt,2024-06,1,Released 2022-07
+pt,open_mt,2024-12,1,Released 2022-07
+pt,open_mt,2025-06,1,Released 2022-07
+pt,open_mt,2025-12,1,Released 2022-07
+pt,open_mt,2026-06,1,Released 2022-07
+pt,open_mt,2026-12,1,Released 2022-07
+pt,reading_bench,2023-12,1,Released 2023-08
+pt,reading_bench,2024-06,1,Released 2023-08
+pt,reading_bench,2024-12,1,Released 2023-08
+pt,reading_bench,2025-06,1,Released 2023-08
+pt,reading_bench,2025-12,1,Released 2023-08
+pt,reading_bench,2026-06,1,Released 2023-08
+pt,reading_bench,2026-12,1,Released 2023-08
+qu,cldr_modern,2020-12,0,Unicode CLDR releases
+qu,cldr_modern,2021-06,0,Unicode CLDR releases
+qu,cldr_modern,2021-12,0,Unicode CLDR releases
+qu,cldr_modern,2022-06,0,Unicode CLDR releases
+qu,cldr_modern,2022-12,1,Unicode CLDR releases
+qu,cldr_modern,2023-06,0,Unicode CLDR releases
+qu,cldr_modern,2023-12,0,Unicode CLDR releases
+qu,cldr_modern,2024-06,0,Unicode CLDR releases
+qu,cldr_modern,2024-12,0,Unicode CLDR releases
+qu,cldr_modern,2025-06,0,Unicode CLDR releases
+qu,cldr_modern,2025-12,1,Unicode CLDR releases
+qu,cldr_modern,2026-06,1,Unicode CLDR releases
+qu,cldr_modern,2026-12,1,Unicode CLDR releases
+qu,cv_10h,2019-06,0,Common Voice releases
+qu,cv_10h,2019-12,0,Common Voice releases
+qu,cv_10h,2020-06,0,Common Voice releases
+qu,cv_10h,2020-12,0,Common Voice releases
+qu,cv_10h,2021-06,0,Common Voice releases
+qu,cv_10h,2021-12,0,Common Voice releases
+qu,cv_10h,2022-06,0,Common Voice releases
+qu,cv_10h,2022-12,0,Common Voice releases
+qu,cv_10h,2023-06,0,Common Voice releases
+qu,cv_10h,2023-12,0,Common Voice releases
+qu,cv_10h,2024-06,0,Common Voice releases
+qu,cv_10h,2024-12,0,Common Voice releases
+qu,cv_10h,2025-06,0,Common Voice releases
+qu,cv_10h,2025-12,1,Common Voice releases
+qu,cv_10h,2026-06,1,Common Voice releases
+qu,cv_10h,2026-12,1,Common Voice releases
+qu,deepl,2025-06,0,DeepL docs history
+qu,deepl,2025-12,1,DeepL docs history
+qu,deepl,2026-06,1,DeepL docs history
+qu,deepl,2026-12,1,DeepL docs history
+qu,open_asr,2022-12,0,Released 2022-09
+qu,open_asr,2023-06,0,Released 2022-09
+qu,open_asr,2023-12,0,Released 2022-09
+qu,open_asr,2024-06,0,Released 2022-09
+qu,open_asr,2024-12,0,Released 2022-09
+qu,open_asr,2025-06,0,Released 2022-09
+qu,open_asr,2025-12,0,Released 2022-09
+qu,open_asr,2026-06,0,Released 2022-09
+qu,open_asr,2026-12,0,Released 2022-09
+qu,open_mt,2022-12,1,Released 2022-07
+qu,open_mt,2023-06,1,Released 2022-07
+qu,open_mt,2023-12,1,Released 2022-07
+qu,open_mt,2024-06,1,Released 2022-07
+qu,open_mt,2024-12,1,Released 2022-07
+qu,open_mt,2025-06,1,Released 2022-07
+qu,open_mt,2025-12,1,Released 2022-07
+qu,open_mt,2026-06,1,Released 2022-07
+qu,open_mt,2026-12,1,Released 2022-07
+qu,reading_bench,2023-12,0,Released 2023-08
+qu,reading_bench,2024-06,0,Released 2023-08
+qu,reading_bench,2024-12,0,Released 2023-08
+qu,reading_bench,2025-06,0,Released 2023-08
+qu,reading_bench,2025-12,0,Released 2023-08
+qu,reading_bench,2026-06,0,Released 2023-08
+qu,reading_bench,2026-12,0,Released 2023-08
+ru,cldr_modern,2020-12,1,Unicode CLDR releases
+ru,cldr_modern,2021-06,1,Unicode CLDR releases
+ru,cldr_modern,2021-12,1,Unicode CLDR releases
+ru,cldr_modern,2022-06,1,Unicode CLDR releases
+ru,cldr_modern,2022-12,1,Unicode CLDR releases
+ru,cldr_modern,2023-06,1,Unicode CLDR releases
+ru,cldr_modern,2023-12,1,Unicode CLDR releases
+ru,cldr_modern,2024-06,1,Unicode CLDR releases
+ru,cldr_modern,2024-12,1,Unicode CLDR releases
+ru,cldr_modern,2025-06,1,Unicode CLDR releases
+ru,cldr_modern,2025-12,1,Unicode CLDR releases
+ru,cldr_modern,2026-06,1,Unicode CLDR releases
+ru,cldr_modern,2026-12,1,Unicode CLDR releases
+ru,cv_10h,2019-06,1,Common Voice releases
+ru,cv_10h,2019-12,1,Common Voice releases
+ru,cv_10h,2020-06,1,Common Voice releases
+ru,cv_10h,2020-12,1,Common Voice releases
+ru,cv_10h,2021-06,1,Common Voice releases
+ru,cv_10h,2021-12,1,Common Voice releases
+ru,cv_10h,2022-06,1,Common Voice releases
+ru,cv_10h,2022-12,1,Common Voice releases
+ru,cv_10h,2023-06,1,Common Voice releases
+ru,cv_10h,2023-12,1,Common Voice releases
+ru,cv_10h,2024-06,1,Common Voice releases
+ru,cv_10h,2024-12,1,Common Voice releases
+ru,cv_10h,2025-06,1,Common Voice releases
+ru,cv_10h,2025-12,1,Common Voice releases
+ru,cv_10h,2026-06,1,Common Voice releases
+ru,cv_10h,2026-12,1,Common Voice releases
+ru,deepl,2025-06,1,DeepL docs history
+ru,deepl,2025-12,1,DeepL docs history
+ru,deepl,2026-06,1,DeepL docs history
+ru,deepl,2026-12,1,DeepL docs history
+ru,open_asr,2022-12,1,Released 2022-09
+ru,open_asr,2023-06,1,Released 2022-09
+ru,open_asr,2023-12,1,Released 2022-09
+ru,open_asr,2024-06,1,Released 2022-09
+ru,open_asr,2024-12,1,Released 2022-09
+ru,open_asr,2025-06,1,Released 2022-09
+ru,open_asr,2025-12,1,Released 2022-09
+ru,open_asr,2026-06,1,Released 2022-09
+ru,open_asr,2026-12,1,Released 2022-09
+ru,open_mt,2022-12,1,Released 2022-07
+ru,open_mt,2023-06,1,Released 2022-07
+ru,open_mt,2023-12,1,Released 2022-07
+ru,open_mt,2024-06,1,Released 2022-07
+ru,open_mt,2024-12,1,Released 2022-07
+ru,open_mt,2025-06,1,Released 2022-07
+ru,open_mt,2025-12,1,Released 2022-07
+ru,open_mt,2026-06,1,Released 2022-07
+ru,open_mt,2026-12,1,Released 2022-07
+ru,reading_bench,2023-12,1,Released 2023-08
+ru,reading_bench,2024-06,1,Released 2023-08
+ru,reading_bench,2024-12,1,Released 2023-08
+ru,reading_bench,2025-06,1,Released 2023-08
+ru,reading_bench,2025-12,1,Released 2023-08
+ru,reading_bench,2026-06,1,Released 2023-08
+ru,reading_bench,2026-12,1,Released 2023-08
+rw,cldr_modern,2020-12,0,Unicode CLDR releases
+rw,cldr_modern,2021-06,0,Unicode CLDR releases
+rw,cldr_modern,2021-12,0,Unicode CLDR releases
+rw,cldr_modern,2022-06,0,Unicode CLDR releases
+rw,cldr_modern,2022-12,0,Unicode CLDR releases
+rw,cldr_modern,2023-06,0,Unicode CLDR releases
+rw,cldr_modern,2023-12,0,Unicode CLDR releases
+rw,cldr_modern,2024-06,0,Unicode CLDR releases
+rw,cldr_modern,2024-12,0,Unicode CLDR releases
+rw,cldr_modern,2025-06,0,Unicode CLDR releases
+rw,cldr_modern,2025-12,0,Unicode CLDR releases
+rw,cldr_modern,2026-06,0,Unicode CLDR releases
+rw,cldr_modern,2026-12,0,Unicode CLDR releases
+rw,cv_10h,2019-06,0,Common Voice releases
+rw,cv_10h,2019-12,0,Common Voice releases
+rw,cv_10h,2020-06,1,Common Voice releases
+rw,cv_10h,2020-12,1,Common Voice releases
+rw,cv_10h,2021-06,1,Common Voice releases
+rw,cv_10h,2021-12,1,Common Voice releases
+rw,cv_10h,2022-06,1,Common Voice releases
+rw,cv_10h,2022-12,1,Common Voice releases
+rw,cv_10h,2023-06,1,Common Voice releases
+rw,cv_10h,2023-12,1,Common Voice releases
+rw,cv_10h,2024-06,1,Common Voice releases
+rw,cv_10h,2024-12,1,Common Voice releases
+rw,cv_10h,2025-06,1,Common Voice releases
+rw,cv_10h,2025-12,1,Common Voice releases
+rw,cv_10h,2026-06,1,Common Voice releases
+rw,cv_10h,2026-12,1,Common Voice releases
+rw,deepl,2025-06,0,DeepL docs history
+rw,deepl,2025-12,0,DeepL docs history
+rw,deepl,2026-06,0,DeepL docs history
+rw,deepl,2026-12,0,DeepL docs history
+rw,open_asr,2022-12,0,Released 2022-09
+rw,open_asr,2023-06,0,Released 2022-09
+rw,open_asr,2023-12,0,Released 2022-09
+rw,open_asr,2024-06,0,Released 2022-09
+rw,open_asr,2024-12,0,Released 2022-09
+rw,open_asr,2025-06,0,Released 2022-09
+rw,open_asr,2025-12,0,Released 2022-09
+rw,open_asr,2026-06,0,Released 2022-09
+rw,open_asr,2026-12,0,Released 2022-09
+rw,open_mt,2022-12,1,Released 2022-07
+rw,open_mt,2023-06,1,Released 2022-07
+rw,open_mt,2023-12,1,Released 2022-07
+rw,open_mt,2024-06,1,Released 2022-07
+rw,open_mt,2024-12,1,Released 2022-07
+rw,open_mt,2025-06,1,Released 2022-07
+rw,open_mt,2025-12,1,Released 2022-07
+rw,open_mt,2026-06,1,Released 2022-07
+rw,open_mt,2026-12,1,Released 2022-07
+rw,reading_bench,2023-12,1,Released 2023-08
+rw,reading_bench,2024-06,1,Released 2023-08
+rw,reading_bench,2024-12,1,Released 2023-08
+rw,reading_bench,2025-06,1,Released 2023-08
+rw,reading_bench,2025-12,1,Released 2023-08
+rw,reading_bench,2026-06,1,Released 2023-08
+rw,reading_bench,2026-12,1,Released 2023-08
+sw,cldr_modern,2020-12,1,Unicode CLDR releases
+sw,cldr_modern,2021-06,1,Unicode CLDR releases
+sw,cldr_modern,2021-12,1,Unicode CLDR releases
+sw,cldr_modern,2022-06,1,Unicode CLDR releases
+sw,cldr_modern,2022-12,1,Unicode CLDR releases
+sw,cldr_modern,2023-06,1,Unicode CLDR releases
+sw,cldr_modern,2023-12,1,Unicode CLDR releases
+sw,cldr_modern,2024-06,1,Unicode CLDR releases
+sw,cldr_modern,2024-12,1,Unicode CLDR releases
+sw,cldr_modern,2025-06,1,Unicode CLDR releases
+sw,cldr_modern,2025-12,1,Unicode CLDR releases
+sw,cldr_modern,2026-06,1,Unicode CLDR releases
+sw,cldr_modern,2026-12,1,Unicode CLDR releases
+sw,cv_10h,2019-06,0,Common Voice releases
+sw,cv_10h,2019-12,0,Common Voice releases
+sw,cv_10h,2020-06,0,Common Voice releases
+sw,cv_10h,2020-12,0,Common Voice releases
+sw,cv_10h,2021-06,0,Common Voice releases
+sw,cv_10h,2021-12,0,Common Voice releases
+sw,cv_10h,2022-06,1,Common Voice releases
+sw,cv_10h,2022-12,1,Common Voice releases
+sw,cv_10h,2023-06,1,Common Voice releases
+sw,cv_10h,2023-12,1,Common Voice releases
+sw,cv_10h,2024-06,1,Common Voice releases
+sw,cv_10h,2024-12,1,Common Voice releases
+sw,cv_10h,2025-06,1,Common Voice releases
+sw,cv_10h,2025-12,1,Common Voice releases
+sw,cv_10h,2026-06,1,Common Voice releases
+sw,cv_10h,2026-12,1,Common Voice releases
+sw,deepl,2025-06,0,DeepL docs history
+sw,deepl,2025-12,1,DeepL docs history
+sw,deepl,2026-06,1,DeepL docs history
+sw,deepl,2026-12,1,DeepL docs history
+sw,open_asr,2022-12,1,Released 2022-09
+sw,open_asr,2023-06,1,Released 2022-09
+sw,open_asr,2023-12,1,Released 2022-09
+sw,open_asr,2024-06,1,Released 2022-09
+sw,open_asr,2024-12,1,Released 2022-09
+sw,open_asr,2025-06,1,Released 2022-09
+sw,open_asr,2025-12,1,Released 2022-09
+sw,open_asr,2026-06,1,Released 2022-09
+sw,open_asr,2026-12,1,Released 2022-09
+sw,open_mt,2022-12,1,Released 2022-07
+sw,open_mt,2023-06,1,Released 2022-07
+sw,open_mt,2023-12,1,Released 2022-07
+sw,open_mt,2024-06,1,Released 2022-07
+sw,open_mt,2024-12,1,Released 2022-07
+sw,open_mt,2025-06,1,Released 2022-07
+sw,open_mt,2025-12,1,Released 2022-07
+sw,open_mt,2026-06,1,Released 2022-07
+sw,open_mt,2026-12,1,Released 2022-07
+sw,reading_bench,2023-12,1,Released 2023-08
+sw,reading_bench,2024-06,1,Released 2023-08
+sw,reading_bench,2024-12,1,Released 2023-08
+sw,reading_bench,2025-06,1,Released 2023-08
+sw,reading_bench,2025-12,1,Released 2023-08
+sw,reading_bench,2026-06,1,Released 2023-08
+sw,reading_bench,2026-12,1,Released 2023-08
+ta,cldr_modern,2020-12,1,Unicode CLDR releases
+ta,cldr_modern,2021-06,1,Unicode CLDR releases
+ta,cldr_modern,2021-12,1,Unicode CLDR releases
+ta,cldr_modern,2022-06,1,Unicode CLDR releases
+ta,cldr_modern,2022-12,1,Unicode CLDR releases
+ta,cldr_modern,2023-06,1,Unicode CLDR releases
+ta,cldr_modern,2023-12,1,Unicode CLDR releases
+ta,cldr_modern,2024-06,1,Unicode CLDR releases
+ta,cldr_modern,2024-12,1,Unicode CLDR releases
+ta,cldr_modern,2025-06,1,Unicode CLDR releases
+ta,cldr_modern,2025-12,1,Unicode CLDR releases
+ta,cldr_modern,2026-06,1,Unicode CLDR releases
+ta,cldr_modern,2026-12,1,Unicode CLDR releases
+ta,cv_10h,2019-06,0,Common Voice releases
+ta,cv_10h,2019-12,0,Common Voice releases
+ta,cv_10h,2020-06,1,Common Voice releases
+ta,cv_10h,2020-12,1,Common Voice releases
+ta,cv_10h,2021-06,1,Common Voice releases
+ta,cv_10h,2021-12,1,Common Voice releases
+ta,cv_10h,2022-06,1,Common Voice releases
+ta,cv_10h,2022-12,1,Common Voice releases
+ta,cv_10h,2023-06,1,Common Voice releases
+ta,cv_10h,2023-12,1,Common Voice releases
+ta,cv_10h,2024-06,1,Common Voice releases
+ta,cv_10h,2024-12,1,Common Voice releases
+ta,cv_10h,2025-06,1,Common Voice releases
+ta,cv_10h,2025-12,1,Common Voice releases
+ta,cv_10h,2026-06,1,Common Voice releases
+ta,cv_10h,2026-12,1,Common Voice releases
+ta,deepl,2025-06,0,DeepL docs history
+ta,deepl,2025-12,1,DeepL docs history
+ta,deepl,2026-06,1,DeepL docs history
+ta,deepl,2026-12,1,DeepL docs history
+ta,open_asr,2022-12,1,Released 2022-09
+ta,open_asr,2023-06,1,Released 2022-09
+ta,open_asr,2023-12,1,Released 2022-09
+ta,open_asr,2024-06,1,Released 2022-09
+ta,open_asr,2024-12,1,Released 2022-09
+ta,open_asr,2025-06,1,Released 2022-09
+ta,open_asr,2025-12,1,Released 2022-09
+ta,open_asr,2026-06,1,Released 2022-09
+ta,open_asr,2026-12,1,Released 2022-09
+ta,open_mt,2022-12,1,Released 2022-07
+ta,open_mt,2023-06,1,Released 2022-07
+ta,open_mt,2023-12,1,Released 2022-07
+ta,open_mt,2024-06,1,Released 2022-07
+ta,open_mt,2024-12,1,Released 2022-07
+ta,open_mt,2025-06,1,Released 2022-07
+ta,open_mt,2025-12,1,Released 2022-07
+ta,open_mt,2026-06,1,Released 2022-07
+ta,open_mt,2026-12,1,Released 2022-07
+ta,reading_bench,2023-12,1,Released 2023-08
+ta,reading_bench,2024-06,1,Released 2023-08
+ta,reading_bench,2024-12,1,Released 2023-08
+ta,reading_bench,2025-06,1,Released 2023-08
+ta,reading_bench,2025-12,1,Released 2023-08
+ta,reading_bench,2026-06,1,Released 2023-08
+ta,reading_bench,2026-12,1,Released 2023-08
+ur,cldr_modern,2020-12,1,Unicode CLDR releases
+ur,cldr_modern,2021-06,1,Unicode CLDR releases
+ur,cldr_modern,2021-12,1,Unicode CLDR releases
+ur,cldr_modern,2022-06,1,Unicode CLDR releases
+ur,cldr_modern,2022-12,1,Unicode CLDR releases
+ur,cldr_modern,2023-06,1,Unicode CLDR releases
+ur,cldr_modern,2023-12,1,Unicode CLDR releases
+ur,cldr_modern,2024-06,1,Unicode CLDR releases
+ur,cldr_modern,2024-12,1,Unicode CLDR releases
+ur,cldr_modern,2025-06,1,Unicode CLDR releases
+ur,cldr_modern,2025-12,1,Unicode CLDR releases
+ur,cldr_modern,2026-06,1,Unicode CLDR releases
+ur,cldr_modern,2026-12,1,Unicode CLDR releases
+ur,cv_10h,2019-06,0,Common Voice releases
+ur,cv_10h,2019-12,0,Common Voice releases
+ur,cv_10h,2020-06,0,Common Voice releases
+ur,cv_10h,2020-12,0,Common Voice releases
+ur,cv_10h,2021-06,0,Common Voice releases
+ur,cv_10h,2021-12,0,Common Voice releases
+ur,cv_10h,2022-06,1,Common Voice releases
+ur,cv_10h,2022-12,1,Common Voice releases
+ur,cv_10h,2023-06,1,Common Voice releases
+ur,cv_10h,2023-12,1,Common Voice releases
+ur,cv_10h,2024-06,1,Common Voice releases
+ur,cv_10h,2024-12,1,Common Voice releases
+ur,cv_10h,2025-06,1,Common Voice releases
+ur,cv_10h,2025-12,1,Common Voice releases
+ur,cv_10h,2026-06,1,Common Voice releases
+ur,cv_10h,2026-12,1,Common Voice releases
+ur,deepl,2025-06,0,DeepL docs history
+ur,deepl,2025-12,1,DeepL docs history
+ur,deepl,2026-06,1,DeepL docs history
+ur,deepl,2026-12,1,DeepL docs history
+ur,open_asr,2022-12,1,Released 2022-09
+ur,open_asr,2023-06,1,Released 2022-09
+ur,open_asr,2023-12,1,Released 2022-09
+ur,open_asr,2024-06,1,Released 2022-09
+ur,open_asr,2024-12,1,Released 2022-09
+ur,open_asr,2025-06,1,Released 2022-09
+ur,open_asr,2025-12,1,Released 2022-09
+ur,open_asr,2026-06,1,Released 2022-09
+ur,open_asr,2026-12,1,Released 2022-09
+ur,open_mt,2022-12,1,Released 2022-07
+ur,open_mt,2023-06,1,Released 2022-07
+ur,open_mt,2023-12,1,Released 2022-07
+ur,open_mt,2024-06,1,Released 2022-07
+ur,open_mt,2024-12,1,Released 2022-07
+ur,open_mt,2025-06,1,Released 2022-07
+ur,open_mt,2025-12,1,Released 2022-07
+ur,open_mt,2026-06,1,Released 2022-07
+ur,open_mt,2026-12,1,Released 2022-07
+ur,reading_bench,2023-12,1,Released 2023-08
+ur,reading_bench,2024-06,1,Released 2023-08
+ur,reading_bench,2024-12,1,Released 2023-08
+ur,reading_bench,2025-06,1,Released 2023-08
+ur,reading_bench,2025-12,1,Released 2023-08
+ur,reading_bench,2026-06,1,Released 2023-08
+ur,reading_bench,2026-12,1,Released 2023-08
+yo,cldr_modern,2020-12,0,Unicode CLDR releases
+yo,cldr_modern,2021-06,0,Unicode CLDR releases
+yo,cldr_modern,2021-12,0,Unicode CLDR releases
+yo,cldr_modern,2022-06,0,Unicode CLDR releases
+yo,cldr_modern,2022-12,1,Unicode CLDR releases
+yo,cldr_modern,2023-06,1,Unicode CLDR releases
+yo,cldr_modern,2023-12,1,Unicode CLDR releases
+yo,cldr_modern,2024-06,1,Unicode CLDR releases
+yo,cldr_modern,2024-12,1,Unicode CLDR releases
+yo,cldr_modern,2025-06,1,Unicode CLDR releases
+yo,cldr_modern,2025-12,1,Unicode CLDR releases
+yo,cldr_modern,2026-06,1,Unicode CLDR releases
+yo,cldr_modern,2026-12,1,Unicode CLDR releases
+yo,cv_10h,2019-06,0,Common Voice releases
+yo,cv_10h,2019-12,0,Common Voice releases
+yo,cv_10h,2020-06,0,Common Voice releases
+yo,cv_10h,2020-12,0,Common Voice releases
+yo,cv_10h,2021-06,0,Common Voice releases
+yo,cv_10h,2021-12,0,Common Voice releases
+yo,cv_10h,2022-06,0,Common Voice releases
+yo,cv_10h,2022-12,0,Common Voice releases
+yo,cv_10h,2023-06,0,Common Voice releases
+yo,cv_10h,2023-12,0,Common Voice releases
+yo,cv_10h,2024-06,0,Common Voice releases
+yo,cv_10h,2024-12,0,Common Voice releases
+yo,cv_10h,2025-06,0,Common Voice releases
+yo,cv_10h,2025-12,0,Common Voice releases
+yo,cv_10h,2026-06,0,Common Voice releases
+yo,cv_10h,2026-12,0,Common Voice releases
+yo,deepl,2025-06,0,DeepL docs history
+yo,deepl,2025-12,0,DeepL docs history
+yo,deepl,2026-06,0,DeepL docs history
+yo,deepl,2026-12,0,DeepL docs history
+yo,open_asr,2022-12,1,Released 2022-09
+yo,open_asr,2023-06,1,Released 2022-09
+yo,open_asr,2023-12,1,Released 2022-09
+yo,open_asr,2024-06,1,Released 2022-09
+yo,open_asr,2024-12,1,Released 2022-09
+yo,open_asr,2025-06,1,Released 2022-09
+yo,open_asr,2025-12,1,Released 2022-09
+yo,open_asr,2026-06,1,Released 2022-09
+yo,open_asr,2026-12,1,Released 2022-09
+yo,open_mt,2022-12,1,Released 2022-07
+yo,open_mt,2023-06,1,Released 2022-07
+yo,open_mt,2023-12,1,Released 2022-07
+yo,open_mt,2024-06,1,Released 2022-07
+yo,open_mt,2024-12,1,Released 2022-07
+yo,open_mt,2025-06,1,Released 2022-07
+yo,open_mt,2025-12,1,Released 2022-07
+yo,open_mt,2026-06,1,Released 2022-07
+yo,open_mt,2026-12,1,Released 2022-07
+yo,reading_bench,2023-12,1,Released 2023-08
+yo,reading_bench,2024-06,1,Released 2023-08
+yo,reading_bench,2024-12,1,Released 2023-08
+yo,reading_bench,2025-06,1,Released 2023-08
+yo,reading_bench,2025-12,1,Released 2023-08
+yo,reading_bench,2026-06,1,Released 2023-08
+yo,reading_bench,2026-12,1,Released 2023-08

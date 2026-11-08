@@ -22,6 +22,7 @@ The point of the slice is to test the method before scaling up.
 python -m ltdi.backbone        # LinguaMeta metadata for the languages in config/slice_languages.csv
 python -m ltdi.collectors      # automated collectors -> data/records/*.csv
 python -m ltdi.collectors wikipedia   # needs open network access; run locally
+python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
 python -m ltdi.build_site      # data/scores.json -> site/index.html
 ```
@@ -57,6 +58,24 @@ No dependencies beyond the Python 3.11+ standard library.
 | Tech | Text-to-speech | Google Cloud TTS; depth: number of voice types | manual |
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | manual; DeepL and NLLB automated |
 | Tech | LLMs | Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | manual; OpenAI automated |
+
+## Charts and regions
+
+Languages are grouped into Africa, South Asia, Rest of Asia, Europe, Americas
+and Oceania, from the UN M49 region of the country with the most speakers
+(South Asia is M49 Southern Asia), with overrides in `config/slice_languages.csv`.
+Every view on the site can be filtered by region.
+
+The Charts view shows how many languages each technology reaches today, how
+coverage has grown since 2019, and where each language stands by region. The
+history (`ltdi/collectors/history.py`) comes from sources with a public record:
+
+| Series | Source of history |
+| --- | --- |
+| At least 10 hours of open transcribed speech | Every Common Voice release since 2019 |
+| Full locale data | Every CLDR release's modern-coverage locales, dated from npm |
+| Commercial translation | Git history of DeepL's docs language table, from May 2025 |
+| Open translation model, open speech recognition model, reading benchmark | NLLB-200, Whisper and Belebele release dates, with today's language lists |
 
 ## Opportunities
 

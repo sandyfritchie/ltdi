@@ -146,7 +146,18 @@ def main() -> None:
         **{k: v["label"] for k, v in cfg["dimensions"]["tech"]["technologies"].items()},
         **{k: cfg["dimensions"][k]["label"] for k in ("writing", "data", "tech")},
     }
-    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "opportunity_types": TYPES, "teams": TEAMS,
+    history = None
+    if (DATA / "history.csv").exists():
+        periods: list[str] = []
+        hist: dict[str, dict[str, dict[str, int]]] = defaultdict(lambda: defaultdict(dict))
+        with (DATA / "history.csv").open(encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                hist[row["series"]][row["language"]][row["period"]] = int(row["value"])
+                if row["period"] not in periods:
+                    periods.append(row["period"])
+        history = {"periods": sorted(periods), "series": json.loads((DATA / "history_series.json").read_text()),
+                   "values": hist}
+    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "opportunity_types": TYPES, "teams": TEAMS, "history": history,
            "languages": results, "facts": facts}
     (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     for r in results:

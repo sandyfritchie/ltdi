@@ -1,0 +1,8 @@
+{
+ "cv_10h": "At least 10 hours of open transcribed speech (Common Voice)",
+ "cldr_modern": "Full locale data (CLDR modern coverage)",
+ "deepl": "Commercial translation (DeepL)",
+ "open_mt": "Open translation model (NLLB-200)",
+ "open_asr": "Open speech recognition model (Whisper)",
+ "reading_bench": "Reading-comprehension benchmark (Belebele)"
+}
