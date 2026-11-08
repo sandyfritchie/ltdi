@@ -103,13 +103,11 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
 .bar { height: 6px; background: var(--track); border-radius: 3px; overflow: hidden; }
 .bar i { display: block; height: 100%; border-radius: 3px; }
 .hide-sm { }
-.tk-h { text-align: center; padding-inline: 2px; } .tk-h .ticon { width: 17px; height: 17px; color: var(--muted); vertical-align: middle; }
-td.tk { text-align: center; padding-inline: 2px; }
-.tk i { display: inline-grid; place-items: center; box-sizing: border-box; width: 18px; height: 18px; border-radius: 50%; vertical-align: middle; font: 700 11px/1 var(--font-body); font-style: normal; }
-.tk i.on { background: var(--tech); color: var(--surface); }
-.tk i.open { border: 1.5px solid var(--tech); }
-.tk i.none { width: 6px; height: 6px; background: var(--rule); }
-@media (max-width: 900px) { .hide-md { display: none; } }
+.gaps { display: flex; gap: 6px; align-items: center; min-height: 20px; }
+.gaps .gap-i { display: inline-flex; }
+.gaps .ticon, .legend .gap-i .ticon { width: 19px; height: 19px; vertical-align: middle; }
+.gap-i.none { color: var(--t-l); }
+.gap-i.open { color: var(--muted); }
 @media (max-width: 640px) { .hide-sm { display: none; } .bars { min-width: 90px; } }
 
 .note { margin-top: 16px; font-size: 14px; color: var(--muted); max-width: 72ch; }
@@ -472,15 +470,16 @@ function oppDetail(id) {
 
 // ---------------------------------------------------------------- ranking
 let query = '';
-// Ranking columns: the five main technologies, ticked if any commercial service offers them
+// Ranking "Gaps" column: the five main technologies that no commercial service offers
 const MAIN_TECH = Object.entries(CFG.tech.technologies).filter(([, t]) => t.group !== 'more').map(([k]) => k);
-function techMark(l, k) {
-  const t = CFG.tech.technologies[k], label = t.label;
-  const n = (t.consumer || []).filter(id => offers(l, id)).length, of = (t.consumer || []).length;
-  const open = (t.open || []).some(id => offers(l, id)) || Object.keys(t.measured || {}).some(id => offers(l, id));
-  const [cls, mark, what] = n ? ['on', '✓', `${n} of ${of} services`]
-    : open ? ['open', '', t.measured ? 'benchmark results only' : 'open model only'] : ['none', '', 'none found'];
-  return `<td class="tk hide-md" title="${esc(label)}: ${what}"><i class="${cls}" aria-hidden="true">${mark}</i><span class="sr">${esc(label)}: ${what}</span></td>`;
+function gapsCell(l) {
+  return `<div class="gaps">${MAIN_TECH.map(k => {
+    const t = CFG.tech.technologies[k];
+    if ((t.consumer || []).some(id => offers(l, id))) return '';
+    const open = (t.open || []).some(id => offers(l, id)) || Object.keys(t.measured || {}).some(id => offers(l, id));
+    const what = open ? (t.measured ? 'benchmark results only' : 'open model only') : 'nothing found';
+    return `<span class="gap-i ${open ? 'open' : 'none'}" title="${esc(t.label)}: ${what}">${TICON[k]}<span class="sr">${esc(t.label)}: ${what}</span></span>`;
+  }).join('')}</div>`;
 }
 
 function ranking() {
@@ -493,14 +492,15 @@ function ranking() {
       <span><i class="sw" style="background:var(--writing)"></i>Writing system</span>
       <span><i class="sw" style="background:var(--data)"></i>Data</span>
       <span><i class="sw" style="background:var(--tech)"></i>Technology</span>
-      <span class="hide-md tk"><i class="on">✓</i>Offered by a service</span>
-      <span class="hide-md tk"><i class="open"></i>Open model or benchmark only</span>
+      <span class="hide-sm">Gaps:</span>
+      <span class="hide-sm"><span class="gap-i none">${TICON.tts}</span>No service found</span>
+      <span class="hide-sm"><span class="gap-i open">${TICON.tts}</span>Open model or benchmark only</span>
     </div>
     <div class="tablebox"><table>
-      <thead><tr><th>#</th><th>Language</th><th class="num hide-sm">Speakers</th><th class="hide-sm">Region</th><th>Dimensions</th><th class="num">LTDI</th><th>Tier</th>${MAIN_TECH.map(k => `<th class="tk-h hide-md" title="${esc(CFG.tech.technologies[k].label)}">${TICON[k]}<span class="sr">${esc(CFG.tech.technologies[k].label)}</span></th>`).join('')}</tr></thead>
+      <thead><tr><th>#</th><th>Language</th><th class="num hide-sm">Speakers</th><th class="hide-sm">Region</th><th>Dimensions</th><th class="num">LTDI</th><th>Tier</th><th class="hide-sm" title="Main technologies no commercial service offers">Gaps</th></tr></thead>
       <tbody id="rows"></tbody>
     </table></div>
-    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The marks on the right show the five main technologies; hover for how many services offer each. Select a language to see every value and its source.</p>`;
+    <p class="note"><strong>About this edition.</strong> A 25-language slice to test the method. Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the five main technologies (keyboard, speech input, text-to-speech, translation, LLMs) no commercial service offers; hover an icon for details. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const rows = LANGS.filter(l => inRegion(l) &&
@@ -515,8 +515,8 @@ function ranking() {
           ${DIMS.map(([k, , c]) => bar(l.dimensions[k].score, c)).join('')}</div></td>
         <td class="num score">${l.ltdi.toFixed(3)}</td>
         <td>${tierChip(l.ltdi)}</td>
-        ${MAIN_TECH.map(k => techMark(l, k)).join('')}
-      </tr>`).join('') || `<tr><td colspan="12">No language matches “${esc(query)}”.</td></tr>`;
+        <td class="hide-sm">${gapsCell(l)}</td>
+      </tr>`).join('') || `<tr><td colspan="8">No language matches “${esc(query)}”.</td></tr>`;
   };
   draw();
   $('#rsel').onchange = e => { region = e.target.value; ranking(); };
