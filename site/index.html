@@ -29,6 +29,8 @@
   --track: #e6ebe9;
   --ord-full: #184f95; --ord-part: #3987e5; --ord-open: #86b6ef; --ord-none: #e3e8e6;
   --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
+  /* provider stripes: the site's chart palette, deliberately not brand colours */
+  --prov-anthropic: #2a78d6; --prov-meta: #eb6834; --prov-apple: #1baf7a; --prov-microsoft: #eda100; --prov-deepl: #e87ba4; --prov-openai: #008300; --prov-google: #6250d6;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -41,6 +43,7 @@
     --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
     --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
     --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
+    --prov-anthropic: #3987e5; --prov-meta: #d95926; --prov-apple: #199e70; --prov-microsoft: #c98500; --prov-deepl: #d55181; --prov-openai: #008300; --prov-google: #9085e9;
   }
 }
 :root[data-theme="dark"] {
@@ -50,6 +53,7 @@
   --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
   --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
   --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
+  --prov-anthropic: #3987e5; --prov-meta: #d95926; --prov-apple: #199e70; --prov-microsoft: #c98500; --prov-deepl: #d55181; --prov-openai: #008300; --prov-google: #9085e9;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;
@@ -136,6 +140,20 @@ a.tile:hover { border-color: var(--muted); }
 .tile.on .mark { background: var(--c); color: var(--surface); }
 .tile.off { border-style: dashed; color: var(--muted); }
 .tile.off .mark { border: 1.5px solid var(--rule); color: var(--muted); }
+.tile[data-prov] { border-left: 4px solid var(--p); }
+.tile .by { display: block; font: 600 10px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.provkey { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: -2px 0 10px; font-size: 13px; color: var(--muted); }
+.chip.prov { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; font-size: 12px; }
+.chip.prov i { width: 4px; height: 14px; border-radius: 2px; background: var(--p); }
+.chip.prov[aria-pressed="true"] i { background: var(--bg); }
+.tile { transition: opacity .15s; }
+section[class*="focus-google"] .tile[data-prov]:not([data-prov="google"]) { opacity: .3; }
+section[class*="focus-apple"] .tile[data-prov]:not([data-prov="apple"]) { opacity: .3; }
+section[class*="focus-microsoft"] .tile[data-prov]:not([data-prov="microsoft"]) { opacity: .3; }
+section[class*="focus-deepl"] .tile[data-prov]:not([data-prov="deepl"]) { opacity: .3; }
+section[class*="focus-openai"] .tile[data-prov]:not([data-prov="openai"]) { opacity: .3; }
+section[class*="focus-meta"] .tile[data-prov]:not([data-prov="meta"]) { opacity: .3; }
+section[class*="focus-anthropic"] .tile[data-prov]:not([data-prov="anthropic"]) { opacity: .3; }
 .tile.off b { color: var(--muted); }
 .ind { display: grid; gap: 4px; padding-block: 9px; border-top: 1px solid var(--rule); }
 .ind:first-of-type { border-top: 0; }
@@ -18294,14 +18312,16 @@ function ranking() {
 
 // Service tiles on the technology panel: plain names (no logos), status, and what each offers
 const SVC = {
-  kb_gboard: ['Gboard', 'Android keyboard'], kb_apple: ['iOS', 'Keyboard'],
-  asr_google: ['Google Cloud', 'Speech-to-Text'], asr_azure: ['Azure AI Speech', 'Speech to text'],
-  asr_apple: ['iOS', 'Dictation'], asr_open_whisper: ['Whisper', 'Open model'],
-  tts_google: ['Google Cloud', 'Text-to-Speech'],
-  mt_google: ['Google Cloud', 'Translation'], mt_azure: ['Azure', 'Translator'], mt_deepl: ['DeepL', 'Translator'],
-  mt_open_nllb: ['NLLB-200', 'Open model'],
-  llm_global_mmlu_rel: ['Claude', 'Global-MMLU benchmark'], llm_mmmlu_openai: ['OpenAI o3', 'MMMLU benchmark'],
+  kb_gboard: ['Gboard', 'Android keyboard', 'google'], kb_apple: ['iOS', 'Keyboard', 'apple'],
+  asr_google: ['Google Cloud', 'Speech-to-Text', 'google'], asr_azure: ['Azure AI Speech', 'Speech to text', 'microsoft'],
+  asr_apple: ['iOS', 'Dictation', 'apple'], asr_open_whisper: ['Whisper', 'Open model', 'openai'],
+  tts_google: ['Google Cloud', 'Text-to-Speech', 'google'],
+  mt_google: ['Google Cloud', 'Translation', 'google'], mt_azure: ['Azure', 'Translator', 'microsoft'],
+  mt_deepl: ['DeepL', 'Translator', 'deepl'], mt_open_nllb: ['NLLB-200', 'Open model', 'meta'],
+  llm_global_mmlu_rel: ['Claude', 'Global-MMLU benchmark', 'anthropic'], llm_mmmlu_openai: ['OpenAI o3', 'MMMLU benchmark', 'openai'],
 };
+const PROV = { google: 'Google', apple: 'Apple', microsoft: 'Microsoft', deepl: 'DeepL', openai: 'OpenAI', meta: 'Meta', anthropic: 'Anthropic' };
+let provFocus = null;
 const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
   tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features' };
 const ICON = p => `<svg class="ticon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
@@ -18324,8 +18344,10 @@ function depthText(f) {
   return showValue(f);
 }
 function svcTile(id, facts, open) {
-  const f = facts[id], [name, kind] = SVC[id] || [id, ''];
-  if (!f) return `<div class="tile off"><span class="mark" aria-hidden="true">–</span><div><b>${esc(name)}</b><small>${esc(kind)} · not benchmarked</small></div></div>`;
+  const f = facts[id], [name, kind, prov] = SVC[id] || [id, '', ''];
+  const pv = prov ? ` data-prov="${prov}" style="--p:var(--prov-${prov})"` : '';
+  const by = prov ? `<span class="by">${esc(PROV[prov])}</span>` : '';
+  if (!f) return `<div class="tile off"${pv}><span class="mark" aria-hidden="true">–</span><div>${by}<b>${esc(name)}</b><small>${esc(kind)} · not benchmarked</small></div></div>`;
   const on = f.unit === 'bool' ? !!f.value : true;
   let detail = '';
   if (f.unit === '% of English') detail = `${f.value}% of its English score`;
@@ -18334,15 +18356,17 @@ function svcTile(id, facts, open) {
   const measured = f.unit === '% of English' || f.unit === 'accuracy';
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : null;
   const hover = [f.source, dep && dep.note ? dep.note : f.note].filter(Boolean).join('\n');
-  return `<a class="tile ${on ? 'on' : 'off'}" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
+  return `<a class="tile ${on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${on ? '✓' : '–'}</span>
-    <div><b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
   let body = '';
   if (key === 'tech') {
+    body += `<div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries(PROV).map(([k, n]) =>
+      `<button class="chip prov" id="pv-${k}" data-pv="${k}" aria-pressed="${provFocus === k}" style="--p:var(--prov-${k})"><i></i>${esc(n)}</button>`).join('')}</div>`;
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk];
       const ids = t.measured ? Object.keys(t.measured) : [...t.consumer, ...t.open];
@@ -18361,7 +18385,7 @@ function dimPanel(l, key, color) {
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}</div>`;
     }
   }
-  return `<section class="dim${key === 'tech' ? ' wide' : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
+  return `<section class="dim${key === 'tech' ? ' wide' : ''}${key === 'tech' && provFocus ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
 }
 
 function reachLine(l) {
@@ -18399,6 +18423,12 @@ function language(code) {
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>.</p>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
+  $('#view').querySelectorAll('[data-pv]').forEach(b => b.onclick = () => {
+    provFocus = provFocus === b.dataset.pv ? null : b.dataset.pv;
+    const sec = $('section.dim.wide');
+    sec.className = sec.className.replace(/ focus-\w+/g, '') + (provFocus ? ' focus-' + provFocus : '');
+    $('#view').querySelectorAll('[data-pv]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.pv === provFocus)));
+  });
   $('#cmpsel').onchange = e => { if (e.target.value) location.hash = `compare-${code}-${e.target.value}`; };
 }
 
