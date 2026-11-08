@@ -10176,22 +10176,28 @@ function oppItem(o, l, showLang) {
 }
 
 let otype = 'all', showAll = false;
-function opportunities() {
-  const all = LANGS.flatMap(l => l.opportunities.map(o => ({ o, l }))).sort((a, b) => b.o.priority - a.o.priority);
+function opportunities(lang) {
+  const focus = lang && BY[lang] ? BY[lang] : null;
+  const all = LANGS.filter(l => !focus || l === focus)
+    .flatMap(l => l.opportunities.map(o => ({ o, l }))).sort((a, b) => b.o.priority - a.o.priority);
   const counts = Object.fromEntries(Object.keys(OT).map(k => [k, all.filter(x => x.o.type === k).length]));
   const list = all.filter(x => otype === 'all' || x.o.type === otype);
   const shown = showAll ? list : list.slice(0, 30);
   $('#view').innerHTML = `
     <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)} · ${counts[k]}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
     <p class="note">Priority weighs how many people speak the language, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Each opportunity is tagged with the coalition workstream it fits.</p>
-    <div class="controls"><div class="chips" role="group" aria-label="Type">
+    ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="#lang-${focus.code}">Language profile</a></div>` : ''}
+    <div class="controls">
+    <select id="olang" aria-label="Language"><option value="">All languages</option>${LANGS.map(l => `<option value="${l.code}"${focus === l ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
+    <div class="chips" role="group" aria-label="Type">
       <button class="chip" id="ot-all" data-t="all" aria-pressed="${otype === 'all'}">All · ${all.length}</button>
       ${Object.entries(OT).map(([k, t]) => `<button class="chip" id="ot-${k}" data-t="${k}" aria-pressed="${otype === k}">${esc(t.label)} · ${counts[k]}</button>`).join('')}
     </div></div>
-    <ol class="opps">${shown.map(x => oppItem(x.o, x.l, true)).join('')}</ol>
+    ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">No opportunities of this type.</p>'}
     ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}`;
-  $('#view').querySelectorAll('[data-t]').forEach(b => b.onclick = () => { otype = b.dataset.t; showAll = false; opportunities(); });
-  const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(); };
+  $('#view').querySelectorAll('[data-t]').forEach(b => b.onclick = () => { otype = b.dataset.t; showAll = false; opportunities(lang); });
+  const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
+  $('#olang').onchange = e => { otype = 'all'; showAll = false; location.hash = e.target.value ? 'opportunities-' + e.target.value : 'opportunities'; };
 }
 
 // ---------------------------------------------------------------- ranking
@@ -10284,7 +10290,7 @@ function language(code) {
     <div class="cmpbar"><label for="cmpsel">Compare with</label>
       <select id="cmpsel"><option value="">Choose a language</option>${others.map(o => `<option value="${o.code}">${esc(o.name)}</option>`).join('')}</select></div>
     <div class="dims">${DIMS.map(([k, , c]) => dimPanel(l, k, c)).join('')}</div>
-    <h3 class="panel-h">Opportunities</h3>
+    <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${l.opportunities.map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>.</p>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
@@ -10332,8 +10338,13 @@ function route() {
   if ((m = h.match(/^lang-([a-z]+)$/))) language(m[1]);
   else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
   else if (h === 'opportunities') opportunities();
+  else if ((m = h.match(/^opportunities-([a-z]+)$/))) opportunities(m[1]);
   else ranking();
-  const tab = h === 'opportunities' ? 'opportunities' : (h === '' || h === 'ranking') ? 'ranking' : '';
+  // From a language (or compare) page, the Opportunities tab opens that language's opportunities
+  const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^compare-([a-z]+)-/) || [])[1];
+  const otab = document.getElementById('tab-opportunities');
+  if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
+  const tab = h.startsWith('opportunities') ? 'opportunities' : (h === '' || h === 'ranking') ? 'ranking' : '';
   for (const t of ['ranking', 'opportunities']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
