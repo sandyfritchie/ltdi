@@ -118,6 +118,23 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
 .dim { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 16px; min-width: 0; border-top: 4px solid var(--c); }
 .dim h3 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin: 0 0 12px; font: 700 17px var(--font-display); font-stretch: 90%; }
 .dim h3 span { font-size: 24px; color: var(--c); }
+.dim.wide { grid-column: 1 / -1; }
+.techrow { display: grid; gap: 6px; padding-block: 12px; border-top: 1px solid var(--rule); }
+.techrow:first-of-type { border-top: 0; padding-top: 0; }
+.tech-h { display: flex; align-items: center; gap: 8px; }
+.tech-h b { font-weight: 600; } .tech-h .ind-val { margin-left: auto; font-size: 14px; }
+.ticon { width: 20px; height: 20px; color: var(--c); flex: none; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(190px, 46%), 1fr)); gap: 8px; margin-top: 2px; }
+.tile { display: flex; gap: 10px; align-items: flex-start; border: 1px solid var(--rule); border-radius: 6px; padding: 8px 10px; text-decoration: none; color: var(--ink); min-width: 0; }
+a.tile:hover { border-color: var(--muted); }
+.tile b { display: block; font-weight: 600; font-size: 14px; }
+.tile small { display: block; font-size: 12px; color: var(--muted); }
+.tile .det { display: block; font-size: 12px; color: var(--ink); margin-top: 2px; overflow-wrap: anywhere; }
+.tile .mark { flex: none; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font: 700 12px var(--font-body); }
+.tile.on .mark { background: var(--c); color: var(--surface); }
+.tile.off { border-style: dashed; color: var(--muted); }
+.tile.off .mark { border: 1.5px solid var(--rule); color: var(--muted); }
+.tile.off b { color: var(--muted); }
 .ind { display: grid; gap: 4px; padding-block: 9px; border-top: 1px solid var(--rule); }
 .ind:first-of-type { border-top: 0; }
 .ind-top { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
@@ -18272,23 +18289,65 @@ function ranking() {
 }
 
 // --------------------------------------------------------------- language
+
+// Service tiles on the technology panel: plain names (no logos), status, and what each offers
+const SVC = {
+  kb_gboard: ['Gboard', 'Android keyboard'], kb_apple: ['iOS', 'Keyboard'],
+  asr_google: ['Google Cloud', 'Speech-to-Text'], asr_azure: ['Azure AI Speech', 'Speech to text'],
+  asr_apple: ['iOS', 'Dictation'], asr_open_whisper: ['Whisper', 'Open model'],
+  tts_google: ['Google Cloud', 'Text-to-Speech'],
+  mt_google: ['Google Cloud', 'Translation'], mt_azure: ['Azure', 'Translator'], mt_deepl: ['DeepL', 'Translator'],
+  mt_open_nllb: ['NLLB-200', 'Open model'],
+  llm_global_mmlu_rel: ['Claude', 'Global-MMLU benchmark'], llm_mmmlu_openai: ['OpenAI o3', 'MMMLU benchmark'],
+};
+const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
+  tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features' };
+const ICON = p => `<svg class="ticon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const TICON = {
+  keyboard: ICON('<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M9.5 10h.01M13 10h.01M16.5 10h.01M7 14h10"/>'),
+  speech_input: ICON('<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>'),
+  tts: ICON('<path d="M4 10v4h3.5L12 18V6L7.5 10H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>'),
+  mt: ICON('<path d="M3.5 5.5h9v7h-5l-3 2.5v-2.5h-1z"/><path d="M12.5 9.5h8v7h-1V19l-3-2.5h-4z"/>'),
+  llm: ICON('<path d="M4 5.5h16v10H9l-4 3.5v-3.5H4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/>'),
+};
+function depthText(f) {
+  if (!f) return '';
+  if (f.unit === '% WER') return f.value >= 100 ? 'No published error rate' : `${f.value}% word error rate`;
+  if (/^features of/.test(f.unit) || f.unit === 'types of 8') {
+    const has = (f.note || '').replace(/^Has: /, '');
+    const what = f.unit === 'types of 8' ? 'voice types' : 'features';
+    const total = f.unit.split(' ').pop();
+    return `${f.value} of ${total} ${what}${f.value && has && !/^None|^Not supported|^No voices/.test(has) && has.length < 90 ? ': ' + has.toLowerCase() : ''}`;
+  }
+  return showValue(f);
+}
+function svcTile(id, facts, open) {
+  const f = facts[id], [name, kind] = SVC[id] || [id, ''];
+  if (!f) return `<div class="tile off"><span class="mark" aria-hidden="true">–</span><div><b>${esc(name)}</b><small>${esc(kind)} · not benchmarked</small></div></div>`;
+  const on = f.unit === 'bool' ? !!f.value : true;
+  let detail = '';
+  if (f.unit === '% of English') detail = `${f.value}% of its English score`;
+  else if (f.unit === 'accuracy') detail = `${(f.value * 100).toFixed(1)}% accuracy`;
+  else if (on && DEPTH_OF[id]) detail = depthText(facts[DEPTH_OF[id]]);
+  const measured = f.unit === '% of English' || f.unit === 'accuracy';
+  const status = measured ? 'Benchmarked' : on ? 'Available' : 'Not yet';
+  return `<a class="tile ${on ? 'on' : 'off'}" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(f.source + (f.note ? ' · ' + f.note : ''))}">
+    <span class="mark" aria-hidden="true">${on ? '✓' : '–'}</span>
+    <div><b>${esc(name)}</b><small>${esc(kind)} · <span class="vis">${status}</span></small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+}
+
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
   let body = '';
   if (key === 'tech') {
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk];
-      const ids = t.measured ? Object.keys(t.measured) : [...t.consumer, ...t.open, ...Object.keys(t.depth || {})];
-      const vendors = ids.map(id => {
-        const f = facts[id];
-        if (!f) return `<div class="missing">${t.measured ? esc(id === 'llm_mmmlu_openai' ? 'OpenAI MMMLU' : 'Anthropic Global-MMLU') + ': not benchmarked' : esc(id) + ': not collected'}</div>`;
-        const label = f.unit === 'bool'
-          ? `<span class="${f.value ? 'yes' : 'no'}">${esc(f.source)}</span>`
-          : `<span class="yes">${esc(f.source)}: ${esc(showValue(f))}</span>`;
-        return `<div title="${esc(f.note || '')}"><a href="${esc(f.url)}" target="_blank" rel="noopener">${label}</a>${(t.open || []).includes(id) ? ' <span class="code">open</span>' : ''}</div>`;
-      }).join('');
-      body += `<div class="ind"><div class="ind-top"><b>${esc(t.label)}</b><span class="ind-val">${s == null ? '—' : s.toFixed(2)}</span></div>
-        ${s == null ? '' : bar(s)}<div class="vendors">${vendors}</div></div>`;
+      const ids = t.measured ? Object.keys(t.measured) : [...t.consumer, ...t.open];
+      const tiles = ids.map(id => svcTile(id, facts, (t.open || []).includes(id))).join('');
+      body += `<div class="techrow">
+        <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${s == null ? 'not measured' : s.toFixed(2)}</span></div>
+        ${s == null ? '' : bar(s)}
+        <div class="tiles">${tiles}</div></div>`;
     }
   } else {
     for (const [ik, spec] of Object.entries(cfg.indicators)) {
@@ -18298,7 +18357,7 @@ function dimPanel(l, key, color) {
         ${f ? `<div class="src"><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(f.source)}</a> · ${esc(f.retrieved)}${f.note ? ' · ' + esc(f.note) : ''}</div>` : ''}</div>`;
     }
   }
-  return `<section class="dim" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
+  return `<section class="dim${key === 'tech' ? ' wide' : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
 }
 
 function reachLine(l) {
