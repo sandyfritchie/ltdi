@@ -657,6 +657,13 @@ function reachLine(l) {
     <a href="${esc(f.reach_voice_share.url)}" target="_blank" rel="noopener">World Bank data</a></div>`;
 }
 
+// Countries, by number of speakers: the top three, or all of them with a link back
+function whereLine(l, all) {
+  const cs = l.countries, n = cs.length - 3;
+  if (n <= 0) return `Mainly in <b>${cs.map(esc).join(', ')}</b>`;
+  return all ? `Spoken in <b>${cs.map(esc).join(', ')}</b> <button class="linkish" data-more="0">less</button>`
+             : `Mainly in <b>${cs.slice(0, 3).map(esc).join(', ')}</b> <button class="linkish" data-more="1">and ${n} more</button>`;
+}
 async function language(code) {
   const l = BY[code];
   if (!l) return ranking();
@@ -668,7 +675,7 @@ async function language(code) {
       <div><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span></h2>
         <div class="facts"><span><b>${people(l.speakers)}</b> speakers</span><span>Code <b class="code">${l.code}</b> · ISO 639-3 <b class="code">${esc(l.iso_639_3 || '')}</b></span>
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b></span>
-        <span id="where">Mainly in <b>${l.countries.slice(0, 3).map(esc).join(', ')}</b>${l.countries.length > 3 ? ` <button class="linkish" id="morec">and ${l.countries.length - 3} more</button>` : ''}</span></div>
+        <span id="where">${whereLine(l, false)}</span></div>
         ${reachLine(l)}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
       </div>
@@ -681,8 +688,7 @@ async function language(code) {
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>.</p>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
-  const mc = $('#morec');  // countries are listed by number of speakers
-  if (mc) mc.onclick = () => { $('#where').innerHTML = `Spoken in <b>${l.countries.map(esc).join(', ')}</b>`; };
+  $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
   const mt = $('#view').querySelector('details.more-tech');
   if (mt) mt.ontoggle = () => { moreOpen = mt.open; };
   $('#view').querySelectorAll('[data-pv]').forEach(b => b.onclick = () => {
