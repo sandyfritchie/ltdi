@@ -7,11 +7,12 @@ Reads data/records/*.csv and data/manual/*.csv, writes data/scores.json.
 from __future__ import annotations
 
 import csv
+import dataclasses
 import json
 import math
 from collections import defaultdict
 
-from . import DATA
+from . import CONFIG, DATA
 from .config import load_config, services
 from .opportunities import RULES, TEAMS, TYPES, explain, find, rank, reach_by_country, resources, starter_kit
 from .records import Record, read_dir
@@ -172,6 +173,39 @@ def score_language(facts: dict[str, Record], cfg: dict) -> dict:
     return {"ltdi": round(ltdi, 4), "dimensions": dims, "missing": missing}
 
 
+def written_standards() -> dict[str, str]:
+    """Spoken variety -> the language its speakers write (config/written_standards.csv)."""
+    with (CONFIG / "written_standards.csv").open(encoding="utf-8") as f:
+        return {r["code"]: r["standard"] for r in csv.DictReader(f)}
+
+
+def inherited(cfg: dict) -> set[str]:
+    """Indicators a spoken variety takes from its written standard: writing, written data, and every
+    service and measure of the written-language technologies."""
+    spec = cfg.get("written_standard", {})
+    inds = set(cfg["dimensions"]["writing"]["indicators"]) | set(spec.get("data", []))
+    for t in spec.get("technologies", []):
+        tech = cfg["dimensions"]["tech"]["technologies"][t]
+        inds |= set(tech.get("consumer", [])) | set(tech.get("open", [])) | set(tech.get("measured", {})) \
+            | set(tech.get("depth", {}))
+    return inds
+
+
+def inherit_written(by_lang: dict[str, dict[str, Record]], names: dict[str, str], cfg: dict) -> None:
+    """Give each spoken variety its written standard's value for the written-language indicators,
+    where that is higher than its own, with a note saying so."""
+    inds = inherited(cfg)
+    for code, std in written_standards().items():
+        if code not in names or std not in by_lang:
+            continue
+        own = by_lang.setdefault(code, {})
+        for ind in inds:
+            f = by_lang[std].get(ind)
+            if f and f.value and (ind not in own or own[ind].value < f.value):
+                note = f"Written in {names[std]}: its value" + (f". {f.note}" if f.note else "")
+                own[ind] = dataclasses.replace(f, language=code, note=note)
+
+
 def main() -> None:
     cfg = load_config()
     langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
@@ -180,6 +214,7 @@ def main() -> None:
     by_lang: dict[str, dict[str, Record]] = defaultdict(dict)
     for r in records:
         by_lang[r.language][r.indicator] = r
+    inherit_written(by_lang, {l["code"]: l["name"] for l in langs}, cfg)
 
     countries: dict[str, dict[str, float]] = defaultdict(dict)
     if (DATA / "countries.csv").exists():
@@ -187,6 +222,7 @@ def main() -> None:
             for row in csv.DictReader(f):
                 countries[row["country"]][row["indicator"]] = float(row["value"])
     results = []
+    written = written_standards()
     for lang in langs:
         facts_l = by_lang.get(lang["code"], {})
         s = score_language(facts_l, cfg)
@@ -196,6 +232,7 @@ def main() -> None:
             o["kit"] = starter_kit(o, facts_l)
             o["why"] = explain(lang, o, facts_l)
         results.append({**lang, **s, **coverage(facts_l, cfg), "opportunities": opps,
+                        "written_in": written.get(lang["code"]),
                         "reach_by_country": reach_by_country(lang, countries)})
     results.sort(key=lambda r: -r["ltdi"])
     for i, r in enumerate(results, 1):

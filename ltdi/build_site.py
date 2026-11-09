@@ -28,7 +28,7 @@ EMBED_LIMIT = 3_000_000  # bytes of per-language data to embed in the page
 SHARD_SIZE = 150  # languages per detail file
 TOP_OPPORTUNITIES = 1000  # opportunities listed on the Opportunities page before choosing a language
 SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "gaps")
-PROFILE = ("script_names", "note", "source")  # shown only on the language's own page
+PROFILE = ("script_names", "note", "source", "written_in")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
 # pseudo-regions (LinguaMeta lists them without speaker counts)
 NOT_PLACES = {"aq", "bv", "gs", "hm", "tf", "um", "xa", "xb", "zz"}

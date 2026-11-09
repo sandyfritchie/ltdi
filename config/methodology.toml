@@ -156,3 +156,13 @@ label = "Language identification"
 group = "more"  # shown under "More technologies" on the site
 # Mostly invisible to users, but every web-scale data pipeline starts with it.
 weight = 0.5
+
+# ------------------------------------------------------- written standard ---
+# Spoken varieties whose speakers read and write a standard language
+# (config/written_standards.csv: Egyptian Arabic -> Arabic, Wu -> Mandarin, ...)
+# take the standard's value for written-language indicators where it is
+# higher. Speech, speech data, benchmarks and language identification stay
+# the variety's own.
+[written_standard]
+data = ["web_text_words", "parallel_sentences", "ud_treebank_words", "wikipedia_articles", "wikipedia_active_editors"]
+technologies = ["keyboard", "mt", "llm", "interface", "ocr", "proofing"]

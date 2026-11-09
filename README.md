@@ -44,6 +44,7 @@ only small builds work, because then the detail is embedded.
 | `config/language_overrides.csv` | Names, region overrides, map origins and notes for particular languages |
 | `config/macrolanguages.csv` | Which macrolanguages are scored as one language, which members they absorb, and where macrolanguage labels go otherwise |
 | `config/crosswalk.csv` | Source language codes → LTDI codes where the standard resolution gets them wrong |
+| `config/written_standards.csv` | Spoken varieties and the standard language their speakers write |
 | `config/language_names.csv` | Vendor language names → LTDI codes where LinguaMeta's English names don't match |
 | `config/methodology.toml` | Indicators, goalposts, weights, tiers, floor |
 | `config/services.csv` | Every service: technology, role (commercial, open, benchmark), name, provider, depth indicator |
@@ -92,6 +93,20 @@ any name it can't resolve.
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
 | Tech | Voice assistant | Google Assistant (speakers and displays), Siri, Alexa | automated |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
+
+## Spoken varieties and their written standard
+
+Many languages are mostly spoken, and their speakers read and write a standard
+language: Egyptian Arabic and Modern Standard Arabic, Wu and Mandarin, Marwari
+and Hindi, Swiss German and German. `config/written_standards.csv` lists them
+(92 so far). Such a variety takes its standard's value, where higher, for the
+writing dimension, written data (web text, parallel text, treebanks, Wikipedia)
+and the text technologies (keyboard, translation, LLMs, interface language,
+text recognition, proofing), as set in `[written_standard]` in
+`config/methodology.toml`. Speech technologies, speech data, benchmarks and
+language identification stay the variety's own, so its gaps show where they
+really are. The language page says which language it's written in, and each
+inherited value is noted.
 
 ## Charts and regions
 
