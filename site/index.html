@@ -152,7 +152,7 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
 /* Ranking columns keep their widths whatever the sort, so headers don't jump */
 table.ranktab { table-layout: fixed; }
 .ranktab .c-rank { width: 4.5em; } .ranktab .c-spk { width: 7.5em; } .ranktab .c-onl { width: 10em; }
-.ranktab .pct { color: var(--muted); font-size: 13px; }
+.ranktab .pct, .tbl .pct { color: var(--muted); font-size: 13px; }
 .ranktab .pct.p4 { color: var(--pct-4); } .ranktab .pct.p3 { color: var(--pct-3); } .ranktab .pct.p2 { color: var(--pct-2); } .ranktab .pct.p1 { color: var(--pct-1); } .ranktab .c-reg { width: 9em; }
 .ranktab .c-name { width: 15em; } .ranktab .c-ltdi { width: 5.5em; } .ranktab .c-tier { width: 7.5em; } .ranktab .c-gaps { width: 10.2em; }  /* room for six icons */
 .ranktab .gaps { gap: 3px; } .ranktab .gaps .ticon { width: 16px; height: 16px; }
@@ -1149,6 +1149,18 @@ function charts() {
     }).join('');
     return { k, t, by, html: `<div class="lab">${esc(t.label)}${P ? `<small>${esc(ids.map(id => SVC[id][0]).join(', '))}</small>` : ''}</div><div class="stack" role="img" aria-label="${esc(label)}: ${LV.map(([lv, lab]) => `${by[lv].length} ${lab.toLowerCase()}`).join(', ')}">${segs}</div>` };
   });
+  // 1b. The same split weighted by speakers: how many people each technology reaches
+  const spk = ls => ls.reduce((n, l) => n + (l.speakers || 0), 0), SP = spk(langs) || 1;
+  const pctS = v => { const p = v / SP * 100; return p > 0 && p < 1 ? '<1%' : Math.round(p) + '%'; };
+  const rowsS = rows.map(r => {
+    const segs = LV.filter(([lv]) => spk(r.by[lv])).map(([lv, lab]) => {
+      const n = spk(r.by[lv]);
+      return `<div class="seg ${lv}" tabindex="0" style="flex:${n}" data-tip="<b>${esc(r.t.label)}: ${esc(lab)}</b><br>${people(n)} speakers (${pctS(n)}) in ${r.by[lv].length.toLocaleString()} ${r.by[lv].length === 1 ? 'language' : 'languages'}: ${names(r.by[lv])}">${n / SP >= 0.08 ? people(n) : ''}</div>`;
+    }).join('');
+    return `<div class="lab">${esc(r.t.label)}</div><div class="stack" role="img" aria-label="${esc(r.t.label)}: ${LV.map(([lv, lab]) => `${people(spk(r.by[lv]))} speakers ${lab.toLowerCase()}`).join(', ')}">${segs}</div>`;
+  }).join('');
+  const tableS = `<div class="tablebox"><table><thead><tr><th>Technology</th>${LV.map(([, lab]) => `<th class="num">${esc(lab)}</th>`).join('')}</tr></thead>
+    <tbody>${rows.map(r => `<tr><td>${esc(r.t.label)}</td>${LV.map(([lv]) => `<td class="num">${people(spk(r.by[lv]))} <span class="pct">(${pctS(spk(r.by[lv]))})</span></td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
   const table1 = `<div class="tablebox"><table><thead><tr><th>Technology</th>${LV.map(([, lab]) => `<th class="num">${esc(lab)}</th>`).join('')}</tr></thead>
     <tbody>${rows.map(r => `<tr><td>${esc(r.t.label)}</td>${LV.map(([lv]) => `<td class="num" title="${names(r.by[lv])}">${r.by[lv].length}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 
@@ -1237,6 +1249,13 @@ function charts() {
       ${absent.length ? `<p class="note">No ${esc(pn)} service tracked for: ${esc(absent.join(', '))}.</p>` : ''}
 
       <details class="tbl"><summary>Show as a table</summary>${table1}</details>
+    </section>
+    <section class="chart">
+      <h3>How many speakers each technology reaches today</h3>
+      <p class="sub">The same split, with each language counted by its speakers: ${people(SP)} in all, added up per language, so people who speak several languages are counted in each. Compare with the chart above: a few large languages reach most people, while most languages are small.</p>
+      <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
+      <div class="covrows">${rowsS}</div>
+      <details class="tbl"><summary>Show as a table</summary>${tableS}</details>
     </section>
     ${P && !Object.keys(H ? H.series : {}).some(k => SERIES_PROV[k] === provider) ? '' : `<section class="chart">
       <h3>How support has grown since 2019</h3>
