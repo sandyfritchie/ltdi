@@ -98,7 +98,7 @@ input[type=search] { width: 220px; max-width: 100%; }
 input.pick { width: 22em; max-width: 100%; }  /* room for long names with their code */
 
 /* Totals band above the ranking */
-.rsum { display: grid; grid-template-columns: auto minmax(220px, 1fr) auto; gap: 14px 28px; align-items: start;
+.rsum { display: grid; grid-template-columns: auto minmax(260px, 1fr) auto; gap: 14px 28px; align-items: start;
   background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 18px; margin: 4px 0 14px; }
 .rsum .eyebrow { margin-bottom: 6px; }
 .rsum-totals { display: grid; grid-template-columns: 4.6em 5.6em 5.6em; column-gap: 20px; justify-content: start; }  /* fixed, so typing a search doesn't shift them */
@@ -110,7 +110,9 @@ input.pick { width: 22em; max-width: 100%; }  /* room for long names with their 
 .tbar i { display: block; height: 100%; }
 .tbar-key { display: flex; flex-wrap: wrap; gap: 2px 8px; font-size: 11.5px; color: var(--muted); margin-top: 6px; }
 .tbar-key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
-.rgaps { display: grid; grid-template-columns: 5em 5.4em 6em 5.4em 4.4em; gap: 4px 10px; justify-content: start; }
+.rgaps { display: grid; grid-template-columns: repeat(3, 6.6em); gap: 0 14px; justify-content: start; }
+.rgcol { display: grid; gap: 6px; align-content: start; }
+.rgk { font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
 .rgap { justify-content: start; }
 .rgap { display: grid; grid-template-columns: auto auto; align-items: center; column-gap: 5px; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rgap small { grid-column: 1 / -1; font-size: 11px; color: var(--muted); }
@@ -118,8 +120,8 @@ input.pick { width: 22em; max-width: 100%; }  /* room for long names with their 
 .rsum-note { grid-column: 1 / -1; width: 0; min-width: 100%; margin: 8px 0 0; font-size: 12px; line-height: 1.35; color: var(--muted); }  /* wraps to the numbers' width */
 .rsum-wrap { container-type: inline-size; }
 /* lay out by the panel's own width: three columns when they fit, then two, then one */
-@container (max-width: 1070px) { .rsum { grid-template-columns: auto minmax(220px, 1fr); } .rsum-gaps { grid-column: 1 / -1; } }
-@container (max-width: 560px) { .rsum { grid-template-columns: 1fr; } .rsum-totals, .rgaps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; } }
+@container (max-width: 960px) { .rsum { grid-template-columns: auto minmax(220px, 1fr); } .rsum-gaps { grid-column: 1 / -1; } }
+@container (max-width: 660px) { .rsum { grid-template-columns: 1fr; } .rsum-totals, .rgaps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; } }
 @media (max-width: 640px) { .rsum { padding: 12px 14px; } .rsum-totals b { font-size: 20px; } }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
@@ -626,7 +628,8 @@ function gapsCell(l) {
 // several are counted in each), the share of languages and of speakers in each tier, and the
 // speakers whose language has no commercial service for each main technology
 const pctBand = r => r >= 0.75 ? 4 : r >= 0.5 ? 3 : r >= 0.25 ? 2 : 1;  // share online, for colour
-const GAP_SHORT = { speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs', keyboard: 'Keyboard' };
+const GAP_SHORT = { speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs', keyboard: 'Keyboard', assistant: 'Voice assistant' };
+const GAP_GROUPS = [['Text', ['keyboard', 'mt']], ['Speech', ['speech_input', 'tts']], ['AI', ['llm', 'assistant']]];
 function rankSummary(ls) {
   const sum = f => ls.reduce((n, l) => n + (f(l) || 0), 0);
   const sp = sum(l => l.speakers), on = sum(l => l.online);
@@ -639,11 +642,15 @@ function rankSummary(ls) {
       const v = pct(by[t][key], total);
       return v ? `<i style="width:${v}%;background:var(${TIERC[t]})" title="${label[t]}: ${fmtPct(v)} of ${key === 'n' ? 'languages' : 'speakers'}\n${by[t].n.toLocaleString()} ${by[t].n === 1 ? 'language' : 'languages'} with ${people(by[t].sp)} speakers"></i>` : '';
     }).join('')}</div><span class="tbar-v">${fmtPct(pct(by.l[key], total))} low</span></div>`;
-  const gaps = MAIN_TECH.map(k => {
-    const t = CFG.tech.technologies[k], n = sum(l => l.gaps[k] === 'none' ? l.speakers : 0);
+  // Grouped by kind, two technologies each: no commercial service at all (as in the Gaps column for
+  // the main five; voice assistants, which that column leaves out, by their coverage level)
+  const none = (l, k) => MAIN_TECH.includes(k) ? l.gaps[k] === 'none' : l.levels[k] === 'none';
+  const gapItem = k => {
+    const t = CFG.tech.technologies[k], n = sum(l => none(l, k) ? l.speakers : 0);
     return `<span class="rgap" title="Speakers whose language has no commercial ${esc(t.label.toLowerCase())} service">
       <span class="gap-i none">${TICON[k]}</span><b>${people(n)}</b><small>${esc(GAP_SHORT[k] || t.label)}</small></span>`;
-  }).join('');
+  };
+  const gaps = GAP_GROUPS.map(([g, ks]) => `<div class="rgcol"><div class="rgk">${g}</div>${ks.map(gapItem).join('')}</div>`).join('');
   return `
     <div class="rsum-totals">
       <div><div class="eyebrow">Languages</div><b>${ls.length.toLocaleString()}</b></div>
