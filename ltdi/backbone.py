@@ -183,6 +183,17 @@ def apply_overrides(lang: dict, row: dict, locales: dict[str, dict]) -> None:
         lang["autonym"] = row["autonym"]
 
 
+def add_wikipedia_count(lang: dict, row: dict) -> None:
+    """A speaker count from Wikipedia (ltdi.wikipedia_speakers) where LinguaMeta has none. With one
+    country it is that country's count; with several, reach is weighted by population instead."""
+    lang["speakers"] = int(row["speakers"])
+    if len(lang["countries"]) == 1:
+        lang["countries"][0]["speakers"] = lang["speakers"]
+    when = f", {row['date']}" if row["date"] else ""
+    src = f"Speaker count from Wikipedia's {row['article']} article ({lang['speakers']:,}{when}), as LinguaMeta has none."
+    lang["note"] = f"{lang['note']} {src}".strip()
+
+
 def records() -> dict[str, dict]:
     from .geo import linguameta_dir
     out = {}
@@ -199,6 +210,10 @@ def main() -> None:
     COUNTRY.update(country_names())
     SCRIPT.update(script_names())
     recs, over, macros = records(), overrides(), macrolanguages()
+    wiki = {}
+    if (DATA / "wikipedia_speakers.csv").exists():
+        with (DATA / "wikipedia_speakers.csv").open(encoding="utf-8") as f:
+            wiki = {r["code"]: r for r in csv.DictReader(f)}
     langs = []
     for code in scope(recs):
         lang = load_language(code, locales, recs[code])
@@ -206,6 +221,8 @@ def main() -> None:
         lang["name"] = row.get("name") or lang["name"] or code
         lang["note"] = row.get("note") or macros.get(code, {}).get("note") or ""
         apply_overrides(lang, row, locales)
+        if not lang["speakers"] and row.get("speakers") != "-" and code in wiki:
+            add_wikipedia_count(lang, wiki[code])
         langs.append(lang)
     DATA.mkdir(exist_ok=True)
     (DATA / "languages.json").write_text(json.dumps(langs, ensure_ascii=False, indent=1), encoding="utf-8")

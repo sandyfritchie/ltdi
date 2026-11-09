@@ -21,6 +21,7 @@ open speech datasets, the Hugging Face Hub and public benchmarks.
 ## Pipeline
 
 ```
+python -m ltdi.wikipedia_speakers   # speaker counts from Wikipedia infoboxes where LinguaMeta has none
 python -m ltdi.backbone        # every LinguaMeta language (macrolanguage rules in config/macrolanguages.csv)
 python -m ltdi.collectors      # every collector -> data/records/*.csv (git, plus the sites each one names)
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
@@ -206,7 +207,8 @@ the coalition workstream it fits.
 - Hub dataset counts depend on how authors tag their datasets.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand, for the original 25.
-- LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900. Without a script the
+- LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's
+  infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). Without a script the
   writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
 - Most massively multilingual datasets on the Hub tag hundreds of languages each, so almost every language has a few.
 - Wikipedia article counts include bot-generated stubs: Urdu (708K) outranks Hindi (172K).
