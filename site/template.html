@@ -103,6 +103,8 @@ table.ranktab { table-layout: fixed; }
 .ranktab .c-name .lname, .ranktab .c-name .auto { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ranktab .bars { min-width: 0; }  /* the Dimensions column takes the width left over */
 @media (max-width: 1000px) { .hide-md { display: none; } .ranktab .c-name { width: 12em; } }
+@media (max-width: 900px) { .hide-tab { display: none; } }  /* the score already gives the tier */
+@media (max-width: 780px) { .ranktab .c-name { width: 9.5em; } .ranktab .c-spk { width: 5.8em; } .ranktab .c-gaps { width: 6.5em; } .ranktab .c-rank { width: 3.5em; } }
 .rank { font: 700 18px var(--font-display); font-stretch: 80%; color: var(--muted); width: 2.5em; }
 .lname { font-weight: 600; }
 .auto { color: var(--muted); font-size: 14px; }
@@ -536,6 +538,7 @@ let query = '', rankAll = false, sortBy = 'rank', sortDir = 1;
 const GAP_WEIGHT = { none: 2, open: 1 };
 const SORTS = {
   rank: ['#', l => l.rank, 1], name: ['Language', l => l.name.toLowerCase(), 1], speakers: ['Speakers', l => l.speakers || 0, -1],
+  online: ['Online', l => l.online || 0, -1],
   region: ['Region', l => REGION_ORDER.indexOf(l.region) * 1e4 + l.rank, 1],
   ltdi: ['LTDI', l => l.ltdi, -1], tier: ['Tier', l => l.ltdi, -1],
   gaps: ['Gaps', l => Object.values(l.gaps).reduce((n, g) => n + GAP_WEIGHT[g], 0) * 1e4 + l.rank, -1],
@@ -547,9 +550,9 @@ function sortBtn(key, inner = SORTS[key][0]) {
 function rankHead() {
   const aria = k => sortBy === k ? ` aria-sort="${(sortDir === SORTS[k][2]) === (SORTS[k][2] > 0) ? 'ascending' : 'descending'}"` : '';
   return `<th class="c-rank"${aria('rank')}>${sortBtn('rank')}</th><th class="c-name"${aria('name')}>${sortBtn('name')}</th>
-    <th class="num hide-sm c-spk"${aria('speakers')}>${sortBtn('speakers')}</th><th class="hide-sm hide-md c-reg"${aria('region')}>${sortBtn('region')}</th>
+    <th class="num hide-sm c-spk"${aria('speakers')}>${sortBtn('speakers')}</th><th class="num hide-sm c-spk" title="Estimated speakers online today"${aria('online')}>${sortBtn('online')}</th><th class="hide-sm hide-md c-reg"${aria('region')}>${sortBtn('region')}</th>
     <th class="c-dim">Dimensions</th>
-    <th class="num c-ltdi"${aria('ltdi')}>${sortBtn('ltdi')}</th><th class="c-tier hide-sm"${aria('tier')}>${sortBtn('tier')}</th>
+    <th class="num c-ltdi"${aria('ltdi')}>${sortBtn('ltdi')}</th><th class="c-tier hide-sm hide-tab"${aria('tier')}>${sortBtn('tier')}</th>
     <th class="hide-sm c-gaps" title="Main technologies no commercial service offers"${aria('gaps')}>${sortBtn('gaps')}</th>`;
 }
 const RANK_PAGE = 100;  // rows shown before "Show all"; searching shows every match
@@ -598,11 +601,12 @@ function ranking() {
         <td class="rank">${l.rank}</td>
         <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">${l.code}</span></div></td>
         <td class="num hide-sm">${people(l.speakers)}</td>
+        <td class="num hide-sm">${people(l.online)}</td>
         <td class="hide-sm hide-md">${esc(l.region || '')}</td>
         <td><div class="bars" aria-label="Writing ${l.dimensions.writing.score}, data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
           ${DIMS.map(([k, , c]) => bar(l.dimensions[k].score, c)).join('')}</div></td>
         <td class="num score">${l.ltdi.toFixed(3)}</td>
-        <td class="hide-sm">${tierChip(l.ltdi)}</td>
+        <td class="hide-sm hide-tab">${tierChip(l.ltdi)}</td>
         <td class="hide-sm">${gapsCell(l)}</td>
       </tr>`).join('') || `<tr><td colspan="8">No language matches “${esc(query)}”.</td></tr>`;
   };

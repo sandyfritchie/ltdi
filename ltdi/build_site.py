@@ -81,6 +81,8 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             "levels": "".join(l["levels"][t][0] for t in techs),  # f(ull) p(art) o(pen) n(one), in config order
             "offers": [svc_index[i] for i in l["offers"]],
             "opportunity_count": len(opps),
+            "online": round(l["speakers"] * reach["value"]) if l.get("speakers") and (
+                reach := scores["facts"].get(l["code"], {}).get("reach_voice_share")) else None,
         })
     top.sort(key=lambda o: (-o["priority_5y"], o["lang"], o["key"]))
     # A fact most languages share (usually "not offered") is sent once; each language lists only its own
