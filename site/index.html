@@ -35139,7 +35139,7 @@ function charts() {
     const P = H.periods, W = 300, Ht = 150, L = 30, R = 34, T = 12, B = 26;
     const x = i => L + i * (W - L - R) / (P.length - 1), y = v => T + (Ht - T - B) * (1 - v / Math.max(N, 1));
     const yearTicks = P.map((p, i) => [p, i]).filter(([p]) => p.endsWith('-12') && ['2019', '2022', '2025'].includes(p.slice(0, 4)));
-    const series = Object.entries(H.series).filter(([key]) => !P || SERIES_PROV[key] === provider);
+    const series = Object.entries(H.series).filter(([key]) => provider === 'All' || SERIES_PROV[key] === provider);  // P is the periods here
     multiples = series.map(([key, label]) => {
       const vals = P.map(p => { const vs = langs.map(l => (H.values[key] || {})[l.code]?.[p]); return vs.every(v => v == null) ? null : vs.filter(v => v === 1).length; });
       const pts = vals.map((v, i) => v == null ? null : [x(i), y(v), v, i]).filter(Boolean);
@@ -35170,7 +35170,7 @@ function charts() {
       : `<p class="note">No history collected yet for ${esc(pn)}'s services. History so far comes from DeepL's docs, Meta's NLLB-200 and Belebele, OpenAI's Whisper, Common Voice and CLDR.</p>`;
   }
   const table2 = H ? `<div class="tablebox"><table><thead><tr><th>Kind of support</th>${H.periods.filter(p => p.endsWith('-12')).map(p => `<th class="num">${p.slice(0, 4)}</th>`).join('')}</tr></thead>
-    <tbody>${Object.entries(H.series).filter(([k]) => !P || SERIES_PROV[k] === provider).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.filter(p => p.endsWith('-12')).map(p => { const vs = langs.map(l => (H.values[k] || {})[l.code]?.[p]); return `<td class="num">${vs.every(v => v == null) ? '—' : vs.filter(v => v === 1).length}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
+    <tbody>${Object.entries(H.series).filter(([k]) => provider === 'All' || SERIES_PROV[k] === provider).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.filter(p => p.endsWith('-12')).map(p => { const vs = langs.map(l => (H.values[k] || {})[l.code]?.[p]); return `<td class="num">${vs.every(v => v == null) ? '—' : vs.filter(v => v === 1).length}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
 
   // 3. LTDI by region: dot strip
   const regs = REGIONS.filter(r => region === 'All' || r === region);
