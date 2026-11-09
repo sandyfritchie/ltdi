@@ -73,6 +73,20 @@ h1 a.home:hover { text-decoration: underline; text-decoration-thickness: 2px; te
 .formula b { font-weight: 500; }
 .w { color: var(--writing); } .d { color: var(--data); } .t { color: var(--tech); }
 
+/* Multi-select drop-down (tiers) */
+.msel { position: relative; }
+.msel summary { list-style: none; cursor: pointer; font: 15px var(--font-body); padding: 7px 30px 7px 10px; border: 1px solid var(--rule);
+  border-radius: 6px; background: var(--surface); color: var(--ink); min-width: 9em; white-space: nowrap; position: relative; }
+.msel summary::-webkit-details-marker { display: none; }
+.msel summary::after { content: ""; position: absolute; right: 11px; top: 50%; width: 6px; height: 6px; margin-top: -5px;
+  border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(45deg); }
+.msel-pop { position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; min-width: 100%; background: var(--surface);
+  border: 1px solid var(--rule); border-radius: 8px; padding: 6px; box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+.msel-pop label { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 5px; cursor: pointer; font-size: 14px; white-space: nowrap; }
+.msel-pop label:hover { background: var(--bg); }
+.msel-pop label i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.msel-clear { display: block; width: 100%; margin-top: 4px; padding: 6px 8px; font: 13px var(--font-body); color: var(--accent, var(--muted));
+  background: none; border: 0; border-top: 1px solid var(--rule); text-align: left; cursor: pointer; }
 .controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-block: 20px 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip { font: 600 13px/1 var(--font-body); border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
@@ -564,6 +578,17 @@ async function oppDetail(id) {
 
 // ---------------------------------------------------------------- ranking
 let query = '', rankAll = false, sortBy = 'rank', sortDir = 1;
+const tierSel = new Set();  // tiers shown in the ranking; empty means all
+const TIER_KEYS = [['vh', 'Very high'], ['h', 'High'], ['m', 'Medium'], ['l', 'Low']];
+// A drop-down of tick boxes, so several tiers can be chosen at once (Medium and Low, say)
+function tierPicker() {
+  const label = !tierSel.size || tierSel.size === 4 ? 'All tiers'
+    : TIER_KEYS.filter(([k]) => tierSel.has(k)).map(([, t]) => t).join(', ');
+  return `<details class="msel" id="tiersel"><summary aria-label="Tiers">${esc(label)}</summary><div class="msel-pop">
+    ${TIER_KEYS.map(([k, t]) => `<label><input type="checkbox" value="${k}"${tierSel.has(k) ? ' checked' : ''}>
+      <i style="background:var(${TIERC[k]})"></i>${t}</label>`).join('')}
+    ${tierSel.size ? '<button type="button" class="msel-clear">Show all tiers</button>' : ''}</div></details>`;
+}
 // Sortable columns: [key, label, value for sorting, natural direction (1 = ascending first)]
 const GAP_WEIGHT = { none: 2, open: 1 };
 const SORTS = {
@@ -649,6 +674,7 @@ function ranking() {
   $('#view').innerHTML = `
     <div class="controls">
       ${regionSelect('rsel')}
+      <span id="tierwrap">${tierPicker()}</span>
       <input type="search" id="q" placeholder="Find a language, name or code" value="${esc(query)}" aria-label="Find a language">
     </div>
     <div class="rsum-wrap"><div id="rsum" class="rsum" aria-live="polite"></div></div>
@@ -668,7 +694,7 @@ function ranking() {
     <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the five main technologies (keyboard, speech input, text-to-speech, translation, LLMs) no commercial service offers; hover an icon for details. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
-    const all = LANGS.filter(l => inRegion(l) && (!q || matches(l, q)));
+    const all = LANGS.filter(l => inRegion(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0])) && (!q || matches(l, q)));
     const [, val, natural] = SORTS[sortBy], dir = sortDir;
     all.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : a.rank - b.rank) * dir; });
     $('#rsum').innerHTML = rankSummary(all);
@@ -693,6 +719,20 @@ function ranking() {
   draw();
   $('#rsel').onchange = e => { region = e.target.value; ranking(); };
   $('#q').oninput = e => { query = e.target.value; draw(); };
+  const wireTiers = () => {
+    const d = $('#tiersel');
+    d.onchange = e => {
+      if (e.target.checked) tierSel.add(e.target.value); else tierSel.delete(e.target.value);
+      if (tierSel.size === 4) tierSel.clear();
+      $('#tierwrap').innerHTML = tierPicker(); $('#tiersel').open = true; wireTiers(); draw();
+    };
+    d.onclick = e => { if (e.target.closest('.msel-clear')) { tierSel.clear(); $('#tierwrap').innerHTML = tierPicker(); wireTiers(); draw(); } };
+  };
+  wireTiers();
+  if (!ranking.closer) {  // once: a click elsewhere closes the tier drop-down
+    ranking.closer = e => { const d = $('#tiersel'); if (d && d.open && !d.contains(e.target)) d.open = false; };
+    document.addEventListener('click', ranking.closer);
+  }
   $('#rows').onclick = e => { const tr = e.target.closest('tr[data-code]'); if (tr) location.hash = 'lang-' + tr.dataset.code; };
   $('#rankhead').onclick = e => {
     const b = e.target.closest('[data-sort]'); if (!b) return;
