@@ -39,8 +39,16 @@ class Record:
 
 
 def write_records(path: Path, records: Iterable[Record]) -> int:
+    """Write records, folding plain zero rows (value 0, no note: "not offered", "no hours") into one row per
+    indicator with language "*": every language without a row of its own has value 0."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    rows = [dataclasses.asdict(r) for r in records]
+    rows, folded = [], {}
+    for r in records:
+        if not r.value and not r.note:
+            folded.setdefault(r.indicator, dataclasses.replace(r, language="*"))
+        else:
+            rows.append(dataclasses.asdict(r))
+    rows += [dataclasses.asdict(r) for r in folded.values()]
     rows.sort(key=lambda r: (r["indicator"], r["language"]))
     with path.open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS)
@@ -49,12 +57,15 @@ def write_records(path: Path, records: Iterable[Record]) -> int:
     return len(rows)
 
 
-def read_records(path: Path) -> list[Record]:
+def read_records(path: Path, languages: Iterable[str] | None = None) -> list[Record]:
+    """Records from a CSV; a "*" row gives its value to every language in `languages` without its own row."""
     with path.open(newline="", encoding="utf-8") as f:
-        return [
-            Record(**{**row, "value": float(row["value"])})
-            for row in csv.DictReader(f)
-        ]
+        rows = [Record(**{**row, "value": float(row["value"])}) for row in csv.DictReader(f)]
+    out = [r for r in rows if r.language != "*"]
+    have = {(r.language, r.indicator) for r in out}
+    for d in (r for r in rows if r.language == "*"):
+        out += [dataclasses.replace(d, language=l) for l in languages or [] if (l, d.indicator) not in have]
+    return out
 
 
 LIST_FIELDS = ["indicator", "unit", "source", "url", "retrieved", "absent", "values", "notes"]
@@ -117,5 +128,5 @@ def read_dir(directory: Path, languages: Iterable[str] | None = None) -> list[Re
         if p.name.endswith(".lists.csv"):
             out.extend(read_lists(p, languages or []))
         else:
-            out.extend(read_records(p))
+            out.extend(read_records(p, languages))
     return out

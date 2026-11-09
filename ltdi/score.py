@@ -176,7 +176,7 @@ def main() -> None:
     cfg = load_config()
     langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
     codes = [l["code"] for l in langs]
-    records = read_dir(DATA / "records") + read_dir(DATA / "manual", codes)
+    records = read_dir(DATA / "records", codes) + read_dir(DATA / "manual", codes)
     by_lang: dict[str, dict[str, Record]] = defaultdict(dict)
     for r in records:
         by_lang[r.language][r.indicator] = r

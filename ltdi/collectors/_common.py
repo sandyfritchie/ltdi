@@ -40,3 +40,9 @@ def git_files(url: str, pattern: str) -> dict[str, str]:
         subprocess.run(["git", "-C", str(repo), "sparse-checkout", "set", "--no-cone", pattern], check=True)
     return {str(p.relative_to(repo)): p.read_text(encoding="utf-8", errors="replace")
             for p in repo.rglob("*") if p.is_file() and ".git" not in p.parts}
+
+
+def presence(indicator: str, have: set[str], source: str, url: str, notes: dict[str, str] | None = None) -> list:
+    """One yes/no record per LTDI language: 1 if the source lists it (write_records folds the zeros)."""
+    from ..records import Record
+    return [Record(c, indicator, int(c in have), "bool", source, url, note=(notes or {}).get(c, "")) for c in ltdi_codes()]

@@ -16,7 +16,7 @@ import re
 from ..records import Record
 from ..http import fetch_text
 from . import present
-from ._common import ltdi_codes
+from ._common import presence
 
 ASR = "https://dl.fbaipublicfiles.com/mms/asr/mms1b_all_langs.html"
 TTS = "https://dl.fbaipublicfiles.com/mms/tts/all-tts-languages.html"
@@ -29,9 +29,4 @@ def codes(url: str) -> set[str]:
 
 
 def collect() -> list[Record]:
-    asr, tts = codes(ASR), codes(TTS)
-    out = []
-    for code in ltdi_codes():
-        out.append(Record(code, "asr_open_mms", 1 if code in asr else 0, "bool", "Meta MMS-1B-all", ASR))
-        out.append(Record(code, "tts_open_mms", 1 if code in tts else 0, "bool", "Meta MMS-TTS", TTS))
-    return out
+    return presence("asr_open_mms", codes(ASR), "Meta MMS-1B-all", ASR) + presence("tts_open_mms", codes(TTS), "Meta MMS-TTS", TTS)

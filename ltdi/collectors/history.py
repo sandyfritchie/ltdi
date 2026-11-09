@@ -21,7 +21,7 @@ from pathlib import Path
 
 from .. import CACHE, DATA
 from ..crosswalk import to_ltdi
-from ..http import fetch_json, fetch_text
+from ..http import fetch_json
 from ._common import ltdi_codes
 
 PERIODS = [f"{y}-{m}" for y in range(2019, 2027) for m in ("06", "12")]
@@ -112,8 +112,7 @@ def deepl() -> list[tuple[str, set[str]]]:
 
 
 def collect():
-    from ..records import Record  # noqa: F401  (history isn't per-language records; see main)
-    return []
+    return []  # history isn't per-language records; see main
 
 
 def _end(period: str) -> str:

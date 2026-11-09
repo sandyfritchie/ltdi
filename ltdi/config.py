@@ -16,14 +16,11 @@ def services() -> tuple[dict, ...]:
         return tuple(csv.DictReader(f))
 
 
-def services() -> list[dict]:
-    with (CONFIG / "services.csv").open(encoding="utf-8") as f:
-        return list(csv.DictReader(f))
-
-
+@lru_cache
 def load_config() -> dict:
     """methodology.toml, with each technology's services filled in from services.csv:
-    consumer, open and measured lists, depth specs, and which service each depth describes."""
+    consumer, open and measured lists, depth specs, and which service each depth describes.
+    Cached: treat the result as read-only."""
     with (CONFIG / "methodology.toml").open("rb") as f:
         cfg = tomllib.load(f)
     techs = cfg["dimensions"]["tech"]["technologies"]

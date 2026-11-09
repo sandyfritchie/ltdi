@@ -1,51 +1,51 @@
 language,indicator,value,unit,source,url,retrieved,method,note
-am,wikipedia_active_editors,59,editors,Wikipedia,https://am.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-ar,wikipedia_active_editors,5491,editors,Wikipedia,https://ar.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-bn,wikipedia_active_editors,1735,editors,Wikipedia,https://bn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-cmn,wikipedia_active_editors,13286,editors,Wikipedia,https://zh.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-cy,wikipedia_active_editors,141,editors,Wikipedia,https://cy.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-en,wikipedia_active_editors,265650,editors,Wikipedia,https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-es,wikipedia_active_editors,38823,editors,Wikipedia,https://es.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-fr,wikipedia_active_editors,36332,editors,Wikipedia,https://fr.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-gn,wikipedia_active_editors,28,editors,Wikipedia,https://gn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-ha,wikipedia_active_editors,304,editors,Wikipedia,https://ha.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-hi,wikipedia_active_editors,869,editors,Wikipedia,https://hi.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-id,wikipedia_active_editors,4773,editors,Wikipedia,https://id.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-ig,wikipedia_active_editors,97,editors,Wikipedia,https://ig.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-is,wikipedia_active_editors,255,editors,Wikipedia,https://is.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-ja,wikipedia_active_editors,23160,editors,Wikipedia,https://ja.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-om,wikipedia_active_editors,28,editors,Wikipedia,https://om.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-pa,wikipedia_active_editors,199,editors,Wikipedia,https://pa.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json https://pnb.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-pt,wikipedia_active_editors,7408,editors,Wikipedia,https://pt.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-qu,wikipedia_active_editors,64,editors,Wikipedia,https://qu.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-ru,wikipedia_active_editors,17314,editors,Wikipedia,https://ru.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-rw,wikipedia_active_editors,67,editors,Wikipedia,https://rw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-sw,wikipedia_active_editors,206,editors,Wikipedia,https://sw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-ta,wikipedia_active_editors,431,editors,Wikipedia,https://ta.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-ur,wikipedia_active_editors,404,editors,Wikipedia,https://ur.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-yo,wikipedia_active_editors,75,editors,Wikipedia,https://yo.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
-am,wikipedia_articles,15736,articles,Wikipedia,https://am.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-ar,wikipedia_articles,1339240,articles,Wikipedia,https://ar.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-bn,wikipedia_articles,192440,articles,Wikipedia,https://bn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-cmn,wikipedia_articles,1565033,articles,Wikipedia,https://zh.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-cy,wikipedia_articles,284858,articles,Wikipedia,https://cy.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-en,wikipedia_articles,7260928,articles,Wikipedia,https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-es,wikipedia_articles,2148546,articles,Wikipedia,https://es.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-fr,wikipedia_articles,2788659,articles,Wikipedia,https://fr.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-gn,wikipedia_articles,6038,articles,Wikipedia,https://gn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-ha,wikipedia_articles,121663,articles,Wikipedia,https://ha.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-hi,wikipedia_articles,172322,articles,Wikipedia,https://hi.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-id,wikipedia_articles,803962,articles,Wikipedia,https://id.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-ig,wikipedia_articles,49280,articles,Wikipedia,https://ig.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-is,wikipedia_articles,60614,articles,Wikipedia,https://is.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-ja,wikipedia_articles,1526667,articles,Wikipedia,https://ja.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-om,wikipedia_articles,1970,articles,Wikipedia,https://om.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-pa,wikipedia_articles,135558,articles,Wikipedia,https://pa.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json https://pnb.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-pt,wikipedia_articles,1188101,articles,Wikipedia,https://pt.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-qu,wikipedia_articles,24674,articles,Wikipedia,https://qu.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-ru,wikipedia_articles,2127710,articles,Wikipedia,https://ru.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-rw,wikipedia_articles,10797,articles,Wikipedia,https://rw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-sw,wikipedia_articles,133074,articles,Wikipedia,https://sw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-ta,wikipedia_articles,191872,articles,Wikipedia,https://ta.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-ur,wikipedia_articles,708135,articles,Wikipedia,https://ur.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
-yo,wikipedia_articles,41392,articles,Wikipedia,https://yo.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+am,wikipedia_active_editors,59.0,editors,Wikipedia,https://am.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+ar,wikipedia_active_editors,5491.0,editors,Wikipedia,https://ar.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+bn,wikipedia_active_editors,1735.0,editors,Wikipedia,https://bn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+cmn,wikipedia_active_editors,13286.0,editors,Wikipedia,https://zh.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+cy,wikipedia_active_editors,141.0,editors,Wikipedia,https://cy.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+en,wikipedia_active_editors,265650.0,editors,Wikipedia,https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+es,wikipedia_active_editors,38823.0,editors,Wikipedia,https://es.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+fr,wikipedia_active_editors,36332.0,editors,Wikipedia,https://fr.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+gn,wikipedia_active_editors,28.0,editors,Wikipedia,https://gn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+ha,wikipedia_active_editors,304.0,editors,Wikipedia,https://ha.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+hi,wikipedia_active_editors,869.0,editors,Wikipedia,https://hi.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+id,wikipedia_active_editors,4773.0,editors,Wikipedia,https://id.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+ig,wikipedia_active_editors,97.0,editors,Wikipedia,https://ig.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+is,wikipedia_active_editors,255.0,editors,Wikipedia,https://is.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+ja,wikipedia_active_editors,23160.0,editors,Wikipedia,https://ja.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+om,wikipedia_active_editors,28.0,editors,Wikipedia,https://om.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+pa,wikipedia_active_editors,199.0,editors,Wikipedia,https://pa.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json https://pnb.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+pt,wikipedia_active_editors,7408.0,editors,Wikipedia,https://pt.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+qu,wikipedia_active_editors,64.0,editors,Wikipedia,https://qu.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+ru,wikipedia_active_editors,17314.0,editors,Wikipedia,https://ru.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+rw,wikipedia_active_editors,67.0,editors,Wikipedia,https://rw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+sw,wikipedia_active_editors,206.0,editors,Wikipedia,https://sw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+ta,wikipedia_active_editors,431.0,editors,Wikipedia,https://ta.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+ur,wikipedia_active_editors,404.0,editors,Wikipedia,https://ur.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+yo,wikipedia_active_editors,75.0,editors,Wikipedia,https://yo.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,Registered users with an edit in the last 30 days
+am,wikipedia_articles,15736.0,articles,Wikipedia,https://am.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+ar,wikipedia_articles,1339240.0,articles,Wikipedia,https://ar.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+bn,wikipedia_articles,192440.0,articles,Wikipedia,https://bn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+cmn,wikipedia_articles,1565033.0,articles,Wikipedia,https://zh.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+cy,wikipedia_articles,284858.0,articles,Wikipedia,https://cy.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+en,wikipedia_articles,7260928.0,articles,Wikipedia,https://en.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+es,wikipedia_articles,2148546.0,articles,Wikipedia,https://es.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+fr,wikipedia_articles,2788659.0,articles,Wikipedia,https://fr.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+gn,wikipedia_articles,6038.0,articles,Wikipedia,https://gn.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+ha,wikipedia_articles,121663.0,articles,Wikipedia,https://ha.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+hi,wikipedia_articles,172322.0,articles,Wikipedia,https://hi.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+id,wikipedia_articles,803962.0,articles,Wikipedia,https://id.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+ig,wikipedia_articles,49280.0,articles,Wikipedia,https://ig.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+is,wikipedia_articles,60614.0,articles,Wikipedia,https://is.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+ja,wikipedia_articles,1526667.0,articles,Wikipedia,https://ja.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+om,wikipedia_articles,1970.0,articles,Wikipedia,https://om.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+pa,wikipedia_articles,135558.0,articles,Wikipedia,https://pa.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json https://pnb.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+pt,wikipedia_articles,1188101.0,articles,Wikipedia,https://pt.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+qu,wikipedia_articles,24674.0,articles,Wikipedia,https://qu.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+ru,wikipedia_articles,2127710.0,articles,Wikipedia,https://ru.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+rw,wikipedia_articles,10797.0,articles,Wikipedia,https://rw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+sw,wikipedia_articles,133074.0,articles,Wikipedia,https://sw.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+ta,wikipedia_articles,191872.0,articles,Wikipedia,https://ta.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+ur,wikipedia_articles,708135.0,articles,Wikipedia,https://ur.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,
+yo,wikipedia_articles,41392.0,articles,Wikipedia,https://yo.wikipedia.org/w/api.php?action=query&meta=siteinfo&siprop=statistics&format=json,2026-11-07,api,

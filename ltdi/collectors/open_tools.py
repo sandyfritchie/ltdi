@@ -18,7 +18,7 @@ import re
 from ..http import fetch_text
 from ..records import Record
 from . import present
-from ._common import git_files, git_tree, ltdi_codes
+from ._common import git_files, git_tree, presence
 
 FIREFOX = "https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales"
 TESSERACT = "https://github.com/tesseract-ocr/tessdata_best"
@@ -62,9 +62,5 @@ def lists() -> dict[str, set[str]]:
 
 def collect() -> list[Record]:
     have = lists()
-    out = []
-    for code in ltdi_codes():
-        for ind in SOURCES:
-            note = f"{KEYBOARDS[code]} keyboard packages" if ind == "kb_open_keyman" and code in KEYBOARDS else ""
-            out.append(Record(code, ind, 1 if code in have[ind] else 0, "bool", *SOURCES[ind], note=note))
-    return out
+    notes = {"kb_open_keyman": {c: f"{n} keyboard packages" for c, n in KEYBOARDS.items()}}
+    return [r for ind in SOURCES for r in presence(ind, have[ind], *SOURCES[ind], notes=notes.get(ind))]

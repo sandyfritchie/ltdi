@@ -11,9 +11,6 @@ Run:  python -m ltdi.collectors opus   (needs opus.nlpl.eu)
 
 from __future__ import annotations
 
-import json
-
-from .. import DATA
 from ..http import fetch_json
 from ..records import Record
 from ._common import ltdi_codes

@@ -24,206 +24,62 @@ sw,open_speech_hours,444.3,hours,Open speech datasets,https://github.com/sandyfr
 ta,open_speech_hours,1732.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Shrutilipi 790, YODAS 405, Common Voice 235, Kathbath 185, IndicVoices 106, FLEURS 12"
 ur,open_speech_hours,795.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 356, Shrutilipi 190, Kathbath 87, Common Voice 80, IndicVoices 71, FLEURS 12"
 yo,open_speech_hours,626.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"NaijaVoices 607, FLEURS 12, Common Voice 6, YODAS 2"
-am,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-ar,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-bn,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-cmn,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-cy,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-en,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-es,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-fr,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-gn,speech_fleurs,0,hours,FLEURS,,2026-11-08,download,
-ha,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-hi,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-id,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-ig,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-is,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-ja,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-om,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-pa,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-pt,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-qu,speech_fleurs,0,hours,FLEURS,,2026-11-08,download,
-ru,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-rw,speech_fleurs,0,hours,FLEURS,,2026-11-08,download,
-sw,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-ta,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-ur,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-yo,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-am,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-ar,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
+*,speech_fleurs,0.0,hours,FLEURS,,2026-11-08,download,
+am,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+ar,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+bn,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+cmn,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+cy,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+en,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+es,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+fr,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+ha,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+hi,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+id,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+ig,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+is,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+ja,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+om,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+pa,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+pt,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+ru,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+sw,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+ta,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+ur,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+yo,speech_fleurs,12.0,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+*,speech_indicvoices,0.0,hours,IndicVoices,,2026-11-08,download,
 bn,speech_indicvoices,106.0,hours,IndicVoices,https://arxiv.org/abs/2403.01926,2026-11-08,download,First benchmark release (train + test + valid); later releases are larger; CC BY 4.0
-cmn,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-cy,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-en,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-es,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-fr,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-gn,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-ha,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
 hi,speech_indicvoices,71.0,hours,IndicVoices,https://arxiv.org/abs/2403.01926,2026-11-08,download,First benchmark release (train + test + valid); later releases are larger; CC BY 4.0
-id,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-ig,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-is,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-ja,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-om,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
 pa,speech_indicvoices,76.4,hours,IndicVoices,https://arxiv.org/abs/2403.01926,2026-11-08,download,First benchmark release (train + test + valid); later releases are larger; CC BY 4.0
-pt,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-qu,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-ru,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-rw,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-sw,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
 ta,speech_indicvoices,106.0,hours,IndicVoices,https://arxiv.org/abs/2403.01926,2026-11-08,download,First benchmark release (train + test + valid); later releases are larger; CC BY 4.0
 ur,speech_indicvoices,71.0,hours,IndicVoices,https://arxiv.org/abs/2403.01926,2026-11-08,download,First benchmark release (train + test + valid); later releases are larger; CC BY 4.0
-yo,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
-am,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-ar,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
+*,speech_kathbath,0.0,hours,Kathbath,,2026-11-08,download,
 bn,speech_kathbath,115.8,hours,Kathbath,https://github.com/AI4Bharat/IndicSUPERB,2026-11-08,download,Read speech; CC BY 4.0
-cmn,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-cy,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-en,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-es,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-fr,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-gn,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-ha,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
 hi,speech_kathbath,150.2,hours,Kathbath,https://github.com/AI4Bharat/IndicSUPERB,2026-11-08,download,Read speech; CC BY 4.0
-id,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-ig,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-is,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-ja,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-om,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
 pa,speech_kathbath,136.9,hours,Kathbath,https://github.com/AI4Bharat/IndicSUPERB,2026-11-08,download,Read speech; CC BY 4.0
-pt,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-qu,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-ru,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-rw,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-sw,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
 ta,speech_kathbath,185.1,hours,Kathbath,https://github.com/AI4Bharat/IndicSUPERB,2026-11-08,download,Read speech; CC BY 4.0
 ur,speech_kathbath,86.7,hours,Kathbath,https://github.com/AI4Bharat/IndicSUPERB,2026-11-08,download,Read speech; CC BY 4.0
-yo,speech_kathbath,0,hours,Kathbath,,2026-11-08,download,
-am,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-ar,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-bn,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-cmn,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-cy,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
+*,speech_multilingual_librispeech,0.0,hours,Multilingual LibriSpeech,,2026-11-08,download,
 en,speech_multilingual_librispeech,44659.7,hours,Multilingual LibriSpeech,https://www.openslr.org/94/,2026-11-08,download,Audiobooks (training hours); CC BY 4.0
 es,speech_multilingual_librispeech,917.7,hours,Multilingual LibriSpeech,https://www.openslr.org/94/,2026-11-08,download,Audiobooks (training hours); CC BY 4.0
 fr,speech_multilingual_librispeech,1076.6,hours,Multilingual LibriSpeech,https://www.openslr.org/94/,2026-11-08,download,Audiobooks (training hours); CC BY 4.0
-gn,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-ha,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-hi,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-id,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-ig,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-is,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-ja,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-om,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-pa,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
 pt,speech_multilingual_librispeech,161.0,hours,Multilingual LibriSpeech,https://www.openslr.org/94/,2026-11-08,download,Audiobooks (training hours); CC BY 4.0
-qu,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-ru,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-rw,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-sw,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-ta,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-ur,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-yo,speech_multilingual_librispeech,0,hours,Multilingual LibriSpeech,,2026-11-08,download,
-am,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-ar,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-bn,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-cmn,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-cy,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-en,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-es,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-fr,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-gn,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
+*,speech_naijavoices,0.0,hours,NaijaVoices,,2026-11-08,download,
 ha,speech_naijavoices,605.3,hours,NaijaVoices,https://arxiv.org/abs/2505.20564,2026-11-08,download,Read speech; non-commercial licence; CC BY-NC-SA 4.0
-hi,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-id,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
 ig,speech_naijavoices,626.3,hours,NaijaVoices,https://arxiv.org/abs/2505.20564,2026-11-08,download,Read speech; non-commercial licence; CC BY-NC-SA 4.0
-is,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-ja,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-om,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-pa,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-pt,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-qu,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-ru,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-rw,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-sw,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-ta,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
-ur,speech_naijavoices,0,hours,NaijaVoices,,2026-11-08,download,
 yo,speech_naijavoices,606.9,hours,NaijaVoices,https://arxiv.org/abs/2505.20564,2026-11-08,download,Read speech; non-commercial licence; CC BY-NC-SA 4.0
-am,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-ar,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
+*,speech_shrutilipi,0.0,hours,Shrutilipi,,2026-11-08,download,
 bn,speech_shrutilipi,440.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,2026-11-08,download,All India Radio news bulletins aligned with transcripts; CC BY 4.0
-cmn,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-cy,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-en,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-es,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-fr,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-gn,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-ha,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
 hi,speech_shrutilipi,1620.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,2026-11-08,download,All India Radio news bulletins aligned with transcripts; CC BY 4.0
-id,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-ig,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-is,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-ja,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-om,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
 pa,speech_shrutilipi,90.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,2026-11-08,download,All India Radio news bulletins aligned with transcripts; CC BY 4.0
-pt,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-qu,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-ru,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-rw,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-sw,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
 ta,speech_shrutilipi,790.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,2026-11-08,download,All India Radio news bulletins aligned with transcripts; CC BY 4.0
 ur,speech_shrutilipi,190.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,2026-11-08,download,All India Radio news bulletins aligned with transcripts; CC BY 4.0
-yo,speech_shrutilipi,0,hours,Shrutilipi,,2026-11-08,download,
-am,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-ar,speech_vaani,0,hours,Vaani,,2026-11-08,download,
+*,speech_vaani,0.0,hours,Vaani,,2026-11-08,download,
 bn,speech_vaani,113.0,hours,Vaani,https://arxiv.org/abs/2603.28714,2026-11-08,download,At least this many transcribed hours (the subset the paper reports); CC BY 4.0
-cmn,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-cy,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-en,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-es,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-fr,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-gn,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-ha,speech_vaani,0,hours,Vaani,,2026-11-08,download,
 hi,speech_vaani,594.0,hours,Vaani,https://arxiv.org/abs/2603.28714,2026-11-08,download,At least this many transcribed hours (the subset the paper reports); about 2; CC BY 4.0
-id,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-ig,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-is,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-ja,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-om,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-pa,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-pt,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-qu,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-ru,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-rw,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-sw,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-ta,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-ur,speech_vaani,0,hours,Vaani,,2026-11-08,download,
-yo,speech_vaani,0,hours,Vaani,,2026-11-08,download,
+*,speech_waxal,0.0,hours,WAXAL,,2026-11-08,download,
 am,speech_waxal,219.9,hours,WAXAL (Google and African universities),https://huggingface.co/datasets/google/WaxalNLP,2026-11-08,download,"Natural speech, CC BY / CC BY-SA"
-ar,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-bn,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-cmn,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-cy,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-en,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-es,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-fr,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-gn,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-ha,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-hi,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-id,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-ig,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-is,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-ja,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
 om,speech_waxal,222.7,hours,WAXAL (Google and African universities),https://huggingface.co/datasets/google/WaxalNLP,2026-11-08,download,"Natural speech, CC BY / CC BY-SA"
-pa,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-pt,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-qu,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-ru,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-rw,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-sw,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-ta,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-ur,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
-yo,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
 am,speech_yodas,92.9,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 ar,speech_yodas,1587.5,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 bn,speech_yodas,927.1,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
