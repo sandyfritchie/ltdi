@@ -116,6 +116,8 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
 /* Language view */
 .back { font: 600 14px var(--font-body); background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; margin-block: 18px 6px; }
 .lhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
+.lhead .lmain { flex: 1 1 360px; min-width: 0; }
+.lhead .lscore { flex: none; align-self: flex-start; text-align: right; }
 .lhead h2 { font: 800 clamp(28px, 4.5vw, 42px)/1.05 var(--font-display); font-stretch: 80%; margin: 0; }
 .big { font: 800 52px/1 var(--font-display); font-stretch: 80%; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
@@ -672,14 +674,14 @@ async function language(code) {
   $('#view').innerHTML = `
     <button class="back" id="back">← All languages</button>
     <div class="lhead">
-      <div><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span></h2>
+      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span></h2>
         <div class="facts"><span><b>${people(l.speakers)}</b> speakers</span><span>Code <b class="code">${l.code}</b> · ISO 639-3 <b class="code">${esc(l.iso_639_3 || '')}</b></span>
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b></span>
         <span id="where">${whereLine(l, false)}</span></div>
         ${reachLine(l)}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
       </div>
-      <div style="text-align:right"><div class="eyebrow">Rank ${l.rank} of ${LANGS.length}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
+      <div class="lscore"><div class="eyebrow">Rank ${l.rank} of ${LANGS.length}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
     </div>
     <div class="cmpbar"><label for="cmpsel">Compare with</label>
       <select id="cmpsel"><option value="">Choose a language</option>${others.map(o => `<option value="${o.code}">${esc(o.name)}</option>`).join('')}</select></div>
