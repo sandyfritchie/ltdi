@@ -26,6 +26,7 @@ python -m ltdi.backbone        # every LinguaMeta language (macrolanguage rules 
 python -m ltdi.collectors      # every collector -> data/records/*.csv (git, plus the sites each one names)
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
+python -m ltdi.areas           # map's tier view: Glottography language areas, projected and simplified
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
 python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
@@ -108,6 +109,15 @@ text recognition, proofing), as set in `[written_standard]` in
 language identification stay the variety's own, so its gaps show where they
 really are. The language page says which language it's written in, and each
 inherited value is noted.
+
+## Map
+
+The charts page's map shows each language as a dot, or, under **Tier areas**, the areas where
+languages are spoken today shaded by tier: Glottography's digitisation of Asher & Moseley's *Atlas of
+the World's Languages* (2007), contemporary version (CC BY 4.0), the same source as the glossodesy
+project in its traditional version. About 2,300 scored languages have an area. Areas overlap, so the
+land shares in the legend count the best-covered language in each place; the basemap's Equal Earth
+projection keeps areas true, so pixel shares are land shares.
 
 ## Charts and regions
 

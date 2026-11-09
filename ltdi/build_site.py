@@ -151,6 +151,8 @@ def main() -> None:
         '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
         + head + '</head>\n<body>\n<div class="wrap">' + body + "\n</body>\n</html>\n"
     )
+    if (DATA / "areas.json").exists():  # language areas for the map's tier view, fetched when asked for
+        shutil.copyfile(DATA / "areas.json", SITE / "data" / "areas.json")
     (SITE / "index.html").write_text(html, encoding="utf-8")
     (SITE / "artifact.html").write_text(page, encoding="utf-8")
     print(f"wrote site/index.html ({len(html.encode()) / 1e6:.2f} MB; index {len(_dump(index).encode()) / 1e6:.2f} MB, "

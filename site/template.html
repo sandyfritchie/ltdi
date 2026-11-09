@@ -298,6 +298,11 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .seg:first-child { border-radius: 4px 0 0 4px; } .seg:last-child { border-radius: 0 4px 4px 0; } .seg:only-child { border-radius: 4px; }
 .seg.full { background: var(--ord-full); color: var(--on-full); } .seg.part { background: var(--ord-part); color: var(--on-part); }
 .seg.open { background: var(--ord-open); color: var(--on-open); } .seg.none { background: var(--ord-none); color: var(--muted); }
+.maphead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.maphead h3 { margin: 0; }
+.mapmode { margin: 0; }
+.areas path { stroke: none; }
+.areas a:hover path, .areas a:focus path { fill-opacity: 0.85; }
 .mapwrap { position: relative; border-radius: 6px; overflow: hidden; touch-action: none; }
 .mapwrap svg { cursor: grab; } .mapwrap svg.dragging { cursor: grabbing; }
 .mapctl { position: absolute; top: 8px; right: 8px; display: grid; gap: 4px; }
@@ -1008,6 +1013,29 @@ const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null'
 const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', l: '--t-l' };
 const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
 let mapR = null;  // base radii for the current render
+// Map view: a dot per language, or the areas where languages are spoken shaded by tier. Areas (Glottography)
+// are a separate file, fetched the first time they're asked for.
+let mapMode = 'dots', AREAS = null, areasLoading = null;
+const loadAreas = () => areasLoading ??= fetch('data/areas.json').then(r => r.json()).then(d => { AREAS = d; });
+// Share of the land drawn where the best-covered language is in each tier: paint the areas, lowest
+// tier first, on a small canvas and count pixels (Equal Earth keeps areas true)
+function tierLandShares(ls, tierKey) {
+  const { width: W, height: H, path } = GEO.basemap, c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  const g = c.getContext('2d', { willReadFrequently: true });
+  if (!g || typeof Path2D === 'undefined') return null;
+  g.fillStyle = 'rgb(1,0,0)'; g.fill(new Path2D(path));
+  const order = ['l', 'm', 'h', 'vh'], code = { l: 2, m: 3, h: 4, vh: 5 };
+  for (const t of order) {
+    g.fillStyle = `rgb(${code[t]},0,0)`;
+    for (const l of ls) if (tierKey(l) === t && AREAS.paths[l.code]) g.fill(new Path2D(AREAS.paths[l.code]));
+  }
+  const px = g.getImageData(0, 0, W, H).data, n = [0, 0, 0, 0, 0, 0];
+  for (let i = 0; i < px.length; i += 4) if (px[i + 3] > 127) n[px[i]]++;
+  // the whole world: shares of all land; one region: shares of the land its languages cover
+  const land = (region === 'All' ? n.slice(1) : n.slice(2)).reduce((a, b) => a + b, 0) || 1;
+  return { vh: n[5] / land, h: n[4] / land, m: n[3] / land, l: n[2] / land, none: region === 'All' ? n[1] / land : null };
+}
 function mapSection() {
   if (!GEO) return '';
   const { width: W, height: Hh, path } = GEO.basemap;
@@ -1033,25 +1061,45 @@ function mapSection() {
   const counts = { vh: 0, h: 0, m: 0, l: 0 };
   LANGS.filter(inRegion).forEach(l => counts[tierKey(l)]++);
   const legendLabels = P ? { vh: '90%+ of its services', h: '60–90%', m: '30–60%', l: 'Under 30%' } : { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
+  const areasOn = mapMode === 'areas' && AREAS;
+  const toggle = `<div class="chips mapmode" role="group" aria-label="Map view">
+      <button class="chip" data-mode="dots" aria-pressed="${mapMode === 'dots'}">Languages</button>
+      <button class="chip" data-mode="areas" aria-pressed="${mapMode === 'areas'}">Tier areas</button></div>`;
+  let layer = dots, legend, sub;
+  if (areasOn) {
+    const inR = LANGS.filter(l => inRegion(l) && AREAS.paths[l.code]);
+    const order = { l: 0, m: 1, h: 2, vh: 3 };
+    layer = `<g class="areas">${[...LANGS].filter(l => AREAS.paths[l.code]).sort((a, b) => order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
+      `<a href="#lang-${l.code}"><path d="${AREAS.paths[l.code]}" fill="var(${TIERC[tierKey(l)]})" fill-opacity="${inRegion(l) ? 0.5 : 0.12}" tabindex="-1" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`).join('')}</g>`;
+    const sh = tierLandShares(inR, tierKey), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}% of land`;
+    legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
+      ${sh && sh.none != null ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
+    sub = `Where each language is spoken today, shaded by its tier, for the ${inR.length.toLocaleString()} languages with an area in the atlas. Areas overlap where languages share ground (Russian across Siberia, English across Australia); the land shares count the best-covered language in each place${region === 'All' ? '' : `, as a share of the land ${esc(region)}'s languages cover`}. Hover for names.`;
+  } else {
+    legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
+      <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>`;
+    sub = `Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length.toLocaleString()} languages scored${bg.length ? `; white dots are the ${bg.length.toLocaleString()} other LinguaMeta entries, which are not scored` : ''}. Hover for names; select a coloured dot for its profile.`;
+  }
   return `<section class="chart">
-    <h3>The world's languages</h3>
-    <p class="sub">Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length.toLocaleString()} languages scored${bg.length ? `; white dots are the ${bg.length.toLocaleString()} other LinguaMeta entries, which are not scored` : ''}. Hover for names; select a coloured dot for its profile.</p>
-    <div class="legend map">
-      ${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
-      <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>
-    </div>
+    <div class="maphead"><h3>The world's languages</h3>${toggle}</div>
+    <p class="sub">${sub}</p>
+    <div class="legend map">${legend}</div>
     <div class="mapwrap"><div class="mapctl">
         <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
       </div><svg id="worldmap" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
       <path d="${path}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      <path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
-      ${dots}
+      ${areasOn ? layer : `<path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
+      ${dots}`}
     </svg></div>
     <p class="maphint">Drag to move · double-click or + to zoom in · Ctrl or ⌘ and scroll to zoom</p>
-    <p class="note">${P ? `Coloured by the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? '; a benchmark counts where it publishes a result' : ''}.` : 'Coloured by LTDI tier: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60.'} Locations from LinguaMeta; map from Natural Earth.</p>
+    <p class="note">${P ? `Coloured by the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? '; a benchmark counts where it publishes a result' : ''}.` : 'Coloured by LTDI tier: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60.'} ${areasOn ? 'Areas from Glottography’s digitisation of Asher &amp; Moseley’s <i>Atlas of the World’s Languages</i> (2007), contemporary version (CC BY 4.0)' : 'Locations from LinguaMeta'}; map from Natural Earth.</p>
   </section>`;
 }
 function bindMap() {
+  document.querySelectorAll('.mapmode [data-mode]').forEach(b => b.onclick = () => {
+    mapMode = b.dataset.mode;
+    if (mapMode === 'areas' && !AREAS) { b.textContent = 'Loading…'; loadAreas().then(route); } else route();
+  });
   const svg = document.getElementById('worldmap');
   if (!svg || !GEO || !svg.getScreenCTM) return;
   const scored = new Set(LANGS.map(l => l.code));
