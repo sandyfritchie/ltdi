@@ -27,10 +27,16 @@ python -m ltdi.collectors mms        # needs dl.fbaipublicfiles.com
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
-python -m ltdi.build_site      # data/scores.json -> site/index.html
+python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
 
 No dependencies beyond the Python 3.11+ standard library.
+
+The page carries an index of every language (scores, coverage, gaps and the top
+opportunities); each language's own detail is in `site/data/lang/<code>.json`,
+loaded when one of its pages opens. While those files are small they are also
+embedded, so `site/index.html` works opened straight from disk; once they grow,
+serve the folder (`python -m http.server -d site`) or use GitHub Pages.
 
 ## Layout
 

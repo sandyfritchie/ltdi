@@ -13,7 +13,7 @@ from collections import defaultdict
 
 from . import DATA
 from .config import load_config, services
-from .opportunities import RULES, TEAMS, TYPES, explain, find, rank, reach_by_country, starter_kit
+from .opportunities import RULES, TEAMS, TYPES, explain, find, rank, reach_by_country, resources, starter_kit
 from .records import Record, read_dir
 
 
@@ -115,6 +115,29 @@ def weighted_mean(parts: list[tuple[float, float]]) -> float:
     return sum(v * w for v, w in parts) / total if total else 0.0
 
 
+def _on(f: Record | None) -> bool:
+    """Whether a service fact means the language is offered (a benchmark counts when it has a result)."""
+    return bool(f) and (f.unit != "bool" or bool(f.value))
+
+
+def coverage(facts: dict[str, Record], cfg: dict) -> dict:
+    """Summaries the site needs for every language without loading its facts:
+    levels  per technology: full (at least half the services), part, open (open model only), none
+    gaps    main technologies no commercial service offers: open (open model or benchmark only) or none
+    offers  ids of the services and benchmarks that cover the language"""
+    levels, gaps = {}, {}
+    for name, t in cfg["dimensions"]["tech"]["technologies"].items():
+        cons, opn, meas = t.get("consumer", []), t.get("open", []), list(t.get("measured", {}))
+        src = cons or opn
+        n = sum(1 for i in src if facts.get(i) and facts[i].value)
+        levels[name] = "full" if n and n / len(src) >= 0.5 else "part" if n else \
+            "open" if cons and any(facts.get(i) and facts[i].value for i in opn) else "none"
+        if t.get("group") != "more" and not any(_on(facts.get(i)) for i in cons):
+            gaps[name] = "open" if any(_on(facts.get(i)) for i in opn + meas) else "none"
+    offers = [sv["id"] for sv in services() if _on(facts.get(sv["id"]))]
+    return {"levels": levels, "gaps": gaps, "offers": offers}
+
+
 def score_language(facts: dict[str, Record], cfg: dict) -> dict:
     floor = cfg["meta"]["floor"]
     dims, missing = {}, []
@@ -172,7 +195,8 @@ def main() -> None:
             o["id"] = f"{lang['code']}-{o['key']}"
             o["kit"] = starter_kit(o, facts_l)
             o["why"] = explain(lang, o, facts_l)
-        results.append({**lang, **s, "opportunities": opps, "reach_by_country": reach_by_country(lang, countries)})
+        results.append({**lang, **s, **coverage(facts_l, cfg), "opportunities": opps,
+                        "reach_by_country": reach_by_country(lang, countries)})
     results.sort(key=lambda r: -r["ltdi"])
     for i, r in enumerate(results, 1):
         r["rank"] = i
@@ -199,9 +223,11 @@ def main() -> None:
         history = {"periods": sorted(periods), "series": json.loads((DATA / "history_series.json").read_text()),
                    "values": hist}
     svc = [{k: sv[k] for k in ("id", "technology", "role", "name", "kind", "provider", "depth")} for sv in services()]
-    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "services": svc, "opportunity_types": TYPES, "teams": TEAMS, "history": history,
+    rules = {k: {"teams": r["teams"], "missing": r["missing"], "cost": r.get("cost")} for k, r in RULES.items()}
+    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "services": svc, "rules": rules,
+           "resources": resources(), "opportunity_types": TYPES, "teams": TEAMS, "history": history,
            "languages": results, "facts": facts}
-    (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     for r in results:
         d = r["dimensions"]
         print(f"{r['rank']:>2} {r['code']:<4} {r['name']:<18} LTDI {r['ltdi']:.3f}  "
