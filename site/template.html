@@ -737,7 +737,7 @@ function ranking() {
     $('#rows').innerHTML = rows.map(l => `
       <tr tabindex="0" data-code="${l.code}">
         <td class="rank">${l.rank}</td>
-        <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">${l.code}</span></div></td>
+        <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">[${l.code}]</span></div></td>
         <td class="num hide-sm hide-nar">${people(l.speakers)}</td>
         <td class="num hide-sm">${people(l.online)}${l.online && l.speakers ? ` <span class="pct p${pctBand(l.online / l.speakers)}">(${Math.round(l.online / l.speakers * 100)}%)</span>` : ''}</td>
         <td class="hide-sm hide-md">${esc(l.region || '')}</td>
@@ -888,8 +888,8 @@ async function language(code) {
   $('#view').innerHTML = `
     <button class="back" id="back">← All languages</button>
     <div class="lhead">
-      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span></h2>
-        <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span><span>Code <b class="code">${l.code}</b> · ISO 639-3 <b class="code">${esc(l.iso_639_3 || '')}</b></span>
+      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span></h2>
+        <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
         <span id="where">${whereLine(l, false)}</span></div>
         ${reachLine(l)}
