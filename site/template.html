@@ -24,6 +24,8 @@
   --track: #e6ebe9;
   --ord-full: #184f95; --ord-part: #3987e5; --ord-open: #86b6ef; --ord-none: #e3e8e6;
   --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
+  /* share-online text, blue (most online) to red (few): the tier hues, darkened to read as text */
+  --pct-4: #1c5cab; --pct-3: #3f7fc6; --pct-2: #b8661c; --pct-1: #b3421a;
   --t-vh: #1c5cab; --t-h: #6da7ec; --t-m: #ea9447; --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
   --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f;
@@ -39,7 +41,9 @@
     --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
     --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
     --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
-    --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
+    --pct-4: #7fb0ee; --pct-3: #a6c8f2; --pct-2: #e9a061; --pct-1: #f27f52;
+    --pct-4: #7fb0ee; --pct-3: #a6c8f2; --pct-2: #e9a061; --pct-1: #f27f52;
+  --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
     --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f;
   }
 }
@@ -120,7 +124,8 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
 /* Ranking columns keep their widths whatever the sort, so headers don't jump */
 table.ranktab { table-layout: fixed; }
 .ranktab .c-rank { width: 4.5em; } .ranktab .c-spk { width: 7.5em; } .ranktab .c-onl { width: 10em; }
-.ranktab .pct { color: var(--muted); font-size: 13px; } .ranktab .c-reg { width: 9em; }
+.ranktab .pct { color: var(--muted); font-size: 13px; }
+.ranktab .pct.p4 { color: var(--pct-4); } .ranktab .pct.p3 { color: var(--pct-3); } .ranktab .pct.p2 { color: var(--pct-2); } .ranktab .pct.p1 { color: var(--pct-1); } .ranktab .c-reg { width: 9em; }
 .ranktab .c-name { width: 15em; } .ranktab .c-ltdi { width: 5.5em; } .ranktab .c-tier { width: 7.5em; } .ranktab .c-gaps { width: 8em; }
 .ranktab .c-name .lname, .ranktab .c-name .auto { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ranktab .bars { min-width: 0; }  /* the Dimensions column takes the width left over */
@@ -591,6 +596,7 @@ function gapsCell(l) {
 // Totals for the languages in view: speakers and online (summed per language, so people who speak
 // several are counted in each), the share of languages and of speakers in each tier, and the
 // speakers whose language has no commercial service for each main technology
+const pctBand = r => r >= 0.75 ? 4 : r >= 0.5 ? 3 : r >= 0.25 ? 2 : 1;  // share online, for colour
 const GAP_SHORT = { speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs', keyboard: 'Keyboard' };
 function rankSummary(ls) {
   const sum = f => ls.reduce((n, l) => n + (f(l) || 0), 0);
@@ -665,7 +671,7 @@ function ranking() {
         <td class="rank">${l.rank}</td>
         <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">${l.code}</span></div></td>
         <td class="num hide-sm">${people(l.speakers)}</td>
-        <td class="num hide-sm">${people(l.online)}${l.online && l.speakers ? ` <span class="pct">(${Math.round(l.online / l.speakers * 100)}%)</span>` : ''}</td>
+        <td class="num hide-sm">${people(l.online)}${l.online && l.speakers ? ` <span class="pct p${pctBand(l.online / l.speakers)}">(${Math.round(l.online / l.speakers * 100)}%)</span>` : ''}</td>
         <td class="hide-sm hide-md">${esc(l.region || '')}</td>
         <td><div class="bars" aria-label="Writing ${l.dimensions.writing.score}, data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
           ${DIMS.map(([k, , c]) => bar(l.dimensions[k].score, c)).join('')}</div></td>
