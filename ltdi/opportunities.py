@@ -451,7 +451,7 @@ def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | 
         o["priority_now"] = round(_reach(u["now"]) * base, 3)
         o["priority_5y"] = round(_reach(u["5y"]) * base * momentum, 3)
         o["workstream"] = t["workstream"]
-    return sorted(opps, key=lambda o: (-o["priority_5y"], o["key"]))  # ties in rule-name order, so output is stable
+    return sorted(opps, key=lambda o: (-o["priority_5y"], o.get("key", "")))  # ties in rule-name order, so output is stable
 
 
 @lru_cache(maxsize=1)
