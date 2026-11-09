@@ -148,8 +148,6 @@ weight = 1
 
 [dimensions.tech.technologies.assistant]
 label = "Voice assistant"
-group = "more"  # shown under "More technologies" on the site
-gap = true      # but still shown in the ranking's Gaps column
 weight = 1
 
 [dimensions.tech.technologies.langid]
