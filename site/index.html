@@ -78,6 +78,10 @@ h1 a.home:hover { text-decoration: underline; text-decoration-thickness: 2px; te
 .formula b { font-weight: 500; }
 .w { color: var(--writing); } .d { color: var(--data); } .t { color: var(--tech); }
 
+button.reset { font: 14px var(--font-body); padding: 7px 12px; border: 1px solid var(--rule); border-radius: 6px; background: none;
+  color: var(--accent); cursor: pointer; }
+button.reset:hover { background: var(--surface); }
+button.reset[hidden] { display: none; }
 /* Multi-select drop-down (tiers) */
 .msel { position: relative; }
 .msel summary { list-style: none; cursor: pointer; font: 15px var(--font-body); padding: 7px 30px 7px 10px; border: 1px solid var(--rule);
@@ -708,6 +712,7 @@ function ranking() {
       <span id="tierwrap">${tierPicker()}</span>
       <span id="gapwrap" title="Show only languages with no commercial service for every technology ticked">${gapPicker()}</span>
       <input type="search" id="q" placeholder="Find a language name or code" value="${esc(query)}" aria-label="Find a language">
+      <button type="button" class="reset" id="resetf" hidden>Reset filters</button>
     </div>
     <div class="rsum-wrap"><div id="rsum" class="rsum" aria-live="polite"></div></div>
     <div class="legend">
@@ -731,6 +736,7 @@ function ranking() {
     const [, val, natural] = SORTS[sortBy], dir = sortDir;
     all.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : a.rank - b.rank) * dir; });
     $('#rsum').innerHTML = rankSummary(all);
+    $('#resetf').hidden = region === 'All' && !tierSel.size && !gapSel.size && !q;
     $('#rankhead').innerHTML = rankHead();
     const rows = rankAll || q ? all : all.slice(0, RANK_PAGE);
     $('#rankmore').innerHTML = rows.length < all.length ? `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
@@ -752,6 +758,7 @@ function ranking() {
   draw();
   $('#rsel').onchange = e => { region = e.target.value; ranking(); };
   $('#q').oninput = e => { query = e.target.value; draw(); };
+  $('#resetf').onclick = () => { region = 'All'; tierSel.clear(); gapSel.clear(); query = ''; rankAll = false; ranking(); $('#q').focus(); };
   wireMsel('tierwrap', tierPicker, tierSel, 4, draw);
   wireMsel('gapwrap', gapPicker, gapSel, 0, draw);
   if (!ranking.closer) {  // once: a click elsewhere closes the drop-downs
