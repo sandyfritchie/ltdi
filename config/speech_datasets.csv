@@ -1,0 +1,25 @@
+dataset,language,hours,licence,url,note
+Shrutilipi,hi,1620,CC BY 4.0,https://arxiv.org/abs/2208.12666,All India Radio news bulletins aligned with transcripts
+Shrutilipi,bn,440,CC BY 4.0,https://arxiv.org/abs/2208.12666,All India Radio news bulletins aligned with transcripts
+Shrutilipi,ta,790,CC BY 4.0,https://arxiv.org/abs/2208.12666,All India Radio news bulletins aligned with transcripts
+Shrutilipi,ur,190,CC BY 4.0,https://arxiv.org/abs/2208.12666,All India Radio news bulletins aligned with transcripts
+Shrutilipi,pa,90,CC BY 4.0,https://arxiv.org/abs/2208.12666,All India Radio news bulletins aligned with transcripts
+Kathbath,hi,150.2,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
+Kathbath,bn,115.8,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
+Kathbath,ta,185.1,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
+Kathbath,ur,86.7,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
+Kathbath,pa,136.9,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
+IndicVoices,hi,71,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
+IndicVoices,bn,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
+IndicVoices,ta,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
+IndicVoices,ur,71,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
+IndicVoices,pa,76.4,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
+Vaani,hi,594,CC BY 4.0,https://arxiv.org/abs/2603.28714,At least this many transcribed hours (the subset the paper reports); about 2,067 transcribed hours overall
+Vaani,bn,113,CC BY 4.0,https://arxiv.org/abs/2603.28714,At least this many transcribed hours (the subset the paper reports)
+NaijaVoices,ha,605.27,CC BY-NC-SA 4.0,https://arxiv.org/abs/2505.20564,Read speech; non-commercial licence
+NaijaVoices,ig,626.33,CC BY-NC-SA 4.0,https://arxiv.org/abs/2505.20564,Read speech; non-commercial licence
+NaijaVoices,yo,606.94,CC BY-NC-SA 4.0,https://arxiv.org/abs/2505.20564,Read speech; non-commercial licence
+Multilingual LibriSpeech,en,44659.74,CC BY 4.0,https://www.openslr.org/94/,Audiobooks (training hours)
+Multilingual LibriSpeech,fr,1076.58,CC BY 4.0,https://www.openslr.org/94/,Audiobooks (training hours)
+Multilingual LibriSpeech,es,917.68,CC BY 4.0,https://www.openslr.org/94/,Audiobooks (training hours)
+Multilingual LibriSpeech,pt,160.96,CC BY 4.0,https://www.openslr.org/94/,Audiobooks (training hours)

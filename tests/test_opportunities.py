@@ -36,6 +36,12 @@ class FindTests(unittest.TestCase):
         thin = facts(**{**FULL, **none, "cv_validated_hours": 3})
         self.assertIn("Record a single-speaker voice for text-to-speech", titles(thin, "collect"))
 
+    def test_speech_collect_counts_every_open_dataset(self):
+        thin = facts(**{**FULL, "cv_validated_hours": 5})
+        self.assertTrue(any(t.startswith("Only 5") for t in titles(thin, "collect")))
+        rich = facts(**{**FULL, "cv_validated_hours": 5, "open_speech_hours": 1600, "speech_shrutilipi": 1595})
+        self.assertFalse(any("open transcribed speech" in t for t in titles(rich, "collect")))
+
     def test_open_ocr_without_a_service_is_share(self):
         fs = facts(**{**FULL, "ocr_google": 0, "ocr_azure": 0, "ocr_apple": 0, "ocr_open_tesseract": 1})
         self.assertIn("An open text recognition model exists, but no major service", titles(fs, "share"))

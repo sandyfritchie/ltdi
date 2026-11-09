@@ -18,3 +18,12 @@ lid_cld3,CLD3,Compact open language identifier,Apache 2.0,https://github.com/goo
 kb_open_keyman,Keyman keyboards,Open keyboard layouts from SIL and contributors,MIT (most layouts),https://github.com/keymanapp/keyboards
 asr_open_mms,MMS speech recognition,Open speech recognition for 1100+ languages,CC BY-NC 4.0,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
 tts_open_mms,MMS text-to-speech,Open text-to-speech models for 1100+ languages,CC BY-NC 4.0,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
+speech_shrutilipi,Shrutilipi,Radio news bulletins aligned with transcripts (AI4Bharat),CC BY 4.0,https://huggingface.co/datasets/ai4bharat/Shrutilipi
+speech_kathbath,Kathbath,Read speech from many speakers (AI4Bharat),CC BY 4.0,https://huggingface.co/datasets/ai4bharat/kathbath
+speech_indicvoices,IndicVoices,Natural and read speech from across India (AI4Bharat),CC BY 4.0,https://huggingface.co/datasets/ai4bharat/IndicVoices
+speech_vaani,Vaani,Image-prompted speech from every district of India (IISc and ARTPARK),CC BY 4.0,https://huggingface.co/datasets/ARTPARK-IISC/Vaani
+speech_naijavoices,NaijaVoices,Read speech in Nigerian languages,CC BY-NC-SA 4.0,https://naijavoices.com/
+speech_waxal,WAXAL,Natural speech in African languages (Google and African universities),CC BY / CC BY-SA 4.0,https://huggingface.co/datasets/google/WaxalNLP
+speech_yodas,YODAS2,YouTube videos with manually uploaded subtitles,CC BY 3.0,https://huggingface.co/datasets/espnet/yodas2
+speech_fleurs,FLEURS,Read Wikipedia sentences; also a speech benchmark,CC BY 4.0,https://huggingface.co/datasets/google/fleurs
+speech_multilingual_librispeech,Multilingual LibriSpeech,Audiobooks,CC BY 4.0,https://www.openslr.org/94/

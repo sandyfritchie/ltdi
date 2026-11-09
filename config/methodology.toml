@@ -28,42 +28,64 @@ weight = 0.5
 [dimensions.data]
 label = "Data availability"
 
+# Text
 [dimensions.data.indicators.web_text_words]
 label = "Web text (FineWeb-2 words)"
 scale = "log"
 min = 1e4
 max = 1e11
-weight = 0.35
+weight = 0.25
+
+[dimensions.data.indicators.parallel_sentences]
+label = "Parallel text with English (OPUS sentence pairs)"
+scale = "log"
+min = 1e4
+max = 1e9
+weight = 0.15
+
+[dimensions.data.indicators.ud_treebank_words]
+label = "Annotated text (Universal Dependencies words)"
+scale = "log"
+min = 0
+max = 1e6
+weight = 0.05
 
 [dimensions.data.indicators.wikipedia_articles]
 label = "Wikipedia articles"
 scale = "log"
 min = 100
 max = 1e6
-weight = 0.1
+weight = 0.075
 
 [dimensions.data.indicators.wikipedia_active_editors]
 label = "Wikipedia active editors"
 scale = "log"
 min = 0
 max = 1e5
-weight = 0.1
+weight = 0.075
 
-[dimensions.data.indicators.cv_validated_hours]
-label = "Transcribed speech (Common Voice hours)"
+# Speech: hours summed across open datasets (Common Voice, FLEURS, YODAS, WAXAL,
+# Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech)
+[dimensions.data.indicators.open_speech_hours]
+label = "Open transcribed speech (hours, all datasets)"
 scale = "log"
 min = 0
-max = 1000
-weight = 0.25
+max = 10000
+weight = 0.2
 
-[dimensions.data.indicators.flores200]
-label = "FLORES-200 MT evaluation set"
-scale = "bool"
+# Everything else
+[dimensions.data.indicators.hf_datasets]
+label = "Datasets on the Hugging Face Hub"
+scale = "log"
+min = 0
+max = 10000
 weight = 0.1
 
-[dimensions.data.indicators.belebele]
-label = "Belebele reading-comprehension benchmark"
-scale = "bool"
+[dimensions.data.indicators.eval_benchmarks]
+label = "Public benchmarks covering the language"
+scale = "linear"
+min = 0
+max = 6
 weight = 0.1
 
 # ------------------------------------------------------------- technology ---

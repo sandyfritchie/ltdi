@@ -184,9 +184,18 @@ def find(f: dict[str, Record]) -> list[dict]:
             out.append({"key": key, "type": type_, "technology": tech, "title": title, "detail": detail,
                         "gap": round(min(1.0, gap), 3), "evidence": [e for e in evidence if e in f],
                         "teams": rule["teams"], "missing": rule["missing"], "cost": rule.get("cost"),
-                        "starter": [i for i in rule["starter"] if _v(f, i)]})
+                        "starter": [i for i in _expand(rule["starter"]) if _v(f, i)]})
 
-    cv = _v(f, "cv_validated_hours") or 0
+    # Open speech datasets for this language, largest first; they replace Common Voice in starter kits
+    speech_sets = sorted((i for i in f if i.startswith("speech_") and _v(f, i)), key=lambda i: -f[i].value)
+
+    def _expand(starter):
+        return [x for i in starter for x in ([*speech_sets[:3], i] if i == "cv_validated_hours" else [i])]
+
+    cv = _v(f, "open_speech_hours")
+    cv = (_v(f, "cv_validated_hours") or 0) if cv is None else cv
+    n_sets = len(speech_sets) + (1 if _v(f, "cv_validated_hours") else 0)
+    sets = f"across {n_sets} open dataset{'s' if n_sets != 1 else ''}"
     words = _v(f, "web_text_words") or 0
 
     # Keyboards
@@ -213,14 +222,14 @@ def find(f: dict[str, Record]) -> list[dict]:
     if 0 < asr_n < len(ASR):
         add("asr-vendors", "share", "speech_input", f"Speech input is offered by {asr_n} of {len(ASR)} major services",
             f"Some services already recognise this language. Open training data includes {_hours(cv)} "
-            "of transcribed speech on Common Voice.",
-            (len(ASR) - asr_n) / len(ASR), ASR + ["cv_validated_hours"])
+            f"of transcribed speech {sets}.",
+            (len(ASR) - asr_n) / len(ASR), ASR + ["open_speech_hours"])
     elif asr_n == 0 and (cv >= 20 or _v(f, "asr_open_whisper") or _v(f, "asr_open_mms")):
         add("asr-none", "share", "speech_input", "No major speech input service, though open resources exist",
-            f"Common Voice holds {_hours(cv)} of transcribed speech"
+            f"Open datasets hold {_hours(cv)} of transcribed speech"
             + (", and an open model lists the language" if _v(f, "asr_open_whisper") or _v(f, "asr_open_mms") else "")
             + ".",
-            1.0, ASR + ["cv_validated_hours", "asr_open_whisper", "asr_open_mms"])
+            1.0, ASR + ["open_speech_hours", "asr_open_whisper", "asr_open_mms"])
     wer = _v(f, "asr_whisper_fleurs_wer")
     if wer is not None and wer >= 100:
         add("asr-measure", "measure", "speech_input", "No published speech recognition error rate",
@@ -233,9 +242,9 @@ def find(f: dict[str, Record]) -> list[dict]:
             (wer - 10) / 40, ["asr_whisper_fleurs_wer"])
     if cv < 20:
         add("asr-collect", "collect", "speech_input", f"Only {_hours(cv)} of open transcribed speech",
-            "Common Voice is one source among several; other corpora may exist and should be checked first. "
-            "Image-prompted field collection has worked at scale for Indian and African languages.",
-            1 - cv / 20, ["cv_validated_hours"])
+            "Counted across the open speech datasets we track. Image-prompted field collection has worked at "
+            "scale for Indian and African languages.",
+            1 - cv / 20, ["open_speech_hours"])
 
     # Text-to-speech
     tts_n = sum(1 for i in TTS if _v(f, i))
@@ -249,13 +258,13 @@ def find(f: dict[str, Record]) -> list[dict]:
         add("tts-share", "share", "tts", "No cloud text-to-speech voice found, though open resources exist",
             "None of the cloud services checked has a voice for this language. "
             + ("An open text-to-speech model already speaks it. " if open_tts else "")
-            + f"Common Voice holds {_hours(cv)} of speech.",
-            1.0, TTS + ["tts_open_mms", "cv_validated_hours"])
+            + f"Open datasets hold {_hours(cv)} of transcribed speech.",
+            1.0, TTS + ["tts_open_mms", "open_speech_hours"])
     elif tts_n == 0:
         add("tts-collect", "collect", "tts", "Record a single-speaker voice for text-to-speech",
             "No cloud or open voice was found and open speech data is thin. A few hours of clean single-speaker "
             "recordings would unlock a usable voice.",
-            1.0, TTS + ["cv_validated_hours"])
+            1.0, TTS + ["open_speech_hours"])
 
     # Translation
     mt_n = sum(1 for i in MT if _v(f, i))

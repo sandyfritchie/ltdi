@@ -13,7 +13,7 @@ with language metadata from [LinguaMeta](https://github.com/google-research/url-
 
 ## Status: vertical slice
 
-25 languages, ten technologies and about 50 indicators, scored end to end with a static site.
+25 languages, ten technologies and about 80 indicators from some 40 sources, scored end to end with a static site.
 The point of the slice is to test the method before scaling up.
 
 ## Pipeline
@@ -23,6 +23,7 @@ python -m ltdi.backbone        # LinguaMeta metadata for the languages in config
 python -m ltdi.collectors      # automated collectors -> data/records/*.csv (open_tools reads three repos with git)
 python -m ltdi.collectors wikipedia   # needs open network access; run locally
 python -m ltdi.collectors mms        # needs dl.fbaipublicfiles.com
+# speech, benchmarks and hf_hub need huggingface.co; opus needs opus.nlpl.eu
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
@@ -63,10 +64,12 @@ measured benchmark quality. Language identification counts open models, at half 
 | Writing | Main script encoded | Unicode CLDR script metadata | automated |
 | Writing | Locale data coverage | Unicode CLDR | automated |
 | Data | Web text (words) | FineWeb-2 language distribution | automated |
-| Data | Transcribed speech (hours) | Mozilla Common Voice 27.0 | automated |
-| Data | MT evaluation set | FLORES-200 | automated |
-| Data | Reading-comprehension benchmark | Belebele | automated |
+| Data | Parallel text with English (sentence pairs) | OPUS, all corpora for the pair | automated |
+| Data | Annotated text (treebank words) | Universal Dependencies, latest release | automated |
 | Data | Wikipedia articles and active editors | Wikimedia API | automated (run locally) |
+| Data | Open transcribed speech (hours) | Summed across Common Voice 27.0, FLEURS, YODAS2, WAXAL (automated) and Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech (`config/speech_datasets.csv`, from each paper or card) | automated and curated |
+| Data | Datasets on the Hugging Face Hub | Hub API, by language tag | automated |
+| Data | Public benchmarks covering the language (of 9) | FLORES-200, Belebele, FLEURS, Global-MMLU, MMMLU, INCLUDE, XNLI, MGSM, IrokoBench | automated |
 | Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | manual; Keyman automated |
 | Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation, Amazon Transcribe; Whisper and MMS (open); depth: Whisper large-v3 FLEURS WER, Azure speech-to-text features | manual; Whisper automated |
 | Tech | Text-to-speech | Google Cloud TTS, Azure Speech, Amazon Polly; MMS-TTS (open); depth: number of Google voice types | manual; MMS automated |
@@ -170,7 +173,11 @@ the coalition workstream it fits.
 - Spelling and grammar has one commercial source, so it alone gives full presence. Google's assistant list covers
   speakers and displays; Gemini Live on phones has no full public language list yet. Siri's list is by country,
   so Portuguese, Russian and Japanese are inferred from Brazil, Russia and Japan.
-- Common Voice is one speech source among many, so it under-credits Hindi and over-credits Kinyarwanda.
+- Open speech hours are a sum: YODAS2 counts hours of video with manually uploaded subtitles, not checked
+  transcriptions; IndicVoices is its first release and Vaani a lower bound (later releases are larger);
+  FLEURS is counted at a nominal 12 hours. NaijaVoices is non-commercial.
+- OPUS counts overlap between corpora, and most sentence pairs are web-mined (the share is in each note).
+- Hub dataset counts depend on how authors tag their datasets.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM support is measured for 12 of the 25 languages, by at most two benchmarks.
 - Wikipedia article counts include bot-generated stubs: Urdu (708K) outranks Hindi (172K).
