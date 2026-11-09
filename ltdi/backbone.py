@@ -156,7 +156,8 @@ def apply_overrides(lang: dict, row: dict, locales: dict[str, dict]) -> None:
       countries  space-separated, each "cc" or "cc:speakers"; replaces the country list, and the
                  total too when speakers is empty
       scripts    space-separated ISO 15924 codes, main script first
-      region     the region group, where the largest-country rule misleads"""
+      region     the region group, where the largest-country rule misleads
+      autonym    the language's name for itself"""
     if row.get("countries"):
         lang["countries"] = []
         for item in row["countries"].split():
@@ -178,6 +179,8 @@ def apply_overrides(lang: dict, row: dict, locales: dict[str, dict]) -> None:
         lang["script_names"] = [SCRIPT.get(sc, sc.title()) for sc in lang["scripts"]]
     if row.get("region"):
         lang["region"] = row["region"]
+    if row.get("autonym"):
+        lang["autonym"] = row["autonym"]
 
 
 def records() -> dict[str, dict]:

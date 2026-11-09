@@ -40,7 +40,11 @@ def table(url: str, heading: str | None = None, first: str | None = None) -> lis
 
 
 def code(label: str) -> str | None:
-    return to_ltdi(label.strip().replace("_", "-")) if label.strip() else None
+    """LTDI code for a code cell; a cell can give alternatives ("iw or he")."""
+    for part in label.split(" or "):
+        if part.strip() and (c := to_ltdi(part.strip().replace("_", "-"))):
+            return c
+    return None
 
 
 def named(names, indicator: str) -> set[str]:

@@ -2357,6 +2357,7 @@ ilo,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/tran
 is,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 it,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 ja,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
+jv,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 ka,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 kk,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 km,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
