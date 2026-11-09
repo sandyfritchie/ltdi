@@ -301,8 +301,8 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .maphead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .maphead h3 { margin: 0; }
 .mapmode { margin: 0; }
-.areas path { stroke: none; }
-.areas a:hover path, .areas a:focus path { fill-opacity: 0.85; }
+.areas path { stroke: none; cursor: pointer; outline: none; }
+.areas path:hover { fill-opacity: 0.85; }
 .mapwrap { position: relative; border-radius: 6px; overflow: hidden; touch-action: none; }
 .mapwrap svg { cursor: grab; } .mapwrap svg.dragging { cursor: grabbing; }
 .mapctl { position: absolute; top: 8px; right: 8px; display: grid; gap: 4px; }
@@ -1070,7 +1070,7 @@ function mapSection() {
     const inR = LANGS.filter(l => inRegion(l) && AREAS.paths[l.code]);
     const order = { l: 0, m: 1, h: 2, vh: 3 };
     layer = `<g class="areas">${[...LANGS].filter(l => AREAS.paths[l.code]).sort((a, b) => order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
-      `<a href="#lang-${l.code}"><path d="${AREAS.paths[l.code]}" fill="var(${TIERC[tierKey(l)]})" fill-opacity="${inRegion(l) ? 0.5 : 0.12}" tabindex="-1" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`).join('')}</g>`;
+      `<path d="${AREAS.paths[l.code]}" data-code="${l.code}" fill="var(${TIERC[tierKey(l)]})" fill-opacity="${inRegion(l) ? 0.5 : 0.12}" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
     const sh = tierLandShares(inR, tierKey), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}% of land`;
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
       ${sh && sh.none != null ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
@@ -1156,9 +1156,11 @@ function bindMap() {
   const end = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; svg.classList.remove('dragging'); };
   svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end);
   svg.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
+  // an area opens its language (areas are plain paths, not links, so dragging doesn't leave a focus box)
+  svg.addEventListener('click', e => { const a = e.target.closest('.areas path[data-code]'); if (a) location.hash = 'lang-' + a.dataset.code; });
   // hover names for the unscored languages
   svg.addEventListener('mousemove', e => {
-    if (svg.classList.contains('dragging') || e.target.tagName === 'circle') return;
+    if (svg.classList.contains('dragging') || e.target.closest('[data-tip]') || mapMode === 'areas') return;  // those have their own tips
     const q = toMap(e.clientX, e.clientY), lim = (6 / k()) ** 2;
     let best = null, bd = lim;
     for (const p of bg) { const d = (p[2] - q.x) ** 2 + (p[3] - q.y) ** 2; if (d < bd) { bd = d; best = p; } }
