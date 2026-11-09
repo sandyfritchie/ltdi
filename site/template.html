@@ -94,7 +94,7 @@ h1 a.home:hover { text-decoration: underline; text-decoration-thickness: 2px; te
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 input[type=search], input.pick, select { font: 15px var(--font-body); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px;
   background: var(--surface); color: var(--ink); min-width: 0; }
-input[type=search] { width: 220px; max-width: 100%; }
+input[type=search] { width: 250px; max-width: 100%; }
 input.pick { width: 22em; max-width: 100%; }  /* room for long names with their code */
 
 /* Totals band above the ranking */
@@ -682,7 +682,7 @@ function ranking() {
     <div class="controls">
       ${regionSelect('rsel')}
       <span id="tierwrap">${tierPicker()}</span>
-      <input type="search" id="q" placeholder="Find a language, name or code" value="${esc(query)}" aria-label="Find a language">
+      <input type="search" id="q" placeholder="Find a language name or code" value="${esc(query)}" aria-label="Find a language">
     </div>
     <div class="rsum-wrap"><div id="rsum" class="rsum" aria-live="polite"></div></div>
     <div class="legend">
