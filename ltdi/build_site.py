@@ -55,7 +55,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                                           "priority", "priority_now", "priority_5y")} | {"lang": l["code"]})
         details[l["code"]] = {"dimensions": l["dimensions"], "facts": facts, "opportunities": opps,
                               "reach_by_country": l["reach_by_country"],
-                              "mainly_in": [c["name"] for c in l["countries"][:3]]} | {k: l.get(k) for k in PROFILE}
+                              "countries": [c["name"] for c in l["countries"]]} | {k: l.get(k) for k in PROFILE}
         langs.append({k: l.get(k) for k in SUMMARY} | {
             "scores": {k: d["score"] for k, d in l["dimensions"].items()},
             "levels": "".join(l["levels"][t][0] for t in techs),  # f(ull) p(art) o(pen) n(one), in config order

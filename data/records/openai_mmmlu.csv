@@ -1,12 +1,13 @@
 language,indicator,value,unit,source,url,retrieved,method,note
-ar,llm_mmmlu_openai,0.904,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-bn,llm_mmmlu_openai,0.878,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-cmn,llm_mmmlu_openai,0.893,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-es,llm_mmmlu_openai,0.911,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-fr,llm_mmmlu_openai,0.906,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-hi,llm_mmmlu_openai,0.898,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-id,llm_mmmlu_openai,0.898,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-ja,llm_mmmlu_openai,0.89,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-pt,llm_mmmlu_openai,0.91,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-sw,llm_mmmlu_openai,0.86,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
-yo,llm_mmmlu_openai,0.78,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-07,download,Absolute accuracy; English is not in the table
+ar,llm_mmmlu_openai,0.904,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+bn,llm_mmmlu_openai,0.878,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+cmn,llm_mmmlu_openai,0.893,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+en,llm_mmmlu_openai,0.933,accuracy,OpenAI MMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/README.md,2026-11-08,download,"English: the original MMLU, which MMMLU translates"
+es,llm_mmmlu_openai,0.911,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+fr,llm_mmmlu_openai,0.906,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+hi,llm_mmmlu_openai,0.898,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+id,llm_mmmlu_openai,0.898,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+ja,llm_mmmlu_openai,0.89,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+pt,llm_mmmlu_openai,0.91,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+sw,llm_mmmlu_openai,0.86,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
+yo,llm_mmmlu_openai,0.78,accuracy,OpenAI MMMLU (o3-high),https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md,2026-11-08,download,Absolute accuracy
