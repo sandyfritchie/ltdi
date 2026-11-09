@@ -139,19 +139,86 @@ RULES = {
         "missing": "Editor training and outreach with universities and community groups."},
 }
 
+# Coverage rules: one per technology and situation, applied by the same code.
+#   some  offered by some of the technology's commercial services, not all
+#   open  offered by none, but an open model exists (or enough open speech: "hours")
+#   none  offered by none, and no open model
+# Titles and details are functions of c: n and of (services offering / checked), open (an open
+# model exists), hours and sets (open transcribed speech and how many datasets it spans).
+COVERAGE = {
+    "kb-platform": ("keyboard", "some", "share",
+        lambda c: "A keyboard layout exists but isn't on every major platform",
+        lambda c: f"A layout ships on {c['n']} of {c['of']} major keyboards. Contributing it to CLDR Keyboards, the "
+                  "open interchange format for layouts, would let any platform adopt it."),
+    "kb-open": ("keyboard", "open", "share",
+        lambda c: "Open keyboard layouts exist, but no major phone keyboard",
+        lambda c: "Community layouts are published under an open licence. Converting one to CLDR Keyboards format "
+                  "would let phone keyboards adopt it."),
+    "asr-vendors": ("speech_input", "some", "share",
+        lambda c: f"Speech input is offered by {c['n']} of {c['of']} major services",
+        lambda c: f"Some services already recognise this language. Open training data includes {_hours(c['hours'])} "
+                  f"of transcribed speech {c['sets']}."),
+    "asr-none": ("speech_input", "open", "share",
+        lambda c: "No major speech input service, though open resources exist",
+        lambda c: f"Open datasets hold {_hours(c['hours'])} of transcribed speech"
+                  + (", and an open model lists the language" if c["open"] else "") + "."),
+    "tts-vendors": ("tts", "some", "share",
+        lambda c: f"Text-to-speech is offered by {c['n']} of {c['of']} major services",
+        lambda c: "Some cloud services already have a voice for this language"
+                  + (", and an open model can speak it." if c["open"] else ".")),
+    "tts-share": ("tts", "open", "share",
+        lambda c: "No cloud text-to-speech voice found, though open resources exist",
+        lambda c: "None of the cloud services checked has a voice for this language. "
+                  + ("An open text-to-speech model already speaks it. " if c["open"] else "")
+                  + f"Open datasets hold {_hours(c['hours'])} of transcribed speech."),
+    "tts-collect": ("tts", "none", "collect",
+        lambda c: "Record a single-speaker voice for text-to-speech",
+        lambda c: "No cloud or open voice was found and open speech data is thin. A few hours of clean single-speaker "
+                  "recordings would unlock a usable voice."),
+    "ui-platforms": ("interface", "some", "share",
+        lambda c: f"The interface is translated on {c['n']} of {c['of']} major platforms",
+        lambda c: "People can already use some phone and computer platforms in this language. Shared terminology "
+                  "would make the remaining ones faster to translate."),
+    "ui-community": ("interface", "open", "share",
+        lambda c: "Volunteers translate an open browser, but no major platform",
+        lambda c: "A volunteer community already maintains a full browser translation, with terminology a platform "
+                  "could build on."),
+    "ui-none": ("interface", "none", "standardise",
+        lambda c: "No major platform or open project offers this interface language",
+        lambda c: "Phones and computers can't be set to this language, so every app is used in a second language."),
+    "ocr-vendors": ("ocr", "some", "share",
+        lambda c: f"Text recognition is offered by {c['n']} of {c['of']} major services",
+        lambda c: "Some services already read printed text in this language"
+                  + (", and an open OCR model covers it." if c["open"] else ".")),
+    "ocr-open": ("ocr", "open", "share",
+        lambda c: "An open text recognition model exists, but no major service",
+        lambda c: "An open OCR model reads printed text in this language. Text recognition also turns printed books "
+                  "into training data for every other technology."),
+    "ocr-collect": ("ocr", "none", "collect",
+        lambda c: "No text recognition, open or commercial",
+        lambda c: "Printed books, signs and forms can't be read by phone cameras or digitised at scale."),
+    "proof-share": ("proofing", "open", "share",
+        lambda c: "An open spell-checker exists that more word processors could adopt",
+        lambda c: "An open dictionary or grammar checker covers this language, but the most widely used word "
+                  "processors don't check it yet."),
+    "va-vendors": ("assistant", "some", "share",
+        lambda c: f"{c['n']} of {c['of']} major voice assistants understand this language",
+        lambda c: "One assistant already works in this language, so speech recognition, a voice and language "
+                  "understanding have been shown to be feasible."),
+}
+OPEN_HOURS = {"speech_input": 20, "tts": 10}  # this much open speech also counts as an open resource
+
+
 def _consumer(tech: str, key: str = "consumer") -> list[str]:
     """A technology's service list from config/services.csv, so rules follow the config."""
     return list(load_config()["dimensions"]["tech"]["technologies"][tech].get(key, []))
 
 
-KB = _consumer("keyboard")
 ASR = _consumer("speech_input")
 TTS = _consumer("tts")
 MT = _consumer("mt")
 LLM = list(_consumer("llm", "measured"))
 APPS = _consumer("llm")
-UI = _consumer("interface")
-OCR = _consumer("ocr")
 VA = _consumer("assistant")
 LID = _consumer("langid", "open")
 
@@ -197,18 +264,25 @@ def find(f: dict[str, Record]) -> list[dict]:
     sets = f"across {n_sets} open dataset{'s' if n_sets != 1 else ''}"
     words = _v(f, "web_text_words") or 0
 
-    # Keyboards
-    kb_n = sum(1 for i in KB if _v(f, i))
-    if 0 < kb_n < len(KB):
-        add("kb-platform", "share", "keyboard", "A keyboard layout exists but isn't on every major platform",
-            f"A layout ships on {kb_n} of {len(KB)} major keyboards. Contributing it to CLDR Keyboards, the open "
-            "interchange format for layouts, would let any platform adopt it.",
-            (len(KB) - kb_n) / len(KB), KB + ["kb_open_keyman"])
-    elif kb_n == 0 and _v(f, "kb_open_keyman"):
-        add("kb-open", "share", "keyboard", "Open keyboard layouts exist, but no major phone keyboard",
-            "Community layouts are published under an open licence. Converting one to CLDR Keyboards format "
-            "would let phone keyboards adopt it.",
-            1.0, KB + ["kb_open_keyman"])
+    # Coverage across each technology's services (COVERAGE)
+    tech_cfg = load_config()["dimensions"]["tech"]["technologies"]
+    offered = {}
+    for name, t in tech_cfg.items():
+        cons, opn = t.get("consumer", []), t.get("open", [])
+        n = offered[name] = sum(1 for i in cons if _v(f, i))
+        if not cons or not any(i in f for i in cons):
+            continue
+        has_open = any(_v(f, i) for i in opn)
+        c = {"n": n, "of": len(cons), "open": has_open, "hours": cv, "sets": sets}
+        when = ("some" if n < len(cons) else None) if n else \
+            "open" if has_open or cv >= OPEN_HOURS.get(name, math.inf) else "none"
+        for key, (tech, w, type_, title, detail) in COVERAGE.items():
+            if tech == name and w == when:
+                gap = (len(cons) - n) / len(cons) if when == "some" else 1.0
+                ev = cons + opn + (["open_speech_hours"] if name in OPEN_HOURS else [])
+                add(key, type_, tech, title(c), detail(c), gap, ev)
+
+    # Keyboard features
     feats = _v(f, "kb_apple_features")
     if _v(f, "kb_apple") and feats is not None and feats < 2 and words >= 1e7:
         add("kb-features", "share", "keyboard", "Predictive text and autocorrect could be built from open text",
@@ -216,19 +290,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             "of openly licensed web text, enough to train word prediction.",
             (4 - feats) / 4, ["kb_apple_features", "web_text_words"])
 
-    # Speech input
-    asr_n = sum(1 for i in ASR if _v(f, i))
-    if 0 < asr_n < len(ASR):
-        add("asr-vendors", "share", "speech_input", f"Speech input is offered by {asr_n} of {len(ASR)} major services",
-            f"Some services already recognise this language. Open training data includes {_hours(cv)} "
-            f"of transcribed speech {sets}.",
-            (len(ASR) - asr_n) / len(ASR), ASR + ["open_speech_hours"])
-    elif asr_n == 0 and (cv >= 20 or _v(f, "asr_open_whisper") or _v(f, "asr_open_mms")):
-        add("asr-none", "share", "speech_input", "No major speech input service, though open resources exist",
-            f"Open datasets hold {_hours(cv)} of transcribed speech"
-            + (", and an open model lists the language" if _v(f, "asr_open_whisper") or _v(f, "asr_open_mms") else "")
-            + ".",
-            1.0, ASR + ["open_speech_hours", "asr_open_whisper", "asr_open_mms"])
+    # Speech input: error rates and data
     wer = _v(f, "asr_whisper_fleurs_wer")
     if wer is not None and wer >= 100:
         add("asr-measure", "measure", "speech_input", "No published speech recognition error rate",
@@ -245,28 +307,8 @@ def find(f: dict[str, Record]) -> list[dict]:
             "scale for Indian and African languages.",
             1 - cv / 20, ["open_speech_hours"])
 
-    # Text-to-speech
-    tts_n = sum(1 for i in TTS if _v(f, i))
-    open_tts = _v(f, "tts_open_mms")
-    if 0 < tts_n < len(TTS):
-        add("tts-vendors", "share", "tts", f"Text-to-speech is offered by {tts_n} of {len(TTS)} major services",
-            "Some cloud services already have a voice for this language"
-            + (", and an open model can speak it." if open_tts else "."),
-            (len(TTS) - tts_n) / len(TTS), TTS + ["tts_open_mms"])
-    elif tts_n == 0 and (cv >= 10 or open_tts):
-        add("tts-share", "share", "tts", "No cloud text-to-speech voice found, though open resources exist",
-            "None of the cloud services checked has a voice for this language. "
-            + ("An open text-to-speech model already speaks it. " if open_tts else "")
-            + f"Open datasets hold {_hours(cv)} of transcribed speech.",
-            1.0, TTS + ["tts_open_mms", "open_speech_hours"])
-    elif tts_n == 0:
-        add("tts-collect", "collect", "tts", "Record a single-speaker voice for text-to-speech",
-            "No cloud or open voice was found and open speech data is thin. A few hours of clean single-speaker "
-            "recordings would unlock a usable voice.",
-            1.0, TTS + ["open_speech_hours"])
-
-    # Translation
-    mt_n = sum(1 for i in MT if _v(f, i))
+    # Translation: the open model and FLORES-200 make every gap a launch
+    mt_n = offered["mt"]
     if mt_n < len(MT) and (_v(f, "mt_open_nllb") or mt_n):
         add("mt-vendors", "share", "mt", f"Translation is offered by {mt_n} of {len(MT)} major services",
             "An open model and the FLORES-200 evaluation set already cover this language, so the main "
@@ -288,7 +330,7 @@ def find(f: dict[str, Record]) -> list[dict]:
         if weak:
             add("llm-improve", "improve", "llm", "LLMs lag behind their English performance",
                 "Benchmark results: " + "; ".join(weak) + ".", 0.5, llm)
-    apps_n = sum(1 for i in APPS if _v(f, i))
+    apps_n = offered["llm"]
     if any(i in f for i in APPS) and apps_n < len(APPS) and (apps_n or llm):
         add("llm-apps", "share", "llm", f"{apps_n} of {len(APPS)} major AI assistant apps list this language",
             ("Some assistant apps already offer it. " if apps_n else "")
@@ -300,70 +342,22 @@ def find(f: dict[str, Record]) -> list[dict]:
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
             0.5, ["belebele"])
 
-    # Interface language
-    ui_n = sum(1 for i in UI if _v(f, i))
-    if any(i in f for i in UI):
-        if 0 < ui_n < len(UI):
-            add("ui-platforms", "share", "interface", f"The interface is translated on {ui_n} of {len(UI)} major platforms",
-                "People can already use some phone and computer platforms in this language. Shared terminology "
-                "would make the remaining ones faster to translate.",
-                (len(UI) - ui_n) / len(UI), UI + ["ui_firefox"])
-        elif ui_n == 0 and _v(f, "ui_firefox"):
-            add("ui-community", "share", "interface", "Volunteers translate an open browser, but no major platform",
-                "A volunteer community already maintains a full browser translation, with terminology a platform "
-                "could build on.",
-                1.0, UI + ["ui_firefox"])
-        elif ui_n == 0:
-            add("ui-none", "standardise", "interface", "No major platform or open project offers this interface language",
-                "Phones and computers can't be set to this language, so every app is used in a second language.",
-                1.0, UI + ["ui_firefox"])
+    # Spelling and grammar: nothing open either, but enough text for a word list
+    if "proof_office" in f and not _v(f, "proof_office") and not (_v(f, "proof_hunspell") or _v(f, "proof_languagetool")) \
+            and words >= 1e7:
+        add("proof-build", "share", "proofing", "A spell-checker could be built from open text",
+            f"No spell-checker was found. FineWeb-2 holds about {_words(words)} words of open web text, "
+            "enough for a first word list.",
+            1.0, ["proof_office", "proof_hunspell", "web_text_words"])
 
-    # Text recognition
-    ocr_n = sum(1 for i in OCR if _v(f, i))
-    if any(i in f for i in OCR):
-        if 0 < ocr_n < len(OCR):
-            add("ocr-vendors", "share", "ocr", f"Text recognition is offered by {ocr_n} of {len(OCR)} major services",
-                "Some services already read printed text in this language"
-                + (", and an open OCR model covers it." if _v(f, "ocr_open_tesseract") else "."),
-                (len(OCR) - ocr_n) / len(OCR), OCR + ["ocr_open_tesseract"])
-        elif ocr_n == 0 and _v(f, "ocr_open_tesseract"):
-            add("ocr-open", "share", "ocr", "An open text recognition model exists, but no major service",
-                "An open OCR model reads printed text in this language. Text recognition also turns printed books "
-                "into training data for every other technology.",
-                1.0, OCR + ["ocr_open_tesseract"])
-        elif ocr_n == 0:
-            add("ocr-collect", "collect", "ocr", "No text recognition, open or commercial",
-                "Printed books, signs and forms can't be read by phone cameras or digitised at scale.",
-                1.0, OCR + ["ocr_open_tesseract"])
+    # Voice assistants: none yet, but speech recognition and a voice exist
+    if any(i in f for i in VA) and not offered["assistant"] and offered["speech_input"] and offered["tts"]:
+        add("va-ready", "share", "assistant", "The building blocks for a voice assistant exist",
+            "Commercial speech recognition and a synthetic voice both exist, but no major assistant "
+            "understands spoken requests in this language yet.",
+            1.0, VA + ASR + TTS)
 
-    # Spelling and grammar
-    if "proof_office" in f and not _v(f, "proof_office"):
-        if _v(f, "proof_hunspell") or _v(f, "proof_languagetool"):
-            add("proof-share", "share", "proofing", "An open spell-checker exists that more word processors could adopt",
-                "An open dictionary or grammar checker covers this language, but the most widely used word "
-                "processors don't check it yet.",
-                1.0, ["proof_office", "proof_hunspell", "proof_languagetool"])
-        elif words >= 1e7:
-            add("proof-build", "share", "proofing", "A spell-checker could be built from open text",
-                f"No spell-checker was found. FineWeb-2 holds about {_words(words)} words of open web text, "
-                "enough for a first word list.",
-                1.0, ["proof_office", "proof_hunspell", "web_text_words"])
-
-    # Voice assistants
-    va_n = sum(1 for i in VA if _v(f, i))
-    if any(i in f for i in VA):
-        if 0 < va_n < len(VA):
-            add("va-vendors", "share", "assistant", f"{va_n} of {len(VA)} major voice assistants understand this language",
-                "One assistant already works in this language, so speech recognition, a voice and language "
-                "understanding have been shown to be feasible.",
-                (len(VA) - va_n) / len(VA), VA)
-        elif va_n == 0 and asr_n and tts_n:
-            add("va-ready", "share", "assistant", "The building blocks for a voice assistant exist",
-                "Commercial speech recognition and a synthetic voice both exist, but no major assistant "
-                "understands spoken requests in this language yet.",
-                1.0, VA + ASR + TTS)
-
-    # Language identification
+    # Language identification (open tools only)
     if any(i in f for i in LID) and not any(_v(f, i) for i in LID) and words:
         add("lid-none", "share", "langid", "Open language identifiers don't recognise this language",
             "Web-scale data collection starts by identifying each page's language, so text in this language "
@@ -457,7 +451,7 @@ def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | 
         o["priority_now"] = round(_reach(u["now"]) * base, 3)
         o["priority_5y"] = round(_reach(u["5y"]) * base * momentum, 3)
         o["workstream"] = t["workstream"]
-    return sorted(opps, key=lambda o: -o["priority_5y"])
+    return sorted(opps, key=lambda o: (-o["priority_5y"], o["key"]))  # ties in rule-name order, so output is stable
 
 
 @lru_cache(maxsize=1)

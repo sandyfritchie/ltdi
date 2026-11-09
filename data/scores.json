@@ -4878,7 +4878,8 @@
       "tts_google",
       "tts_azure",
       "tts_amazon",
-      "tts_open_mms"
+      "tts_open_mms",
+      "open_speech_hours"
      ],
      "teams": [
       "tts"
@@ -5506,6 +5507,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -5594,7 +5597,8 @@
       "tts_google",
       "tts_azure",
       "tts_amazon",
-      "tts_open_mms"
+      "tts_open_mms",
+      "open_speech_hours"
      ],
      "teams": [
       "tts"
@@ -6125,7 +6129,8 @@
       "tts_google",
       "tts_azure",
       "tts_amazon",
-      "tts_open_mms"
+      "tts_open_mms",
+      "open_speech_hours"
      ],
      "teams": [
       "tts"
@@ -6214,6 +6219,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -6566,6 +6573,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -6775,7 +6784,8 @@
       "tts_google",
       "tts_azure",
       "tts_amazon",
-      "tts_open_mms"
+      "tts_open_mms",
+      "open_speech_hours"
      ],
      "teams": [
       "tts"
@@ -7087,67 +7097,6 @@
      "why": "About 344 thousand Icelandic speakers are online today, and that should reach 370 thousand within five years. Ready to use: FLEURS (12 hours of transcribed speech); YODAS2 (8.8 hours of transcribed speech)."
     },
     {
-     "key": "ui-platforms",
-     "type": "share",
-     "technology": "interface",
-     "title": "The interface is translated on 2 of 3 major platforms",
-     "detail": "People can already use some phone and computer platforms in this language. Shared terminology would make the remaining ones faster to translate.",
-     "gap": 0.333,
-     "evidence": [
-      "ui_ios",
-      "ui_windows",
-      "ui_office",
-      "ui_firefox"
-     ],
-     "teams": [
-      "standards"
-     ],
-     "missing": "Translators and reviewers for the remaining platforms, and a shared glossary of interface terms so the same button reads the same everywhere.",
-     "cost": 1,
-     "starter": [
-      "ui_firefox",
-      "cldr_coverage"
-     ],
-     "users": {
-      "speakers": 350000,
-      "now": 343735,
-      "5y": 369788,
-      "kind": "text",
-      "estimated": true
-     },
-     "need": 0.375,
-     "reach": {
-      "speakers": 1.544,
-      "now": 1.536,
-      "5y": 1.568
-     },
-     "momentum": 1.053,
-     "priority": 0.193,
-     "priority_now": 0.192,
-     "priority_5y": 0.206,
-     "workstream": "Tools for builders",
-     "id": "is-ui-platforms",
-     "kit": [
-      {
-       "indicator": "ui_firefox",
-       "name": "Firefox localisation (Pontoon)",
-       "what": "Volunteer interface translations and terminology for the browser",
-       "licence": "MPL 2.0",
-       "link": "https://pontoon.mozilla.org/",
-       "size": "covers this language"
-      },
-      {
-       "indicator": "cldr_coverage",
-       "name": "Unicode CLDR",
-       "what": "Locale data: names, dates, numbers, character set",
-       "licence": "Unicode License v3",
-       "link": "https://cldr.unicode.org/",
-       "size": "modern coverage"
-      }
-     ],
-     "why": "About 344 thousand Icelandic speakers are online and able to text today, and that should reach 370 thousand within five years. Ready to use: Firefox localisation (Pontoon) (covers this language); Unicode CLDR (modern coverage)."
-    },
-    {
      "key": "ocr-vendors",
      "type": "share",
      "technology": "ocr",
@@ -7207,6 +7156,67 @@
       }
      ],
      "why": "About 344 thousand Icelandic speakers are online and able to text today, and that should reach 370 thousand within five years. Ready to use: Tesseract OCR (covers this language); FineWeb-2 (2 billion words)."
+    },
+    {
+     "key": "ui-platforms",
+     "type": "share",
+     "technology": "interface",
+     "title": "The interface is translated on 2 of 3 major platforms",
+     "detail": "People can already use some phone and computer platforms in this language. Shared terminology would make the remaining ones faster to translate.",
+     "gap": 0.333,
+     "evidence": [
+      "ui_ios",
+      "ui_windows",
+      "ui_office",
+      "ui_firefox"
+     ],
+     "teams": [
+      "standards"
+     ],
+     "missing": "Translators and reviewers for the remaining platforms, and a shared glossary of interface terms so the same button reads the same everywhere.",
+     "cost": 1,
+     "starter": [
+      "ui_firefox",
+      "cldr_coverage"
+     ],
+     "users": {
+      "speakers": 350000,
+      "now": 343735,
+      "5y": 369788,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 0.375,
+     "reach": {
+      "speakers": 1.544,
+      "now": 1.536,
+      "5y": 1.568
+     },
+     "momentum": 1.053,
+     "priority": 0.193,
+     "priority_now": 0.192,
+     "priority_5y": 0.206,
+     "workstream": "Tools for builders",
+     "id": "is-ui-platforms",
+     "kit": [
+      {
+       "indicator": "ui_firefox",
+       "name": "Firefox localisation (Pontoon)",
+       "what": "Volunteer interface translations and terminology for the browser",
+       "licence": "MPL 2.0",
+       "link": "https://pontoon.mozilla.org/",
+       "size": "covers this language"
+      },
+      {
+       "indicator": "cldr_coverage",
+       "name": "Unicode CLDR",
+       "what": "Locale data: names, dates, numbers, character set",
+       "licence": "Unicode License v3",
+       "link": "https://cldr.unicode.org/",
+       "size": "modern coverage"
+      }
+     ],
+     "why": "About 344 thousand Icelandic speakers are online and able to text today, and that should reach 370 thousand within five years. Ready to use: Firefox localisation (Pontoon) (covers this language); Unicode CLDR (modern coverage)."
     },
     {
      "key": "asr-improve",
@@ -7297,6 +7307,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -7838,6 +7850,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -7987,7 +8001,8 @@
       "tts_google",
       "tts_azure",
       "tts_amazon",
-      "tts_open_mms"
+      "tts_open_mms",
+      "open_speech_hours"
      ],
      "teams": [
       "tts"
@@ -8584,7 +8599,8 @@
       "tts_google",
       "tts_azure",
       "tts_amazon",
-      "tts_open_mms"
+      "tts_open_mms",
+      "open_speech_hours"
      ],
      "teams": [
       "tts"
@@ -8664,6 +8680,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -9273,6 +9291,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -9429,7 +9449,8 @@
       "tts_google",
       "tts_azure",
       "tts_amazon",
-      "tts_open_mms"
+      "tts_open_mms",
+      "open_speech_hours"
      ],
      "teams": [
       "tts"
@@ -10019,6 +10040,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -10107,7 +10130,8 @@
       "tts_google",
       "tts_azure",
       "tts_amazon",
-      "tts_open_mms"
+      "tts_open_mms",
+      "open_speech_hours"
      ],
      "teams": [
       "tts"
@@ -10837,6 +10861,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -11674,6 +11700,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -12215,6 +12243,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -12934,6 +12964,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -13473,70 +13505,6 @@
      "why": "About 5.5 million Quechua speakers are online and able to text today, and that should reach 6.4 million within five years. Ready to use: FLORES-200 (covers this language); FineWeb-2 (9 million words)."
     },
     {
-     "key": "asr-none",
-     "type": "share",
-     "technology": "speech_input",
-     "title": "No major speech input service, though open resources exist",
-     "detail": "Open datasets hold 180 hours of transcribed speech, and an open model lists the language.",
-     "gap": 1.0,
-     "evidence": [
-      "asr_google",
-      "asr_azure",
-      "asr_apple",
-      "asr_amazon",
-      "open_speech_hours",
-      "asr_open_whisper",
-      "asr_open_mms"
-     ],
-     "teams": [
-      "speech"
-     ],
-     "missing": "A production model and a launch. If the open recordings come from few speakers, more varied voices first.",
-     "cost": 1,
-     "starter": [
-      "speech_yodas",
-      "cv_validated_hours"
-     ],
-     "users": {
-      "speakers": 8500000,
-      "now": 6883300,
-      "5y": 8083495,
-      "kind": "voice",
-      "estimated": true
-     },
-     "need": 0.875,
-     "reach": {
-      "speakers": 2.929,
-      "now": 2.838,
-      "5y": 2.908
-     },
-     "momentum": 1.116,
-     "priority": 2.563,
-     "priority_now": 2.483,
-     "priority_5y": 2.839,
-     "workstream": "Tools for builders",
-     "id": "qu-asr-none",
-     "kit": [
-      {
-       "indicator": "speech_yodas",
-       "name": "YODAS2",
-       "what": "YouTube videos with manually uploaded subtitles",
-       "licence": "CC BY 3.0",
-       "link": "https://huggingface.co/datasets/espnet/yodas2",
-       "size": "1.7 hours of transcribed speech"
-      },
-      {
-       "indicator": "cv_validated_hours",
-       "name": "Mozilla Common Voice",
-       "what": "Transcribed read speech from many volunteers",
-       "licence": "CC0 1.0",
-       "link": "https://commonvoice.mozilla.org/en/datasets",
-       "size": "178 hours of transcribed speech"
-      }
-     ],
-     "why": "About 6.9 million Quechua speakers are online today, and that should reach 8.1 million within five years. Ready to use: YODAS2 (1.7 hours of transcribed speech); Mozilla Common Voice (178 hours of transcribed speech)."
-    },
-    {
      "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
@@ -13600,6 +13568,70 @@
        "licence": "CC BY-SA 4.0",
        "link": "https://github.com/facebookresearch/flores",
        "size": "covers this language"
+      }
+     ],
+     "why": "About 6.9 million Quechua speakers are online today, and that should reach 8.1 million within five years. Ready to use: YODAS2 (1.7 hours of transcribed speech); Mozilla Common Voice (178 hours of transcribed speech)."
+    },
+    {
+     "key": "asr-none",
+     "type": "share",
+     "technology": "speech_input",
+     "title": "No major speech input service, though open resources exist",
+     "detail": "Open datasets hold 180 hours of transcribed speech, and an open model lists the language.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
+      "open_speech_hours"
+     ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "A production model and a launch. If the open recordings come from few speakers, more varied voices first.",
+     "cost": 1,
+     "starter": [
+      "speech_yodas",
+      "cv_validated_hours"
+     ],
+     "users": {
+      "speakers": 8500000,
+      "now": 6883300,
+      "5y": 8083495,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 0.875,
+     "reach": {
+      "speakers": 2.929,
+      "now": 2.838,
+      "5y": 2.908
+     },
+     "momentum": 1.116,
+     "priority": 2.563,
+     "priority_now": 2.483,
+     "priority_5y": 2.839,
+     "workstream": "Tools for builders",
+     "id": "qu-asr-none",
+     "kit": [
+      {
+       "indicator": "speech_yodas",
+       "name": "YODAS2",
+       "what": "YouTube videos with manually uploaded subtitles",
+       "licence": "CC BY 3.0",
+       "link": "https://huggingface.co/datasets/espnet/yodas2",
+       "size": "1.7 hours of transcribed speech"
+      },
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "178 hours of transcribed speech"
       }
      ],
      "why": "About 6.9 million Quechua speakers are online today, and that should reach 8.1 million within five years. Ready to use: YODAS2 (1.7 hours of transcribed speech); Mozilla Common Voice (178 hours of transcribed speech)."
@@ -14267,6 +14299,67 @@
      "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
+     "key": "proof-build",
+     "type": "share",
+     "technology": "proofing",
+     "title": "A spell-checker could be built from open text",
+     "detail": "No spell-checker was found. FineWeb-2 holds about 19 million words of open web text, enough for a first word list.",
+     "gap": 1.0,
+     "evidence": [
+      "proof_office",
+      "proof_hunspell",
+      "web_text_words"
+     ],
+     "teams": [
+      "proofing",
+      "data"
+     ],
+     "missing": "A word list built from the open text and reviewed by native speakers, in the open Hunspell format that most spell-checkers read.",
+     "cost": 1,
+     "starter": [
+      "web_text_words",
+      "wikipedia_articles"
+     ],
+     "users": {
+      "speakers": 42000000,
+      "now": 4796400,
+      "5y": 6812005,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 1.0,
+     "reach": {
+      "speakers": 3.623,
+      "now": 2.681,
+      "5y": 2.833
+     },
+     "momentum": 1.253,
+     "priority": 3.623,
+     "priority_now": 2.681,
+     "priority_5y": 3.55,
+     "workstream": "Tools for builders",
+     "id": "om-proof-build",
+     "kit": [
+      {
+       "indicator": "web_text_words",
+       "name": "FineWeb-2",
+       "what": "Filtered web text",
+       "licence": "ODC-By 1.0",
+       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
+       "size": "19 million words"
+      },
+      {
+       "indicator": "wikipedia_articles",
+       "name": "Wikipedia",
+       "what": "Encyclopedia articles",
+       "licence": "CC BY-SA 4.0",
+       "link": "https://dumps.wikimedia.org/",
+       "size": "2 thousand articles"
+      }
+     ],
+     "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years. Ready to use: FineWeb-2 (19 million words); Wikipedia (2 thousand articles)."
+    },
+    {
      "key": "ui-none",
      "type": "standardise",
      "technology": "interface",
@@ -14327,67 +14420,6 @@
       }
      ],
      "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years. Ready to use: Unicode CLDR (basic coverage); FineWeb-2 (19 million words)."
-    },
-    {
-     "key": "proof-build",
-     "type": "share",
-     "technology": "proofing",
-     "title": "A spell-checker could be built from open text",
-     "detail": "No spell-checker was found. FineWeb-2 holds about 19 million words of open web text, enough for a first word list.",
-     "gap": 1.0,
-     "evidence": [
-      "proof_office",
-      "proof_hunspell",
-      "web_text_words"
-     ],
-     "teams": [
-      "proofing",
-      "data"
-     ],
-     "missing": "A word list built from the open text and reviewed by native speakers, in the open Hunspell format that most spell-checkers read.",
-     "cost": 1,
-     "starter": [
-      "web_text_words",
-      "wikipedia_articles"
-     ],
-     "users": {
-      "speakers": 42000000,
-      "now": 4796400,
-      "5y": 6812005,
-      "kind": "text",
-      "estimated": true
-     },
-     "need": 1.0,
-     "reach": {
-      "speakers": 3.623,
-      "now": 2.681,
-      "5y": 2.833
-     },
-     "momentum": 1.253,
-     "priority": 3.623,
-     "priority_now": 2.681,
-     "priority_5y": 3.55,
-     "workstream": "Tools for builders",
-     "id": "om-proof-build",
-     "kit": [
-      {
-       "indicator": "web_text_words",
-       "name": "FineWeb-2",
-       "what": "Filtered web text",
-       "licence": "ODC-By 1.0",
-       "link": "https://huggingface.co/datasets/HuggingFaceFW/fineweb-2",
-       "size": "19 million words"
-      },
-      {
-       "indicator": "wikipedia_articles",
-       "name": "Wikipedia",
-       "what": "Encyclopedia articles",
-       "licence": "CC BY-SA 4.0",
-       "link": "https://dumps.wikimedia.org/",
-       "size": "2 thousand articles"
-      }
-     ],
-     "why": "About 4.8 million Oromo speakers are online and able to text today, and that should reach 6.8 million within five years. Ready to use: FineWeb-2 (19 million words); Wikipedia (2 thousand articles)."
     },
     {
      "key": "asr-measure",
@@ -14585,6 +14617,8 @@
       "asr_azure",
       "asr_apple",
       "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
       "open_speech_hours"
      ],
      "teams": [
@@ -15190,70 +15224,6 @@
      "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years. Ready to use: FLORES-200 (covers this language); Belebele (covers this language)."
     },
     {
-     "key": "asr-none",
-     "type": "share",
-     "technology": "speech_input",
-     "title": "No major speech input service, though open resources exist",
-     "detail": "Open datasets hold 6.2 hours of transcribed speech, and an open model lists the language.",
-     "gap": 1.0,
-     "evidence": [
-      "asr_google",
-      "asr_azure",
-      "asr_apple",
-      "asr_amazon",
-      "open_speech_hours",
-      "asr_open_whisper",
-      "asr_open_mms"
-     ],
-     "teams": [
-      "speech"
-     ],
-     "missing": "A production model and a launch. If the open recordings come from few speakers, more varied voices first.",
-     "cost": 1,
-     "starter": [
-      "speech_yodas",
-      "cv_validated_hours"
-     ],
-     "users": {
-      "speakers": 5852000,
-      "now": 4772891,
-      "5y": 5363121,
-      "kind": "voice",
-      "estimated": true
-     },
-     "need": 0.875,
-     "reach": {
-      "speakers": 2.767,
-      "now": 2.679,
-      "5y": 2.729
-     },
-     "momentum": 1.084,
-     "priority": 2.421,
-     "priority_now": 2.344,
-     "priority_5y": 2.589,
-     "workstream": "Tools for builders",
-     "id": "gn-asr-none",
-     "kit": [
-      {
-       "indicator": "speech_yodas",
-       "name": "YODAS2",
-       "what": "YouTube videos with manually uploaded subtitles",
-       "licence": "CC BY 3.0",
-       "link": "https://huggingface.co/datasets/espnet/yodas2",
-       "size": "1.1 hours of transcribed speech"
-      },
-      {
-       "indicator": "cv_validated_hours",
-       "name": "Mozilla Common Voice",
-       "what": "Transcribed read speech from many volunteers",
-       "licence": "CC0 1.0",
-       "link": "https://commonvoice.mozilla.org/en/datasets",
-       "size": "5.2 hours of transcribed speech"
-      }
-     ],
-     "why": "About 4.8 million Guarani speakers are online today, and that should reach 5.4 million within five years. Ready to use: YODAS2 (1.1 hours of transcribed speech); Mozilla Common Voice (5.2 hours of transcribed speech)."
-    },
-    {
      "key": "asr-measure",
      "type": "measure",
      "technology": "speech_input",
@@ -15317,6 +15287,70 @@
        "licence": "CC BY-SA 4.0",
        "link": "https://github.com/facebookresearch/flores",
        "size": "covers this language"
+      }
+     ],
+     "why": "About 4.8 million Guarani speakers are online today, and that should reach 5.4 million within five years. Ready to use: YODAS2 (1.1 hours of transcribed speech); Mozilla Common Voice (5.2 hours of transcribed speech)."
+    },
+    {
+     "key": "asr-none",
+     "type": "share",
+     "technology": "speech_input",
+     "title": "No major speech input service, though open resources exist",
+     "detail": "Open datasets hold 6.2 hours of transcribed speech, and an open model lists the language.",
+     "gap": 1.0,
+     "evidence": [
+      "asr_google",
+      "asr_azure",
+      "asr_apple",
+      "asr_amazon",
+      "asr_open_whisper",
+      "asr_open_mms",
+      "open_speech_hours"
+     ],
+     "teams": [
+      "speech"
+     ],
+     "missing": "A production model and a launch. If the open recordings come from few speakers, more varied voices first.",
+     "cost": 1,
+     "starter": [
+      "speech_yodas",
+      "cv_validated_hours"
+     ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4772891,
+      "5y": 5363121,
+      "kind": "voice",
+      "estimated": true
+     },
+     "need": 0.875,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.679,
+      "5y": 2.729
+     },
+     "momentum": 1.084,
+     "priority": 2.421,
+     "priority_now": 2.344,
+     "priority_5y": 2.589,
+     "workstream": "Tools for builders",
+     "id": "gn-asr-none",
+     "kit": [
+      {
+       "indicator": "speech_yodas",
+       "name": "YODAS2",
+       "what": "YouTube videos with manually uploaded subtitles",
+       "licence": "CC BY 3.0",
+       "link": "https://huggingface.co/datasets/espnet/yodas2",
+       "size": "1.1 hours of transcribed speech"
+      },
+      {
+       "indicator": "cv_validated_hours",
+       "name": "Mozilla Common Voice",
+       "what": "Transcribed read speech from many volunteers",
+       "licence": "CC0 1.0",
+       "link": "https://commonvoice.mozilla.org/en/datasets",
+       "size": "5.2 hours of transcribed speech"
       }
      ],
      "why": "About 4.8 million Guarani speakers are online today, and that should reach 5.4 million within five years. Ready to use: YODAS2 (1.1 hours of transcribed speech); Mozilla Common Voice (5.2 hours of transcribed speech)."
@@ -15393,6 +15427,57 @@
      "why": "About 4.8 million Guarani speakers are online today, and that should reach 5.4 million within five years. Ready to use: MMS text-to-speech (covers this language); YODAS2 (1.1 hours of transcribed speech)."
     },
     {
+     "key": "proof-share",
+     "type": "share",
+     "technology": "proofing",
+     "title": "An open spell-checker exists that more word processors could adopt",
+     "detail": "An open dictionary or grammar checker covers this language, but the most widely used word processors don't check it yet.",
+     "gap": 1.0,
+     "evidence": [
+      "proof_office",
+      "proof_hunspell",
+      "proof_languagetool"
+     ],
+     "teams": [
+      "proofing"
+     ],
+     "missing": "Checking the open dictionary's licence and quality with native speakers, then packaging it for the major office suites and phone keyboards.",
+     "cost": 1,
+     "starter": [
+      "proof_hunspell"
+     ],
+     "users": {
+      "speakers": 5852000,
+      "now": 4130342,
+      "5y": 4641162,
+      "kind": "text",
+      "estimated": true
+     },
+     "need": 0.75,
+     "reach": {
+      "speakers": 2.767,
+      "now": 2.616,
+      "5y": 2.667
+     },
+     "momentum": 1.084,
+     "priority": 2.075,
+     "priority_now": 1.962,
+     "priority_5y": 2.168,
+     "workstream": "Tools for builders",
+     "id": "gn-proof-share",
+     "kit": [
+      {
+       "indicator": "proof_hunspell",
+       "name": "LibreOffice dictionaries",
+       "what": "Hunspell spelling dictionaries and hyphenation patterns",
+       "licence": "Varies by language (GPL/LGPL/MPL)",
+       "link": "https://github.com/LibreOffice/dictionaries",
+       "size": "covers this language"
+      }
+     ],
+     "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years. Ready to use: LibreOffice dictionaries (covers this language)."
+    },
+    {
      "key": "ui-community",
      "type": "share",
      "technology": "interface",
@@ -15443,57 +15528,6 @@
       }
      ],
      "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years. Ready to use: Firefox localisation (Pontoon) (covers this language)."
-    },
-    {
-     "key": "proof-share",
-     "type": "share",
-     "technology": "proofing",
-     "title": "An open spell-checker exists that more word processors could adopt",
-     "detail": "An open dictionary or grammar checker covers this language, but the most widely used word processors don't check it yet.",
-     "gap": 1.0,
-     "evidence": [
-      "proof_office",
-      "proof_hunspell",
-      "proof_languagetool"
-     ],
-     "teams": [
-      "proofing"
-     ],
-     "missing": "Checking the open dictionary's licence and quality with native speakers, then packaging it for the major office suites and phone keyboards.",
-     "cost": 1,
-     "starter": [
-      "proof_hunspell"
-     ],
-     "users": {
-      "speakers": 5852000,
-      "now": 4130342,
-      "5y": 4641162,
-      "kind": "text",
-      "estimated": true
-     },
-     "need": 0.75,
-     "reach": {
-      "speakers": 2.767,
-      "now": 2.616,
-      "5y": 2.667
-     },
-     "momentum": 1.084,
-     "priority": 2.075,
-     "priority_now": 1.962,
-     "priority_5y": 2.168,
-     "workstream": "Tools for builders",
-     "id": "gn-proof-share",
-     "kit": [
-      {
-       "indicator": "proof_hunspell",
-       "name": "LibreOffice dictionaries",
-       "what": "Hunspell spelling dictionaries and hyphenation patterns",
-       "licence": "Varies by language (GPL/LGPL/MPL)",
-       "link": "https://github.com/LibreOffice/dictionaries",
-       "size": "covers this language"
-      }
-     ],
-     "why": "About 4.1 million Guarani speakers are online and able to text today, and that should reach 4.6 million within five years. Ready to use: LibreOffice dictionaries (covers this language)."
     },
     {
      "key": "cldr",
