@@ -93,9 +93,6 @@ th button.sort:hover, th button.sort[aria-pressed="true"] { color: var(--ink); }
 th button.sort:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 th button.sort .arr { font-size: 9px; width: 8px; }
 th.num button.sort { flex-direction: row-reverse; }
-th .dimsort { display: inline-flex; gap: 8px; margin-left: 8px; }
-th .dimsort button.sort i { width: 8px; height: 8px; border-radius: 2px; background: var(--c); }
-@media (max-width: 640px) { th .dimsort { gap: 6px; margin-left: 6px; } th .dimsort .lbl { display: none; } }
 tbody tr { cursor: pointer; }
 tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
 .rank { font: 700 18px var(--font-display); font-stretch: 80%; color: var(--muted); width: 2.5em; }
@@ -511,7 +508,6 @@ const GAP_WEIGHT = { none: 2, open: 1 };
 const SORTS = {
   rank: ['#', l => l.rank, 1], name: ['Language', l => l.name.toLowerCase(), 1], speakers: ['Speakers', l => l.speakers || 0, -1],
   region: ['Region', l => REGION_ORDER.indexOf(l.region) * 1e4 + l.rank, 1],
-  writing: ['Writing', l => l.dimensions.writing.score, -1], data: ['Data', l => l.dimensions.data.score, -1], tech: ['Technology', l => l.dimensions.tech.score, -1],
   ltdi: ['LTDI', l => l.ltdi, -1], tier: ['Tier', l => l.ltdi, -1],
   gaps: ['Gaps', l => Object.values(l.gaps).reduce((n, g) => n + GAP_WEIGHT[g], 0) * 1e4 + l.rank, -1],
 };
@@ -523,7 +519,7 @@ function rankHead() {
   const aria = k => sortBy === k ? ` aria-sort="${(sortDir === SORTS[k][2]) === (SORTS[k][2] > 0) ? 'ascending' : 'descending'}"` : '';
   return `<th${aria('rank')}>${sortBtn('rank')}</th><th${aria('name')}>${sortBtn('name')}</th>
     <th class="num hide-sm"${aria('speakers')}>${sortBtn('speakers')}</th><th class="hide-sm"${aria('region')}>${sortBtn('region')}</th>
-    <th>Dimensions<span class="dimsort">${DIMS.map(([k, , c]) => sortBtn(k, `<i style="--c:var(${c})"></i><span class="lbl">${k === 'tech' ? 'Tech' : SORTS[k][0]}</span>`)).join('')}</span></th>
+    <th>Dimensions</th>
     <th class="num"${aria('ltdi')}>${sortBtn('ltdi')}</th><th${aria('tier')}>${sortBtn('tier')}</th>
     <th class="hide-sm" title="Main technologies no commercial service offers"${aria('gaps')}>${sortBtn('gaps')}</th>`;
 }
