@@ -93,9 +93,9 @@ button.reset[hidden] { display: none; }
 .msel-clear { display: block; width: 100%; margin-top: 4px; padding: 6px 8px; font: 13px var(--font-body); color: var(--accent, var(--muted));
   background: none; border: 0; border-top: 1px solid var(--rule); text-align: left; cursor: pointer; }
 /* Charts: the filters stay at the top while scrolling, so their effect on lower charts shows */
-.controls.sticky { position: sticky; top: 0; z-index: 30; background: var(--bg); padding: 10px 0; margin-block: 10px 2px;
-  border-bottom: 1px solid transparent; }
-.controls.sticky.stuck { border-bottom-color: var(--rule); box-shadow: 0 6px 12px -10px rgba(0,0,0,.25); }
+.controls.sticky { z-index: 30; background: var(--bg); padding: 10px 0; margin-block: 10px 2px; border-bottom: 1px solid transparent; }
+.controls.sticky.stuck { position: fixed; top: env(safe-area-inset-top, 0px); margin: 0; border-bottom-color: var(--rule);
+  box-shadow: 0 6px 12px -10px rgba(0,0,0,.25); }
 .controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-block: 20px 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip { font: 600 13px/1 var(--font-body); border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
@@ -1183,6 +1183,26 @@ function bindMap() {
   svg.addEventListener('mouseleave', tipHide);
 }
 
+// Keep a bar of filters at the top of the window once it scrolls up there. Done in script rather than
+// with position: sticky, which stops working when the page is hosted inside a frame or a container
+// that clips overflow; a scroll listener on the document hears whichever element is scrolling.
+function pinBar(bar) {
+  if (!bar) return;
+  const spot = document.createElement('div'); bar.before(spot);
+  const update = () => {
+    if (!bar.isConnected) { document.removeEventListener('scroll', update, true); removeEventListener('resize', update); return; }
+    const r = spot.getBoundingClientRect(), pin = r.top < 0;
+    if (pin !== bar.classList.contains('stuck')) {
+      bar.classList.toggle('stuck', pin);
+      spot.style.height = pin ? bar.offsetHeight + 'px' : '';
+    }
+    if (pin) { bar.style.left = r.left + 'px'; bar.style.width = r.width + 'px'; } else { bar.style.left = bar.style.width = ''; }
+  };
+  document.addEventListener('scroll', update, true);
+  addEventListener('resize', update);
+  update();
+}
+
 function charts() {
   const langs = LANGS.filter(inRegion), N = langs.length;
   const techs = Object.entries(CFG.tech.technologies);
@@ -1332,11 +1352,7 @@ function charts() {
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
   $('#csel').onchange = keep(v => { region = v; });
   $('#cpsel').onchange = keep(v => { provider = v; });
-  const bar = $('.controls.sticky');
-  if (bar && 'IntersectionObserver' in window) {  // a rule under the bar once it's stuck to the top
-    const s = document.createElement('div'); bar.before(s);
-    new IntersectionObserver(([e]) => bar.classList.toggle('stuck', !e.isIntersecting)).observe(s);
-  }
+  pinBar($('.controls.sticky'));
 }
 
 function route() {
