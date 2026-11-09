@@ -59,6 +59,8 @@ def yodas(codes: set[str]) -> dict[str, float]:
         if code not in codes:
             continue
         n = int(n)
+        if not n:
+            continue
         picks = sorted({round(i * (n - 1) / max(1, SAMPLE - 1)) for i in range(min(n, SAMPLE))})
         secs = 0.0
         for i in picks:

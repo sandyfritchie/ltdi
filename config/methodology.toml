@@ -2,7 +2,7 @@
 # Every number here is a draft for discussion; see the project plan doc.
 
 [meta]
-edition = "slice-2026-11"
+edition = "2026-11"
 # Lowest value a dimension index can take, so one empty dimension doesn't zero the LTDI
 floor = 0.05
 

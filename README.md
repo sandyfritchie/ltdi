@@ -11,19 +11,18 @@ Builds on van Esch, Ritchie et al. (2024),
 [Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages](https://aclanthology.org/2024.lrec-main.331/),
 with language metadata from [LinguaMeta](https://github.com/google-research/url-nlp/tree/main/linguameta).
 
-## Status: vertical slice
+## Status
 
-25 languages, ten technologies and about 80 indicators from some 40 sources, scored end to end with a static site.
-The point of the slice is to test the method before scaling up.
+Every language in LinguaMeta (7,453 after macrolanguage rules), ten technologies and about 80 indicators
+from some 40 sources, scored end to end with a static site. Commercial coverage is read from each
+company's published language lists; data from FineWeb-2, OPUS, Universal Dependencies, Wikipedia,
+open speech datasets, the Hugging Face Hub and public benchmarks.
 
 ## Pipeline
 
 ```
 python -m ltdi.backbone        # every LinguaMeta language (macrolanguage rules in config/macrolanguages.csv)
-python -m ltdi.collectors      # automated collectors -> data/records/*.csv (open_tools reads three repos with git)
-python -m ltdi.collectors wikipedia   # needs open network access; run locally
-python -m ltdi.collectors mms        # needs dl.fbaipublicfiles.com
-# speech, benchmarks and hf_hub need huggingface.co; opus needs opus.nlpl.eu
+python -m ltdi.collectors      # every collector -> data/records/*.csv (git, plus the sites each one names)
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
@@ -33,10 +32,10 @@ python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data
 No dependencies beyond the Python 3.11+ standard library.
 
 The page carries an index of every language (scores, coverage, gaps and the top
-opportunities); each language's own detail is in `site/data/lang/<code>.json`,
-loaded when one of its pages opens. While those files are small they are also
-embedded, so `site/index.html` works opened straight from disk; once they grow,
-serve the folder (`python -m http.server -d site`) or use GitHub Pages.
+opportunities); each language's own detail is in `site/data/lang/<n>.json` (150
+languages per file), loaded when one of its pages opens. Serve the folder
+(`python -m http.server -d site`) or use GitHub Pages; opened straight from disk,
+only small builds work, because then the detail is embedded.
 
 ## Layout
 
@@ -44,13 +43,14 @@ serve the folder (`python -m http.server -d site`) or use GitHub Pages.
 | --- | --- |
 | `config/language_overrides.csv` | Names, region overrides, map origins and notes for particular languages |
 | `config/macrolanguages.csv` | Which macrolanguages are scored as one language, which members they absorb, and where macrolanguage labels go otherwise |
-| `config/crosswalk.csv` | Source language labels → LTDI codes; all rollup rules live here |
+| `config/crosswalk.csv` | Source language codes → LTDI codes where the standard resolution gets them wrong |
+| `config/language_names.csv` | Vendor language names → LTDI codes where LinguaMeta's English names don't match |
 | `config/methodology.toml` | Indicators, goalposts, weights, tiers, floor |
 | `config/services.csv` | Every service: technology, role (commercial, open, benchmark), name, provider, depth indicator |
 | `ltdi/records.py` | The common record every collector emits, with provenance |
 | `ltdi/collectors/` | One module per source |
 | `data/records/` | Automated collector output |
-| `data/manual/` | Vendor language lists read by hand, one row per service (`*.lists.csv`: languages offered, notes, URL, date) |
+| `data/manual/` | Lists read by hand where no page can be parsed (`*.lists.csv`: languages, notes, URL, date) |
 | `site/` | Static site template and build output |
 
 ## Technology scores
@@ -65,7 +65,11 @@ service never lowers a score. Depth that describes the technology as a whole
 (a published error rate) is averaged with presence. LLMs average availability in AI assistant apps with
 measured benchmark quality. Language identification counts open models, at half weight.
 
-## Sources in the slice
+## Sources
+
+Vendor pages are read by `ltdi/collectors/vendors.py`: by language code where the page gives one, otherwise
+by name, resolved through LinguaMeta's English names plus `config/language_names.csv`. The collector prints
+any name it can't resolve.
 
 | Dimension | Indicator | Source | Method |
 | --- | --- | --- | --- |
@@ -74,19 +78,19 @@ measured benchmark quality. Language identification counts open models, at half 
 | Data | Web text (words) | FineWeb-2 language distribution | automated |
 | Data | Parallel text with English (sentence pairs) | OPUS, all corpora for the pair | automated |
 | Data | Annotated text (treebank words) | Universal Dependencies, latest release | automated |
-| Data | Wikipedia articles and active editors | Wikimedia API | automated (run locally) |
+| Data | Wikipedia articles and active editors | Meta-Wiki's List of Wikipedias (refreshed from each edition's statistics) | automated |
 | Data | Open transcribed speech (hours) | Summed across Common Voice 27.0, FLEURS, YODAS2, WAXAL (automated) and Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech (`config/speech_datasets.csv`, from each paper or card) | automated and curated |
-| Data | Datasets on the Hugging Face Hub | Hub API, by language tag | automated |
+| Data | Datasets on the Hugging Face Hub | Hub API: the whole dataset listing, read once, by language tag | automated |
 | Data | Public benchmarks covering the language (of 9) | FLORES-200, Belebele, FLEURS, Global-MMLU, MMMLU, INCLUDE, XNLI, MGSM, IrokoBench | automated |
-| Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | manual; Keyman automated |
-| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation, Amazon Transcribe; Whisper and MMS (open); depth: Whisper large-v3 FLEURS WER, Azure speech-to-text features | manual; Whisper automated |
-| Tech | Text-to-speech | Google Cloud TTS, Azure Speech, Amazon Polly; MMS-TTS (open); depth: number of Google voice types | manual; MMS automated |
-| Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | manual; DeepL and NLLB automated |
-| Tech | LLMs | Availability: Gemini and Copilot app language lists. Quality: Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | manual; OpenAI automated |
-| Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | manual; Firefox automated |
-| Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | manual; Tesseract automated |
-| Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | manual; open tools automated |
-| Tech | Voice assistant | Google Assistant (speakers and displays), Siri, Alexa | manual |
+| Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | automated |
+| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation, Amazon Transcribe; Whisper and MMS (open); depth: Whisper large-v3 FLEURS WER, Azure speech-to-text features | automated |
+| Tech | Text-to-speech | Google Cloud TTS, Azure Speech, Amazon Polly; MMS-TTS (open); depth: number of Google voice types | automated |
+| Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | automated |
+| Tech | LLMs | Availability: Gemini and Copilot app language lists. Quality: Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | automated; Anthropic's scores read by hand |
+| Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
+| Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
+| Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
+| Tech | Voice assistant | Google Assistant (speakers and displays), Siri, Alexa | automated |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
 
 ## Charts and regions
@@ -173,10 +177,9 @@ example `#opp-sw-tts-share`. Wording names
 platforms and open resources, never companies. Each opportunity is tagged with
 the coalition workstream it fits.
 
-## Known limitations of the slice
+## Known limitations
 
 - Keyboard and text-to-speech depth still come from one vendor each (Apple, Google); speech, translation and LLMs have two.
-- Azure's text-to-speech voice list was read from a third-party copy, since Microsoft's page loads it separately.
 - AI assistant app lists cover Gemini and Copilot; ChatGPT's and Meta AI's official lists couldn't be read from here.
 - Spelling and grammar has one commercial source, so it alone gives full presence. Google's assistant list covers
   speakers and displays; Gemini Live on phones has no full public language list yet. Siri's list is by country,
@@ -187,6 +190,9 @@ the coalition workstream it fits.
 - OPUS counts overlap between corpora, and most sentence pairs are web-mined (the share is in each note).
 - Hub dataset counts depend on how authors tag their datasets.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
-- LLM support is measured for 12 of the 25 languages, by at most two benchmarks.
+- LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand, for the original 25.
+- LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900. Without a script the
+  writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
+- Most massively multilingual datasets on the Hub tag hundreds of languages each, so almost every language has a few.
 - Wikipedia article counts include bot-generated stubs: Urdu (708K) outranks Hindi (172K).
 - Reach uses national averages, which overstate connectivity for rural and minority-language speakers (Quechua in Peru).

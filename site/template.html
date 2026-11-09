@@ -74,7 +74,7 @@ h1 a.home:hover { text-decoration: underline; text-decoration-thickness: 2px; te
 .chip { font: 600 13px/1 var(--font-body); border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
   border-radius: 999px; padding: 7px 12px; cursor: pointer; }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-input[type=search], select { font: 15px var(--font-body); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px;
+input[type=search], input.pick, select { font: 15px var(--font-body); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px;
   background: var(--surface); color: var(--ink); min-width: 0; }
 input[type=search] { width: 220px; max-width: 100%; }
 
@@ -286,8 +286,11 @@ const LANGS = DATA.languages, BY = Object.fromEntries(LANGS.map(l => [l.code, l]
 const CFG = DATA.config.dimensions, L = DATA.labels;
 // The page carries an index (every language's scores, coverage and gaps, and the top opportunities).
 // Each language's own detail (facts, opportunities, reach by country) is embedded when small,
-// otherwise fetched from data/lang/<code>.json the first time one of its pages opens.
+// otherwise fetched the first time one of its pages opens, from data/lang/<shard>.json, which holds
+// the detail of the languages in that shard (so the site is a few dozen files, not thousands).
 const EMBED = JSON.parse(document.getElementById('ltdi-langs').textContent || 'null');
+const SHARDS = {};
+const shard = n => SHARDS[n] ??= fetch(`data/lang/${n}.json`).then(r => r.json());
 const RULES = DATA.rules, RES = DATA.resources;
 DATA.facts = {};
 const LEVEL_CODE = { f: 'full', p: 'part', o: 'open', n: 'none' };
@@ -296,21 +299,36 @@ for (const l of LANGS) {
   l.levels = Object.fromEntries(Object.keys(CFG.tech.technologies).map((t, i) => [t, LEVEL_CODE[l.levels[i]]]));
   l.dimensions = Object.fromEntries(Object.entries(l.scores).map(([k, v]) => [k, { score: v, indicators: {} }]));
 }
-const withRule = o => ({ ...o, teams: RULES[o.key].teams, missing: RULES[o.key].missing });
-const TOP = DATA.top_opportunities.map(withRule);
+// An opportunity carries only what differs by language; the rest is on its rule
+const withRule = (o, lang) => ({ ...RULES[o.key], ...o, id: `${lang}-${o.key}` });
+const TOP = DATA.top_opportunities.map(o => withRule(o, o.lang));
 async function need(...codes) {
   await Promise.all(codes.filter(c => BY[c] && !BY[c].opportunities).map(async c => {
-    const d = EMBED ? EMBED[c] : await (await fetch(`data/lang/${c}.json`)).json();
+    const d = EMBED ? EMBED[c] : (await shard(BY[c].shard))[c];
     const l = BY[c];
-    DATA.facts[c] = Object.fromEntries(Object.entries(d.facts).map(([i, [value, s, note]]) => {
-      const [source, url, retrieved, method] = DATA.sources[s];
+    const facts = { ...DATA.fact_defaults };
+    for (const i of d.lacks || []) delete facts[i];
+    DATA.facts[c] = Object.fromEntries(Object.entries({ ...facts, ...d.facts }).map(([i, [value, s, note]]) => {
+      const [source, u, retrieved, method] = DATA.sources[s], url = u.replaceAll('{lang}', c);
       return [i, { value, unit: DATA.units[i], source, url, retrieved, method, note: note || '' }];
     }));
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source });
-    l.opportunities = d.opportunities.map(o => ({ ...withRule(o), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
+    l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
+// Language pickers: a text box with type-ahead over every language (one shared list), since a menu
+// of seven thousand names is too long to scroll
+function langPicker(id, placeholder, current) {
+  if (!document.getElementById('ltdi-dl')) {
+    const dl = document.createElement('datalist'); dl.id = 'ltdi-dl';
+    dl.innerHTML = LANGS.map(l => `<option value="${esc(l.name)} (${l.code})">`).join('');
+    document.body.append(dl);
+  }
+  return `<input class="pick" id="${id}" list="ltdi-dl" autocomplete="off" aria-label="Language" placeholder="${esc(placeholder)}"
+    value="${current ? esc(`${current.name} (${current.code})`) : ''}" onfocus="this.select()">`;
+}
+const pickedCode = v => { const m = /\(([^()]+)\)\s*$/.exec(v || ''); return m && BY[m[1]] ? m[1] : null; };
 const DIMS = [['writing', 'w', '--writing'], ['data', 'd', '--data'], ['tech', 't', '--tech']];
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -325,7 +343,7 @@ const OBLURB = {
 };
 const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs',
   interface: 'Interface language', ocr: 'Text recognition', proofing: 'Spelling and grammar', assistant: 'Voice assistant', langid: 'Language identification', writing: 'Writing system', data: 'Data' };
-document.getElementById('edition').textContent = `Edition ${DATA.edition} · ${LANGS.length} languages`;
+document.getElementById('edition').textContent = `Edition ${DATA.edition} · ${LANGS.length.toLocaleString()} languages`;
 
 function tierOf(v) {
   if (v >= 0.9) return ['vh', 'Very high'];
@@ -422,7 +440,7 @@ async function opportunities(lang) {
       </div></div>
     <div class="controls">
       ${focus ? '' : regionSelect('orsel')}
-      <select id="olang" aria-label="Language"><option value="">All languages</option>${LANGS.filter(l => focus || inRegion(l)).map(l => `<option value="${l.code}"${focus === l ? ' selected' : ''}>${esc(l.name)}</option>`).join('')}</select>
+      ${langPicker('olang', 'All languages', focus)}
       ${providerSelect('opsel')}
       <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
     </div>
@@ -444,7 +462,7 @@ async function opportunities(lang) {
   const rs = $('#orsel'); if (rs) rs.onchange = e => { region = e.target.value; showAll = false; opportunities(lang); };
   $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; otype = 'all'; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
-  $('#olang').onchange = e => { showAll = false; location.hash = e.target.value ? 'opportunities-' + e.target.value : 'opportunities'; };
+  $('#olang').onchange = e => { showAll = false; const c = pickedCode(e.target.value); location.hash = c ? 'opportunities-' + c : 'opportunities'; };
 }
 
 async function oppDetail(id) {
@@ -707,21 +725,20 @@ async function language(code) {
   const l = BY[code];
   if (!l) return ranking();
   await need(code);
-  const others = LANGS.filter(o => o.code !== code);
   $('#view').innerHTML = `
     <button class="back" id="back">← All languages</button>
     <div class="lhead">
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span></h2>
-        <div class="facts"><span><b>${people(l.speakers)}</b> speakers</span><span>Code <b class="code">${l.code}</b> · ISO 639-3 <b class="code">${esc(l.iso_639_3 || '')}</b></span>
-        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b></span>
+        <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span><span>Code <b class="code">${l.code}</b> · ISO 639-3 <b class="code">${esc(l.iso_639_3 || '')}</b></span>
+        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
         <span id="where">${whereLine(l, false)}</span></div>
         ${reachLine(l)}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
       </div>
-      <div class="lscore"><div class="eyebrow">Rank ${l.rank} of ${LANGS.length}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
+      <div class="lscore"><div class="eyebrow">Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
     </div>
     <div class="cmpbar"><label for="cmpsel">Compare with</label>
-      <select id="cmpsel"><option value="">Choose a language</option>${others.map(o => `<option value="${o.code}">${esc(o.name)}</option>`).join('')}</select></div>
+      ${langPicker('cmpsel', 'Type a language name')}</div>
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
@@ -736,7 +753,7 @@ async function language(code) {
     sec.className = sec.className.replace(/ focus-\w+/g, '') + (provFocus ? ' focus-' + provFocus : '');
     $('#view').querySelectorAll('[data-pv]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.pv === provFocus)));
   });
-  $('#cmpsel').onchange = e => { if (e.target.value) location.hash = `compare-${code}-${e.target.value}`; };
+  $('#cmpsel').onchange = e => { const c = pickedCode(e.target.value); if (c && c !== code) location.hash = `compare-${code}-${c}`; };
 }
 
 // ---------------------------------------------------------------- compare
@@ -838,7 +855,8 @@ function mapSection() {
   const bg = GEO.points.filter(p => !scored.has(p[0]));
   // keep dots a readable size on screen whatever the map's rendered width
   const px = Math.max(300, Math.min(1000, (window.innerWidth || 1000) - 70)) / W;
-  const r0 = Math.max(1.7, 0.9 / px), rs = Math.max(6.5, 4.5 / px), sw = Math.max(1.6, 1.1 / px);
+  const many = LANGS.length > 500;  // thousands of dots: smaller, so neighbours stay visible
+  const r0 = Math.max(1.7, 0.9 / px), rs = many ? Math.max(3, 2.2 / px) : Math.max(6.5, 4.5 / px), sw = many ? Math.max(0.6, 0.5 / px) : Math.max(1.6, 1.1 / px);
   mapR = { r0, rs, sw };
   const bgPath = bgDots(bg, r0);
   const P = provider !== 'All', pn = P ? PROV[provider] : '';
@@ -856,10 +874,10 @@ function mapSection() {
   const legendLabels = P ? { vh: '90%+ of its services', h: '60–90%', m: '30–60%', l: 'Under 30%' } : { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
   return `<section class="chart">
     <h3>The world's languages</h3>
-    <p class="sub">Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length} languages scored so far; white dots are the ${bg.length.toLocaleString()} others in LinguaMeta, not yet scored. Hover for names; select a coloured dot for its profile.</p>
+    <p class="sub">Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length.toLocaleString()} languages scored${bg.length ? `; white dots are the ${bg.length.toLocaleString()} other LinguaMeta entries, which are not scored` : ''}. Hover for names; select a coloured dot for its profile.</p>
     <div class="legend map">
       ${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
-      <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not yet scored · ${bg.length.toLocaleString()}</span>
+      <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>
     </div>
     <div class="mapwrap"><div class="mapctl">
         <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
@@ -973,11 +991,16 @@ function charts() {
   let multiples = '<p class="note">No history collected yet.</p>';
   if (H) {
     const P = H.periods, W = 300, Ht = 150, L = 30, R = 34, T = 12, B = 26;
-    const x = i => L + i * (W - L - R) / (P.length - 1), y = v => T + (Ht - T - B) * (1 - v / Math.max(N, 1));
-    const yearTicks = P.map((p, i) => [p, i]).filter(([p]) => p.endsWith('-12') && ['2019', '2022', '2025'].includes(p.slice(0, 4)));
     const series = Object.entries(H.series).filter(([key]) => provider === 'All' || SERIES_PROV[key] === provider);  // P is the periods here
+    const VALS = Object.fromEntries(series.map(([key]) => [key, P.map((p, pi) => {
+      const vs = langs.map(l => hv(key, l.code, pi)); return vs.every(v => v == null) ? null : vs.filter(v => v === 1).length; })]));
+    // one scale for all panels, up to a round number just above the largest count, so they compare
+    const top = Math.max(1, ...Object.values(VALS).flat().filter(v => v != null));
+    const mag = 10 ** Math.floor(Math.log10(top)), YMAX = Math.min(N, [1, 2, 2.5, 5, 10].map(m => m * mag).find(v => v >= top));
+    const x = i => L + i * (W - L - R) / (P.length - 1), y = v => T + (Ht - T - B) * (1 - v / Math.max(YMAX, 1));
+    const yearTicks = P.map((p, i) => [p, i]).filter(([p]) => p.endsWith('-12') && ['2019', '2022', '2025'].includes(p.slice(0, 4)));
     multiples = series.map(([key, label]) => {
-      const vals = P.map((p, pi) => { const vs = langs.map(l => hv(key, l.code, pi)); return vs.every(v => v == null) ? null : vs.filter(v => v === 1).length; });
+      const vals = VALS[key];
       const pts = vals.map((v, i) => v == null ? null : [x(i), y(v), v, i]).filter(Boolean);
       if (!pts.length) return '';
       const step = pts.map(([px, py], j) => j ? `H${px.toFixed(1)}V${py.toFixed(1)}` : `M${px.toFixed(1)},${py.toFixed(1)}`).join('');
@@ -993,7 +1016,7 @@ function charts() {
       }).join('');
       return `<div class="panel"><h4>${esc(label)}</h4><div class="now">${last[2]} of ${N} languages now</div>
         <svg viewBox="0 0 ${W} ${Ht}" role="img" aria-label="${esc(label)}: ${pts.map(([, , v, i]) => `${P[i]} ${v}`).join(', ')}">
-          <g class="grid">${[0, N].map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join('')}</g>
+          <g class="grid">${[0, YMAX / 2, YMAX].map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join('')}</g>
           <g class="axis">${yearTicks.map(([p, i]) => `<text x="${x(i)}" y="${Ht - 8}" text-anchor="middle">${p.slice(0, 4)}</text>`).join('')}</g>
           <path d="${area}" fill="var(--accent)" fill-opacity="0.12"/>
           <path d="${step}" fill="none" stroke="var(--accent)" stroke-width="2"/>

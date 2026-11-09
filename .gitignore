@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 site/artifact.html
+data/scores.json

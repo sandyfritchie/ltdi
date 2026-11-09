@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import hashlib
 import json
+import time
+import urllib.error
 import urllib.request
 
 from . import CACHE
@@ -17,8 +19,15 @@ def fetch(url: str, *, cache: bool = True) -> bytes:
     if cache and path.exists():
         return path.read_bytes()
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        body = resp.read()
+    for attempt in range(6):
+        try:
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                body = resp.read()
+            break
+        except urllib.error.HTTPError as e:  # rate limited: wait as asked, then try again
+            if e.code != 429 or attempt == 5:
+                raise
+            time.sleep(min(int(e.headers.get("Retry-After") or 0) or 5 * 2 ** attempt, 120))
     CACHE.mkdir(parents=True, exist_ok=True)
     path.write_bytes(body)
     return body

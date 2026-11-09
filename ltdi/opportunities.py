@@ -499,8 +499,10 @@ def explain(lang: dict, o: dict, facts: dict[str, Record]) -> str:
                       f"{_people(u['5y'])} within five years.")
         else:
             people = f"About {_people(u['now'])} {name} speakers are {who} today."
+    elif lang.get("speakers"):
+        people = f"{name} has about {_people(lang['speakers'])} speakers."
     else:
-        people = f"{name} has about {_people(lang.get('speakers') or 0)} speakers."
+        people = f"LinguaMeta has no speaker count for {name}, so this can't be ranked by reach yet."
     kit = [k for k in starter_kit(o, facts) if k["indicator"] not in ("kb_gboard", "wikipedia_active_editors")]
     ready = ""
     if kit and o["type"] != "collect":

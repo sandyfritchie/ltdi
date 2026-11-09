@@ -9,6 +9,7 @@ from __future__ import annotations
 import csv
 import dataclasses
 import datetime as dt
+from collections import Counter
 from pathlib import Path
 from typing import Iterable
 
@@ -39,12 +40,21 @@ class Record:
 
 
 def write_records(path: Path, records: Iterable[Record]) -> int:
-    """Write records, folding plain zero rows (value 0, no note: "not offered", "no hours") into one row per
-    indicator with language "*": every language without a row of its own has value 0."""
+    """Write records, folding the most common zero row of each indicator ("not offered", "no hours") into one
+    row with language "*": every language without a row of its own has value 0, with that row's note."""
     path.parent.mkdir(parents=True, exist_ok=True)
+    records = list(records)
+    rest = lambda r: tuple(v for k, v in dataclasses.asdict(r).items() if k not in ("language", "url"))
+    common: dict[str, Counter] = {}
+    for r in records:
+        common.setdefault(r.indicator, Counter())
+        if not r.value:
+            common[r.indicator][rest(r)] += 1
+    fold = {ind: (c.most_common(1) or [(None, 0)])[0] for ind, c in common.items()}
     rows, folded = [], {}
     for r in records:
-        if not r.value and not r.note:
+        key, n = fold[r.indicator]
+        if n and rest(r) == key:
             folded.setdefault(r.indicator, dataclasses.replace(r, language="*"))
         else:
             rows.append(dataclasses.asdict(r))

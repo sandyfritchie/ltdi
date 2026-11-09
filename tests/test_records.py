@@ -23,6 +23,14 @@ class RecordFileTests(unittest.TestCase):
         back = self.roundtrip(recs, write_records, read_records)
         self.assertEqual(back, {(r.language, r.indicator): r for r in recs})
 
+    def test_common_zero_note_folds(self):
+        recs = [rec("en", "a", 3), rec("hi", "a", 0, note="Not listed"), rec("sw", "a", 0, note="Not listed")]
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "x.csv"
+            self.assertEqual(write_records(p, recs), 2)  # en, and one "*" row for the two zeros
+            back = {(r.language, r.indicator): r for r in read_records(p, LANGS)}
+        self.assertEqual(back, {(r.language, r.indicator): r for r in recs})
+
     def test_vendor_lists_round_trip(self):
         recs = [rec("en", "f", 4, "features of 4", "All"), rec("hi", "f", 2, "features of 4", "All"),
                 rec("sw", "f", 0, "features of 4", "None"), rec("en", "b", 1), rec("hi", "b", 0), rec("sw", "b", 1)]
