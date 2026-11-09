@@ -108,8 +108,11 @@ button.reset[hidden] { display: none; }
 .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 input[type=search], input.pick, select { font: 15px var(--font-body); padding: 7px 10px; border: 1px solid var(--rule); border-radius: 6px;
   background: var(--surface); color: var(--ink); min-width: 0; }
-input[type=search] { width: 250px; max-width: 100%; }
-input.pick { width: 22em; max-width: 100%; }  /* room for long names with their code */
+/* The same filter widths on every page: drop-downs, then the language box (room for long names and codes) */
+.controls select, .controls .msel summary, input[type=search], input.pick { box-sizing: border-box; }
+.controls select, .controls .msel summary { width: 13em; max-width: 100%; }
+.msel summary { overflow: hidden; text-overflow: ellipsis; }
+input[type=search], input.pick { width: 18em; max-width: 100%; }
 
 /* Totals band above the ranking */
 .rsum { display: grid; grid-template-columns: auto minmax(260px, 1fr) auto; gap: 14px 28px; align-items: start;
@@ -514,7 +517,15 @@ async function opportunities(lang) {
   const counts = Object.fromEntries(Object.keys(OT).map(k => [k, byTeam.filter(x => x.o.type === k).length]));
   const list = byTeam.filter(x => otype === 'all' || x.o.type === otype);
   const shown = showAll ? list : list.slice(0, 25);
+  const filtered = region !== 'All' || provider !== 'All' || otype !== 'all' || team !== 'all' || focus;
   $('#view').innerHTML = `
+    <div class="controls">
+      ${focus ? '' : regionSelect('orsel')}
+      ${providerSelect('opsel')}
+      <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
+      ${langPicker('olang', 'Find a language name or code', focus)}
+      <button type="button" class="reset" id="oresetf"${filtered ? '' : ' hidden'}>Reset filters</button>
+    </div>
     ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="#lang-${focus.code}">Language profile</a></div>`
             : `<p class="lede ws-lede">Where a team can make the biggest difference next. Each opportunity says why it matters, which open resources are ready to start from, and what's still missing.</p>`}
     <div class="teampick"><span class="eyebrow">What does your team work on?</span>
@@ -522,12 +533,6 @@ async function opportunities(lang) {
         <button class="chip" id="tm-all" data-tm="all" aria-pressed="${team === 'all'}">Everything · ${all.length}</button>
         ${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<button class="chip" id="tm-${k}" data-tm="${k}" aria-pressed="${team === k}">${esc(t)} · ${tcount[k]}</button>`).join('')}
       </div></div>
-    <div class="controls">
-      ${focus ? '' : regionSelect('orsel')}
-      ${langPicker('olang', 'All languages', focus)}
-      ${providerSelect('opsel')}
-      <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
-    </div>
     ${provider !== 'All' ? `<p class="note" style="margin-top:0">Opportunities where a ${esc(PROV[provider])} service tracked here doesn't yet cover the language.</p>` : ''}
     ${!focus && DATA.opportunity_total > TOP.length ? `<p class="note">Showing the ${TOP.length.toLocaleString()} highest-priority of ${DATA.opportunity_total.toLocaleString()} opportunities. Choose a language to see all of its own.</p>` : ''}
     ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">Nothing matches these filters.</p>'}
@@ -543,6 +548,8 @@ async function opportunities(lang) {
   $('#view').querySelectorAll('[data-tm]').forEach(b => b.onclick = () => { team = b.dataset.tm; otype = 'all'; showAll = false; opportunities(lang); });
   $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
   $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
+  $('#oresetf').onclick = () => { region = 'All'; provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
+    if (lang) location.hash = 'opportunities'; else opportunities(); };
   const rs = $('#orsel'); if (rs) rs.onchange = e => { region = e.target.value; showAll = false; opportunities(lang); };
   $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; otype = 'all'; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
@@ -917,7 +924,7 @@ async function language(code) {
       <div class="lscore"><div class="eyebrow">Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
     </div>
     <div class="cmpbar"><label for="cmpsel">Compare with</label>
-      ${langPicker('cmpsel', 'Type a language name')}</div>
+      ${langPicker('cmpsel', 'Find a language name or code')}</div>
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : '<p class="note">No gaps found in the indicators collected so far.</p>'}
