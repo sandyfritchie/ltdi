@@ -1020,11 +1020,12 @@ let mapMode = 'areas';
 const AREAS = GEO && GEO.areas;  // embedded with the basemap
 // Share of the land drawn where the best-covered language is in each tier: paint the areas, lowest
 // tier first, on a small canvas and count pixels (Equal Earth keeps areas true)
-function tierLandShares(ls, tierKey) {
+function tierLandShares(ls, tierKey, frame) {
   const { width: W, height: H, path } = GEO.basemap, c = document.createElement('canvas');
   c.width = W; c.height = H;
   const g = c.getContext('2d', { willReadFrequently: true });
   if (!g || typeof Path2D === 'undefined') return null;
+  if (frame) g.clip(new Path2D(frame));  // a region: only the land inside its frame counts
   g.fillStyle = 'rgb(1,0,0)'; g.fill(new Path2D(path));
   const order = ['l', 'm', 'h', 'vh'], code = { l: 2, m: 3, h: 4, vh: 5 };
   for (const t of order) {
@@ -1033,9 +1034,8 @@ function tierLandShares(ls, tierKey) {
   }
   const px = g.getImageData(0, 0, W, H).data, n = [0, 0, 0, 0, 0, 0];
   for (let i = 0; i < px.length; i += 4) if (px[i + 3] > 127) n[px[i]]++;
-  // the whole world: shares of all land; one region: shares of the land its languages cover
-  const land = (region === 'All' ? n.slice(1) : n.slice(2)).reduce((a, b) => a + b, 0) || 1;
-  return { vh: n[5] / land, h: n[4] / land, m: n[3] / land, l: n[2] / land, none: region === 'All' ? n[1] / land : null };
+  const land = n.slice(1).reduce((a, b) => a + b, 0) || 1;
+  return { vh: n[5] / land, h: n[4] / land, m: n[3] / land, l: n[2] / land, none: n[1] / land };
 }
 function mapSection() {
   if (!GEO) return '';
@@ -1068,14 +1068,17 @@ function mapSection() {
       <button class="chip" data-mode="dots" aria-pressed="${!areasOn}">Languages</button></div>` : '';
   let layer = dots, legend, sub;
   if (areasOn) {
-    const inR = LANGS.filter(l => inRegion(l) && AREAS.paths[l.code]);
+    // a region is a place here: its frame, with every area in it at full strength (English and Spanish
+    // in the Americas, though their region group is Europe)
+    const frame = region !== 'All' && GEO.basemap.regions && GEO.basemap.regions[region];
+    const withArea = LANGS.filter(l => AREAS.paths[l.code]);
     const order = { l: 0, m: 1, h: 2, vh: 3 };
     layer = `<g class="areas">${[...LANGS].filter(l => AREAS.paths[l.code]).sort((a, b) => order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
-      `<path d="${AREAS.paths[l.code]}" data-code="${l.code}" fill="var(${TIERC[tierKey(l)]})" fill-opacity="${inRegion(l) ? 0.5 : 0.12}" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
-    const sh = tierLandShares(inR, tierKey), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
+      `<path d="${AREAS.paths[l.code]}" data-code="${l.code}" fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
+    const sh = tierLandShares(withArea, tierKey, frame && frame.outline), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
-      ${sh && sh.none != null ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
-    sub = `Where each language is spoken today, shaded by tier: the ${inR.length.toLocaleString()} languages with an area in the atlas. Areas overlap; each tier’s share of ${region === 'All' ? 'the world’s land' : `the land ${esc(region)}’s languages cover`} counts the best-covered language in each place. Hover for names.`;
+      ${sh ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
+    sub = `Where each language is spoken today, shaded by tier: the ${withArea.length.toLocaleString()} languages with an area in the atlas. Areas overlap; each tier’s share of ${frame ? `the land in this view of ${esc(region)}` : 'the world’s land'} counts the best-covered language in each place. Hover for names.`;
   } else {
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>`;
@@ -1131,7 +1134,7 @@ function bindMap() {
   // A region chosen in the filter: start framed on that region's land (boxes from ltdi.geo)
   const rv = region !== 'All' && GEO.basemap.regions && GEO.basemap.regions[region];
   if (rv) {
-    const [x0, y0, x1, y1] = rv, w = Math.max(x1 - x0, (y1 - y0) * W / H) * 1.04;
+    const [x0, y0, x1, y1] = rv.box, w = Math.max(x1 - x0, (y1 - y0) * W / H) * 1.04;
     vb = { x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - w * H / W / 2, w, h: w * H / W };
     clamp(); apply();
   }

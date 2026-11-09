@@ -142,14 +142,16 @@ REGION_VIEW = {
 }
 
 
-def region_views() -> dict[str, list[float]]:
-    """Region group -> [x0, y0, x1, y1] on the basemap, the box around its lon/lat frame."""
+def region_views() -> dict[str, dict]:
+    """Region group -> {"box": [x0, y0, x1, y1], "outline": SVG path}: its lon/lat frame on the basemap
+    (curved, as Equal Earth bends meridians) and the box around it."""
     out = {}
     for name, (w, s, e, n) in REGION_VIEW.items():
-        pts = [to_svg(lon, lat) for lon in range(w, e + 1, 5) for lat in (s, n)] + \
-              [to_svg(lon, lat) for lat in range(s, n + 1, 5) for lon in (w, e)]
-        xs, ys = [p[0] for p in pts], [p[1] for p in pts]
-        out[name] = [min(xs), min(ys), max(xs), max(ys)]
+        ring = [to_svg(lon, s) for lon in range(w, e + 1)] + [to_svg(e, lat) for lat in range(s, n + 1)] + \
+               [to_svg(lon, n) for lon in range(e, w - 1, -1)] + [to_svg(w, lat) for lat in range(n, s - 1, -1)]
+        xs, ys = [p[0] for p in ring], [p[1] for p in ring]
+        out[name] = {"box": [min(xs), min(ys), max(xs), max(ys)],
+                     "outline": "M" + "L".join(f"{x},{y}" for x, y in ring) + "Z"}
     return out
 
 
