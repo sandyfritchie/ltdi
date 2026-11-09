@@ -107009,19 +107009,19 @@ fif,reading_bench,2025-06,0,Released 2023-08
 fif,reading_bench,2025-12,0,Released 2023-08
 fif,reading_bench,2026-06,0,Released 2023-08
 fif,reading_bench,2026-12,0,Released 2023-08
-fil,cldr_modern,2020-12,0,Unicode CLDR releases
-fil,cldr_modern,2021-06,0,Unicode CLDR releases
-fil,cldr_modern,2021-12,0,Unicode CLDR releases
-fil,cldr_modern,2022-06,0,Unicode CLDR releases
-fil,cldr_modern,2022-12,0,Unicode CLDR releases
-fil,cldr_modern,2023-06,0,Unicode CLDR releases
-fil,cldr_modern,2023-12,0,Unicode CLDR releases
-fil,cldr_modern,2024-06,0,Unicode CLDR releases
-fil,cldr_modern,2024-12,0,Unicode CLDR releases
-fil,cldr_modern,2025-06,0,Unicode CLDR releases
-fil,cldr_modern,2025-12,0,Unicode CLDR releases
-fil,cldr_modern,2026-06,0,Unicode CLDR releases
-fil,cldr_modern,2026-12,0,Unicode CLDR releases
+fil,cldr_modern,2020-12,1,Unicode CLDR releases
+fil,cldr_modern,2021-06,1,Unicode CLDR releases
+fil,cldr_modern,2021-12,1,Unicode CLDR releases
+fil,cldr_modern,2022-06,1,Unicode CLDR releases
+fil,cldr_modern,2022-12,1,Unicode CLDR releases
+fil,cldr_modern,2023-06,1,Unicode CLDR releases
+fil,cldr_modern,2023-12,1,Unicode CLDR releases
+fil,cldr_modern,2024-06,1,Unicode CLDR releases
+fil,cldr_modern,2024-12,1,Unicode CLDR releases
+fil,cldr_modern,2025-06,1,Unicode CLDR releases
+fil,cldr_modern,2025-12,1,Unicode CLDR releases
+fil,cldr_modern,2026-06,1,Unicode CLDR releases
+fil,cldr_modern,2026-12,1,Unicode CLDR releases
 fil,cv_10h,2019-06,0,Common Voice releases
 fil,cv_10h,2019-12,0,Common Voice releases
 fil,cv_10h,2020-06,0,Common Voice releases
@@ -107042,31 +107042,31 @@ fil,deepl,2025-06,0,DeepL docs history
 fil,deepl,2025-12,0,DeepL docs history
 fil,deepl,2026-06,0,DeepL docs history
 fil,deepl,2026-12,0,DeepL docs history
-fil,open_asr,2022-12,0,Released 2022-09
-fil,open_asr,2023-06,0,Released 2022-09
-fil,open_asr,2023-12,0,Released 2022-09
-fil,open_asr,2024-06,0,Released 2022-09
-fil,open_asr,2024-12,0,Released 2022-09
-fil,open_asr,2025-06,0,Released 2022-09
-fil,open_asr,2025-12,0,Released 2022-09
-fil,open_asr,2026-06,0,Released 2022-09
-fil,open_asr,2026-12,0,Released 2022-09
-fil,open_mt,2022-12,0,Released 2022-07
-fil,open_mt,2023-06,0,Released 2022-07
-fil,open_mt,2023-12,0,Released 2022-07
-fil,open_mt,2024-06,0,Released 2022-07
-fil,open_mt,2024-12,0,Released 2022-07
-fil,open_mt,2025-06,0,Released 2022-07
-fil,open_mt,2025-12,0,Released 2022-07
-fil,open_mt,2026-06,0,Released 2022-07
-fil,open_mt,2026-12,0,Released 2022-07
-fil,reading_bench,2023-12,0,Released 2023-08
-fil,reading_bench,2024-06,0,Released 2023-08
-fil,reading_bench,2024-12,0,Released 2023-08
-fil,reading_bench,2025-06,0,Released 2023-08
-fil,reading_bench,2025-12,0,Released 2023-08
-fil,reading_bench,2026-06,0,Released 2023-08
-fil,reading_bench,2026-12,0,Released 2023-08
+fil,open_asr,2022-12,1,Released 2022-09
+fil,open_asr,2023-06,1,Released 2022-09
+fil,open_asr,2023-12,1,Released 2022-09
+fil,open_asr,2024-06,1,Released 2022-09
+fil,open_asr,2024-12,1,Released 2022-09
+fil,open_asr,2025-06,1,Released 2022-09
+fil,open_asr,2025-12,1,Released 2022-09
+fil,open_asr,2026-06,1,Released 2022-09
+fil,open_asr,2026-12,1,Released 2022-09
+fil,open_mt,2022-12,1,Released 2022-07
+fil,open_mt,2023-06,1,Released 2022-07
+fil,open_mt,2023-12,1,Released 2022-07
+fil,open_mt,2024-06,1,Released 2022-07
+fil,open_mt,2024-12,1,Released 2022-07
+fil,open_mt,2025-06,1,Released 2022-07
+fil,open_mt,2025-12,1,Released 2022-07
+fil,open_mt,2026-06,1,Released 2022-07
+fil,open_mt,2026-12,1,Released 2022-07
+fil,reading_bench,2023-12,1,Released 2023-08
+fil,reading_bench,2024-06,1,Released 2023-08
+fil,reading_bench,2024-12,1,Released 2023-08
+fil,reading_bench,2025-06,1,Released 2023-08
+fil,reading_bench,2025-12,1,Released 2023-08
+fil,reading_bench,2026-06,1,Released 2023-08
+fil,reading_bench,2026-12,1,Released 2023-08
 fip,cldr_modern,2020-12,0,Unicode CLDR releases
 fip,cldr_modern,2021-06,0,Unicode CLDR releases
 fip,cldr_modern,2021-12,0,Unicode CLDR releases
@@ -282373,9 +282373,9 @@ pa,cv_10h,2025-12,0,Common Voice releases
 pa,cv_10h,2026-06,0,Common Voice releases
 pa,cv_10h,2026-12,0,Common Voice releases
 pa,deepl,2025-06,0,DeepL docs history
-pa,deepl,2025-12,1,DeepL docs history
-pa,deepl,2026-06,1,DeepL docs history
-pa,deepl,2026-12,1,DeepL docs history
+pa,deepl,2025-12,0,DeepL docs history
+pa,deepl,2026-06,0,DeepL docs history
+pa,deepl,2026-12,0,DeepL docs history
 pa,open_asr,2022-12,1,Released 2022-09
 pa,open_asr,2023-06,1,Released 2022-09
 pa,open_asr,2023-12,1,Released 2022-09
@@ -353451,64 +353451,6 @@ tkz,reading_bench,2025-06,0,Released 2023-08
 tkz,reading_bench,2025-12,0,Released 2023-08
 tkz,reading_bench,2026-06,0,Released 2023-08
 tkz,reading_bench,2026-12,0,Released 2023-08
-tl,cldr_modern,2020-12,1,Unicode CLDR releases
-tl,cldr_modern,2021-06,1,Unicode CLDR releases
-tl,cldr_modern,2021-12,1,Unicode CLDR releases
-tl,cldr_modern,2022-06,1,Unicode CLDR releases
-tl,cldr_modern,2022-12,1,Unicode CLDR releases
-tl,cldr_modern,2023-06,1,Unicode CLDR releases
-tl,cldr_modern,2023-12,1,Unicode CLDR releases
-tl,cldr_modern,2024-06,1,Unicode CLDR releases
-tl,cldr_modern,2024-12,1,Unicode CLDR releases
-tl,cldr_modern,2025-06,1,Unicode CLDR releases
-tl,cldr_modern,2025-12,1,Unicode CLDR releases
-tl,cldr_modern,2026-06,1,Unicode CLDR releases
-tl,cldr_modern,2026-12,1,Unicode CLDR releases
-tl,cv_10h,2019-06,0,Common Voice releases
-tl,cv_10h,2019-12,0,Common Voice releases
-tl,cv_10h,2020-06,0,Common Voice releases
-tl,cv_10h,2020-12,0,Common Voice releases
-tl,cv_10h,2021-06,0,Common Voice releases
-tl,cv_10h,2021-12,0,Common Voice releases
-tl,cv_10h,2022-06,0,Common Voice releases
-tl,cv_10h,2022-12,0,Common Voice releases
-tl,cv_10h,2023-06,0,Common Voice releases
-tl,cv_10h,2023-12,0,Common Voice releases
-tl,cv_10h,2024-06,0,Common Voice releases
-tl,cv_10h,2024-12,0,Common Voice releases
-tl,cv_10h,2025-06,0,Common Voice releases
-tl,cv_10h,2025-12,0,Common Voice releases
-tl,cv_10h,2026-06,0,Common Voice releases
-tl,cv_10h,2026-12,0,Common Voice releases
-tl,deepl,2025-06,0,DeepL docs history
-tl,deepl,2025-12,1,DeepL docs history
-tl,deepl,2026-06,1,DeepL docs history
-tl,deepl,2026-12,1,DeepL docs history
-tl,open_asr,2022-12,1,Released 2022-09
-tl,open_asr,2023-06,1,Released 2022-09
-tl,open_asr,2023-12,1,Released 2022-09
-tl,open_asr,2024-06,1,Released 2022-09
-tl,open_asr,2024-12,1,Released 2022-09
-tl,open_asr,2025-06,1,Released 2022-09
-tl,open_asr,2025-12,1,Released 2022-09
-tl,open_asr,2026-06,1,Released 2022-09
-tl,open_asr,2026-12,1,Released 2022-09
-tl,open_mt,2022-12,1,Released 2022-07
-tl,open_mt,2023-06,1,Released 2022-07
-tl,open_mt,2023-12,1,Released 2022-07
-tl,open_mt,2024-06,1,Released 2022-07
-tl,open_mt,2024-12,1,Released 2022-07
-tl,open_mt,2025-06,1,Released 2022-07
-tl,open_mt,2025-12,1,Released 2022-07
-tl,open_mt,2026-06,1,Released 2022-07
-tl,open_mt,2026-12,1,Released 2022-07
-tl,reading_bench,2023-12,1,Released 2023-08
-tl,reading_bench,2024-06,1,Released 2023-08
-tl,reading_bench,2024-12,1,Released 2023-08
-tl,reading_bench,2025-06,1,Released 2023-08
-tl,reading_bench,2025-12,1,Released 2023-08
-tl,reading_bench,2026-06,1,Released 2023-08
-tl,reading_bench,2026-12,1,Released 2023-08
 tla,cldr_modern,2020-12,0,Unicode CLDR releases
 tla,cldr_modern,2021-06,0,Unicode CLDR releases
 tla,cldr_modern,2021-12,0,Unicode CLDR releases

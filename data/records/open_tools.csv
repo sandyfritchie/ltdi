@@ -540,6 +540,7 @@ ffm,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboard
 fgr,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,3 keyboard packages
 fi,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,5 keyboard packages
 fia,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
+fil,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,9 keyboard packages
 fip,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 fit,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 fj,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
@@ -1733,7 +1734,6 @@ tiy,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboard
 tja,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 tjo,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 tk,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,4 keyboard packages
-tl,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,9 keyboard packages
 tla,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 tli,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
 tlj,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
@@ -2015,6 +2015,7 @@ et,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/REA
 eu,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 fa,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 fi,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
+fil,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 fr,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 fy,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 ga,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
@@ -2083,7 +2084,6 @@ ta,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/REA
 te,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 tg,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 th,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
-tl,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 tr,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 uk,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
 ur,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/master/README.md,2026-11-08,download,
@@ -2149,6 +2149,7 @@ ajg,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotL
 aji,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 ajp,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 ajz,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
+ak,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 akb,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 ake,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 akh,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
@@ -2575,6 +2576,7 @@ far,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotL
 fat,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 ffm,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 fi,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
+fil,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 fit,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 fj,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 fkv,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
@@ -3678,7 +3680,6 @@ tke,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotL
 tkl,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 tkr,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 tku,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
-tl,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 tlb,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 tlf,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 tlj,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
@@ -3963,6 +3964,7 @@ et,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/te
 eu,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 fa,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 fi,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
+fil,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 fo,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 fr,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 fy,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
@@ -4027,7 +4029,6 @@ te,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/te
 tg,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 th,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 ti,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
-tl,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 to,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 tr,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 tt,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
@@ -4120,6 +4121,7 @@ en,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/la
 eo,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 es,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 fa,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
+fil,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 fr,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 ga,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 gl,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
@@ -4139,7 +4141,6 @@ sl,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/la
 sr,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 sv,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 ta,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
-tl,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 uk,proof_languagetool,1,bool,LanguageTool language modules,https://github.com/languagetool-org/languagetool,2026-11-08,download,
 *,ui_firefox,0,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 ach,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
@@ -4174,6 +4175,7 @@ eu,ui_firefox,1,bool,Firefox interface translations,https://raw.githubuserconten
 fa,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 ff,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 fi,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
+fil,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 fr,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 fur,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 fy,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
@@ -4236,7 +4238,6 @@ ta,ui_firefox,1,bool,Firefox interface translations,https://raw.githubuserconten
 te,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 tg,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 th,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
-tl,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 tr,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 trs,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,
 uk,ui_firefox,1,bool,Firefox interface translations,https://raw.githubusercontent.com/mozilla-firefox/firefox/main/browser/locales/all-locales,2026-11-08,download,

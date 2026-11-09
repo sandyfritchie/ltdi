@@ -35301,7 +35301,7 @@
   "iso_639_3": "crh",
   "glottocode": "crim1257",
   "scope": "LANGUAGE",
-  "speakers": null,
+  "speakers": 580000,
   "members": [],
   "scripts": [
    "latn"
@@ -35309,10 +35309,36 @@
   "script_names": [
    "Latin"
   ],
-  "countries": [],
-  "region": null,
+  "countries": [
+   {
+    "code": "ua",
+    "name": "Ukraine",
+    "speakers": 580000
+   },
+   {
+    "code": "uz",
+    "name": "Uzbekistan",
+    "speakers": null
+   },
+   {
+    "code": "ro",
+    "name": "Romania",
+    "speakers": null
+   },
+   {
+    "code": "bg",
+    "name": "Bulgaria",
+    "speakers": null
+   },
+   {
+    "code": "tr",
+    "name": "Türkiye",
+    "speakers": null
+   }
+  ],
+  "region": "Europe",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/crh.json",
-  "note": ""
+  "note": "LinguaMeta has no speaker count. 580,000 speakers is Ethnologue's figure for 2001, as cited on Wikipedia, all placed in Ukraine for reach; communities in Uzbekistan, Romania, Bulgaria and Türkiye have no separate count."
  },
  {
   "code": "cri",
@@ -49241,7 +49267,7 @@
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/fil.json",
-  "note": ""
+  "note": "Filipino and Tagalog (tl) are scored as one language: Filipino is the national standard, based on Tagalog, and services and datasets use both codes for it."
  },
  {
   "code": "fip",
@@ -71126,7 +71152,7 @@
   "iso_639_3": "jvn",
   "glottocode": "cari1276",
   "scope": "LANGUAGE",
-  "speakers": 82000000,
+  "speakers": null,
   "members": [],
   "scripts": [
    "latn"
@@ -71138,12 +71164,12 @@
    {
     "code": "sr",
     "name": "Suriname",
-    "speakers": 82000000
+    "speakers": null
    }
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/jvn.json",
-  "note": ""
+  "note": "LinguaMeta's count of 82 million is likely Javanese's; Caribbean Javanese, spoken in Suriname, has far fewer speakers. Left without a count until a reliable figure is found."
  },
  {
   "code": "jwi",
@@ -127907,27 +127933,20 @@
  },
  {
   "code": "pa",
-  "name": "Punjabi",
+  "name": "Punjabi (Gurmukhi)",
   "autonym": "ਪੰਜਾਬੀ",
   "iso_639_3": "pan",
   "glottocode": "panj1256",
   "scope": "LANGUAGE",
-  "speakers": 200000000,
+  "speakers": 37000000,
   "members": [],
   "scripts": [
-   "arab",
    "guru"
   ],
   "script_names": [
-   "Arabic",
    "Gurmukhi"
   ],
   "countries": [
-   {
-    "code": "pk",
-    "name": "Pakistan",
-    "speakers": 163000000
-   },
    {
     "code": "in",
     "name": "India",
@@ -127936,7 +127955,7 @@
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pa.json",
-  "note": ""
+  "note": "Punjabi as written in Gurmukhi, mainly in India. Punjabi written in Shahmukhi, mainly in Pakistan, is Punjabi (Shahmukhi). LinguaMeta's 163 million Punjabi speakers in Pakistan are left out here, as they're counted there."
  },
  {
   "code": "pab",
@@ -132579,7 +132598,7 @@
  },
  {
   "code": "pnb",
-  "name": "Western Panjabi",
+  "name": "Punjabi (Shahmukhi)",
   "autonym": "شاہ مُکھی",
   "iso_639_3": "pnb",
   "glottocode": "west2386",
@@ -132601,7 +132620,7 @@
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pnb.json",
-  "note": ""
+  "note": "ISO 639-3's Western Panjabi, scored here as Punjabi written in Shahmukhi, mainly in Pakistan, as Google Translate lists it. Gurmukhi Punjabi is Punjabi (Gurmukhi)."
  },
  {
   "code": "pnc",
@@ -159876,32 +159895,6 @@
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/tkz.json",
-  "note": ""
- },
- {
-  "code": "tl",
-  "name": "Tagalog",
-  "autonym": "Filipino",
-  "iso_639_3": "tgl",
-  "glottocode": "taga1270",
-  "scope": "LANGUAGE",
-  "speakers": null,
-  "members": [],
-  "scripts": [
-   "latn"
-  ],
-  "script_names": [
-   "Latin"
-  ],
-  "countries": [
-   {
-    "code": "ph",
-    "name": "Philippines",
-    "speakers": null
-   }
-  ],
-  "region": "Rest of Asia",
-  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/tl.json",
   "note": ""
  },
  {

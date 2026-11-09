@@ -25,6 +25,7 @@ et,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whis
 eu,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 fa,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 fi,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
+fil,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 fo,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 fr,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 gl,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
@@ -88,7 +89,6 @@ te,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whis
 tg,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 th,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 tk,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
-tl,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 tr,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 tt,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
 uk,asr_open_whisper,1,bool,Whisper,https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py,2026-11-08,download,
@@ -4966,7 +4966,7 @@ oyd,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.gi
 oym,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 oyy,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 ozm,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
-pa,asr_whisper_fleurs_wer,48.5,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Word error rate (character error rate for Chinese, Japanese, Korean, Thai)"
+pa,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 pab,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 pac,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 pad,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
@@ -6192,7 +6192,6 @@ tkv,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.gi
 tkw,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 tkx,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 tkz,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
-tl,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 tla,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 tlb,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"
 tlc,asr_whisper_fleurs_wer,100.0,% WER,Whisper large-v3 on FLEURS,https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg,2026-11-08,download,"Not in the published breakdown, which shows languages under about 50% WER; recorded as 100%"

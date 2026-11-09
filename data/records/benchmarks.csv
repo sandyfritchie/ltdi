@@ -27,6 +27,7 @@ et,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 eu,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 fa,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 fi,bench_belebele,1,bool,Belebele,,2026-11-08,download,
+fil,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 fr,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 fuv,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 gn,bench_belebele,1,bool,Belebele,,2026-11-08,download,
@@ -101,7 +102,6 @@ te,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 tg,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 th,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 ti,bench_belebele,1,bool,Belebele,,2026-11-08,download,
-tl,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 tn,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 tr,bench_belebele,1,bool,Belebele,,2026-11-08,download,
 ts,bench_belebele,1,bool,Belebele,,2026-11-08,download,
@@ -140,6 +140,7 @@ et,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 fa,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 ff,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 fi,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
+fil,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 fr,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 ga,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 gl,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
@@ -205,7 +206,6 @@ ta,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 te,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 tg,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 th,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
-tl,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 tr,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 uk,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
 umb,bench_fleurs,1,bool,FLEURS,,2026-11-08,download,
@@ -271,6 +271,7 @@ et,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 eu,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 fa,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 fi,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
+fil,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 fj,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 fo,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 fon,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
@@ -390,7 +391,6 @@ tg,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 th,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 ti,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 tk,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
-tl,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 tn,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 tpi,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 tr,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
@@ -423,6 +423,7 @@ el,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLa
 en,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 es,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 fa,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
+fil,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 fr,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 ha,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 he,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
@@ -450,7 +451,6 @@ sr,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLa
 sv,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 sw,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 te,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
-tl,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 tr,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 uk,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
 vi,bench_global_mmlu,1,bool,Global-MMLU,https://huggingface.co/datasets/CohereLabs/Global-MMLU,2026-11-08,download,
@@ -493,7 +493,6 @@ sq,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/inclu
 sr,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
 ta,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
 te,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
-tl,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
 tr,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
 uk,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
 ur,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
@@ -501,6 +500,7 @@ uz,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/inclu
 vi,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
 zlm,bench_include,1,bool,INCLUDE,https://huggingface.co/datasets/CohereLabs/include-base-44,2026-11-08,download,
 *,bench_irokobench,0,bool,IrokoBench,https://huggingface.co/datasets/masakhane/afrixnli,2026-11-08,download,
+ak,bench_irokobench,1,bool,IrokoBench,https://huggingface.co/datasets/masakhane/afrixnli,2026-11-08,download,
 am,bench_irokobench,1,bool,IrokoBench,https://huggingface.co/datasets/masakhane/afrixnli,2026-11-08,download,
 ee,bench_irokobench,1,bool,IrokoBench,https://huggingface.co/datasets/masakhane/afrixnli,2026-11-08,download,
 en,bench_irokobench,1,bool,IrokoBench,https://huggingface.co/datasets/masakhane/afrixnli,2026-11-08,download,
@@ -570,7 +570,7 @@ acq,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandy
 aeb,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
 af,eval_benchmarks,3,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"FLORES-200, Belebele, FLEURS"
 ajp,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
-ak,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
+ak,eval_benchmarks,2,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"IrokoBench, FLORES-200"
 all,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,XNLI
 am,eval_benchmarks,5,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"Global-MMLU, IrokoBench, FLORES-200, Belebele, FLEURS"
 apc,eval_benchmarks,2,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"FLORES-200, Belebele"
@@ -619,6 +619,7 @@ eu,eval_benchmarks,3,benchmarks of 9,Public benchmarks,https://github.com/sandyf
 fa,eval_benchmarks,5,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"Global-MMLU, INCLUDE, FLORES-200, Belebele, FLEURS"
 ff,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLEURS
 fi,eval_benchmarks,4,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"INCLUDE, FLORES-200, Belebele, FLEURS"
+fil,eval_benchmarks,4,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"Global-MMLU, FLORES-200, Belebele, FLEURS"
 fj,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
 fo,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
 fon,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
@@ -739,7 +740,6 @@ tg,eval_benchmarks,3,benchmarks of 9,Public benchmarks,https://github.com/sandyf
 th,eval_benchmarks,5,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"XNLI, MGSM, FLORES-200, Belebele, FLEURS"
 ti,eval_benchmarks,2,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"FLORES-200, Belebele"
 tk,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
-tl,eval_benchmarks,5,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"Global-MMLU, INCLUDE, FLORES-200, Belebele, FLEURS"
 tn,eval_benchmarks,2,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"FLORES-200, Belebele"
 tpi,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
 tr,eval_benchmarks,6,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,"Global-MMLU, INCLUDE, XNLI, FLORES-200, Belebele, FLEURS"

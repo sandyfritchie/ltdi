@@ -90,6 +90,7 @@ fa,open_speech_hours,508.5,hours,Open speech datasets,https://github.com/sandyfr
 fan,open_speech_hours,9.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 9
 ff,open_speech_hours,136.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 124, FLEURS 12"
 fi,open_speech_hours,301.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 274, Common Voice 16, FLEURS 12"
+fil,open_speech_hours,12,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
 fmp,open_speech_hours,11.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 fo,open_speech_hours,1.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,YODAS 2
 fr,open_speech_hours,5355.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,158, Common Voice 1,108, Multilingual LibriSpeech 1,077, FLEURS 12"
@@ -292,7 +293,6 @@ th,open_speech_hours,1317.4,hours,Open speech datasets,https://github.com/sandyf
 ti,open_speech_hours,220.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 219, YODAS 2"
 tig,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 tk,open_speech_hours,6.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3, Common Voice 3"
-tl,open_speech_hours,12,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
 tli,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 tn,open_speech_hours,5.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 4, YODAS 1"
 to,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
@@ -357,6 +357,7 @@ et,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2
 fa,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 ff,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 fi,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+fil,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 fr,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 ga,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 gl,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
@@ -422,7 +423,6 @@ ta,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2
 te,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 tg,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 th,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
-tl,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 tr,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 uk,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 umb,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0

@@ -25,6 +25,7 @@ et,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/la
 eu,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 fa,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 fi,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
+fil,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 fr,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 gl,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 gu,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
@@ -81,7 +82,6 @@ sw,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/la
 ta,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 te,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 th,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
-tl,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 tr,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 tt,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
 ug,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-08,scrape,
@@ -148,6 +148,7 @@ et,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com
 eu,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 fa,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 fi,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
+fil,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 fr,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 ga,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 gl,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
@@ -198,7 +199,6 @@ sw,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com
 ta,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 te,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 th,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
-tl,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 tr,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 uk,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
 ur,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,
@@ -229,6 +229,7 @@ et,asr_azure_features,8,features of 10,Azure speech to text features,https://lea
 eu,asr_azure_features,4,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: batch, fast transcription, monolingual refinement, real-time"
 fa,asr_azure_features,7,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, fast transcription, monolingual refinement, multilingual refinement, real-time"
 fi,asr_azure_features,10,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom pronunciation, custom speech with labeled audio, display format, fast transcription, monolingual refinement, multilingual refinement, real-time"
+fil,asr_azure_features,6,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: MAI-Transcribe, batch, custom pronunciation, fast transcription, monolingual refinement, real-time"
 fr,asr_azure_features,10,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom pronunciation, custom speech with labeled audio, display format, fast transcription, monolingual refinement, multilingual refinement, real-time"
 ga,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: batch, custom pronunciation, fast transcription, monolingual refinement, real-time"
 gl,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: MAI-Transcribe, batch, fast transcription, monolingual refinement, real-time"
@@ -279,7 +280,6 @@ sw,asr_azure_features,5,features of 10,Azure speech to text features,https://lea
 ta,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom speech with labeled audio, fast transcription, monolingual refinement, multilingual refinement, real-time"
 te,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom speech with labeled audio, fast transcription, monolingual refinement, multilingual refinement, real-time"
 th,asr_azure_features,9,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom speech with labeled audio, display format, fast transcription, monolingual refinement, multilingual refinement, real-time"
-tl,asr_azure_features,6,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: MAI-Transcribe, batch, custom pronunciation, fast transcription, monolingual refinement, real-time"
 tr,asr_azure_features,9,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom speech with labeled audio, display format, fast transcription, monolingual refinement, multilingual refinement, real-time"
 uk,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom speech with labeled audio, fast transcription, monolingual refinement, multilingual refinement, real-time"
 ur,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-08,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom speech with labeled audio, fast transcription, monolingual refinement, multilingual refinement, real-time"
@@ -315,6 +315,7 @@ eu,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/s
 fa,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 ff,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 fi,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
+fil,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 fr,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 ga,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 gl,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
@@ -387,7 +388,6 @@ ta,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/s
 te,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 tg,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 th,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
-tl,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 tn,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 tr,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
 ts,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-08,scrape,
@@ -448,6 +448,7 @@ eu,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/featur
 fa,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 ff,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 fi,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
+fil,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 fo,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 fr,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 ga,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
@@ -552,7 +553,6 @@ te,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/featur
 tg,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 th,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 tk,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
-tl,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 to,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 tr,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
 tyv,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-08,scrape,
@@ -584,6 +584,7 @@ es,kb_apple_features,4,features of 4,Apple iOS QuickType keyboard features,https
 et,kb_apple_features,1,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,Has: Autocorrection
 fa,kb_apple_features,1,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,Has: Autocorrection
 fi,kb_apple_features,1,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,Has: Autocorrection
+fil,kb_apple_features,1,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,Has: Autocorrection
 fr,kb_apple_features,4,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,"Has: Autocorrection, Multilingual typing, Predictive typing, QuickPath"
 ga,kb_apple_features,1,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,Has: Autocorrection
 gu,kb_apple_features,3,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,"Has: Autocorrection, Multilingual typing, Predictive typing"
@@ -617,7 +618,6 @@ sv,kb_apple_features,4,features of 4,Apple iOS QuickType keyboard features,https
 ta,kb_apple_features,4,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,"Has: Autocorrection, Multilingual typing, Predictive typing, QuickPath"
 te,kb_apple_features,4,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,"Has: Autocorrection, Multilingual typing, Predictive typing, QuickPath"
 th,kb_apple_features,3,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,"Has: Autocorrection, Predictive typing, QuickPath"
-tl,kb_apple_features,1,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,Has: Autocorrection
 tr,kb_apple_features,4,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,"Has: Autocorrection, Multilingual typing, Predictive typing, QuickPath"
 uk,kb_apple_features,2,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,"Has: Autocorrection, Predictive typing"
 ur,kb_apple_features,1,features of 4,Apple iOS QuickType keyboard features,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-autocorrection,2026-11-08,scrape,Has: Autocorrection
@@ -781,6 +781,7 @@ fat,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6
 fay,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 ff,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 fi,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
+fil,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 fj,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 fo,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 fon,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
@@ -1084,6 +1085,7 @@ plk,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6
 pmf,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 pms,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 pmy,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
+pnb,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 pnt,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 pov,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 prk,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
@@ -1184,7 +1186,6 @@ tiv,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6
 tk,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 tkl,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 tks,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
-tl,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 tll,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 tly,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
 tn,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-08,scrape,
@@ -1437,6 +1438,7 @@ fal,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.co
 fat,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 ff,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 fi,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
+fil,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 fj,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 fo,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 fon,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
@@ -1846,7 +1848,6 @@ tji,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.co
 tk,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 tke,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 tkr,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
-tl,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 tn,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 tna,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
 to,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-08,scrape,
@@ -1934,6 +1935,7 @@ en,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft
 es,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 et,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 fi,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
+fil,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 fr,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 he,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 hi,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
@@ -1960,7 +1962,6 @@ sq,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft
 sr,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 sv,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 th,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
-tl,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 tr,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 uk,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
 vi,llm_app_copilot,1,bool,Microsoft Copilot app (text),https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,2026-11-08,scrape,
@@ -1986,6 +1987,7 @@ et,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer
 eu,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 fa,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 fi,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
+fil,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 fr,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 gl,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 gu,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
@@ -2029,7 +2031,6 @@ sw,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer
 ta,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 te,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 th,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
-tl,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 tr,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 uk,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
 ur,llm_app_gemini,1,bool,Gemini web app,https://support.google.com/gemini/answer/13575153?hl=en,2026-11-08,scrape,
@@ -2065,6 +2066,7 @@ et,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-serv
 eu,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 fa,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 fi,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
+fil,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 fj,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 fo,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 fr,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
@@ -2146,7 +2148,6 @@ te,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-serv
 th,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 ti,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 tk,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
-tl,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 tn,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 to,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
 tr,mt_azure,1,bool,Azure AI Translator,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,
@@ -2187,6 +2188,7 @@ et,mt_azure_features,4,features of 6,Azure Translator language features,https://
 eu,mt_azure_features,2,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, scanned documents"
 fa,mt_azure_features,4.5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, custom translator, dictionary, llm translation, scanned documents (source only)"
 fi,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, custom translator, dictionary, llm translation, scanned documents"
+fil,mt_azure_features,3,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: custom translator, llm translation, scanned documents"
 fj,mt_azure_features,3,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, custom translator, scanned documents"
 fo,mt_azure_features,2,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, scanned documents"
 fr,mt_azure_features,6,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: adaptive custom translation, auto language detection, custom translator, dictionary, llm translation, scanned documents"
@@ -2256,7 +2258,6 @@ te,mt_azure_features,4,features of 6,Azure Translator language features,https://
 th,mt_azure_features,4,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, custom translator, dictionary, llm translation"
 ti,mt_azure_features,1.5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, scanned documents (source only)"
 tk,mt_azure_features,2,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, scanned documents"
-tl,mt_azure_features,3,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: custom translator, llm translation, scanned documents"
 to,mt_azure_features,3,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, custom translator, scanned documents"
 tr,mt_azure_features,5,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, custom translator, dictionary, llm translation, scanned documents"
 tt,mt_azure_features,2,features of 6,Azure Translator language features,https://learn.microsoft.com/azure/ai-services/Translator/language-support,2026-11-08,scrape,"Has: auto language detection, scanned documents"
@@ -2329,6 +2330,7 @@ eu,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/trans
 fa,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 ff,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 fi,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
+fil,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 fj,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 fr,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 fy,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
@@ -2441,7 +2443,6 @@ tg,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/trans
 th,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 ti,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 tk,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
-tl,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 tn,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 tr,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
 ts,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-08,scrape,
@@ -2522,6 +2523,7 @@ et,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.c
 eu,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 fa,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 fi,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
+fil,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 fj,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 fo,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 fr,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
@@ -2619,7 +2621,6 @@ tet,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.
 tg,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 thf,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 tk,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
-tl,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 to,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 tr,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
 tt,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-08,scrape,
@@ -2673,6 +2674,7 @@ et,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/doc
 eu,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
 fa,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 fi,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
+fil,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 fr,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 ga,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
 gl,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
@@ -2725,7 +2727,6 @@ ta,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/doc
 te,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 th,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 ti,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
-tl,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 tr,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 uk,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 ur,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
@@ -2762,6 +2763,7 @@ et,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.c
 eu,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
 fa,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 fi,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
+fil,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 fr,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 ga,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
 gl,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
@@ -2814,7 +2816,6 @@ ta,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.c
 te,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 th,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 ti,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
-tl,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 tr,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 uk,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,
 ur,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-08,scrape,Experimental
@@ -2957,6 +2958,7 @@ et,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com
 eu,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 fa,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 fi,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
+fil,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 fr,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 ga,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 gl,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
@@ -3009,7 +3011,6 @@ sw,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com
 ta,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 te,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 th,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
-tl,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 tr,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 uk,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
 ur,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-08,scrape,
@@ -3039,6 +3040,7 @@ et,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/t
 eu,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 fa,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 fi,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
+fil,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 fr,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 gl,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 gom,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
@@ -3091,7 +3093,6 @@ sw,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/t
 ta,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 te,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 th,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
-tl,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 tr,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 uk,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
 ur,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,
@@ -3117,6 +3118,7 @@ et,tts_google_voice_types,3,types of 9,Google Cloud TTS voice types,https://docs
 eu,tts_google_voice_types,2,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Gemini-TTS, Standard"
 fa,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,Has: Gemini-TTS
 fi,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard, WaveNet"
+fil,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Gemini-TTS, Neural2, Standard, WaveNet"
 fr,tts_google_voice_types,8,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Chirp HD, Chirp3-HD, Gemini-TTS, Neural2, Polyglot, Standard, Studio, WaveNet"
 gl,tts_google_voice_types,2,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Gemini-TTS, Standard"
 gom,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,Has: Gemini-TTS
@@ -3169,7 +3171,6 @@ sw,tts_google_voice_types,2,types of 9,Google Cloud TTS voice types,https://docs
 ta,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard, WaveNet"
 te,tts_google_voice_types,3,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard"
 th,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Chirp3-HD, Gemini-TTS, Neural2, Standard"
-tl,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Gemini-TTS, Neural2, Standard, WaveNet"
 tr,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard, WaveNet"
 uk,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard, WaveNet"
 ur,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-08,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard, WaveNet"
@@ -3245,6 +3246,7 @@ et,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com
 eu,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 fa,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 fi,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
+fil,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 fr,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 ga,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 gd,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
@@ -3293,7 +3295,6 @@ sv,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com
 ta,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 te,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 th,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
-tl,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 tr,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 tt,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 ug,ui_office,1,bool,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
@@ -3323,6 +3324,7 @@ et,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.
 eu,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
 fa,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
 fi,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
+fil,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
 fr,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 ga,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
 gd,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
@@ -3371,7 +3373,6 @@ sv,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.
 ta,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
 te,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
 th,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
-tl,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
 tr,ui_office_level,2,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,
 tt,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
 ug,ui_office_level,1,levels of 2,Microsoft 365 display language,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,2026-11-08,scrape,Partial: some apps and menus stay in another language
@@ -3403,6 +3404,7 @@ et,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/
 eu,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 fa,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 fi,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
+fil,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 fr,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 ga,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 gd,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
@@ -3468,7 +3470,6 @@ tg,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/
 th,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 ti,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 tk,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
-tl,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 tn,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 tr,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 tt,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
@@ -3504,6 +3505,7 @@ et,ui_windows_level,2,levels of 2,Windows display language,https://learn.microso
 eu,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 fa,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"
 fi,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
+fil,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"
 fr,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 ga,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"
 gd,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"
@@ -3569,7 +3571,6 @@ tg,ui_windows_level,1,levels of 2,Windows display language,https://learn.microso
 th,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 ti,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"
 tk,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"
-tl,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"
 tn,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"
 tr,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,
 tt,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-08,scrape,"Language interface pack: partly translated, over a base language"

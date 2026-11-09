@@ -183,6 +183,7 @@ fat,parallel_sentences,2125,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&
 fax,parallel_sentences,532,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fax/corpus-result-table,2026-11-08,download,1 corpora
 ff,parallel_sentences,1615900,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ff/corpus-result-table,2026-11-08,download,"6 corpora; 98% web-mined; OPUS codes ff, ful"
 fi,parallel_sentences,319796943,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fi/corpus-result-table,2026-11-08,download,86 corpora; 50% web-mined
+fil,parallel_sentences,76324678,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fil/corpus-result-table,2026-11-08,download,"21 corpora; 96% web-mined; OPUS codes fil, tl, tl_PH"
 fit,parallel_sentences,4333,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fit/corpus-result-table,2026-11-08,download,1 corpora
 fj,parallel_sentences,3854358,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fj/corpus-result-table,2026-11-08,download,5 corpora; 100% web-mined
 fkv,parallel_sentences,71,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fkv/corpus-result-table,2026-11-08,download,1 corpora
@@ -584,7 +585,6 @@ tji,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tji
 tk,parallel_sentences,366937,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tk/corpus-result-table,2026-11-08,download,7 corpora; 89% web-mined
 tkl,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tkl/corpus-result-table,2026-11-08,download,1 corpora
 tkr,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tkr/corpus-result-table,2026-11-08,download,1 corpora
-tl,parallel_sentences,76324678,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fil/corpus-result-table,2026-11-08,download,"21 corpora; 96% web-mined; OPUS codes fil, tl, tl_PH"
 tly,parallel_sentences,6500,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tly/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes tly, tly_cyrl"
 tmr,parallel_sentences,118,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tmr/corpus-result-table,2026-11-08,download,1 corpora
 tmw,parallel_sentences,5,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tmw/corpus-result-table,2026-11-08,download,1 corpora

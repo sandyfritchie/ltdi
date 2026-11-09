@@ -3,8 +3,9 @@
 Resolution order for a label:
 1. Explicit row in config/crosswalk.csv (ltdi "-" means: deliberately excluded)
 2. Exact LTDI code, or a language's ISO 639-3 code
-3. A member absorbed by a macrolanguage scored as one language (swh -> sw, arb -> ar),
-   per config/macrolanguages.csv
+3. A member absorbed by a macrolanguage scored as one language (swh -> sw, arb -> ar), per
+   config/macrolanguages.csv, or merged into another language (tl -> fil), per
+   config/language_overrides.csv
 4. A macrolanguage represented by its members: its label_to member (zh -> cmn, no -> nb),
    or else its most-spoken member
 5. The label's first subtag, run through steps 1-4 again
@@ -30,16 +31,17 @@ def _table() -> dict[str, str | None]:
         table[lang["code"].lower()] = lang["code"]
         if lang.get("iso_639_3"):
             table.setdefault(lang["iso_639_3"].lower(), lang["code"])
-    with (CONFIG / "macrolanguages.csv").open(encoding="utf-8") as f:
-        macros = {r["macro"]: r for r in csv.DictReader(f)}
+    from .backbone import absorbed_by, macrolanguages, records
+    macros = macrolanguages()
+    recs = records()
+    for member, unit in absorbed_by().items():  # by code and by ISO 639-3 code (tl and tgl -> fil)
+        table.setdefault(member, unit)
+        if recs.get(member, {}).get("iso_639_3_code"):
+            table.setdefault(recs[member]["iso_639_3_code"], unit)
     for m, r in macros.items():
-        for member in r["absorbs"].split():
-            table.setdefault(member, m)
         if m not in in_scope and r["label_to"]:
             table.setdefault(m, r["label_to"])
     try:  # other macrolanguages represented by members: credit the most-spoken member in scope
-        from .backbone import records
-        recs = records()
         pop = {c: d.get("total_population") or 0 for c, d in recs.items()}
         for c, d in recs.items():
             if d.get("language_scope", {}).get("scope") == "MACROLANGUAGE" and c not in in_scope and c not in table:

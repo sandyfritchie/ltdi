@@ -44,12 +44,24 @@ def macrolanguages() -> dict[str, dict]:
         return {r["macro"]: r for r in csv.DictReader(f)}
 
 
+def absorbed_by() -> dict[str, str]:
+    """Member -> the language it is scored under: macrolanguage members (config/macrolanguages.csv)
+    and other merges (the absorbs column of config/language_overrides.csv)."""
+    out = {}
+    for rows in (macrolanguages(), overrides()):
+        for unit, r in rows.items():
+            for member in (r.get("absorbs") or "").split():
+                out[member] = unit
+    return out
+
+
 def scope(records: dict[str, dict]) -> list[str]:
     """Which LinguaMeta entries are scored: individual languages, except members absorbed by a
-    macrolanguage scored as a unit; plus those macrolanguages. A macrolanguage with an ISO 639-1
-    code is a unit unless config says "members"; other macrolanguages are represented by members."""
+    macrolanguage scored as a unit or merged into another language; plus those macrolanguages.
+    A macrolanguage with an ISO 639-1 code is a unit unless config says "members"; other
+    macrolanguages are represented by members."""
     macros = macrolanguages()
-    units, absorbed = set(), set()
+    units, absorbed = set(), set(absorbed_by()) - set(macros)
     for code, d in records.items():
         if d.get("language_scope", {}).get("scope") != "MACROLANGUAGE":
             continue
@@ -138,6 +150,36 @@ def load_language(code: str, locales: dict[str, dict], d: dict) -> dict:
     }
 
 
+def apply_overrides(lang: dict, row: dict, locales: dict[str, dict]) -> None:
+    """Corrections from config/language_overrides.csv, where LinguaMeta's data misleads:
+      speakers   a total, or "-" for no count (also clears the per-country counts)
+      countries  space-separated, each "cc" or "cc:speakers"; replaces the country list, and the
+                 total too when speakers is empty
+      scripts    space-separated ISO 15924 codes, main script first
+      region     the region group, where the largest-country rule misleads"""
+    if row.get("countries"):
+        lang["countries"] = []
+        for item in row["countries"].split():
+            cc, _, n = item.partition(":")
+            lang["countries"].append({"code": cc, "name": COUNTRY.get(cc) or locales.get(cc, {}).get("name", cc),
+                                      "speakers": int(n) if n else None})
+        if not row.get("speakers"):
+            lang["speakers"] = sum(c["speakers"] or 0 for c in lang["countries"]) or None
+        lang["region"] = next((region_group(locales[c["code"]]["region"], locales[c["code"]]["subregion"])
+                               for c in lang["countries"] if locales.get(c["code"], {}).get("region")), lang["region"])
+    if row.get("speakers") == "-":
+        lang["speakers"] = None
+        for c in lang["countries"]:
+            c["speakers"] = None
+    elif row.get("speakers"):
+        lang["speakers"] = int(row["speakers"])
+    if row.get("scripts"):
+        lang["scripts"] = row["scripts"].split()
+        lang["script_names"] = [SCRIPT.get(sc, sc.title()) for sc in lang["scripts"]]
+    if row.get("region"):
+        lang["region"] = row["region"]
+
+
 def records() -> dict[str, dict]:
     from .geo import linguameta_dir
     out = {}
@@ -160,8 +202,7 @@ def main() -> None:
         row = over.get(code, {})
         lang["name"] = row.get("name") or lang["name"] or code
         lang["note"] = row.get("note") or macros.get(code, {}).get("note") or ""
-        if row.get("region"):  # origin region group, where the largest-country rule misleads
-            lang["region"] = row["region"]
+        apply_overrides(lang, row, locales)
         langs.append(lang)
     DATA.mkdir(exist_ok=True)
     (DATA / "languages.json").write_text(json.dumps(langs, ensure_ascii=False, indent=1), encoding="utf-8")

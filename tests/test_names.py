@@ -13,7 +13,7 @@ class NameTests(unittest.TestCase):
         self.assertIsNone(resolve("Not a language at all"))
 
     def test_codes(self):
-        cases = {"zh-HK": "yue", "pa-PK": "pnb", "iw": "he", "swh": "sw", "quz": "qu", "fil": "tl", "sr-Latn": "sr"}
+        cases = {"zh-HK": "yue", "pa-PK": "pnb", "iw": "he", "swh": "sw", "quz": "qu", "fil": "fil", "tl": "fil", "tgl": "fil", "pa-Arab": "pnb", "sr-Latn": "sr"}
         for label, code in cases.items():
             self.assertEqual(to_ltdi(label), code, label)
 

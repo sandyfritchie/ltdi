@@ -1001,6 +1001,7 @@ cra,reach_text_share,0.1142,share,World Bank,https://data.worldbank.org/indicato
 crc,reach_text_share,0.1966,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: VU
 crd,reach_text_share,0.9469,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: US
 crg,reach_text_share,0.9469,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: US
+crh,reach_text_share,0.82,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: UA
 cri,reach_text_share,0.5169,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: ST
 crj,reach_text_share,0.9435,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: CA
 crk,reach_text_share,0.9435,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: CA
@@ -1993,7 +1994,6 @@ juu,reach_text_share,0.2808,share,World Bank,https://data.worldbank.org/indicato
 juw,reach_text_share,0.2808,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: NG
 juy,reach_text_share,0.2953,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: IN
 jv,reach_text_share,0.6272,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: ID
-jvn,reach_text_share,0.8117,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: SR
 jwi,reach_text_share,0.5151,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: GH
 jya,reach_text_share,0.8861,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: CN
 jyy,reach_text_share,0.0329,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: TD
@@ -3736,7 +3736,7 @@ oyb,reach_text_share,0.3766,share,World Bank,https://data.worldbank.org/indicato
 oyd,reach_text_share,0.1142,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: ET
 oyy,reach_text_share,0.1637,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: PG
 ozm,reach_text_share,0.3258,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: CM
-pa,reach_text_share,0.2928,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 2 countries: PK, IN"
+pa,reach_text_share,0.2953,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: IN
 pab,reach_text_share,0.7171,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: BR
 pad,reach_text_share,0.7171,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: BR
 pag,reach_text_share,0.3369,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet and can read and write text on a phone. Weighted by speakers in 1 countries: PH
@@ -6516,6 +6516,7 @@ cra,reach_text_share_5y,0.143,share,World Bank,https://data.worldbank.org/indica
 crc,reach_text_share_5y,0.1966,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: VU"
 crd,reach_text_share_5y,0.9592,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: US"
 crg,reach_text_share_5y,0.9592,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: US"
+crh,reach_text_share_5y,0.8692,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: UA"
 cri,reach_text_share_5y,0.5963,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: ST"
 crj,reach_text_share_5y,0.9496,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: CA"
 crk,reach_text_share_5y,0.9496,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: CA"
@@ -7508,7 +7509,6 @@ juu,reach_text_share_5y,0.3446,share,World Bank,https://data.worldbank.org/indic
 juw,reach_text_share_5y,0.3446,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: NG"
 juy,reach_text_share_5y,0.3415,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: IN"
 jv,reach_text_share_5y,0.7172,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: ID"
-jvn,reach_text_share_5y,0.8776,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: SR"
 jwi,reach_text_share_5y,0.5904,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: GH"
 jya,reach_text_share_5y,0.9422,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: CN"
 jyy,reach_text_share_5y,0.046,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: TD"
@@ -9251,7 +9251,7 @@ oyb,reach_text_share_5y,0.4375,share,World Bank,https://data.worldbank.org/indic
 oyd,reach_text_share_5y,0.143,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: ET"
 oyy,reach_text_share_5y,0.2065,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: PG"
 ozm,reach_text_share_5y,0.3726,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: CM"
-pa,reach_text_share_5y,0.3558,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 2 countries: PK, IN"
+pa,reach_text_share_5y,0.3415,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: IN"
 pab,reach_text_share_5y,0.7463,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: BR"
 pad,reach_text_share_5y,0.7463,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: BR"
 pag,reach_text_share_5y,0.3943,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Projected internet use, 5 years ahead, times today's ability to text. Weighted by speakers in 1 countries: PH"
@@ -12031,6 +12031,7 @@ cra,reach_voice_share,0.2194,share,World Bank,https://data.worldbank.org/indicat
 crc,reach_voice_share,0.2235,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: VU
 crd,reach_voice_share,0.9469,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: US
 crg,reach_voice_share,0.9469,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: US
+crh,reach_voice_share,0.8247,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: UA
 cri,reach_voice_share,0.5912,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: ST
 crj,reach_voice_share,0.9435,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: CA
 crk,reach_voice_share,0.9435,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: CA
@@ -13023,7 +13024,6 @@ juu,reach_voice_share,0.4121,share,World Bank,https://data.worldbank.org/indicat
 juw,reach_voice_share,0.4121,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: NG
 juy,reach_voice_share,0.7,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: IN
 jv,reach_voice_share,0.7278,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: ID
-jvn,reach_voice_share,0.874,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: SR
 jwi,reach_voice_share,0.7218,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: GH
 jya,reach_voice_share,0.916,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: CN
 jyy,reach_voice_share,0.1263,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: TD
@@ -14766,7 +14766,7 @@ oyb,reach_voice_share,0.6559,share,World Bank,https://data.worldbank.org/indicat
 oyd,reach_voice_share,0.2194,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: ET
 oyy,reach_voice_share,0.1881,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: PG
 ozm,reach_voice_share,0.4626,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: CM
-pa,reach_voice_share,0.5961,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Speakers who use the internet. Weighted by speakers in 2 countries: PK, IN"
+pa,reach_voice_share,0.7,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: IN
 pab,reach_voice_share,0.8446,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: BR
 pad,reach_voice_share,0.8446,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: BR
 pag,reach_voice_share,0.6726,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Speakers who use the internet. Weighted by speakers in 1 countries: PH
@@ -17546,6 +17546,7 @@ cra,reach_voice_share_5y,0.2748,share,World Bank,https://data.worldbank.org/indi
 crc,reach_voice_share_5y,0.2235,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: VU
 crd,reach_voice_share_5y,0.9592,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: US
 crg,reach_voice_share_5y,0.9592,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: US
+crh,reach_voice_share_5y,0.8742,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: UA
 cri,reach_voice_share_5y,0.6819,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: ST
 crj,reach_voice_share_5y,0.9496,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: CA
 crk,reach_voice_share_5y,0.9496,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: CA
@@ -18538,7 +18539,6 @@ juu,reach_voice_share_5y,0.5058,share,World Bank,https://data.worldbank.org/indi
 juw,reach_voice_share_5y,0.5058,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: NG
 juy,reach_voice_share_5y,0.8095,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: IN
 jv,reach_voice_share_5y,0.8322,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: ID
-jvn,reach_voice_share_5y,0.945,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: SR
 jwi,reach_voice_share_5y,0.8273,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: GH
 jya,reach_voice_share_5y,0.974,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: CN
 jyy,reach_voice_share_5y,0.1765,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: TD
@@ -20281,7 +20281,7 @@ oyb,reach_voice_share_5y,0.762,share,World Bank,https://data.worldbank.org/indic
 oyd,reach_voice_share_5y,0.2748,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: ET
 oyy,reach_voice_share_5y,0.2374,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: PG
 ozm,reach_voice_share_5y,0.5291,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: CM
-pa,reach_voice_share_5y,0.7229,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 2 countries: PK, IN"
+pa,reach_voice_share_5y,0.8095,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: IN
 pab,reach_voice_share_5y,0.879,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: BR
 pad,reach_voice_share_5y,0.879,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: BR
 pag,reach_voice_share_5y,0.7871,share,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Internet use projected 5 years ahead on its recent trend. Weighted by speakers in 1 countries: PH
@@ -23061,6 +23061,7 @@ cra,speaker_growth_5y,1.1342,factor,World Bank,https://data.worldbank.org/indica
 crc,speaker_growth_5y,1.1166,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: VU
 crd,speaker_growth_5y,1.0264,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: US
 crg,speaker_growth_5y,1.0264,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: US
+crh,speaker_growth_5y,1.1545,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: UA
 cri,speaker_growth_5y,1.1032,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: ST
 crj,speaker_growth_5y,1.0478,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: CA
 crk,speaker_growth_5y,1.0478,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: CA
@@ -24053,7 +24054,6 @@ juu,speaker_growth_5y,1.1075,factor,World Bank,https://data.worldbank.org/indica
 juw,speaker_growth_5y,1.1075,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: NG
 juy,speaker_growth_5y,1.0452,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: IN
 jv,speaker_growth_5y,1.0399,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: ID
-jvn,speaker_growth_5y,1.0433,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: SR
 jwi,speaker_growth_5y,1.0951,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: GH
 jya,speaker_growth_5y,0.9915,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: CN
 jyy,speaker_growth_5y,1.1827,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: TD
@@ -25796,7 +25796,7 @@ oyb,speaker_growth_5y,1.0678,factor,World Bank,https://data.worldbank.org/indica
 oyd,speaker_growth_5y,1.1342,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: ET
 oyy,speaker_growth_5y,1.0904,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: PG
 ozm,speaker_growth_5y,1.1348,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: CM
-pa,speaker_growth_5y,1.0739,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,"Population growth over 5 years. Weighted by speakers in 2 countries: PK, IN"
+pa,speaker_growth_5y,1.0452,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: IN
 pab,speaker_growth_5y,1.0193,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: BR
 pad,speaker_growth_5y,1.0193,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: BR
 pag,speaker_growth_5y,1.0412,factor,World Bank,https://data.worldbank.org/indicator/IT.NET.USER.ZS,2026-11-08,api,Population growth over 5 years. Weighted by speakers in 1 countries: PH

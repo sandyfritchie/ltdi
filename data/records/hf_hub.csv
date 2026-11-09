@@ -1,5 +1,4 @@
 language,indicator,value,unit,source,url,retrieved,method,note
-*,hf_datasets,0,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:fil,2026-11-08,download,
 aa,hf_datasets,243,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:aa,2026-11-08,download,"Tags: aa, aar"
 aaa,hf_datasets,12,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:aaa,2026-11-08,download,Tags: aaa
 aab,hf_datasets,11,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:aab,2026-11-08,download,Tags: aab
@@ -186,7 +185,7 @@ ajp,hf_datasets,51,datasets,Hugging Face Hub,https://huggingface.co/datasets?lan
 aju,hf_datasets,6,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:aju,2026-11-08,download,Tags: aju
 ajw,hf_datasets,1,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:ajw,2026-11-08,download,Tags: ajw
 ajz,hf_datasets,21,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:ajz,2026-11-08,download,Tags: ajz
-ak,hf_datasets,443,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:ak,2026-11-08,download,"Tags: ak, aka, tw"
+ak,hf_datasets,524,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:ak,2026-11-08,download,"Tags: ak, aka, tw, twi"
 akb,hf_datasets,24,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:akb,2026-11-08,download,Tags: akb
 akc,hf_datasets,8,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:akc,2026-11-08,download,Tags: akc
 akd,hf_datasets,8,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:akd,2026-11-08,download,Tags: akd
@@ -1845,6 +1844,7 @@ fi,hf_datasets,1278,datasets,Hugging Face Hub,https://huggingface.co/datasets?la
 fia,hf_datasets,13,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:fia,2026-11-08,download,Tags: fia
 fie,hf_datasets,10,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:fie,2026-11-08,download,Tags: fie
 fif,hf_datasets,3,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:fif,2026-11-08,download,Tags: fif
+fil,hf_datasets,825,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:fil,2026-11-08,download,"Tags: fil, tgl, tl"
 fip,hf_datasets,17,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:fip,2026-11-08,download,Tags: fip
 fir,hf_datasets,6,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:fir,2026-11-08,download,Tags: fir
 fit,hf_datasets,18,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:fit,2026-11-08,download,Tags: fit
@@ -6093,7 +6093,6 @@ tkv,hf_datasets,1,datasets,Hugging Face Hub,https://huggingface.co/datasets?lang
 tkw,hf_datasets,6,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:tkw,2026-11-08,download,Tags: tkw
 tkx,hf_datasets,5,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:tkx,2026-11-08,download,Tags: tkx
 tkz,hf_datasets,1,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:tkz,2026-11-08,download,Tags: tkz
-tl,hf_datasets,825,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:tl,2026-11-08,download,"Tags: fil, tgl, tl"
 tla,hf_datasets,5,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:tla,2026-11-08,download,Tags: tla
 tlb,hf_datasets,17,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:tlb,2026-11-08,download,Tags: tlb
 tlc,hf_datasets,4,datasets,Hugging Face Hub,https://huggingface.co/datasets?language=language:tlc,2026-11-08,download,Tags: tlc

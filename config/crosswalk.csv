@@ -15,10 +15,12 @@ ara,ar,
 pa-in,pa,Gurmukhi Punjabi
 pa-pk,pnb,Shahmukhi Punjabi is Western Punjabi
 pa-arab,pnb,
-fil,tl,Filipino is standardised Tagalog
 nor,nb,
 iw,he,"Deprecated code for Hebrew, still used by Google"
 jw,jv,"Deprecated code for Javanese, still used by Google"
 in,id,Deprecated code for Indonesian
 ji,yi,Deprecated code for Yiddish
 mo,ro,"Deprecated code for Moldavian, now Romanian"
+pan-arab,pnb,Punjabi in Shahmukhi
+pa-guru,pa,
+pan-guru,pa,

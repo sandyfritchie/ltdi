@@ -85,6 +85,7 @@ fa,wikipedia_active_editors,8439,editors,Wikipedia,https://meta.wikimedia.org/wi
 fat,wikipedia_active_editors,10,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fat,2026-11-08,api,Registered users with an edit in the last 30 days
 ff,wikipedia_active_editors,34,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#ff,2026-11-08,api,Registered users with an edit in the last 30 days
 fi,wikipedia_active_editors,3258,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fi,2026-11-08,api,Registered users with an edit in the last 30 days
+fil,wikipedia_active_editors,305,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tl,2026-11-08,api,Registered users with an edit in the last 30 days
 fj,wikipedia_active_editors,9,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fj,2026-11-08,api,Registered users with an edit in the last 30 days
 fo,wikipedia_active_editors,44,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fo,2026-11-08,api,Registered users with an edit in the last 30 days
 fon,wikipedia_active_editors,15,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fon,2026-11-08,api,Registered users with an edit in the last 30 days
@@ -287,7 +288,6 @@ th,wikipedia_active_editors,2479,editors,Wikipedia,https://meta.wikimedia.org/wi
 ti,wikipedia_active_editors,13,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#ti,2026-11-08,api,Registered users with an edit in the last 30 days
 tig,wikipedia_active_editors,16,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tig,2026-11-08,api,Registered users with an edit in the last 30 days
 tk,wikipedia_active_editors,63,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tk,2026-11-08,api,Registered users with an edit in the last 30 days
-tl,wikipedia_active_editors,305,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tl,2026-11-08,api,Registered users with an edit in the last 30 days
 tly,wikipedia_active_editors,62,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tly,2026-11-08,api,Registered users with an edit in the last 30 days
 tn,wikipedia_active_editors,60,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tn,2026-11-08,api,Registered users with an edit in the last 30 days
 to,wikipedia_active_editors,7,editors,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#to,2026-11-08,api,Registered users with an edit in the last 30 days
@@ -410,6 +410,7 @@ fa,wikipedia_articles,1102728,articles,Wikipedia,https://meta.wikimedia.org/wiki
 fat,wikipedia_articles,1802,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fat,2026-11-08,api,
 ff,wikipedia_articles,22785,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#ff,2026-11-08,api,
 fi,wikipedia_articles,628099,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fi,2026-11-08,api,
+fil,wikipedia_articles,50800,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tl,2026-11-08,api,
 fj,wikipedia_articles,1729,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fj,2026-11-08,api,
 fo,wikipedia_articles,14219,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fo,2026-11-08,api,
 fon,wikipedia_articles,5614,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#fon,2026-11-08,api,
@@ -612,7 +613,6 @@ th,wikipedia_articles,189620,articles,Wikipedia,https://meta.wikimedia.org/wiki/
 ti,wikipedia_articles,374,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#ti,2026-11-08,api,
 tig,wikipedia_articles,126,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tig,2026-11-08,api,
 tk,wikipedia_articles,7351,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tk,2026-11-08,api,
-tl,wikipedia_articles,50800,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tl,2026-11-08,api,
 tly,wikipedia_articles,10253,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tly,2026-11-08,api,
 tn,wikipedia_articles,6118,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#tn,2026-11-08,api,
 to,wikipedia_articles,2047,articles,Wikipedia,https://meta.wikimedia.org/wiki/List_of_Wikipedias/sortable#to,2026-11-08,api,
