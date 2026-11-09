@@ -88,7 +88,7 @@ input.pick { width: 22em; max-width: 100%; }  /* room for long names with their 
 .rsum { display: grid; grid-template-columns: auto minmax(220px, 1.3fr) auto; gap: 14px 32px; align-items: start;
   background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 18px; margin: 4px 0 14px; }
 .rsum .eyebrow { margin-bottom: 6px; }
-.rsum-totals { display: flex; gap: 26px; }
+.rsum-totals { display: grid; grid-template-columns: repeat(3, auto); column-gap: 26px; justify-content: start; }
 .rsum-totals b { font: 700 24px/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
 .tbar-row { display: grid; grid-template-columns: 5.6em 1fr 4.4em; align-items: center; gap: 8px; font-size: 13px; margin: 3px 0; }
 .tbar-k { color: var(--muted); } .tbar-v { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
@@ -96,13 +96,14 @@ input.pick { width: 22em; max-width: 100%; }  /* room for long names with their 
 .tbar i { display: block; height: 100%; }
 .tbar-key { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 12px; color: var(--muted); margin-top: 6px; }
 .tbar-key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
-.rgaps { display: grid; grid-template-columns: repeat(5, auto); gap: 4px 16px; }
+.rgaps { display: grid; grid-template-columns: repeat(5, auto); gap: 4px 22px; justify-content: start; }
+.rgap { justify-content: start; }
 .rgap { display: grid; grid-template-columns: auto auto; align-items: center; column-gap: 5px; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rgap small { grid-column: 1 / -1; font-size: 11px; color: var(--muted); }
 .rgap .ticon { width: 19px; height: 19px; }
-.rsum-note { grid-column: 1 / -1; margin: 0; font-size: 12px; color: var(--muted); }
+.rsum-note { grid-column: 1 / -1; width: 0; min-width: 100%; margin: 8px 0 0; font-size: 12px; line-height: 1.35; color: var(--muted); }  /* wraps to the numbers' width */
 @media (max-width: 1000px) { .rsum { grid-template-columns: 1fr 1fr; } .rsum-gaps { grid-column: 1 / -1; } }
-@media (max-width: 640px) { .rsum { grid-template-columns: 1fr; padding: 12px 14px; } .rsum-totals { gap: 18px; } .rsum-totals b { font-size: 20px; }
+@media (max-width: 640px) { .rsum { grid-template-columns: 1fr; padding: 12px 14px; } .rsum-totals { column-gap: 18px; } .rsum-totals b { font-size: 20px; }
   .rgaps { grid-template-columns: repeat(3, auto); justify-content: start; } }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
@@ -619,6 +620,7 @@ function rankSummary(ls) {
       <div><div class="eyebrow">Languages</div><b>${ls.length.toLocaleString()}</b></div>
       <div title="Each language's speakers added up, so people who speak several languages are counted once for each"><div class="eyebrow">Speakers*</div><b>${people(sp)}</b></div>
       <div title="Estimated speakers online today, added up the same way"><div class="eyebrow">Online*</div><b>${people(on)}</b></div>
+      <p class="rsum-note">* Summed per language: people who speak several languages are counted in each.</p>
     </div>
     <div class="rsum-tiers">
       <div class="eyebrow">Share by tier</div>
@@ -629,7 +631,7 @@ function rankSummary(ls) {
       <div class="eyebrow">Speakers with no commercial service</div>
       <div class="rgaps">${gaps}</div>
     </div>
-    <p class="rsum-note">* Summed per language: people who speak several languages are counted in each.</p>`;
+`;
 }
 
 function ranking() {
