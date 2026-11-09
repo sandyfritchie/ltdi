@@ -1,0 +1,31 @@
+macro,unit,absorbs,label_to,note
+ar,macro,arb,,"Vendors ship Modern Standard Arabic as 'ar', and LinguaMeta's speaker count sits on the macrolanguage. Spoken varieties (Egyptian, Levantine and others) are languages of their own."
+sw,macro,swh,,The speaker count sits on the macrolanguage. Congo Swahili (swc) is separate.
+om,macro,gaz,,Vendors label West Central Oromo as 'om'.
+qu,macro,quy quz,,Vendors' 'Quechua' is Southern Quechua (Ayacucho and Cusco). Other Quechuas are separate.
+gn,macro,gug,,Vendors' 'Guarani' is Paraguayan Guarani.
+et,macro,ekk,,Standard Estonian has no separate speaker count.
+lv,macro,lvs,,Standard Latvian has no separate speaker count.
+fa,macro,pes,,Vendors' 'Persian' is Iranian Persian. Dari (prs) is separate.
+ms,macro,zsm,,Vendors' 'Malay' is Standard Malay. Indonesian (id) is separate.
+mg,macro,plt,,Vendors' 'Malagasy' is Plateau Malagasy.
+ps,macro,pbu,,Northern Pashto has no separate speaker count. Southern Pashto (pbt) is separate.
+uz,macro,uzn,,Vendors' 'Uzbek' is Northern Uzbek.
+az,macro,azj,,Vendors' 'Azerbaijani' is North Azerbaijani. South Azerbaijani (azb) is separate.
+ne,macro,npi,,
+sq,macro,als,,Vendors' 'Albanian' is Tosk. Gheg (aln) is separate.
+mn,macro,khk,,Vendors' 'Mongolian' is Halh Mongolian.
+or,macro,ory,,
+yi,macro,ydd,,
+ak,macro,tw,,Vendors' 'Akan' or 'Twi'.
+ay,macro,ayr,,
+kg,macro,kng,,
+kr,macro,knc,,
+kv,macro,kpv,,
+iu,macro,ike,,
+ku,macro,kmr,,Vendors' 'Kurdish' is Kurmanji. Central Kurdish (ckb) is separate.
+za,macro,zyb,,
+zh,members,,cmn,Vendors' 'Chinese' is Mandarin. Cantonese (yue) and others are separate.
+sh,members,,,"Serbian, Croatian and Bosnian are scored separately."
+no,members,,nb,Vendors' 'Norwegian' is Bokmål.
+hmn,members,,mww,Vendors' 'Hmong' is Hmong Daw.

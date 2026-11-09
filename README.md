@@ -19,7 +19,7 @@ The point of the slice is to test the method before scaling up.
 ## Pipeline
 
 ```
-python -m ltdi.backbone        # LinguaMeta metadata for the languages in config/slice_languages.csv
+python -m ltdi.backbone        # every LinguaMeta language (macrolanguage rules in config/macrolanguages.csv)
 python -m ltdi.collectors      # automated collectors -> data/records/*.csv (open_tools reads three repos with git)
 python -m ltdi.collectors wikipedia   # needs open network access; run locally
 python -m ltdi.collectors mms        # needs dl.fbaipublicfiles.com
@@ -42,7 +42,8 @@ serve the folder (`python -m http.server -d site`) or use GitHub Pages.
 
 | Path | What it is |
 | --- | --- |
-| `config/slice_languages.csv` | Languages in scope, with region overrides and notes |
+| `config/language_overrides.csv` | Names, region overrides, map origins and notes for particular languages |
+| `config/macrolanguages.csv` | Which macrolanguages are scored as one language, which members they absorb, and where macrolanguage labels go otherwise |
 | `config/crosswalk.csv` | Source language labels → LTDI codes; all rollup rules live here |
 | `config/methodology.toml` | Indicators, goalposts, weights, tiers, floor |
 | `config/services.csv` | Every service: technology, role (commercial, open, benchmark), name, provider, depth indicator |
@@ -92,7 +93,7 @@ measured benchmark quality. Language identification counts open models, at half 
 
 Languages are grouped into Africa, South Asia, Rest of Asia, Europe, Americas
 and Oceania, from the UN M49 region of the country with the most speakers
-(South Asia is M49 Southern Asia), with overrides in `config/slice_languages.csv`.
+(South Asia is M49 Southern Asia), with overrides in `config/language_overrides.csv`.
 Every view on the site can be filtered by region.
 The Charts view can also be filtered by provider. A provider's view counts its
 own services only: the map and the region chart show the share of that
@@ -108,7 +109,7 @@ doesn't yet cover the language, and names the service on each card.
 
 The Charts view opens with a map: a dot for each of LinguaMeta's ~6,450
 individual languages with a location, placed in the country with most speakers
-(or the origin country given in `config/slice_languages.csv`). Scored languages
+(or the origin country given in `config/language_overrides.csv`). Scored languages
 are coloured by tier from dark blue (very high) to dark orange (low); the rest are white.
 The basemap is Natural Earth (via world-atlas) in the Equal Earth projection.
 

@@ -1,18 +1,24 @@
 label,ltdi,note
-zh,cmn,Vendor "Chinese" is Mandarin
+zh,cmn,"Vendor ""Chinese"" is Mandarin"
 zh-cn,cmn,
 zh-tw,cmn,Mandarin in Traditional script (Taiwan)
+zh-sg,cmn,
 zh-hans,cmn,
 zh-hant,cmn,
 zho,cmn,
+chi,cmn,ISO 639-2/B code for Chinese (Tesseract's chi_sim and chi_tra)
 cmn-hans,cmn,
 cmn-hant,cmn,
-zh-hk,-,Common Voice zh-HK is Cantonese: excluded until yue is in scope
-yue,-,Cantonese: not in the slice
+zh-hk,yue,Hong Kong Chinese speech data and voices are Cantonese
+zh-mo,yue,
 ara,ar,
-arb,ar,Modern Standard Arabic is credited to Arabic
-pnb,pa,Western Punjabi (Shahmukhi) credited to Punjabi for the slice
-pa-in,pa,
-pa-pk,pa,
-fil,-,
-chi,cmn,ISO 639-2/B code for Chinese (Tesseract's chi_sim and chi_tra)
+pa-in,pa,Gurmukhi Punjabi
+pa-pk,pnb,Shahmukhi Punjabi is Western Punjabi
+pa-arab,pnb,
+fil,tl,Filipino is standardised Tagalog
+nor,nb,
+iw,he,"Deprecated code for Hebrew, still used by Google"
+jw,jv,"Deprecated code for Javanese, still used by Google"
+in,id,Deprecated code for Indonesian
+ji,yi,Deprecated code for Yiddish
+mo,ro,"Deprecated code for Moldavian, now Romanian"

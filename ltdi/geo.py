@@ -7,7 +7,7 @@ Writes:
                              projected to Equal Earth as one SVG path
 
 A language's point is LinguaMeta's geolocation for its origin country where
-config/slice_languages.csv gives one, otherwise for the country with the most
+config/language_overrides.csv gives one, otherwise for the country with the most
 speakers. Macrolanguages are left out of the background layer (their members
 are plotted), except where they are scored languages.
 """
@@ -119,7 +119,7 @@ def point(d: dict, origin: str | None = None) -> tuple[float, float] | None:
 
 
 def main() -> None:
-    with (CONFIG / "slice_languages.csv").open(encoding="utf-8") as f:
+    with (CONFIG / "language_overrides.csv").open(encoding="utf-8") as f:
         slice_rows = {r["code"]: r for r in csv.DictReader(f)}
     data_dir = linguameta_dir()
     records = {}

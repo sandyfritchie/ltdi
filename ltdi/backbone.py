@@ -1,7 +1,10 @@
-"""Language backbone: core metadata for each language, from LinguaMeta.
+"""Language backbone: core metadata for every language in LinguaMeta.
 
 Run:  python -m ltdi.backbone
-Writes data/languages.json for the languages listed in config/slice_languages.csv.
+Writes data/languages.json: every individual language in LinguaMeta, plus the
+macrolanguages config/macrolanguages.csv scores as one unit (minus the members
+they absorb), with names, regions and notes from config/language_overrides.csv.
+Reads LinguaMeta from a sparse git clone in .cache (see geo.linguameta_dir).
 """
 
 from __future__ import annotations
@@ -31,9 +34,31 @@ def region_group(region: str | None, subregion: str | None) -> str | None:
     return region
 
 
-def slice_languages() -> list[dict]:
-    with (CONFIG / "slice_languages.csv").open(encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+def overrides() -> dict[str, dict]:
+    with (CONFIG / "language_overrides.csv").open(encoding="utf-8") as f:
+        return {r["code"]: r for r in csv.DictReader(f)}
+
+
+def macrolanguages() -> dict[str, dict]:
+    with (CONFIG / "macrolanguages.csv").open(encoding="utf-8") as f:
+        return {r["macro"]: r for r in csv.DictReader(f)}
+
+
+def scope(records: dict[str, dict]) -> list[str]:
+    """Which LinguaMeta entries are scored: individual languages, except members absorbed by a
+    macrolanguage scored as a unit; plus those macrolanguages. A macrolanguage with an ISO 639-1
+    code is a unit unless config says "members"; other macrolanguages are represented by members."""
+    macros = macrolanguages()
+    units, absorbed = set(), set()
+    for code, d in records.items():
+        if d.get("language_scope", {}).get("scope") != "MACROLANGUAGE":
+            continue
+        unit = macros.get(code, {}).get("unit") or ("macro" if len(code) == 2 else "members")
+        if unit == "macro":
+            units.add(code)
+            absorbed |= set((macros.get(code, {}).get("absorbs") or "").split())
+    return sorted(c for c, d in records.items()
+                  if (d.get("language_scope", {}).get("scope") == "LANGUAGE" and c not in absorbed) or c in units)
 
 
 def _locales() -> dict[str, dict]:
@@ -65,8 +90,7 @@ def script_names() -> dict[str, str]:
     return {e["script"]["name"]: e["script"]["full_name"].replace(" variant)", ")") for e in data}
 
 
-def load_language(code: str, locales: dict[str, dict]) -> dict:
-    d = fetch_json(f"{LINGUAMETA}/{code}.json")
+def load_language(code: str, locales: dict[str, dict], d: dict) -> dict:
 
     def name_in(lang: str) -> str | None:
         for n in d.get("name_data", []):
@@ -114,15 +138,28 @@ def load_language(code: str, locales: dict[str, dict]) -> dict:
     }
 
 
+def records() -> dict[str, dict]:
+    from .geo import linguameta_dir
+    out = {}
+    for path in sorted(linguameta_dir().glob("*.json")):
+        if path.name in ("locales.json", "scripts.json"):
+            continue
+        d = json.loads(path.read_text(encoding="utf-8"))
+        out[d.get("bcp_47_code") or path.stem] = d
+    return out
+
+
 def main() -> None:
     locales = _locales()
     COUNTRY.update(country_names())
     SCRIPT.update(script_names())
+    recs, over, macros = records(), overrides(), macrolanguages()
     langs = []
-    for row in slice_languages():
-        lang = load_language(row["code"], locales)
-        lang["name"] = row["name"] or lang["name"]
-        lang["note"] = row["note"]
+    for code in scope(recs):
+        lang = load_language(code, locales, recs[code])
+        row = over.get(code, {})
+        lang["name"] = row.get("name") or lang["name"] or code
+        lang["note"] = row.get("note") or macros.get(code, {}).get("note") or ""
         if row.get("region"):  # origin region group, where the largest-country rule misleads
             lang["region"] = row["region"]
         langs.append(lang)
