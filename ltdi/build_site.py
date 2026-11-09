@@ -27,6 +27,22 @@ SITE = ROOT / "site"
 EMBED_LIMIT = 3_000_000  # bytes of per-language data to embed in the page
 SHARD_SIZE = 150  # languages per detail file
 TOP_OPPORTUNITIES = 1000  # opportunities listed on the Opportunities page before choosing a language
+PER_TYPE = 50            # of which at least this many of each kind of action, so every kind can be browsed
+
+
+def top_listed(top: list[dict]) -> list[dict]:
+    """The opportunities listed before a language is chosen: the highest-priority ones of each kind of
+    action, then the highest-priority of the rest, up to TOP_OPPORTUNITIES, in priority order."""
+    picked, per = set(), Counter()
+    for i, o in enumerate(top):
+        if per[o["_type"]] < PER_TYPE:
+            picked.add(i)
+            per[o["_type"]] += 1
+    for i in range(len(top)):
+        if len(picked) >= TOP_OPPORTUNITIES:
+            break
+        picked.add(i)
+    return [{k: v for k, v in o.items() if k != "_type"} for i, o in enumerate(top) if i in picked]
 SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "gaps")
 PROFILE = ("script_names", "note", "source", "written_in")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
@@ -68,7 +84,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
         opps = []
         for o in l["opportunities"]:
             top.append({k: o[k] for k in ("key", "title", "why", "priority", "priority_now", "priority_5y")}
-                       | {"lang": l["code"]})
+                       | {"lang": l["code"], "_type": o["type"]})
             o = {k: v for k, v in o.items() if k not in ("teams", "missing", "starter", "id", *hoisted[o["key"]])}
             o["kit"] = [[k["indicator"], k["size"]] for k in o["kit"]]
             opps.append(o)
@@ -86,6 +102,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                 reach := scores["facts"].get(l["code"], {}).get("reach_voice_share")) else None,
         })
     top.sort(key=lambda o: (-o["priority_5y"], o["lang"], o["key"]))
+    listed = top_listed(top)
     # A fact most languages share (usually "not offered") is sent once; each language lists only its own
     # facts and the shared ones it lacks
     count: dict[str, Counter] = {}
@@ -112,7 +129,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                                        for c, v in by.items()} for s, by in hist["values"].items()}}
     index = {k: scores[k] for k in ("edition", "labels", "config", "services", "resources",
                                     "opportunity_types", "teams")} | {"rules": rules}
-    index |= {"history": hist, "languages": langs, "top_opportunities": top[:TOP_OPPORTUNITIES],
+    index |= {"history": hist, "languages": langs, "top_opportunities": listed,
               "opportunity_total": len(top), "units": units,
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
               "sources": [list(k) for k in sorted(sources, key=sources.get)]}

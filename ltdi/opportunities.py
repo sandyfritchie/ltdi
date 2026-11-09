@@ -302,7 +302,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
             (wer - 10) / 40, ["asr_whisper_fleurs_wer"])
     if cv < 20:
-        add("asr-collect", "collect", "speech_input", f"Only {_hours(cv)} of open transcribed speech",
+        add("asr-collect", "collect", "speech_input", f"Only {_hours(cv)} of open transcribed speech" if cv else "No open transcribed speech found",
             "Counted across the open speech datasets we track. Image-prompted field collection has worked at "
             "scale for Indian and African languages.",
             1 - cv / 20, ["open_speech_hours"])
@@ -332,9 +332,10 @@ def find(f: dict[str, Record]) -> list[dict]:
                 "Benchmark results: " + "; ".join(weak) + ".", 0.5, llm)
     apps_n = offered["llm"]
     if any(i in f for i in APPS) and apps_n < len(APPS) and (apps_n or llm):
-        add("llm-apps", "share", "llm", f"{apps_n} of {len(APPS)} major AI assistant apps list this language",
+        add("llm-apps", "share", "llm", (f"{apps_n} of {len(APPS)} major AI assistant apps list this language" if apps_n
+                                    else "No major AI assistant app lists this language yet"),
             ("Some assistant apps already offer it. " if apps_n else "")
-            + ("Benchmarks show models can work in it, so the gap is mainly a product decision."
+            + ("Benchmarks show models already work in it, so listing it could be a short step."
                if llm else "Listing it would tell speakers they can rely on it."),
             (len(APPS) - apps_n) / len(APPS), APPS + llm)
     if not _v(f, "belebele"):

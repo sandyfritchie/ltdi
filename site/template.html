@@ -536,7 +536,7 @@ async function opportunities(lang) {
         ${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<button class="chip" id="tm-${k}" data-tm="${k}" aria-pressed="${team === k}">${esc(t)} · ${tcount[k]}</button>`).join('')}
       </div></div>
     ${provider !== 'All' ? `<p class="note" style="margin-top:0">Opportunities where a ${esc(PROV[provider])} service tracked here doesn't yet cover the language.</p>` : ''}
-    ${!focus && DATA.opportunity_total > TOP.length ? `<p class="note">Showing the ${TOP.length.toLocaleString()} highest-priority of ${DATA.opportunity_total.toLocaleString()} opportunities. Choose a language to see all of its own.</p>` : ''}
+    ${!focus && DATA.opportunity_total > TOP.length ? `<p class="note">Showing ${TOP.length.toLocaleString()} of ${DATA.opportunity_total.toLocaleString()} opportunities: the highest-priority ones, with the top ones of every kind of action. Choose a language to see all of its own.</p>` : ''}
     ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">Nothing matches these filters.</p>'}
     ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}
     <details class="method"><summary>How opportunities are ranked</summary>
@@ -1285,7 +1285,7 @@ function charts() {
         const w = (W - L - R) / (P.length - 1);
         return `<rect x="${(px - w / 2).toFixed(1)}" y="${T}" width="${w.toFixed(1)}" height="${Ht - T - B}" fill="transparent" data-tip="${esc(tip)}"/>`;
       }).join('');
-      return `<div class="panel"><h4>${esc(label)}</h4><div class="now">${last[2]} of ${N} languages now</div>
+      return `<div class="panel"><h4>${esc(label)}</h4><div class="now">${last[2]} of ${N.toLocaleString()} languages now</div>
         <svg viewBox="0 0 ${W} ${Ht}" role="img" aria-label="${esc(label)}: ${pts.map(([, , v, i]) => `${P[i]} ${v}`).join(', ')}">
           <g class="grid">${[0, YMAX / 2, YMAX].map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join('')}</g>
           <g class="axis">${yearTicks.map(([p, i]) => `<text x="${x(i)}" y="${Ht - 8}" text-anchor="middle">${p.slice(0, 4)}</text>`).join('')}</g>
@@ -1335,7 +1335,7 @@ function charts() {
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
-      <p class="sub">${P ? `Each bar splits the ${N} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are AI assistant apps, and language identification counts open models.'} Hover a segment to see which languages.</p>
+      <p class="sub">${P ? `Each bar splits the ${N.toLocaleString()} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N.toLocaleString() + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are AI assistant apps, and language identification counts open models.'} Hover a segment to see which languages.</p>
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
       ${absent.length ? `<p class="note">No ${esc(pn)} service tracked for: ${esc(absent.join(', '))}.</p>` : ''}
