@@ -300,6 +300,8 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .seg.open { background: var(--ord-open); color: var(--on-open); } .seg.none { background: var(--ord-none); color: var(--muted); }
 .maphead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .maphead h3 { margin: 0; }
+.mapsub { min-height: 4.5em; }  /* three lines in either view, so switching doesn't move the map */
+@media (max-width: 640px) { .mapsub { min-height: 9em; } .legend.map { min-height: 70px; align-content: flex-start; } }
 .mapmode { margin: 0; }
 .areas path { stroke: none; cursor: pointer; outline: none; }
 .areas path:hover { fill-opacity: 0.85; }
@@ -1013,10 +1015,9 @@ const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null'
 const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', l: '--t-l' };
 const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
 let mapR = null;  // base radii for the current render
-// Map view: a dot per language, or the areas where languages are spoken shaded by tier. Areas (Glottography)
-// are a separate file, fetched the first time they're asked for.
-let mapMode = 'dots', AREAS = null, areasLoading = null;
-const loadAreas = () => areasLoading ??= fetch('data/areas.json').then(r => r.json()).then(d => { AREAS = d; });
+// Map view: the areas where languages are spoken, shaded by tier (Glottography), or a dot per language
+let mapMode = 'areas';
+const AREAS = GEO && GEO.areas;  // embedded with the basemap
 // Share of the land drawn where the best-covered language is in each tier: paint the areas, lowest
 // tier first, on a small canvas and count pixels (Equal Earth keeps areas true)
 function tierLandShares(ls, tierKey) {
@@ -1062,27 +1063,27 @@ function mapSection() {
   LANGS.filter(inRegion).forEach(l => counts[tierKey(l)]++);
   const legendLabels = P ? { vh: '90%+ of its services', h: '60–90%', m: '30–60%', l: 'Under 30%' } : { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
   const areasOn = mapMode === 'areas' && AREAS;
-  const toggle = `<div class="chips mapmode" role="group" aria-label="Map view">
-      <button class="chip" data-mode="dots" aria-pressed="${mapMode === 'dots'}">Languages</button>
-      <button class="chip" data-mode="areas" aria-pressed="${mapMode === 'areas'}">Tier areas</button></div>`;
+  const toggle = AREAS ? `<div class="chips mapmode" role="group" aria-label="Map view">
+      <button class="chip" data-mode="areas" aria-pressed="${!!areasOn}">Areas</button>
+      <button class="chip" data-mode="dots" aria-pressed="${!areasOn}">Languages</button></div>` : '';
   let layer = dots, legend, sub;
   if (areasOn) {
     const inR = LANGS.filter(l => inRegion(l) && AREAS.paths[l.code]);
     const order = { l: 0, m: 1, h: 2, vh: 3 };
     layer = `<g class="areas">${[...LANGS].filter(l => AREAS.paths[l.code]).sort((a, b) => order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
       `<path d="${AREAS.paths[l.code]}" data-code="${l.code}" fill="var(${TIERC[tierKey(l)]})" fill-opacity="${inRegion(l) ? 0.5 : 0.12}" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
-    const sh = tierLandShares(inR, tierKey), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}% of land`;
+    const sh = tierLandShares(inR, tierKey), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
       ${sh && sh.none != null ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
-    sub = `Where each language is spoken today, shaded by its tier, for the ${inR.length.toLocaleString()} languages with an area in the atlas. Areas overlap where languages share ground (Russian across Siberia, English across Australia); the land shares count the best-covered language in each place${region === 'All' ? '' : `, as a share of the land ${esc(region)}'s languages cover`}. Hover for names.`;
+    sub = `Where each language is spoken today, shaded by tier: the ${inR.length.toLocaleString()} languages with an area in the atlas. Areas overlap; each tier’s share of ${region === 'All' ? 'the world’s land' : `the land ${esc(region)}’s languages cover`} counts the best-covered language in each place. Hover for names.`;
   } else {
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>`;
-    sub = `Each dot is a language, placed where most of its speakers live. Coloured dots are the ${LANGS.length.toLocaleString()} languages scored${bg.length ? `; white dots are the ${bg.length.toLocaleString()} other LinguaMeta entries, which are not scored` : ''}. Hover for names; select a coloured dot for its profile.`;
+    sub = `Each dot is a language, placed where most of its speakers live: the ${LANGS.length.toLocaleString()} scored languages by tier${bg.length ? `, and ${bg.length.toLocaleString()} other LinguaMeta entries in white` : ''}. Hover for names; select a dot for its profile.`;
   }
   return `<section class="chart">
     <div class="maphead"><h3>The world's languages</h3>${toggle}</div>
-    <p class="sub">${sub}</p>
+    <p class="sub mapsub">${sub}</p>
     <div class="legend map">${legend}</div>
     <div class="mapwrap"><div class="mapctl">
         <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
@@ -1097,8 +1098,7 @@ function mapSection() {
 }
 function bindMap() {
   document.querySelectorAll('.mapmode [data-mode]').forEach(b => b.onclick = () => {
-    mapMode = b.dataset.mode;
-    if (mapMode === 'areas' && !AREAS) { b.textContent = 'Loading…'; loadAreas().then(route); } else route();
+    mapMode = b.dataset.mode; route();
   });
   const svg = document.getElementById('worldmap');
   if (!svg || !GEO || !svg.getScreenCTM) return;
