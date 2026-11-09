@@ -156,10 +156,11 @@ table.ranktab { table-layout: fixed; }
 .num { text-align: right; white-space: nowrap; }
 .score { font: 700 20px var(--font-display); font-stretch: 85%; }
 .tier { font: 600 11px/1 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; border-radius: 3px; padding: 4px 6px; white-space: nowrap; }
-.tier.vh { background: var(--tier-vh); color: var(--tier-ink-dark); }
-.tier.h  { background: var(--tier-h); color: #fff; }
-.tier.m  { background: var(--tier-m); color: var(--tier-ink-light); }
-.tier.l  { background: var(--tier-l); color: var(--tier-ink-light); }
+/* the same blue-to-red tier colours as the map, totals and tier filter */
+.tier.vh { background: var(--t-vh); color: #fff; }
+.tier.h  { background: var(--t-h); color: #0d1f33; }
+.tier.m  { background: var(--t-m); color: #2a1606; }
+.tier.l  { background: var(--t-l); color: #fff; }
 .bars { display: grid; gap: 3px; min-width: 150px; }
 .bar { height: 6px; background: var(--track); border-radius: 3px; overflow: hidden; }
 .bar i { display: block; height: 100%; border-radius: 3px; }
