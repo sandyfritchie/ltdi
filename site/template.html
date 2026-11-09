@@ -92,6 +92,10 @@ button.reset[hidden] { display: none; }
 .msel-pop .gap-i .ticon { width: 17px; height: 17px; vertical-align: middle; }
 .msel-clear { display: block; width: 100%; margin-top: 4px; padding: 6px 8px; font: 13px var(--font-body); color: var(--accent, var(--muted));
   background: none; border: 0; border-top: 1px solid var(--rule); text-align: left; cursor: pointer; }
+/* Charts: the filters stay at the top while scrolling, so their effect on lower charts shows */
+.controls.sticky { position: sticky; top: 0; z-index: 30; background: var(--bg); padding: 10px 0; margin-block: 10px 2px;
+  border-bottom: 1px solid transparent; }
+.controls.sticky.stuck { border-bottom-color: var(--rule); box-shadow: 0 6px 12px -10px rgba(0,0,0,.25); }
 .controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-block: 20px 12px; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip { font: 600 13px/1 var(--font-body); border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
@@ -1292,7 +1296,7 @@ function charts() {
   </svg>`;
 
   $('#view').innerHTML = `
-    <div class="controls">${regionSelect('csel')}${providerSelect('cpsel')}<span class="note" style="margin:0">${N} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span></div>
+    <div class="controls sticky">${regionSelect('csel')}${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span></div>
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
@@ -1324,8 +1328,15 @@ function charts() {
     </section>`;
   bindTips($('#view'));
   bindMap();
-  $('#csel').onchange = e => { region = e.target.value; charts(); };
-  $('#cpsel').onchange = e => { provider = e.target.value; charts(); };
+  // keep the page where it is when a filter redraws the charts below
+  const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
+  $('#csel').onchange = keep(v => { region = v; });
+  $('#cpsel').onchange = keep(v => { provider = v; });
+  const bar = $('.controls.sticky');
+  if (bar && 'IntersectionObserver' in window) {  // a rule under the bar once it's stuck to the top
+    const s = document.createElement('div'); bar.before(s);
+    new IntersectionObserver(([e]) => bar.classList.toggle('stuck', !e.isIntersecting)).observe(s);
+  }
 }
 
 function route() {
