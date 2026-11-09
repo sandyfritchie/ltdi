@@ -12,6 +12,7 @@ asr_open_mms,speech_input,open,MMS,Open model,meta,,,,,
 tts_google,tts,consumer,Google Cloud,Text-to-Speech,google,tts_google_voice_types,,9,service,"Standard, WaveNet, Neural2, Studio, Polyglot, News, Chirp HD, Chirp3-HD, Gemini-TTS"
 tts_azure,tts,consumer,Azure AI Speech,Text to speech,microsoft,,,,,
 tts_amazon,tts,consumer,Polly,Text to speech,amazon,,,,,
+tts_openai,tts,consumer,OpenAI API,Text to speech,openai,,,,,
 tts_open_mms,tts,open,MMS-TTS,Open model,meta,,,,,
 mt_google,mt,consumer,Google Cloud,Translation,google,,,,,
 mt_azure,mt,consumer,Azure,Translator,microsoft,mt_azure_features,,6,service,
@@ -19,6 +20,7 @@ mt_deepl,mt,consumer,DeepL,Translator,deepl,mt_deepl_features,,4,service,"Glossa
 mt_open_nllb,mt,open,NLLB-200,Open model,meta,,,,,
 llm_app_gemini,llm,consumer,Gemini,App languages,google,,,,,
 llm_app_copilot,llm,consumer,Copilot,App languages,microsoft,,,,,
+llm_app_chatgpt,llm,consumer,ChatGPT,App languages,openai,,,,,
 llm_global_mmlu_rel,llm,measured,Claude,Global-MMLU,anthropic,,70,100,,Share of the English score
 llm_mmmlu_openai,llm,measured,OpenAI o3,MMMLU,openai,,0.6,0.92,,Accuracy
 ui_ios,interface,consumer,iOS,System language,apple,,,,,

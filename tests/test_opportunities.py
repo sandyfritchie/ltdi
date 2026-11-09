@@ -18,7 +18,8 @@ FULL = dict(kb_gboard=1, kb_apple=1, kb_apple_features=4, asr_google=1, asr_azur
             web_text_words=1e12, wikipedia_active_editors=100000,
             ui_ios=1, ui_windows=1, ui_office=1, ocr_google=1, ocr_azure=1, ocr_apple=1, proof_office=1,
             va_google_assistant=1, va_siri=1, lid_glotlid=1, lid_cld3=1, kb_swiftkey=1, asr_amazon=1,
-            tts_azure=1, tts_amazon=1, va_alexa=1, llm_app_gemini=1, llm_app_copilot=1)
+            tts_azure=1, tts_amazon=1, va_alexa=1, llm_app_gemini=1, llm_app_copilot=1,
+            tts_openai=1, llm_app_chatgpt=1)
 
 
 class FindTests(unittest.TestCase):
@@ -30,9 +31,9 @@ class FindTests(unittest.TestCase):
         self.assertIn("A keyboard layout exists but isn't on every major platform", titles(fs, "share"))
 
     def test_tts_gap_is_share_with_data_and_collect_without(self):
-        none = {"tts_google": 0, "tts_azure": 0, "tts_amazon": 0}
+        none = {"tts_google": 0, "tts_azure": 0, "tts_amazon": 0, "tts_openai": 0}
         self.assertTrue(any("text-to-speech" in t for t in titles(facts(**{**FULL, **none}), "share")))
-        self.assertIn("Text-to-speech is offered by 2 of 3 major services", titles(facts(**{**FULL, "tts_amazon": 0}), "share"))
+        self.assertIn("Text-to-speech is offered by 3 of 4 major services", titles(facts(**{**FULL, "tts_amazon": 0}), "share"))
         thin = facts(**{**FULL, **none, "cv_validated_hours": 3})
         self.assertIn("Record a single-speaker voice for text-to-speech", titles(thin, "collect"))
 
@@ -58,7 +59,7 @@ class FindTests(unittest.TestCase):
         no_va = {"va_google_assistant": 0, "va_siri": 0, "va_alexa": 0}
         fs = facts(**{**FULL, **no_va})
         self.assertIn("The building blocks for a voice assistant exist", titles(fs, "share"))
-        self.assertEqual(titles(facts(**{**FULL, **no_va, "tts_google": 0, "tts_azure": 0, "tts_amazon": 0}), "share")
+        self.assertEqual(titles(facts(**{**FULL, **no_va, "tts_google": 0, "tts_azure": 0, "tts_amazon": 0, "tts_openai": 0}), "share")
                          .count("The building blocks for a voice assistant exist"), 0)
 
     def test_open_keyboard_without_a_platform_is_share(self):
@@ -67,7 +68,7 @@ class FindTests(unittest.TestCase):
 
     def test_benchmarked_language_missing_from_apps_is_share(self):
         fs = facts(**{**FULL, "llm_app_copilot": 0})
-        self.assertIn("1 of 2 major AI assistant apps list this language", titles(fs, "share"))
+        self.assertIn("2 of 3 major AI assistant apps list this language", titles(fs, "share"))
 
     def test_interface_from_volunteer_translation(self):
         fs = facts(**{**FULL, "ui_ios": 0, "ui_windows": 0, "ui_office": 0, "ui_firefox": 1})
