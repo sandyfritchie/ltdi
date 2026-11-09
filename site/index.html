@@ -117,7 +117,6 @@ input.pick { width: 22em; max-width: 100%; }  /* room for long names with their 
 .tbar-key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
 .rgaps { display: grid; grid-template-columns: repeat(3, 6.6em); gap: 0 14px; justify-content: start; }
 .rgcol { display: grid; gap: 6px; align-content: start; }
-.rgk { font-size: 11px; color: var(--muted); border-bottom: 1px solid var(--rule); padding-bottom: 2px; }
 .rgap { justify-content: start; }
 .rgap { display: grid; grid-template-columns: auto auto; align-items: center; column-gap: 5px; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rgap small { grid-column: 1 / -1; font-size: 11px; color: var(--muted); }
@@ -657,7 +656,7 @@ function rankSummary(ls) {
     return `<span class="rgap" title="Speakers whose language has no commercial ${esc(t.label.toLowerCase())} service">
       <span class="gap-i none">${TICON[k]}</span><b>${people(n)}</b><small>${esc(GAP_SHORT[k] || t.label)}</small></span>`;
   };
-  const gaps = GAP_GROUPS.map(([g, ks]) => `<div class="rgcol"><div class="rgk">${g}</div>${ks.map(gapItem).join('')}</div>`).join('');
+  const gaps = GAP_GROUPS.map(([g, ks]) => `<div class="rgcol" aria-label="${g}">${ks.map(gapItem).join('')}</div>`).join('');
   return `
     <div class="rsum-totals">
       <div><div class="eyebrow">Languages</div><b>${ls.length.toLocaleString()}</b></div>
