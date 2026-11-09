@@ -600,7 +600,7 @@ function rankSummary(ls) {
   const fmtPct = v => v > 0 && v < 1 ? '<1%' : Math.round(v) + '%';
   const row = (name, key, total) => `<div class="tbar-row"><span class="tbar-k">${name}</span><div class="tbar">${tiers.map(t => {
       const v = pct(by[t][key], total);
-      return v ? `<i style="width:${v}%;background:var(${TIERC[t]})" title="${label[t]}: ${key === 'n' ? by[t].n.toLocaleString() + ' languages' : people(by[t].sp) + ' speakers'} (${fmtPct(v)})"></i>` : '';
+      return v ? `<i style="width:${v}%;background:var(${TIERC[t]})" title="${label[t]}: ${fmtPct(v)} of ${key === 'n' ? 'languages' : 'speakers'}\n${by[t].n.toLocaleString()} ${by[t].n === 1 ? 'language' : 'languages'} with ${people(by[t].sp)} speakers"></i>` : '';
     }).join('')}</div><span class="tbar-v">${fmtPct(pct(by.l[key], total))} low</span></div>`;
   const gaps = MAIN_TECH.map(k => {
     const t = CFG.tech.technologies[k], n = sum(l => l.gaps[k] === 'none' ? l.speakers : 0);
