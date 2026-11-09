@@ -131,6 +131,10 @@ label = "LLMs"
 # each scaled linearly between its min and max.
 weight = 1
 
+[dimensions.tech.technologies.assistant]
+label = "Voice assistant"
+weight = 1
+
 [dimensions.tech.technologies.interface]
 label = "Interface language"
 group = "more"  # shown under "More technologies" on the site
@@ -146,12 +150,9 @@ label = "Spelling and grammar"
 group = "more"  # shown under "More technologies" on the site
 weight = 1
 
-[dimensions.tech.technologies.assistant]
-label = "Voice assistant"
-weight = 1
-
 [dimensions.tech.technologies.langid]
 label = "Language identification"
+short = "Lang ID"  # where space is tight (chart labels)
 group = "more"  # shown under "More technologies" on the site
 # Mostly invisible to users, but every web-scale data pipeline starts with it.
 weight = 0.5

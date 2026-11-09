@@ -290,7 +290,7 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .chart h3 { margin: 0; font: 700 18px var(--font-display); font-stretch: 88%; }
 .chart .sub { margin: 4px 0 12px; color: var(--muted); font-size: 14px; max-width: 70ch; }
 .legend.ord { margin: 4px 0 12px; }
-.covrows { display: grid; grid-template-columns: minmax(90px, 140px) minmax(0, 1fr); gap: 10px 14px; align-items: center; }
+.covrows { display: grid; grid-template-columns: minmax(90px, 180px) minmax(0, 1fr); gap: 10px 14px; align-items: center; }
 .covrows .lab { font-size: 14px; font-weight: 600; }
 .covrows .lab small { display: block; font-weight: 400; font-size: 12px; color: var(--muted); }
 .stack { display: flex; gap: 2px; height: 26px; min-width: 0; }
@@ -1140,7 +1140,7 @@ function charts() {
       const n = by[lv].length, lab = bench ? { full: 'Benchmark result published', part: 'Some benchmark results', none: 'No published result' }[lv] : lab0;
       return `<div class="seg ${lv}" tabindex="0" style="flex:${n}" data-tip="<b>${esc(label)}: ${esc(lab)}</b><br>${n} of ${N}: ${names(by[lv])}">${n / N >= 0.08 ? n : ''}</div>`;
     }).join('');
-    return { k, t, by, html: `<div class="lab">${esc(t.label)}${P ? `<small>${esc(ids.map(id => SVC[id][0]).join(', '))}</small>` : ''}</div><div class="stack" role="img" aria-label="${esc(label)}: ${LV.map(([lv, lab]) => `${by[lv].length} ${lab.toLowerCase()}`).join(', ')}">${segs}</div>` };
+    return { k, t, by, html: `<div class="lab" title="${esc(t.label)}">${esc(t.short || t.label)}${P ? `<small>${esc(ids.map(id => SVC[id][0]).join(', '))}</small>` : ''}</div><div class="stack" role="img" aria-label="${esc(label)}: ${LV.map(([lv, lab]) => `${by[lv].length} ${lab.toLowerCase()}`).join(', ')}">${segs}</div>` };
   });
   // 1b. The same split weighted by speakers: how many people each technology reaches
   const spk = ls => ls.reduce((n, l) => n + (l.speakers || 0), 0), SP = spk(langs) || 1;
@@ -1150,7 +1150,7 @@ function charts() {
       const n = spk(r.by[lv]);
       return `<div class="seg ${lv}" tabindex="0" style="flex:${n}" data-tip="<b>${esc(r.t.label)}: ${esc(lab)}</b><br>${people(n)} speakers (${pctS(n)}) in ${r.by[lv].length.toLocaleString()} ${r.by[lv].length === 1 ? 'language' : 'languages'}: ${names(r.by[lv])}">${n / SP >= 0.08 ? people(n) : ''}</div>`;
     }).join('');
-    return `<div class="lab">${esc(r.t.label)}</div><div class="stack" role="img" aria-label="${esc(r.t.label)}: ${LV.map(([lv, lab]) => `${people(spk(r.by[lv]))} speakers ${lab.toLowerCase()}`).join(', ')}">${segs}</div>`;
+    return `<div class="lab" title="${esc(r.t.label)}">${esc(r.t.short || r.t.label)}</div><div class="stack" role="img" aria-label="${esc(r.t.label)}: ${LV.map(([lv, lab]) => `${people(spk(r.by[lv]))} speakers ${lab.toLowerCase()}`).join(', ')}">${segs}</div>`;
   }).join('');
   const tableS = `<div class="tablebox"><table><thead><tr><th>Technology</th>${LV.map(([, lab]) => `<th class="num">${esc(lab)}</th>`).join('')}</tr></thead>
     <tbody>${rows.map(r => `<tr><td>${esc(r.t.label)}</td>${LV.map(([lv]) => `<td class="num">${people(spk(r.by[lv]))} <span class="pct">(${pctS(spk(r.by[lv]))})</span></td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
@@ -1245,7 +1245,7 @@ function charts() {
     </section>
     <section class="chart">
       <h3>How many speakers each technology reaches today</h3>
-      <p class="sub">The same split, with each language counted by its speakers: ${people(SP)} in all, added up per language, so people who speak several languages are counted in each. Compare with the chart above: a few large languages reach most people, while most languages are small.</p>
+      <p class="sub">The same split, with each language counted by its speakers: ${people(SP)} in all, added up per language, so people who speak several languages are counted in each.</p>
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rowsS}</div>
       <details class="tbl"><summary>Show as a table</summary>${tableS}</details>
