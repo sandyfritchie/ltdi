@@ -82,6 +82,15 @@ button.reset { font: 14px var(--font-body); padding: 7px 12px; border: 1px solid
   color: var(--accent); cursor: pointer; }
 button.reset:hover { background: var(--surface); }
 button.reset[hidden] { display: none; }
+/* On/off switch (Show gaps) */
+.switch { display: inline-flex; align-items: center; gap: 8px; font: 15px var(--font-body); color: var(--ink); cursor: pointer; white-space: nowrap; }
+.switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.switch .track { position: relative; width: 34px; height: 20px; border-radius: 10px; background: color-mix(in srgb, var(--muted) 45%, transparent); transition: background .15s; flex: none; }
+.switch .track::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .15s; }
+.switch input:checked + .track { background: var(--accent); }
+.switch input:checked + .track::after { transform: translateX(14px); }
+.switch input:focus-visible + .track { outline: 2px solid var(--accent); outline-offset: 2px; }
 /* Multi-select drop-down (tiers) */
 .msel { position: relative; }
 .msel summary { list-style: none; cursor: pointer; font: 15px var(--font-body); padding: 7px 30px 7px 10px; border: 1px solid var(--rule);
@@ -613,7 +622,7 @@ async function oppDetail(id) {
 // ---------------------------------------------------------------- ranking
 let query = '', rankAll = false, sortBy = 'rank', sortDir = 1;
 const tierSel = new Set();  // tiers shown in the ranking; empty means all
-const gapSel = new Set();   // technologies a language must be missing; empty means no filter
+let showGaps = false;       // only languages with something in the Gaps column
 const TIER_KEYS = [['vh', 'Very high'], ['h', 'High'], ['m', 'Medium'], ['l', 'Low']];
 // A drop-down of tick boxes, so several values can be chosen at once (Medium and Low, say)
 function msel(id, sel, opts, none, all, prefix, clear) {
@@ -625,8 +634,6 @@ function msel(id, sel, opts, none, all, prefix, clear) {
 }
 const tierPicker = () => msel('tiersel', tierSel, TIER_KEYS.map(([k, t]) => [k, t, `<i style="background:var(${TIERC[k]})"></i>`]),
   'All tiers', 'All tiers', '', 'Show all tiers');
-const gapPicker = () => msel('gapsel', gapSel, GAP_TECH.map(k => [k, GAP_SHORT[k] || CFG.tech.technologies[k].label,
-  `<span class="gap-i none">${TICON[k]}</span>`]), 'Any coverage', null, 'Missing ', 'Clear');
 // Wire a drop-down: ticking updates the set, redraws, and keeps the drop-down open
 function wireMsel(wrap, make, sel, size, draw) {
   const d = $(`#${wrap} details`);
@@ -728,7 +735,7 @@ function ranking() {
     <div class="controls">
       ${regionSelect('rsel')}
       <span id="tierwrap">${tierPicker()}</span>
-      <span id="gapwrap" title="Show only languages with no commercial service for every technology ticked">${gapPicker()}</span>
+      <label class="switch" title="Show only languages with a gap: a main technology with no commercial service, or only an open model or benchmark"><input type="checkbox" role="switch" id="gapsw"${showGaps ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show gaps</label>
       <input type="search" id="q" placeholder="Find a language name or code" value="${esc(query)}" aria-label="Find a language">
       <button type="button" class="reset" id="resetf" hidden>Reset filters</button>
     </div>
@@ -750,11 +757,11 @@ function ranking() {
   const draw = () => {
     const q = query.trim().toLowerCase();
     const all = LANGS.filter(l => inRegion(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]))
-      && [...gapSel].every(k => l.gaps[k] === 'none') && (!q || matches(l, q)));
+      && (!showGaps || GAP_TECH.some(k => l.gaps[k])) && (!q || matches(l, q)));
     const [, val, natural] = SORTS[sortBy], dir = sortDir;
     all.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : a.rank - b.rank) * dir; });
     $('#rsum').innerHTML = rankSummary(all);
-    $('#resetf').hidden = region === 'All' && !tierSel.size && !gapSel.size && !q;
+    $('#resetf').hidden = region === 'All' && !tierSel.size && !showGaps && !q;
     $('#rankhead').innerHTML = rankHead();
     const rows = rankAll || q ? all : all.slice(0, RANK_PAGE);
     $('#rankmore').innerHTML = rows.length < all.length ? `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
@@ -776,9 +783,9 @@ function ranking() {
   draw();
   $('#rsel').onchange = e => { region = e.target.value; ranking(); };
   $('#q').oninput = e => { query = e.target.value; draw(); };
-  $('#resetf').onclick = () => { region = 'All'; tierSel.clear(); gapSel.clear(); query = ''; rankAll = false; ranking(); $('#q').focus(); };
+  $('#resetf').onclick = () => { region = 'All'; tierSel.clear(); showGaps = false; query = ''; rankAll = false; ranking(); $('#q').focus(); };
   wireMsel('tierwrap', tierPicker, tierSel, 4, draw);
-  wireMsel('gapwrap', gapPicker, gapSel, 0, draw);
+  $('#gapsw').onchange = e => { showGaps = e.target.checked; draw(); };
   if (!ranking.closer) {  // once: a click elsewhere closes the drop-downs
     ranking.closer = e => document.querySelectorAll('details.msel[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
     document.addEventListener('click', ranking.closer);
