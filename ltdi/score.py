@@ -9,17 +9,12 @@ from __future__ import annotations
 import csv
 import json
 import math
-import tomllib
 from collections import defaultdict
 
-from . import CONFIG, DATA
+from . import DATA
+from .config import load_config, services
 from .opportunities import RULES, TEAMS, TYPES, explain, find, rank, reach_by_country, starter_kit
 from .records import Record, read_dir
-
-
-def load_config() -> dict:
-    with (CONFIG / "methodology.toml").open("rb") as f:
-        return tomllib.load(f)
 
 
 def normalise(value: float, spec: dict) -> float:
@@ -44,8 +39,10 @@ def _depth_value(value: float, spec) -> float:
 
 
 def owner(ind: str, tech: dict) -> str | None:
-    """The service a depth indicator describes, by name: tts_google_voice_types -> tts_google."""
-    services = tech.get("consumer", []) + tech.get("open", [])
+    """The service a depth indicator describes (services.csv), or None if it describes the technology."""
+    if "depth_owner" in tech:
+        return tech["depth_owner"].get(ind)
+    services = tech.get("consumer", []) + tech.get("open", [])  # tests pass bare specs: match by name
     return max((sv for sv in services if ind.startswith(sv + "_")), key=len, default=None)
 
 
@@ -200,7 +197,8 @@ def main() -> None:
                     periods.append(row["period"])
         history = {"periods": sorted(periods), "series": json.loads((DATA / "history_series.json").read_text()),
                    "values": hist}
-    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "opportunity_types": TYPES, "teams": TEAMS, "history": history,
+    svc = [{k: sv[k] for k in ("id", "technology", "role", "name", "kind", "provider", "depth")} for sv in services()]
+    out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "services": svc, "opportunity_types": TYPES, "teams": TEAMS, "history": history,
            "languages": results, "facts": facts}
     (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     for r in results:

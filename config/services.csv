@@ -1,0 +1,39 @@
+id,technology,role,name,kind,provider,depth,depth_min,depth_max,depth_scope,note
+kb_gboard,keyboard,consumer,Gboard,Android keyboard,google,,,,,
+kb_apple,keyboard,consumer,iOS,Keyboard,apple,kb_apple_features,,4,service,"Autocorrection, predictive text, multilingual typing, QuickPath"
+kb_swiftkey,keyboard,consumer,SwiftKey,Android keyboard,microsoft,,,,,
+kb_open_keyman,keyboard,open,Keyman,Open layouts,open,,,,,
+asr_google,speech_input,consumer,Google Cloud,Speech-to-Text,google,,,,,
+asr_azure,speech_input,consumer,Azure AI Speech,Speech to text,microsoft,asr_azure_features,,10,service,
+asr_apple,speech_input,consumer,iOS,Dictation,apple,,,,,
+asr_amazon,speech_input,consumer,Transcribe,Speech to text,amazon,,,,,
+asr_open_whisper,speech_input,open,Whisper,Open model,openai,asr_whisper_fleurs_wer,50,3,technology,"FLEURS word error rate: 50% scores 0, 3% scores 1"
+asr_open_mms,speech_input,open,MMS,Open model,meta,,,,,
+tts_google,tts,consumer,Google Cloud,Text-to-Speech,google,tts_google_voice_types,,9,service,"Standard, WaveNet, Neural2, Studio, Polyglot, News, Chirp HD, Chirp3-HD, Gemini-TTS"
+tts_azure,tts,consumer,Azure AI Speech,Text to speech,microsoft,,,,,
+tts_amazon,tts,consumer,Polly,Text to speech,amazon,,,,,
+tts_open_mms,tts,open,MMS-TTS,Open model,meta,,,,,
+mt_google,mt,consumer,Google Cloud,Translation,google,,,,,
+mt_azure,mt,consumer,Azure,Translator,microsoft,mt_azure_features,,6,service,
+mt_deepl,mt,consumer,DeepL,Translator,deepl,mt_deepl_features,,4,service,"Glossaries, translation memory, style rules, DeepL Write"
+mt_open_nllb,mt,open,NLLB-200,Open model,meta,,,,,
+llm_app_gemini,llm,consumer,Gemini,App languages,google,,,,,
+llm_app_copilot,llm,consumer,Copilot,App languages,microsoft,,,,,
+llm_global_mmlu_rel,llm,measured,Claude,Global-MMLU,anthropic,,70,100,,Share of the English score
+llm_mmmlu_openai,llm,measured,OpenAI o3,MMMLU,openai,,0.6,0.92,,Accuracy
+ui_ios,interface,consumer,iOS,System language,apple,,,,,
+ui_windows,interface,consumer,Windows,Display language,microsoft,ui_windows_level,,2,service,"2 = fully translated, 1 = partly"
+ui_office,interface,consumer,Microsoft 365,Display language,microsoft,ui_office_level,,2,service,"2 = fully translated, 1 = partly"
+ui_firefox,interface,open,Firefox,Volunteer translation,open,,,,,
+ocr_google,ocr,consumer,Google Cloud,Vision OCR,google,ocr_google_level,,2,service,"2 = supported, 1 = experimental"
+ocr_azure,ocr,consumer,Azure AI Vision,OCR,microsoft,ocr_azure_handwriting,,1,service,Handwriting as well as print
+ocr_apple,ocr,consumer,iOS,Live Text,apple,,,,,
+ocr_open_tesseract,ocr,open,Tesseract,Open model,open,,,,,
+proof_office,proofing,consumer,Microsoft 365,Proofing tools,microsoft,,,,,
+proof_hunspell,proofing,open,LibreOffice,Spelling dictionary,open,,,,,
+proof_languagetool,proofing,open,LanguageTool,Grammar checker,open,,,,,
+va_google_assistant,assistant,consumer,Google Assistant,Speakers and displays,google,,,,,
+va_siri,assistant,consumer,Siri,Voice assistant,apple,,,,,
+va_alexa,assistant,consumer,Alexa,Voice assistant,amazon,,,,,
+lid_glotlid,langid,open,GlotLID,Open model,open,,,,,
+lid_cld3,langid,open,CLD3,Open model,google,,,,,

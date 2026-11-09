@@ -105,79 +105,54 @@ weight = 0.1
 # LLMs also use measured benchmark results (see [llm]).
 [dimensions.tech]
 label = "Technology support"
+# Which services count for each technology, and their depth indicators, are in
+# config/services.csv: one row per service.
 
 [dimensions.tech.technologies.keyboard]
 label = "Keyboard"
-consumer = ["kb_gboard", "kb_apple", "kb_swiftkey"]
-open = ["kb_open_keyman"]
-depth = { kb_apple_features = 4 }  # autocorrection, predictive, multilingual, QuickPath
 weight = 1
 
 [dimensions.tech.technologies.speech_input]
 label = "Speech input"
-consumer = ["asr_google", "asr_azure", "asr_apple", "asr_amazon"]
-open = ["asr_open_whisper", "asr_open_mms"]
-depth = { asr_whisper_fleurs_wer = { min = 50, max = 3 }, asr_azure_features = 10 }  # WER: 50% scores 0, 3% scores 1
 weight = 1
 
 [dimensions.tech.technologies.tts]
 label = "Text-to-speech"
-consumer = ["tts_google", "tts_azure", "tts_amazon"]
-open = ["tts_open_mms"]
-depth = { tts_google_voice_types = 9 }  # Standard, WaveNet, Neural2, Studio, Polyglot, News, Chirp HD, Chirp3-HD, Gemini-TTS
 weight = 1
 
 [dimensions.tech.technologies.mt]
 label = "Machine translation"
-consumer = ["mt_google", "mt_azure", "mt_deepl"]
-open = ["mt_open_nllb"]
-depth = { mt_deepl_features = 4, mt_azure_features = 6 }  # DeepL: glossaries, TM, style rules, Write; Azure: see records
 weight = 1
 
 [dimensions.tech.technologies.llm]
 label = "LLMs"
 # Mean of two parts: availability in assistant apps (presence score over the
-# products below), and quality: the measured benchmarks available for the
-# language, each scaled linearly between its min and max.
-consumer = ["llm_app_gemini", "llm_app_copilot"]
-open = []
-measured = { llm_global_mmlu_rel = { min = 70, max = 100 }, llm_mmmlu_openai = { min = 0.6, max = 0.92 } }
+# apps), and quality: the measured benchmarks available for the language,
+# each scaled linearly between its min and max.
 weight = 1
 
 [dimensions.tech.technologies.interface]
 label = "Interface language"
 group = "more"  # shown under "More technologies" on the site
-consumer = ["ui_ios", "ui_windows", "ui_office"]
-open = ["ui_firefox"]
-depth = { ui_windows_level = 2, ui_office_level = 2 }  # 2 = fully translated, 1 = partly (over a base language)
 weight = 1
 
 [dimensions.tech.technologies.ocr]
 label = "Text recognition (OCR)"
 group = "more"  # shown under "More technologies" on the site
-consumer = ["ocr_google", "ocr_azure", "ocr_apple"]
-open = ["ocr_open_tesseract"]
-depth = { ocr_google_level = 2, ocr_azure_handwriting = 1 }  # Google: 2 = supported, 1 = experimental
 weight = 1
 
 [dimensions.tech.technologies.proofing]
 label = "Spelling and grammar"
 group = "more"  # shown under "More technologies" on the site
-consumer = ["proof_office"]
-open = ["proof_hunspell", "proof_languagetool"]
 weight = 1
 
 [dimensions.tech.technologies.assistant]
 label = "Voice assistant"
 group = "more"  # shown under "More technologies" on the site
-consumer = ["va_google_assistant", "va_siri", "va_alexa"]
-open = []
 weight = 1
 
 [dimensions.tech.technologies.langid]
 label = "Language identification"
 group = "more"  # shown under "More technologies" on the site
 # Mostly invisible to users, but every web-scale data pipeline starts with it.
-consumer = []
-open = ["lid_glotlid", "lid_cld3"]
 weight = 0.5

@@ -531,37 +531,15 @@ function ranking() {
 // --------------------------------------------------------------- language
 
 // Service tiles on the technology panel: plain names (no logos), status, and what each offers
-const SVC = {
-  kb_gboard: ['Gboard', 'Android keyboard', 'google'], kb_apple: ['iOS', 'Keyboard', 'apple'],
-  asr_google: ['Google Cloud', 'Speech-to-Text', 'google'], asr_azure: ['Azure AI Speech', 'Speech to text', 'microsoft'],
-  asr_apple: ['iOS', 'Dictation', 'apple'], asr_open_whisper: ['Whisper', 'Open model', 'openai'],
-  tts_google: ['Google Cloud', 'Text-to-Speech', 'google'],
-  mt_google: ['Google Cloud', 'Translation', 'google'], mt_azure: ['Azure', 'Translator', 'microsoft'],
-  mt_deepl: ['DeepL', 'Translator', 'deepl'], mt_open_nllb: ['NLLB-200', 'Open model', 'meta'],
-  llm_global_mmlu_rel: ['Claude', 'Global-MMLU', 'anthropic'], llm_mmmlu_openai: ['OpenAI o3', 'MMMLU', 'openai'],
-  ui_ios: ['iOS', 'System language', 'apple'], ui_windows: ['Windows', 'Display language', 'microsoft'],
-  ui_office: ['Microsoft 365', 'Display language', 'microsoft'], ui_firefox: ['Firefox', 'Volunteer translation', 'open'],
-  ocr_google: ['Google Cloud', 'Vision OCR', 'google'], ocr_apple: ['iOS', 'Live Text', 'apple'],
-  ocr_azure: ['Azure AI Vision', 'OCR', 'microsoft'], ocr_open_tesseract: ['Tesseract', 'Open model', 'open'],
-  proof_office: ['Microsoft 365', 'Proofing tools', 'microsoft'], proof_hunspell: ['LibreOffice', 'Spelling dictionary', 'open'],
-  proof_languagetool: ['LanguageTool', 'Grammar checker', 'open'],
-  va_google_assistant: ['Google Assistant', 'Speakers and displays', 'google'], va_siri: ['Siri', 'Voice assistant', 'apple'],
-  lid_cld3: ['CLD3', 'Open model', 'google'], lid_glotlid: ['GlotLID', 'Open model', 'open'],
-  kb_swiftkey: ['SwiftKey', 'Android keyboard', 'microsoft'], kb_open_keyman: ['Keyman', 'Open layouts', 'open'],
-  asr_amazon: ['Transcribe', 'Speech to text', 'amazon'], asr_open_mms: ['MMS', 'Open model', 'meta'],
-  tts_azure: ['Azure AI Speech', 'Text to speech', 'microsoft'], tts_amazon: ['Polly', 'Text to speech', 'amazon'],
-  tts_open_mms: ['MMS-TTS', 'Open model', 'meta'], va_alexa: ['Alexa', 'Voice assistant', 'amazon'],
-  llm_app_gemini: ['Gemini', 'App languages', 'google'], llm_app_copilot: ['Copilot', 'App languages', 'microsoft'],
-};
+// Service names, kinds and providers come from config/services.csv
+const SVC = Object.fromEntries(DATA.services.map(s => [s.id, [s.name, s.kind, s.provider]]));
 // Commitment signatories first (Gates Foundation, Sept 2026), then other large companies, smaller ones, open source; tiles follow this order
 const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', meta: 'Meta', deepl: 'DeepL', open: 'Open source' };
 // Provider highlight: dim every other provider's tiles (one rule per provider, so new providers just work)
 document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k =>
   `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}</style>`);
 let provFocus = null, moreOpen = false;  // remembered while moving between languages
-const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
-  tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features',
-  ui_windows: 'ui_windows_level', ui_office: 'ui_office_level', ocr_google: 'ocr_google_level', ocr_azure: 'ocr_azure_handwriting' };
+const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => [s.id, s.depth]));
 const ICON = p => `<svg class="ticon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const TICON = {
   keyboard: ICON('<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M9.5 10h.01M13 10h.01M16.5 10h.01M7 14h10"/>'),

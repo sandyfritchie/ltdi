@@ -114,6 +114,7 @@
     "technologies": {
      "keyboard": {
       "label": "Keyboard",
+      "weight": 1,
       "consumer": [
        "kb_gboard",
        "kb_apple",
@@ -125,10 +126,13 @@
       "depth": {
        "kb_apple_features": 4
       },
-      "weight": 1
+      "depth_owner": {
+       "kb_apple_features": "kb_apple"
+      }
      },
      "speech_input": {
       "label": "Speech input",
+      "weight": 1,
       "consumer": [
        "asr_google",
        "asr_azure",
@@ -140,16 +144,20 @@
        "asr_open_mms"
       ],
       "depth": {
+       "asr_azure_features": 10,
        "asr_whisper_fleurs_wer": {
         "min": 50,
         "max": 3
-       },
-       "asr_azure_features": 10
+       }
       },
-      "weight": 1
+      "depth_owner": {
+       "asr_azure_features": "asr_azure",
+       "asr_whisper_fleurs_wer": null
+      }
      },
      "tts": {
       "label": "Text-to-speech",
+      "weight": 1,
       "consumer": [
        "tts_google",
        "tts_azure",
@@ -161,10 +169,13 @@
       "depth": {
        "tts_google_voice_types": 9
       },
-      "weight": 1
+      "depth_owner": {
+       "tts_google_voice_types": "tts_google"
+      }
      },
      "mt": {
       "label": "Machine translation",
+      "weight": 1,
       "consumer": [
        "mt_google",
        "mt_azure",
@@ -174,18 +185,23 @@
        "mt_open_nllb"
       ],
       "depth": {
-       "mt_deepl_features": 4,
-       "mt_azure_features": 6
+       "mt_azure_features": 6,
+       "mt_deepl_features": 4
       },
-      "weight": 1
+      "depth_owner": {
+       "mt_azure_features": "mt_azure",
+       "mt_deepl_features": "mt_deepl"
+      }
      },
      "llm": {
       "label": "LLMs",
+      "weight": 1,
       "consumer": [
        "llm_app_gemini",
        "llm_app_copilot"
       ],
       "open": [],
+      "depth_owner": {},
       "measured": {
        "llm_global_mmlu_rel": {
         "min": 70,
@@ -195,12 +211,12 @@
         "min": 0.6,
         "max": 0.92
        }
-      },
-      "weight": 1
+      }
      },
      "interface": {
       "label": "Interface language",
       "group": "more",
+      "weight": 1,
       "consumer": [
        "ui_ios",
        "ui_windows",
@@ -213,11 +229,15 @@
        "ui_windows_level": 2,
        "ui_office_level": 2
       },
-      "weight": 1
+      "depth_owner": {
+       "ui_windows_level": "ui_windows",
+       "ui_office_level": "ui_office"
+      }
      },
      "ocr": {
       "label": "Text recognition (OCR)",
       "group": "more",
+      "weight": 1,
       "consumer": [
        "ocr_google",
        "ocr_azure",
@@ -230,11 +250,15 @@
        "ocr_google_level": 2,
        "ocr_azure_handwriting": 1
       },
-      "weight": 1
+      "depth_owner": {
+       "ocr_google_level": "ocr_google",
+       "ocr_azure_handwriting": "ocr_azure"
+      }
      },
      "proofing": {
       "label": "Spelling and grammar",
       "group": "more",
+      "weight": 1,
       "consumer": [
        "proof_office"
       ],
@@ -242,33 +266,379 @@
        "proof_hunspell",
        "proof_languagetool"
       ],
-      "weight": 1
+      "depth_owner": {}
      },
      "assistant": {
       "label": "Voice assistant",
       "group": "more",
+      "weight": 1,
       "consumer": [
        "va_google_assistant",
        "va_siri",
        "va_alexa"
       ],
       "open": [],
-      "weight": 1
+      "depth_owner": {}
      },
      "langid": {
       "label": "Language identification",
       "group": "more",
+      "weight": 0.5,
       "consumer": [],
       "open": [
        "lid_glotlid",
        "lid_cld3"
       ],
-      "weight": 0.5
+      "depth_owner": {}
      }
     }
    }
   }
  },
+ "services": [
+  {
+   "id": "kb_gboard",
+   "technology": "keyboard",
+   "role": "consumer",
+   "name": "Gboard",
+   "kind": "Android keyboard",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "kb_apple",
+   "technology": "keyboard",
+   "role": "consumer",
+   "name": "iOS",
+   "kind": "Keyboard",
+   "provider": "apple",
+   "depth": "kb_apple_features"
+  },
+  {
+   "id": "kb_swiftkey",
+   "technology": "keyboard",
+   "role": "consumer",
+   "name": "SwiftKey",
+   "kind": "Android keyboard",
+   "provider": "microsoft",
+   "depth": ""
+  },
+  {
+   "id": "kb_open_keyman",
+   "technology": "keyboard",
+   "role": "open",
+   "name": "Keyman",
+   "kind": "Open layouts",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "asr_google",
+   "technology": "speech_input",
+   "role": "consumer",
+   "name": "Google Cloud",
+   "kind": "Speech-to-Text",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "asr_azure",
+   "technology": "speech_input",
+   "role": "consumer",
+   "name": "Azure AI Speech",
+   "kind": "Speech to text",
+   "provider": "microsoft",
+   "depth": "asr_azure_features"
+  },
+  {
+   "id": "asr_apple",
+   "technology": "speech_input",
+   "role": "consumer",
+   "name": "iOS",
+   "kind": "Dictation",
+   "provider": "apple",
+   "depth": ""
+  },
+  {
+   "id": "asr_amazon",
+   "technology": "speech_input",
+   "role": "consumer",
+   "name": "Transcribe",
+   "kind": "Speech to text",
+   "provider": "amazon",
+   "depth": ""
+  },
+  {
+   "id": "asr_open_whisper",
+   "technology": "speech_input",
+   "role": "open",
+   "name": "Whisper",
+   "kind": "Open model",
+   "provider": "openai",
+   "depth": "asr_whisper_fleurs_wer"
+  },
+  {
+   "id": "asr_open_mms",
+   "technology": "speech_input",
+   "role": "open",
+   "name": "MMS",
+   "kind": "Open model",
+   "provider": "meta",
+   "depth": ""
+  },
+  {
+   "id": "tts_google",
+   "technology": "tts",
+   "role": "consumer",
+   "name": "Google Cloud",
+   "kind": "Text-to-Speech",
+   "provider": "google",
+   "depth": "tts_google_voice_types"
+  },
+  {
+   "id": "tts_azure",
+   "technology": "tts",
+   "role": "consumer",
+   "name": "Azure AI Speech",
+   "kind": "Text to speech",
+   "provider": "microsoft",
+   "depth": ""
+  },
+  {
+   "id": "tts_amazon",
+   "technology": "tts",
+   "role": "consumer",
+   "name": "Polly",
+   "kind": "Text to speech",
+   "provider": "amazon",
+   "depth": ""
+  },
+  {
+   "id": "tts_open_mms",
+   "technology": "tts",
+   "role": "open",
+   "name": "MMS-TTS",
+   "kind": "Open model",
+   "provider": "meta",
+   "depth": ""
+  },
+  {
+   "id": "mt_google",
+   "technology": "mt",
+   "role": "consumer",
+   "name": "Google Cloud",
+   "kind": "Translation",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "mt_azure",
+   "technology": "mt",
+   "role": "consumer",
+   "name": "Azure",
+   "kind": "Translator",
+   "provider": "microsoft",
+   "depth": "mt_azure_features"
+  },
+  {
+   "id": "mt_deepl",
+   "technology": "mt",
+   "role": "consumer",
+   "name": "DeepL",
+   "kind": "Translator",
+   "provider": "deepl",
+   "depth": "mt_deepl_features"
+  },
+  {
+   "id": "mt_open_nllb",
+   "technology": "mt",
+   "role": "open",
+   "name": "NLLB-200",
+   "kind": "Open model",
+   "provider": "meta",
+   "depth": ""
+  },
+  {
+   "id": "llm_app_gemini",
+   "technology": "llm",
+   "role": "consumer",
+   "name": "Gemini",
+   "kind": "App languages",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "llm_app_copilot",
+   "technology": "llm",
+   "role": "consumer",
+   "name": "Copilot",
+   "kind": "App languages",
+   "provider": "microsoft",
+   "depth": ""
+  },
+  {
+   "id": "llm_global_mmlu_rel",
+   "technology": "llm",
+   "role": "measured",
+   "name": "Claude",
+   "kind": "Global-MMLU",
+   "provider": "anthropic",
+   "depth": ""
+  },
+  {
+   "id": "llm_mmmlu_openai",
+   "technology": "llm",
+   "role": "measured",
+   "name": "OpenAI o3",
+   "kind": "MMMLU",
+   "provider": "openai",
+   "depth": ""
+  },
+  {
+   "id": "ui_ios",
+   "technology": "interface",
+   "role": "consumer",
+   "name": "iOS",
+   "kind": "System language",
+   "provider": "apple",
+   "depth": ""
+  },
+  {
+   "id": "ui_windows",
+   "technology": "interface",
+   "role": "consumer",
+   "name": "Windows",
+   "kind": "Display language",
+   "provider": "microsoft",
+   "depth": "ui_windows_level"
+  },
+  {
+   "id": "ui_office",
+   "technology": "interface",
+   "role": "consumer",
+   "name": "Microsoft 365",
+   "kind": "Display language",
+   "provider": "microsoft",
+   "depth": "ui_office_level"
+  },
+  {
+   "id": "ui_firefox",
+   "technology": "interface",
+   "role": "open",
+   "name": "Firefox",
+   "kind": "Volunteer translation",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "ocr_google",
+   "technology": "ocr",
+   "role": "consumer",
+   "name": "Google Cloud",
+   "kind": "Vision OCR",
+   "provider": "google",
+   "depth": "ocr_google_level"
+  },
+  {
+   "id": "ocr_azure",
+   "technology": "ocr",
+   "role": "consumer",
+   "name": "Azure AI Vision",
+   "kind": "OCR",
+   "provider": "microsoft",
+   "depth": "ocr_azure_handwriting"
+  },
+  {
+   "id": "ocr_apple",
+   "technology": "ocr",
+   "role": "consumer",
+   "name": "iOS",
+   "kind": "Live Text",
+   "provider": "apple",
+   "depth": ""
+  },
+  {
+   "id": "ocr_open_tesseract",
+   "technology": "ocr",
+   "role": "open",
+   "name": "Tesseract",
+   "kind": "Open model",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "proof_office",
+   "technology": "proofing",
+   "role": "consumer",
+   "name": "Microsoft 365",
+   "kind": "Proofing tools",
+   "provider": "microsoft",
+   "depth": ""
+  },
+  {
+   "id": "proof_hunspell",
+   "technology": "proofing",
+   "role": "open",
+   "name": "LibreOffice",
+   "kind": "Spelling dictionary",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "proof_languagetool",
+   "technology": "proofing",
+   "role": "open",
+   "name": "LanguageTool",
+   "kind": "Grammar checker",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "va_google_assistant",
+   "technology": "assistant",
+   "role": "consumer",
+   "name": "Google Assistant",
+   "kind": "Speakers and displays",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "va_siri",
+   "technology": "assistant",
+   "role": "consumer",
+   "name": "Siri",
+   "kind": "Voice assistant",
+   "provider": "apple",
+   "depth": ""
+  },
+  {
+   "id": "va_alexa",
+   "technology": "assistant",
+   "role": "consumer",
+   "name": "Alexa",
+   "kind": "Voice assistant",
+   "provider": "amazon",
+   "depth": ""
+  },
+  {
+   "id": "lid_glotlid",
+   "technology": "langid",
+   "role": "open",
+   "name": "GlotLID",
+   "kind": "Open model",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "lid_cld3",
+   "technology": "langid",
+   "role": "open",
+   "name": "CLD3",
+   "kind": "Open model",
+   "provider": "google",
+   "depth": ""
+  }
+ ],
  "opportunity_types": {
   "share": {
    "label": "Share or ship",

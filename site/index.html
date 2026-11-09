@@ -395,6 +395,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
     "technologies": {
      "keyboard": {
       "label": "Keyboard",
+      "weight": 1,
       "consumer": [
        "kb_gboard",
        "kb_apple",
@@ -406,10 +407,13 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
       "depth": {
        "kb_apple_features": 4
       },
-      "weight": 1
+      "depth_owner": {
+       "kb_apple_features": "kb_apple"
+      }
      },
      "speech_input": {
       "label": "Speech input",
+      "weight": 1,
       "consumer": [
        "asr_google",
        "asr_azure",
@@ -421,16 +425,20 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
        "asr_open_mms"
       ],
       "depth": {
+       "asr_azure_features": 10,
        "asr_whisper_fleurs_wer": {
         "min": 50,
         "max": 3
-       },
-       "asr_azure_features": 10
+       }
       },
-      "weight": 1
+      "depth_owner": {
+       "asr_azure_features": "asr_azure",
+       "asr_whisper_fleurs_wer": null
+      }
      },
      "tts": {
       "label": "Text-to-speech",
+      "weight": 1,
       "consumer": [
        "tts_google",
        "tts_azure",
@@ -442,10 +450,13 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
       "depth": {
        "tts_google_voice_types": 9
       },
-      "weight": 1
+      "depth_owner": {
+       "tts_google_voice_types": "tts_google"
+      }
      },
      "mt": {
       "label": "Machine translation",
+      "weight": 1,
       "consumer": [
        "mt_google",
        "mt_azure",
@@ -455,18 +466,23 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
        "mt_open_nllb"
       ],
       "depth": {
-       "mt_deepl_features": 4,
-       "mt_azure_features": 6
+       "mt_azure_features": 6,
+       "mt_deepl_features": 4
       },
-      "weight": 1
+      "depth_owner": {
+       "mt_azure_features": "mt_azure",
+       "mt_deepl_features": "mt_deepl"
+      }
      },
      "llm": {
       "label": "LLMs",
+      "weight": 1,
       "consumer": [
        "llm_app_gemini",
        "llm_app_copilot"
       ],
       "open": [],
+      "depth_owner": {},
       "measured": {
        "llm_global_mmlu_rel": {
         "min": 70,
@@ -476,12 +492,12 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
         "min": 0.6,
         "max": 0.92
        }
-      },
-      "weight": 1
+      }
      },
      "interface": {
       "label": "Interface language",
       "group": "more",
+      "weight": 1,
       "consumer": [
        "ui_ios",
        "ui_windows",
@@ -494,11 +510,15 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
        "ui_windows_level": 2,
        "ui_office_level": 2
       },
-      "weight": 1
+      "depth_owner": {
+       "ui_windows_level": "ui_windows",
+       "ui_office_level": "ui_office"
+      }
      },
      "ocr": {
       "label": "Text recognition (OCR)",
       "group": "more",
+      "weight": 1,
       "consumer": [
        "ocr_google",
        "ocr_azure",
@@ -511,11 +531,15 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
        "ocr_google_level": 2,
        "ocr_azure_handwriting": 1
       },
-      "weight": 1
+      "depth_owner": {
+       "ocr_google_level": "ocr_google",
+       "ocr_azure_handwriting": "ocr_azure"
+      }
      },
      "proofing": {
       "label": "Spelling and grammar",
       "group": "more",
+      "weight": 1,
       "consumer": [
        "proof_office"
       ],
@@ -523,33 +547,379 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
        "proof_hunspell",
        "proof_languagetool"
       ],
-      "weight": 1
+      "depth_owner": {}
      },
      "assistant": {
       "label": "Voice assistant",
       "group": "more",
+      "weight": 1,
       "consumer": [
        "va_google_assistant",
        "va_siri",
        "va_alexa"
       ],
       "open": [],
-      "weight": 1
+      "depth_owner": {}
      },
      "langid": {
       "label": "Language identification",
       "group": "more",
+      "weight": 0.5,
       "consumer": [],
       "open": [
        "lid_glotlid",
        "lid_cld3"
       ],
-      "weight": 0.5
+      "depth_owner": {}
      }
     }
    }
   }
  },
+ "services": [
+  {
+   "id": "kb_gboard",
+   "technology": "keyboard",
+   "role": "consumer",
+   "name": "Gboard",
+   "kind": "Android keyboard",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "kb_apple",
+   "technology": "keyboard",
+   "role": "consumer",
+   "name": "iOS",
+   "kind": "Keyboard",
+   "provider": "apple",
+   "depth": "kb_apple_features"
+  },
+  {
+   "id": "kb_swiftkey",
+   "technology": "keyboard",
+   "role": "consumer",
+   "name": "SwiftKey",
+   "kind": "Android keyboard",
+   "provider": "microsoft",
+   "depth": ""
+  },
+  {
+   "id": "kb_open_keyman",
+   "technology": "keyboard",
+   "role": "open",
+   "name": "Keyman",
+   "kind": "Open layouts",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "asr_google",
+   "technology": "speech_input",
+   "role": "consumer",
+   "name": "Google Cloud",
+   "kind": "Speech-to-Text",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "asr_azure",
+   "technology": "speech_input",
+   "role": "consumer",
+   "name": "Azure AI Speech",
+   "kind": "Speech to text",
+   "provider": "microsoft",
+   "depth": "asr_azure_features"
+  },
+  {
+   "id": "asr_apple",
+   "technology": "speech_input",
+   "role": "consumer",
+   "name": "iOS",
+   "kind": "Dictation",
+   "provider": "apple",
+   "depth": ""
+  },
+  {
+   "id": "asr_amazon",
+   "technology": "speech_input",
+   "role": "consumer",
+   "name": "Transcribe",
+   "kind": "Speech to text",
+   "provider": "amazon",
+   "depth": ""
+  },
+  {
+   "id": "asr_open_whisper",
+   "technology": "speech_input",
+   "role": "open",
+   "name": "Whisper",
+   "kind": "Open model",
+   "provider": "openai",
+   "depth": "asr_whisper_fleurs_wer"
+  },
+  {
+   "id": "asr_open_mms",
+   "technology": "speech_input",
+   "role": "open",
+   "name": "MMS",
+   "kind": "Open model",
+   "provider": "meta",
+   "depth": ""
+  },
+  {
+   "id": "tts_google",
+   "technology": "tts",
+   "role": "consumer",
+   "name": "Google Cloud",
+   "kind": "Text-to-Speech",
+   "provider": "google",
+   "depth": "tts_google_voice_types"
+  },
+  {
+   "id": "tts_azure",
+   "technology": "tts",
+   "role": "consumer",
+   "name": "Azure AI Speech",
+   "kind": "Text to speech",
+   "provider": "microsoft",
+   "depth": ""
+  },
+  {
+   "id": "tts_amazon",
+   "technology": "tts",
+   "role": "consumer",
+   "name": "Polly",
+   "kind": "Text to speech",
+   "provider": "amazon",
+   "depth": ""
+  },
+  {
+   "id": "tts_open_mms",
+   "technology": "tts",
+   "role": "open",
+   "name": "MMS-TTS",
+   "kind": "Open model",
+   "provider": "meta",
+   "depth": ""
+  },
+  {
+   "id": "mt_google",
+   "technology": "mt",
+   "role": "consumer",
+   "name": "Google Cloud",
+   "kind": "Translation",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "mt_azure",
+   "technology": "mt",
+   "role": "consumer",
+   "name": "Azure",
+   "kind": "Translator",
+   "provider": "microsoft",
+   "depth": "mt_azure_features"
+  },
+  {
+   "id": "mt_deepl",
+   "technology": "mt",
+   "role": "consumer",
+   "name": "DeepL",
+   "kind": "Translator",
+   "provider": "deepl",
+   "depth": "mt_deepl_features"
+  },
+  {
+   "id": "mt_open_nllb",
+   "technology": "mt",
+   "role": "open",
+   "name": "NLLB-200",
+   "kind": "Open model",
+   "provider": "meta",
+   "depth": ""
+  },
+  {
+   "id": "llm_app_gemini",
+   "technology": "llm",
+   "role": "consumer",
+   "name": "Gemini",
+   "kind": "App languages",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "llm_app_copilot",
+   "technology": "llm",
+   "role": "consumer",
+   "name": "Copilot",
+   "kind": "App languages",
+   "provider": "microsoft",
+   "depth": ""
+  },
+  {
+   "id": "llm_global_mmlu_rel",
+   "technology": "llm",
+   "role": "measured",
+   "name": "Claude",
+   "kind": "Global-MMLU",
+   "provider": "anthropic",
+   "depth": ""
+  },
+  {
+   "id": "llm_mmmlu_openai",
+   "technology": "llm",
+   "role": "measured",
+   "name": "OpenAI o3",
+   "kind": "MMMLU",
+   "provider": "openai",
+   "depth": ""
+  },
+  {
+   "id": "ui_ios",
+   "technology": "interface",
+   "role": "consumer",
+   "name": "iOS",
+   "kind": "System language",
+   "provider": "apple",
+   "depth": ""
+  },
+  {
+   "id": "ui_windows",
+   "technology": "interface",
+   "role": "consumer",
+   "name": "Windows",
+   "kind": "Display language",
+   "provider": "microsoft",
+   "depth": "ui_windows_level"
+  },
+  {
+   "id": "ui_office",
+   "technology": "interface",
+   "role": "consumer",
+   "name": "Microsoft 365",
+   "kind": "Display language",
+   "provider": "microsoft",
+   "depth": "ui_office_level"
+  },
+  {
+   "id": "ui_firefox",
+   "technology": "interface",
+   "role": "open",
+   "name": "Firefox",
+   "kind": "Volunteer translation",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "ocr_google",
+   "technology": "ocr",
+   "role": "consumer",
+   "name": "Google Cloud",
+   "kind": "Vision OCR",
+   "provider": "google",
+   "depth": "ocr_google_level"
+  },
+  {
+   "id": "ocr_azure",
+   "technology": "ocr",
+   "role": "consumer",
+   "name": "Azure AI Vision",
+   "kind": "OCR",
+   "provider": "microsoft",
+   "depth": "ocr_azure_handwriting"
+  },
+  {
+   "id": "ocr_apple",
+   "technology": "ocr",
+   "role": "consumer",
+   "name": "iOS",
+   "kind": "Live Text",
+   "provider": "apple",
+   "depth": ""
+  },
+  {
+   "id": "ocr_open_tesseract",
+   "technology": "ocr",
+   "role": "open",
+   "name": "Tesseract",
+   "kind": "Open model",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "proof_office",
+   "technology": "proofing",
+   "role": "consumer",
+   "name": "Microsoft 365",
+   "kind": "Proofing tools",
+   "provider": "microsoft",
+   "depth": ""
+  },
+  {
+   "id": "proof_hunspell",
+   "technology": "proofing",
+   "role": "open",
+   "name": "LibreOffice",
+   "kind": "Spelling dictionary",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "proof_languagetool",
+   "technology": "proofing",
+   "role": "open",
+   "name": "LanguageTool",
+   "kind": "Grammar checker",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "va_google_assistant",
+   "technology": "assistant",
+   "role": "consumer",
+   "name": "Google Assistant",
+   "kind": "Speakers and displays",
+   "provider": "google",
+   "depth": ""
+  },
+  {
+   "id": "va_siri",
+   "technology": "assistant",
+   "role": "consumer",
+   "name": "Siri",
+   "kind": "Voice assistant",
+   "provider": "apple",
+   "depth": ""
+  },
+  {
+   "id": "va_alexa",
+   "technology": "assistant",
+   "role": "consumer",
+   "name": "Alexa",
+   "kind": "Voice assistant",
+   "provider": "amazon",
+   "depth": ""
+  },
+  {
+   "id": "lid_glotlid",
+   "technology": "langid",
+   "role": "open",
+   "name": "GlotLID",
+   "kind": "Open model",
+   "provider": "open",
+   "depth": ""
+  },
+  {
+   "id": "lid_cld3",
+   "technology": "langid",
+   "role": "open",
+   "name": "CLD3",
+   "kind": "Open model",
+   "provider": "google",
+   "depth": ""
+  }
+ ],
  "opportunity_types": {
   "share": {
    "label": "Share or ship",
@@ -34747,37 +35117,15 @@ function ranking() {
 // --------------------------------------------------------------- language
 
 // Service tiles on the technology panel: plain names (no logos), status, and what each offers
-const SVC = {
-  kb_gboard: ['Gboard', 'Android keyboard', 'google'], kb_apple: ['iOS', 'Keyboard', 'apple'],
-  asr_google: ['Google Cloud', 'Speech-to-Text', 'google'], asr_azure: ['Azure AI Speech', 'Speech to text', 'microsoft'],
-  asr_apple: ['iOS', 'Dictation', 'apple'], asr_open_whisper: ['Whisper', 'Open model', 'openai'],
-  tts_google: ['Google Cloud', 'Text-to-Speech', 'google'],
-  mt_google: ['Google Cloud', 'Translation', 'google'], mt_azure: ['Azure', 'Translator', 'microsoft'],
-  mt_deepl: ['DeepL', 'Translator', 'deepl'], mt_open_nllb: ['NLLB-200', 'Open model', 'meta'],
-  llm_global_mmlu_rel: ['Claude', 'Global-MMLU', 'anthropic'], llm_mmmlu_openai: ['OpenAI o3', 'MMMLU', 'openai'],
-  ui_ios: ['iOS', 'System language', 'apple'], ui_windows: ['Windows', 'Display language', 'microsoft'],
-  ui_office: ['Microsoft 365', 'Display language', 'microsoft'], ui_firefox: ['Firefox', 'Volunteer translation', 'open'],
-  ocr_google: ['Google Cloud', 'Vision OCR', 'google'], ocr_apple: ['iOS', 'Live Text', 'apple'],
-  ocr_azure: ['Azure AI Vision', 'OCR', 'microsoft'], ocr_open_tesseract: ['Tesseract', 'Open model', 'open'],
-  proof_office: ['Microsoft 365', 'Proofing tools', 'microsoft'], proof_hunspell: ['LibreOffice', 'Spelling dictionary', 'open'],
-  proof_languagetool: ['LanguageTool', 'Grammar checker', 'open'],
-  va_google_assistant: ['Google Assistant', 'Speakers and displays', 'google'], va_siri: ['Siri', 'Voice assistant', 'apple'],
-  lid_cld3: ['CLD3', 'Open model', 'google'], lid_glotlid: ['GlotLID', 'Open model', 'open'],
-  kb_swiftkey: ['SwiftKey', 'Android keyboard', 'microsoft'], kb_open_keyman: ['Keyman', 'Open layouts', 'open'],
-  asr_amazon: ['Transcribe', 'Speech to text', 'amazon'], asr_open_mms: ['MMS', 'Open model', 'meta'],
-  tts_azure: ['Azure AI Speech', 'Text to speech', 'microsoft'], tts_amazon: ['Polly', 'Text to speech', 'amazon'],
-  tts_open_mms: ['MMS-TTS', 'Open model', 'meta'], va_alexa: ['Alexa', 'Voice assistant', 'amazon'],
-  llm_app_gemini: ['Gemini', 'App languages', 'google'], llm_app_copilot: ['Copilot', 'App languages', 'microsoft'],
-};
+// Service names, kinds and providers come from config/services.csv
+const SVC = Object.fromEntries(DATA.services.map(s => [s.id, [s.name, s.kind, s.provider]]));
 // Commitment signatories first (Gates Foundation, Sept 2026), then other large companies, smaller ones, open source; tiles follow this order
 const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', meta: 'Meta', deepl: 'DeepL', open: 'Open source' };
 // Provider highlight: dim every other provider's tiles (one rule per provider, so new providers just work)
 document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k =>
   `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}</style>`);
 let provFocus = null, moreOpen = false;  // remembered while moving between languages
-const DEPTH_OF = { kb_apple: 'kb_apple_features', asr_azure: 'asr_azure_features', asr_open_whisper: 'asr_whisper_fleurs_wer',
-  tts_google: 'tts_google_voice_types', mt_deepl: 'mt_deepl_features', mt_azure: 'mt_azure_features',
-  ui_windows: 'ui_windows_level', ui_office: 'ui_office_level', ocr_google: 'ocr_google_level', ocr_azure: 'ocr_azure_handwriting' };
+const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => [s.id, s.depth]));
 const ICON = p => `<svg class="ticon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const TICON = {
   keyboard: ICON('<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M9.5 10h.01M13 10h.01M16.5 10h.01M7 14h10"/>'),

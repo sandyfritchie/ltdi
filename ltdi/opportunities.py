@@ -20,10 +20,10 @@ from __future__ import annotations
 
 import csv
 import math
-import tomllib
 from functools import lru_cache
 
 from . import CONFIG
+from .config import load_config
 from .records import Record
 
 TYPES = {
@@ -140,9 +140,8 @@ RULES = {
 }
 
 def _consumer(tech: str, key: str = "consumer") -> list[str]:
-    """A technology's service list from config/methodology.toml, so rules follow the config."""
-    with (CONFIG / "methodology.toml").open("rb") as fh:
-        return list(tomllib.load(fh)["dimensions"]["tech"]["technologies"][tech].get(key, []))
+    """A technology's service list from config/services.csv, so rules follow the config."""
+    return list(load_config()["dimensions"]["tech"]["technologies"][tech].get(key, []))
 
 
 KB = _consumer("keyboard")
