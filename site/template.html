@@ -1316,7 +1316,8 @@ function charts() {
   </svg>`;
 
   $('#view').innerHTML = `
-    <div class="controls sticky">${regionSelect('csel')}${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span></div>
+    <div class="controls sticky">${regionSelect('csel')}${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
+      <button type="button" class="reset" id="cresetf"${region === 'All' && !P ? ' hidden' : ''}>Reset filters</button></div>
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
@@ -1352,6 +1353,7 @@ function charts() {
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
   $('#csel').onchange = keep(v => { region = v; });
   $('#cpsel').onchange = keep(v => { provider = v; });
+  $('#cresetf').onclick = () => { const y = scrollY; region = 'All'; provider = 'All'; charts(); scrollTo(0, y); };
   pinBar($('.controls.sticky'));
 }
 
