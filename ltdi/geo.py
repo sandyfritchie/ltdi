@@ -3,8 +3,9 @@
 Run:  python -m ltdi.geo
 Writes:
   data/world_languages.json  [code, name, x, y, speakers] for every individual language with a location
-  data/basemap.json          {"width", "height", "path"}: Natural Earth countries (110m, via world-atlas),
-                             projected to Equal Earth as one SVG path
+  data/basemap.json          {"width", "height", "path", "regions"}: Natural Earth countries (110m, via
+                             world-atlas), projected to Equal Earth as one SVG path, and the box to
+                             show for each region group
 
 A language's point is LinguaMeta's geolocation for its origin country where
 config/language_overrides.csv gives one, otherwise for the country with the most
@@ -130,6 +131,28 @@ def country_point(records: dict[str, dict], country: str) -> tuple[float, float]
     return best[1] if best else None
 
 
+# What the map shows when a region is chosen: lon/lat boxes framing each region group's land
+REGION_VIEW = {
+    "Africa": (-20, -36, 55, 38),
+    "Europe": (-25, 34, 65, 72),          # to the Urals; the region's Siberian languages lie beyond
+    "South Asia": (44, 5, 98, 40),        # with Iran and Afghanistan
+    "Rest of Asia": (25, -11, 150, 56),   # Turkey to Japan and Indonesia
+    "Oceania": (110, -48, 180, 2),
+    "Americas": (-170, -56, -30, 72),
+}
+
+
+def region_views() -> dict[str, list[float]]:
+    """Region group -> [x0, y0, x1, y1] on the basemap, the box around its lon/lat frame."""
+    out = {}
+    for name, (w, s, e, n) in REGION_VIEW.items():
+        pts = [to_svg(lon, lat) for lon in range(w, e + 1, 5) for lat in (s, n)] + \
+              [to_svg(lon, lat) for lat in range(s, n + 1, 5) for lon in (w, e)]
+        xs, ys = [p[0] for p in pts], [p[1] for p in pts]
+        out[name] = [min(xs), min(ys), max(xs), max(ys)]
+    return out
+
+
 def main() -> None:
     with (CONFIG / "language_overrides.csv").open(encoding="utf-8") as f:
         slice_rows = {r["code"]: r for r in csv.DictReader(f)}
@@ -162,7 +185,7 @@ def main() -> None:
         x, y = to_svg(p[1], max(p[0], LAT_MIN))
         out.append([code, name, x, y, d.get("total_population") or 0])
     (DATA / "world_languages.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    (DATA / "basemap.json").write_text(json.dumps(basemap()), encoding="utf-8")
+    (DATA / "basemap.json").write_text(json.dumps(basemap() | {"regions": region_views()}), encoding="utf-8")
     missing = [c for c in slice_rows if c not in {r[0] for r in out}]
     print(f"{len(out)} language points; basemap written; scored languages without a point: {missing or 'none'}")
 
