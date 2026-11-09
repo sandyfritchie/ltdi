@@ -124,7 +124,8 @@ def _on(f: Record | None) -> bool:
 def coverage(facts: dict[str, Record], cfg: dict) -> dict:
     """Summaries the site needs for every language without loading its facts:
     levels  per technology: full (at least half the services), part, open (open model only), none
-    gaps    main technologies no commercial service offers: open (open model or benchmark only) or none
+    gaps    main technologies (and any marked gap = true) no commercial service offers: open (open model
+            or benchmark only) or none
     offers  ids of the services and benchmarks that cover the language"""
     levels, gaps = {}, {}
     for name, t in cfg["dimensions"]["tech"]["technologies"].items():
@@ -133,7 +134,7 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
         n = sum(1 for i in src if facts.get(i) and facts[i].value)
         levels[name] = "full" if n and n / len(src) >= 0.5 else "part" if n else \
             "open" if cons and any(facts.get(i) and facts[i].value for i in opn) else "none"
-        if t.get("group") != "more" and not any(_on(facts.get(i)) for i in cons):
+        if (t.get("group") != "more" or t.get("gap")) and not any(_on(facts.get(i)) for i in cons):
             gaps[name] = "open" if any(_on(facts.get(i)) for i in opn + meas) else "none"
     offers = [sv["id"] for sv in services() if _on(facts.get(sv["id"]))]
     return {"levels": levels, "gaps": gaps, "offers": offers}
