@@ -84,26 +84,29 @@ input[type=search] { width: 220px; max-width: 100%; }
 input.pick { width: 22em; max-width: 100%; }  /* room for long names with their code */
 
 /* Totals band above the ranking */
-.rsum { display: grid; grid-template-columns: auto minmax(220px, 1.3fr) auto; gap: 14px 32px; align-items: start;
+.rsum { display: grid; grid-template-columns: auto minmax(220px, 1fr) auto; gap: 14px 28px; align-items: start;
   background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 18px; margin: 4px 0 14px; }
 .rsum .eyebrow { margin-bottom: 6px; }
-.rsum-totals { display: grid; grid-template-columns: repeat(3, auto); column-gap: 26px; justify-content: start; }
+.rsum-totals { display: grid; grid-template-columns: 4.6em 5.6em 5.6em; column-gap: 20px; justify-content: start; }  /* fixed, so typing a search doesn't shift them */
+.rsum-totals > div { white-space: nowrap; }
 .rsum-totals b { font: 700 24px/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
 .tbar-row { display: grid; grid-template-columns: 5.6em 1fr 4.4em; align-items: center; gap: 8px; font-size: 13px; margin: 3px 0; }
 .tbar-k { color: var(--muted); } .tbar-v { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
 .tbar { display: flex; height: 12px; border-radius: 3px; overflow: hidden; background: var(--rule); }
 .tbar i { display: block; height: 100%; }
-.tbar-key { display: flex; flex-wrap: wrap; gap: 2px 12px; font-size: 12px; color: var(--muted); margin-top: 6px; }
-.tbar-key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
-.rgaps { display: grid; grid-template-columns: repeat(5, auto); gap: 4px 22px; justify-content: start; }
+.tbar-key { display: flex; flex-wrap: wrap; gap: 2px 8px; font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+.tbar-key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+.rgaps { display: grid; grid-template-columns: 5em 5.4em 6em 5.4em 4.4em; gap: 4px 10px; justify-content: start; }
 .rgap { justify-content: start; }
 .rgap { display: grid; grid-template-columns: auto auto; align-items: center; column-gap: 5px; font-size: 14px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rgap small { grid-column: 1 / -1; font-size: 11px; color: var(--muted); }
 .rgap .ticon { width: 19px; height: 19px; }
 .rsum-note { grid-column: 1 / -1; width: 0; min-width: 100%; margin: 8px 0 0; font-size: 12px; line-height: 1.35; color: var(--muted); }  /* wraps to the numbers' width */
-@media (max-width: 1000px) { .rsum { grid-template-columns: 1fr 1fr; } .rsum-gaps { grid-column: 1 / -1; } }
-@media (max-width: 640px) { .rsum { grid-template-columns: 1fr; padding: 12px 14px; } .rsum-totals { column-gap: 18px; } .rsum-totals b { font-size: 20px; }
-  .rgaps { grid-template-columns: repeat(3, auto); justify-content: start; } }
+.rsum-wrap { container-type: inline-size; }
+/* lay out by the panel's own width: three columns when they fit, then two, then one */
+@container (max-width: 1070px) { .rsum { grid-template-columns: auto minmax(220px, 1fr); } .rsum-gaps { grid-column: 1 / -1; } }
+@container (max-width: 560px) { .rsum { grid-template-columns: 1fr; } .rsum-totals, .rgaps { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; } }
+@media (max-width: 640px) { .rsum { padding: 12px 14px; } .rsum-totals b { font-size: 20px; } }
 .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .sw { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
@@ -648,7 +651,7 @@ function ranking() {
       ${regionSelect('rsel')}
       <input type="search" id="q" placeholder="Find a language, name or code" value="${esc(query)}" aria-label="Find a language">
     </div>
-    <div id="rsum" class="rsum" aria-live="polite"></div>
+    <div class="rsum-wrap"><div id="rsum" class="rsum" aria-live="polite"></div></div>
     <div class="legend">
       <span><i class="sw" style="background:var(--writing)"></i>Writing system</span>
       <span><i class="sw" style="background:var(--data)"></i>Data</span>
