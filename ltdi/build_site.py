@@ -81,6 +81,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             "levels": "".join(l["levels"][t][0] for t in techs),  # f(ull) p(art) o(pen) n(one), in config order
             "offers": [svc_index[i] for i in l["offers"]],
             "opportunity_count": len(opps),
+            "alt": "|".join(l.get("alt_names") or []),  # other names, for search
             "online": round(l["speakers"] * reach["value"]) if l.get("speakers") and (
                 reach := scores["facts"].get(l["code"], {}).get("reach_voice_share")) else None,
         })

@@ -194,6 +194,22 @@ def add_wikipedia_count(lang: dict, row: dict) -> None:
     lang["note"] = f"{lang['note']} {src}".strip()
 
 
+def alt_names(code: str, name: str, recs: dict[str, dict], absorbed: list[str]) -> list[str]:
+    """Other English names to search by: LinguaMeta's for the language itself, for the languages it
+    absorbs (Tagalog under Filipino), and for the macrolanguage it belongs to (Buriat for each
+    Buriat language), so a reader using another spelling or a broader name still finds it."""
+    out: dict[str, str] = {}
+    sources = [code, *absorbed]
+    macro = recs.get(code, {}).get("macrolanguage_bcp_47_code")
+    if macro and macro not in sources:
+        sources.append(macro)
+    for c in sources:
+        for n in recs.get(c, {}).get("name_data", []):
+            if n.get("bcp_47_code") == "en" and n["name"].lower() != name.lower():
+                out.setdefault(n["name"].lower(), n["name"])
+    return list(out.values())
+
+
 def records() -> dict[str, dict]:
     from .geo import linguameta_dir
     out = {}
@@ -214,6 +230,9 @@ def main() -> None:
     if (DATA / "wikipedia_speakers.csv").exists():
         with (DATA / "wikipedia_speakers.csv").open(encoding="utf-8") as f:
             wiki = {r["code"]: r for r in csv.DictReader(f)}
+    members: dict[str, list[str]] = {}
+    for m, unit in absorbed_by().items():
+        members.setdefault(unit, []).append(m)
     langs = []
     for code in scope(recs):
         lang = load_language(code, locales, recs[code])
@@ -223,6 +242,7 @@ def main() -> None:
         apply_overrides(lang, row, locales)
         if not lang["speakers"] and row.get("speakers") != "-" and code in wiki:
             add_wikipedia_count(lang, wiki[code])
+        lang["alt_names"] = alt_names(code, lang["name"], recs, members.get(code, []))
         langs.append(lang)
     DATA.mkdir(exist_ok=True)
     (DATA / "languages.json").write_text(json.dumps(langs, ensure_ascii=False, indent=1), encoding="utf-8")

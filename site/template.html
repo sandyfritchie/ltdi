@@ -362,7 +362,7 @@ async function need(...codes) {
 function langPicker(id, placeholder, current) {
   if (!document.getElementById('ltdi-dl')) {
     const dl = document.createElement('datalist'); dl.id = 'ltdi-dl';
-    dl.innerHTML = LANGS.map(l => `<option value="${esc(l.name)} (${l.code})">`).join('');
+    dl.innerHTML = LANGS.map(l => `<option value="${esc(l.name)} (${l.code})"${l.alt ? ` label="${esc(altNames(l).join(', '))}"` : ''}>`).join('');
     document.body.append(dl);
   }
   return `<input class="pick" id="${id}" list="ltdi-dl" autocomplete="off" aria-label="Language" placeholder="${esc(placeholder)}"
@@ -634,11 +634,19 @@ function rankSummary(ls) {
 `;
 }
 
+// Search by name, autonym, code or any other English name LinguaMeta records ("Cantonese" finds Yue
+// Chinese, "Buryat" the Buriat languages)
+const altNames = l => l._alt ??= (l.alt ? l.alt.split('|') : []);
+const matches = (l, q) => [l.name, l.autonym, l.code, l.iso_639_3].some(s => (s || '').toLowerCase().includes(q))
+  || altNames(l).some(a => a.toLowerCase().includes(q));
+const altHit = (l, q) => q && ![l.name, l.autonym, l.code, l.iso_639_3].some(s => (s || '').toLowerCase().includes(q))
+  ? altNames(l).find(a => a.toLowerCase().includes(q)) : null;
+
 function ranking() {
   $('#view').innerHTML = `
     <div class="controls">
       ${regionSelect('rsel')}
-      <input type="search" id="q" placeholder="Find a language or code" value="${esc(query)}" aria-label="Find a language">
+      <input type="search" id="q" placeholder="Find a language, name or code" value="${esc(query)}" aria-label="Find a language">
     </div>
     <div id="rsum" class="rsum" aria-live="polite"></div>
     <div class="legend">
@@ -657,8 +665,7 @@ function ranking() {
     <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the five main technologies (keyboard, speech input, text-to-speech, translation, LLMs) no commercial service offers; hover an icon for details. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
-    const all = LANGS.filter(l => inRegion(l) &&
-      (!q || [l.name, l.autonym, l.code, l.iso_639_3].some(s => (s || '').toLowerCase().includes(q))));
+    const all = LANGS.filter(l => inRegion(l) && (!q || matches(l, q)));
     const [, val, natural] = SORTS[sortBy], dir = sortDir;
     all.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : a.rank - b.rank) * dir; });
     $('#rsum').innerHTML = rankSummary(all);
@@ -669,7 +676,7 @@ function ranking() {
     $('#rows').innerHTML = rows.map(l => `
       <tr tabindex="0" data-code="${l.code}">
         <td class="rank">${l.rank}</td>
-        <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">${l.code}</span></div></td>
+        <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">${l.code}</span></div></td>
         <td class="num hide-sm">${people(l.speakers)}</td>
         <td class="num hide-sm">${people(l.online)}${l.online && l.speakers ? ` <span class="pct p${pctBand(l.online / l.speakers)}">(${Math.round(l.online / l.speakers * 100)}%)</span>` : ''}</td>
         <td class="hide-sm hide-md">${esc(l.region || '')}</td>
