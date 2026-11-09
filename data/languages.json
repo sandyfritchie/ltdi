@@ -2407,7 +2407,7 @@
   "iso_639_3": "aeb",
   "glottocode": "tuni1259",
   "scope": "LANGUAGE",
-  "speakers": null,
+  "speakers": 12540000,
   "members": [],
   "scripts": [
    "arab"
@@ -2419,12 +2419,12 @@
    {
     "code": "tn",
     "name": "Tunisia",
-    "speakers": 11000000
+    "speakers": 12540000
    }
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/aeb.json",
-  "note": ""
+  "note": "LinguaMeta has no total speaker count: 12.5 million is Ethnologue's figure (28th edition), as cited on Wikipedia."
  },
  {
   "code": "aec",
@@ -2776,14 +2776,45 @@
   "iso_639_3": "afb",
   "glottocode": "gulf1241",
   "scope": "LANGUAGE",
-  "speakers": null,
+  "speakers": 10930000,
   "members": [],
   "scripts": [],
   "script_names": [],
-  "countries": [],
-  "region": null,
+  "countries": [
+   {
+    "code": "kw",
+    "name": "Kuwait",
+    "speakers": null
+   },
+   {
+    "code": "bh",
+    "name": "Bahrain",
+    "speakers": null
+   },
+   {
+    "code": "qa",
+    "name": "Qatar",
+    "speakers": null
+   },
+   {
+    "code": "ae",
+    "name": "United Arab Emirates",
+    "speakers": null
+   },
+   {
+    "code": "sa",
+    "name": "Saudi Arabia",
+    "speakers": null
+   },
+   {
+    "code": "om",
+    "name": "Oman",
+    "speakers": null
+   }
+  ],
+  "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/afb.json",
-  "note": ""
+  "note": "LinguaMeta has no speaker count: 10.9 million is Ethnologue's figure (27th edition), as cited on Wikipedia. Online reach is weighted by each country's population."
  },
  {
   "code": "afd",
@@ -4796,22 +4827,6 @@
   ],
   "region": "Oceania",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ajn.json",
-  "note": ""
- },
- {
-  "code": "ajp",
-  "name": "South Levantine Arabic",
-  "autonym": null,
-  "iso_639_3": "ajp",
-  "glottocode": "sout3123",
-  "scope": "LANGUAGE",
-  "speakers": null,
-  "members": [],
-  "scripts": [],
-  "script_names": [],
-  "countries": [],
-  "region": null,
-  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ajp.json",
   "note": ""
  },
  {
@@ -7971,19 +7986,50 @@
  },
  {
   "code": "apc",
-  "name": "North Levantine Arabic",
+  "name": "Levantine Arabic",
   "autonym": "اللهجة الشامية",
   "iso_639_3": "apc",
   "glottocode": "nort3139",
   "scope": "LANGUAGE",
-  "speakers": null,
+  "speakers": 57560000,
   "members": [],
   "scripts": [],
   "script_names": [],
-  "countries": [],
-  "region": null,
+  "countries": [
+   {
+    "code": "sy",
+    "name": "Syria",
+    "speakers": null
+   },
+   {
+    "code": "lb",
+    "name": "Lebanon",
+    "speakers": null
+   },
+   {
+    "code": "jo",
+    "name": "Jordan",
+    "speakers": null
+   },
+   {
+    "code": "ps",
+    "name": "Palestine",
+    "speakers": null
+   },
+   {
+    "code": "il",
+    "name": "Israel",
+    "speakers": null
+   },
+   {
+    "code": "tr",
+    "name": "Türkiye",
+    "speakers": null
+   }
+  ],
+  "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/apc.json",
-  "note": ""
+  "note": "North and South Levantine Arabic (apc, ajp) are scored as one language, as ISO 639-3 has merged them since 2023. LinguaMeta has no speaker count: 57.6 million first-language speakers is Ethnologue's figure (28th edition), as cited on Wikipedia. Online reach is weighted by each country's population."
  },
  {
   "code": "apd",
@@ -181275,7 +181321,7 @@
   "iso_639_3": "xmv",
   "glottocode": "anta1255",
   "scope": "LANGUAGE",
-  "speakers": 25000000,
+  "speakers": null,
   "members": [],
   "scripts": [
    "latn"
@@ -181287,12 +181333,12 @@
    {
     "code": "mg",
     "name": "Madagascar",
-    "speakers": 25000000
+    "speakers": null
    }
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/xmv.json",
-  "note": ""
+  "note": "LinguaMeta's count of 25 million is the figure for Malagasy as a whole. Left without a count until a reliable figure is found."
  },
  {
   "code": "xmw",

@@ -46,6 +46,7 @@ INDICATORS = {
     "can_text": ("con16", 28, LATEST, "Can send a text message on a mobile phone (% age 15+)"),
     "literacy": ("SE.ADT.LITR.ZS", 2, LATEST, "Literacy rate, adult total (% age 15+)"),
     "pop_growth": ("SP.POP.GROW", 2, LATEST, "Population growth (annual %)"),
+    "population": ("SP.POP.TOTL", 2, LATEST, "Population, total"),
 }
 COUNTRIES = "https://api.worldbank.org/v2/country?format=json&per_page=400"
 HORIZON = 5
@@ -146,17 +147,23 @@ def collect() -> list[Record]:
         tot = 0.0
         acc = defaultdict(float)
         used = []
+        # Weight countries by their speakers; where a language has a speaker total but no count for any
+        # country, by each listed country's population instead
+        by_pop = l.get("speakers") and not any(c.get("speakers") for c in l["countries"])
         for c in l["countries"]:
             r = rates(data.get(c["code"], {}))
-            if not c.get("speakers") or r is None:
+            pop = (data.get(c["code"], {}).get("population") or [(0, 0)])[-1][1]
+            w = pop if by_pop else c.get("speakers")
+            if not w or r is None:
                 continue
-            tot += c["speakers"]
+            tot += w
             for k, v in r.items():
-                acc[k] += c["speakers"] * v
+                acc[k] += w * v
             used.append(c["code"].upper())
         if not tot:
             continue
-        where = f"Weighted by speakers in {len(used)} countries: {', '.join(used[:8])}{'…' if len(used) > 8 else ''}"
+        where = (f"Weighted by {'population' if by_pop else 'speakers'} in {len(used)} "
+                 f"{'country' if len(used) == 1 else 'countries'}: {', '.join(used[:8])}{'…' if len(used) > 8 else ''}")
         rec = lambda ind, k, unit, note: Record(l["code"], ind, round(acc[k] / tot, 4), unit, "World Bank", src,
                                                 method="api", note=f"{note} {where}")
         out += [

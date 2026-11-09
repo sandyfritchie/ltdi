@@ -45,7 +45,6 @@ ahk,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboard
 aho,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 aig,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 aii,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,5 keyboard packages
-ajp,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 ak,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
 akb,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 ake,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
@@ -2147,7 +2146,6 @@ aim,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotL
 ain,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 ajg,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 aji,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
-ajp,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 ajz,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 ak,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,
 akb,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/main/languages-v3.md,2026-11-08,download,

@@ -118,6 +118,18 @@ def point(d: dict, origin: str | None = None) -> tuple[float, float] | None:
     return g["latitude"], g["longitude"]
 
 
+def country_point(records: dict[str, dict], country: str) -> tuple[float, float] | None:
+    best = None
+    for d in records.values():
+        for l in d.get("language_script_locale", []):
+            g = l.get("geolocation", {})
+            n = l.get("speaker_data", {}).get("number_of_speakers") or 0
+            if l.get("locale", {}).get("iso_3166_code") == country and g.get("latitude") is not None \
+                    and (best is None or n > best[0]):
+                best = (n, (g["latitude"], g["longitude"]))
+    return best[1] if best else None
+
+
 def main() -> None:
     with (CONFIG / "language_overrides.csv").open(encoding="utf-8") as f:
         slice_rows = {r["code"]: r for r in csv.DictReader(f)}
@@ -141,6 +153,8 @@ def main() -> None:
             for m in d.get("individual_language_bcp_47_codes", []):
                 if m in records and (p := point(records[m])):
                     break
+        if p is None and origin:  # no location at all: where the most-spoken language of the origin country sits
+            p = country_point(records, origin)
         if p is None:
             continue
         name = next((n["name"] for n in d.get("name_data", []) if n.get("bcp_47_code") == "en" and n.get("is_canonical")),

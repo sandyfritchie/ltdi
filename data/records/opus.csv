@@ -21,7 +21,6 @@ aig,parallel_sentences,1253,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&
 aii,parallel_sentences,16108,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aii/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes aii, syr"
 ain,parallel_sentences,78,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ain/corpus-result-table,2026-11-08,download,1 corpora
 ajg,parallel_sentences,110,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ajg/corpus-result-table,2026-11-08,download,1 corpora
-ajp,parallel_sentences,59,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ajp/corpus-result-table,2026-11-08,download,1 corpora
 ak,parallel_sentences,4047196,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ak/corpus-result-table,2026-11-08,download,"6 corpora; 100% web-mined; OPUS codes ak, aka, tw"
 ake,parallel_sentences,13206,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ake/corpus-result-table,2026-11-08,download,1 corpora
 akl,parallel_sentences,27,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&akl/corpus-result-table,2026-11-08,download,1 corpora
@@ -36,7 +35,7 @@ an,parallel_sentences,64629,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&
 ann,parallel_sentences,1128,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ann/corpus-result-table,2026-11-08,download,2 corpora
 anp,parallel_sentences,4757,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&anp/corpus-result-table,2026-11-08,download,2 corpora
 aoz,parallel_sentences,24,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aoz/corpus-result-table,2026-11-08,download,1 corpora
-apc,parallel_sentences,992,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&apc/corpus-result-table,2026-11-08,download,2 corpora
+apc,parallel_sentences,1033,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ajp/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes ajp, apc"
 apw,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&apw/corpus-result-table,2026-11-08,download,1 corpora
 ar,parallel_sentences,245093731,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ar/corpus-result-table,2026-11-08,download,"30 corpora; 46% web-mined; OPUS codes ar, ar_SY, ar_TN, ara"
 arn,parallel_sentences,1480,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&arn/corpus-result-table,2026-11-08,download,2 corpora
