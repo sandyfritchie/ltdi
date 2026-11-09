@@ -202,7 +202,7 @@ def inherit_written(by_lang: dict[str, dict[str, Record]], names: dict[str, str]
         for ind in inds:
             f = by_lang[std].get(ind)
             if f and f.value and (ind not in own or own[ind].value < f.value):
-                note = f"Written in {names[std]}: its value" + (f". {f.note}" if f.note else "")
+                note = f"Counted from {names[std]}" + (f". {f.note}" if f.note else "")
                 own[ind] = dataclasses.replace(f, language=code, note=note)
 
 

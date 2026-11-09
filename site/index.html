@@ -143,6 +143,7 @@ table.ranktab { table-layout: fixed; }
 .big { font: 800 52px/1 var(--font-display); font-stretch: 80%; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
 .facts b { color: var(--ink); font-weight: 600; }
+.pnote { margin: 8px 0 0; color: var(--muted); font-size: 14px; max-width: 70ch; }
 .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; cursor: pointer; }
 .dims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
 a.indlink { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--muted); }
@@ -749,7 +750,7 @@ async function language(code) {
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
         <span id="where">${whereLine(l, false)}</span></div>
         ${reachLine(l)}
-        ${l.written_in && BY[l.written_in] ? `<div class="facts">Written in <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>. Writing, written data and text technologies (keyboards, translation, LLMs, interface, text recognition, proofing) count ${esc(BY[l.written_in].name)}'s where it's higher; speech is the language's own.</div>` : ''}
+        ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
       </div>
       <div class="lscore"><div class="eyebrow">Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
