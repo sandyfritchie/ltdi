@@ -151,12 +151,13 @@ def score_language(facts: dict[str, Record], cfg: dict) -> dict:
 
 def main() -> None:
     cfg = load_config()
-    records = read_dir(DATA / "records") + read_dir(DATA / "manual")
+    langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
+    codes = [l["code"] for l in langs]
+    records = read_dir(DATA / "records") + read_dir(DATA / "manual", codes)
     by_lang: dict[str, dict[str, Record]] = defaultdict(dict)
     for r in records:
         by_lang[r.language][r.indicator] = r
 
-    langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
     countries: dict[str, dict[str, float]] = defaultdict(dict)
     if (DATA / "countries.csv").exists():
         with (DATA / "countries.csv").open(encoding="utf-8") as f:

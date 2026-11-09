@@ -39,10 +39,11 @@ No dependencies beyond the Python 3.11+ standard library.
 | `config/slice_languages.csv` | Languages in scope, with region overrides and notes |
 | `config/crosswalk.csv` | Source language labels → LTDI codes; all rollup rules live here |
 | `config/methodology.toml` | Indicators, goalposts, weights, tiers, floor |
+| `config/services.csv` | Every service: technology, role (commercial, open, benchmark), name, provider, depth indicator |
 | `ltdi/records.py` | The common record every collector emits, with provenance |
 | `ltdi/collectors/` | One module per source |
 | `data/records/` | Automated collector output |
-| `data/manual/` | Values read from vendor pages by hand, with URL and date |
+| `data/manual/` | Vendor language lists read by hand, one row per service (`*.lists.csv`: languages offered, notes, URL, date) |
 | `site/` | Static site template and build output |
 
 ## Technology scores
