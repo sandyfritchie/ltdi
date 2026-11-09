@@ -85,6 +85,7 @@ h1 a.home:hover { text-decoration: underline; text-decoration-thickness: 2px; te
 .msel-pop label { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 5px; cursor: pointer; font-size: 14px; white-space: nowrap; }
 .msel-pop label:hover { background: var(--bg); }
 .msel-pop label i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.msel-pop .gap-i .ticon { width: 17px; height: 17px; vertical-align: middle; }
 .msel-clear { display: block; width: 100%; margin-top: 4px; padding: 6px 8px; font: 13px var(--font-body); color: var(--accent, var(--muted));
   background: none; border: 0; border-top: 1px solid var(--rule); text-align: left; cursor: pointer; }
 .controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-block: 20px 12px; }
@@ -583,15 +584,29 @@ async function oppDetail(id) {
 // ---------------------------------------------------------------- ranking
 let query = '', rankAll = false, sortBy = 'rank', sortDir = 1;
 const tierSel = new Set();  // tiers shown in the ranking; empty means all
+const gapSel = new Set();   // technologies a language must be missing; empty means no filter
 const TIER_KEYS = [['vh', 'Very high'], ['h', 'High'], ['m', 'Medium'], ['l', 'Low']];
-// A drop-down of tick boxes, so several tiers can be chosen at once (Medium and Low, say)
-function tierPicker() {
-  const label = !tierSel.size || tierSel.size === 4 ? 'All tiers'
-    : TIER_KEYS.filter(([k]) => tierSel.has(k)).map(([, t]) => t).join(', ');
-  return `<details class="msel" id="tiersel"><summary aria-label="Tiers">${esc(label)}</summary><div class="msel-pop">
-    ${TIER_KEYS.map(([k, t]) => `<label><input type="checkbox" value="${k}"${tierSel.has(k) ? ' checked' : ''}>
-      <i style="background:var(${TIERC[k]})"></i>${t}</label>`).join('')}
-    ${tierSel.size ? '<button type="button" class="msel-clear">Show all tiers</button>' : ''}</div></details>`;
+// A drop-down of tick boxes, so several values can be chosen at once (Medium and Low, say)
+function msel(id, sel, opts, none, all, prefix, clear) {
+  const label = !sel.size ? none : sel.size === opts.length && all ? all
+    : prefix + opts.filter(([k]) => sel.has(k)).map(([, t]) => t).join(', ');
+  return `<details class="msel" id="${id}"><summary aria-label="${esc(none)}">${esc(label)}</summary><div class="msel-pop">
+    ${opts.map(([k, t, mark]) => `<label><input type="checkbox" value="${k}"${sel.has(k) ? ' checked' : ''}>${mark}${esc(t)}</label>`).join('')}
+    ${sel.size ? `<button type="button" class="msel-clear">${esc(clear)}</button>` : ''}</div></details>`;
+}
+const tierPicker = () => msel('tiersel', tierSel, TIER_KEYS.map(([k, t]) => [k, t, `<i style="background:var(${TIERC[k]})"></i>`]),
+  'All tiers', 'All tiers', '', 'Show all tiers');
+const gapPicker = () => msel('gapsel', gapSel, GAP_TECH.map(k => [k, GAP_SHORT[k] || CFG.tech.technologies[k].label,
+  `<span class="gap-i none">${TICON[k]}</span>`]), 'Any coverage', null, 'Missing ', 'Clear');
+// Wire a drop-down: ticking updates the set, redraws, and keeps the drop-down open
+function wireMsel(wrap, make, sel, size, draw) {
+  const d = $(`#${wrap} details`);
+  d.onchange = e => {
+    if (e.target.checked) sel.add(e.target.value); else sel.delete(e.target.value);
+    if (size && sel.size === size) sel.clear();
+    $(`#${wrap}`).innerHTML = make(); $(`#${wrap} details`).open = true; wireMsel(wrap, make, sel, size, draw); draw();
+  };
+  d.onclick = e => { if (e.target.closest('.msel-clear')) { sel.clear(); $(`#${wrap}`).innerHTML = make(); wireMsel(wrap, make, sel, size, draw); draw(); } };
 }
 // Sortable columns: [key, label, value for sorting, natural direction (1 = ascending first)]
 const GAP_WEIGHT = { none: 2, open: 1 };
@@ -600,7 +615,7 @@ const SORTS = {
   online: ['Online', l => l.online || 0, -1],
   region: ['Region', l => REGION_ORDER.indexOf(l.region) * 1e4 + l.rank, 1],
   ltdi: ['LTDI', l => l.ltdi, -1], tier: ['Tier', l => l.ltdi, -1],
-  gaps: ['Gaps', l => Object.values(l.gaps).reduce((n, g) => n + GAP_WEIGHT[g], 0) * 1e4 + l.rank, -1],
+  gaps: ['Gaps', l => Object.values(l.gaps).reduce((n, g) => n + GAP_WEIGHT[g], 0) * 1e4 + l.rank, 1],  // fewest first
 };
 function sortBtn(key, inner = SORTS[key][0]) {
   const on = sortBy === key, arr = on ? (sortDir === SORTS[key][2] ? (SORTS[key][2] > 0 ? '▲' : '▼') : (SORTS[key][2] > 0 ? '▼' : '▲')) : '';
@@ -649,7 +664,7 @@ function rankSummary(ls) {
   const gapItem = k => {
     const t = CFG.tech.technologies[k], n = sum(l => none(l, k) ? l.speakers : 0);
     return `<span class="rgap" title="Speakers whose language has no commercial ${esc(t.label.toLowerCase())} service">
-      <span class="gap-i none">${TICON[k]}</span><b>${people(n)}</b><small>${esc(GAP_SHORT[k] || t.label)}</small></span>`;
+      <span class="gap-i none">${TICON[k]}</span><b>${n ? people(n) : '0'}</b><small>${esc(GAP_SHORT[k] || t.label)}</small></span>`;
   };
   const gaps = GAP_GROUPS.map(([g, ks]) => `<div class="rgcol" aria-label="${g}">${ks.map(gapItem).join('')}</div>`).join('');
   return `
@@ -684,6 +699,7 @@ function ranking() {
     <div class="controls">
       ${regionSelect('rsel')}
       <span id="tierwrap">${tierPicker()}</span>
+      <span id="gapwrap" title="Show only languages with no commercial service for every technology ticked">${gapPicker()}</span>
       <input type="search" id="q" placeholder="Find a language name or code" value="${esc(query)}" aria-label="Find a language">
     </div>
     <div class="rsum-wrap"><div id="rsum" class="rsum" aria-live="polite"></div></div>
@@ -703,7 +719,8 @@ function ranking() {
     <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the five main technologies (keyboard, speech input, text-to-speech, translation, LLMs), and voice assistants, no commercial service offers; hover an icon for details. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
-    const all = LANGS.filter(l => inRegion(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0])) && (!q || matches(l, q)));
+    const all = LANGS.filter(l => inRegion(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]))
+      && [...gapSel].every(k => l.gaps[k] === 'none') && (!q || matches(l, q)));
     const [, val, natural] = SORTS[sortBy], dir = sortDir;
     all.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : a.rank - b.rank) * dir; });
     $('#rsum').innerHTML = rankSummary(all);
@@ -728,18 +745,10 @@ function ranking() {
   draw();
   $('#rsel').onchange = e => { region = e.target.value; ranking(); };
   $('#q').oninput = e => { query = e.target.value; draw(); };
-  const wireTiers = () => {
-    const d = $('#tiersel');
-    d.onchange = e => {
-      if (e.target.checked) tierSel.add(e.target.value); else tierSel.delete(e.target.value);
-      if (tierSel.size === 4) tierSel.clear();
-      $('#tierwrap').innerHTML = tierPicker(); $('#tiersel').open = true; wireTiers(); draw();
-    };
-    d.onclick = e => { if (e.target.closest('.msel-clear')) { tierSel.clear(); $('#tierwrap').innerHTML = tierPicker(); wireTiers(); draw(); } };
-  };
-  wireTiers();
-  if (!ranking.closer) {  // once: a click elsewhere closes the tier drop-down
-    ranking.closer = e => { const d = $('#tiersel'); if (d && d.open && !d.contains(e.target)) d.open = false; };
+  wireMsel('tierwrap', tierPicker, tierSel, 4, draw);
+  wireMsel('gapwrap', gapPicker, gapSel, 0, draw);
+  if (!ranking.closer) {  // once: a click elsewhere closes the drop-downs
+    ranking.closer = e => document.querySelectorAll('details.msel[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
     document.addEventListener('click', ranking.closer);
   }
   $('#rows').onclick = e => { const tr = e.target.closest('tr[data-code]'); if (tr) location.hash = 'lang-' + tr.dataset.code; };
