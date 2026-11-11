@@ -1,0 +1,76 @@
+# QQ scripts not used until reviewed: several scripts, or one rare in the index. Remove a row once
+# checked; put a correction in language_overrides.csv (scripts column) where QQ is wrong.
+code,name,qq_scripts,why
+apc,Levantine Arabic,"Arabic (arab), Latin (latn)",several scripts
+czh,Huizhou Chinese,"Han (Traditional) (hant), Han (Simplified) (hans)",several scripts
+jkm,Mobwa Karen,"Myanmar (mymr), Latin (latn)",several scripts
+zyg,Yang Zhuang,"Han (hani), Nushu (nshu)",several scripts; Nushu script is rare in the index
+thi,Tai Long,Tai Le (tale),Tai Le script is rare in the index
+kyw,Kudmali,"Devanagari (deva), Bengali (beng), Oriya (orya)",several scripts
+ncq,Northern Katang,"Lao (laoo), Thai (thai)",several scripts
+mvz,Mesqan,"Arabic (arab), Ethiopic (ethi)",several scripts
+thv,Tahaggart Tamahaq,"Arabic (arab), Tifinagh (Berber) (tfng), Latin (latn)",several scripts; Tifinagh (Berber) script is rare in the index
+prx,Purik,"Arabic (arab), Tibetan (tibt)",several scripts
+ckm,Chakavian,"Glagolitic (glag), Latin (latn)",several scripts; Glagolitic script is rare in the index
+moy,Shekkacho,"Ethiopic (ethi), Latin (latn)",several scripts
+tda,Tagdal,"Arabic (arab), Tifinagh (Berber) (tfng), Latin (latn)",several scripts; Tifinagh (Berber) script is rare in the index
+hmj,Ge,Bopomofo (bopo),Bopomofo script is rare in the index
+hii,Hinduri,"Devanagari (deva), Takri (takr)",several scripts; Takri script is rare in the index
+scu,Shumcho,Takri (takr),Takri script is rare in the index
+kvq,Geba Karen,"Latin (latn), Myanmar (mymr)",several scripts
+mjx,Mahali,"Bengali (beng), Latin (latn)",several scripts
+mpe,Majang,"Ethiopic (ethi), Latin (latn)",several scripts
+yea,Ravula,"Kannada (knda), Malayalam (mlym)",several scripts
+mlf,Mal,"Latin (latn), Thai (thai)",several scripts
+grr,Taznatit,"Arabic (arab), Tifinagh (Berber) (tfng)",several scripts; Tifinagh (Berber) script is rare in the index
+nng,Maring Naga,"Bengali (beng), Latin (latn)",several scripts
+nki,Thangal Naga,"Bengali (beng), Latin (latn)",several scripts
+pcg,Paniya,"Kannada (knda), Tamil (taml), Malayalam (mlym)",several scripts
+lbn,Rmeet,"Lao (laoo), Latin (latn)",several scripts
+mfg,Mogofin,"Arabic (arab), Latin (latn)",several scripts
+mfx,Melo,"Ethiopic (ethi), Latin (latn)",several scripts
+suv,Puroik,"Devanagari (deva), Bengali (beng), Latin (latn)",several scripts
+bwe,Bwe Karen,"Myanmar (mymr), Latin (latn)",several scripts
+gdb,Pottangi Ollar Gadaba,"Telugu (telu), Oriya (orya)",several scripts
+rei,Reli,"Telugu (telu), Oriya (orya)",several scripts
+lbc,Lakkia,Lisu (lisu),Lisu script is rare in the index
+muz,Mursi,"Ethiopic (ethi), Latin (latn)",several scripts
+cty,Moundadan Chetty,"Tamil (taml), Malayalam (mlym)",several scripts
+ybe,West Yugur,"Old Uyghur (ougr), Latin (latn)",several scripts; Old Uyghur script is rare in the index
+mwt,Moken,"Myanmar (mymr), Thai (thai)",several scripts
+pkh,Pankhu,"Devanagari (deva), Latin (latn)",several scripts
+isk,Ishkashimi,"Arabic (arab), Cyrillic (cyrl)",several scripts
+kfg,Kudiya,"Kannada (knda), Malayalam (mlym)",several scripts
+lae,Pattani,"Devanagari (deva), Tibetan (tibt)",several scripts
+sbu,Stod Bhoti,"Devanagari (deva), Tibetan (tibt)",several scripts
+jna,Jangshung,Takri (takr),Takri script is rare in the index
+kte,Nubri,"Devanagari (deva), Tibetan (tibt)",several scripts
+brw,Bellari,"Kannada (knda), Malayalam (mlym)",several scripts
+kvy,Yintale Karen,Kayah Li (kali),Kayah Li script is rare in the index
+onp,Sartang,"Devanagari (deva), Latin (latn)",several scripts
+kqd,Koy Sanjaq Surat,Syriac (syrc),Syriac script is rare in the index
+bhn,Bohtan Neo-Aramaic,Syriac (syrc),Syriac script is rare in the index
+cvg,Chug,"Tibetan (tibt), Latin (latn)",several scripts
+wtw,Wotu,"Buginese (bugi), Latin (latn)",several scripts; Buginese script is rare in the index
+kns,Kensiu,"Latin (latn), Thai (thai)",several scripts
+hrm,Horned Miao,"Latin (latn), Pahawh Hmong (hmng)",several scripts; Pahawh Hmong script is rare in the index
+brb,Brao,"Lao (laoo), Latin (latn), Khmer (khmr)",several scripts
+bxu,China Buriat,"Cyrillic (cyrl), Latin (latn), Mongolian (mong)",several scripts
+cnp,Northern Pinghua,"Han (Simplified) (hans), Han (Traditional) (hant)",several scripts
+csp,Southern Pinghua,"Han (Simplified) (hans), Han (Traditional) (hant)",several scripts
+hkh,Khah,"Devanagari (deva), Arabic (arab), Latin (latn)",several scripts
+kfk,Kinnauri,"Devanagari (deva), Takri (takr)",several scripts; Takri script is rare in the index
+lbf,Tinani,"Devanagari (deva), Tibetan (tibt)",several scripts
+loy,Loke,"Devanagari (deva), Tibetan (tibt)",several scripts
+stu,Samtao,"Tai Le (tale), Tai Tham (Lanna) (lana)",several scripts; Tai Le script is rare in the index; Tai Tham (Lanna) script is rare in the index
+tpe,Tippera,"Bengali (beng), Latin (latn)",several scripts
+tyt,Tày Tac,"Tai Viet (tavt), Latin (latn)",several scripts
+usi,Usui,"Bengali (beng), Latin (latn)",several scripts
+vwa,Awa,"Latin (latn), Myanmar (mymr)",several scripts
+zlj,Liujiang Zhuang,"Han (hani), Latin (latn)",several scripts
+zrg,Mirgan,"Telugu (telu), Oriya (orya)",several scripts
+dmf,Medefaidrin,Medefaidrin (medf),Medefaidrin script is rare in the index
+lhs,Mlahsö,Syriac (syrc),Syriac script is rare in the index
+qwm,Kuman,"Cyrillic (cyrl), Latin (latn), Runic (runr)",several scripts; Runic script is rare in the index; Cyrillic script not otherwise used in None
+tmr,Jewish Babylonian Aramaic,Syriac (syrc),Syriac script is rare in the index
+xwo,Written Oirat,Cyrillic (cyrl),Cyrillic script not otherwise used in None

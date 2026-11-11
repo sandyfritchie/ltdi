@@ -43,8 +43,8 @@ def top_listed(top: list[dict]) -> list[dict]:
             break
         picked.add(i)
     return [{k: v for k, v in o.items() if k != "_type"} for i, o in enumerate(top) if i in picked]
-SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "gaps")
-PROFILE = ("script_names", "note", "source", "written_in")  # shown only on the language's own page
+SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "gaps", "endangerment")
+PROFILE = ("script_names", "script_source", "note", "source", "written_in", "joshi", "ud")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
 # pseudo-regions (LinguaMeta lists them without speaker counts)
 NOT_PLACES = {"aq", "bv", "gs", "hm", "tf", "um", "xa", "xb", "zz"}
@@ -98,6 +98,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             "offers": [svc_index[i] for i in l["offers"]],
             "opportunity_count": len(opps),
             "alt": "|".join(l.get("alt_names") or []),  # other names, for search
+            **({"extinct": 1} if l.get("extinct") else {}),
             "online": round(l["speakers"] * reach["value"]) if l.get("speakers") and (
                 reach := scores["facts"].get(l["code"], {}).get("reach_voice_share")) else None,
         })

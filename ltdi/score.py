@@ -227,7 +227,8 @@ def main() -> None:
     for lang in langs:
         facts_l = by_lang.get(lang["code"], {})
         s = score_language(facts_l, cfg)
-        opps = rank(lang, find(facts_l), s, facts_l)
+        # An extinct language keeps its page and scores but has no speakers to reach, so no opportunities
+        opps = [] if lang.get("extinct") else rank(lang, find(facts_l), s, facts_l)
         for o in opps:
             o["id"] = f"{lang['code']}-{o['key']}"
             o["kit"] = starter_kit(o, facts_l)
@@ -236,8 +237,10 @@ def main() -> None:
                         "written_in": written.get(lang["code"]),
                         "reach_by_country": reach_by_country(lang, countries)})
     results.sort(key=lambda r: -r["ltdi"])
-    for i, r in enumerate(results, 1):
+    for i, r in enumerate((r for r in results if not r.get("extinct")), 1):
         r["rank"] = i
+    for r in results:
+        r.setdefault("rank", None)  # extinct: outside the ranking
 
     facts = {
         code: {i: {k: getattr(r, k) for k in ("value", "unit", "source", "url", "retrieved", "method", "note")}
@@ -268,7 +271,7 @@ def main() -> None:
     (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     for r in results:
         d = r["dimensions"]
-        print(f"{r['rank']:>2} {r['code']:<4} {r['name']:<18} LTDI {r['ltdi']:.3f}  "
+        print(f"{r['rank'] or '-':>4} {r['code']:<4} {r['name']:<18} LTDI {r['ltdi']:.3f}  "
               f"W {d['writing']['score']:.2f}  D {d['data']['score']:.2f}  T {d['tech']['score']:.2f}")
 
 

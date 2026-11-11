@@ -7,3 +7,7 @@ dependencies = []
 
 [tool.setuptools]
 packages = ["ltdi", "ltdi.collectors"]
+
+[project.optional-dependencies]
+# Only the pipeline steps that need them: areas (shapely) and qq (qwanqwa)
+build = ["shapely", "qwanqwa"]

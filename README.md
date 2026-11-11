@@ -9,7 +9,10 @@ pulls the score down.
 
 Builds on van Esch, Ritchie et al. (2024),
 [Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages](https://aclanthology.org/2024.lrec-main.331/),
-with language metadata from [LinguaMeta](https://github.com/google-research/url-nlp/tree/main/linguameta).
+with language metadata from [LinguaMeta](https://github.com/google-research/url-nlp/tree/main/linguameta),
+and scripts, status and endangerment levels from [QQ](https://github.com/WPoelman/qwanqwa) (Poelman, Chen & de Lhoneux,
+[arXiv:2603.00620](https://arxiv.org/abs/2603.00620)) where LinguaMeta has none. QQ's data is CC BY-SA 4.0, so
+LTDI data derived from it carries the same licence.
 
 ## Status
 
@@ -22,6 +25,7 @@ open speech datasets, the Hugging Face Hub and public benchmarks.
 
 ```
 python -m ltdi.wikipedia_speakers   # speaker counts from Wikipedia infoboxes where LinguaMeta has none
+python -m ltdi.qq              # scripts, extinct status, endangerment from QQ -> data/qq.csv (pip install qwanqwa)
 python -m ltdi.backbone        # every LinguaMeta language (macrolanguage rules in config/macrolanguages.csv)
 python -m ltdi.collectors      # every collector -> data/records/*.csv (git, plus the sites each one names)
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
@@ -218,8 +222,11 @@ the coalition workstream it fits.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand, for the original 25.
 - LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's
-  infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). Without a script the
-  writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
+  infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
+  scripts for about 690 more; another 73 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a
+  rare one). Without a script the writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
+- A language is extinct when QQ's status or endangerment level says so and no speaker count is recorded (Glottolog marks
+  some revived languages extinct). Extinct languages keep their pages but are left out of the ranking, totals and charts.
 - Most massively multilingual datasets on the Hub tag hundreds of languages each, so almost every language has a few.
 - Wikipedia article counts include bot-generated stubs: Urdu (708K) outranks Hindi (172K).
 - Reach uses national averages, which overstate connectivity for rural and minority-language speakers (Quechua in Peru).

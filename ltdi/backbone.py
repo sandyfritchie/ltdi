@@ -194,6 +194,31 @@ def add_wikipedia_count(lang: dict, row: dict) -> None:
     lang["note"] = f"{lang['note']} {src}".strip()
 
 
+def held_scripts() -> set[str]:
+    path = CONFIG / "qq_scripts_held.csv"
+    if not path.exists():
+        return set()
+    with path.open(encoding="utf-8") as f:
+        return {r["code"] for r in csv.DictReader(line for line in f if not line.startswith("#"))}
+
+
+def add_qq(lang: dict, row: dict, hold: bool = False) -> None:
+    """Metadata from QQ (ltdi.qq). Its scripts are used only where nothing else gives the language
+    one. A language counts as extinct when QQ's status or endangerment level says so and no speaker
+    count says otherwise: Glottolog marks some revived or rediscovered languages extinct (Wampanoag,
+    Senhaja de Srair)."""
+    if not lang["scripts"] and row["scripts"] and not hold:
+        lang["scripts"] = row["scripts"].split()
+        lang["script_names"] = [SCRIPT.get(sc, sc.title()) for sc in lang["scripts"]]
+        lang["script_source"] = "qq"
+    lang["extinct"] = (row["status"] in ("extinct", "historical") or row["endangerment"] == "extinct") \
+        and not lang["speakers"]
+    # A level of "extinct" for a language with speakers recorded contradicts the count; show none
+    lang["endangerment"] = None if row["endangerment"] == "extinct" and not lang["extinct"] else row["endangerment"] or None
+    lang["joshi"] = int(row["joshi"]) if row["joshi"] != "" else None
+    lang["ud"] = row["ud"] == "1"
+
+
 def alt_names(code: str, name: str, recs: dict[str, dict], absorbed: list[str]) -> list[str]:
     """Other English names to search by: LinguaMeta's for the language itself, for the languages it
     absorbs (Tagalog under Filipino), and for the macrolanguage it belongs to (Buriat for each
@@ -230,6 +255,11 @@ def main() -> None:
     if (DATA / "wikipedia_speakers.csv").exists():
         with (DATA / "wikipedia_speakers.csv").open(encoding="utf-8") as f:
             wiki = {r["code"]: r for r in csv.DictReader(f)}
+    qq = {}
+    if (DATA / "qq.csv").exists():
+        with (DATA / "qq.csv").open(encoding="utf-8") as f:
+            qq = {r["code"]: r for r in csv.DictReader(f)}
+    held = held_scripts()
     members: dict[str, list[str]] = {}
     for m, unit in absorbed_by().items():
         members.setdefault(unit, []).append(m)
@@ -242,6 +272,8 @@ def main() -> None:
         apply_overrides(lang, row, locales)
         if not lang["speakers"] and row.get("speakers") != "-" and code in wiki:
             add_wikipedia_count(lang, wiki[code])
+        if code in qq:
+            add_qq(lang, qq[code], code in held)
         lang["alt_names"] = alt_names(code, lang["name"], recs, members.get(code, []))
         langs.append(lang)
     DATA.mkdir(exist_ok=True)
