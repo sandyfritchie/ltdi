@@ -622,7 +622,7 @@ let query = '', rankAll = false, sortBy = 'rank', sortDir = 1;
 const tierSel = new Set();  // tiers shown in the ranking; empty means all
 let showGaps = false;       // only languages with something in the Gaps column
 const endSel = new Set();   // endangerment levels shown; empty means every living language
-// UNESCO's levels as QQ gives them; "extinct" covers languages LTDI keeps out of the ranking
+// UNESCO's levels as LinguaMeta gives them; "extinct" covers languages LTDI keeps out of the ranking
 const END_LEVELS = [['not_endangered', 'Not endangered'], ['vulnerable', 'Vulnerable'], ['definitely_endangered', 'Definitely endangered'],
   ['severely_endangered', 'Severely endangered'], ['critically_endangered', 'Critically endangered'], ['extinct', 'Extinct'], ['none', 'Not assessed']];
 const END_LABEL = Object.fromEntries(END_LEVELS);
@@ -740,7 +740,7 @@ function ranking() {
     <div class="controls">
       ${regionSelect('rsel')}
       <span id="tierwrap">${tierPicker()}</span>
-      <span id="endwrap" title="UNESCO's endangerment level, from Glottolog via QQ. Extinct languages are listed only when chosen here">${endPicker()}</span>
+      <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta. Extinct languages are listed only when chosen here">${endPicker()}</span>
       <label class="switch" title="Show only languages with a gap: a main technology with no commercial service, or only an open model or benchmark"><input type="checkbox" role="switch" id="gapsw"${showGaps ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show gaps</label>
       <input type="search" id="q" placeholder="Find a language name or code" value="${esc(query)}" aria-label="Find a language">
       <button type="button" class="reset" id="resetf" hidden>Reset filters</button>
@@ -930,7 +930,7 @@ async function language(code) {
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span></h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
-        <span id="where">${whereLine(l, false)}</span>${endKey(l) !== 'none' ? `<span title="UNESCO's endangerment scale, from Glottolog via QQ">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
+        <span id="where">${whereLine(l, false)}</span>${endKey(l) !== 'none' ? `<span title="UNESCO's endangerment scale, from LinguaMeta">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
         ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
@@ -942,7 +942,7 @@ async function language(code) {
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
-    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' || endKey(l) !== 'none' ? `, with ${l.script_source === 'qq' ? 'script' : ''}${l.script_source === 'qq' && endKey(l) !== 'none' ? ' and ' : ''}${endKey(l) !== 'none' ? 'endangerment level' : ''} from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}.</p>`;
+    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}.</p>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
   const mt = $('#view').querySelector('details.more-tech');

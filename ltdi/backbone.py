@@ -203,20 +203,35 @@ def held_scripts() -> set[str]:
 
 
 def add_qq(lang: dict, row: dict, hold: bool = False) -> None:
-    """Metadata from QQ (ltdi.qq). Its scripts are used only where nothing else gives the language
-    one. A language counts as extinct when QQ's status or endangerment level says so and no speaker
-    count says otherwise: Glottolog marks some revived or rediscovered languages extinct (Wampanoag,
-    Senhaja de Srair)."""
+    """Metadata from QQ (ltdi.qq): its scripts, used only where LinguaMeta gives the language none,
+    plus Joshi et al.'s resource class and whether Universal Dependencies has a treebank."""
     if not lang["scripts"] and row["scripts"] and not hold:
         lang["scripts"] = row["scripts"].split()
         lang["script_names"] = [SCRIPT.get(sc, sc.title()) for sc in lang["scripts"]]
         lang["script_source"] = "qq"
-    lang["extinct"] = (row["status"] in ("extinct", "historical") or row["endangerment"] == "extinct") \
-        and not lang["speakers"]
-    # A level of "extinct" for a language with speakers recorded contradicts the count; show none
-    lang["endangerment"] = None if row["endangerment"] == "extinct" and not lang["extinct"] else row["endangerment"] or None
     lang["joshi"] = int(row["joshi"]) if row["joshi"] != "" else None
     lang["ud"] = row["ud"] == "1"
+
+
+# LinguaMeta's endangerment levels (UNESCO's scale, from its linguameta.tsv) -> LTDI's keys
+ENDANGERMENT = {"Not endangered": "not_endangered", "Vulnerable": "vulnerable",
+                "Definitely endangered": "definitely_endangered", "Severely endangered": "severely_endangered",
+                "Critically endangered": "critically_endangered", "Extinct": "extinct"}
+
+
+def endangerment() -> dict[str, str]:
+    from .geo import linguameta_dir
+
+    with (linguameta_dir().parent / "linguameta.tsv").open(encoding="utf-8") as f:
+        return {r["bcp_47_code"]: ENDANGERMENT.get(r["endangerment_status"], "")
+                for r in csv.DictReader(f, delimiter="\t")}
+
+
+def add_endangerment(lang: dict, level: str) -> None:
+    """A language is extinct when LinguaMeta says so and no speaker count says otherwise. "Extinct"
+    for a language with speakers recorded contradicts the count, so it gets no level."""
+    lang["extinct"] = level == "extinct" and not lang["speakers"]
+    lang["endangerment"] = None if level == "extinct" and not lang["extinct"] else level or None
 
 
 def alt_names(code: str, name: str, recs: dict[str, dict], absorbed: list[str]) -> list[str]:
@@ -260,6 +275,7 @@ def main() -> None:
         with (DATA / "qq.csv").open(encoding="utf-8") as f:
             qq = {r["code"]: r for r in csv.DictReader(f)}
     held = held_scripts()
+    levels = endangerment()
     members: dict[str, list[str]] = {}
     for m, unit in absorbed_by().items():
         members.setdefault(unit, []).append(m)
@@ -272,6 +288,7 @@ def main() -> None:
         apply_overrides(lang, row, locales)
         if not lang["speakers"] and row.get("speakers") != "-" and code in wiki:
             add_wikipedia_count(lang, wiki[code])
+        add_endangerment(lang, levels.get(code, ""))
         if code in qq:
             add_qq(lang, qq[code], code in held)
         lang["alt_names"] = alt_names(code, lang["name"], recs, members.get(code, []))

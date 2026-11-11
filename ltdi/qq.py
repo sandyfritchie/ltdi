@@ -1,11 +1,9 @@
 """Language metadata from QQ (qwanqwa), for what LinguaMeta leaves open.
 
 QQ (Poelman, Chen & de Lhoneux, https://github.com/WPoelman/qwanqwa) merges Glottolog, Wikidata,
-LinguaMeta, GlotScript and other sources into one database. LTDI takes from it:
+LinguaMeta, GlotScript and other sources into one database. LTDI takes from it (endangerment and
+extinct status come from LinguaMeta itself, in the backbone):
   scripts       the canonical script(s), used only where LinguaMeta gives a language none
-  status        living / extinct / historical / constructed (Glottolog), so extinct languages can be
-                kept out of the ranking
-  endangerment  UNESCO's scale, as QQ gives it (from Glottolog's AES)
   joshi         Joshi et al. (2020)'s resource class, 0-5, for comparison with LTDI's tiers
   ud            whether Universal Dependencies has a treebank
 
@@ -22,11 +20,7 @@ import warnings
 from . import DATA
 
 OUT = DATA / "qq.csv"
-FIELDS = ["code", "qq_name", "scripts", "status", "endangerment", "joshi", "ud"]
-
-
-def _enum(v) -> str:
-    return v.name.lower() if v is not None and hasattr(v, "name") else ""
+FIELDS = ["code", "qq_name", "scripts", "joshi", "ud"]
 
 
 def lookup(db, lang: dict):
@@ -72,8 +66,6 @@ def main() -> None:
             "code": lang["code"],
             "qq_name": r.name or "",
             "scripts": " ".join(scripts(r)),
-            "status": _enum(r.status),
-            "endangerment": _enum(r.endangerment_status),
             "joshi": "" if r.joshi_rating is None else r.joshi_rating,
             "ud": int(any(e.label == "Universal Dependencies" for e in (r.external_resources or []))),
         })
