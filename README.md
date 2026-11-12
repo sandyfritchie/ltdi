@@ -228,6 +228,8 @@ the coalition workstream it fits.
 - LinguaMeta's endangerment levels sometimes belong to a minority variety rather than the whole language (Latvian's
   is Latgalian's); `config/endangerment_overrides.csv` corrects the clear cases (Slovenian, Armenian, Latvian, Swati),
   and gives a level for some widely used languages LinguaMeta doesn't assess.
+  Where LinguaMeta gives no level, Glottolog's current one is used (`ltdi/glottolog.py`, release pinned), unless
+  its assessment names a different variety; a macrolanguage with none takes its most-spoken absorbed member's.
 - A language is extinct when LinguaMeta's endangerment level says so and no speaker count is recorded (a few languages
   marked extinct have revival speakers). Extinct languages keep their pages but are left out of the ranking, totals and charts.
 - Most massively multilingual datasets on the Hub tag hundreds of languages each, so almost every language has a few.

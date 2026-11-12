@@ -44,7 +44,7 @@ def top_listed(top: list[dict]) -> list[dict]:
         picked.add(i)
     return [{k: v for k, v in o.items() if k != "_type"} for i, o in enumerate(top) if i in picked]
 SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "gaps", "endangerment")
-PROFILE = ("script_names", "script_source", "note", "source", "written_in", "joshi", "ud")  # shown only on the language's own page
+PROFILE = ("script_names", "script_source", "endangerment_source", "note", "source", "written_in", "joshi", "ud")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
 # pseudo-regions (LinguaMeta lists them without speaker counts)
 NOT_PLACES = {"aq", "bv", "gs", "hm", "tf", "um", "xa", "xb", "zz"}

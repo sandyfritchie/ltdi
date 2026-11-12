@@ -626,6 +626,8 @@ const endSel = new Set();   // endangerment levels shown; empty means every livi
 const END_LEVELS = [['not_endangered', 'Not endangered'], ['vulnerable', 'Vulnerable'], ['definitely_endangered', 'Definitely endangered'],
   ['severely_endangered', 'Severely endangered'], ['critically_endangered', 'Critically endangered'], ['extinct', 'Extinct'], ['none', 'Not assessed']];
 const END_LABEL = Object.fromEntries(END_LEVELS);
+const END_SOURCE = { linguameta: 'from LinguaMeta', glottolog: 'from Glottolog 5.4 (LinguaMeta gives none)',
+  member: 'from its most-spoken member language', review: 'reviewed by the LTDI team' };
 const endKey = l => l.extinct ? 'extinct' : l.endangerment || 'none';
 const endPicker = () => msel('endsel', endSel, END_LEVELS.map(([k, t]) => [k, t, '']), 'Any endangerment', null, '', 'Clear');
 const TIER_KEYS = [['vh', 'Very high'], ['h', 'High'], ['m', 'Medium'], ['l', 'Low']];
@@ -740,7 +742,7 @@ function ranking() {
     <div class="controls">
       ${regionSelect('rsel')}
       <span id="tierwrap">${tierPicker()}</span>
-      <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta. Extinct languages are listed only when chosen here">${endPicker()}</span>
+      <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta (Glottolog where LinguaMeta gives none). Extinct languages are listed only when chosen here">${endPicker()}</span>
       <label class="switch" title="Show only languages with a gap: a main technology with no commercial service, or only an open model or benchmark"><input type="checkbox" role="switch" id="gapsw"${showGaps ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show gaps</label>
       <input type="search" id="q" placeholder="Find a language name or code" value="${esc(query)}" aria-label="Find a language">
       <button type="button" class="reset" id="resetf" hidden>Reset filters</button>
@@ -930,7 +932,7 @@ async function language(code) {
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span></h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
-        <span id="where">${whereLine(l, false)}</span>${endKey(l) !== 'none' ? `<span title="UNESCO's endangerment scale, from LinguaMeta">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
+        <span id="where">${whereLine(l, false)}</span>${endKey(l) !== 'none' ? `<span title="UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
         ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}

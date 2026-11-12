@@ -283,7 +283,10 @@ def main() -> None:
         with (DATA / "qq.csv").open(encoding="utf-8") as f:
             qq = {r["code"]: r for r in csv.DictReader(f)}
     held = held_scripts()
-    levels = endangerment() | endangerment_overrides()
+    reviewed = endangerment_overrides()
+    levels = endangerment() | reviewed
+    from .glottolog import aes, suspect
+    glotto = aes()
     members: dict[str, list[str]] = {}
     for m, unit in absorbed_by().items():
         members.setdefault(unit, []).append(m)
@@ -296,7 +299,24 @@ def main() -> None:
         apply_overrides(lang, row, locales)
         if not lang["speakers"] and row.get("speakers") != "-" and code in wiki:
             add_wikipedia_count(lang, wiki[code])
-        add_endangerment(lang, levels.get(code, ""))
+        level, source = levels.get(code, ""), "review" if code in reviewed else "linguameta"
+        if not level and lang.get("glottocode") in glotto:
+            g_level, comment = glotto[lang["glottocode"]]
+            # An assessment that seems to rest on a variety or community is held for review
+            if not suspect(comment, lang.get("iso_639_3"), lang["name"]):
+                level, source = g_level, "glottolog"
+        if not level and members.get(code):
+            # A macrolanguage with no level of its own takes its most-spoken absorbed member's
+            # (Guarani from Paraguayan Guarani, Kongo from Koongo)
+            for m in sorted(members[code], key=lambda m: -(recs.get(m, {}).get("total_population") or 0)):
+                gc = recs.get(m, {}).get("glottocode")
+                level = levels.get(m) or (glotto.get(gc) or ("", ""))[0]
+                if level:
+                    source = "member"
+                    break
+        add_endangerment(lang, level)
+        if lang["endangerment"] or lang["extinct"]:
+            lang["endangerment_source"] = source
         if code in qq:
             add_qq(lang, qq[code], code in held)
         lang["alt_names"] = alt_names(code, lang["name"], recs, members.get(code, []))
