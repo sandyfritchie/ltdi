@@ -1,6 +1,6 @@
 """Writing system: is the language's main script encoded in Unicode?
 
-Uses LinguaMeta's canonical script for each language, checked against the
+Uses each language's main script (LinguaMeta's canonical one, else QQ's or an override), checked against the
 scripts CLDR knows (cldr-core scriptMetadata.json), which are all encoded.
 """
 

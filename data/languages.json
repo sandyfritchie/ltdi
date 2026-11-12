@@ -43654,20 +43654,24 @@
   "iso_639_3": "cnp",
   "glottocode": null,
   "scope": "LANGUAGE",
-  "speakers": null,
+  "speakers": 3000000,
   "members": [],
-  "scripts": [],
-  "script_names": [],
+  "scripts": [
+   "hans"
+  ],
+  "script_names": [
+   "Han (Simplified)"
+  ],
   "countries": [
    {
     "code": "cn",
     "name": "China",
-    "speakers": 7000000
+    "speakers": 3000000
    }
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/cnp.json",
-  "note": "",
+  "note": "Speaker count estimated: Pinghua's 7 million speakers (Yu Jin 2016, cited by Wikipedia) split between Northern and Southern Pinghua in Joshua Project's proportions (1.73 million : 2.34 million). No published split exists.",
   "extinct": false,
   "endangerment": null,
   "joshi": null,
@@ -46257,20 +46261,24 @@
   "iso_639_3": "csp",
   "glottocode": null,
   "scope": "LANGUAGE",
-  "speakers": null,
+  "speakers": 4000000,
   "members": [],
-  "scripts": [],
-  "script_names": [],
+  "scripts": [
+   "hans"
+  ],
+  "script_names": [
+   "Han (Simplified)"
+  ],
   "countries": [
    {
     "code": "cn",
     "name": "China",
-    "speakers": 7000000
+    "speakers": 4000000
    }
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/csp.json",
-  "note": "",
+  "note": "Speaker count estimated: Pinghua's 7 million speakers (Yu Jin 2016, cited by Wikipedia) split between Northern and Southern Pinghua in Joshua Project's proportions (1.73 million : 2.34 million). No published split exists.",
   "extinct": false,
   "endangerment": null,
   "joshi": null,
