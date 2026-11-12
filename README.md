@@ -223,11 +223,11 @@ the coalition workstream it fits.
 - LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand, for the original 25.
 - LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's
   infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
-  scripts for about 690 more; another 73 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a
-  rare one). Without a script the writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
+  scripts for about 690 more; another 71 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a
+  rare one): remove a row once checked, and put any correction in `config/language_overrides.csv` (scripts column). Without a script the writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
 - LinguaMeta's endangerment levels sometimes belong to a minority variety rather than the whole language (Latvian's
   is Latgalian's); `config/endangerment_overrides.csv` corrects the clear cases (Slovenian, Armenian, Latvian, Swati),
-  and gives a level for some widely used languages LinguaMeta doesn't assess.
+  and gives a level for some widely used languages LinguaMeta doesn't assess (reviewed by the project lead).
   Where LinguaMeta gives no level, Glottolog's current one is used (`ltdi/glottolog.py`, release pinned), unless
   its assessment names a different variety; a macrolanguage with none takes its most-spoken absorbed member's.
 - A language listed as extinct but with speakers recorded is "Revitalizing" (Cornish, Manx, Wampanoag), or takes

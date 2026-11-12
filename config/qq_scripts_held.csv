@@ -1,5 +1,3 @@
-# QQ scripts not used until reviewed: several scripts, or one rare in the index. Remove a row once
-# checked; put a correction in language_overrides.csv (scripts column) where QQ is wrong.
 code,name,qq_scripts,why
 apc,Levantine Arabic,"Arabic (arab), Latin (latn)",several scripts
 czh,Huizhou Chinese,"Han (Traditional) (hant), Han (Simplified) (hans)",several scripts
