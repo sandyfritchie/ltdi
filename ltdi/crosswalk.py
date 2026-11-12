@@ -9,7 +9,8 @@ Resolution order for a label:
 4. A macrolanguage represented by its members: its label_to member (zh -> cmn, no -> nb),
    or else its most-spoken member
 5. The label's first subtag, run through steps 1-4 again
-Labels that don't resolve return None and are skipped by collectors.
+Labels that don't resolve return None and are skipped by collectors. Speech locales are first looked up
+in config/crosswalk_speech.csv (ar-EG -> Egyptian Arabic): see to_ltdi(speech=True).
 """
 
 from __future__ import annotations
@@ -62,9 +63,20 @@ def _norm(label: str) -> str:
     return label.strip().lower().replace("_", "-")
 
 
-def to_ltdi(label: str) -> str | None:
+@lru_cache(maxsize=1)
+def _speech() -> dict[str, str]:
+    with (CONFIG / "crosswalk_speech.csv").open(encoding="utf-8") as f:
+        return {r["label"].lower(): r["ltdi"] for r in csv.DictReader(f)}
+
+
+def to_ltdi(label: str, speech: bool = False) -> str | None:
+    """speech=True for speech recognition, text-to-speech and voice assistant locales, where a
+    country locale names the variety spoken there (ar-EG: Egyptian Arabic; config/crosswalk_speech.csv).
+    Saudi and Yemeni locales, which cover several varieties, stay Arabic."""
     table = _table()
     key = _norm(label)
+    if speech and key in _speech():
+        return _speech()[key]
     if key in table:
         return table[key]
     base = re.split(r"-", key)[0]

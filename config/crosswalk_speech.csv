@@ -1,0 +1,21 @@
+label,ltdi,note
+ar-eg,arz,"Speech locales name the Arabic spoken in a country: ar-EG is Egyptian Arabic. Text services (keyboards, translation, interface) keep ar-XX as Modern Standard Arabic."
+ar-jo,apc,Levantine
+ar-lb,apc,Levantine
+ar-sy,apc,Levantine
+ar-ps,apc,Levantine (Palestinian)
+ar-il,apc,Levantine (Palestinian)
+ar-iq,acm,Mesopotamian
+ar-ae,afb,Gulf
+ar-bh,afb,Gulf
+ar-kw,afb,Gulf
+ar-qa,afb,Gulf
+ar-om,acx,Omani
+ar-ma,ary,Moroccan
+ar-dz,arq,Algerian
+ar-tn,aeb,Tunisian
+ar-ly,ayl,Libyan
+ar-mr,mey,Hassaniya
+ar-sd,apd,Sudanese
+ar-td,shu,Chadian
+fa-af,prs,Dari (Persian of Afghanistan)

@@ -225,6 +225,10 @@ the coalition workstream it fits.
   infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
   scripts for about 690 more; another 71 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a
   rare one): remove a row once checked, and put any correction in `config/language_overrides.csv` (scripts column). Without a script the writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
+- Speech locales name the variety spoken in a country, so for speech recognition, text-to-speech and voice
+  assistants `ar-EG` counts for Egyptian Arabic, `ar-AE` for Gulf Arabic and `fa-AF` for Dari
+  (`config/crosswalk_speech.csv`); text services keep `ar-XX` as Arabic. Saudi and Yemeni locales, which cover
+  several varieties, stay Arabic.
 - LinguaMeta's endangerment levels sometimes belong to a minority variety rather than the whole language (Latvian's
   is Latgalian's); `config/endangerment_overrides.csv` corrects the clear cases (Slovenian, Armenian, Latvian, Swati),
   and gives a level for some widely used languages LinguaMeta doesn't assess (reviewed by the project lead).

@@ -11,10 +11,12 @@ Run:  python -m ltdi.collectors vendors   (needs the vendors' documentation site
 
 from __future__ import annotations
 
+from functools import lru_cache
+
 import re
 from collections import defaultdict
 
-from ..crosswalk import to_ltdi
+from ..crosswalk import _speech, to_ltdi
 from ..htmltables import tables, text
 from ..http import fetch
 from ..names import resolve
@@ -39,21 +41,39 @@ def table(url: str, heading: str | None = None, first: str | None = None) -> lis
     return out
 
 
-def code(label: str) -> str | None:
-    """LTDI code for a code cell; a cell can give alternatives ("iw or he")."""
+def code(label: str, speech: bool = False) -> str | None:
+    """LTDI code for a code cell; a cell can give alternatives ("iw or he"). speech=True for speech
+    locales, where ar-EG is Egyptian Arabic rather than Arabic (see crosswalk.to_ltdi)."""
     for part in label.split(" or "):
-        if part.strip() and (c := to_ltdi(part.strip().replace("_", "-"))):
+        if part.strip() and (c := to_ltdi(part.strip().replace("_", "-"), speech)):
             return c
     return None
 
 
-def named(names, indicator: str) -> set[str]:
+@lru_cache(maxsize=1)
+def _country_codes() -> dict[str, str]:
+    from ..backbone import country_names
+
+    return {name.lower(): cc for cc, name in country_names().items()}
+
+
+def spoken(n: str) -> str | None:
+    """For a speech service's 'Language (Country)' name, the variety spoken there, where a speech
+    locale names one: 'Arabic (United Arab Emirates)' is Gulf Arabic (crosswalk.to_ltdi, speech=True)."""
+    m = re.match(r"(.+?)\s*\((.+)\)$", n)
+    if not m:
+        return None
+    lang, cc = resolve(m.group(1)), _country_codes().get(m.group(2).strip().lower())
+    return to_ltdi(f"{lang}-{cc}", speech=True) if lang and cc and f"{lang}-{cc}" in _speech() else None
+
+
+def named(names, indicator: str, speech: bool = False) -> set[str]:
     out = set()
     for n in names:
         n = n.strip()
         if not n:
             continue
-        c = resolve(n)
+        c = (speech and spoken(n)) or resolve(n)
         if c:
             out.add(c)
         elif c is None:
@@ -90,8 +110,8 @@ def siri() -> set[str]:
     out = set()
     for item in apple("siri"):
         m = re.match(r"(.*?)\s*\((.*)\)$", item)
-        if m:
-            out |= named(m.group(2).split(","), "va_siri")
+        if m:  # "Country (Language, Language)": as a speech locale, the language as spoken in that country
+            out |= named([f"{l.strip()} ({m.group(1)})" for l in m.group(2).split(",")], "va_siri", speech=True)
         elif item in SIRI_COUNTRY:
             out.add(SIRI_COUNTRY[item])
         else:
@@ -163,8 +183,8 @@ VOICE_TYPE = {"Standard": "Standard", "Wavenet": "WaveNet", "Neural2": "Neural2"
               "Polyglot": "Polyglot", "News": "News", "Chirp-HD": "Chirp HD", "Chirp3-HD": "Chirp3-HD"}
 
 
-def _codes(rows, col) -> set[str]:
-    return {c for c in (code(r.get(col, "")) for r in rows) if c}
+def _codes(rows, col, speech: bool = False) -> set[str]:
+    return {c for c in (code(r.get(col, ""), speech) for r in rows) if c}
 
 
 def _features(found, notes, indicator, by_lang: dict[str, set[str]], weights: dict | None = None):
@@ -184,19 +204,19 @@ def collect() -> list[Record]:
                 notes[indicator].setdefault(c, note)
 
     # Google
-    mark("asr_google", _codes(table(GOOGLE_STT, first="Location"), "BCP-47"))
+    mark("asr_google", _codes(table(GOOGLE_STT, first="Location"), "BCP-47", speech=True))
     types: dict[str, set[str]] = defaultdict(set)
     for r in table(GOOGLE_TTS[0], first="Language"):  # the type is in the voice name: en-US-Neural2-A
-        if (c := code(r.get("Language code", ""))):
+        if (c := code(r.get("Language code", ""), speech=True)):
             m = re.match(r"[a-z]{2,3}-[A-Za-z]{2,4}-(.+)-[^-]+$", r["Voice name"])
             t = VOICE_TYPE.get(m.group(1)) if m else "Gemini-TTS"  # Gemini voices have bare names
             if t:
                 types[c].add(t)
     for r in table(GOOGLE_TTS[1], heading="Language availability"):
-        if (c := code(r.get("BCP-47 Code", ""))):
+        if (c := code(r.get("BCP-47 Code", ""), speech=True)):
             types[c].add("Chirp3-HD")
     for r in table(GOOGLE_TTS[2], heading="Available languages"):
-        if (c := code(r.get("BCP-47 code", ""))):
+        if (c := code(r.get("BCP-47 code", ""), speech=True)):
             types[c].add("Gemini-TTS" + ("" if r.get("Launch readiness") == "GA" else " (preview)"))
     mark("tts_google", types)
     _features(found, notes, "tts_google_voice_types",
@@ -218,13 +238,13 @@ def collect() -> list[Record]:
     mark("llm_app_gemini", named(gemini, "llm_app_gemini"))
     va = set()
     for r in table(ASSISTANT, heading="Google Assistant"):
-        va |= named(re.split(r",|\n", r.get("Supported Languages", "")), "va_google_assistant")
+        va |= named(re.split(r",|\n", r.get("Supported Languages", "")), "va_google_assistant", speech=True)
     mark("va_google_assistant", va)
 
     # Microsoft
     stt = defaultdict(set)
     for r in table(AZURE_SPEECH + "?tabs=stt", first="Locale (BCP-47)"):
-        c = code(r["Locale (BCP-47)"])
+        c = code(r["Locale (BCP-47)"], speech=True)
         if not c:
             continue
         for col, feat in (("Real-time transcription support", "real-time"), ("Batch transcription support", "batch"),
@@ -242,12 +262,13 @@ def collect() -> list[Record]:
         if "Real-time transcription support" in r or "Batch transcription support" in r:
             stt.setdefault(c, set())
     for r in table(AZURE_SPEECH + "?tabs=stt", heading="MAI-Transcribe"):
-        if (c := code(r["Language code"])) and any(v.startswith(TICK) for v in r.values()):
+        if (c := code(r["Language code"], speech=True)) and any(v.startswith(TICK) for v in r.values()):
             stt.setdefault(c, set()).add("MAI-Transcribe")
     asr = {c for c, f in stt.items() if f & {"real-time", "batch", "fast transcription"}}
     mark("asr_azure", asr)
     _features(found, notes, "asr_azure_features", {c: stt[c] for c in asr})
-    mark("tts_azure", _codes(table(AZURE_SPEECH + "?tabs=tts", heading="Text to speech voices"), "Locale (BCP-47)"))
+    mark("tts_azure", _codes(table(AZURE_SPEECH + "?tabs=tts", heading="Text to speech voices"), "Locale (BCP-47)",
+                             speech=True))
     mt = defaultdict(set)
     for r in table(AZURE_MT, heading="Translation"):
         c = code(r["Language code"])
@@ -310,7 +331,7 @@ def collect() -> list[Record]:
                         "Language interface pack: partly translated, over a base language"
 
     # Apple
-    mark("asr_apple", named(apple("dictation"), "asr_apple"))
+    mark("asr_apple", named(apple("dictation"), "asr_apple", speech=True))
     mark("kb_apple", named(apple("quicktype-keyboard-language-support"), "kb_apple"))
     feats = defaultdict(set)
     for section, feat in (("quicktype-keyboard-autocorrection", "Autocorrection"),
@@ -325,9 +346,9 @@ def collect() -> list[Record]:
     mark("va_siri", siri())
 
     # Amazon
-    mark("asr_amazon", _codes(table(TRANSCRIBE, heading="Supported languages"), "Language code"))
-    mark("tts_amazon", _codes(table(POLLY, first="Language"), "Language code"))
-    mark("va_alexa", _codes(table(ALEXA, first="Locale code"), "Locale code"))
+    mark("asr_amazon", _codes(table(TRANSCRIBE, heading="Supported languages"), "Language code", speech=True))
+    mark("tts_amazon", _codes(table(POLLY, first="Language"), "Language code", speech=True))
+    mark("va_alexa", _codes(table(ALEXA, first="Locale code"), "Locale code", speech=True))
 
     for ind, names in sorted(UNRESOLVED.items()):
         print(f"  {ind}: {len(names)} names not resolved, e.g. {', '.join(sorted(names)[:12])}")
