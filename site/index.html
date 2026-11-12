@@ -448,18 +448,20 @@ function pickMatches(q) {
     if (altNames(l).some(x => x.toLowerCase().includes(q))) return 4;
     return 9;
   };
+  // A language found only by another name shows that one name ("also Cantonese"), as the ranking does
   return ALL.map(l => [rank(l), l]).filter(([r]) => r < 9)
-    .sort((x, y) => x[0] - y[0] || (y[1].speakers || 0) - (x[1].speakers || 0)).slice(0, 12).map(([, l]) => l);
+    .sort((x, y) => x[0] - y[0] || (y[1].speakers || 0) - (x[1].speakers || 0)).slice(0, 12)
+    .map(([r, l]) => ({ l, also: r === 4 ? altNames(l).find(x => x.toLowerCase().includes(q)) : null }));
 }
 (function wirePickers() {
   const listOf = inp => document.getElementById(inp.id + '-list');
   const close = inp => { const ul = listOf(inp); if (ul) { ul.hidden = true; inp.setAttribute('aria-expanded', 'false'); } };
-  const choose = (inp, l) => { inp.value = `${l.name} (${l.code})`; close(inp); inp.dispatchEvent(new Event('change', { bubbles: true })); };
+  const choose = (inp, { l }) => { inp.value = `${l.name} (${l.code})`; close(inp); inp.dispatchEvent(new Event('change', { bubbles: true })); };
   const show = inp => {
     const ul = listOf(inp), found = pickMatches(inp.value);
     ul._found = found; ul._active = found.length ? 0 : -1;
-    ul.innerHTML = found.map((l, i) => `<li role="option" id="${inp.id}-o${i}" data-i="${i}" aria-selected="${i === 0}">${esc(l.name)}
-      <span class="auto">${esc(l.autonym && l.autonym !== l.name ? l.autonym : '')} [${l.code}]</span></li>`).join('')
+    ul.innerHTML = found.map(({ l, also }, i) => `<li role="option" id="${inp.id}-o${i}" data-i="${i}" aria-selected="${i === 0}">${esc(l.name)}
+      <span class="auto">${also ? `also ${esc(also)}` : esc(l.autonym && l.autonym !== l.name ? l.autonym : '')} [${l.code}]</span></li>`).join('')
       || '<li class="none" aria-disabled="true">No language found</li>';
     ul.hidden = !inp.value.trim();
     inp.setAttribute('aria-expanded', String(!ul.hidden));
