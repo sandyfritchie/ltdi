@@ -1,8 +1,39 @@
-# Corrections to LinguaMeta's endangerment levels, where the level belongs to a minority variety or
-# community rather than the language as a whole. Each has a national-language assessment in
-# Glottolog 5.4 (Ethnologue EGIDS 1, "National") or names the variety it came from.
+# Corrections to LinguaMeta's endangerment levels: where the level belongs to a minority variety or
+# community rather than the language as a whole, and levels for widely used languages LinguaMeta
+# doesn't assess. Reviewed by the project lead, with Glottolog 5.4 where it gives a national assessment.
 code,level,note
 sl,not_endangered,"Statutory national language of Slovenia; LinguaMeta's level is from minority communities (Glottolog 5.4: not endangered)"
 hy,not_endangered,"Statutory national language of Armenia; the endangered variety is Western Armenian (Glottolog 5.4: not endangered)"
 lv,not_endangered,"National language of Latvia; Glottolog's 'threatened' is ElCat's assessment of Latgalian"
 ss,not_endangered,"Statutory national language of Eswatini (Glottolog 5.4: not endangered)"
+dz,not_endangered,"National language of Bhutan"
+jam,not_endangered,"De facto language of national identity in Jamaica (Glottolog 5.4: not endangered)"
+tzm,not_endangered,"Official in Morocco; widely spoken"
+uk,not_endangered,"Ukrainian: not assessed in LinguaMeta; reviewed as not endangered"
+ca,not_endangered,"Catalan: not assessed in LinguaMeta; reviewed as not endangered"
+nb,not_endangered,"Norwegian Bokmål: not assessed in LinguaMeta; reviewed as not endangered"
+el,not_endangered,"Greek: not assessed in LinguaMeta; reviewed as not endangered"
+bg,not_endangered,"Bulgarian: not assessed in LinguaMeta; reviewed as not endangered"
+sk,not_endangered,"Slovak: not assessed in LinguaMeta; reviewed as not endangered"
+hr,not_endangered,"Croatian: not assessed in LinguaMeta; reviewed as not endangered"
+ms,not_endangered,"Malay: not assessed in LinguaMeta; reviewed as not endangered"
+et,not_endangered,"Estonian: not assessed in LinguaMeta; reviewed as not endangered"
+sr,not_endangered,"Serbian: not assessed in LinguaMeta; reviewed as not endangered"
+sw,not_endangered,"Swahili: not assessed in LinguaMeta; reviewed as not endangered"
+gsw,not_endangered,"Swiss German: not assessed in LinguaMeta; reviewed as not endangered"
+az,not_endangered,"Azerbaijani: not assessed in LinguaMeta; reviewed as not endangered"
+bar,not_endangered,"Bavarian: not assessed in LinguaMeta; reviewed as not endangered"
+sq,not_endangered,"Albanian: not assessed in LinguaMeta; reviewed as not endangered"
+ne,not_endangered,"Nepali: not assessed in LinguaMeta; reviewed as not endangered"
+uz,not_endangered,"Uzbek: not assessed in LinguaMeta; reviewed as not endangered"
+bs,not_endangered,"Bosnian: not assessed in LinguaMeta; reviewed as not endangered"
+be,not_endangered,"Belarusian: not assessed in LinguaMeta; reviewed as not endangered"
+or,not_endangered,"Odia: not assessed in LinguaMeta; reviewed as not endangered"
+mn,not_endangered,"Mongolian: not assessed in LinguaMeta; reviewed as not endangered"
+my,not_endangered,"Burmese: not assessed in LinguaMeta; reviewed as not endangered"
+ps,not_endangered,"Pashto: not assessed in LinguaMeta; reviewed as not endangered"
+nn,not_endangered,"Norwegian Nynorsk: not assessed in LinguaMeta; reviewed as not endangered"
+ku,not_endangered,"Kurmanji Kurdish: not assessed in LinguaMeta; reviewed as not endangered"
+qu,not_endangered,"Quechua: not assessed in LinguaMeta; reviewed as not endangered"
+mg,not_endangered,"Malagasy: not assessed in LinguaMeta; reviewed as not endangered"
+om,not_endangered,"Oromo: not assessed in LinguaMeta; reviewed as not endangered"

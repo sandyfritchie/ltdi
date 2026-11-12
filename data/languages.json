@@ -15984,7 +15984,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/az.json",
   "note": "Vendors' 'Azerbaijani' is North Azerbaijani. South Azerbaijani (azb) is separate.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": true,
   "alt_names": [
@@ -16695,7 +16695,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bar.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": true,
   "alt_names": [
@@ -19461,7 +19461,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/be.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": [
@@ -21028,7 +21028,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bg.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": []
@@ -30426,7 +30426,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bs.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": false,
   "alt_names": [
@@ -36703,7 +36703,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ca.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 4,
   "ud": true,
   "alt_names": [
@@ -55914,7 +55914,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/dz.json",
   "note": "",
   "extinct": false,
-  "endangerment": "vulnerable",
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -57138,7 +57138,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/el.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": [
@@ -59755,7 +59755,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/et.json",
   "note": "Standard Estonian has no separate speaker count.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": [
@@ -71666,7 +71666,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/gsw.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 0,
   "ud": true,
   "alt_names": [
@@ -78085,7 +78085,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hr.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 4,
   "ud": true,
   "alt_names": [
@@ -85472,7 +85472,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/jam.json",
   "note": "",
   "extinct": false,
-  "endangerment": "definitely_endangered",
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -105176,7 +105176,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ku.json",
   "note": "Vendors' 'Kurdish' is Kurmanji. Central Kurdish (ckb) is separate.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -125268,7 +125268,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/mg.json",
   "note": "Vendors' 'Malagasy' is Plateau Malagasy.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -130845,7 +130845,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/mn.json",
   "note": "Vendors' 'Mongolian' is Halh Mongolian.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -134916,7 +134916,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ms.json",
   "note": "Vendors' 'Malay' is Standard Malay. Indonesian (id) is separate.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": false,
   "alt_names": [
@@ -139474,7 +139474,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/my.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -141566,7 +141566,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/nb.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": null,
   "ud": false,
   "alt_names": [
@@ -143764,7 +143764,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ne.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": true,
   "alt_names": [
@@ -149814,7 +149814,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/nn.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -158152,7 +158152,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/om.json",
   "note": "Vendors label West Central Oromo as 'om'.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -159364,7 +159364,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/or.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": true,
   "alt_names": [
@@ -169189,7 +169189,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ps.json",
   "note": "Northern Pashto has no separate speaker count. Southern Pashto (pbt) is separate.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -171256,7 +171256,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/qu.json",
   "note": "Vendors' 'Quechua' is Southern Quechua (Ayacucho and Cusco). Other Quechuas are separate.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [
@@ -184694,7 +184694,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sk.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": []
@@ -188992,7 +188992,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sq.json",
   "note": "Vendors' 'Albanian' is Tosk. Gheg (aln) is separate.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": true,
   "alt_names": [
@@ -189296,7 +189296,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sr.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 4,
   "ud": true,
   "alt_names": [
@@ -192546,7 +192546,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sw.json",
   "note": "The speaker count sits on the macrolanguage. Congo Swahili (swc) is separate.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 2,
   "ud": false,
   "alt_names": [
@@ -210827,7 +210827,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/tzm.json",
   "note": "",
   "extinct": false,
-  "endangerment": "vulnerable",
+  "endangerment": "not_endangered",
   "joshi": null,
   "ud": false,
   "alt_names": [
@@ -211894,7 +211894,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/uk.json",
   "note": "",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": []
@@ -214945,7 +214945,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/uz.json",
   "note": "Vendors' 'Uzbek' is Northern Uzbek.",
   "extinct": false,
-  "endangerment": null,
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": [
