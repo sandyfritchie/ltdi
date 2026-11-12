@@ -236,10 +236,24 @@ def endangerment_overrides() -> dict[str, str]:
 
 
 def add_endangerment(lang: dict, level: str) -> None:
-    """A language is extinct when LinguaMeta says so and no speaker count says otherwise. "Extinct"
-    for a language with speakers recorded contradicts the count, so it gets no level."""
+    """A language is extinct when its level says so and no speaker count says otherwise."""
     lang["extinct"] = level == "extinct" and not lang["speakers"]
-    lang["endangerment"] = None if level == "extinct" and not lang["extinct"] else level or None
+    lang["endangerment"] = level or None
+
+
+def recorded_speakers(level: str, glotto: tuple[str, str] | None, lang: dict) -> tuple[str, str | None]:
+    """The level for a language listed as extinct that has speakers recorded: Glottolog's own level
+    if it isn't extinct (Senhaja de Srair: vulnerable); none for a second-language-only language
+    (N'Ko), where "extinct" means no first-language speakers; otherwise "revitalizing" (Cornish,
+    Manx, Wampanoag: listed as extinct, dormant or awakening, with speakers today)."""
+    from .glottolog import suspect
+
+    comment = glotto[1] if glotto else ""
+    if "second language only" in comment.lower():
+        return "", None
+    if glotto and glotto[0] != "extinct" and not suspect(comment, lang.get("iso_639_3"), lang["name"]):
+        return glotto[0], "glottolog"
+    return "revitalizing", None
 
 
 def alt_names(code: str, name: str, recs: dict[str, dict], absorbed: list[str]) -> list[str]:
@@ -314,6 +328,9 @@ def main() -> None:
                 if level:
                     source = "member"
                     break
+        if level == "extinct" and lang["speakers"]:
+            level, new_source = recorded_speakers(level, glotto.get(lang.get("glottocode")), lang)
+            source = new_source or source
         add_endangerment(lang, level)
         if lang["endangerment"] or lang["extinct"]:
             lang["endangerment_source"] = source

@@ -407,7 +407,8 @@ async function need(...codes) {
       return [i, { value, unit: DATA.units[i], source, url, retrieved, method, note: note || '' }];
     }));
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
-                       script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in });
+                       script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in,
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -624,7 +625,8 @@ let showGaps = false;       // only languages with something in the Gaps column
 const endSel = new Set();   // endangerment levels shown; empty means every living language
 // UNESCO's levels as LinguaMeta gives them; "extinct" covers languages LTDI keeps out of the ranking
 const END_LEVELS = [['not_endangered', 'Not endangered'], ['vulnerable', 'Vulnerable'], ['definitely_endangered', 'Definitely endangered'],
-  ['severely_endangered', 'Severely endangered'], ['critically_endangered', 'Critically endangered'], ['extinct', 'Extinct'], ['none', 'Not assessed']];
+  ['severely_endangered', 'Severely endangered'], ['critically_endangered', 'Critically endangered'], ['revitalizing', 'Revitalizing'],
+  ['extinct', 'Extinct'], ['none', 'Not assessed']];
 const END_LABEL = Object.fromEntries(END_LEVELS);
 const END_SOURCE = { linguameta: 'from LinguaMeta', glottolog: 'from Glottolog 5.4 (LinguaMeta gives none)',
   member: 'from its most-spoken member language', review: 'reviewed by the LTDI team' };
@@ -932,7 +934,7 @@ async function language(code) {
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span></h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
-        <span id="where">${whereLine(l, false)}</span>${endKey(l) !== 'none' ? `<span title="UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
+        <span id="where">${whereLine(l, false)}</span>${endKey(l) !== 'none' ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
         ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}

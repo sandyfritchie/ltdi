@@ -230,6 +230,8 @@ the coalition workstream it fits.
   and gives a level for some widely used languages LinguaMeta doesn't assess.
   Where LinguaMeta gives no level, Glottolog's current one is used (`ltdi/glottolog.py`, release pinned), unless
   its assessment names a different variety; a macrolanguage with none takes its most-spoken absorbed member's.
+- A language listed as extinct but with speakers recorded is "Revitalizing" (Cornish, Manx, Wampanoag), or takes
+  Glottolog's level where that isn't extinct; second-language-only languages (N'Ko) get no level.
 - A language is extinct when LinguaMeta's endangerment level says so and no speaker count is recorded (a few languages
   marked extinct have revival speakers). Extinct languages keep their pages but are left out of the ranking, totals and charts.
 - Most massively multilingual datasets on the Hub tag hundreds of languages each, so almost every language has a few.
