@@ -252919,10 +252919,10 @@
   "speakers": 1800000,
   "members": [],
   "scripts": [
-   "hani"
+   "latn"
   ],
   "script_names": [
-   "Han"
+   "Latin"
   ],
   "countries": [
    {
@@ -252942,7 +252942,6 @@
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
-  "script_source": "qq",
   "joshi": null,
   "ud": false,
   "alt_names": [
