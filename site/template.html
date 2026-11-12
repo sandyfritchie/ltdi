@@ -119,6 +119,15 @@ select, .msel summary { appearance: none; -webkit-appearance: none; padding-righ
 .controls select, .controls .msel summary { width: 12em; max-width: 100%; }
 .msel summary { overflow: hidden; text-overflow: ellipsis; }
 input[type=search], input.pick { width: 17em; max-width: 100%; }
+/* The language picker's suggestion list */
+.pickwrap { position: relative; display: inline-block; max-width: 100%; }
+.picklist { position: absolute; z-index: 40; left: 0; top: calc(100% + 4px); min-width: 100%; max-width: min(28em, calc(100vw - 32px));
+  max-height: 20em; overflow-y: auto; margin: 0; padding: 4px 0; list-style: none; box-sizing: border-box;
+  background: var(--surface); color: var(--ink); border: 1px solid var(--rule); border-radius: 6px; box-shadow: 0 6px 20px rgba(0,0,0,.14); }
+.picklist li { padding: 6px 12px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 14px; }
+.picklist li .auto { color: var(--muted); font-size: 13px; margin-left: 4px; }
+.picklist li[aria-selected=true], .picklist li[role=option]:hover { background: color-mix(in srgb, var(--accent) 13%, transparent); }
+.picklist li.none { color: var(--muted); cursor: default; }
 
 /* Totals band above the ranking */
 .rsum { display: grid; grid-template-columns: auto minmax(260px, 1fr) auto; gap: 14px 28px; align-items: start;
@@ -412,17 +421,66 @@ async function need(...codes) {
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
-// Language pickers: a text box with type-ahead over every language (one shared list), since a menu
-// of seven thousand names is too long to scroll
+// Language pickers: a text box with its own type-ahead list, since a menu of seven thousand names is
+// too long to scroll. It matches other names too (Cantonese finds Yue Chinese) but shows only each
+// language's name, autonym and code: other-name data is uneven, so it isn't displayed.
 function langPicker(id, placeholder, current) {
-  if (!document.getElementById('ltdi-dl')) {
-    const dl = document.createElement('datalist'); dl.id = 'ltdi-dl';
-    dl.innerHTML = ALL.map(l => `<option value="${esc(l.name)} (${l.code})"${l.alt ? ` label="${esc(altNames(l).join(', '))}"` : ''}>`).join('');
-    document.body.append(dl);
-  }
-  return `<input class="pick" id="${id}" list="ltdi-dl" autocomplete="off" aria-label="Language" placeholder="${esc(placeholder)}"
-    value="${current ? esc(`${current.name} (${current.code})`) : ''}" onfocus="this.select()">`;
+  return `<span class="pickwrap"><input class="pick" id="${id}" autocomplete="off" role="combobox" aria-autocomplete="list"
+    aria-expanded="false" aria-controls="${id}-list" aria-label="Language" placeholder="${esc(placeholder)}"
+    value="${current ? esc(`${current.name} (${current.code})`) : ''}" onfocus="this.select()"><ul class="picklist" id="${id}-list" role="listbox" hidden></ul></span>`;
 }
+function pickMatches(q) {
+  q = q.trim().toLowerCase();
+  if (!q) return [];
+  const rank = l => {
+    const n = l.name.toLowerCase(), a = (l.autonym || '').toLowerCase();
+    if (l.code.toLowerCase() === q || (l.iso_639_3 || '') === q) return 0;
+    if (n.startsWith(q)) return 1;
+    if (n.includes(q)) return 2;
+    if (a.includes(q)) return 3;
+    if (altNames(l).some(x => x.toLowerCase().includes(q))) return 4;
+    return 9;
+  };
+  return ALL.map(l => [rank(l), l]).filter(([r]) => r < 9)
+    .sort((x, y) => x[0] - y[0] || (y[1].speakers || 0) - (x[1].speakers || 0)).slice(0, 12).map(([, l]) => l);
+}
+(function wirePickers() {
+  const listOf = inp => document.getElementById(inp.id + '-list');
+  const close = inp => { const ul = listOf(inp); if (ul) { ul.hidden = true; inp.setAttribute('aria-expanded', 'false'); } };
+  const choose = (inp, l) => { inp.value = `${l.name} (${l.code})`; close(inp); inp.dispatchEvent(new Event('change', { bubbles: true })); };
+  const show = inp => {
+    const ul = listOf(inp), found = pickMatches(inp.value);
+    ul._found = found; ul._active = found.length ? 0 : -1;
+    ul.innerHTML = found.map((l, i) => `<li role="option" id="${inp.id}-o${i}" data-i="${i}" aria-selected="${i === 0}">${esc(l.name)}
+      <span class="auto">${esc(l.autonym && l.autonym !== l.name ? l.autonym : '')} [${l.code}]</span></li>`).join('')
+      || '<li class="none" aria-disabled="true">No language found</li>';
+    ul.hidden = !inp.value.trim();
+    inp.setAttribute('aria-expanded', String(!ul.hidden));
+  };
+  const move = (inp, d) => {
+    const ul = listOf(inp); if (ul.hidden || !ul._found?.length) return;
+    ul._active = (ul._active + d + ul._found.length) % ul._found.length;
+    ul.querySelectorAll('li[role=option]').forEach((li, i) => li.setAttribute('aria-selected', String(i === ul._active)));
+    const li = ul.children[ul._active]; li.scrollIntoView({ block: 'nearest' }); inp.setAttribute('aria-activedescendant', li.id);
+  };
+  document.addEventListener('input', e => { if (e.target.matches?.('input.pick')) show(e.target); });
+  document.addEventListener('keydown', e => {
+    const inp = e.target; if (!inp.matches?.('input.pick')) return;
+    const ul = listOf(inp);
+    if (e.key === 'ArrowDown') { e.preventDefault(); ul.hidden ? show(inp) : move(inp, 1); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); move(inp, -1); }
+    else if (e.key === 'Enter') { const l = ul?._found?.[ul._active]; if (!ul.hidden && l) { e.preventDefault(); choose(inp, l); } }
+    else if (e.key === 'Escape') close(inp);
+  });
+  document.addEventListener('mousedown', e => {
+    const li = e.target.closest?.('.picklist li[role=option]');
+    if (!li) return;
+    e.preventDefault();  // keep focus in the box until the choice is made
+    const inp = li.closest('.pickwrap').querySelector('input.pick');
+    choose(inp, listOf(inp)._found[+li.dataset.i]);
+  });
+  document.addEventListener('focusout', e => { if (e.target.matches?.('input.pick')) close(e.target); });
+})();
 const pickedCode = v => { const m = /\(([^()]+)\)\s*$/.exec(v || ''); return m && BY[m[1]] ? m[1] : null; };
 const DIMS = [['writing', 'w', '--writing'], ['data', 'd', '--data'], ['tech', 't', '--tech']];
 const $ = (s, el = document) => el.querySelector(s);
