@@ -1,0 +1,8 @@
+# Corrections to LinguaMeta's endangerment levels, where the level belongs to a minority variety or
+# community rather than the language as a whole. Each has a national-language assessment in
+# Glottolog 5.4 (Ethnologue EGIDS 1, "National") or names the variety it came from.
+code,level,note
+sl,not_endangered,"Statutory national language of Slovenia; LinguaMeta's level is from minority communities (Glottolog 5.4: not endangered)"
+hy,not_endangered,"Statutory national language of Armenia; the endangered variety is Western Armenian (Glottolog 5.4: not endangered)"
+lv,not_endangered,"National language of Latvia; Glottolog's 'threatened' is ElCat's assessment of Latgalian"
+ss,not_endangered,"Statutory national language of Eswatini (Glottolog 5.4: not endangered)"

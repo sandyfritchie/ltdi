@@ -79876,7 +79876,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/hy.json",
   "note": "",
   "extinct": false,
-  "endangerment": "definitely_endangered",
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": true,
   "alt_names": [
@@ -119888,7 +119888,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/lv.json",
   "note": "Standard Latvian has no separate speaker count.",
   "extinct": false,
-  "endangerment": "vulnerable",
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": [
@@ -185524,7 +185524,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sl.json",
   "note": "",
   "extinct": false,
-  "endangerment": "definitely_endangered",
+  "endangerment": "not_endangered",
   "joshi": 3,
   "ud": true,
   "alt_names": [
@@ -190124,7 +190124,7 @@
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ss.json",
   "note": "",
   "extinct": false,
-  "endangerment": "vulnerable",
+  "endangerment": "not_endangered",
   "joshi": 1,
   "ud": false,
   "alt_names": [

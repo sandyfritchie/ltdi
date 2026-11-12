@@ -225,6 +225,8 @@ the coalition workstream it fits.
   infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
   scripts for about 690 more; another 73 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a
   rare one). Without a script the writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
+- LinguaMeta's endangerment levels sometimes belong to a minority variety rather than the whole language (Latvian's
+  is Latgalian's); `config/endangerment_overrides.csv` corrects the clear cases (Slovenian, Armenian, Latvian, Swati).
 - A language is extinct when LinguaMeta's endangerment level says so and no speaker count is recorded (a few languages
   marked extinct have revival speakers). Extinct languages keep their pages but are left out of the ranking, totals and charts.
 - Most massively multilingual datasets on the Hub tag hundreds of languages each, so almost every language has a few.

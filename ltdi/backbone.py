@@ -227,6 +227,14 @@ def endangerment() -> dict[str, str]:
                 for r in csv.DictReader(f, delimiter="\t")}
 
 
+def endangerment_overrides() -> dict[str, str]:
+    path = CONFIG / "endangerment_overrides.csv"
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as f:
+        return {r["code"]: r["level"] for r in csv.DictReader(line for line in f if not line.startswith("#"))}
+
+
 def add_endangerment(lang: dict, level: str) -> None:
     """A language is extinct when LinguaMeta says so and no speaker count says otherwise. "Extinct"
     for a language with speakers recorded contradicts the count, so it gets no level."""
@@ -275,7 +283,7 @@ def main() -> None:
         with (DATA / "qq.csv").open(encoding="utf-8") as f:
             qq = {r["code"]: r for r in csv.DictReader(f)}
     held = held_scripts()
-    levels = endangerment()
+    levels = endangerment() | endangerment_overrides()
     members: dict[str, list[str]] = {}
     for m, unit in absorbed_by().items():
         members.setdefault(unit, []).append(m)
