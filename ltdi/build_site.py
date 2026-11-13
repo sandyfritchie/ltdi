@@ -47,6 +47,8 @@ SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi",
 PROFILE = ("script_names", "script_source", "endangerment_source", "note", "source", "written_in", "joshi", "ud")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
 # pseudo-regions (LinguaMeta lists them without speaker counts)
+# Region filter: one letter per region group, as the page reads them
+REGION_CODE = {"Africa": "A", "South Asia": "S", "Rest of Asia": "R", "Europe": "E", "Americas": "M", "Oceania": "O"}
 NOT_PLACES = {"aq", "bv", "gs", "hm", "tf", "um", "xa", "xb", "zz"}
 
 
@@ -62,6 +64,8 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     svc_index = {sv["id"]: i for i, sv in enumerate(scores["services"])}
     techs = list(scores["config"]["dimensions"]["tech"]["technologies"])
     langs, details, top = [], {}, []
+    from .backbone import _locales, region_group  # LinguaMeta's country -> region table (cached)
+    country_region = {c: region_group(v["region"], v["subregion"]) for c, v in _locales().items() if v.get("region")}
     # Fields that are the same in every opportunity from a rule go to the rule, once
     rules = {k: dict(v) for k, v in scores["rules"].items()}
     by_rule: dict[str, list[dict]] = {}
@@ -99,6 +103,9 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             "opportunity_count": len(opps),
             "alt": "|".join(l.get("alt_names") or []),  # other names, for search
             "cc": " ".join(c["code"] for c in l["countries"] if c["code"] not in NOT_PLACES),  # for the country filter
+            # every region it's spoken in (its home region and its countries'), for the region filter
+            "rg": "".join(sorted({REGION_CODE[r] for r in [l.get("region"), *(country_region.get(c["code"]) for c in l["countries"])]
+                                  if r in REGION_CODE})),
             **({"extinct": 1} if l.get("extinct") else {}),
             "online": round(l["speakers"] * reach["value"]) if l.get("speakers") and (
                 reach := scores["facts"].get(l["code"], {}).get("reach_voice_share")) else None,

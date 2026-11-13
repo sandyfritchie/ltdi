@@ -406,6 +406,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 <script id="ltdi-langs" type="application/json">/*__LANGS__*/</script>
 <script>
 const DATA = JSON.parse(document.getElementById('ltdi-data').textContent);
+const REGION_OF = { A: 'Africa', S: 'South Asia', R: 'Rest of Asia', E: 'Europe', M: 'Americas', O: 'Oceania' };
 // Extinct languages keep their pages and turn up in search, but are left out of the ranking, totals,
 // charts and map (LANGS) unless chosen in the ranking's endangerment drop-down
 const ALL = DATA.languages, BY = Object.fromEntries(ALL.map(l => [l.code, l]));
@@ -423,6 +424,8 @@ DATA.facts = {};
 const LEVEL_CODE = { f: 'full', p: 'part', o: 'open', n: 'none' };
 for (const l of ALL) {
   l._cc = new Set((l.cc || '').split(' ').filter(Boolean));
+  // every region it's spoken in, not just its home: English counts in the Americas and Oceania too
+  l._rg = new Set([...(l.rg || '')].map(c => REGION_OF[c]).concat(l.region ? [l.region] : []));
   l._offers = new Set(l.offers.map(i => DATA.services[i].id));
   l.levels = Object.fromEntries(Object.keys(CFG.tech.technologies).map((t, i) => [t, LEVEL_CODE[l.levels[i]]]));
   l.dimensions = Object.fromEntries(Object.entries(l.scores).map(([k, v]) => [k, { score: v, indicators: {} }]));
@@ -613,11 +616,11 @@ const prio = o => o[WEIGHT[weight].key] ?? o.priority;
 
 const TEAMS = DATA.teams;
 const REGION_ORDER = ['Africa', 'South Asia', 'Rest of Asia', 'Europe', 'Americas', 'Oceania'];
-const REGIONS = REGION_ORDER.filter(r => LANGS.some(l => l.region === r));
+const REGIONS = REGION_ORDER.filter(r => LANGS.some(l => l._rg.has(r)));
 // Regions are tick-boxes, so several can be looked at together (all of Asia; Africa and South Asia).
 // None ticked means every region; ticking them all clears the set.
 const regionSel = new Set();
-const inRegion = l => !regionSel.size || regionSel.has(l.region);
+const inRegion = l => !regionSel.size || [...regionSel].some(r => l._rg.has(r));
 // Countries: languages spoken there (LinguaMeta's country list), several at once like regions
 const countrySel = new Set();
 let countryQuery = '';  // what's typed in the country drop-down's search box
@@ -669,7 +672,7 @@ function wireCountries(wrap, draw) {
   };
   d.onclick = e => { if (e.target.closest('.msel-clear')) { countrySel.clear(); countryQuery = ''; redraw(); draw(); } };
 }
-const regionPicker = () => msel('regsel', regionSel, REGIONS.map(r => [r, r, '', ` <span class="cnt">${LANGS.filter(l => l.region === r).length.toLocaleString()}</span>`]),
+const regionPicker = () => msel('regsel', regionSel, REGIONS.map(r => [r, r, '', ` <span class="cnt">${LANGS.filter(l => l._rg.has(r)).length.toLocaleString()}</span>`]),
   'All regions', 'All regions', '', 'Show all regions');
 const regionNames = () => { const r = countrySel.size ? COUNTRIES.filter(c => countrySel.has(c)).map(c => COUNTRY_NAMES[c]) : REGIONS.filter(x => regionSel.has(x)); return r.length < 3 ? r.join(' and ') : `${r.slice(0, -1).join(', ')} and ${r.at(-1)}`; };
 // The map frame for the countries ticked (their outlines, and a box around their mainlands), else
@@ -845,7 +848,6 @@ const GAP_WEIGHT = { none: 2, open: 1 };
 const SORTS = {
   rank: ['#', l => l.rank ?? 1e9, 1], name: ['Language', l => l.name.toLowerCase(), 1], speakers: ['Speakers', l => l.speakers || 0, -1],
   online: ['Online', l => l.online || 0, -1],
-  region: ['Region', l => REGION_ORDER.indexOf(l.region) * 1e5 + (l.rank ?? 9e4), 1],
   ltdi: ['LTDI', l => l.ltdi, -1], tier: ['Tier', l => l.ltdi, -1],
   gaps: ['Gaps', l => Object.values(l.gaps).reduce((n, g) => n + GAP_WEIGHT[g], 0) * 1e5 + (l.rank ?? 9e4), 1],  // fewest first
 };
@@ -856,7 +858,7 @@ function sortBtn(key, inner = SORTS[key][0]) {
 function rankHead() {
   const aria = k => sortBy === k ? ` aria-sort="${(sortDir === SORTS[k][2]) === (SORTS[k][2] > 0) ? 'ascending' : 'descending'}"` : '';
   return `<th class="c-rank"${aria('rank')}>${sortBtn('rank')}</th><th class="c-name"${aria('name')}>${sortBtn('name')}</th>
-    <th class="num hide-sm hide-nar c-spk"${aria('speakers')}>${sortBtn('speakers')}</th><th class="num hide-sm c-onl" title="Estimated speakers online today, and their share of all speakers"${aria('online')}>${sortBtn('online')}</th><th class="hide-sm hide-md c-reg"${aria('region')}>${sortBtn('region')}</th>
+    <th class="num hide-sm hide-nar c-spk"${aria('speakers')}>${sortBtn('speakers')}</th><th class="num hide-sm c-onl" title="Estimated speakers online today, and their share of all speakers"${aria('online')}>${sortBtn('online')}</th>
     <th class="c-dim">Dimensions</th>
     <th class="num c-ltdi"${aria('ltdi')}>${sortBtn('ltdi')}</th><th class="c-tier hide-sm hide-tab"${aria('tier')}>${sortBtn('tier')}</th>
     <th class="hide-sm c-gaps" title="Main technologies no commercial service offers"${aria('gaps')}>${sortBtn('gaps')}</th>`;
@@ -969,7 +971,6 @@ function ranking() {
         <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">[${l.code}]</span></div></td>
         <td class="num hide-sm hide-nar">${people(l.speakers)}</td>
         <td class="num hide-sm">${people(l.online)}${l.online && l.speakers ? ` <span class="pct p${pctBand(l.online / l.speakers)}">(${Math.round(l.online / l.speakers * 100)}%)</span>` : ''}</td>
-        <td class="hide-sm hide-md">${esc(l.region || '')}</td>
         <td><div class="bars" aria-label="Writing ${l.dimensions.writing.score}, data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
           ${DIMS.map(([k, , c]) => bar(l.dimensions[k].score, c)).join('')}</div></td>
         <td class="num score">${l.ltdi.toFixed(3)}</td>
@@ -1616,7 +1617,7 @@ function charts() {
   const strip = `<svg viewBox="0 0 ${SW} ${SH}" role="img" aria-label="LTDI by region" style="width:100%;height:auto">
     <g class="grid">${(P ? [0, 0.25, 0.5, 0.75, 1.0] : x0 ? [0.4, 0.6, 0.8, 1.0] : [0, 0.2, 0.4, 0.6, 0.8, 1.0]).map(v => `<line x1="${sx(v)}" x2="${sx(v)}" y1="${top - 6}" y2="${SH - 22}"/><text x="${sx(v)}" y="${SH - 6}" text-anchor="middle">${P ? Math.round(v * 100) + '%' : v.toFixed(1)}</text>`).join('')}</g>
     ${regs.map((r, i) => {
-      const ls = LANGS.filter(l => l.region === r).sort((a, b) => sval(a) - sval(b)), cy = top + i * rowH + rowH / 2;
+      const ls = LANGS.filter(l => l._rg.has(r)).sort((a, b) => sval(a) - sval(b)), cy = top + i * rowH + rowH / 2;
       const lo = ls[0], hi = ls[ls.length - 1];
       // nudge dots that would overlap above and below the row line
       // crowded rows (many languages) get small, translucent dots spread vertically instead
@@ -1662,7 +1663,7 @@ function charts() {
     </section>`}
     <section class="chart">
       <h3>Where each language stands</h3>
-      <p class="sub">${P ? `Share of ${esc(pn)}'s ${provWhat(provider)} tracked here that cover each language, by region.` : 'Language Technology Development Index by region.'} Each dot is a language, with the lowest named below its row and the highest above. Select a dot to open its profile.</p>
+      <p class="sub">${P ? `Share of ${esc(pn)}'s ${provWhat(provider)} tracked here that cover each language, by region.` : 'Language Technology Development Index by region.'} Each dot is a language, in every region where it's spoken (English appears in several), with the lowest named below its row and the highest above. Select a dot to open its profile.</p>
       ${strip}
     </section>`;
   bindTips($('#view'));
