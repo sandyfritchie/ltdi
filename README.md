@@ -87,7 +87,6 @@ any name it can't resolve.
 | --- | --- | --- | --- |
 | Writing | Main script encoded | Unicode CLDR script metadata | automated |
 | Writing | Locale data coverage | Unicode CLDR | automated |
-| Writing | Letters displayed by Noto fonts | Google's Noto fonts (pinned) checked against Hyperglot's orthographies with its font checker (marks and joining shaped with HarfBuzz), else CLDR's exemplar characters, else the script only (`ltdi/collectors/fonts.py`, run by hand: `pip install hyperglot`) | automated |
 | Data | Web text (words) | FineWeb-2 language distribution | automated |
 | Data | Parallel text with English (sentence pairs) | OPUS, all corpora for the pair; web-mined corpora up to 20M pairs count at the share of distinct lines in a random sample that GlotLID identifies as the language (or a member, macrolanguage or indistinguishable neighbour) (`ltdi/collectors/opus_lid.py`, run on GitHub Actions) | automated |
 | Data | Annotated text (treebank words) | Universal Dependencies, latest release | automated |
@@ -231,6 +230,12 @@ the coalition workstream it fits.
   checked by language identification on a random sample of lines, which catches wrong-language and
   non-language text but not poor translations, so the count is still an upper bound.
 - Hub dataset counts depend on how authors tag their datasets.
+- Font support is checked but not scored (`ltdi/collectors/fonts.py`, `data/records/fonts.csv`): every Noto
+  Regular font and Noto Sans CJK, against Hyperglot's orthographies (with its HarfBuzz shaping checks) or
+  CLDR's exemplar characters. Noto displays 755 of the 764 languages with a documented character set; the
+  other 9 fail on quirks in the reference data (a stray combining overline in Hyperglot's Japanese, "ჳ/უ̂"
+  as one Laz letter) or on strict shaping thresholds, so the indicator would add nothing. The 6,300 other
+  languages have no documented character set, so only their script could be checked.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand, for the original 25.
 - LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's

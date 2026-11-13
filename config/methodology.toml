@@ -13,22 +13,18 @@ label = "Writing system readiness"
 [dimensions.writing.indicators.script_encoded]
 label = "Main script encoded in Unicode"
 scale = "bool"
-weight = 0.4
+weight = 0.5
 
-# Whether one of Google's open Noto fonts has every character the language
-# needs (Hyperglot's orthographies, else CLDR's exemplar characters; else only
-# the script is checked). See ltdi/collectors/fonts.py.
-[dimensions.writing.indicators.font_noto]
-label = "Letters displayed by Noto fonts"
-scale = "bool"
-weight = 0.2
-
+# Font support (ltdi/collectors/fonts.py, data/records/fonts.csv) is checked but
+# not scored: Google's Noto fonts display every language with a documented
+# character set except a handful, and those failures are mostly quirks in the
+# reference data, so it would add no information to the index.
 [dimensions.writing.indicators.cldr_coverage]
 label = "CLDR locale data coverage"
 scale = "linear"
 min = 0
 max = 3
-weight = 0.4
+weight = 0.5
 
 # ------------------------------------------------------------------- data ---
 # Missing indicators (e.g. Wikipedia before its collector has run) are left
