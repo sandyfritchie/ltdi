@@ -98,6 +98,9 @@ RULES = {
     "llm-reading": {"teams": ["evaluation"], "starter": ["flores200"],
         "missing": "Belebele's questions translated into this language. Belebele is built on FLORES-200 passages, "
                    "so where those exist only the questions are needed."},
+    "font": {"teams": ["standards"], "starter": ["cldr_coverage"],
+        "missing": "The missing characters added to a Noto font (requests go to github.com/notofonts), "
+                   "checked by a native reader."},
     "cldr": {"teams": ["standards", "keyboards"], "starter": ["cldr_coverage"],
         "missing": "Native speakers contributing through the CLDR Survey Tool to reach modern coverage."},
     "text-collect": {"teams": ["data", "funding"], "starter": ["web_text_words", "wikipedia_articles"],
@@ -373,6 +376,13 @@ def find(f: dict[str, Record]) -> list[dict]:
             "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, "
             "keyboards and reading numbers aloud in text-to-speech.",
             (3 - cldr) / 3, ["cldr_coverage"])
+
+    if _v(f, "font_noto") == 0:
+        add("font", "standardise", "writing", "Google's open Noto fonts can't display all its letters",
+            "Without a font that has every character, text shows as empty boxes or wrongly placed accents "
+            "on Android and other systems that rely on Noto, and people fall back on look-alike characters "
+            "that break search and spelling tools.",
+            1.0, ["font_noto"])
 
     # Text data
     if words and words < 1e8:

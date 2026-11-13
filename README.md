@@ -87,6 +87,7 @@ any name it can't resolve.
 | --- | --- | --- | --- |
 | Writing | Main script encoded | Unicode CLDR script metadata | automated |
 | Writing | Locale data coverage | Unicode CLDR | automated |
+| Writing | Letters displayed by Noto fonts | Google's Noto fonts (pinned) checked against Hyperglot's orthographies with its font checker (marks and joining shaped with HarfBuzz), else CLDR's exemplar characters, else the script only (`ltdi/collectors/fonts.py`, run by hand: `pip install hyperglot`) | automated |
 | Data | Web text (words) | FineWeb-2 language distribution | automated |
 | Data | Parallel text with English (sentence pairs) | OPUS, all corpora for the pair; web-mined corpora up to 20M pairs count at the share of distinct lines in a random sample that GlotLID identifies as the language (or a member, macrolanguage or indistinguishable neighbour) (`ltdi/collectors/opus_lid.py`, run on GitHub Actions) | automated |
 | Data | Annotated text (treebank words) | Universal Dependencies, latest release | automated |
