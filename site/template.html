@@ -1275,7 +1275,7 @@ function mapSection() {
   } else {
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>`;
-    sub = `Each dot represents a language, placed in its traditional home. The ${LANGS.length.toLocaleString()} languages in the Index are coloured by their tier${bg.length ? `, with ${bg.length.toLocaleString()} other languages without tiers in white` : ''}. Hover for names; select a dot for its profile.`;
+    sub = `Each dot represents a language, placed in its traditional home. The ${LANGS.length.toLocaleString()} languages in the Index are coloured by their tier${bg.length ? `, with ${bg.length.toLocaleString()} other languages, not yet scored, in white` : ''}. Hover for names; select a dot for its profile.`;
   }
   const F = mapFocus && BY[mapFocus], fp = F && pt[F.code];
   const focusBox = F ? `<div class="mapfocus" role="status"><span><b>${esc(F.name)}</b> · ${F.extinct ? 'extinct, so not on the map'
