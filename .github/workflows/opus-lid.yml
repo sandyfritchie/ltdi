@@ -1,0 +1,43 @@
+# Checks the language of OPUS's web-mined parallel corpora with GlotLID (ltdi/collectors/opus_lid.py).
+# Run by hand (Actions -> OPUS language check -> Run workflow); results are attached to the run as
+# opus_lid.csv and shown in the run summary. OPUS's storage isn't reachable from every network, so it
+# runs here.
+name: OPUS language check
+
+on:
+  workflow_dispatch:
+    inputs:
+      languages:
+        description: OPUS language labels, space-separated
+        default: ig ny gn jv fon
+      sample:
+        description: Lines sampled per corpus
+        default: "2000"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install the language identifier
+        run: pip install "fasttext-wheel==0.9.2" "numpy<2"
+      - uses: actions/cache@v4
+        with:
+          path: .cache/glotlid
+          key: glotlid-v3-e9592e0a9bc3
+      - name: Check corpora
+        env:
+          LANGUAGES: ${{ inputs.languages }}
+          SAMPLE: ${{ inputs.sample }}
+        run: python -m ltdi.collectors.opus_lid $LANGUAGES --sample "$SAMPLE"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: opus_lid
+          path: data/opus_lid.csv
