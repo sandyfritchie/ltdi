@@ -348,9 +348,9 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .maphead h3 { margin: 0; }
 /* the map's caption is a little wider than other captions (three lines at most on a desktop), and keeps room for its longest wording (a country
    chosen, in the areas view), so switching views or filters doesn't move the map */
-.chart .sub.mapsub { max-width: 85ch; min-height: 4.5em; }
-@media (max-width: 900px) { .chart .sub.mapsub { min-height: 6em; } }
-@media (max-width: 640px) { .chart .sub.mapsub { min-height: 9em; } .legend.map { min-height: 70px; align-content: flex-start; } }
+.chart .sub.mapsub { margin: 10px 0 0; }
+.legend.map { margin: 8px 0 12px; }  /* under the map, so its length never moves the map */
+@media (max-width: 640px) { .legend.map { min-height: 70px; align-content: flex-start; } }
 .mapmode { margin: 0; }
 .areas path { stroke: none; cursor: pointer; outline: none; }
 .areas path:hover { fill-opacity: 0.85; }
@@ -1458,7 +1458,6 @@ function mapSection() {
       <a href="#lang-${F.code}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
   return `<section class="chart">
     <div class="maphead"><h3>The world's languages</h3>${toggle}</div>
-    <p class="sub mapsub">${sub}</p>
     <div class="legend map">${legend}</div>
     ${focusBox}
     <div class="mapwrap"><div class="mapctl">
@@ -1476,6 +1475,7 @@ function mapSection() {
       ${F && !F.extinct && (fp || (areasOn && AREAS.paths[F.code])) ? '<circle id="focusring" r="0"/>' : ''}
     </svg></div>
     <p class="maphint">Drag to move · double-click or + to zoom in · Ctrl or ⌘ and scroll to zoom</p>
+    <p class="sub mapsub">${sub}</p>
     <p class="note">${P ? `Coloured by the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? '; a benchmark counts where it publishes a result' : ''}.` : 'Coloured by LTDI tier: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60.'} ${areasOn ? 'Areas from Glottography’s digitisation of Asher &amp; Moseley’s <i>Atlas of the World’s Languages</i> (2007), contemporary version (CC BY 4.0)' : 'Locations from LinguaMeta'}; map from Natural Earth.</p>
   </section>`;
 }
