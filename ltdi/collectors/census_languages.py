@@ -20,6 +20,7 @@ from __future__ import annotations
 import argparse
 import csv
 import io
+import re
 import sys
 import zipfile
 from collections import Counter, defaultdict
@@ -29,13 +30,11 @@ from ..http import fetch
 
 SOURCES = DATA / "sources"
 # UNdata's download link, with and without its column and sort options (tried in turn)
-UNDATA_URLS = [
-    "https://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27&DataMartId=POP&Format=csv"
+UNDATA_URLS = [  # the site moved under /legacy/ in 2026
+    "https://data.un.org/legacy/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27&DataMartId=POP&Format=csv"
     "&c=2,3,6,8,10,12,13,14,15,16,17,18&s=_countryEnglishNameOrderBy:asc,refYear:desc,areaCode:asc",
-    "http://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27&DataMartId=POP&Format=csv"
-    "&c=2,3,6,8,10,12,13,14,15,16,17,18&s=_countryEnglishNameOrderBy:asc,refYear:desc,areaCode:asc",
-    "https://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode%3a27&DataMartId=POP&Format=csv",
-    "https://data.un.org/_Docs/SYB/CSV/",  # not this table; only to see what the server answers
+    "https://data.un.org/legacy/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27&DataMartId=POP&Format=csv",
+    "https://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27&DataMartId=POP&Format=csv",
 ]
 UNDATA_OUT = SOURCES / "undata_population_by_language.csv"
 ACS_URL = ("https://www2.census.gov/programs-surveys/demo/tables/language-use/2017/"
@@ -59,6 +58,7 @@ def fetch_undata():
             print(f"UNdata: {url} -> {len(body)} bytes, starts {body[:60]!r}")
             if body[:2] == b"PK" or b"Country" in body[:200]:
                 break
+            print("   ", re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", body.decode("utf-8", "replace")))[:400])
         except Exception as e:
             print(f"UNdata: {url} -> {e}")
     text = _unzip_csv(body)
