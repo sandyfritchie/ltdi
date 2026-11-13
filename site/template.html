@@ -225,10 +225,10 @@ table.ranktab { table-layout: fixed; }
 .back { font: 600 14px var(--font-body); background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; margin-block: 18px 6px; }
 .lhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
 .lhead .lmain { flex: 1 1 360px; min-width: 0; }
-.lhead.lang { align-items: flex-start; }  /* the name at the top, beside the small map */
+.lhead.lang { align-items: flex-start; }  /* the name level with the score, the small map under the score */
 .lhead .lscore { flex: none; align-self: flex-start; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
 /* a language's page: where it's spoken, a small map that opens the Map tab */
-.minimap { display: block; width: 240px; max-width: 100%; aspect-ratio: 1 / 0.62; margin-bottom: 12px; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--surface); }
+.minimap { display: block; width: 240px; max-width: 100%; aspect-ratio: 1 / 0.62; margin-top: 14px; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--surface); }
 .minimap:hover { border-color: var(--muted); }
 .minimap svg { display: block; width: 100%; height: 100%; }
 .minimap .land { fill: var(--land); }
@@ -1239,7 +1239,7 @@ async function language(code) {
         ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
       </div>
-      <div class="lscore">${miniMap(l)}<div class="eyebrow">${l.rank ? `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}` : 'Extinct · not ranked'}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
+      <div class="lscore"><div class="eyebrow">${l.rank ? `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}` : 'Extinct · not ranked'}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}${miniMap(l)}</div>
     </div>
     <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}</div>
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
