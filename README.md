@@ -72,6 +72,11 @@ service never lowers a score. Depth that describes the technology as a whole
 (a published error rate) is averaged with presence. LLMs average availability in AI assistant apps with
 measured benchmark quality. Language identification counts open models, at half weight.
 
+Regional providers (Yandex, Baidu, Alibaba Cloud's Qwen-MT, Naver Papago, Sarvam AI, Lelapa AI,
+GhanaNLP's Khaya, Sunbird AI) count together as one extra commercial service, and only for the
+languages one of them offers, at the best credit among them. So a regional provider can raise a
+language's score and close a gap, but never lowers the score of a language it doesn't serve.
+
 ## Sources
 
 Vendor pages are read by `ltdi/collectors/vendors.py`: by language code where the page gives one, otherwise
@@ -98,6 +103,7 @@ any name it can't resolve.
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
 | Tech | Voice assistant | Google Assistant (speakers and displays), Siri, Alexa | automated |
+| Tech | Regional providers | Translation: Yandex, Baidu, Alibaba Cloud (Qwen-MT), Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP Khaya, Sunbird AI. Speech recognition: Yandex SpeechKit, Sarvam, Lelapa, Khaya, Sunbird. Text-to-speech: Yandex SpeechKit, Sarvam, Khaya, Sunbird | read by hand from each provider's language list (`ltdi/collectors/regional.py`) |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
 
 ## Spoken varieties and their written standard

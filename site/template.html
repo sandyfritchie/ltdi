@@ -31,7 +31,7 @@
   --pct-4: #1c5cab; --pct-3: #3f7fc6; --pct-2: #b8661c; --pct-1: #b3421a;
   --t-vh: #1c5cab; --t-h: #6da7ec; --t-m: #ea9447; --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
-  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f;
+  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -47,7 +47,7 @@
     --pct-4: #7fb0ee; --pct-3: #a6c8f2; --pct-2: #e9a061; --pct-1: #f27f52;
     --pct-4: #7fb0ee; --pct-3: #a6c8f2; --pct-2: #e9a061; --pct-1: #f27f52;
   --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
-    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
   }
 }
 :root[data-theme="dark"] {
@@ -58,7 +58,7 @@
   --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
   --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
   --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
-    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;
@@ -616,7 +616,7 @@ async function opportunities(lang) {
         <button class="chip" id="tm-all" data-tm="all" aria-pressed="${team === 'all'}">Everything · ${all.length}</button>
         ${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<button class="chip" id="tm-${k}" data-tm="${k}" aria-pressed="${team === k}">${esc(t)} · ${tcount[k]}</button>`).join('')}
       </div></div>
-    ${provider !== 'All' ? `<p class="note" style="margin-top:0">Opportunities where a ${esc(PROV[provider])} service tracked here doesn't yet cover the language.</p>` : ''}
+    ${provider !== 'All' ? `<p class="note" style="margin-top:0">Opportunities where a ${esc(PROV_ALL[provider])} service tracked here doesn't yet cover the language.</p>` : ''}
     ${!focus && DATA.opportunity_total > TOP.length ? `<p class="note">Showing ${TOP.length.toLocaleString()} of ${DATA.opportunity_total.toLocaleString()} opportunities: the highest-priority ones, with the top ones of every kind of action. Choose a language to see all of its own.</p>` : ''}
     ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">Nothing matches these filters.</p>'}
     ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}
@@ -894,9 +894,15 @@ function ranking() {
 const SVC = Object.fromEntries(DATA.services.map(s => [s.id, [s.name, s.kind, s.provider]]));
 // Commitment signatories first (Gates Foundation, Sept 2026), then other large companies, smaller ones, open source; tiles follow this order
 const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', meta: 'Meta', deepl: 'DeepL', open: 'Open source' };
+// Regional providers: one highlight chip for them all on language pages (most readers know the global ones)
+const REGIONAL = { yandex: 'Yandex', baidu: 'Baidu', alibaba: 'Alibaba Cloud', naver: 'Naver', sarvam: 'Sarvam AI', lelapa: 'Lelapa AI', ghananlp: 'GhanaNLP', sunbird: 'Sunbird AI' };
+const PROV_ALL = { ...PROV, ...REGIONAL };
+// Tile order: the global providers, then regional ones, then open source
+const PROV_ORDER = [...Object.keys(PROV).filter(k => k !== 'open'), ...Object.keys(REGIONAL), 'open'];
 // Provider highlight: dim every other provider's tiles (one rule per provider, so new providers just work)
 document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k =>
-  `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}</style>`);
+  `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}
+  section.focus-regional .tile[data-prov]:not([data-regional]) { opacity: .3; }</style>`);
 let provFocus = null, moreOpen = false;  // remembered while moving between languages
 const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => [s.id, s.depth]));
 // A published quality measure that discounts a service where it's poor (services.csv: quality)
@@ -938,10 +944,13 @@ function depthText(f, ind) {
   }
   return showValue(f);
 }
+// Regional providers appear only where they offer the language: a row of 'not yet' tiles for every language would be noise
+const regionalOn = (t, facts) => (t.regional || []).filter(id => facts[id] && facts[id].value);
 function svcTile(id, facts, open) {
   const f = facts[id], [name, kind, prov] = SVC[id] || [id, '', ''];
-  const pv = prov ? ` data-prov="${prov}" style="--p:var(--prov-${prov})"` : '';
-  const by = prov ? `<span class="by">${esc(PROV[prov])}</span>` : '';
+  const reg = prov in REGIONAL;
+  const pv = prov ? ` data-prov="${prov}"${reg ? ' data-regional' : ''} style="--p:var(--prov-${reg ? 'regional' : prov})"` : '';
+  const by = prov ? `<span class="by">${esc(PROV_ALL[prov] || prov)}</span>` : '';
   if (!f) return `<div class="tile off"${pv}><span class="mark" aria-hidden="true">–</span><div>${by}<b>${esc(name)}</b><small>${esc(kind)} · not benchmarked</small></div></div>`;
   const on = f.unit === 'bool' ? !!f.value : true;
   let detail = '';
@@ -963,13 +972,13 @@ function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
   let body = '';
   if (key === 'tech') {
-    body += `<div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries(PROV).map(([k, n]) =>
-      `<button class="chip prov" id="pv-${k}" data-pv="${k}" aria-pressed="${provFocus === k}" style="--p:var(--prov-${k})"><i></i>${esc(n)}</button>`).join('')}</div>`;
+    body += `<div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries({ ...PROV, ...(Object.values(cfg.technologies).some(t => regionalOn(t, facts).length) ? { regional: 'Regional providers' } : {}) }).map(([k, n]) =>
+      `<button class="chip prov" id="pv-${k}" data-pv="${k}" aria-pressed="${provFocus === k}" style="--p:var(--prov-${k})"${k === 'regional' ? ` title="${esc(Object.values(REGIONAL).join(', '))}"` : ''}><i></i>${esc(n)}</button>`).join('')}</div>`;
     const main = [], more = [], peek = [];
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
-      const ids = [...(t.consumer || []), ...(t.open || []), ...Object.keys(t.measured || {})];
-      const order = Object.keys(PROV), rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
+      const ids = [...(t.consumer || []), ...regionalOn(t, facts), ...(t.open || []), ...Object.keys(t.measured || {})];
+      const order = PROV_ORDER, rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
       const tiles = [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id))).join('');
       const row = `<div class="techrow">
         <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}</span></div>
@@ -990,7 +999,7 @@ function dimPanel(l, key, color) {
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}</div>`;
     }
   }
-  return `<section class="dim${key === 'tech' ? ' wide' : ''}${key === 'tech' && provFocus ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
+  return `<section class="dim${key === 'tech' ? ' wide' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
 }
 
 function reachLine(l) {
@@ -1107,7 +1116,7 @@ const levelOf = (l, key) => l.levels[key];  // worked out when scoring: full, pa
 let provider = 'All';
 const SERIES_PROV = { deepl: 'deepl', open_mt: 'meta', reading_bench: 'meta', open_asr: 'openai' };
 const offers = (l, id) => l._offers.has(id);
-const provIds = (t, prov) => [...(t.consumer || []), ...(t.open || []), ...Object.keys(t.measured || {})].filter(id => (SVC[id] || [])[2] === prov);
+const provIds = (t, prov) => [...(t.consumer || []), ...(t.regional || []), ...(t.open || []), ...Object.keys(t.measured || {})].filter(id => (SVC[id] || [])[2] === prov);
 const PLEVELS = [['full', 'Offered'], ['part', 'In some of its services'], ['none', 'Not found']];
 function provLevel(l, ids) { const n = ids.filter(id => offers(l, id)).length; return n === ids.length ? 'full' : n ? 'part' : 'none'; }
 const covCache = new Map();
@@ -1131,8 +1140,9 @@ function provMissing(o, l, prov) {  // the provider's services for this opportun
   return t ? provIds(t, prov).filter(id => !offers(l, id)).map(label) : [];
 }
 function providerSelect(id) {
-  return `<select id="${id}" aria-label="Provider"><option value="All"${provider === 'All' ? ' selected' : ''}>All providers</option>${Object.entries(PROV).map(([k, n]) =>
-    `<option value="${k}"${k === provider ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select>`;
+  const opt = ([k, n]) => `<option value="${k}"${k === provider ? ' selected' : ''}>${esc(n)}</option>`;
+  return `<select id="${id}" aria-label="Provider"><option value="All"${provider === 'All' ? ' selected' : ''}>All providers</option>${Object.entries(PROV).map(opt).join('')}
+    <optgroup label="Regional providers">${Object.entries(REGIONAL).map(opt).join('')}</optgroup></select>`;
 }
 
 const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
@@ -1173,7 +1183,7 @@ function mapSection() {
   const r0 = Math.max(1.7, 0.9 / px), rs = many ? Math.max(3, 2.2 / px) : Math.max(6.5, 4.5 / px), sw = many ? Math.max(0.6, 0.5 / px) : Math.max(1.6, 1.1 / px);
   mapR = { r0, rs, sw };
   const bgPath = bgDots(bg, r0);
-  const P = provider !== 'All', pn = P ? PROV[provider] : '';
+  const P = provider !== 'All', pn = P ? PROV_ALL[provider] : '';
   const val = l => P ? provCoverage(l, provider).share : l.ltdi;
   const tierKey = l => P ? covTier(val(l)) : tierOf(l.ltdi)[0];
   const tip = l => { if (!P) return `LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${l.rank}`;
@@ -1331,7 +1341,7 @@ function charts() {
     return (top.map(l => esc(l.name)).join(', ') || '—') + (ls.length > 12 ? ` and ${(ls.length - 12).toLocaleString()} more` : ''); };
 
   // 1. Coverage now (for one provider: its own services only)
-  const P = provider !== 'All', pn = P ? PROV[provider] : '';
+  const P = provider !== 'All', pn = P ? PROV_ALL[provider] : '';
   const LV = P ? PLEVELS : LEVELS;
   const shown = P ? techs.map(([k, t]) => [k, t, provIds(t, provider)]).filter(([, , ids]) => ids.length) : techs.map(([k, t]) => [k, t, null]);
   const absent = P ? techs.filter(([, t]) => !provIds(t, provider).length).map(([, t]) => t.label) : [];

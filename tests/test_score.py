@@ -117,3 +117,19 @@ class TestQuality:
         f = {"c": Record("x", "c", 0, "bool", "", ""), "o": Record("x", "o", 1, "bool", "", ""),
              "o_q": Record("x", "o_q", 100, "% WER", "", "")}
         assert tier(f, tech) == 0.125
+
+
+class TestRegional:
+    TECH = {"consumer": ["a", "b"], "regional": ["r1", "r2"], "open": []}
+
+    def facts(self, **kw):
+        return {k: Record("x", k, v, "bool", "", "") for k, v in kw.items()}
+
+    def test_regional_raises_a_score(self):
+        assert tier(self.facts(a=1, b=0, r1=1, r2=0), self.TECH) == round(0.25 + 0.75 * 2 / 3, 3)
+
+    def test_regional_never_dilutes_where_absent(self):
+        assert tier(self.facts(a=1, b=0, r1=0, r2=0), self.TECH) == round(0.25 + 0.75 * 1 / 2, 3)
+
+    def test_several_regional_count_once(self):
+        assert tier(self.facts(a=0, b=0, r1=1, r2=1), self.TECH) == round(0.25 + 0.75 * 1 / 3, 3)

@@ -77,10 +77,17 @@ def quality_factor(facts: dict[str, Record], tech: dict, service: str) -> float:
     return QUALITY_FLOOR + (1 - QUALITY_FLOOR) * q
 
 
-def presence(facts: dict[str, Record], tech: dict, ids: list[str]) -> float:
-    """0.25 for being offered at all, plus 0.75 x the services' mean credit."""
+def presence(facts: dict[str, Record], tech: dict, ids: list[str], regional: list[str] | None = None) -> float:
+    """0.25 for being offered at all, plus 0.75 x the services' mean credit.
+
+    Regional providers (Yandex, Baidu, Sarvam, Sunbird...) count together as one more service, and only
+    for a language one of them offers, with the best of their credits: so they can raise a score but
+    never dilute the share for languages they don't serve."""
     credits = [credit(facts, tech, i) for i in ids]
-    return round(ANY + (1 - ANY) * sum(credits) / len(ids), 3) if any(credits) else 0.0
+    best = max((credit(facts, tech, i) for i in regional or []), default=0.0)
+    if best:
+        credits.append(best)
+    return round(ANY + (1 - ANY) * sum(credits) / len(credits), 3) if any(credits) else 0.0
 
 
 def tier(facts: dict[str, Record], tech: dict) -> float | None:
@@ -91,12 +98,12 @@ def tier(facts: dict[str, Record], tech: dict) -> float | None:
     (language identification) count their open tools instead. LLMs combine product
     availability with measured benchmark results (see tech_score).
     """
-    consumer, open_ = tech.get("consumer", []), tech.get("open", [])
-    if not any(i in facts for i in consumer + open_):
+    consumer, open_, regional = tech.get("consumer", []), tech.get("open", []), tech.get("regional", [])
+    if not any(i in facts for i in consumer + open_ + regional):
         return None
     if not consumer:
         return presence(facts, tech, open_)
-    p = presence(facts, tech, consumer)
+    p = presence(facts, tech, consumer, regional)
     offered = [i for i in open_ if i in facts and facts[i].value]
     if p == 0 and offered:  # an open model alone: the base credit, discounted by its measured quality
         return round(ANY * max(quality_factor(facts, tech, i) for i in offered), 3)
@@ -147,11 +154,13 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
     levels, gaps = {}, {}
     for name, t in cfg["dimensions"]["tech"]["technologies"].items():
         cons, opn, meas = t.get("consumer", []), t.get("open", []), list(t.get("measured", {}))
+        reg = t.get("regional", [])
         src = cons or opn
-        n = sum(1 for i in src if facts.get(i) and facts[i].value)
-        levels[name] = "full" if n and n / len(src) >= 0.5 else "part" if n else \
+        r = int(any(facts.get(i) and facts[i].value for i in reg))  # regional providers: one more service, when present
+        n = sum(1 for i in src if facts.get(i) and facts[i].value) + r
+        levels[name] = "full" if n and n / (len(src) + r) >= 0.5 else "part" if n else \
             "open" if cons and any(facts.get(i) and facts[i].value for i in opn) else "none"
-        if (t.get("group") != "more" or t.get("gap")) and not any(_on(facts.get(i)) for i in cons):
+        if (t.get("group") != "more" or t.get("gap")) and not any(_on(facts.get(i)) for i in cons + reg):
             gaps[name] = "open" if any(_on(facts.get(i)) for i in opn + meas) else "none"
     offers = [sv["id"] for sv in services() if _on(facts.get(sv["id"]))]
     return {"levels": levels, "gaps": gaps, "offers": offers}
@@ -204,7 +213,8 @@ def inherited(cfg: dict) -> set[str]:
     inds = set(cfg["dimensions"]["writing"]["indicators"]) | set(spec.get("data", []))
     for t in spec.get("technologies", []):
         tech = cfg["dimensions"]["tech"]["technologies"][t]
-        inds |= set(tech.get("consumer", [])) | set(tech.get("open", [])) | set(tech.get("measured", {})) \
+        inds |= set(tech.get("consumer", [])) | set(tech.get("regional", [])) | set(tech.get("open", [])) \
+            | set(tech.get("measured", {})) \
             | set(tech.get("depth", {})) | {q["indicator"] for q in tech.get("quality", {}).values()}
     return inds
 

@@ -26,7 +26,7 @@ def load_config() -> dict:
         cfg = tomllib.load(f)
     techs = cfg["dimensions"]["tech"]["technologies"]
     for t in techs.values():
-        t.update(consumer=[], open=[], depth={}, depth_owner={}, quality={})
+        t.update(consumer=[], regional=[], open=[], depth={}, depth_owner={}, quality={})
     num = lambda x: float(x) if "." in x else int(x)
     for sv in services():
         t = techs[sv["technology"]]
@@ -41,6 +41,8 @@ def load_config() -> dict:
         if sv.get("quality"):
             t["quality"][sv["id"]] = {"indicator": sv["quality"], "poor": num(sv["quality_poor"]), "good": num(sv["quality_good"])}
     for t in techs.values():
+        if not t["regional"]:
+            del t["regional"]
         if not t["depth"]:
             del t["depth"]
         if not t["quality"]:

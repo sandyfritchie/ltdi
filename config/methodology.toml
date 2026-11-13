@@ -110,6 +110,11 @@ weight = 0.1
 # (Meta's FLORES-200 chrF++ for the Dense 3.3B model) and Whisper
 # (FLEURS word error rate, which also counts a listed language missing from
 # Whisper's published breakdown as poor).
+# Regional providers (services.csv role "regional": Yandex, Baidu, Alibaba
+# Cloud, Naver, Sarvam AI, Lelapa AI, GhanaNLP, Sunbird AI) count together as
+# one extra commercial service, only for the languages one of them offers, at
+# the best credit among them; so they raise a score or close a gap but never
+# dilute the share for languages they don't serve.
 # LLMs also use measured benchmark results (see [llm]).
 [dimensions.tech]
 label = "Technology support"
