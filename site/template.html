@@ -612,6 +612,8 @@ const REGIONS = REGION_ORDER.filter(r => LANGS.some(l => l.region === r));
 // None ticked means every region; ticking them all clears the set.
 const regionSel = new Set();
 const inRegion = l => !regionSel.size || regionSel.has(l.region);
+// the charts page's tier filter (tierSel, shared with the ranking) and region together
+const inView = l => inRegion(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]));
 const regionPicker = () => msel('regsel', regionSel, REGIONS.map(r => [r, r, '', ` <span class="cnt">${LANGS.filter(l => l.region === r).length.toLocaleString()}</span>`]),
   'All regions', 'All regions', '', 'Show all regions');
 const regionNames = () => { const r = REGIONS.filter(x => regionSel.has(x)); return r.length < 3 ? r.join(' and ') : `${r.slice(0, -1).join(', ')} and ${r.at(-1)}`; };
@@ -1214,21 +1216,31 @@ const AREAS = GEO && GEO.areas;  // embedded with the basemap
 // Share of the land drawn where the best-covered language is in each tier: paint the areas, lowest
 // tier first, on a small canvas and count pixels (Equal Earth keeps areas true)
 function tierLandShares(ls, tierKey, frame) {
-  const { width: W, height: H, path } = GEO.basemap, c = document.createElement('canvas');
+  const { width: W0, height: H0, path } = GEO.basemap, c = document.createElement('canvas');
+  const S = 3, W = W0 * S, H = H0 * S;  // drawn at three times the map's size, so edges are a small share
   c.width = W; c.height = H;
   const g = c.getContext('2d', { willReadFrequently: true });
   if (!g || typeof Path2D === 'undefined') return null;
+  g.scale(S, S);
   if (frame) g.clip(new Path2D(frame));  // a region: only the land inside its frame counts
-  g.fillStyle = 'rgb(1,0,0)'; g.fill(new Path2D(path));
-  const order = ['l', 'm', 'h', 'vh'], code = { l: 2, m: 3, h: 4, vh: 5 };
-  for (const t of order) {
-    g.fillStyle = `rgb(${code[t]},0,0)`;
+  // Each tier in its own colour, none of them a blend of two others, so the anti-aliased edges
+  // between areas (blends) match no tier and are left out rather than miscounted
+  const COL = { none: [255, 0, 0], l: [0, 255, 0], m: [0, 0, 255], h: [255, 255, 0], vh: [0, 255, 255] };
+  const rgb = t => `rgb(${COL[t].join(',')})`;
+  g.fillStyle = rgb('none'); g.fill(new Path2D(path));
+  for (const t of ['l', 'm', 'h', 'vh']) {
+    g.fillStyle = rgb(t);
     for (const l of ls) if (tierKey(l) === t && AREAS.paths[l.code]) g.fill(new Path2D(AREAS.paths[l.code]));
   }
-  const px = g.getImageData(0, 0, W, H).data, n = [0, 0, 0, 0, 0, 0];
-  for (let i = 0; i < px.length; i += 4) if (px[i + 3] > 127) n[px[i]]++;
-  const land = n.slice(1).reduce((a, b) => a + b, 0) || 1;
-  return { vh: n[5] / land, h: n[4] / land, m: n[3] / land, l: n[2] / land, none: n[1] / land };
+  const key = Object.fromEntries(Object.entries(COL).map(([t, c]) => [c.join(','), t]));
+  const px = g.getImageData(0, 0, W, H).data, n = { none: 0, l: 0, m: 0, h: 0, vh: 0 };
+  for (let i = 0; i < px.length; i += 4) {
+    if (px[i + 3] < 255) continue;
+    const t = key[`${px[i]},${px[i + 1]},${px[i + 2]}`];
+    if (t) n[t]++;
+  }
+  const land = Object.values(n).reduce((a, b) => a + b, 0) || 1;
+  return { vh: n.vh / land, h: n.h / land, m: n.m / land, l: n.l / land, none: n.none / land };
 }
 function mapSection() {
   if (!GEO) return '';
@@ -1250,10 +1262,10 @@ function mapSection() {
   const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || val(a) - val(b)).map(l => {
     const c = tierKey(l), p = pt[l.code];
     return `<a href="#lang-${l.code}"><circle class="sdot${l.code === mapFocus ? ' hit' : ''}" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
-      opacity="${inRegion(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`;
+      opacity="${inView(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`;
   }).join('');
   const counts = { vh: 0, h: 0, m: 0, l: 0 };
-  LANGS.filter(inRegion).forEach(l => counts[tierKey(l)]++);
+  LANGS.filter(inView).forEach(l => counts[tierKey(l)]++);
   const legendLabels = P ? { vh: '90%+ of its services', h: '60–90%', m: '30–60%', l: 'Under 30%' } : { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
   const areasOn = mapMode === 'areas' && AREAS;
   const toggle = AREAS ? `<div class="chips mapmode" role="group" aria-label="Map view">
@@ -1264,9 +1276,10 @@ function mapSection() {
     // a region is a place here: its frame, with every area in it at full strength (English and Spanish
     // in the Americas, though their region group is Europe)
     const frame = regionFrame();
-    const withArea = LANGS.filter(l => AREAS.paths[l.code]);
+    const inTiers = l => !tierSel.size || tierSel.has(tierOf(l.ltdi)[0]) || l.code === mapFocus;
+    const withArea = LANGS.filter(l => AREAS.paths[l.code] && inTiers(l));
     const order = { l: 0, m: 1, h: 2, vh: 3 };
-    layer = `<g class="areas${mapFocus ? ' focusing' : ''}">${[...LANGS].filter(l => AREAS.paths[l.code]).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
+    layer = `<g class="areas${mapFocus ? ' focusing' : ''}">${withArea.sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
       `<path d="${AREAS.paths[l.code]}" data-code="${l.code}"${l.code === mapFocus ? ' class="hit" filter="url(#soft)"' : ''} fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
     const sh = tierLandShares(withArea, tierKey, frame && frame.outline), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
@@ -1446,7 +1459,7 @@ function pinBar(bar) {
 }
 
 function charts() {
-  const langs = LANGS.filter(inRegion), N = langs.length;
+  const langs = LANGS.filter(inView), N = langs.length;
   const techs = Object.entries(CFG.tech.technologies);
   // tooltips name languages by speakers, up to 12, so they stay readable with thousands of languages
   const names = ls => { const top = ls.length > 12 ? [...ls].sort((a, b) => (b.speakers || 0) - (a.speakers || 0)).slice(0, 12) : ls;
@@ -1558,8 +1571,8 @@ function charts() {
   </svg>`;
 
   $('#view').innerHTML = `
-    <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
-      <button type="button" class="reset" id="cresetf"${!regionSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
+    <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span><span id="ctierwrap">${tierPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
+      <button type="button" class="reset" id="cresetf"${!regionSel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
@@ -1594,8 +1607,9 @@ function charts() {
   // keep the page where it is when a filter redraws the charts below
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
   wireMsel('cregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; mapView = null; charts(); reopen('cregwrap'); scrollTo(0, y); });
+  wireMsel('ctierwrap', tierPicker, tierSel, 4, () => { const y = scrollY; charts(); reopen('ctierwrap'); scrollTo(0, y); });
   $('#cpsel').onchange = keep(v => { provider = v; });
-  $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); provider = 'All'; mapView = null; charts(); scrollTo(0, y); };
+  $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); tierSel.clear(); provider = 'All'; mapView = null; charts(); scrollTo(0, y); };
   navBox('map', 'Find a language name or code');
   pinBar($('.controls.sticky'));
 }
