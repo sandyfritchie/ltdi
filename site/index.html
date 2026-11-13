@@ -348,7 +348,8 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .maphead h3 { margin: 0; }
 /* the map's caption is a little wider than other captions (three lines at most on a desktop), and keeps room for its longest wording (a country
    chosen, in the areas view), so switching views or filters doesn't move the map */
-.chart .sub.mapsub { margin: 10px 0 0; }
+.chart .sub.mapsub { margin: 10px 0 0; max-width: 67%; }
+@media (max-width: 640px) { .chart .sub.mapsub { max-width: none; } }
 .legend.map { margin: 8px 0 12px; }  /* under the map, so its length never moves the map */
 @media (max-width: 640px) { .legend.map { min-height: 70px; align-content: flex-start; } }
 .mapmode { margin: 0; }
@@ -1427,6 +1428,8 @@ function mapSection() {
       <button class="chip" data-mode="areas" aria-pressed="${!!areasOn}">Areas</button>
       <button class="chip" data-mode="dots" aria-pressed="${!areasOn}">Languages</button></div>` : '';
   let layer = dots, legend, sub;
+  const colour = P ? `the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? ' (a benchmark counts where it publishes a result)' : ''}`
+    : 'LTDI tier (very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60)';
   if (areasOn) {
     // a region is a place here: its frame, with every area in it at full strength (English and Spanish
     // in the Americas, though their region group is Europe)
@@ -1443,11 +1446,11 @@ function mapSection() {
     const sh = tierLandShares(withArea, tierKey, frame && frame.outline), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
       ${sh ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
-    sub = `Where each language is spoken today, shaded by tier: the ${withArea.length.toLocaleString()} languages with an area in the atlas. Areas overlap; each tier’s share of ${frame ? `the land in this view of ${esc(regionNames())}` : 'the world’s land'} counts the best-covered language in each place. ${countrySel.size ? `The main languages are named; to see every language spoken in ${countrySel.size > 1 ? 'these countries' : 'this country'}, switch to Languages.` : 'Hover for names.'}`;
+    sub = `Where each language is spoken today: the ${withArea.length.toLocaleString()} languages with an area in the atlas, shaded by ${colour}. Areas overlap; each tier’s share of ${frame ? `the land in this view of ${esc(regionNames())}` : 'the world’s land'} counts the best-covered language in each place. ${countrySel.size ? `The main languages are named; to see every language spoken in ${countrySel.size > 1 ? 'these countries' : 'this country'}, switch to Languages.` : 'Hover for names.'} Areas from Glottography’s digitisation of Asher &amp; Moseley’s <i>Atlas of the World’s Languages</i> (2007), contemporary version (CC BY 4.0); map from Natural Earth.`;
   } else {
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>`;
-    sub = `Each dot represents a language, placed in its traditional home. The ${LANGS.length.toLocaleString()} languages in the Index are coloured by their tier${bg.length ? `, with ${bg.length.toLocaleString()} other languages, not yet scored, in white` : ''}. Hover for names; select a dot for its profile.`;
+    sub = `Each dot represents a language, placed in its traditional home. The ${LANGS.length.toLocaleString()} languages in the Index are coloured by ${colour}${bg.length ? `, with ${bg.length.toLocaleString()} other languages, not yet scored, in white` : ''}. Hover for names; select a dot for its profile. Locations from LinguaMeta; map from Natural Earth.`;
   }
   const F = mapFocus && BY[mapFocus], fp = F && pt[F.code];
   const C = countrySel.size > 0;  // countries chosen: borders, softened areas and the main languages named
@@ -1476,7 +1479,6 @@ function mapSection() {
     </svg></div>
     <p class="maphint">Drag to move · double-click or + to zoom in · Ctrl or ⌘ and scroll to zoom</p>
     <p class="sub mapsub">${sub}</p>
-    <p class="note">${P ? `Coloured by the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? '; a benchmark counts where it publishes a result' : ''}.` : 'Coloured by LTDI tier: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60.'} ${areasOn ? 'Areas from Glottography’s digitisation of Asher &amp; Moseley’s <i>Atlas of the World’s Languages</i> (2007), contemporary version (CC BY 4.0)' : 'Locations from LinguaMeta'}; map from Natural Earth.</p>
   </section>`;
 }
 function bindMap() {
