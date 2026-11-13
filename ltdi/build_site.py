@@ -89,13 +89,13 @@ def add_census(scores: dict) -> None:
 
 
 def udhr_samples() -> dict[str, list[str]]:
-    """{language: [text, BCP 47 tag, direction, the text's name, its file]}: Article 1 of the Universal
+    """{language: [text, BCP 47 tag, direction, the text's name, its file, script]}: Article 1 of the Universal
     Declaration of Human Rights (data/udhr_article1.csv, ltdi.collectors.udhr), shown on its page."""
     import csv
     path = DATA / "udhr_article1.csv"
     if not path.exists():
         return {}
-    return {r["language"]: [r["text"], r["bcp47"], r["dir"], r["name"], r["f"]]
+    return {r["language"]: [r["text"], r["bcp47"], r["dir"], r["name"], r["f"], r["script"]]
             for r in csv.DictReader(path.open(encoding="utf-8"))}
 
 
