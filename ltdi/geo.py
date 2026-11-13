@@ -3,6 +3,8 @@
 Run:  python -m ltdi.geo
 Writes:
   data/world_languages.json  [code, name, x, y, speakers] for every individual language with a location
+  data/borders.json          {"countries", "other"}: Natural Earth 50m outlines, for the map zoomed to
+                             chosen countries
   data/basemap.json          {"width", "height", "path", "countries", "regions"}: Natural Earth countries
                              (110m, via world-atlas), projected to Equal Earth as one SVG path, each
                              country's outline and the box to frame it, and the box for each region
@@ -55,9 +57,12 @@ def to_svg(lon: float, lat: float) -> tuple[float, float]:
     return round((x + XMAX) * SCALE, 1), round((YMAX - y) * SCALE, 1)
 
 
-def basemap() -> dict:
+def basemap(scale: str = "110m", digits: int | None = None) -> dict:
+    """The world map: 110m for the world view; 50m (with digits=2) for the borders and coasts drawn
+    when the map is zoomed to a chosen country (data/borders.json)."""
     with tarfile.open(fileobj=io.BytesIO(fetch(WORLD_ATLAS))) as t:
-        topo = json.load(t.extractfile("package/countries-110m.json"))
+        topo = json.load(t.extractfile(f"package/countries-{scale}.json"))
+    fmt = (lambda v: f"{v:g}") if digits is None else (lambda v: f"{round(v, digits):g}")
     sx, sy = topo["transform"]["scale"]
     tx, ty = topo["transform"]["translate"]
     arcs = []
@@ -96,9 +101,13 @@ def basemap() -> dict:
                     continue  # rings reaching into the cropped far south
                 if max(lons) - min(lons) > 270:  # wraps the date line (Russia's Chukotka, Fiji): unwrap past 180°
                     lonlat = [(lon + 360 if lon < 0 else lon, lat) for lon, lat in lonlat]
-                pts = [to_svg(lon, lat) for lon, lat in lonlat]
+                pts = [to_svg(lon, lat) for lon, lat in lonlat] if digits is None else \
+                      [((x + XMAX) * SCALE, (YMAX - y) * SCALE) for x, y in (equal_earth(lo, la) for lo, la in lonlat)]
+                if digits is not None and len(pts) > 3:  # the detailed map: drop points closer than a 25th of a pixel to the line
+                    from shapely.geometry import LineString
+                    pts = list(LineString(pts).simplify(0.02).coords)
                 if len(pts) > 2:
-                    parts.append("M" + "L".join(f"{x:g},{y:g}" for x, y in pts) + "Z")
+                    parts.append("M" + "L".join(f"{fmt(x)},{fmt(y)}" for x, y in pts) + "Z")
                     if a2:
                         by_country.setdefault(a2, []).append(pts)
                         kept.append(pts)
@@ -108,6 +117,18 @@ def basemap() -> dict:
 
 
 COUNTRY_SHAPES: dict | None = None
+
+
+def write_borders() -> None:
+    """data/borders.json: Natural Earth 50m country outlines, for the map zoomed to chosen countries
+    (fetched by the page only then): {"countries": {code: SVG path}, "other": SVG path} (other: places
+    with no ISO code, such as Kosovo and Somaliland)."""
+    detail = basemap("50m", 2)
+    mine = set().union(*(set(v["outline"].split("Z")) for v in detail["countries"].values()))
+    other = "".join(r + "Z" for r in detail["path"].split("Z") if r and r not in mine)
+    out = {"countries": {k: v["outline"] for k, v in detail["countries"].items()}, "other": other}
+    (DATA / "borders.json").write_text(json.dumps(out, separators=(",", ":")), encoding="utf-8")
+    basemap()  # back to the world map's shapes for anything that follows
 
 
 def country_shapes() -> dict:
@@ -236,6 +257,7 @@ def main() -> None:
         x, y = to_svg(p[1], max(p[0], LAT_MIN))
         out.append([code, name, x, y, d.get("total_population") or 0])
     (DATA / "world_languages.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    write_borders()
     (DATA / "basemap.json").write_text(json.dumps(basemap() | {"regions": region_views()}), encoding="utf-8")
     missing = [c for c in slice_rows if c not in {r[0] for r in out}]
     print(f"{len(out)} language points; basemap written; scored languages without a point: {missing or 'none'}")

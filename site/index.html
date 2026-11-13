@@ -752,6 +752,12 @@ function regionFrame() {
     Math.max(...fs.map(f => f.box[2])), Math.max(...fs.map(f => f.box[3]))] };
 }
 // After a view redraws itself, open its drop-down again so several boxes can be ticked in a row
+document.addEventListener('click', e => {
+  document.querySelectorAll('details.msel[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('details.msel[open]').forEach(d => { d.open = false; d.querySelector('summary')?.focus(); });
+});
 const reopen = wrap => { const d = $(`#${wrap} details`); if (d) d.open = true; };
 const reopenCountries = wrap => { const d = $(`#${wrap} details`); if (!d) return; d.open = true;
   const f = d.querySelector('.msel-find'); if (f) { f.focus(); f.setSelectionRange(f.value.length, f.value.length); } };
@@ -1345,6 +1351,19 @@ let mapView = null;  // the map's zoom, kept while the charts page redraws (swit
 // Map view: the areas where languages are spoken, shaded by tier (Glottography), or a dot per language
 let mapMode = 'areas';
 const AREAS = GEO && GEO.areas;  // embedded with the basemap
+// Natural Earth 50m outlines (data/borders.json), fetched the first time the map is zoomed to chosen
+// countries; until they arrive the world map's own (110m) are drawn, then the map redraws in place
+let BORDERS = null, bordersLoading = null;
+function loadBorders() {
+  bordersLoading ??= fetch('data/borders.json').then(r => r.json()).then(d => {
+    BORDERS = { ...d, all: Object.values(d.countries).join('') + d.other };
+    if (countrySel.size && document.getElementById('worldmap') && location.hash.slice(1) === 'charts') {
+      const y = scrollY, open = document.querySelector('#cctrywrap details')?.open;  // a drop-down left open stays open
+      charts(); if (open) reopenCountries('cctrywrap'); scrollTo(0, y);
+    }
+  }).catch(() => {});
+  return bordersLoading;
+}
 // Share of the land drawn where the best-covered language is in each tier: paint the areas, lowest
 // tier first, on a small canvas and count pixels (Equal Earth keeps areas true)
 function tierLandShares(ls, tierKey, frame) {
@@ -1428,6 +1447,8 @@ function mapSection() {
   }
   const F = mapFocus && BY[mapFocus], fp = F && pt[F.code];
   const C = countrySel.size > 0;  // countries chosen: borders, softened areas and the main languages named
+  if (C && !BORDERS) loadBorders();
+  const land = C && BORDERS ? BORDERS.all : path;  // detailed coasts when zoomed to countries
   const focusBox = F ? `<div class="mapfocus" role="status"><span><b>${esc(F.name)}</b> · ${F.extinct ? 'extinct, so not on the map'
       : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F.ltdi)[1]} · rank ${F.rank}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
       <a href="#lang-${F.code}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
@@ -1440,10 +1461,10 @@ function mapSection() {
         <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
       </div><svg id="worldmap"${F ? ' class="focusing"' : ''} viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
       ${(F || C) && areasOn ? '<defs><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="softblur" stdDeviation="1"/></filter></defs>' : ''}
-      <path d="${path}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
+      <path d="${land}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
       ${areasOn ? layer : `<path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
       ${dots}`}
-      ${C ? `<path class="borders" d="${path}"/><path class="cborders" d="${[...countrySel].map(c => (GEO.basemap.countries || {})[c]?.outline || '').join('')}"/>` : ''}
+      ${C ? `<path class="borders" d="${land}"/><path class="cborders" d="${[...countrySel].map(c => (BORDERS && BORDERS.countries[c]) || (GEO.basemap.countries || {})[c]?.outline || '').join('')}"/>` : ''}
       ${C && areasOn ? `<g class="alabels">${areaLabels().map(([code, x, y]) => `<text x="${x}" y="${y}" data-code="${code}">${esc(BY[code].name)}</text>`).join('')}</g>` : ''}
       ${F && !F.extinct && areasOn && !AREAS.paths[F.code] && fp ? `<circle class="sdot hit" cx="${fp[2]}" cy="${fp[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[tierKey(F)]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"/>` : ''}
       ${F && !F.extinct && (fp || (areasOn && AREAS.paths[F.code])) ? '<circle id="focusring" r="0"/>' : ''}

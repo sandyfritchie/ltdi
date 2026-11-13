@@ -232,6 +232,9 @@ def main() -> None:
         total += len(text.encode())
         (out / f"{n}.json").write_text(text, encoding="utf-8")
     embed = _dump(details) if total <= EMBED_LIMIT else "null"
+    # detailed borders and coasts, fetched when the map is first zoomed to chosen countries
+    if (DATA / "borders.json").exists():
+        shutil.copyfile(DATA / "borders.json", SITE / "data" / "borders.json")
     # each country's own top opportunities, fetched when the country filter is first used
     (SITE / "data" / "country_opportunities.json").write_text(_dump(country_opportunities(scores)), encoding="utf-8")
 
