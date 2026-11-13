@@ -1,0 +1,5 @@
+language,subset,words,docs_sampled,chars_sampled,letters,private_use,replacement,scripts,retrieved
+aai,aai_Latn,473139,400,1676890,ABCDEFGHIJKLMNOPQRSTUVWYabcdefghijklmnopqrstuvwxyz,0.0,0.0,Latn:1.000,2026-11-13
+fon,fon_Latn,1434180,400,1466418,ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzÀÁÈÉÍÐÒÓÚàáâèéêëìíîïòóôùúûĐěƆƉƐǎǐǒǓǔɔɖɛ̀́̌έεὲ,0.0,0.0,Latn:0.973 Zinh:0.027 Grek:0.000 Cyrl:0.000,2026-11-13
+ha,hau_Latn,273435030,400,792555,ABCDEFGHIJKLMNOPQRSTUVWYZabcdefghijklmnopqrstuvwxyzƙɓɗ,0.0,0.0,Latn:0.998 Hang:0.002 Hani:0.000 Zinh:0.000,2026-11-13
+sat,sat_Olck,830551,400,1068555,ABCDEFGHIJKLMNOPRSTUVWXabcdefghijklmnoprstuvwxyzाকতনবযরসািে্ᱚᱛᱜᱝᱞᱟᱠᱡᱢᱣᱤᱥᱦᱧᱨᱩᱪᱫᱬᱭᱮᱯᱰᱱᱲᱳᱴᱵᱶᱷᱸᱹᱺᱼᱽ,0.0,0.0,Olck:0.941 Latn:0.057 Beng:0.002 Deva:0.000,2026-11-13
