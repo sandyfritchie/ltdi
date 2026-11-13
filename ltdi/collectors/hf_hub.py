@@ -3,6 +3,11 @@
   hf_datasets   number of public datasets whose card lists the language
                 (any tag that resolves to the language, e.g. sw and swh; a dataset counts once)
 
+Datasets tagged with many languages (Bible corpora, web crawls, machine-translated sets and their
+many re-uploads) would otherwise make up most of the count for smaller languages, whatever they hold
+for each one. A dataset tagged with more than 20 languages counts as 20 / (languages it tags):
+one tagged with 200 languages counts a tenth for each.
+
 Reads the whole dataset listing once (about a thousand datasets per request, within the Hub's
 rate limit) and keeps each dataset's language tags, so the cost does not grow with the number of
 languages. The listing is cached in .cache/hf_language_tags.json; delete it to refresh.
@@ -61,16 +66,30 @@ def listing() -> dict[str, list[str]]:
     return out
 
 
+MANY = 20  # languages a dataset can tag and still count in full for each
+
+
 def collect() -> list[Record]:
     found: dict[str, set[str]] = defaultdict(set)
     tags: dict[str, set[str]] = defaultdict(set)
+    width: dict[str, int] = {}
     for ds, labels in listing().items():
+        codes = {c: l for l in labels if (c := to_ltdi(l))}
+        width[ds] = len(set(codes))
         for label in labels:
             code = to_ltdi(label)
             if code:
                 found[code].add(ds)
                 tags[code].add(label)
-    return [Record(code, "hf_datasets", len(found[code]), "datasets", "Hugging Face Hub",
-                   f"https://huggingface.co/datasets?language=language:{code}",
-                   note="Tags: " + ", ".join(sorted(tags[code])) if tags[code] else "")
-            for code in ltdi_codes()]
+    out = []
+    for code in ltdi_codes():
+        weighted = sum(min(1.0, MANY / width[ds]) for ds in found[code])
+        many = sum(width[ds] > MANY for ds in found[code])
+        note = [f"{len(found[code])} datasets"] if found[code] else []
+        if many:
+            note.append(f"{many} tagged with more than {MANY} languages, counted in part")
+        if tags[code]:
+            note.append("tags: " + ", ".join(sorted(tags[code])))
+        out.append(Record(code, "hf_datasets", round(weighted, 1), "datasets, weighted", "Hugging Face Hub",
+                          f"https://huggingface.co/datasets?language=language:{code}", note="; ".join(note)))
+    return out

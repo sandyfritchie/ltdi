@@ -50,6 +50,9 @@ min = 0
 max = 1e6
 weight = 0.05
 
+# Bot-generated editions (Cebuano, Waray, Egyptian Arabic, Chechen, Tatar...) have
+# thousands of articles per active editor: articles count up to 1,000 per active
+# editor, and at least 10,000 (ltdi/collectors/wikipedia.py).
 [dimensions.data.indicators.wikipedia_articles]
 label = "Wikipedia articles"
 scale = "log"
@@ -74,6 +77,9 @@ max = 10000
 weight = 0.2
 
 # Everything else
+# Datasets tagged with many languages (Bible corpora, crawls, machine-translated sets
+# and their re-uploads) count 20 / (languages tagged) for each language when they tag
+# more than 20, so mass tagging doesn't make up most of a small language's count.
 [dimensions.data.indicators.hf_datasets]
 label = "Datasets on the Hugging Face Hub"
 scale = "log"

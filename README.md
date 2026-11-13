@@ -90,9 +90,9 @@ any name it can't resolve.
 | Data | Web text (words) | FineWeb-2 language distribution | automated |
 | Data | Parallel text with English (sentence pairs) | OPUS, all corpora for the pair | automated |
 | Data | Annotated text (treebank words) | Universal Dependencies, latest release | automated |
-| Data | Wikipedia articles and active editors | Meta-Wiki's List of Wikipedias (refreshed from each edition's statistics) | automated |
+| Data | Wikipedia articles and active editors | Meta-Wiki's List of Wikipedias (refreshed from each edition's statistics); articles count up to 1,000 per active editor (at least 10,000), since editions far beyond that are mostly bot-generated | automated |
 | Data | Open transcribed speech (hours) | Summed across Common Voice 27.0, FLEURS, YODAS2, WAXAL (automated) and Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech (`config/speech_datasets.csv`, from each paper or card) | automated and curated |
-| Data | Datasets on the Hugging Face Hub | Hub API: the whole dataset listing, read once, by language tag | automated |
+| Data | Datasets on the Hugging Face Hub | Hub API: the whole dataset listing, read once, by language tag; a dataset tagged with more than 20 languages counts 20 ÷ its languages for each | automated |
 | Data | Public benchmarks covering the language (of 9) | FLORES-200, Belebele, FLEURS, Global-MMLU, MMMLU, INCLUDE, XNLI, MGSM, IrokoBench | automated |
 | Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | automated |
 | Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation, Amazon Transcribe; Whisper and MMS (open); depth: Whisper large-v3 FLEURS WER, Azure speech-to-text features | automated |
@@ -224,6 +224,10 @@ the coalition workstream it fits.
   transcriptions; IndicVoices is its first release and Vaani a lower bound (later releases are larger);
   FLEURS is counted at a nominal 12 hours. NaijaVoices is non-commercial.
 - OPUS counts overlap between corpora, and most sentence pairs are web-mined (the share is in each note).
+- Web-crawled data for low-resource languages is often not in the language at all (Kreutzer et al. 2022,
+  "Quality at a Glance", TACL). FineWeb-2 filters with GlotLID per language; Wikipedia articles are capped per
+  active editor and mass-tagged Hugging Face datasets counted in part (above). OPUS's web-mined pairs are not
+  yet checked or discounted.
 - Hub dataset counts depend on how authors tag their datasets.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand, for the original 25.

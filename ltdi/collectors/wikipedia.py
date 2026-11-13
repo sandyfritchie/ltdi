@@ -3,6 +3,11 @@
 Article counts measure volume but include bot-generated stubs; active editors
 (registered users who edited in the last 30 days) measure the living community.
 
+Some editions are mostly bot-generated: Cebuano has about 28,000 articles per active editor,
+Waray 20,000, Egyptian Arabic 5,000, where large human-written editions have tens to a few hundred.
+So an edition's articles count up to 1,000 per active editor (and at least 10,000 in all, since a
+small community's editor count swings from month to month); the full count is kept in the note.
+
 Read from one page, Meta-Wiki's sortable List of Wikipedias, which is refreshed from each
 edition's own statistics several times a day. Each edition is credited to the LTDI language its
 code resolves to (a few historical edition codes are mapped below). Editions that resolve to no
@@ -33,6 +38,15 @@ EDITION_CODE = {
 }
 
 
+PER_EDITOR = 1000   # articles counted per active editor
+FLOOR = 10_000      # articles always counted in full
+
+
+def counted(articles: int, editors: int) -> int:
+    """Articles credited to an edition: beyond 1,000 per active editor, taken to be bot-generated."""
+    return min(articles, max(FLOOR, PER_EDITOR * editors))
+
+
 def _int(s: str) -> int:
     s = s.replace(",", "").strip()
     return int(s) if s.isdigit() else 0
@@ -61,12 +75,16 @@ def collect() -> list[Record]:
     out = []
     for code in ltdi_codes():
         eds = by_code.get(code, [])
-        articles = sum(a for _, a, _ in eds)
+        listed = sum(a for _, a, _ in eds)
+        articles = sum(counted(a, e) for _, a, e in eds)
         editors = sum(e for _, _, e in eds)
         src = LIST + ("#" + eds[0][0] if eds else "")
-        note = ("Editions: " + ", ".join(w for w, _, _ in eds)) if len(eds) > 1 else ""
+        note = [("Editions: " + ", ".join(w for w, _, _ in eds))] if len(eds) > 1 else []
+        if articles < listed:
+            note.append(f"{listed:,} articles listed; counted up to {PER_EDITOR:,} per active editor, "
+                        "since most beyond that are bot-generated")
         out.append(Record(code, "wikipedia_articles", articles, "articles", "Wikipedia", src, method="api",
-                          note=note))
+                          note="; ".join(note)))
         out.append(Record(code, "wikipedia_active_editors", editors, "editors", "Wikipedia", src, method="api",
                           note="Registered users with an edit in the last 30 days" if editors else ""))
     return out

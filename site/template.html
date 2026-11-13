@@ -541,6 +541,7 @@ function showValue(f) {
   if (f.unit === 'editors') return big(v) + ' active editors';
   if (f.unit === 'sentence pairs') return big(v) + ' sentence pairs';
   if (f.unit === 'datasets') return big(v) + ' datasets';
+  if (f.unit === 'datasets, weighted') return `${v >= 1000 ? big(v) : v >= 1 ? Math.round(v) : 'Under 1'} ${v >= 1.5 ? 'datasets' : 'dataset'}, weighted`;
   if (/^benchmarks of \d+$/.test(f.unit)) return `${v} of ${f.unit.split(' ').pop()}`;
   return v;
 }
