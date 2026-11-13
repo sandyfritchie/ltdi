@@ -15,6 +15,7 @@ ara,ar,
 pa-in,pa,Gurmukhi Punjabi
 pa-pk,pnb,Shahmukhi Punjabi is Western Punjabi
 pa-arab,pnb,
+az-arab,azb,"Azerbaijani in Arabic script is South Azerbaijani (OPUS az_Arab, NLLB azb_Arab)"
 nor,nb,
 iw,he,"Deprecated code for Hebrew, still used by Google"
 jw,jv,"Deprecated code for Javanese, still used by Google"

@@ -51,7 +51,10 @@ CHUNK = 16 * 1024 * 1024
 EXAMPLES = 8  # lines in another language printed per corpus, to see what they are
 MIN_WORDS, MIN_CHARS = 3, 15  # lines with fewer words and characters are too short to identify; counted apart
 FIELDS = ["language", "opus_label", "corpus", "pairs", "size_mb", "lines_read", "sampled", "in_language",
-          "other_language", "too_short", "top_labels", "url", "retrieved"]
+          "other_language", "too_short", "distinct", "top_labels", "labels", "url", "retrieved"]
+# labels: every label GlotLID gave, as label:lines:distinct lines (of the sample, too-short lines left
+# out), so which labels count as the language can be decided when scoring (opus.py) without a re-run.
+# distinct: share of sampled lines that are not repeats of another sampled line.
 
 
 class RangeFile(io.RawIOBase):
@@ -168,7 +171,12 @@ def check(lid, label: str, corpus: dict, k: int) -> dict:
     shorts = [l for l in lines if short(l)]
     for l in rng.sample(shorts, min(3, len(shorts))):
         print(f"      (short): {l[:110]}", flush=True)
+    distinct: dict[str, set] = collections.defaultdict(set)
+    for lab, l in zip(labels, long):
+        distinct[lab[0].removeprefix("__label__")].add(l)
     return {
+        "labels": " ".join(f"{lab}:{v}:{len(distinct[lab])}" for lab, v in found.most_common()),
+        "distinct": round(len(set(lines)) / total, 3),
         "language": code, "opus_label": label, "corpus": corpus["corpus"], "pairs": corpus["alignment_pairs"],
         "size_mb": round(int(corpus.get("size") or 0) / 1024), "lines_read": n, "sampled": len(lines),
         "in_language": round(ours / total, 3), "other_language": round((len(long) - ours) / total, 3),
