@@ -32,6 +32,7 @@ python -m ltdi.collectors.history     # coverage history -> data/history.csv (cl
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
 python -m ltdi.areas           # map's tier view: Glottography language areas, projected and simplified
 python -m ltdi.collectors.census_languages  # census languages by country -> data/census_languages.csv
+python -m ltdi.collectors.udhr # Article 1 of the UDHR for each language's page -> data/udhr_article1.csv
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
 python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
@@ -156,6 +157,16 @@ of LinguaMeta's ~6,450 individual languages with a location, placed in the count
 from dark blue (very high) to dark orange (low); the rest are white. It has the region, country and tier
 filters but not the provider filter. Each language's page has a small map of its area, or its dot.
 The basemap is Natural Earth (via world-atlas) in the Equal Earth projection.
+
+## Writing sample
+
+Each language's page shows Article 1 of the Universal Declaration of Human Rights in the language, where
+there's a translation: 437 languages, from the UDHR in XML project (`ltdi/collectors/udhr.py`; Eric Muller's
+continuation of Unicode's "UDHR in Unicode", repository eric-muller/udhr, pinned commit), which puts the
+translations collected by the UN human rights office and others into one form. Only its "reasonably
+complete" texts (stage 4) are used. Where several texts map to one language (dialects, scripts, older
+orthographies), the one shown is in the language's main script, then tagged for the language itself rather
+than a variety, then the plainest. It isn't scored.
 
 ## Countries
 

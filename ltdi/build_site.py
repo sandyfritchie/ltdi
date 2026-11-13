@@ -88,6 +88,17 @@ def add_census(scores: dict) -> None:
         by[code]["census"] = [c[:3] for c in sorted(by[code]["census"], key=lambda c: -c[3])]
 
 
+def udhr_samples() -> dict[str, list[str]]:
+    """{language: [text, BCP 47 tag, direction, the text's name, its file]}: Article 1 of the Universal
+    Declaration of Human Rights (data/udhr_article1.csv, ltdi.collectors.udhr), shown on its page."""
+    import csv
+    path = DATA / "udhr_article1.csv"
+    if not path.exists():
+        return {}
+    return {r["language"]: [r["text"], r["bcp47"], r["dir"], r["name"], r["f"]]
+            for r in csv.DictReader(path.open(encoding="utf-8"))}
+
+
 def census_countries() -> list[str]:
     """Countries with census figures on language (data/census_languages.csv); the page notes the others."""
     import csv
@@ -273,6 +284,9 @@ def main() -> None:
     add_census(scores)
     index, details = split(scores)
     index["census_countries"] = census_countries()
+    for code, sample in udhr_samples().items():
+        if code in details:
+            details[code]["sample"] = sample
     out = SITE / "data" / "lang"
     shutil.rmtree(out, ignore_errors=True)
     out.mkdir(parents=True)

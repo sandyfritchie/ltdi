@@ -230,7 +230,12 @@ table.ranktab { table-layout: fixed; }
 .back { font: 600 14px var(--font-body); background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; margin-block: 18px 6px; }
 .lhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
 .lhead .lmain { flex: 1 1 360px; min-width: 0; }
-.lhead.lang { align-items: flex-start; }  /* the name level with the score, the small map under the score */
+.lhead.lang { align-items: flex-start; }
+/* a language's page: Article 1 of the UDHR in the language */
+.sample { margin: 20px 0 4px; max-width: 72ch; }
+.sample blockquote { margin: 0; padding: 2px 0 2px 16px; border-left: 3px solid var(--writing); font-size: 18px; line-height: 1.6; overflow-wrap: anywhere; }
+.sample figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
+.sample figcaption .src { display: block; }  /* the name level with the score, the small map under the score */
 .lhead .lscore { flex: none; align-self: flex-start; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
 /* a language's page: where it's spoken, a small map that opens the Map tab */
 .minimap { display: block; width: 240px; max-width: 100%; aspect-ratio: 1 / 0.62; margin-top: 14px; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--surface); }
@@ -488,7 +493,7 @@ async function need(...codes) {
     }));
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -1238,6 +1243,19 @@ function reachLine(l) {
     <a href="${esc(f.reach_voice_share.url)}" target="_blank" rel="noopener">World Bank data</a></div>`;
 }
 
+// A writing sample: Article 1 of the Universal Declaration of Human Rights, from UDHR in XML (the
+// translations the UN human rights office collects, in one form), with the English for comparison
+const UDHR = 'https://github.com/eric-muller/udhr';
+const UDHR_COMMIT = '588b3f4b2d0467aff54842a4b926551b69d5a66a';
+function sampleBlock(l) {
+  if (!l.sample) return '';
+  const [text, tag, dir, name, f] = l.sample;
+  return `<figure class="sample">
+    <blockquote lang="${esc(tag)}" dir="${dir === 'rtl' ? 'rtl' : 'ltr'}">${esc(text)}</blockquote>
+    <figcaption>Article 1 of the Universal Declaration of Human Rights${l.code === 'en' ? '' : ': “All human beings are born free and equal in dignity and rights…”'}
+      <span class="src">From <a href="${UDHR}/blob/${UDHR_COMMIT}/data/udhr/udhr_${esc(f)}.xml" target="_blank" rel="noopener">UDHR in XML</a> (${esc(name)})</span></figcaption>
+  </figure>`;
+}
 // Where its speakers in a country are counted from a census (immigrant languages LinguaMeta doesn't
 // list there): which countries, and the source
 function censusLine(l) {
@@ -1274,6 +1292,7 @@ async function language(code) {
       </div>
       <div class="lscore"><div class="eyebrow">${l.rank ? `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}` : 'Extinct · not ranked'}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}${miniMap(l)}</div>
     </div>
+    ${sampleBlock(l)}
     <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}</div>
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
