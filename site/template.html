@@ -235,14 +235,16 @@ table.ranktab { table-layout: fixed; }
 .sample blockquote[dir="rtl"]::before { transform: scaleX(-1); }
 .sample figcaption { margin-top: 4px; padding-inline-start: 30px; font-size: 12px; color: var(--muted); }
 /* a few words spoken by a speaker (Lingua Libre) */
-.hear { margin: 12px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 13px; }
-.hear-h { color: var(--muted); }
+.hear { position: relative; margin: 12px 0 0; padding-inline-start: 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; font-size: 13px; }
+/* a speaker, in the writing colour, as the quotation mark above it: writing, then speech */
+.hear > .ticon { position: absolute; inset-inline-start: -1px; top: 3px; width: 24px; height: 24px; color: var(--writing); stroke-width: 2.4; }
 .clips { display: flex; flex-wrap: wrap; gap: 6px; }
 .clip { display: inline-flex; align-items: baseline; gap: 6px; padding: 4px 10px 4px 8px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink); font: 500 14px/1.3 var(--font-body); cursor: pointer; }
 .clip:hover { border-color: var(--muted); }
 .clip small { color: var(--muted); font-size: 12px; }
-.clip .ico { width: 0; height: 0; border-style: solid; border-width: 5px 0 5px 8px; border-color: transparent transparent transparent var(--writing); align-self: center; }
-.clip.playing .ico { width: 8px; height: 10px; border: 0; border-inline: 3px solid var(--writing); }
+.clip .ico { flex: none; width: 9px; height: 10px; align-self: center; background: var(--writing); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+/* the same box when playing, so the chip keeps its width */
+.clip.playing .ico { clip-path: none; background: linear-gradient(to right, var(--writing) 0 35%, transparent 35% 65%, var(--writing) 65%); }
 .hear-src { flex-basis: 100%; font-size: 12px; color: var(--muted); }  /* the name level with the score, the small map under the score */
 .lhead .lscore { flex: none; align-self: flex-start; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
 /* a language's page: where it's spoken, a small map that opens the Map tab */
@@ -1270,7 +1272,7 @@ function hearBlock(l) {
   const an = /^[AEIOU]/.test(l.name) ? 'an' : 'a';
   const clip = ([word, gloss, src]) => `<button type="button" class="clip" data-src="${esc(src)}" aria-label="Play ${esc(word)}"${gloss ? ` title="${esc(gloss)}"` : ''}>
       <span class="ico" aria-hidden="true"></span><span lang="${esc(l.code)}">${esc(word)}</span>${gloss && gloss.length <= 28 ? `<small>${esc(gloss)}</small>` : ''}</button>`;
-  return `<div class="hear"><span class="hear-h">Hear ${an} ${esc(l.name)} speaker say</span>
+  return `<div class="hear" role="group" aria-label="Hear ${an} ${esc(l.name)} speaker say">${TICON.tts}
     <div class="clips">${h.clips.map(clip).join('')}</div>
     <div class="hear-src">Recorded by <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(h.clips[0][3])}" target="_blank" rel="noopener">${esc(h.speaker)}</a> for <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></div></div>`;
 }
