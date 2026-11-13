@@ -37,7 +37,8 @@ max = 1e11
 weight = 0.25
 
 # Web-mined OPUS corpora (CCAligned, CCMatrix, NLLB, WikiMatrix...) count at the share
-# of a 2,000-line random sample that GlotLID identifies as the language
+# of distinct lines in a 2,000-line random sample that GlotLID identifies as the
+# language (repeated lines count once)
 # (data/opus_lid.csv); corpora over 20M pairs aren't checked and count in full.
 [dimensions.data.indicators.parallel_sentences]
 label = "Parallel text with English (OPUS sentence pairs)"
