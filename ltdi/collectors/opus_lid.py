@@ -44,6 +44,7 @@ MODEL_FILE = "model_v3.bin"  # GlotLID v3, the version credited under language i
 MODEL_URL = f"{MODEL_REPO}/resolve/{MODEL_REV}/{MODEL_FILE}"
 OUT = DATA / "opus_lid.csv"
 CHUNK = 16 * 1024 * 1024
+EXAMPLES = 8  # lines in another language printed per corpus, to see what they are
 MIN_WORDS = 3  # shorter lines are too short to identify reliably; counted separately
 FIELDS = ["language", "opus_label", "corpus", "pairs", "size_mb", "lines_read", "sampled", "in_language",
           "other_language", "too_short", "top_labels", "url", "retrieved"]
@@ -147,7 +148,16 @@ def check(lid, label: str, corpus: dict, k: int) -> dict:
     ours = sum(v for lab, v in found.items() if to_ltdi(lab.split("_")[0]) == code)
     total = len(lines) or 1
     print(f"  {corpus['corpus']}: read {n:,} lines ({fetched / 1e6:,.0f} MB) in {time.time() - t:,.0f}s; "
-          f"{ours / total:.0%} in the language", flush=True)
+          f"{ours / total:.0%} in the language, {(len(lines) - len(long)) / total:.0%} too short; "
+          + ", ".join(f"{lab} {v / total:.0%}" for lab, v in found.most_common(6)), flush=True)
+    rng = random.Random(corpus["corpus"])
+    others = [(lab[0].removeprefix("__label__"), l) for lab, l in zip(labels, long)
+              if to_ltdi(lab[0].removeprefix("__label__").split("_")[0]) != code]
+    for lab, l in rng.sample(others, min(EXAMPLES, len(others))):
+        print(f"      {lab}: {l[:110]}", flush=True)
+    shorts = [l for l in lines if len(l.split()) < MIN_WORDS]
+    for l in rng.sample(shorts, min(3, len(shorts))):
+        print(f"      (short): {l[:110]}", flush=True)
     return {
         "language": code, "opus_label": label, "corpus": corpus["corpus"], "pairs": corpus["alignment_pairs"],
         "size_mb": round(int(corpus.get("size") or 0) / 1024), "lines_read": n, "sampled": len(lines),
