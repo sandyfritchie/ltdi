@@ -88,6 +88,13 @@ def add_census(scores: dict) -> None:
         by[code]["census"] = [c[:3] for c in sorted(by[code]["census"], key=lambda c: -c[3])]
 
 
+def census_countries() -> list[str]:
+    """Countries with census figures on language (data/census_languages.csv); the page notes the others."""
+    import csv
+    path = DATA / "census_languages.csv"
+    return sorted({r["country"] for r in csv.DictReader(path.open(encoding="utf-8"))}) if path.exists() else []
+
+
 def _country_name(code: str) -> str:
     try:
         import pycountry
@@ -265,6 +272,7 @@ def main() -> None:
     scores = json.loads((DATA / "scores.json").read_text(encoding="utf-8"))
     add_census(scores)
     index, details = split(scores)
+    index["census_countries"] = census_countries()
     out = SITE / "data" / "lang"
     shutil.rmtree(out, ignore_errors=True)
     out.mkdir(parents=True)

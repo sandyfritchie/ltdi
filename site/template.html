@@ -664,6 +664,15 @@ const inCountry = l => !countrySel.size || [...countrySel].some(c => l._cc.has(c
 // region, country and tier together (the tier set is shared by every page)
 const inView = l => inRegion(l) && inCountry(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]));
 const COUNTRY_NAMES = DATA.country_names || {};
+// Countries with census figures on language (immigrant languages counted); for the others a filtered
+// view says their immigrant communities' languages are missing
+const CENSUS = new Set(DATA.census_countries || []);
+function censusCaveat() {
+  const no = [...countrySel].filter(c => !CENSUS.has(c)).map(c => COUNTRY_NAMES[c] || c.toUpperCase()).sort();
+  if (!no.length) return '';
+  const list = no.length > 4 ? `${no.length} of the countries chosen` : no.length > 1 ? `${no.slice(0, -1).join(', ')} and ${no[no.length - 1]}` : no[0];
+  return `<p class="note">We couldn't find census figures on language for ${esc(list)}, so the languages of ${no.length > 1 ? 'their' : 'its'} immigrant communities aren't included: only the languages LinguaMeta lists for ${no.length > 1 ? 'them' : 'it'}.</p>`;
+}
 const COUNTRY_REGION = DATA.country_regions || {}, COUNTRY_ONLINE = DATA.country_online || {};
 // Speakers in view: with a region or country chosen, a language counts only its speakers in the
 // countries chosen (or the chosen regions' countries), from LinguaMeta's per-country figures; online,
@@ -814,6 +823,7 @@ async function opportunities(lang) {
       : !focus && DATA.opportunity_total > TOP.length ? `<p class="note">Showing ${TOP.length.toLocaleString()} of ${DATA.opportunity_total.toLocaleString()} opportunities: the highest-priority ones, with the top ones of every kind of action. Choose a language to see all of its own.</p>` : ''}
     ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">Nothing matches these filters.</p>'}
     ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}
+    ${focus ? '' : censusCaveat()}
     <details class="method"><summary>How opportunities are ranked</summary>
       <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
       <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. The costs are rough guides, not estimates.</p>
@@ -1033,6 +1043,7 @@ function ranking() {
       <tbody id="rows"></tbody>
     </table></div>
     <div id="rankmore"></div>
+    <div id="censusnote"></div>
     <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech input, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
@@ -1044,6 +1055,7 @@ function ranking() {
     $('#resetf').hidden = !regionSel.size && !countrySel.size && !tierSel.size && !endSel.size && !showGaps && !q;
     $('#rankhead').innerHTML = rankHead();
     const rows = rankAll || q ? all : all.slice(0, RANK_PAGE);
+    $('#censusnote').innerHTML = censusCaveat();
     $('#rankmore').innerHTML = rows.length < all.length ? `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
     const btn = $('#rankall'); if (btn) btn.onclick = () => { rankAll = true; draw(); };
     $('#rows').innerHTML = rows.map(l => `
@@ -1846,7 +1858,8 @@ function charts() {
       <h3>Where each language stands</h3>
       <p class="sub">${P ? `Share of ${esc(pn)}'s ${provWhat(provider)} tracked here that cover each language, by region.` : 'Language Technology Development Index by region.'} Each dot is a language, in every region where it's spoken (English appears in several), with the lowest named below its row and the highest above. Select a dot to open its profile.</p>
       ${strip}
-    </section>`;
+    </section>
+    ${censusCaveat()}`;
   bindTips($('#view'));
   // keep the page where it is when a filter redraws the charts below
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
@@ -1865,7 +1878,8 @@ function mapPage() {
   $('#view').innerHTML = `
     <div class="controls sticky"><span id="mregwrap">${regionPicker()}</span><span id="mctrywrap">${countryPicker()}</span><span id="mtierwrap">${tierPicker()}</span><span class="note" style="margin:0">${N.toLocaleString()} languages</span>
       <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button></div>
-    ${mapSection()}`;
+    ${mapSection()}
+    ${censusCaveat()}`;
   bindTips($('#view'));
   bindMap();
   wireMsel('mregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; mapView = null; mapPage(); reopen('mregwrap'); scrollTo(0, y); });
