@@ -8,17 +8,22 @@ suffixes such as zh_CN or aeb_arab). Every label that resolves to an LTDI langua
 several labels share a corpus, the corpus counts once, at its largest. Languages OPUS does not list
 have no parallel text there and are recorded as 0.
 
-Web-mined corpora (CCMatrix, CCAligned, NLLB, WikiMatrix, ...) are counted and their share given in
-the note. English itself is recorded at a nominal value.
+Web-mined corpora (CCMatrix, CCAligned, NLLB, WikiMatrix, ...) are often largely in another language,
+or in none, for low-resource languages (Kreutzer et al. 2022). Where opus_lid.py has checked a
+web-mined corpus (data/opus_lid.csv: GlotLID on a random sample of its lines), it counts at the share
+of lines in the language; unchecked corpora (over 20M pairs) count in full. English itself is
+recorded at a nominal value.
 
 Run:  python -m ltdi.collectors opus   (needs opus.nlpl.eu)
 """
 
 from __future__ import annotations
 
+import csv
 from collections import defaultdict
 from concurrent.futures import ThreadPoolExecutor
 
+from .. import DATA
 from ..crosswalk import to_ltdi
 from ..http import fetch_json
 from ..records import Record
@@ -28,6 +33,17 @@ LANGUAGES = "https://opus.nlpl.eu/opusapi/?source=en&languages=True"
 API = "https://opus.nlpl.eu/opusapi/?source={a}&target={b}&preprocessing=moses&version=latest"
 MINED = {"CCMatrix", "CCAligned", "MultiCCAligned", "NLLB", "WikiMatrix", "HPLT", "MaCoCu", "ParaCrawl"}
 ENGLISH_NOMINAL = 1e9
+
+
+CHECKED = DATA / "opus_lid.csv"
+
+
+def checked() -> dict[tuple[str, str], float]:
+    """{(OPUS label, corpus): share of lines in the language} from the language check."""
+    if not CHECKED.exists():
+        return {}
+    with CHECKED.open(encoding="utf-8") as f:
+        return {(r["opus_label"], r["corpus"]): float(r["in_language"]) for r in csv.DictReader(f)}
 
 
 def corpora(label: str) -> dict[str, int]:
@@ -49,24 +65,35 @@ def collect() -> list[Record]:
     flat = sorted({l for ls in labels.values() for l in ls})
     with ThreadPoolExecutor(8) as pool:
         by_label = dict(zip(flat, pool.map(corpora, flat)))
-    out = []
+    out, check = [], checked()
     for code in ltdi_codes():
         if code == "en":
             out.append(Record(code, "parallel_sentences", ENGLISH_NOMINAL, "sentence pairs", "OPUS",
                               "https://opus.nlpl.eu/", note="English is the pivot; recorded at a nominal value"))
             continue
-        merged: dict[str, int] = {}
+        merged: dict[str, tuple[int, str]] = {}  # corpus -> (pairs, the label they're listed under)
         for label in labels.get(code, []):
             for name, n in by_label[label].items():
-                merged[name] = max(merged.get(name, 0), n)
-        total = sum(merged.values())
-        mined = sum(n for name, n in merged.items() if name in MINED)
+                if n > merged.get(name, (-1, ""))[0]:
+                    merged[name] = (n, label)
+        listed = sum(n for n, _ in merged.values())
+        mined = sum(n for name, (n, _) in merged.items() if name in MINED)
+        total, shares = 0.0, []
+        for name, (n, label) in sorted(merged.items()):
+            share = check.get((label, name)) if name in MINED else None
+            total += n if share is None else n * share
+            if share is not None:
+                shares.append(f"{name} {share:.0%}")
+        total = round(total)
         first = labels[code][0] if labels.get(code) else code
         note = []
         if merged:
             note.append(f"{len(merged)} corpora")
         if mined:
-            note.append(f"{mined / total:.0%} web-mined")
+            note.append(f"{mined / listed:.0%} web-mined")
+        if shares:
+            note.append(f"{listed:,} pairs listed; checked web-mined corpora count at the share of lines "
+                        f"in the language ({', '.join(shares)})")
         if len(labels.get(code, [])) > 1:
             note.append("OPUS codes " + ", ".join(sorted(labels[code])))
         out.append(Record(code, "parallel_sentences", total, "sentence pairs", "OPUS",
