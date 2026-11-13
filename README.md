@@ -225,6 +225,10 @@ the coalition workstream it fits.
   infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
   scripts for about 690 more; another 71 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a
   rare one): remove a row once checked, and put any correction in `config/language_overrides.csv` (scripts column). Without a script the writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
+- Published quality discounts a service where it's poor: Google Translate by FLORES-200 chrF++ from English
+  (Robinson et al., WMT 2023: 25 or less counts it at half, 50 or more in full), Whisper by FLEURS word error rate.
+  chrF++ isn't comparable across writing systems, so Chinese, Japanese and Korean results, and results in a script
+  other than the language's own, are left out. Unmeasured services count in full.
 - Speech locales name the variety spoken in a country, so for speech recognition, text-to-speech and voice
   assistants `ar-EG` counts for Egyptian Arabic, `ar-AE` for Gulf Arabic and `fa-AF` for Dari
   (`config/crosswalk_speech.csv`); text services keep `ar-XX` as Arabic. Saudi and Yemeni locales, which cover

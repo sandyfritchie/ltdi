@@ -100,8 +100,15 @@ weight = 0.1
 # Depth indicators named after a service (tts_google_voice_types belongs to
 # tts_google) weight that service's share: it earns half for offering the
 # language and half for the depth it offers, so adding a service never lowers
-# a score. Depth that describes the technology as a whole (a published error
-# rate) is averaged with the presence score.
+# a score. Depth that describes the technology as a whole is averaged with the
+# presence score.
+# Quality: where a service's quality for the language has been published
+# (services.csv: quality, with a poor and a good mark), it counts in full at or
+# above the good mark, down to half at or below the poor mark. Unmeasured
+# services count in full, so being measured never helps a language's rivals.
+# Now: Google Translate (FLORES-200 chrF++, Robinson et al. 2023) and Whisper
+# (FLEURS word error rate, which also counts a listed language missing from
+# Whisper's published breakdown as poor).
 # LLMs also use measured benchmark results (see [llm]).
 [dimensions.tech]
 label = "Technology support"

@@ -58,7 +58,23 @@ def credit(facts: dict[str, Record], tech: dict, service: str) -> float:
         return 0.0
     vals = [_depth_value(facts[i].value, spec) for i, spec in tech.get("depth", {}).items()
             if i in facts and owner(i, tech) == service]
-    return 0.5 + 0.5 * sum(vals) / len(vals) if vals else 1.0
+    base = 0.5 + 0.5 * sum(vals) / len(vals) if vals else 1.0
+    return base * quality_factor(facts, tech, service)
+
+
+QUALITY_FLOOR = 0.5  # a service measured as poor still counts this much: it is there, and may improve
+
+
+def quality_factor(facts: dict[str, Record], tech: dict, service: str) -> float:
+    """How much a service counts given its published quality for the language: 1 if unmeasured or good,
+    down to QUALITY_FLOOR at or below the poor mark (services.csv: quality, quality_poor, quality_good).
+    An unmeasured service keeps full credit, so being measured never helps a language's rivals."""
+    spec = tech.get("quality", {}).get(service)
+    f = facts.get(spec["indicator"]) if spec else None
+    if not f or f.value is None:
+        return 1.0
+    q = normalise(f.value, {"scale": "linear", "min": spec["poor"], "max": spec["good"]})
+    return QUALITY_FLOOR + (1 - QUALITY_FLOOR) * q
 
 
 def presence(facts: dict[str, Record], tech: dict, ids: list[str]) -> float:
@@ -81,8 +97,9 @@ def tier(facts: dict[str, Record], tech: dict) -> float | None:
     if not consumer:
         return presence(facts, tech, open_)
     p = presence(facts, tech, consumer)
-    if p == 0 and any(i in facts and facts[i].value for i in open_):
-        return ANY
+    offered = [i for i in open_ if i in facts and facts[i].value]
+    if p == 0 and offered:  # an open model alone: the base credit, discounted by its measured quality
+        return round(ANY * max(quality_factor(facts, tech, i) for i in offered), 3)
     return p
 
 
@@ -188,7 +205,7 @@ def inherited(cfg: dict) -> set[str]:
     for t in spec.get("technologies", []):
         tech = cfg["dimensions"]["tech"]["technologies"][t]
         inds |= set(tech.get("consumer", [])) | set(tech.get("open", [])) | set(tech.get("measured", {})) \
-            | set(tech.get("depth", {}))
+            | set(tech.get("depth", {})) | {q["indicator"] for q in tech.get("quality", {}).values()}
     return inds
 
 
@@ -263,7 +280,8 @@ def main() -> None:
                     periods.append(row["period"])
         history = {"periods": sorted(periods), "series": json.loads((DATA / "history_series.json").read_text()),
                    "values": hist}
-    svc = [{k: sv[k] for k in ("id", "technology", "role", "name", "kind", "provider", "depth")} for sv in services()]
+    svc = [{k: sv[k] for k in ("id", "technology", "role", "name", "kind", "provider", "depth", "quality", "quality_poor",
+                               "quality_good")} for sv in services()]
     rules = {k: {"teams": r["teams"], "missing": r["missing"], "cost": r.get("cost")} for k, r in RULES.items()}
     out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "services": svc, "rules": rules,
            "resources": resources(), "opportunity_types": TYPES, "teams": TEAMS, "history": history,

@@ -19,13 +19,14 @@ def services() -> tuple[dict, ...]:
 @lru_cache
 def load_config() -> dict:
     """methodology.toml, with each technology's services filled in from services.csv:
-    consumer, open and measured lists, depth specs, and which service each depth describes.
+    consumer, open and measured lists, depth specs, which service each depth describes, and the
+    quality measure (if any) that discounts each service.
     Cached: treat the result as read-only."""
     with (CONFIG / "methodology.toml").open("rb") as f:
         cfg = tomllib.load(f)
     techs = cfg["dimensions"]["tech"]["technologies"]
     for t in techs.values():
-        t.update(consumer=[], open=[], depth={}, depth_owner={})
+        t.update(consumer=[], open=[], depth={}, depth_owner={}, quality={})
     num = lambda x: float(x) if "." in x else int(x)
     for sv in services():
         t = techs[sv["technology"]]
@@ -37,9 +38,13 @@ def load_config() -> dict:
             spec = num(sv["depth_max"]) if not sv["depth_min"] else {"min": num(sv["depth_min"]), "max": num(sv["depth_max"])}
             t["depth"][sv["depth"]] = spec
             t["depth_owner"][sv["depth"]] = sv["id"] if sv["depth_scope"] == "service" else None
+        if sv.get("quality"):
+            t["quality"][sv["id"]] = {"indicator": sv["quality"], "poor": num(sv["quality_poor"]), "good": num(sv["quality_good"])}
     for t in techs.values():
         if not t["depth"]:
             del t["depth"]
+        if not t["quality"]:
+            del t["quality"]
     return cfg
 
 

@@ -95,3 +95,25 @@ class DepthTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestQuality:
+    TECH = {"consumer": ["mt_a", "mt_b"], "open": [], "quality": {"mt_a": {"indicator": "mt_a_q", "poor": 25, "good": 50}}}
+
+    def facts(self, **kw):
+        return {k: Record("x", k, v, "chrF++" if k.endswith("_q") else "bool", "", "") for k, v in kw.items()}
+
+    def test_unmeasured_service_counts_in_full(self):
+        assert tier(self.facts(mt_a=1, mt_b=1), self.TECH) == 1.0
+
+    def test_poor_quality_counts_at_half(self):
+        assert tier(self.facts(mt_a=1, mt_b=0, mt_a_q=10), self.TECH) == round(0.25 + 0.75 * 0.5 / 2, 3)
+
+    def test_good_quality_counts_in_full(self):
+        assert tier(self.facts(mt_a=1, mt_b=0, mt_a_q=60), self.TECH) == round(0.25 + 0.75 * 1 / 2, 3)
+
+    def test_open_model_alone_is_discounted(self):
+        tech = {"consumer": ["c"], "open": ["o"], "quality": {"o": {"indicator": "o_q", "poor": 50, "good": 10}}}
+        f = {"c": Record("x", "c", 0, "bool", "", ""), "o": Record("x", "o", 1, "bool", "", ""),
+             "o_q": Record("x", "o_q", 100, "% WER", "", "")}
+        assert tier(f, tech) == 0.125

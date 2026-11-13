@@ -899,6 +899,16 @@ document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k 
   `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}</style>`);
 let provFocus = null, moreOpen = false;  // remembered while moving between languages
 const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => [s.id, s.depth]));
+// A published quality measure that discounts a service where it's poor (services.csv: quality)
+const QUALITY_OF = Object.fromEntries(DATA.services.filter(s => s.quality).map(s => [s.id, s]));
+function qualityText(f, q) {
+  if (!f) return '';
+  if (f.unit === '% WER') return depthText(f, q.quality);
+  const v = f.value, poor = +q.quality_poor, good = +q.quality_good;
+  const band = (v - poor) / (good - poor) >= 1 ? 'good' : (v - poor) / (good - poor) > 0.4 ? 'fair' : 'low';
+  const year = ((f.source || '').match(/(\d{4})\)?$/) || [])[1];  // when it was measured, from the source
+  return `${band[0].toUpperCase() + band.slice(1)} quality${year ? ` (${year})` : ''}`;
+}
 const ICON = p => `<svg class="ticon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const TICON = {
   keyboard: ICON('<rect x="2.5" y="6" width="19" height="12" rx="2"/><path d="M6 10h.01M9.5 10h.01M13 10h.01M16.5 10h.01M7 14h10"/>'),
@@ -938,9 +948,12 @@ function svcTile(id, facts, open) {
   if (f.unit === '% of English') detail = `${Math.round(f.value)}% of English`;
   else if (f.unit === 'accuracy') detail = `${Math.round(f.value * 100)}% accuracy`;
   else if (on && DEPTH_OF[id]) detail = depthText(facts[DEPTH_OF[id]], DEPTH_OF[id]);
+  const qf = on && QUALITY_OF[id] ? facts[QUALITY_OF[id].quality] : null;
+  if (qf) detail = [detail, qualityText(qf, QUALITY_OF[id])].filter(Boolean).join(' · ');
   const measured = f.unit === '% of English' || f.unit === 'accuracy';
-  const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : null;
-  const hover = [f.source, dep && dep.note ? dep.note : f.note].filter(Boolean).join('\n');
+  const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : qf;
+  const qline = qf && qf.unit !== '% WER' ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
+  const hover = [f.source, qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note].filter(Boolean).join('\n');
   return `<a class="tile ${on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${on ? '✓' : '–'}</span>
     <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;

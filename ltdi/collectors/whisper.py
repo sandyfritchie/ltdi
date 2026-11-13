@@ -41,9 +41,17 @@ def collect() -> list[Record]:
     block = src.split("LANGUAGES = {", 1)[1].split("}", 1)[0]
     have = present(re.findall(r'"([a-z]{2,3})":', block))
 
+    # The chart labels languages by Whisper's own English names; map them through Whisper's language
+    # list (code -> name) rather than LTDI's names, which repeat ("Malay" is both ms and zlm)
+    whisper_names = {name.lower(): c for c, name in re.findall(r'"([a-z]{2,3})": "([^"]+)"', block)}
     by_name = {l["name"]: l["code"] for l in json.loads((DATA / "languages.json").read_text(encoding="utf-8"))}
     by_name.update(ALIASES)
-    wer = {by_name[n]: v for n, v in fleurs_wer().items() if n in by_name}
+    wer = {}
+    for n, v in fleurs_wer().items():
+        code = present([whisper_names[n.lower()]]) if n.lower() in whisper_names else set()
+        c = next(iter(code), None) or by_name.get(n)
+        if c:
+            wer[c] = v
 
     out = []
     for code in ltdi_codes():
