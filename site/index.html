@@ -346,9 +346,9 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .seg.open { background: var(--ord-open); color: var(--on-open); } .seg.none { background: var(--ord-none); color: var(--muted); }
 .maphead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .maphead h3 { margin: 0; }
-/* the map's caption uses the map's full width, and keeps room for its longest wording (a country
+/* the map's caption is a little wider than other captions (three lines at most on a desktop), and keeps room for its longest wording (a country
    chosen, in the areas view), so switching views or filters doesn't move the map */
-.chart .sub.mapsub { max-width: none; min-height: 4.5em; }
+.chart .sub.mapsub { max-width: 85ch; min-height: 4.5em; }
 @media (max-width: 900px) { .chart .sub.mapsub { min-height: 6em; } }
 @media (max-width: 640px) { .chart .sub.mapsub { min-height: 9em; } .legend.map { min-height: 70px; align-content: flex-start; } }
 .mapmode { margin: 0; }
