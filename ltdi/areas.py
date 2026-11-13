@@ -106,6 +106,8 @@ def labels(areas: dict) -> dict[str, list]:
     codes = list(areas)
     tree = STRtree([areas[c] for c in codes])
     out = {}
+    from .geo import basemap
+    basemap("50m", 2)  # detailed country shapes, so small countries (Andorra, Singapore) get labels too
     for a2, shape in sorted(country_shapes().items()):
         shape = polygons(shape)
         if shape is None:
@@ -113,7 +115,7 @@ def labels(areas: dict) -> dict[str, list]:
         rows = []
         for i in tree.query(shape):
             inter = areas[codes[i]].intersection(shape)
-            if inter.is_empty or inter.area < MIN_LABEL_AREA:
+            if inter.is_empty or inter.area < min(MIN_LABEL_AREA, 0.1 * shape.area):
                 continue
             polys = [g for g in getattr(inter, "geoms", [inter]) if g.geom_type == "Polygon"]
             if not polys:

@@ -119,7 +119,7 @@ def basemap(scale: str = "110m", digits: int | None = None) -> dict:
 COUNTRY_SHAPES: dict | None = None
 
 
-def write_borders() -> None:
+def write_borders() -> dict:
     """data/borders.json: Natural Earth 50m country outlines, for the map zoomed to chosen countries
     (fetched by the page only then): {"countries": {code: SVG path}, "other": SVG path} (other: places
     with no ISO code, such as Kosovo and Somaliland)."""
@@ -129,6 +129,7 @@ def write_borders() -> None:
     out = {"countries": {k: v["outline"] for k, v in detail["countries"].items()}, "other": other}
     (DATA / "borders.json").write_text(json.dumps(out, separators=(",", ":")), encoding="utf-8")
     basemap()  # back to the world map's shapes for anything that follows
+    return detail["countries"]
 
 
 def country_shapes() -> dict:
@@ -257,8 +258,11 @@ def main() -> None:
         x, y = to_svg(p[1], max(p[0], LAT_MIN))
         out.append([code, name, x, y, d.get("total_population") or 0])
     (DATA / "world_languages.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    write_borders()
-    (DATA / "basemap.json").write_text(json.dumps(basemap() | {"regions": region_views()}), encoding="utf-8")
+    detailed = write_borders()
+    world = basemap()
+    # countries too small for the 110m map (Andorra, Singapore, Malta...) take their frame from 50m
+    world["countries"] = {k: v for k, v in detailed.items() if k not in world["countries"]} | world["countries"]
+    (DATA / "basemap.json").write_text(json.dumps(world | {"regions": region_views()}), encoding="utf-8")
     missing = [c for c in slice_rows if c not in {r[0] for r in out}]
     print(f"{len(out)} language points; basemap written; scored languages without a point: {missing or 'none'}")
 
