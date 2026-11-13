@@ -643,7 +643,7 @@ let otype = 'all', team = 'all', showAll = false;
 async function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
   if (focus) await need(focus.code);
-  const pool = focus ? focus.opportunities.map(o => ({ o, l: focus })) : TOP.map(o => ({ o, l: BY[o.lang] })).filter(x => inRegion(x.l));
+  const pool = focus ? focus.opportunities.map(o => ({ o, l: focus })) : TOP.map(o => ({ o, l: BY[o.lang] })).filter(x => inView(x.l));
   const all = pool
     .filter(x => provider === 'All' || provMissing(x.o, x.l, provider).length)
     .sort((a, b) => prio(b.o) - prio(a.o));
@@ -652,10 +652,10 @@ async function opportunities(lang) {
   const counts = Object.fromEntries(Object.keys(OT).map(k => [k, byTeam.filter(x => x.o.type === k).length]));
   const list = byTeam.filter(x => otype === 'all' || x.o.type === otype);
   const shown = showAll ? list : list.slice(0, 25);
-  const filtered = regionSel.size || provider !== 'All' || otype !== 'all' || team !== 'all' || focus;
+  const filtered = regionSel.size || (tierSel.size && !focus) || provider !== 'All' || otype !== 'all' || team !== 'all' || focus;
   $('#view').innerHTML = `
     <div class="controls">
-      ${focus ? '' : `<span id="orwrap">${regionPicker()}</span>`}
+      ${focus ? '' : `<span id="orwrap">${regionPicker()}</span><span id="otierwrap">${tierPicker()}</span>`}
       ${providerSelect('opsel')}
       <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
       <button type="button" class="reset" id="oresetf"${filtered ? '' : ' hidden'}>Reset filters</button>
@@ -682,9 +682,10 @@ async function opportunities(lang) {
   $('#view').querySelectorAll('[data-tm]').forEach(b => b.onclick = () => { team = b.dataset.tm; otype = 'all'; showAll = false; opportunities(lang); });
   $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
   $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
-  $('#oresetf').onclick = () => { regionSel.clear(); provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
+  $('#oresetf').onclick = () => { regionSel.clear(); tierSel.clear(); provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
     if (lang) location.hash = 'opportunities'; else opportunities(); };
   if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { showAll = false; await opportunities(lang); reopen('orwrap'); });
+  if ($('#otierwrap')) wireMsel('otierwrap', tierPicker, tierSel, 4, async () => { showAll = false; await opportunities(lang); reopen('otierwrap'); });
   $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; otype = 'all'; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
   navBox('opps', 'Find a language name or code', focus ? `${focus.name} (${focus.code})` : '');
