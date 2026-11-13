@@ -289,7 +289,12 @@ a.tile:hover { border-color: var(--muted); }
 @media (prefers-reduced-motion: no-preference) { .bar i { transition: width .4s ease; } }
 
 /* Tabs */
-nav.tabs { display: flex; gap: 22px; border-bottom: 1px solid var(--rule); margin-top: 6px; }
+nav.tabs { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0 22px; border-bottom: 1px solid var(--rule); margin-top: 6px; }
+/* the language search sits at the right of the tabs on every page */
+.navsearch { margin-left: auto; align-self: center; padding: 6px 0; }
+.navsearch input.pick { width: 15em; }
+.navsearch .picklist { left: auto; right: 0; }
+@media (max-width: 640px) { .navsearch { order: -1; flex: 1 0 100%; margin: 0; padding: 0 0 4px; } .navsearch input.pick { width: 100%; } .navsearch .picklist { left: 0; } }
 nav.tabs a { font: 700 15px var(--font-display); font-stretch: 90%; color: var(--muted); text-decoration: none; padding: 12px 0 10px; border-bottom: 3px solid transparent; margin-bottom: -1px; }
 nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--ink); }
 
@@ -339,6 +344,14 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .mapwrap { position: relative; border-radius: 6px; overflow: hidden; touch-action: none; }
 .mapwrap svg { cursor: grab; } .mapwrap svg.dragging { cursor: grabbing; }
 .mapctl { position: absolute; top: 8px; right: 8px; display: grid; gap: 4px; }
+/* a language found with the search box: its area or dot stands out, the rest steps back */
+.mapfocus { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 0 0 8px; padding: 8px 12px; border: 1px solid var(--rule); border-left: 4px solid var(--ink); border-radius: 6px; background: var(--surface); font-size: 15px; }
+.mapfocus .x { margin-left: auto; border: 0; background: none; color: var(--muted); font-size: 20px; line-height: 1; cursor: pointer; padding: 0 2px; }
+.mapfocus .x:hover { color: var(--ink); }
+.areas.focusing path { fill-opacity: 0.14; }
+.areas path.hit { fill-opacity: 0.85; stroke: var(--ink); stroke-width: 1.6px; vector-effect: non-scaling-stroke; }
+svg.focusing circle.sdot:not(.hit) { opacity: 0.35; }
+#focusring { fill: none; stroke: var(--ink); stroke-width: 2px; vector-effect: non-scaling-stroke; pointer-events: none; }
 .mapctl button { width: 32px; height: 32px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); font: 600 17px/1 var(--font-body); cursor: pointer; display: grid; place-items: center; }
 .mapctl button:hover { border-color: var(--muted); }
 .mapctl button.reset { font-size: 11px; font-weight: 600; }
@@ -376,7 +389,9 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
     <p class="lede">How well technology supports each language, and how much data exists to build more. Three dimensions, each scored 0 to 1, combined with a geometric mean so a gap anywhere pulls the score down.</p>
     <div class="formula">LTDI = (<b class="w">writing</b> × <b class="d">data</b> × <b class="t">technology</b>)<sup>1/3</sup></div>
   </header>
-  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a></nav>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a>
+    <span class="pickwrap navsearch" role="search"><input class="pick" id="go" autocomplete="off" role="combobox" aria-autocomplete="list"
+      aria-expanded="false" aria-controls="go-list" aria-label="Go to a language" placeholder="Go to a language" onfocus="this.select()"><ul class="picklist" id="go-list" role="listbox" hidden></ul></span></nav>
   <main id="view"></main>
   <div id="tip" hidden></div>
 </div>
@@ -488,6 +503,17 @@ function pickMatches(q) {
   document.addEventListener('focusout', e => { if (e.target.matches?.('input.pick')) close(e.target); });
 })();
 const pickedCode = v => { const m = /\(([^()]+)\)\s*$/.exec(v || ''); return m && BY[m[1]] ? m[1] : null; };
+// The search box beside the tabs: on the charts page it finds the language on the map; anywhere else
+// it opens the language's page
+document.getElementById('go').addEventListener('change', e => {
+  const c = pickedCode(e.target.value);
+  if (!c) return;
+  e.target.value = ''; e.target.blur();
+  if (location.hash.slice(1) === 'charts' && GEO && document.getElementById('worldmap')) {
+    mapFocus = c; charts();
+    document.getElementById('worldmap').scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  } else location.hash = 'lang-' + c;
+});
 const DIMS = [['writing', 'w', '--writing'], ['data', 'd', '--data'], ['tech', 't', '--tech']];
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -1047,7 +1073,7 @@ async function language(code) {
       <div class="lscore"><div class="eyebrow">${l.rank ? `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}` : 'Extinct · not ranked'}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
     </div>
     <div class="cmpbar"><label for="cmpsel">Compare with</label>
-      ${langPicker('cmpsel', 'Find a language name or code')}</div>
+      ${langPicker('cmpsel', 'Choose a language to compare')}</div>
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
@@ -1157,6 +1183,7 @@ const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null'
 const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', l: '--t-l' };
 const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
 let mapR = null;  // base radii for the current render
+let mapFocus = null;  // a language found with the search box while the map is showing
 // Map view: the areas where languages are spoken, shaded by tier (Glottography), or a dot per language
 let mapMode = 'areas';
 const AREAS = GEO && GEO.areas;  // embedded with the basemap
@@ -1196,9 +1223,9 @@ function mapSection() {
   const tierKey = l => P ? covTier(val(l)) : tierOf(l.ltdi)[0];
   const tip = l => { if (!P) return `LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${l.rank}`;
     const c = provCoverage(l, provider); return `${esc(pn)}: ${c.n} of ${c.of} ${provWhat(provider)}`; };
-  const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => val(a) - val(b)).map(l => {
+  const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || val(a) - val(b)).map(l => {
     const c = tierKey(l), p = pt[l.code];
-    return `<a href="#lang-${l.code}"><circle class="sdot" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
+    return `<a href="#lang-${l.code}"><circle class="sdot${l.code === mapFocus ? ' hit' : ''}" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
       opacity="${inRegion(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`;
   }).join('');
   const counts = { vh: 0, h: 0, m: 0, l: 0 };
@@ -1215,8 +1242,8 @@ function mapSection() {
     const frame = regionFrame();
     const withArea = LANGS.filter(l => AREAS.paths[l.code]);
     const order = { l: 0, m: 1, h: 2, vh: 3 };
-    layer = `<g class="areas">${[...LANGS].filter(l => AREAS.paths[l.code]).sort((a, b) => order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
-      `<path d="${AREAS.paths[l.code]}" data-code="${l.code}" fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
+    layer = `<g class="areas${mapFocus ? ' focusing' : ''}">${[...LANGS].filter(l => AREAS.paths[l.code]).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
+      `<path d="${AREAS.paths[l.code]}" data-code="${l.code}"${l.code === mapFocus ? ' class="hit"' : ''} fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
     const sh = tierLandShares(withArea, tierKey, frame && frame.outline), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
       ${sh ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
@@ -1226,16 +1253,23 @@ function mapSection() {
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>`;
     sub = `Each dot is a language, placed where most of its speakers live: the ${LANGS.length.toLocaleString()} scored languages by tier${bg.length ? `, and ${bg.length.toLocaleString()} other LinguaMeta entries in white` : ''}. Hover for names; select a dot for its profile.`;
   }
+  const F = mapFocus && BY[mapFocus], fp = F && pt[F.code];
+  const focusBox = F ? `<div class="mapfocus" role="status"><span><b>${esc(F.name)}</b> · ${F.extinct ? 'extinct, so not on the map'
+      : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F.ltdi)[1]} · rank ${F.rank}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
+      <a href="#lang-${F.code}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
   return `<section class="chart">
     <div class="maphead"><h3>The world's languages</h3>${toggle}</div>
     <p class="sub mapsub">${sub}</p>
     <div class="legend map">${legend}</div>
+    ${focusBox}
     <div class="mapwrap"><div class="mapctl">
         <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
-      </div><svg id="worldmap" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
+      </div><svg id="worldmap"${F ? ' class="focusing"' : ''} viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
       <path d="${path}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
       ${areasOn ? layer : `<path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
       ${dots}`}
+      ${F && !F.extinct && areasOn && !AREAS.paths[F.code] && fp ? `<circle class="sdot hit" cx="${fp[2]}" cy="${fp[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[tierKey(F)]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"/>` : ''}
+      ${F && !F.extinct && (fp || (areasOn && AREAS.paths[F.code])) ? '<circle id="focusring" r="0"/>' : ''}
     </svg></div>
     <p class="maphint">Drag to move · double-click or + to zoom in · Ctrl or ⌘ and scroll to zoom</p>
     <p class="note">${P ? `Coloured by the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? '; a benchmark counts where it publishes a result' : ''}.` : 'Coloured by LTDI tier: very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60.'} ${areasOn ? 'Areas from Glottography’s digitisation of Asher &amp; Moseley’s <i>Atlas of the World’s Languages</i> (2007), contemporary version (CC BY 4.0)' : 'Locations from LinguaMeta'}; map from Natural Earth.</p>
@@ -1280,6 +1314,36 @@ function bindMap() {
     vb = { x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - w * H / W / 2, w, h: w * H / W };
     clamp(); apply();
   }
+  // A language found with the search box: zoom to its area, or to its dot. An area fills about
+  // two-fifths of the view, but the view never narrows below an eighth of the world, so a small area
+  // still shows enough coast and borders around it to tell where it is (and a ring marks it). A dot is shown in its part of
+  // a continent, a third of the world across, so its neighbours stay in view.
+  const F = mapFocus && BY[mapFocus], ring = document.getElementById('focusring');
+  if (F && ring) {
+    const hit = svg.querySelector('.areas path.hit'), p = GEO.points.find(q => q[0] === F.code);
+    let cx, cy, w, small = true;
+    if (hit) {
+      const b = hit.getBBox();
+      cx = b.x + b.width / 2; cy = b.y + b.height / 2;
+      w = Math.min(W, Math.max(W / 8, Math.max(b.width, b.height * W / H) * 2.5));
+      small = Math.max(b.width, b.height * W / H) < w / 12;
+    } else { cx = p[2]; cy = p[3]; w = W / 3; }
+    const target = { w, h: w * H / W, x: cx - w / 2, y: cy - w * H / W / 2 };
+    target.x = Math.min(W - target.w, Math.max(0, target.x)); target.y = Math.min(H - target.h, Math.max(0, target.y));
+    ring.setAttribute('cx', cx); ring.setAttribute('cy', cy);
+    ring.setAttribute('r', small ? (w * 0.03).toFixed(2) : 0);
+    const from = { ...vb }, t0 = performance.now(), ms = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 700;
+    const ease = t => t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+    const step = now => {
+      const t = ms ? Math.min(1, (now - t0) / ms) : 1, e = ease(t);
+      vb = Object.fromEntries(Object.keys(target).map(k2 => [k2, from[k2] + (target[k2] - from[k2]) * e]));
+      apply();
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  const unf = document.getElementById('mapunfocus');
+  if (unf) unf.onclick = () => { mapFocus = null; const y = scrollY; charts(); scrollTo(0, y); };
   document.getElementById('zin').onclick = () => zoomAt(2, ...centre());
   document.getElementById('zout').onclick = () => zoomAt(0.5, ...centre());
   document.getElementById('zreset').onclick = () => { vb = { x: 0, y: 0, w: W, h: H }; apply(); };
@@ -1498,6 +1562,7 @@ function charts() {
 function route() {
   const h = location.hash.slice(1);
   let m;
+  if (h !== 'charts') mapFocus = null;
   if ((m = h.match(/^lang-([a-z]+)$/))) language(m[1]);
   else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
   else if (h === 'charts') charts();
