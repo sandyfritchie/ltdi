@@ -106,7 +106,8 @@ weight = 0.1
 # (services.csv: quality, with a poor and a good mark), it counts in full at or
 # above the good mark, down to half at or below the poor mark. Unmeasured
 # services count in full, so being measured never helps a language's rivals.
-# Now: Google Translate (FLORES-200 chrF++, Robinson et al. 2023) and Whisper
+# Now: Google Translate (FLORES-200 chrF++, Robinson et al. 2023), NLLB-200
+# (Meta's FLORES-200 chrF++ for the Dense 3.3B model) and Whisper
 # (FLEURS word error rate, which also counts a listed language missing from
 # Whisper's published breakdown as poor).
 # LLMs also use measured benchmark results (see [llm]).
