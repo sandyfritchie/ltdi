@@ -230,7 +230,17 @@ table.ranktab { table-layout: fixed; }
 .back { font: 600 14px var(--font-body); background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; margin-block: 18px 6px; }
 .lhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
 .lhead .lmain { flex: 1 1 360px; min-width: 0; }
-.lhead .lscore { flex: none; align-self: flex-start; text-align: right; }
+.lhead.lang { align-items: flex-start; }  /* the name at the top, beside the small map */
+.lhead .lscore { flex: none; align-self: flex-start; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
+/* a language's page: where it's spoken, a small map that opens the Map tab */
+.minimap { display: block; width: 240px; max-width: 100%; aspect-ratio: 1 / 0.62; margin-bottom: 12px; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--surface); }
+.minimap:hover { border-color: var(--muted); }
+.minimap svg { display: block; width: 100%; height: 100%; }
+.minimap .land { fill: var(--land); }
+.minimap .marea { fill-opacity: 0.75; }
+.minimap .mborders { fill: none; stroke: var(--ink); stroke-opacity: 0.25; stroke-width: 0.6px; vector-effect: non-scaling-stroke; }
+.minimap .mdot { stroke: var(--surface); stroke-width: 1.5px; vector-effect: non-scaling-stroke; }
+.minimap .mring { fill: none; stroke: var(--ink); stroke-width: 2px; vector-effect: non-scaling-stroke; }
 .lhead h2 { font: 800 clamp(28px, 4.5vw, 42px)/1.05 var(--font-display); font-stretch: 80%; margin: 0; }
 .big { font: 800 52px/1 var(--font-display); font-stretch: 80%; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
@@ -346,11 +356,10 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .seg.open { background: var(--ord-open); color: var(--on-open); } .seg.none { background: var(--ord-none); color: var(--muted); }
 .maphead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .maphead h3 { margin: 0; }
-/* the map's caption is a little wider than other captions (three lines at most on a desktop), and keeps room for its longest wording (a country
-   chosen, in the areas view), so switching views or filters doesn't move the map */
+/* the map's description sits under the map, so its length never moves the map, and runs two thirds of its width */
 .chart .sub.mapsub { margin: 10px 0 0; max-width: 67%; }
 @media (max-width: 640px) { .chart .sub.mapsub { max-width: none; } }
-.legend.map { margin: 8px 0 12px; }  /* under the map, so its length never moves the map */
+.legend.map { margin: 8px 0 12px; }
 @media (max-width: 640px) { .legend.map { min-height: 70px; align-content: flex-start; } }
 .mapmode { margin: 0; }
 .areas path { stroke: none; cursor: pointer; outline: none; }
@@ -411,7 +420,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
     <p class="lede">How well technology supports each language, and how much data exists to build more. Three dimensions, each scored 0 to 1, combined with a geometric mean so a gap anywhere pulls the score down.</p>
     <div class="formula">LTDI = (<b class="w">writing</b> × <b class="d">data</b> × <b class="t">technology</b>)<sup>1/3</sup></div>
   </header>
-  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a>
     <span class="pickwrap navsearch" role="search"><input class="pick" id="go" autocomplete="off" role="combobox" aria-autocomplete="list"
       aria-expanded="false" aria-controls="go-list" aria-label="Find a language name or code" placeholder="Find a language name or code" onfocus="this.select()"><ul class="picklist" id="go-list" role="listbox" hidden></ul></span></nav>
   <main id="view"></main>
@@ -577,7 +586,7 @@ document.getElementById('go').addEventListener('change', e => {
   e.target.value = ''; e.target.blur();
   if (navMode === 'map' && GEO && document.getElementById('worldmap')) {
     mapFocus = c; mapFocusFresh = true;
-    const y = scrollY; charts(); scrollTo(0, y);  // the page stays put, so the box stays in reach
+    const y = scrollY; mapPage(); scrollTo(0, y);  // the page stays put, so the box stays in reach
   } else location.hash = 'lang-' + c;
 });
 const DIMS = [['writing', 'w', '--writing'], ['data', 'd', '--data'], ['tech', 't', '--tech']];
@@ -1228,7 +1237,7 @@ async function language(code) {
   await need(code);
   $('#view').innerHTML = `
     <button class="back" id="back">← All languages</button>
-    <div class="lhead">
+    <div class="lhead lang">
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span></h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
@@ -1237,7 +1246,7 @@ async function language(code) {
         ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
       </div>
-      <div class="lscore"><div class="eyebrow">${l.rank ? `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}` : 'Extinct · not ranked'}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
+      <div class="lscore">${miniMap(l)}<div class="eyebrow">${l.rank ? `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}` : 'Extinct · not ranked'}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}</div>
     </div>
     <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}</div>
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
@@ -1245,6 +1254,7 @@ async function language(code) {
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}.</p>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
+  bindMiniMap(l);
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
   const mt = $('#view').querySelector('details.more-tech');
   if (mt) mt.ontoggle = () => { moreOpen = mt.open; };
@@ -1352,7 +1362,7 @@ const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', l: '--t-l' };
 const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
 let mapR = null;  // base radii for the current render
 let mapFocus = null, mapFocusFresh = false;  // a language found with the search box while the map is showing
-let mapView = null;  // the map's zoom, kept while the charts page redraws (switching areas and dots, say)
+let mapView = null;  // the map's zoom, kept while the map page redraws (switching areas and dots, say)
 // Map view: the areas where languages are spoken, shaded by tier (Glottography), or a dot per language
 let mapMode = 'areas';
 const AREAS = GEO && GEO.areas;  // embedded with the basemap
@@ -1362,9 +1372,9 @@ let BORDERS = null, bordersLoading = null;
 function loadBorders() {
   bordersLoading ??= fetch('data/borders.json').then(r => r.json()).then(d => {
     BORDERS = { ...d, all: Object.values(d.countries).join('') + d.other };
-    if (countrySel.size && document.getElementById('worldmap') && location.hash.slice(1) === 'charts') {
-      const y = scrollY, open = document.querySelector('#cctrywrap details')?.open;  // a drop-down left open stays open
-      charts(); if (open) reopenCountries('cctrywrap'); scrollTo(0, y);
+    if (countrySel.size && document.getElementById('worldmap') && location.hash.slice(1) === 'map') {
+      const y = scrollY, open = document.querySelector('#mctrywrap details')?.open;  // a drop-down left open stays open
+      mapPage(); if (open) reopenCountries('mctrywrap'); scrollTo(0, y);
     }
   }).catch(() => {});
   return bordersLoading;
@@ -1400,6 +1410,7 @@ function tierLandShares(ls, tierKey, frame) {
 }
 function mapSection() {
   if (!GEO) return '';
+  const provider = 'All';  // the Map tab is coloured by tier; the provider filter is for the Charts
   const { width: W, height: Hh, path } = GEO.basemap;
   const scored = new Set(ALL.map(l => l.code));  // extinct languages: neither scored dots nor background
   const pt = Object.fromEntries(GEO.points.map(p => [p[0], p]));
@@ -1483,7 +1494,7 @@ function mapSection() {
 }
 function bindMap() {
   document.querySelectorAll('.mapmode [data-mode]').forEach(b => b.onclick = () => {
-    mapMode = b.dataset.mode; const y = scrollY; charts(); scrollTo(0, y);  // same place, same zoom
+    mapMode = b.dataset.mode; const y = scrollY; mapPage(); scrollTo(0, y);  // same place, same zoom
   });
   const svg = document.getElementById('worldmap');
   if (!svg || !GEO || !svg.getScreenCTM) return;
@@ -1584,7 +1595,7 @@ function bindMap() {
     requestAnimationFrame(step);
   }
   const unf = document.getElementById('mapunfocus');
-  if (unf) unf.onclick = () => { mapFocus = null; const y = scrollY; charts(); scrollTo(0, y); };
+  if (unf) unf.onclick = () => { mapFocus = null; const y = scrollY; mapPage(); scrollTo(0, y); };
   document.getElementById('zin').onclick = () => zoomAt(2, ...centre());
   document.getElementById('zout').onclick = () => zoomAt(0.5, ...centre());
   document.getElementById('zreset').onclick = () => { vb = { x: 0, y: 0, w: W, h: H }; apply(); };
@@ -1624,6 +1635,48 @@ function bindMap() {
     if (best) tipShow(e, `<b>${esc(best[1])}</b><br>${best[4] ? people(best[4]) + ' speakers · ' : ''}not yet scored`); else tipHide();
   });
   svg.addEventListener('mouseleave', tipHide);
+}
+
+// A small map on a language's page: its area in the atlas, or its dot where it has none, framed as the
+// Map tab frames a language found with the search box. Selecting it opens the language on the Map tab.
+const MINI_ASPECT = 0.62;
+function miniMap(l) {
+  if (!GEO || l.extinct) return '';
+  const area = AREAS && AREAS.paths[l.code], p = GEO.points.find(q => q[0] === l.code);
+  if (!area && !p) return '';
+  const col = `var(${TIERC[tierOf(l.ltdi)[0]]})`, land = GEO.basemap.path;
+  return `<a class="minimap" id="minimap" href="#map" title="Open on the map" aria-label="${esc(l.name)} on the map">
+    <svg viewBox="0 0 ${GEO.basemap.width} ${GEO.basemap.width * MINI_ASPECT}" aria-hidden="true">
+      <defs><filter id="msoft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="msoftblur" stdDeviation="1"/></filter></defs>
+      <path class="land" d="${land}"/>
+      ${area ? `<path class="marea" d="${area}" fill="${col}" filter="url(#msoft)"/>` : ''}
+      <path class="mborders" d="${land}"/>
+      ${area ? '' : `<circle class="mdot" cx="${p[2]}" cy="${p[3]}" r="0" fill="${col}"/>`}
+      <circle class="mring" r="0"/>
+    </svg></a>`;
+}
+function bindMiniMap(l) {
+  const a = document.getElementById('minimap'), svg = a && a.querySelector('svg');
+  if (!svg) return;
+  const { width: W, height: H } = GEO.basemap, area = svg.querySelector('.marea'), dot = svg.querySelector('.mdot');
+  let cx, cy, w, small = true;
+  if (area) {
+    const b = area.getBBox(), size = Math.max(b.width, b.height / MINI_ASPECT);
+    cx = b.x + b.width / 2; cy = b.y + b.height / 2;
+    w = Math.min(W, Math.max(W / 8, size * 2.5)); small = size < w / 12;
+  } else { cx = +dot.getAttribute('cx'); cy = +dot.getAttribute('cy'); w = W / 7; }
+  const h = w * MINI_ASPECT;
+  const x = w < W ? Math.min(W - w, Math.max(0, cx - w / 2)) : 0, y = h < H ? Math.min(H - h, Math.max(0, cy - h / 2)) : (H - h) / 2;
+  svg.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
+  document.getElementById('msoftblur').setAttribute('stdDeviation', (w / 250).toFixed(3));
+  if (dot) dot.setAttribute('r', (w * 0.014).toFixed(3));
+  const ring = svg.querySelector('.mring');
+  ring.setAttribute('cx', cx); ring.setAttribute('cy', cy); ring.setAttribute('r', small ? (w * 0.06).toFixed(3) : 0);
+  // zoomed in: the detailed coasts and borders (fetched once, as for countries on the Map tab)
+  if (w < W / 3) loadBorders().then(() => {
+    if (BORDERS && svg.isConnected) svg.querySelectorAll('.land, .mborders').forEach(e => e.setAttribute('d', BORDERS.all));
+  });
+  a.onclick = e => { e.preventDefault(); mapFocus = l.code; mapFocusFresh = true; location.hash = 'map'; };
 }
 
 // Keep a bar of filters at the top of the window once it scrolls up there. Done in script rather than
@@ -1761,7 +1814,6 @@ function charts() {
   $('#view').innerHTML = `
     <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span><span id="cctrywrap">${countryPicker()}</span><span id="ctierwrap">${tierPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
       <button type="button" class="reset" id="cresetf"${!regionSel.size && !countrySel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
-    ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
       <p class="sub">${P ? `Each bar splits the ${N.toLocaleString()} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N.toLocaleString() + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are AI assistant apps, and language identification counts open models.'} Hover a segment to see which languages.</p>
@@ -1791,14 +1843,30 @@ function charts() {
       ${strip}
     </section>`;
   bindTips($('#view'));
-  bindMap();
   // keep the page where it is when a filter redraws the charts below
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
-  wireMsel('cregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; mapView = null; charts(); reopen('cregwrap'); scrollTo(0, y); });
-  wireCountries('cctrywrap', () => { const y = scrollY; mapView = null; charts(); reopenCountries('cctrywrap'); scrollTo(0, y); });
+  wireMsel('cregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; charts(); reopen('cregwrap'); scrollTo(0, y); });
+  wireCountries('cctrywrap', () => { const y = scrollY; charts(); reopenCountries('cctrywrap'); scrollTo(0, y); });
   wireMsel('ctierwrap', tierPicker, tierSel, 4, () => { const y = scrollY; charts(); reopen('ctierwrap'); scrollTo(0, y); });
   $('#cpsel').onchange = keep(v => { provider = v; });
-  $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; mapView = null; charts(); scrollTo(0, y); };
+  $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; charts(); scrollTo(0, y); };
+  pinBar($('.controls.sticky'));
+}
+
+// ---------------------------------------------------------------- map
+// The map has the region, country and tier filters; the search box finds a language on it
+function mapPage() {
+  const N = LANGS.filter(inView).length;
+  $('#view').innerHTML = `
+    <div class="controls sticky"><span id="mregwrap">${regionPicker()}</span><span id="mctrywrap">${countryPicker()}</span><span id="mtierwrap">${tierPicker()}</span><span class="note" style="margin:0">${N.toLocaleString()} languages</span>
+      <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button></div>
+    ${mapSection()}`;
+  bindTips($('#view'));
+  bindMap();
+  wireMsel('mregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; mapView = null; mapPage(); reopen('mregwrap'); scrollTo(0, y); });
+  wireCountries('mctrywrap', () => { const y = scrollY; mapView = null; mapPage(); reopenCountries('mctrywrap'); scrollTo(0, y); });
+  wireMsel('mtierwrap', tierPicker, tierSel, 4, () => { const y = scrollY; mapPage(); reopen('mtierwrap'); scrollTo(0, y); });
+  $('#mresetf').onclick = () => { const y = scrollY; regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); mapView = null; mapPage(); scrollTo(0, y); };
   navBox('map', 'Find a language name or code');
   pinBar($('.controls.sticky'));
 }
@@ -1806,11 +1874,12 @@ function charts() {
 function route() {
   const h = location.hash.slice(1);
   let m;
-  if (h !== 'charts') { mapFocus = null; mapView = null; }
+  if (h !== 'map') { mapFocus = null; mapView = null; }
   navBox('go', 'Find a language name or code');  // each view may give the box another job
   if ((m = h.match(/^lang-([a-z]+)$/))) language(m[1]);
   else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
   else if (h === 'charts') charts();
+  else if (h === 'map') mapPage();
   else if (h === 'opportunities') opportunities();
   else if ((m = h.match(/^opportunities-([a-z]+)$/))) opportunities(m[1]);
   else if ((m = h.match(/^opp-([a-z0-9-]+)$/))) oppDetail(m[1]);
@@ -1819,9 +1888,9 @@ function route() {
   const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
   const otab = document.getElementById('tab-opportunities');
   if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
-  const tab = h.startsWith('opp') ? 'opportunities' : h === 'charts' ? 'charts' : (h === '' || h === 'ranking') ? 'ranking' : '';
+  const tab = h.startsWith('opp') ? 'opportunities' : ['charts', 'map'].includes(h) ? h : (h === '' || h === 'ranking') ? 'ranking' : '';
   tipHide();
-  for (const t of ['ranking', 'charts', 'opportunities']) {
+  for (const t of ['ranking', 'map', 'charts', 'opportunities']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   }
