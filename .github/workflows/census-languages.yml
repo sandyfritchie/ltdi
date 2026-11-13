@@ -1,0 +1,33 @@
+# Downloads census language data (ltdi/collectors/census_languages.py): the UN Statistics Division's
+# population-by-language table and the US Census Bureau's detailed languages spoken at home. Census
+# sites aren't reachable from every network, so it runs here. Run by hand (Actions -> Census languages
+# -> Run workflow); it commits the extracts to data/sources/.
+name: Census languages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install openpyxl
+      - name: Download
+        run: python -m ltdi.collectors.census_languages --fetch
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/sources/
+          git diff --cached --quiet && exit 0
+          git commit -m "Census languages: sources from run ${{ github.run_id }}"
+          git pull --rebase
+          git push
