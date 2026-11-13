@@ -121,6 +121,7 @@ select, .msel summary { appearance: none; -webkit-appearance: none; padding-righ
 .controls select, .controls .msel summary, input[type=search], input.pick { box-sizing: border-box; }
 .controls select, .controls .msel summary { width: 12em; max-width: 100%; }
 .msel summary { overflow: hidden; text-overflow: ellipsis; }
+.msel .cnt { color: var(--muted); font-size: 0.9em; margin-left: auto; padding-left: 12px; }
 input[type=search], input.pick { width: 17em; max-width: 100%; }
 /* The language picker's suggestion list */
 .pickwrap { position: relative; display: inline-block; max-width: 100%; }
@@ -557,12 +558,23 @@ const prio = o => o[WEIGHT[weight].key] ?? o.priority;
 const TEAMS = DATA.teams;
 const REGION_ORDER = ['Africa', 'South Asia', 'Rest of Asia', 'Europe', 'Americas', 'Oceania'];
 const REGIONS = REGION_ORDER.filter(r => LANGS.some(l => l.region === r));
-let region = 'All';
-const inRegion = l => region === 'All' || l.region === region;
-function regionSelect(id) {
-  return `<select id="${id}" aria-label="Region"><option value="All">All regions</option>${REGIONS.map(r =>
-    `<option value="${esc(r)}"${r === region ? ' selected' : ''}>${esc(r)} (${LANGS.filter(l => l.region === r).length})</option>`).join('')}</select>`;
+// Regions are tick-boxes, so several can be looked at together (all of Asia; Africa and South Asia).
+// None ticked means every region; ticking them all clears the set.
+const regionSel = new Set();
+const inRegion = l => !regionSel.size || regionSel.has(l.region);
+const regionPicker = () => msel('regsel', regionSel, REGIONS.map(r => [r, r, '', ` <span class="cnt">${LANGS.filter(l => l.region === r).length.toLocaleString()}</span>`]),
+  'All regions', 'All regions', '', 'Show all regions');
+const regionNames = () => { const r = REGIONS.filter(x => regionSel.has(x)); return r.length < 3 ? r.join(' and ') : `${r.slice(0, -1).join(', ')} and ${r.at(-1)}`; };
+// The map frame for the regions ticked: their outlines together, and a box around them all
+function regionFrame() {
+  const R = GEO.basemap.regions, fs = R ? [...regionSel].map(r => R[r]).filter(Boolean) : [];
+  if (!fs.length) return null;
+  if (fs.length === 1) return fs[0];
+  return { outline: fs.map(f => f.outline).join(''), box: [Math.min(...fs.map(f => f.box[0])), Math.min(...fs.map(f => f.box[1])),
+    Math.max(...fs.map(f => f.box[2])), Math.max(...fs.map(f => f.box[3]))] };
 }
+// After a view redraws itself, open its drop-down again so several boxes can be ticked in a row
+const reopen = wrap => { const d = $(`#${wrap} details`); if (d) d.open = true; };
 function oppItem(o, l, showLang) {
   return `<li class="opp" style="--c:var(${OCOLOR[o.type]})">
     <div class="prio">${prio(o).toFixed(2)}<small>priority</small></div>
@@ -588,10 +600,10 @@ async function opportunities(lang) {
   const counts = Object.fromEntries(Object.keys(OT).map(k => [k, byTeam.filter(x => x.o.type === k).length]));
   const list = byTeam.filter(x => otype === 'all' || x.o.type === otype);
   const shown = showAll ? list : list.slice(0, 25);
-  const filtered = region !== 'All' || provider !== 'All' || otype !== 'all' || team !== 'all' || focus;
+  const filtered = regionSel.size || provider !== 'All' || otype !== 'all' || team !== 'all' || focus;
   $('#view').innerHTML = `
     <div class="controls">
-      ${focus ? '' : regionSelect('orsel')}
+      ${focus ? '' : `<span id="orwrap">${regionPicker()}</span>`}
       ${providerSelect('opsel')}
       <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
       ${langPicker('olang', 'Find a language name or code', focus)}
@@ -619,9 +631,9 @@ async function opportunities(lang) {
   $('#view').querySelectorAll('[data-tm]').forEach(b => b.onclick = () => { team = b.dataset.tm; otype = 'all'; showAll = false; opportunities(lang); });
   $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
   $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
-  $('#oresetf').onclick = () => { region = 'All'; provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
+  $('#oresetf').onclick = () => { regionSel.clear(); provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
     if (lang) location.hash = 'opportunities'; else opportunities(); };
-  const rs = $('#orsel'); if (rs) rs.onchange = e => { region = e.target.value; showAll = false; opportunities(lang); };
+  if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { showAll = false; await opportunities(lang); reopen('orwrap'); });
   $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; otype = 'all'; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
   $('#olang').onchange = e => { showAll = false; const c = pickedCode(e.target.value); location.hash = c ? 'opportunities-' + c : 'opportunities'; };
@@ -701,7 +713,7 @@ function msel(id, sel, opts, none, all, prefix, clear) {
   const label = !sel.size ? none : sel.size === opts.length && all ? all
     : prefix + opts.filter(([k]) => sel.has(k)).map(([, t]) => t).join(', ');
   return `<details class="msel" id="${id}"><summary aria-label="${esc(none)}">${esc(label)}</summary><div class="msel-pop">
-    ${opts.map(([k, t, mark]) => `<label><input type="checkbox" value="${k}"${sel.has(k) ? ' checked' : ''}>${mark}${esc(t)}</label>`).join('')}
+    ${opts.map(([k, t, mark, after = '']) => `<label><input type="checkbox" value="${k}"${sel.has(k) ? ' checked' : ''}>${mark}${esc(t)}${after}</label>`).join('')}
     ${sel.size ? `<button type="button" class="msel-clear">${esc(clear)}</button>` : ''}</div></details>`;
 }
 const tierPicker = () => msel('tiersel', tierSel, TIER_KEYS.map(([k, t]) => [k, t, `<i style="background:var(${TIERC[k]})"></i>`]),
@@ -805,7 +817,7 @@ const altHit = (l, q) => q && ![l.name, l.autonym, l.code, l.iso_639_3].some(s =
 function ranking() {
   $('#view').innerHTML = `
     <div class="controls">
-      ${regionSelect('rsel')}
+      <span id="regwrap">${regionPicker()}</span>
       <span id="tierwrap">${tierPicker()}</span>
       <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta (Glottolog where LinguaMeta gives none). Extinct languages are listed only when chosen here">${endPicker()}</span>
       <label class="switch" title="Show only languages with a gap: a main technology with no commercial service, or only an open model or benchmark"><input type="checkbox" role="switch" id="gapsw"${showGaps ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show gaps</label>
@@ -834,7 +846,7 @@ function ranking() {
     const [, val, natural] = SORTS[sortBy], dir = sortDir;
     all.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : (a.rank ?? 1e9) - (b.rank ?? 1e9)) * dir; });
     $('#rsum').innerHTML = rankSummary(all);
-    $('#resetf').hidden = region === 'All' && !tierSel.size && !endSel.size && !showGaps && !q;
+    $('#resetf').hidden = !regionSel.size && !tierSel.size && !endSel.size && !showGaps && !q;
     $('#rankhead').innerHTML = rankHead();
     const rows = rankAll || q ? all : all.slice(0, RANK_PAGE);
     $('#rankmore').innerHTML = rows.length < all.length ? `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
@@ -854,9 +866,9 @@ function ranking() {
       </tr>`).join('') || `<tr><td colspan="8">No language matches “${esc(query)}”.</td></tr>`;
   };
   draw();
-  $('#rsel').onchange = e => { region = e.target.value; ranking(); };
+  wireMsel('regwrap', regionPicker, regionSel, REGIONS.length, draw);
   $('#q').oninput = e => { query = e.target.value; draw(); };
-  $('#resetf').onclick = () => { region = 'All'; tierSel.clear(); endSel.clear(); showGaps = false; query = ''; rankAll = false; ranking(); $('#q').focus(); };
+  $('#resetf').onclick = () => { regionSel.clear(); tierSel.clear(); endSel.clear(); showGaps = false; query = ''; rankAll = false; ranking(); $('#q').focus(); };
   wireMsel('tierwrap', tierPicker, tierSel, 4, draw);
   wireMsel('endwrap', endPicker, endSel, 0, draw);
   $('#gapsw').onchange = e => { showGaps = e.target.checked; draw(); };
@@ -1169,7 +1181,7 @@ function mapSection() {
   if (areasOn) {
     // a region is a place here: its frame, with every area in it at full strength (English and Spanish
     // in the Americas, though their region group is Europe)
-    const frame = region !== 'All' && GEO.basemap.regions && GEO.basemap.regions[region];
+    const frame = regionFrame();
     const withArea = LANGS.filter(l => AREAS.paths[l.code]);
     const order = { l: 0, m: 1, h: 2, vh: 3 };
     layer = `<g class="areas">${[...LANGS].filter(l => AREAS.paths[l.code]).sort((a, b) => order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
@@ -1177,7 +1189,7 @@ function mapSection() {
     const sh = tierLandShares(withArea, tierKey, frame && frame.outline), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
       ${sh ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
-    sub = `Where each language is spoken today, shaded by tier: the ${withArea.length.toLocaleString()} languages with an area in the atlas. Areas overlap; each tier’s share of ${frame ? `the land in this view of ${esc(region)}` : 'the world’s land'} counts the best-covered language in each place. Hover for names.`;
+    sub = `Where each language is spoken today, shaded by tier: the ${withArea.length.toLocaleString()} languages with an area in the atlas. Areas overlap; each tier’s share of ${frame ? `the land in this view of ${esc(regionNames())}` : 'the world’s land'} counts the best-covered language in each place. Hover for names.`;
   } else {
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>`;
@@ -1231,7 +1243,7 @@ function bindMap() {
   };
   const centre = () => [vb.x + vb.w / 2, vb.y + vb.h / 2];
   // A region chosen in the filter: start framed on that region's land (boxes from ltdi.geo)
-  const rv = region !== 'All' && GEO.basemap.regions && GEO.basemap.regions[region];
+  const rv = regionFrame();
   if (rv) {
     const [x0, y0, x1, y1] = rv.box, w = Math.max(x1 - x0, (y1 - y0) * W / H) * 1.04;
     vb = { x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - w * H / W / 2, w, h: w * H / W };
@@ -1384,7 +1396,7 @@ function charts() {
     <tbody>${Object.entries(H.series).filter(([k]) => provider === 'All' || SERIES_PROV[k] === provider).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.map((p, pi) => [p, pi]).filter(([p]) => p.endsWith('-12')).map(([, pi]) => { const vs = langs.map(l => hv(k, l.code, pi)); return `<td class="num">${vs.every(v => v == null) ? '—' : vs.filter(v => v === 1).length}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
 
   // 3. LTDI by region: dot strip
-  const regs = REGIONS.filter(r => region === 'All' || r === region);
+  const regs = REGIONS.filter(r => !regionSel.size || regionSel.has(r));
   const sval = l => P ? provCoverage(l, provider).share : l.ltdi;
   const SW = Math.max(340, Math.min(720, (window.innerWidth || 720) - 70)), lab = SW < 500 ? 92 : 120, top = 26, rowH = 58, x1 = 1.0;
   const x0 = P || LANGS.some(l => l.ltdi < 0.3) ? 0 : 0.3;  // start at 0 once any language scores that low
@@ -1411,8 +1423,8 @@ function charts() {
   </svg>`;
 
   $('#view').innerHTML = `
-    <div class="controls sticky">${regionSelect('csel')}${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
-      <button type="button" class="reset" id="cresetf"${region === 'All' && !P ? ' hidden' : ''}>Reset filters</button></div>
+    <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
+      <button type="button" class="reset" id="cresetf"${!regionSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
@@ -1446,9 +1458,9 @@ function charts() {
   bindMap();
   // keep the page where it is when a filter redraws the charts below
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
-  $('#csel').onchange = keep(v => { region = v; });
+  wireMsel('cregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; charts(); reopen('cregwrap'); scrollTo(0, y); });
   $('#cpsel').onchange = keep(v => { provider = v; });
-  $('#cresetf').onclick = () => { const y = scrollY; region = 'All'; provider = 'All'; charts(); scrollTo(0, y); };
+  $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); provider = 'All'; charts(); scrollTo(0, y); };
   pinBar($('.controls.sticky'));
 }
 
