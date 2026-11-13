@@ -1,5 +1,9 @@
 """FineWeb-2: filtered web text, words per language (train split, all scripts).
 
+Also FineWeb-2's published share of each language's documents from Bible-related sites
+(bible_ratio), which narrows what the word count means: for 1,266 of its 1,795 subsets most
+documents come from Bible sites.
+
 FineWeb-2 covers non-English languages only; English is in FineWeb.
 """
 
@@ -16,14 +20,21 @@ from ._common import ltdi_codes
 URL = "https://raw.githubusercontent.com/huggingface/fineweb-2/main/fineweb2-language-distribution.csv"
 
 
+def _share(r: dict, col: str) -> float:
+    try:
+        return float(r[col])
+    except (KeyError, ValueError):
+        return 0.0
+
+
 def collect() -> list[Record]:
-    rows = csv.DictReader(io.StringIO(fetch_text(URL)))
-    pairs = (
-        (r["code"], float(r["words"]))
-        for r in rows
-        if r["split"] == "train" and not r["subset"].endswith("_removed") and r["words"] not in ("", "-")
-    )
-    words = sum_by_language(pairs)
+    rows = [r for r in csv.DictReader(io.StringIO(fetch_text(URL)))
+            if r["split"] == "train" and not r["subset"].endswith("_removed") and r["words"] not in ("", "-")]
+    words = sum_by_language((r["code"], float(r["words"])) for r in rows)
+    # FineWeb-2's own share of each subset's documents from Bible- and Wikipedia-related sites,
+    # averaged over a language's subsets by their words
+    bible = sum_by_language((r["code"], float(r["words"]) * _share(r, "bible_ratio")) for r in rows)
+    wiki = sum_by_language((r["code"], float(r["words"]) * _share(r, "wiki_ratio")) for r in rows)
     out = []
     for code in ltdi_codes():
         if code == "en":
@@ -35,4 +46,9 @@ def collect() -> list[Record]:
             continue
         out.append(Record(code, "web_text_words", words.get(code, 0.0), "words", "FineWeb-2", URL,
                           note="Train split, all scripts summed"))
+        if words.get(code):
+            b, w = bible.get(code, 0.0) / words[code], wiki.get(code, 0.0) / words[code]
+            out.append(Record(code, "web_text_bible_share", round(b, 3), "share", "FineWeb-2", URL,
+                              note=f"FineWeb-2's share of the documents from Bible-related sites; "
+                                   f"{w:.0%} are from Wikipedia-related sites"))
     return out

@@ -33,12 +33,17 @@ weight = 0.5
 label = "Data availability"
 
 # Text
+# Web text that is mostly from Bible-related sites is narrow: the indicator is
+# scaled by 1 - 0.5 x FineWeb-2's share of the language's documents from those
+# sites, so text that is all Bible counts at half.
 [dimensions.data.indicators.web_text_words]
 label = "Web text (FineWeb-2 words)"
 scale = "log"
 min = 1e4
 max = 1e11
 weight = 0.25
+narrowed_by = "web_text_bible_share"
+narrow_floor = 0.5
 
 # Web-mined OPUS corpora (CCAligned, CCMatrix, NLLB, WikiMatrix...) count at the share
 # of distinct lines in a 2,000-line random sample that GlotLID identifies as the

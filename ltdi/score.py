@@ -178,6 +178,9 @@ def score_language(facts: dict[str, Record], cfg: dict) -> dict:
                 missing.append(ind)
                 continue
             n = normalise(facts[ind].value, spec)
+            if spec.get("narrowed_by") in facts:  # e.g. web text mostly from Bible sites counts down to half
+                share = min(1.0, max(0.0, facts[spec["narrowed_by"]].value))
+                n *= 1 - (1 - spec.get("narrow_floor", 0.5)) * share
             parts.append((n, spec["weight"]))
             detail[ind] = round(n, 3)
         dims[key] = {"score": weighted_mean(parts), "indicators": detail}
@@ -232,6 +235,14 @@ def inherit_written(by_lang: dict[str, dict[str, Record]], names: dict[str, str]
             if f and f.value and (ind not in own or own[ind].value < f.value):
                 note = f"Counted from {names[std]}" + (f". {f.note}" if f.note else "")
                 own[ind] = dataclasses.replace(f, language=code, note=note)
+                for spec in cfg["dimensions"]["data"]["indicators"].values():
+                    narrow = spec.get("narrowed_by")
+                    if narrow and spec is cfg["dimensions"]["data"]["indicators"].get(ind):
+                        # the narrowing share goes with the count it describes
+                        if narrow in by_lang[std]:
+                            own[narrow] = dataclasses.replace(by_lang[std][narrow], language=code)
+                        else:
+                            own.pop(narrow, None)
 
 
 def main() -> None:
