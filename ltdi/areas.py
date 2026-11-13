@@ -6,13 +6,24 @@ and Portuguese across much of South America). The same source the glossodesy pro
 other version. Each area is linked to Glottolog, and through LinguaMeta's glottocodes to an LTDI
 language (members absorbed into a macrolanguage or merged language count for it).
 
+Where Glottography's digitisation of Wikipedia's list of official languages by country and territory
+(2024) matches the language's countries clearly better, that is used instead: English across the countries
+where it's official (India, Nigeria, the Philippines...), not only where the atlas draws it as the main
+language. "Better" is scored against LinguaMeta's countries and speakers: recall is the share of speakers in
+the countries an area covers; precision is the share of the area that its speakers could fill, counting in
+each country at most the share of its land that their share of its people would (so a whole-country area
+for a minority language, Hindi across India, or Bolivia's 36 official languages across Bolivia, scores low).
+The official-language area is used where its F-score beats the atlas's by SWITCH_MARGIN and is at least
+SWITCH_MIN.
+
 Areas are projected to the site's Equal Earth basemap and simplified for a world map (about half a
 pixel at its 1000-pixel width, ~20 km). Equal Earth keeps areas true, so the share of the map each
 tier covers is also its share of the land drawn.
 
-Run:  python -m ltdi.areas   (clones Glottography/asher2007world into .cache; needs shapely)
+Run:  python -m ltdi.areas   (clones the two Glottography datasets into .cache; needs shapely)
 Writes data/areas.json: {"paths": {code: SVG path}, "area": {code: square pixels},
-                         "labels": {country: [[code, x, y, square pixels], ...]}}
+                         "labels": {country: [[code, x, y, square pixels], ...]},
+                         "official": [codes whose area is the official-language one]}
 """
 
 from __future__ import annotations
@@ -26,19 +37,43 @@ from .geo import LAT_MIN, to_svg
 REPO = "https://github.com/Glottography/asher2007world"
 TAG = "v2.0"
 FILE = "cldf/contemporary/languages.geojson"
+OFFICIAL_REPO = "https://github.com/Glottography/wikipedia2024officiallang"
+OFFICIAL_TAG = "v2.0"
+OFFICIAL_FILE = "cldf/languages.geojson"
+SWITCH_MARGIN = 0.15  # F-score the official-language area must gain over the atlas's
+SWITCH_MIN = 0.3
 TOLERANCE = 0.5  # pixels at the basemap's 1000-pixel width
 MIN_AREA = 0.3   # square pixels: smaller fragments are dropped
 
 
-def source() -> dict:
-    root = CACHE / "asher2007world"
-    if not (root / FILE).exists():
+def source(repo: str = REPO, tag: str = TAG, file: str = FILE) -> dict:
+    root = CACHE / repo.rsplit("/", 1)[-1]
+    if not (root / file).exists():
         CACHE.mkdir(parents=True, exist_ok=True)
-        subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", TAG, "--filter=blob:none",
-                        "--no-checkout", REPO, str(root)], check=True)
-        subprocess.run(["git", "-C", str(root), "sparse-checkout", "set", "--no-cone", FILE], check=True)
-        subprocess.run(["git", "-C", str(root), "checkout", "-q", TAG], check=True)
-    return json.loads((root / FILE).read_text(encoding="utf-8"))
+        subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", tag, "--filter=blob:none",
+                        "--no-checkout", repo, str(root)], check=True)
+        subprocess.run(["git", "-C", str(root), "sparse-checkout", "set", "--no-cone", file], check=True)
+        subprocess.run(["git", "-C", str(root), "checkout", "-q", tag], check=True)
+    return json.loads((root / file).read_text(encoding="utf-8"))
+
+
+def fit(lang: dict, geom, shapes: dict, tree, codes: list, population: dict) -> float:
+    """F-score of an area against the language's countries and speakers (module docstring)."""
+    sp = {c["code"]: c.get("speakers") or 0 for c in lang.get("countries", [])}
+    total = sum(sp.values())
+    cover = {}
+    for i in tree.query(geom):
+        a = geom.intersection(shapes[codes[i]]).area
+        if a > 0:
+            cover[codes[i]] = a
+    area = sum(cover.values())
+    if not area or not sp:
+        return 0.0
+    covered = {c for c, a in cover.items() if a >= 0.05 * shapes[c].area or a >= 0.2 * area}
+    recall = (sum(v for c, v in sp.items() if c in covered) / total) if total else len(covered & set(sp)) / len(sp)
+    share = lambda c: min(1.0, sp.get(c, 0) / population[c]) if population.get(c) else float(c in sp)
+    precision = sum(min(a, share(c) * shapes[c].area) for c, a in cover.items()) / area
+    return 2 * precision * recall / (precision + recall) if precision + recall else 0.0
 
 
 def glottocode_to_ltdi() -> dict[str, str]:
@@ -132,26 +167,56 @@ def main() -> None:
     from shapely.geometry import shape
     from shapely.ops import unary_union
 
-    scored = {l["code"] for l in json.loads((DATA / "languages.json").read_text(encoding="utf-8"))}
+    import csv
+    from shapely import STRtree
+    from .geo import basemap, country_shapes
+
+    langs = {l["code"]: l for l in json.loads((DATA / "languages.json").read_text(encoding="utf-8"))}
     to_code = glottocode_to_ltdi()
-    by_code: dict[str, list] = {}
-    unmatched = 0
-    for f in source()["features"]:
-        gc = f["properties"].get("cldf:languageReference")
-        codes = SHARED.get(gc) or [to_code.get(gc)]
-        if not any(c in scored for c in codes) or not f.get("geometry"):
-            unmatched += 1
-            continue
-        for code in codes:
-            if code in scored:
-                by_code.setdefault(code, []).append(shape(f["geometry"]).buffer(0))
+
+    def gather(fc) -> tuple[dict[str, list], int]:
+        by_code, unmatched = {}, 0
+        for f in fc["features"]:
+            gc = f["properties"].get("cldf:languageReference")
+            codes = SHARED.get(gc) or [to_code.get(gc)]
+            if not any(c in langs for c in codes) or not f.get("geometry"):
+                unmatched += 1
+                continue
+            for code in codes:
+                if code in langs:
+                    by_code.setdefault(code, []).append(shape(f["geometry"]).buffer(0))
+        return by_code, unmatched
+
+    def prepare(geoms):
+        return project(unary_union(geoms)).simplify(TOLERANCE, preserve_topology=True)
+
+    atlas, unmatched = gather(source())
+    official, _ = gather(source(OFFICIAL_REPO, OFFICIAL_TAG, OFFICIAL_FILE))
+    # which area fits the language's countries better, for languages in both
+    basemap()
+    shapes = {k: v.buffer(0) for k, v in country_shapes().items()}
+    ccodes = list(shapes)
+    tree = STRtree([shapes[c] for c in ccodes])
+    population = {}
+    if (DATA / "countries.csv").exists():
+        population = {r["country"]: float(r["value"]) for r in csv.DictReader((DATA / "countries.csv").open(encoding="utf-8"))
+                      if r["indicator"] == "population" and r["value"]}
+    chosen = {code: prepare(g) for code, g in atlas.items()}
+    switched = []
+    for code in sorted(set(official) & set(atlas)):
+        alt = prepare(official[code]).buffer(0)
+        f_atlas = fit(langs[code], chosen[code].buffer(0), shapes, tree, ccodes, population)
+        f_alt = fit(langs[code], alt, shapes, tree, ccodes, population)
+        if f_alt >= SWITCH_MIN and f_alt > f_atlas + SWITCH_MARGIN:
+            chosen[code] = alt
+            switched.append(code)
+            print(f"  {code}: official-language area ({f_alt:.2f}) over the atlas's ({f_atlas:.2f})")
     paths, area, simplified = {}, {}, {}
-    for code, geoms in sorted(by_code.items()):
-        g = project(unary_union(geoms)).simplify(TOLERANCE, preserve_topology=True)
+    for code, g in sorted(chosen.items()):
         p = svg_path(g)
         if p:
             paths[code], area[code], simplified[code] = p, round(g.area, 1), g
-    out = {"paths": paths, "area": area, "labels": labels(simplified)}
+    out = {"paths": paths, "area": area, "labels": labels(simplified), "official": switched}
     (DATA / "areas.json").write_text(json.dumps(out, separators=(",", ":")), encoding="utf-8")
     size = (DATA / "areas.json").stat().st_size
     print(f"areas for {len(paths)} languages ({unmatched} atlas areas not matched), {size / 1e6:.1f} MB")

@@ -157,6 +157,12 @@ of LinguaMeta's ~6,450 individual languages with a location, placed in the count
 (or the origin country given in `config/language_overrides.csv`). Scored languages are coloured by tier
 from dark blue (very high) to dark orange (low); the rest are white. It has the region, country and tier
 filters but not the provider filter. Each language's page has a small map of its area, or its dot.
+Areas are Glottography's digitisation of Asher & Moseley's *Atlas of the World's Languages* (2007,
+contemporary version), except where Glottography's digitisation of Wikipedia's list of official languages
+by country (2024) fits the language's countries clearly better (`ltdi/areas.py`): English, Swahili, Korean,
+Lao, Kyrgyz and Guarani. The fit is scored against LinguaMeta's countries and speakers, so a whole-country
+area for a minority language (Hindi across India, Bolivia's 36 official languages across Bolivia) scores
+low and isn't used. Glottography's official-language data has no area for English in the Philippines.
 The basemap is Natural Earth (via world-atlas) in the Equal Earth projection.
 
 ## Writing sample
