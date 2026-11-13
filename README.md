@@ -31,6 +31,7 @@ python -m ltdi.collectors      # every collector -> data/records/*.csv (git, plu
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
 python -m ltdi.areas           # map's tier view: Glottography language areas, projected and simplified
+python -m ltdi.collectors.census_languages  # census languages by country -> data/census_languages.csv
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
 python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
@@ -52,6 +53,7 @@ only small builds work, because then the detail is embedded.
 | `config/crosswalk.csv` | Source language codes → LTDI codes where the standard resolution gets them wrong |
 | `config/written_standards.csv` | Spoken varieties and the standard language their speakers write |
 | `config/language_names.csv` | Vendor language names → LTDI codes where LinguaMeta's English names don't match |
+| `config/census_names.csv` | Census language names → LTDI codes where the Index's names don't match (several codes for a name the Index splits, `-` to leave one out) |
 | `config/methodology.toml` | Indicators, goalposts, weights, tiers, floor |
 | `config/services.csv` | Every service: technology, role (commercial, open, benchmark), name, provider, depth indicator |
 | `ltdi/records.py` | The common record every collector emits, with provenance |
@@ -134,7 +136,8 @@ projection keeps areas true, so pixel shares are land shares.
 Languages are grouped into Africa, South Asia, Rest of Asia, Europe, Americas
 and Oceania, from the UN M49 region of the country with the most speakers
 (South Asia is M49 Southern Asia), with overrides in `config/language_overrides.csv`.
-Every view on the site can be filtered by region.
+Every view on the site can be filtered by region, country and tier; a language counts in every region and
+country where it's spoken, with its speakers there.
 The Charts view can also be filtered by provider. A provider's view counts its
 own services only: the map and the region chart show the share of that
 provider's services (and published benchmarks) covering each language, the
@@ -147,11 +150,24 @@ The opportunities list can be filtered by provider too: it then shows only
 opportunities whose technology includes a service from that provider that
 doesn't yet cover the language, and names the service on each card.
 
-The Charts view opens with a map: a dot for each of LinguaMeta's ~6,450
-individual languages with a location, placed in the country with most speakers
-(or the origin country given in `config/language_overrides.csv`). Scored languages
-are coloured by tier from dark blue (very high) to dark orange (low); the rest are white.
+The Map tab shows where each language is spoken (Glottography's language areas) or a dot for each
+of LinguaMeta's ~6,450 individual languages with a location, placed in the country with most speakers
+(or the origin country given in `config/language_overrides.csv`). Scored languages are coloured by tier
+from dark blue (very high) to dark orange (low); the rest are white. It has the region, country and tier
+filters but not the provider filter. Each language's page has a small map of its area, or its dot.
 The basemap is Natural Earth (via world-atlas) in the Equal Earth projection.
+
+## Countries
+
+A language's countries, and its speakers in each, are LinguaMeta's, which lists the languages traditionally
+spoken in a country. Immigrant and diaspora languages come from national censuses
+(`ltdi/collectors/census_languages.py`): the UN Statistics Division's census table of population by language
+(each country's latest census; 86 countries and territories are used) and, for the United States, the Census
+Bureau's American Community Survey 2017–2021 (over 500 languages spoken at home). A census count is used only
+where LinguaMeta doesn't list the language in that country, or lists it without a count, and only at 1,000
+speakers or more. It changes the country and region filters, the speakers counted in them and each country's
+opportunities; LinguaMeta's own figures, each language's world total and the scores stay as they are. A
+language's page names the censuses it takes figures from.
 
 The Charts view shows how many languages each technology reaches today, how
 coverage has grown since 2019, and where each language stands by region. The
@@ -267,3 +283,15 @@ the coalition workstream it fits.
 - Most massively multilingual datasets on the Hub tag hundreds of languages each, so almost every language has a few.
 - Wikipedia article counts include bot-generated stubs: Urdu (708K) outranks Hindi (172K).
 - Reach uses national averages, which overstate connectivity for rural and minority-language speakers (Quechua in Peru).
+- Immigrant languages are counted only where a census asks about language and reports it (above). Many countries
+  with large immigrant communities have no usable census figures: France, Germany, Spain, Italy, the Netherlands,
+  Sweden, Norway and Denmark, the Gulf states, Japan, South Korea, Brazil
+  and Nigeria, among others, either don't ask about language or don't report it to the UN. Their views show only
+  the languages LinguaMeta lists for them. Estimating these from migration statistics would be possible, but the
+  numbers would be modelled rather than counted, so it isn't done.
+- Censuses ask different questions (mother tongue, language spoken at home, main language; some count a person in
+  each language they name), so census counts aren't comparable between countries. Some are old (the UK's is the 2011
+  census), and some tables group languages: "Chinese" not further specified is shared among the Chinese languages the
+  census names, or counted as Mandarin where it names none, although in some countries many are Cantonese speakers.
+  Tables that don't count speakers are left out: the Philippines (households), Rwanda (literacy), Sri Lanka,
+  Russia and Ireland (ability to speak), Ghana (ethnic groups).

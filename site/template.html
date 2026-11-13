@@ -481,7 +481,7 @@ async function need(...codes) {
     }));
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -1217,6 +1217,17 @@ function reachLine(l) {
     <a href="${esc(f.reach_voice_share.url)}" target="_blank" rel="noopener">World Bank data</a></div>`;
 }
 
+// Where its speakers in a country are counted from a census (immigrant languages LinguaMeta doesn't
+// list there): which countries, and the source
+function censusLine(l) {
+  const cs = l.census || [];
+  if (!cs.length) return '';
+  const names = cs.map(c => c[0]);
+  const shown = names.length > 3 ? `${names.slice(0, 3).join(', ')} and ${names.length - 3} other ${names.length - 3 === 1 ? 'country' : 'countries'}`
+    : names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : names[0];
+  const src = [...new Map(cs.map(c => [c[2], c[1].startsWith('UN') ? 'UN Statistics Division' : 'US Census Bureau'])).entries()];
+  return `<p class="pnote" title="${esc(cs.map(c => `${c[0]}: ${c[1]}`).join('\n'))}">Speakers in ${esc(shown)} are counted from ${cs.length > 1 ? 'their censuses' : 'its census'} (${src.map(([u, n]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`).join(', ')}).</p>`;
+}
 // Countries, by number of speakers: the top three, or all of them with a link back
 function whereLine(l, all) {
   const cs = l.countries, n = cs.length - 3;
@@ -1236,6 +1247,7 @@ async function language(code) {
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
         <span id="where">${whereLine(l, false)}</span>${endKey(l) !== 'none' ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
+        ${censusLine(l)}
         ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
       </div>

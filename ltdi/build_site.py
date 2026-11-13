@@ -45,12 +45,56 @@ def top_listed(top: list[dict]) -> list[dict]:
         picked.add(i)
     return [{k: v for k, v in o.items() if k != "_type"} for i, o in enumerate(top) if i in picked]
 SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "gaps", "endangerment")
-PROFILE = ("script_names", "script_source", "endangerment_source", "note", "source", "written_in", "joshi", "ud")  # shown only on the language's own page
+PROFILE = ("script_names", "script_source", "endangerment_source", "note", "source", "written_in", "joshi", "ud", "census")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
 # pseudo-regions (LinguaMeta lists them without speaker counts)
 # Region filter: one letter per region group, as the page reads them
 REGION_CODE = {"Africa": "A", "South Asia": "S", "Rest of Asia": "R", "Europe": "E", "Americas": "M", "Oceania": "O"}
 NOT_PLACES = {"aq", "bv", "gs", "hm", "tf", "um", "xa", "xb", "zz"}
+
+
+def add_census(scores: dict) -> None:
+    """Census counts (data/census_languages.csv, ltdi.collectors.census_languages) for languages
+    LinguaMeta doesn't list in a country, or lists there without a count: Tagalog, Chinese or
+    Vietnamese in the United States, say. For the site's country breakdowns only (filters, speakers
+    in a country, each country's opportunities), so LinguaMeta's figures, world totals and scores stay
+    as they are. Each language records the censuses it took figures from ("census": [[country,
+    source, url], ...]), for its page."""
+    import csv
+    path = DATA / "census_languages.csv"
+    if not path.exists():
+        return
+    by = {l["code"]: l for l in scores["languages"]}
+    names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"]}
+    touched = set()
+    for r in csv.DictReader(path.open(encoding="utf-8")):
+        l = by.get(r["language"])
+        if not l or l.get("extinct") or r["country"] in NOT_PLACES:
+            continue
+        n = int(r["speakers"])
+        if l.get("speakers"):
+            n = min(n, l["speakers"])  # never more in one country than LinguaMeta's world total
+        c = next((c for c in l["countries"] if c["code"] == r["country"]), None)
+        if c and c.get("speakers"):
+            continue
+        if not c:
+            c = {"code": r["country"], "name": names.get(r["country"]) or _country_name(r["country"])}
+            l["countries"].append(c)
+        c["speakers"] = n
+        l.setdefault("census", []).append([c["name"], r["source"], r["url"], n])
+        touched.add(l["code"])
+    for code in touched:  # most speakers first, as LinguaMeta's lists are
+        by[code]["countries"].sort(key=lambda c: -(c.get("speakers") or 0))
+        by[code]["census"] = [c[:3] for c in sorted(by[code]["census"], key=lambda c: -c[3])]
+
+
+def _country_name(code: str) -> str:
+    try:
+        import pycountry
+    except ImportError:
+        return code.upper()
+    c = pycountry.countries.get(alpha_2=code.upper())
+    return getattr(c, "common_name", None) or (c.name if c else code.upper())
 
 
 def country_opportunities(scores: dict) -> dict:
@@ -219,6 +263,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
 
 def main() -> None:
     scores = json.loads((DATA / "scores.json").read_text(encoding="utf-8"))
+    add_census(scores)
     index, details = split(scores)
     out = SITE / "data" / "lang"
     shutil.rmtree(out, ignore_errors=True)
