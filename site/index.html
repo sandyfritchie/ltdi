@@ -1350,23 +1350,32 @@ function bindMap() {
     vb = { x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - w * H / W / 2, w, h: w * H / W };
     clamp(); apply();
   }
-  // A language found with the search box: zoom to its area, or to its dot. An area fills about
-  // two-fifths of the view, but the view never narrows below an eighth of the world, so a small area
-  // still shows enough coast and borders around it to tell where it is (and a ring marks it). A dot is shown in its part of
-  // a continent, a third of the world across, so its neighbours stay in view.
+  // A language found with the search box: zoom to its area. The area fills about two-fifths of the
+  // view, but the view never narrows below an eighth of the world, so a small area still shows enough
+  // coast and borders around it to tell where it is (and a ring marks it). The dots view uses the same
+  // frame, ringing the dot; a language with no area is shown a third of the world across.
   const F = mapFocus && BY[mapFocus], ring = document.getElementById('focusring');
   if (F && ring) {
     const hit = svg.querySelector('.areas path.hit'), p = GEO.points.find(q => q[0] === F.code);
+    // the area's outline frames the view in either mode (in the dots view it's measured, not drawn),
+    // so switching views keeps the same frame; a language with no area gets a third of the world
+    let area = hit;
+    if (!area && AREAS && AREAS.paths[F.code]) {
+      area = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      area.setAttribute('d', AREAS.paths[F.code]); area.setAttribute('visibility', 'hidden'); svg.appendChild(area);
+    }
     let cx, cy, w, small = true;
-    if (hit) {
-      const b = hit.getBBox();
+    if (area) {
+      const b = area.getBBox();
+      if (area !== hit) area.remove();
       cx = b.x + b.width / 2; cy = b.y + b.height / 2;
       w = Math.min(W, Math.max(W / 8, Math.max(b.width, b.height * W / H) * 2.5));
       small = Math.max(b.width, b.height * W / H) < w / 12;
     } else { cx = p[2]; cy = p[3]; w = W / 3; }
+    if (!hit && p) { small = true; ring.setAttribute('cx', p[2]); ring.setAttribute('cy', p[3]); }  // a dot is always ringed
     const target = { w, h: w * H / W, x: cx - w / 2, y: cy - w * H / W / 2 };
     target.x = Math.min(W - target.w, Math.max(0, target.x)); target.y = Math.min(H - target.h, Math.max(0, target.y));
-    ring.setAttribute('cx', cx); ring.setAttribute('cy', cy);
+    if (hit || !p) { ring.setAttribute('cx', cx); ring.setAttribute('cy', cy); }
     ring.setAttribute('r', small ? (w * 0.03).toFixed(2) : 0);
     const from = { ...vb }, t0 = performance.now(), ms = matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 700;
     if (!mapFocusFresh) { target.x = vb.x; target.y = vb.y; target.w = vb.w; target.h = vb.h; }  // a redraw keeps the view
