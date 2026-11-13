@@ -423,7 +423,9 @@ const RULES = DATA.rules, RES = DATA.resources;
 DATA.facts = {};
 const LEVEL_CODE = { f: 'full', p: 'part', o: 'open', n: 'none' };
 for (const l of ALL) {
-  l._cc = new Set((l.cc || '').split(' ').filter(Boolean));
+  // its countries, with speakers there where LinguaMeta gives them ("us:319000000 gb:64000000 jm")
+  l._cs = Object.fromEntries((l.cc || '').split(' ').filter(Boolean).map(t => { const [c, n] = t.split(':'); return [c, n ? +n : null]; }));
+  l._cc = new Set(Object.keys(l._cs));
   // every region it's spoken in, not just its home: English counts in the Americas and Oceania too
   l._rg = new Set([...(l.rg || '')].map(c => REGION_OF[c]).concat(l.region ? [l.region] : []));
   l._offers = new Set(l.offers.map(i => DATA.services[i].id));
@@ -628,6 +630,31 @@ const inCountry = l => !countrySel.size || [...countrySel].some(c => l._cc.has(c
 // region, country and tier together (the tier set is shared by every page)
 const inView = l => inRegion(l) && inCountry(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]));
 const COUNTRY_NAMES = DATA.country_names || {};
+const COUNTRY_REGION = DATA.country_regions || {}, COUNTRY_ONLINE = DATA.country_online || {};
+// Speakers in view: with a region or country chosen, a language counts only its speakers in the
+// countries chosen (or the chosen regions' countries), from LinguaMeta's per-country figures; online,
+// each country's share of people using the internet. English in Africa is its speakers in Nigeria,
+// South Africa and the rest, not its world total.
+const narrowed = () => regionSel.size > 0 || countrySel.size > 0;
+const countryIn = c => (!countrySel.size || countrySel.has(c)) && (!regionSel.size || regionSel.has(REGION_OF[COUNTRY_REGION[c]]));
+function inViewCounts(l) {
+  const cs = Object.entries(l._cs), here = cs.filter(([c]) => countryIn(c)), known = here.filter(([, n]) => n);
+  if (known.length) return known;
+  // no per-country figure: the whole language if all of it is in view (or it has no countries listed)
+  return (!cs.length || here.length === cs.length) && l.speakers ? null : [];
+}
+function vSpk(l) {
+  if (!narrowed()) return l.speakers;
+  const k = inViewCounts(l);
+  return k === null ? l.speakers : k.reduce((n, [, x]) => n + x, 0);
+}
+function vOn(l) {
+  if (!narrowed()) return l.online;
+  const k = inViewCounts(l), rate = l.speakers && l.online ? l.online / l.speakers : null;
+  if (k === null) return l.online;
+  const on = k.reduce((n, [c, x]) => n + x * (COUNTRY_ONLINE[c] ?? rate ?? 0), 0);
+  return on || (rate == null ? null : 0);
+}
 const COUNTRY_N = {};  // languages listed for each country
 for (const l of LANGS) for (const c of l._cc) COUNTRY_N[c] = (COUNTRY_N[c] || 0) + 1;
 const COUNTRIES = Object.keys(COUNTRY_N).filter(c => COUNTRY_NAMES[c]).sort((a, b) => COUNTRY_NAMES[a].localeCompare(COUNTRY_NAMES[b]));
@@ -846,8 +873,8 @@ function wireMsel(wrap, make, sel, size, draw) {
 // Sortable columns: [key, label, value for sorting, natural direction (1 = ascending first)]
 const GAP_WEIGHT = { none: 2, open: 1 };
 const SORTS = {
-  rank: ['#', l => l.rank ?? 1e9, 1], name: ['Language', l => l.name.toLowerCase(), 1], speakers: ['Speakers', l => l.speakers || 0, -1],
-  online: ['Online', l => l.online || 0, -1],
+  rank: ['#', l => l.rank ?? 1e9, 1], name: ['Language', l => l.name.toLowerCase(), 1], speakers: ['Speakers', l => vSpk(l) || 0, -1],
+  online: ['Online', l => vOn(l) || 0, -1],
   ltdi: ['LTDI', l => l.ltdi, -1], tier: ['Tier', l => l.ltdi, -1],
   gaps: ['Gaps', l => Object.values(l.gaps).reduce((n, g) => n + GAP_WEIGHT[g], 0) * 1e5 + (l.rank ?? 9e4), 1],  // fewest first
 };
@@ -883,10 +910,10 @@ const GAP_SHORT = { speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Tr
 const GAP_GROUPS = [['Text', ['keyboard', 'mt']], ['Speech', ['speech_input', 'tts']], ['AI', ['llm', 'assistant']]];
 function rankSummary(ls) {
   const sum = f => ls.reduce((n, l) => n + (f(l) || 0), 0);
-  const sp = sum(l => l.speakers), on = sum(l => l.online);
+  const sp = sum(vSpk), on = sum(vOn);
   const tiers = ['vh', 'h', 'm', 'l'], label = { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
   const by = Object.fromEntries(tiers.map(t => [t, { n: 0, sp: 0 }]));
-  for (const l of ls) { const t = tierOf(l.ltdi)[0]; by[t].n++; by[t].sp += l.speakers || 0; }
+  for (const l of ls) { const t = tierOf(l.ltdi)[0]; by[t].n++; by[t].sp += vSpk(l) || 0; }
   const pct = (x, of) => of ? x / of * 100 : 0;
   const fmtPct = v => v > 0 && v < 1 ? '<1%' : Math.round(v) + '%';
   const row = (name, key, total) => `<div class="tbar-row"><span class="tbar-k">${name}</span><div class="tbar">${tiers.map(t => {
@@ -896,7 +923,7 @@ function rankSummary(ls) {
   // Grouped by kind, two technologies each: no commercial service at all
   const none = (l, k) => l.gaps[k] === 'none';  // as in the Gaps column
   const gapItem = k => {
-    const t = CFG.tech.technologies[k], n = sum(l => none(l, k) ? l.speakers : 0);
+    const t = CFG.tech.technologies[k], n = sum(l => none(l, k) ? vSpk(l) : 0);
     return `<span class="rgap" title="Speakers whose language has no commercial ${esc(t.label.toLowerCase())} service">
       <span class="gap-i none">${TICON[k]}</span><b>${n ? people(n) : '0'}</b><small>${esc(GAP_SHORT[k] || t.label)}</small></span>`;
   };
@@ -906,7 +933,7 @@ function rankSummary(ls) {
       <div><div class="eyebrow">Languages</div><b>${ls.length.toLocaleString()}</b></div>
       <div title="Each language's speakers added up, so people who speak several languages are counted once for each"><div class="eyebrow">Speakers*</div><b>${people(sp)}</b></div>
       <div title="Estimated speakers online today, added up the same way"><div class="eyebrow">Online*</div><b>${people(on)}</b></div>
-      <p class="rsum-note">* Summed per language: people who speak several languages are counted in each.</p>
+      <p class="rsum-note">* Summed per language: people who speak several languages are counted in each.${narrowed() ? ` Each language counts only its speakers in ${countrySel.size ? 'the countries' : 'the regions'} chosen.` : ''}</p>
     </div>
     <div class="rsum-tiers">
       <div class="eyebrow">Share by tier</div>
@@ -969,8 +996,8 @@ function ranking() {
       <tr tabindex="0" data-code="${l.code}">
         <td class="rank">${l.rank ?? '–'}</td>
         <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">[${l.code}]</span></div></td>
-        <td class="num hide-sm hide-nar">${people(l.speakers)}</td>
-        <td class="num hide-sm">${people(l.online)}${l.online && l.speakers ? ` <span class="pct p${pctBand(l.online / l.speakers)}">(${Math.round(l.online / l.speakers * 100)}%)</span>` : ''}</td>
+        <td class="num hide-sm hide-nar">${people(vSpk(l))}</td>
+        <td class="num hide-sm">${people(vOn(l))}${vOn(l) && vSpk(l) ? ` <span class="pct p${pctBand(vOn(l) / vSpk(l))}">(${Math.round(vOn(l) / vSpk(l) * 100)}%)</span>` : ''}</td>
         <td><div class="bars" aria-label="Writing ${l.dimensions.writing.score}, data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
           ${DIMS.map(([k, , c]) => bar(l.dimensions[k].score, c)).join('')}</div></td>
         <td class="num score">${l.ltdi.toFixed(3)}</td>
@@ -1546,7 +1573,7 @@ function charts() {
     return { k, t, by, html: `<div class="lab" title="${esc(t.label)}">${esc(t.short || t.label)}${P ? `<small>${esc(ids.map(id => SVC[id][0]).join(', '))}</small>` : ''}</div><div class="stack" role="img" aria-label="${esc(label)}: ${LV.map(([lv, lab]) => `${by[lv].length} ${lab.toLowerCase()}`).join(', ')}">${segs}</div>` };
   });
   // 1b. The same split weighted by speakers: how many people each technology reaches
-  const spk = ls => ls.reduce((n, l) => n + (l.speakers || 0), 0), SP = spk(langs) || 1;
+  const spk = ls => ls.reduce((n, l) => n + (vSpk(l) || 0), 0), SP = spk(langs) || 1;
   const pctS = v => { const p = v / SP * 100; return p > 0 && p < 1 ? '<1%' : Math.round(p) + '%'; };
   const rowsS = rows.map(r => {
     const segs = LV.filter(([lv]) => spk(r.by[lv])).map(([lv, lab]) => {

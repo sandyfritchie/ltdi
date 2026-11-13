@@ -52,6 +52,24 @@ REGION_CODE = {"Africa": "A", "South Asia": "S", "Rest of Asia": "R", "Europe": 
 NOT_PLACES = {"aq", "bv", "gs", "hm", "tf", "um", "xa", "xb", "zz"}
 
 
+def country_online() -> dict[str, float]:
+    """{country: latest share of people using the internet} (data/countries.csv, World Bank), so the
+    page can count speakers online in the countries a filter chooses, as the connectivity collector
+    does for each language."""
+    import csv
+    path = DATA / "countries.csv"
+    if not path.exists():
+        return {}
+    latest: dict[str, tuple[int, float]] = {}
+    with path.open(encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            if r["indicator"] == "internet" and r["value"]:
+                y = int(r["year"] or 0)
+                if r["country"] not in latest or y > latest[r["country"]][0]:
+                    latest[r["country"]] = (y, round(float(r["value"]) / 100, 3))
+    return {c: v for c, (_, v) in latest.items()}
+
+
 def _dump(obj) -> str:
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
 
@@ -102,7 +120,10 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             "offers": [svc_index[i] for i in l["offers"]],
             "opportunity_count": len(opps),
             "alt": "|".join(l.get("alt_names") or []),  # other names, for search
-            "cc": " ".join(c["code"] for c in l["countries"] if c["code"] not in NOT_PLACES),  # for the country filter
+            # its countries, with LinguaMeta's speakers in each where known ("us:319000000 gb:64000000 jm"),
+            # for the country and region filters and the speakers counted in them
+            "cc": " ".join(c["code"] + (f":{c['speakers']}" if c.get("speakers") else "")
+                           for c in l["countries"] if c["code"] not in NOT_PLACES),
             # every region it's spoken in (its home region and its countries'), for the region filter
             "rg": "".join(sorted({REGION_CODE[r] for r in [l.get("region"), *(country_region.get(c["code"]) for c in l["countries"])]
                                   if r in REGION_CODE})),
@@ -139,6 +160,8 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     index = {k: scores[k] for k in ("edition", "labels", "config", "services", "resources",
                                     "opportunity_types", "teams")} | {"rules": rules}
     country_names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"] if c["code"] not in NOT_PLACES}
+    index |= {"country_regions": {c: REGION_CODE[r] for c, r in country_region.items() if r in REGION_CODE},
+              "country_online": country_online()}
     index |= {"history": hist, "languages": langs, "top_opportunities": listed, "country_names": country_names,
               "opportunity_total": len(top), "units": units,
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
