@@ -1,15 +1,15 @@
 # Checks the language of OPUS's web-mined parallel corpora with GlotLID (ltdi/collectors/opus_lid.py).
-# Run by hand (Actions -> OPUS language check -> Run workflow); results are attached to the run as
-# opus_lid.csv and shown in the run summary. OPUS's storage isn't reachable from every network, so it
-# runs here.
+# Run by hand (Actions -> OPUS language check -> Run workflow). With no languages given it checks every
+# language's web-mined corpora up to 20M sentence pairs, in 8 parallel jobs, and commits the results to
+# data/opus_lid.csv. OPUS's storage isn't reachable from every network, so it runs here.
 name: OPUS language check
 
 on:
   workflow_dispatch:
     inputs:
       languages:
-        description: OPUS language labels, space-separated
-        default: ig ny gn jv fon
+        description: OPUS language labels, space-separated (empty for all)
+        default: ""
       sample:
         description: Lines sampled per corpus
         default: "2000"
@@ -21,6 +21,10 @@ jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 345
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -36,8 +40,35 @@ jobs:
         env:
           LANGUAGES: ${{ inputs.languages }}
           SAMPLE: ${{ inputs.sample }}
-        run: python -m ltdi.collectors.opus_lid $LANGUAGES --sample "$SAMPLE"
+          SHARD: ${{ matrix.shard }}
+        run: python -m ltdi.collectors.opus_lid $LANGUAGES --sample "$SAMPLE" --shard "$SHARD/8" --out "shard-$SHARD.csv"
       - uses: actions/upload-artifact@v4
         with:
-          name: opus_lid
-          path: data/opus_lid.csv
+          name: shard-${{ matrix.shard }}
+          path: shard-${{ matrix.shard }}.csv
+
+  commit:
+    needs: check
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: shard-*
+          merge-multiple: true
+      - name: Merge and commit
+        run: |
+          python -m ltdi.collectors.opus_lid --merge shard-*.csv
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/opus_lid.csv
+          git diff --cached --quiet && exit 0
+          git commit -m "OPUS language check: results from run ${{ github.run_id }}"
+          git pull --rebase
+          git push

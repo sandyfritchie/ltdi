@@ -16,7 +16,9 @@ English pair, which this can't see.
 
 Run (needs object.pouta.csc.fi and huggingface.co, so it runs on GitHub Actions: opus-lid.yml):
   python -m ltdi.collectors.opus_lid ig ny gn jv fon [--sample 2000]
-Writes data/opus_lid.csv.
+  python -m ltdi.collectors.opus_lid --shard 0/8      (every language, corpora up to 20M pairs)
+Writes data/opus_lid.csv, which the OPUS collector (opus.py) uses to count each checked web-mined
+corpus at the share of its lines in the language.
 """
 
 from __future__ import annotations
@@ -31,12 +33,14 @@ import sys
 import time
 import urllib.request
 import zipfile
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date
+from pathlib import Path
 
 from .. import CACHE, DATA
 from ..crosswalk import to_ltdi
 from ..http import USER_AGENT, fetch_json
-from .opus import API, MINED
+from .opus import API, LANGUAGES, MINED
 
 MODEL_REPO = "https://huggingface.co/cis-lmu/glotlid"
 MODEL_REV = "e9592e0a9bc3b6f2a946de94faaa188d1dd6f522"
@@ -45,7 +49,7 @@ MODEL_URL = f"{MODEL_REPO}/resolve/{MODEL_REV}/{MODEL_FILE}"
 OUT = DATA / "opus_lid.csv"
 CHUNK = 16 * 1024 * 1024
 EXAMPLES = 8  # lines in another language printed per corpus, to see what they are
-MIN_WORDS = 3  # shorter lines are too short to identify reliably; counted separately
+MIN_WORDS, MIN_CHARS = 3, 15  # lines with fewer words and characters are too short to identify; counted apart
 FIELDS = ["language", "opus_label", "corpus", "pairs", "size_mb", "lines_read", "sampled", "in_language",
           "other_language", "too_short", "top_labels", "url", "retrieved"]
 
@@ -115,6 +119,12 @@ def sample_lines(url: str, label: str, k: int, seed: str) -> tuple[list[str], in
     return [l.strip() for l in keep], n, raw.fetched
 
 
+def short(line: str) -> bool:
+    """Too short to identify: under 3 words and under 15 characters (the second for scripts written
+    without spaces, such as Chinese or Thai)."""
+    return len(line.split()) < MIN_WORDS and len(line) < MIN_CHARS
+
+
 def model():
     import fasttext  # installed on the runner only (fasttext-wheel)
     path = CACHE / "glotlid" / f"{MODEL_REV[:12]}-{MODEL_FILE}"
@@ -142,7 +152,7 @@ def check(lid, label: str, corpus: dict, k: int) -> dict:
     code = to_ltdi(label.replace("_", "-"))
     t = time.time()
     lines, n, fetched = sample_lines(corpus["url"], label, k, f"{label}/{corpus['corpus']}")
-    long = [l for l in lines if len(l.split()) >= MIN_WORDS]
+    long = [l for l in lines if not short(l)]
     labels, _ = lid.predict(long, k=1) if long else ([], [])
     found = collections.Counter(l[0].removeprefix("__label__") for l in labels)
     ours = sum(v for lab, v in found.items() if to_ltdi(lab.split("_")[0]) == code)
@@ -155,7 +165,7 @@ def check(lid, label: str, corpus: dict, k: int) -> dict:
               if to_ltdi(lab[0].removeprefix("__label__").split("_")[0]) != code]
     for lab, l in rng.sample(others, min(EXAMPLES, len(others))):
         print(f"      {lab}: {l[:110]}", flush=True)
-    shorts = [l for l in lines if len(l.split()) < MIN_WORDS]
+    shorts = [l for l in lines if short(l)]
     for l in rng.sample(shorts, min(3, len(shorts))):
         print(f"      (short): {l[:110]}", flush=True)
     return {
@@ -168,29 +178,70 @@ def check(lid, label: str, corpus: dict, k: int) -> dict:
     }
 
 
-def main(argv=None):
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("labels", nargs="+", help="OPUS language labels (as paired with English)")
-    ap.add_argument("--sample", type=int, default=2000)
-    args = ap.parse_args(argv)
-    lid = model()
-    rows = []
-    for label in args.labels:
-        print(label, flush=True)
-        for corpus in mined_corpora(label):
-            try:
-                rows.append(check(lid, label, corpus, args.sample))
-            except Exception as e:  # one unreadable corpus shouldn't lose the rest
-                print(f"  {corpus['corpus']}: failed: {e}", flush=True)
+def plan(labels: list[str] | None, max_pairs: int) -> list[tuple[str, dict]]:
+    """(label, corpus) for every web-mined corpus to check: of the given labels, or of every OPUS label
+    that resolves to an LTDI language, up to max_pairs sentence pairs."""
+    if not labels:
+        labels = sorted(l for l in fetch_json(LANGUAGES, cache=False)["languages"]
+                        if to_ltdi(l.replace("_", "-")) not in (None, "en"))
+    with ThreadPoolExecutor(8) as pool:
+        found = pool.map(mined_corpora, labels)
+    return [(l, c) for l, cs in zip(labels, found) for c in cs if c["alignment_pairs"] <= max_pairs]
+
+
+def shard(todo: list, i: int, n: int) -> list:
+    """The i-th of n shards, balanced by file size (largest first, each to the lightest shard)."""
+    load, out = [0] * n, [[] for _ in range(n)]
+    for item in sorted(todo, key=lambda t: (-int(t[1].get("size") or 0), t[0], t[1]["corpus"])):
+        j = load.index(min(load))
+        out[j].append(item)
+        load[j] += int(item[1].get("size") or 0)
+    return sorted(out[i], key=lambda t: (t[0], t[1]["corpus"]))
+
+
+def write(rows: list[dict], path=OUT):
+    """Add rows to the results file, replacing earlier results for the same corpus."""
     keep = []
-    if OUT.exists():  # keep earlier results for other languages
-        with OUT.open(encoding="utf-8") as f:
+    if path.exists():
+        with path.open(encoding="utf-8") as f:
             done = {(r["opus_label"], r["corpus"]) for r in rows}
             keep = [r for r in csv.DictReader(f) if (r["opus_label"], r["corpus"]) not in done]
-    with OUT.open("w", encoding="utf-8", newline="") as f:
+    with path.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, FIELDS)
         w.writeheader()
-        w.writerows(sorted(keep + rows, key=lambda r: (r["language"], r["corpus"])))
+        w.writerows(sorted(keep + rows, key=lambda r: (r["language"], r["opus_label"], r["corpus"])))
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("labels", nargs="*", help="OPUS language labels (as paired with English); none: all")
+    ap.add_argument("--sample", type=int, default=2000)
+    ap.add_argument("--max-pairs", type=int, default=20_000_000, help="skip larger corpora")
+    ap.add_argument("--shard", default="0/1", help="i/n: check the i-th of n shards")
+    ap.add_argument("--out", type=Path, default=OUT)
+    ap.add_argument("--merge", nargs="+", type=Path, help="merge these results files into --out, then stop")
+    args = ap.parse_args(argv)
+    if args.merge:
+        rows = []
+        for p in args.merge:
+            with p.open(encoding="utf-8") as f:
+                rows += list(csv.DictReader(f))
+        write(rows, args.out)
+        print(f"merged {len(rows)} corpora into {args.out}")
+        return
+    i, n = map(int, args.shard.split("/"))
+    todo = shard(plan(args.labels, args.max_pairs), i, n)
+    print(f"{len(todo)} corpora to check in shard {i}/{n}", flush=True)
+    lid, rows, label = model(), [], None
+    for lab, corpus in todo:
+        if lab != label:
+            print(lab, flush=True)
+            label = lab
+        try:
+            rows.append(check(lid, lab, corpus, args.sample))
+        except Exception as e:  # one unreadable corpus shouldn't lose the rest
+            print(f"  {corpus['corpus']}: failed: {e}", flush=True)
+    write(rows, args.out)
     if summary := os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(summary, "a", encoding="utf-8") as f:
             f.write("| Language | Corpus | Pairs | In the language | Other language | Too short | Top labels |\n"
@@ -198,7 +249,7 @@ def main(argv=None):
             for r in rows:
                 f.write(f"| {r['opus_label']} | {r['corpus']} | {r['pairs']:,} | {r['in_language']:.0%} | "
                         f"{r['other_language']:.0%} | {r['too_short']:.0%} | {r['top_labels']} |\n")
-    print(f"wrote {OUT} ({len(rows)} corpora checked)")
+    print(f"wrote {args.out} ({len(rows)} corpora checked)")
 
 
 if __name__ == "__main__":
