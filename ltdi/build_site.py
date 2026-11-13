@@ -98,6 +98,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             "offers": [svc_index[i] for i in l["offers"]],
             "opportunity_count": len(opps),
             "alt": "|".join(l.get("alt_names") or []),  # other names, for search
+            "cc": " ".join(c["code"] for c in l["countries"] if c["code"] not in NOT_PLACES),  # for the country filter
             **({"extinct": 1} if l.get("extinct") else {}),
             "online": round(l["speakers"] * reach["value"]) if l.get("speakers") and (
                 reach := scores["facts"].get(l["code"], {}).get("reach_voice_share")) else None,
@@ -130,7 +131,8 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                                        for c, v in by.items()} for s, by in hist["values"].items()}}
     index = {k: scores[k] for k in ("edition", "labels", "config", "services", "resources",
                                     "opportunity_types", "teams")} | {"rules": rules}
-    index |= {"history": hist, "languages": langs, "top_opportunities": listed,
+    country_names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"] if c["code"] not in NOT_PLACES}
+    index |= {"history": hist, "languages": langs, "top_opportunities": listed, "country_names": country_names,
               "opportunity_total": len(top), "units": units,
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
               "sources": [list(k) for k in sorted(sources, key=sources.get)]}

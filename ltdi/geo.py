@@ -3,9 +3,9 @@
 Run:  python -m ltdi.geo
 Writes:
   data/world_languages.json  [code, name, x, y, speakers] for every individual language with a location
-  data/basemap.json          {"width", "height", "path", "regions"}: Natural Earth countries (110m, via
-                             world-atlas), projected to Equal Earth as one SVG path, and the box to
-                             show for each region group
+  data/basemap.json          {"width", "height", "path", "countries", "regions"}: Natural Earth countries
+                             (110m, via world-atlas), projected to Equal Earth as one SVG path, each
+                             country's outline and the box to frame it, and the box for each region
 
 A language's point is LinguaMeta's geolocation for its origin country where
 config/language_overrides.csv gives one, otherwise for the country with the most
@@ -78,6 +78,7 @@ def basemap() -> dict:
         return out
 
     parts = []
+    by_country: dict[str, list[list[tuple[float, float]]]] = {}
     for geom in topo["objects"]["countries"]["geometries"]:
         if geom.get("id") == "010" or geom.get("properties", {}).get("name") == "Antarctica":
             continue
@@ -93,7 +94,30 @@ def basemap() -> dict:
                 pts = [to_svg(lon, lat) for lon, lat in lonlat]
                 if len(pts) > 2:
                     parts.append("M" + "L".join(f"{x:g},{y:g}" for x, y in pts) + "Z")
-    return {"width": WIDTH, "height": HEIGHT, "path": "".join(parts)}
+                    if (a2 := _alpha2(geom.get("id"))):
+                        by_country.setdefault(a2, []).append(pts)
+    return {"width": WIDTH, "height": HEIGHT, "path": "".join(parts), "countries": _country_views(by_country)}
+
+
+def _alpha2(numeric: str | None) -> str | None:
+    """ISO 3166 alpha-2 code (lower case, as LinguaMeta writes them) for world-atlas's numeric id."""
+    import pycountry  # only this step needs it: pip install pycountry
+    c = pycountry.countries.get(numeric=numeric) if numeric else None
+    return c.alpha_2.lower() if c else None
+
+
+def _country_views(by_country: dict[str, list[list[tuple[float, float]]]]) -> dict[str, dict]:
+    """Country -> {"box": [x0, y0, x1, y1], "outline": SVG path}: the box frames its largest polygon
+    (the mainland, so France isn't framed with French Guiana), the outline is all of it."""
+    out = {}
+    for a2, rings in by_country.items():
+        def extent(r):
+            xs, ys = [x for x, _ in r], [y for _, y in r]
+            return min(xs), min(ys), max(xs), max(ys)
+        main = max(rings, key=lambda r: (lambda e: (e[2] - e[0]) * (e[3] - e[1]))(extent(r)))
+        out[a2] = {"box": [round(v, 1) for v in extent(main)],
+                   "outline": "".join("M" + "L".join(f"{x:g},{y:g}" for x, y in r) + "Z" for r in rings)}
+    return out
 
 
 def linguameta_dir():

@@ -98,6 +98,11 @@ button.reset[hidden] { display: none; }
   border: 1px solid var(--rule); border-radius: 8px; padding: 6px; box-shadow: 0 6px 20px rgba(0,0,0,.12); }
 .msel-pop label { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 5px; cursor: pointer; font-size: 14px; white-space: nowrap; }
 .msel-pop label:hover { background: var(--bg); }
+.msel-pop label[hidden] { display: none; }
+.msel-pop.long { max-height: min(24em, 60vh); overflow-y: auto; padding-top: 0; min-width: 16em; }
+.msel-find { position: sticky; top: 0; z-index: 1; width: 100%; box-sizing: border-box; margin: 0 0 4px; padding: 7px 10px;
+  border: 0; border-bottom: 1px solid var(--rule); border-radius: 0; background: var(--surface); color: var(--ink); font: 14px var(--font-body); }
+.msel-find:focus { outline: none; border-bottom-color: var(--ink); }
 .msel-pop label i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 .msel-pop .gap-i .ticon { width: 17px; height: 17px; vertical-align: middle; }
 .msel-clear { display: block; width: 100%; margin-top: 4px; padding: 6px 8px; font: 13px var(--font-body); color: var(--accent, var(--muted));
@@ -417,6 +422,7 @@ const RULES = DATA.rules, RES = DATA.resources;
 DATA.facts = {};
 const LEVEL_CODE = { f: 'full', p: 'part', o: 'open', n: 'none' };
 for (const l of ALL) {
+  l._cc = new Set((l.cc || '').split(' ').filter(Boolean));
   l._offers = new Set(l.offers.map(i => DATA.services[i].id));
   l.levels = Object.fromEntries(Object.keys(CFG.tech.technologies).map((t, i) => [t, LEVEL_CODE[l.levels[i]]]));
   l.dimensions = Object.fromEntries(Object.entries(l.scores).map(([k, v]) => [k, { score: v, indicators: {} }]));
@@ -612,14 +618,65 @@ const REGIONS = REGION_ORDER.filter(r => LANGS.some(l => l.region === r));
 // None ticked means every region; ticking them all clears the set.
 const regionSel = new Set();
 const inRegion = l => !regionSel.size || regionSel.has(l.region);
-// the charts page's tier filter (tierSel, shared with the ranking) and region together
-const inView = l => inRegion(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]));
+// Countries: languages spoken there (LinguaMeta's country list), several at once like regions
+const countrySel = new Set();
+let countryQuery = '';  // what's typed in the country drop-down's search box
+const inCountry = l => !countrySel.size || [...countrySel].some(c => l._cc.has(c));
+// region, country and tier together (the tier set is shared by every page)
+const inView = l => inRegion(l) && inCountry(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]));
+const COUNTRY_NAMES = DATA.country_names || {};
+const COUNTRY_N = {};  // languages listed for each country
+for (const l of LANGS) for (const c of l._cc) COUNTRY_N[c] = (COUNTRY_N[c] || 0) + 1;
+const COUNTRIES = Object.keys(COUNTRY_N).filter(c => COUNTRY_NAMES[c]).sort((a, b) => COUNTRY_NAMES[a].localeCompare(COUNTRY_NAMES[b]));
+// Two hundred countries: the drop-down has a search box, and lists the ticked ones first
+function countryPicker() {
+  const opts = [...COUNTRIES].sort((a, b) => countrySel.has(b) - countrySel.has(a));
+  const label = !countrySel.size ? 'All countries' : COUNTRIES.filter(c => countrySel.has(c)).map(c => COUNTRY_NAMES[c]).join(', ');
+  const q = countryQuery.trim().toLowerCase();
+  return `<details class="msel" id="ctrysel"><summary aria-label="Countries">${esc(label)}</summary><div class="msel-pop long">
+    <input type="search" class="msel-find" placeholder="Find a country" aria-label="Find a country" value="${esc(countryQuery)}">
+    ${opts.map(c => `<label data-name="${esc(COUNTRY_NAMES[c].toLowerCase())} ${c}"${q && !COUNTRY_NAMES[c].toLowerCase().includes(q) && c !== q && !countrySel.has(c) ? ' hidden' : ''}><input type="checkbox" value="${c}"${countrySel.has(c) ? ' checked' : ''}>${esc(COUNTRY_NAMES[c])} <span class="cnt">${COUNTRY_N[c].toLocaleString()}</span></label>`).join('')}
+    ${countrySel.size ? '<button type="button" class="msel-clear">Show all countries</button>' : ''}</div></details>`;
+}
+// The country drop-down: as wireMsel, plus its search box, which filters the list as you type and
+// keeps its text and focus when ticking redraws the list
+function wireCountries(wrap, draw) {
+  const d = $(`#${wrap} details`), find = d.querySelector('.msel-find');
+  const filter = () => {
+    const q = find.value.trim().toLowerCase(); countryQuery = find.value;
+    d.querySelectorAll('label[data-name]').forEach(lab => {
+      lab.hidden = !!q && !lab.dataset.name.includes(q) && !lab.querySelector('input').checked;
+    });
+  };
+  find.oninput = filter;
+  d.ontoggle = () => { if (d.open && document.activeElement !== find) find.focus(); };  // opened: type straight away
+  find.onkeydown = e => {  // Enter ticks the first country shown
+    if (e.key !== 'Enter') return;
+    e.preventDefault();
+    const q = find.value.trim().toLowerCase();
+    const shown = [...d.querySelectorAll('label[data-name]')].filter(lab => !lab.hidden && !lab.querySelector('input').checked);
+    const first = shown.find(lab => lab.dataset.name.startsWith(q)) || shown.find(lab => lab.dataset.name.split(' ').pop() === q) || shown[0];
+    if (first) { const box = first.querySelector('input'); box.checked = true; box.dispatchEvent(new Event('change', { bubbles: true })); }
+  };
+  const redraw = () => {
+    $(`#${wrap}`).innerHTML = countryPicker(); const nd = $(`#${wrap} details`); nd.open = true;
+    wireCountries(wrap, draw); const f = nd.querySelector('.msel-find'); f.focus(); f.setSelectionRange(f.value.length, f.value.length);
+  };
+  d.onchange = e => {
+    if (e.target.type !== 'checkbox') return;
+    if (e.target.checked) { countrySel.add(e.target.value); countryQuery = ''; } else countrySel.delete(e.target.value);
+    redraw(); draw();
+  };
+  d.onclick = e => { if (e.target.closest('.msel-clear')) { countrySel.clear(); countryQuery = ''; redraw(); draw(); } };
+}
 const regionPicker = () => msel('regsel', regionSel, REGIONS.map(r => [r, r, '', ` <span class="cnt">${LANGS.filter(l => l.region === r).length.toLocaleString()}</span>`]),
   'All regions', 'All regions', '', 'Show all regions');
-const regionNames = () => { const r = REGIONS.filter(x => regionSel.has(x)); return r.length < 3 ? r.join(' and ') : `${r.slice(0, -1).join(', ')} and ${r.at(-1)}`; };
-// The map frame for the regions ticked: their outlines together, and a box around them all
+const regionNames = () => { const r = countrySel.size ? COUNTRIES.filter(c => countrySel.has(c)).map(c => COUNTRY_NAMES[c]) : REGIONS.filter(x => regionSel.has(x)); return r.length < 3 ? r.join(' and ') : `${r.slice(0, -1).join(', ')} and ${r.at(-1)}`; };
+// The map frame for the countries ticked (their outlines, and a box around their mainlands), else
+// for the regions ticked: their outlines together, and a box around them all
 function regionFrame() {
-  const R = GEO.basemap.regions, fs = R ? [...regionSel].map(r => R[r]).filter(Boolean) : [];
+  const C = GEO.basemap.countries, cs = C ? [...countrySel].map(c => C[c]).filter(Boolean) : [];
+  const R = GEO.basemap.regions, fs = cs.length ? cs : R ? [...regionSel].map(r => R[r]).filter(Boolean) : [];
   if (!fs.length) return null;
   if (fs.length === 1) return fs[0];
   return { outline: fs.map(f => f.outline).join(''), box: [Math.min(...fs.map(f => f.box[0])), Math.min(...fs.map(f => f.box[1])),
@@ -627,6 +684,8 @@ function regionFrame() {
 }
 // After a view redraws itself, open its drop-down again so several boxes can be ticked in a row
 const reopen = wrap => { const d = $(`#${wrap} details`); if (d) d.open = true; };
+const reopenCountries = wrap => { const d = $(`#${wrap} details`); if (!d) return; d.open = true;
+  const f = d.querySelector('.msel-find'); if (f) { f.focus(); f.setSelectionRange(f.value.length, f.value.length); } };
 function oppItem(o, l, showLang) {
   return `<li class="opp" style="--c:var(${OCOLOR[o.type]})">
     <div class="prio">${prio(o).toFixed(2)}<small>priority</small></div>
@@ -652,10 +711,10 @@ async function opportunities(lang) {
   const counts = Object.fromEntries(Object.keys(OT).map(k => [k, byTeam.filter(x => x.o.type === k).length]));
   const list = byTeam.filter(x => otype === 'all' || x.o.type === otype);
   const shown = showAll ? list : list.slice(0, 25);
-  const filtered = regionSel.size || (tierSel.size && !focus) || provider !== 'All' || otype !== 'all' || team !== 'all' || focus;
+  const filtered = regionSel.size || ((tierSel.size || countrySel.size) && !focus) || provider !== 'All' || otype !== 'all' || team !== 'all' || focus;
   $('#view').innerHTML = `
     <div class="controls">
-      ${focus ? '' : `<span id="orwrap">${regionPicker()}</span><span id="otierwrap">${tierPicker()}</span>`}
+      ${focus ? '' : `<span id="orwrap">${regionPicker()}</span><span id="octrywrap">${countryPicker()}</span><span id="otierwrap">${tierPicker()}</span>`}
       ${providerSelect('opsel')}
       <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
       <button type="button" class="reset" id="oresetf"${filtered ? '' : ' hidden'}>Reset filters</button>
@@ -682,9 +741,10 @@ async function opportunities(lang) {
   $('#view').querySelectorAll('[data-tm]').forEach(b => b.onclick = () => { team = b.dataset.tm; otype = 'all'; showAll = false; opportunities(lang); });
   $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
   $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
-  $('#oresetf').onclick = () => { regionSel.clear(); tierSel.clear(); provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
+  $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
     if (lang) location.hash = 'opportunities'; else opportunities(); };
   if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { showAll = false; await opportunities(lang); reopen('orwrap'); });
+  if ($('#octrywrap')) wireCountries('octrywrap', async () => { showAll = false; await opportunities(lang); reopenCountries('octrywrap'); });
   if ($('#otierwrap')) wireMsel('otierwrap', tierPicker, tierSel, 4, async () => { showAll = false; await opportunities(lang); reopen('otierwrap'); });
   $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; otype = 'all'; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
@@ -870,6 +930,7 @@ function ranking() {
   $('#view').innerHTML = `
     <div class="controls">
       <span id="regwrap">${regionPicker()}</span>
+      <span id="ctrywrap">${countryPicker()}</span>
       <span id="tierwrap">${tierPicker()}</span>
       <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta (Glottolog where LinguaMeta gives none). Extinct languages are listed only when chosen here">${endPicker()}</span>
       <label class="switch" title="Show only languages with a gap: a main technology with no commercial service, or only an open model or benchmark"><input type="checkbox" role="switch" id="gapsw"${showGaps ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show gaps</label>
@@ -892,12 +953,12 @@ function ranking() {
     <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech input, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
-    const all = (endSel.size ? ALL.filter(l => endSel.has(endKey(l))) : LANGS).filter(l => inRegion(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]))
+    const all = (endSel.size ? ALL.filter(l => endSel.has(endKey(l))) : LANGS).filter(l => inView(l)
       && (!showGaps || GAP_TECH.some(k => l.gaps[k])) && (!q || matches(l, q)));
     const [, val, natural] = SORTS[sortBy], dir = sortDir;
     all.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : (a.rank ?? 1e9) - (b.rank ?? 1e9)) * dir; });
     $('#rsum').innerHTML = rankSummary(all);
-    $('#resetf').hidden = !regionSel.size && !tierSel.size && !endSel.size && !showGaps && !q;
+    $('#resetf').hidden = !regionSel.size && !countrySel.size && !tierSel.size && !endSel.size && !showGaps && !q;
     $('#rankhead').innerHTML = rankHead();
     const rows = rankAll || q ? all : all.slice(0, RANK_PAGE);
     $('#rankmore').innerHTML = rows.length < all.length ? `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
@@ -920,8 +981,9 @@ function ranking() {
   wireMsel('regwrap', regionPicker, regionSel, REGIONS.length, draw);
   navBox('filter', 'Find a language name or code', query);
   navFilter = v => { query = v; draw(); };
-  $('#resetf').onclick = () => { regionSel.clear(); tierSel.clear(); endSel.clear(); showGaps = false; query = ''; rankAll = false; ranking(); };
+  $('#resetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); endSel.clear(); showGaps = false; query = ''; rankAll = false; ranking(); };
   wireMsel('tierwrap', tierPicker, tierSel, 4, draw);
+  wireCountries('ctrywrap', draw);
   wireMsel('endwrap', endPicker, endSel, 0, draw);
   $('#gapsw').onchange = e => { showGaps = e.target.checked; draw(); };
   if (!ranking.closer) {  // once: a click elsewhere closes the drop-downs
@@ -1572,8 +1634,8 @@ function charts() {
   </svg>`;
 
   $('#view').innerHTML = `
-    <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span><span id="ctierwrap">${tierPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
-      <button type="button" class="reset" id="cresetf"${!regionSel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
+    <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span><span id="cctrywrap">${countryPicker()}</span><span id="ctierwrap">${tierPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
+      <button type="button" class="reset" id="cresetf"${!regionSel.size && !countrySel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
     ${mapSection()}
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
@@ -1608,9 +1670,10 @@ function charts() {
   // keep the page where it is when a filter redraws the charts below
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
   wireMsel('cregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; mapView = null; charts(); reopen('cregwrap'); scrollTo(0, y); });
+  wireCountries('cctrywrap', () => { const y = scrollY; mapView = null; charts(); reopenCountries('cctrywrap'); scrollTo(0, y); });
   wireMsel('ctierwrap', tierPicker, tierSel, 4, () => { const y = scrollY; charts(); reopen('ctierwrap'); scrollTo(0, y); });
   $('#cpsel').onchange = keep(v => { provider = v; });
-  $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); tierSel.clear(); provider = 'All'; mapView = null; charts(); scrollTo(0, y); };
+  $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; mapView = null; charts(); scrollTo(0, y); };
   navBox('map', 'Find a language name or code');
   pinBar($('.controls.sticky'));
 }
