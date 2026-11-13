@@ -13,7 +13,11 @@ The characters a language needs come from, in order:
   2. Unicode CLDR's main exemplar characters (cldr-json, pinned), for languages Hyperglot lacks:
      every exemplar character and its capital, each either encoded in the font or composed from
      characters that are (a character map check; marks aren't shaped).
-  3. Otherwise only the script is checked: whether a Noto font covers the language's main script.
+  3. The letters its FineWeb-2 web text uses (data/fineweb_chars.csv, sampled by fineweb_chars.py),
+     those of its main script and combining marks: a character map check, as for CLDR. Letters
+     from other scripts that look like the language's own (a Greek ε for the Latin ɛ, say) are
+     noted, since they break search and spelling tools.
+  4. Otherwise only the script is checked: whether a Noto font covers the language's main script.
 A language passes if every primary orthography passes with some single font.
 
 Run:  python -m ltdi.collectors fonts   (needs github.com; installs nothing, but needs hyperglot:
@@ -22,6 +26,7 @@ Run:  python -m ltdi.collectors fonts   (needs github.com; installs nothing, but
 
 from __future__ import annotations
 
+import csv
 import json
 import logging
 import re
@@ -163,6 +168,31 @@ def cldr_exemplars() -> dict[str, set[str]]:
     return out
 
 
+def web_letters() -> dict[str, tuple[str, set[str], set[str]]]:
+    """{LTDI code: (subset, letters of its main script and combining marks, letters of other scripts)}
+    from the FineWeb-2 samples, using the language's largest subset in its main script."""
+    from fontTools import unicodedata as fud
+    path = DATA / "fineweb_chars.csv"
+    if not path.exists():
+        return {}
+    scripts = {l["code"]: l["scripts"] for l in json.loads((DATA / "languages.json").read_text(encoding="utf-8"))}
+    best_rows: dict[str, dict] = {}
+    with path.open(encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            code, main = r["language"], (scripts.get(r["language"]) or [""])[0]
+            if r["subset"].split("_")[-1].lower() != main and SCRIPT_ALIAS.get(main) != r["subset"].split("_")[-1].lower():
+                continue
+            if code not in best_rows or float(r["words"]) > float(best_rows[code]["words"]):
+                best_rows[code] = r
+    out = {}
+    for code, r in best_rows.items():
+        sc = r["subset"].split("_")[-1]
+        own = {ch for ch in r["letters"] if fud.script(ch) in (sc, "Zinh", "Zyyy")}
+        other = set(r["letters"]) - own
+        out[code] = (r["subset"], own, other)
+    return out
+
+
 def hyperglot_support(paths: list[Path]) -> tuple[dict, dict[tuple[str, str], str]]:
     """(Hyperglot's languages, {(ISO 639-3, script): a Noto font supporting that orthography})"""
     from hyperglot.checker import FontChecker
@@ -206,7 +236,9 @@ def collect() -> list[Record]:
     out = []
     src_h = f"Noto fonts, checked with Hyperglot ({HYPERGLOT})"
     src_c = "Noto fonts, checked against Unicode CLDR exemplar characters"
+    src_w = "Noto fonts, checked against the letters in its FineWeb-2 web text"
     src_s = "Noto fonts, script only"
+    web = web_letters()
     for code in ltdi_codes():
         isos = sorted(hg.get(code, []), key=lambda i: (i != info.get(code, {}).get("iso_639_3"), i))
         if isos:
@@ -244,6 +276,18 @@ def collect() -> list[Record]:
                                   note=f"No Noto font has {shown} (closest: {name})"))
             else:
                 out.append(Record(code, "font_noto", 1, "bool", src_c, PAGE, note=f"Displayed with {name}"))
+        elif code in web:
+            subset, letters, other = web[code]
+            looks = f"; letters from other scripts in its text: {' '.join(sorted(other))}" if other else ""
+            name, missing = best(letters, cmaps)
+            if missing:
+                shown = " ".join(f"{c} (U+{ord(c):04X})" for c in sorted(missing)[:MISSING_SHOWN])
+                out.append(Record(code, "font_noto", 0, "bool", src_w, PAGE,
+                                  note=f"No Noto font has {shown} (closest: {name}){looks}"))
+            else:
+                out.append(Record(code, "font_noto", 1, "bool", src_w, PAGE,
+                                  note=f"The {len(letters)} letters and marks seen in its FineWeb-2 text "
+                                       f"({subset}) display with {name}{looks}"))
         else:
             main = (info.get(code, {}).get("scripts") or [""])[0]
             fonts_for = sorted(by_script.get(SCRIPT_ALIAS.get(main, main), []))
