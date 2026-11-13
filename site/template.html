@@ -226,11 +226,10 @@ table.ranktab { table-layout: fixed; }
 .lhead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid var(--rule); }
 .lhead .lmain { flex: 1 1 360px; min-width: 0; }
 .lhead.lang { align-items: flex-start; }
-/* a language's page: Article 1 of the UDHR in the language */
-.sample { margin: 20px 0 4px; max-width: 72ch; }
-.sample blockquote { margin: 0; padding: 2px 0 2px 16px; border-left: 3px solid var(--writing); font-size: 18px; line-height: 1.6; overflow-wrap: anywhere; }
-.sample figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
-.sample figcaption .src { display: block; }  /* the name level with the score, the small map under the score */
+/* a language's page: Article 1 of the UDHR in the language, small, under its facts */
+.sample { margin: 14px 0 0; max-width: 72ch; }
+.sample blockquote { margin: 0; padding: 0; padding-inline-start: 10px; border-inline-start: 2px solid var(--writing); font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.sample figcaption { margin-top: 4px; padding-left: 12px; font-size: 12px; color: var(--muted); }  /* the name level with the score, the small map under the score */
 .lhead .lscore { flex: none; align-self: flex-start; text-align: right; display: flex; flex-direction: column; align-items: flex-end; }
 /* a language's page: where it's spoken, a small map that opens the Map tab */
 .minimap { display: block; width: 240px; max-width: 100%; aspect-ratio: 1 / 0.62; margin-top: 14px; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--surface); }
@@ -1245,8 +1244,8 @@ function sampleBlock(l) {
   const [text, tag, dir, name, f] = l.sample;
   return `<figure class="sample">
     <blockquote lang="${esc(tag)}" dir="${dir === 'rtl' ? 'rtl' : 'ltr'}">${esc(text)}</blockquote>
-    <figcaption>Article 1 of the Universal Declaration of Human Rights${l.code === 'en' ? '' : ': “All human beings are born free and equal in dignity and rights…”'}
-      <span class="src">From <a href="${UDHR}/blob/${UDHR_COMMIT}/data/udhr/udhr_${esc(f)}.xml" target="_blank" rel="noopener">UDHR in XML</a> (${esc(name)})</span></figcaption>
+    <figcaption title="${l.code === 'en' ? '' : 'All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.'}">Article 1 of the Universal Declaration of Human Rights,
+      <span class="src">from <a href="${UDHR}/blob/${UDHR_COMMIT}/data/udhr/udhr_${esc(f)}.xml" target="_blank" rel="noopener">UDHR in XML</a> (${esc(name)})</span></figcaption>
   </figure>`;
 }
 // Where its speakers in a country are counted from a census (immigrant languages LinguaMeta doesn't
@@ -1282,10 +1281,10 @@ async function language(code) {
         ${censusLine(l)}
         ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
+        ${sampleBlock(l)}
       </div>
       <div class="lscore"><div class="eyebrow">${l.rank ? `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}` : 'Extinct · not ranked'}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}${miniMap(l)}</div>
     </div>
-    ${sampleBlock(l)}
     <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}</div>
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
