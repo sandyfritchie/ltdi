@@ -33,6 +33,7 @@ python -m ltdi.geo             # map: a point for every LinguaMeta language + Na
 python -m ltdi.areas           # map's tier view: Glottography language areas, projected and simplified
 python -m ltdi.collectors.census_languages  # census languages by country -> data/census_languages.csv
 python -m ltdi.collectors.udhr # Article 1 of the UDHR for each language's page -> data/udhr_article1.csv
+python -m ltdi.collectors.lingualibre  # a few spoken words per language (GitHub Actions) -> data/lingualibre.csv
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
 python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
@@ -167,6 +168,14 @@ translations collected by the UN human rights office and others into one form. O
 complete" texts (stage 4) are used. Where several texts map to one language (dialects, scripts, older
 orthographies), the one shown is in the language's main script, then tagged for the language itself rather
 than a variety, then the plainest. It isn't scored.
+
+Where Lingua Libre has recordings, the page also plays a few words spoken by one speaker
+(`ltdi/collectors/lingualibre.py`, run on GitHub Actions since Wikimedia's sites aren't reachable from every
+network). Lingua Libre is Wikimedia's project for recording speakers saying words and sentences from lists;
+the files are on Wikimedia Commons under CC BY-SA 4.0 and are played from there (Commons' MP3 versions), with
+the speaker credited. Words with an English gloss (from the Wikidata lexemes many are recorded from) come
+first, then everyday words rather than names, all from the speaker with most of them. Most languages' words
+have no gloss, and the recordings are of words, not of the UDHR text.
 
 ## Countries
 

@@ -99,6 +99,21 @@ def udhr_samples() -> dict[str, list[str]]:
             for r in csv.DictReader(path.open(encoding="utf-8"))}
 
 
+def lingualibre_clips() -> dict[str, dict]:
+    """{language: {"speaker", "clips": [[word, English gloss, MP3 URL, Commons file], ...]}}: a few words
+    spoken by one speaker, from Lingua Libre (data/lingualibre.csv, ltdi.collectors.lingualibre)."""
+    import csv
+    path = DATA / "lingualibre.csv"
+    out: dict[str, dict] = {}
+    if not path.exists():
+        return out
+    for r in csv.DictReader(path.open(encoding="utf-8")):
+        if r["mp3"]:
+            h = out.setdefault(r["language"], {"speaker": r["speaker"], "clips": []})
+            h["clips"].append([r["transcription"], r["gloss"], r["mp3"], r["file"]])
+    return out
+
+
 def census_countries() -> list[str]:
     """Countries with census figures on language (data/census_languages.csv); the page notes the others."""
     import csv
@@ -287,6 +302,9 @@ def main() -> None:
     for code, sample in udhr_samples().items():
         if code in details:
             details[code]["sample"] = sample
+    for code, hear in lingualibre_clips().items():
+        if code in details:
+            details[code]["hear"] = hear
     out = SITE / "data" / "lang"
     shutil.rmtree(out, ignore_errors=True)
     out.mkdir(parents=True)
