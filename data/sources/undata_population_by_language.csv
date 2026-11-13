@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+"<html lang=""en"">"
+<head>
+  <!-- Google Tag Manager -->
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+  <!-- End Google Tag Manager -->
+"  <meta charset=""utf-8"" />"
+  <!-- Theme (UDC-184): set data-theme before first paint so no flash occurs.
+       UDC-462: the toggle was removed and dark is now the only reachable
+       from before the toggle's removal. The light theme CSS/assets are kept
+       intact in case the toggle is restored later. -->
+  <script>(function () {
+    })();</script>
+"  <meta name=""theme-color"" content=""#000000"" />"
+"  <base href=""/"" />"
+"  <meta http-equiv=""Content-Security-Policy"""
+"    content=""frame-src 'self' https://www.youtube.com https://platform.twitter.com/ https://syndication.twitter.com/ https://www.kaltura.com/ https://storymaps.arcgis.com/ https://unstats.un.org/ https://data.un.org/ https://unicc.atlassian.net/"" />"
+"  <meta http-equiv=""X-XSS-Protection"" content=""1; mode=block"" />"
+"  <meta http-equiv=""Permissions-Policy"" content=""compute-pressure=()"" />"
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+"  <link rel=""manifest"" href=""/manifest.json"" />"
+"  <link rel=""shortcut icon"" href=""/favicon.ico"" />"
+"  <link rel=""preconnect"" href=""https://fonts.googleapis.com"" />"
+"  <link rel=""preconnect"" href=""https://fonts.gstatic.com"" crossorigin />"
+"  <link href=""https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"" rel=""stylesheet"" />"
+  <!--Addded font api url for NQAF-->
+"  <link href=""https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"" rel=""stylesheet"" />"
+"  <link href=""https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap"" rel=""stylesheet"" />"
+  <!-- See https://github.com/datacommonsorg/website/tree/master/packages/web-components -->
+  <!--
+    DataCommons web-components script. The host is environment-driven:
+    substitutes at container startup. See .env.example and
+    .claude/rules/datacommons/config.md.
+  -->
+"  <script src=""https://unsd-datacommons.gcp.un-icc.cloud/datacommons.js""></script>"
+  <title>UN - Welcome to UN System Data Commons</title>
+"  <script type=""module"" crossorigin src=""/assets/index-DJVxdr-E.js""></script>"
+"  <link rel=""stylesheet"" crossorigin href=""/assets/index-CFfpeHF-.css"">"
+</head>
+"<body class=""undatacommons"">"
+  <!-- Google Tag Manager (noscript) -->
+"  <noscript><iframe src=""https://www.googletagmanager.com/ns.html?id=GTM-WHDBSPD"" height=""0"" width=""0"""
+"      style=""display:none;visibility:hidden""></iframe></noscript>"
+  <!-- End Google Tag Manager (noscript) -->
+  <noscript> You need to enable JavaScript to run this app. </noscript>
+"  <div id=""root""></div>"
+</body>
+</html>
