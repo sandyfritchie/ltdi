@@ -1,0 +1,66 @@
+# Character inventories from FineWeb-2 text (ltdi/collectors/fineweb_chars.py): which letters each
+# language's web text uses, for the ~6,300 languages with no documented character set. Run by hand
+# (Actions -> FineWeb-2 characters -> Run workflow); results are committed to data/fineweb_chars.csv.
+name: FineWeb-2 characters
+
+on:
+  workflow_dispatch:
+    inputs:
+      subsets:
+        description: FineWeb-2 subsets, space-separated (empty for all up to 500M words)
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    timeout-minutes: 345
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install "huggingface_hub==0.26.5" "pyarrow==17.0.0" "fonttools==4.55.3"
+      - name: Sample
+        env:
+          SUBSETS: ${{ inputs.subsets }}
+          SHARD: ${{ matrix.shard }}
+          HF_HUB_DISABLE_TELEMETRY: "1"
+        run: python -m ltdi.collectors.fineweb_chars $SUBSETS --shard "$SHARD/8" --out "chars-$SHARD.csv"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chars-${{ matrix.shard }}
+          path: chars-${{ matrix.shard }}.csv
+
+  commit:
+    needs: sample
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: chars-*
+          merge-multiple: true
+      - name: Merge and commit
+        run: |
+          python -m ltdi.collectors.fineweb_chars --merge chars-*.csv
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/fineweb_chars.csv
+          git diff --cached --quiet && exit 0
+          git commit -m "FineWeb-2 characters: results from run ${{ github.run_id }}"
+          git pull --rebase
+          git push
