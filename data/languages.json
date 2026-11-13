@@ -138944,7 +138944,7 @@
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ms.json",
-  "note": "Vendors' 'Malay' is Standard Malay. Indonesian (id) is separate.",
+  "note": "Malay (ms) and the individual language Malay (zlm) are scored as one language: services, datasets and benchmarks list Malay under either code.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "review",
@@ -138954,7 +138954,9 @@
    "Standard Malay",
    "Malaysian Malay",
    "Malaysian Standard Malay",
-   "Malaysian Malay Dialect"
+   "Malaysian Malay Dialect",
+   "Colloquial Malay",
+   "Malay Of Malaysia"
   ]
  },
  {
@@ -249593,41 +249595,6 @@
    "Northern Daic",
    "Chuang",
    "Zhuang languages"
-  ]
- },
- {
-  "code": "zlm",
-  "name": "Malay",
-  "autonym": null,
-  "iso_639_3": "zlm",
-  "glottocode": "mala1479",
-  "scope": "LANGUAGE",
-  "speakers": 3000000,
-  "members": [],
-  "scripts": [
-   "latn"
-  ],
-  "script_names": [
-   "Latin"
-  ],
-  "countries": [
-   {
-    "code": "my",
-    "name": "Malaysia",
-    "speakers": 3000000
-   }
-  ],
-  "region": "Rest of Asia",
-  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/zlm.json",
-  "note": "Speaker count from Wikipedia's Riau Malay language article (3,000,000, 2010), as LinguaMeta has none.",
-  "extinct": false,
-  "endangerment": "not_endangered",
-  "endangerment_source": "linguameta",
-  "joshi": 0,
-  "ud": false,
-  "alt_names": [
-   "Colloquial Malay",
-   "Malay Of Malaysia"
   ]
  },
  {

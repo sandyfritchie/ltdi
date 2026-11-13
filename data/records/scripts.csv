@@ -7036,7 +7036,6 @@ zkr,script_encoded,1,bool,Unicode CLDR script metadata,https://raw.githubusercon
 zku,script_encoded,1,bool,Unicode CLDR script metadata,https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/scriptMetadata.json,2026-11-12,download,Main script: latn
 zkv,script_encoded,1,bool,Unicode CLDR script metadata,https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/scriptMetadata.json,2026-11-12,download,Main script: latn
 zla,script_encoded,1,bool,Unicode CLDR script metadata,https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/scriptMetadata.json,2026-11-12,download,Main script: latn
-zlm,script_encoded,1,bool,Unicode CLDR script metadata,https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/scriptMetadata.json,2026-11-12,download,Main script: latn
 zln,script_encoded,1,bool,Unicode CLDR script metadata,https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/scriptMetadata.json,2026-11-12,download,Main script: hani
 zlq,script_encoded,1,bool,Unicode CLDR script metadata,https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/scriptMetadata.json,2026-11-12,download,Main script: hani
 zma,script_encoded,1,bool,Unicode CLDR script metadata,https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/scriptMetadata.json,2026-11-12,download,Main script: latn

@@ -1,659 +1,658 @@
 language,indicator,value,unit,source,url,retrieved,method,note
-*,parallel_sentences,0,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aaa/corpus-result-table,2026-11-08,download,
-aa,parallel_sentences,11239,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aa/corpus-result-table,2026-11-08,download,2 corpora
-aae,parallel_sentences,623,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aae/corpus-result-table,2026-11-08,download,1 corpora
-ab,parallel_sentences,7524,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ab/corpus-result-table,2026-11-08,download,4 corpora
-abr,parallel_sentences,707,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&abr/corpus-result-table,2026-11-08,download,1 corpora
-abs,parallel_sentences,578,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&abs/corpus-result-table,2026-11-08,download,1 corpora
-ace,parallel_sentences,2445624,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ace/corpus-result-table,2026-11-08,download,3 corpora; 100% web-mined
-acf,parallel_sentences,554,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&acf/corpus-result-table,2026-11-08,download,1 corpora
-ach,parallel_sentences,433,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ach/corpus-result-table,2026-11-08,download,1 corpora
-acm,parallel_sentences,4281,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&acm/corpus-result-table,2026-11-08,download,2 corpora
-acu,parallel_sentences,12953,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&acu/corpus-result-table,2026-11-08,download,1 corpora
-ada,parallel_sentences,72,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ada/corpus-result-table,2026-11-08,download,1 corpora
-ady,parallel_sentences,1487,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ady/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes ady, ady_cyrl"
-aeb,parallel_sentences,1159,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aeb/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes aeb, aeb_arab, aeb_latn"
-af,parallel_sentences,50309449,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&af/corpus-result-table,2026-11-08,download,20 corpora; 98% web-mined
-afb,parallel_sentences,81,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&afb/corpus-result-table,2026-11-08,download,1 corpora
-agr,parallel_sentences,13471,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&agr/corpus-result-table,2026-11-08,download,1 corpora
-ahr,parallel_sentences,4,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ahr/corpus-result-table,2026-11-08,download,1 corpora
-aig,parallel_sentences,1253,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aig/corpus-result-table,2026-11-08,download,1 corpora
-aii,parallel_sentences,16108,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aii/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes aii, syr"
-ain,parallel_sentences,78,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ain/corpus-result-table,2026-11-08,download,1 corpora
-ajg,parallel_sentences,110,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ajg/corpus-result-table,2026-11-08,download,1 corpora
-ak,parallel_sentences,4047196,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ak/corpus-result-table,2026-11-08,download,"6 corpora; 100% web-mined; OPUS codes ak, aka, tw"
-ake,parallel_sentences,13206,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ake/corpus-result-table,2026-11-08,download,1 corpora
-akl,parallel_sentences,27,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&akl/corpus-result-table,2026-11-08,download,1 corpora
-akz,parallel_sentences,288,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&akz/corpus-result-table,2026-11-08,download,1 corpora
-ale,parallel_sentences,85,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ale/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes ale, ale_cyrl"
-aln,parallel_sentences,3949,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aln/corpus-result-table,2026-11-08,download,2 corpora
-alt,parallel_sentences,4895,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&alt/corpus-result-table,2026-11-08,download,3 corpora
-am,parallel_sentences,16837532,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&am/corpus-result-table,2026-11-08,download,"14 corpora; 98% web-mined; OPUS codes am, amh"
-ami,parallel_sentences,993,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ami/corpus-result-table,2026-11-08,download,2 corpora
-amu,parallel_sentences,15719,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&amu/corpus-result-table,2026-11-08,download,1 corpora
-an,parallel_sentences,64629,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&an/corpus-result-table,2026-11-08,download,8 corpora; 36% web-mined
-ann,parallel_sentences,1128,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ann/corpus-result-table,2026-11-08,download,2 corpora
-anp,parallel_sentences,4757,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&anp/corpus-result-table,2026-11-08,download,2 corpora
-aoz,parallel_sentences,24,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aoz/corpus-result-table,2026-11-08,download,1 corpora
-apc,parallel_sentences,1033,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ajp/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes ajp, apc"
-apw,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&apw/corpus-result-table,2026-11-08,download,1 corpora
-ar,parallel_sentences,245093731,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ar/corpus-result-table,2026-11-08,download,"30 corpora; 46% web-mined; OPUS codes ar, ar_SY, ar_TN, ara"
-arn,parallel_sentences,1480,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&arn/corpus-result-table,2026-11-08,download,2 corpora
-aro,parallel_sentences,71,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aro/corpus-result-table,2026-11-08,download,1 corpora
-arq,parallel_sentences,6246,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&arq/corpus-result-table,2026-11-08,download,4 corpora
-ary,parallel_sentences,9494,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ary/corpus-result-table,2026-11-08,download,3 corpora
-arz,parallel_sentences,173894,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&arz/corpus-result-table,2026-11-08,download,6 corpora; 10% web-mined
-as,parallel_sentences,5402317,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&as/corpus-result-table,2026-11-08,download,13 corpora; 96% web-mined
-ast,parallel_sentences,6719984,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ast/corpus-result-table,2026-11-08,download,11 corpora; 88% web-mined
-atj,parallel_sentences,1159,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&atj/corpus-result-table,2026-11-08,download,2 corpora
-av,parallel_sentences,4916,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&av/corpus-result-table,2026-11-08,download,4 corpora
-awa,parallel_sentences,2204986,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&awa/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-ay,parallel_sentences,1263382,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ay/corpus-result-table,2026-11-08,download,"6 corpora; 99% web-mined; OPUS codes ay, aym"
-ayh,parallel_sentences,101,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ayh/corpus-result-table,2026-11-08,download,1 corpora
-az,parallel_sentences,81094302,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&az/corpus-result-table,2026-11-08,download,"18 corpora; 95% web-mined; OPUS codes az, az_Arab, az_IR"
-azb,parallel_sentences,10107,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&azb/corpus-result-table,2026-11-08,download,2 corpora
-ba,parallel_sentences,8265979,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ba/corpus-result-table,2026-11-08,download,7 corpora; 99% web-mined
-ban,parallel_sentences,339428,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ban/corpus-result-table,2026-11-08,download,"3 corpora; 96% web-mined; OPUS codes ban, ban_bali"
-bar,parallel_sentences,45901,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bar/corpus-result-table,2026-11-08,download,5 corpora; 37% web-mined
-bas,parallel_sentences,48,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bas/corpus-result-table,2026-11-08,download,1 corpora
-bax,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bax/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes bax, bax_bamu"
-bbc,parallel_sentences,1113,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bbc/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes bbc, bbc_latn"
-bcc,parallel_sentences,5076,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bal/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes bal, bcc"
-bci,parallel_sentences,2182,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bci/corpus-result-table,2026-11-08,download,1 corpora
-bcl,parallel_sentences,80155,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bcl/corpus-result-table,2026-11-08,download,3 corpora
-bdr,parallel_sentences,656,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bdr/corpus-result-table,2026-11-08,download,2 corpora
-be,parallel_sentences,48662740,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&be/corpus-result-table,2026-11-08,download,"18 corpora; 98% web-mined; OPUS codes be, be_tarask"
-bem,parallel_sentences,427207,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bem/corpus-result-table,2026-11-08,download,2 corpora; 100% web-mined
-bew,parallel_sentences,10649,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bew/corpus-result-table,2026-11-08,download,2 corpora
-bfa,parallel_sentences,22,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bfa/corpus-result-table,2026-11-08,download,1 corpora
-bft,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bft/corpus-result-table,2026-11-08,download,1 corpora
-bg,parallel_sentences,258220138,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bg/corpus-result-table,2026-11-08,download,"84 corpora; 58% web-mined; OPUS codes bg, bg_BG"
-bgc,parallel_sentences,521,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bgc/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes bgc, bgc_arab"
-bgn,parallel_sentences,3730,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bgn/corpus-result-table,2026-11-08,download,1 corpora
-bho,parallel_sentences,2437169,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bho/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-bi,parallel_sentences,1811,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bi/corpus-result-table,2026-11-08,download,4 corpora
-bin,parallel_sentences,21,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bin/corpus-result-table,2026-11-08,download,1 corpora
-bjn,parallel_sentences,772175,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bjn/corpus-result-table,2026-11-08,download,4 corpora; 99% web-mined
-bkm,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bkm/corpus-result-table,2026-11-08,download,1 corpora
-blc,parallel_sentences,306,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&blc/corpus-result-table,2026-11-08,download,1 corpora
-blk,parallel_sentences,7699,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&blk/corpus-result-table,2026-11-08,download,2 corpora
-bm,parallel_sentences,182646,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bam/corpus-result-table,2026-11-08,download,"6 corpora; 99% web-mined; OPUS codes bam, bm"
-bn,parallel_sentences,88705427,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bn/corpus-result-table,2026-11-08,download,"25 corpora; 86% web-mined; OPUS codes bn, bn_IN, bn_bd, bn_in"
-bnn,parallel_sentences,43,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bnn/corpus-result-table,2026-11-08,download,1 corpora
-bo,parallel_sentences,723648,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bo/corpus-result-table,2026-11-08,download,"7 corpora; 99% web-mined; OPUS codes bo, bod"
-bol,parallel_sentences,563,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bol/corpus-result-table,2026-11-08,download,1 corpora
-bom,parallel_sentences,621,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bom/corpus-result-table,2026-11-08,download,2 corpora
-bpy,parallel_sentences,1467,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bpy/corpus-result-table,2026-11-08,download,2 corpora
-bqi,parallel_sentences,2859,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bqi/corpus-result-table,2026-11-08,download,1 corpora
-br,parallel_sentences,868143,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&br/corpus-result-table,2026-11-08,download,11 corpora; 68% web-mined
-brh,parallel_sentences,425,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&brh/corpus-result-table,2026-11-08,download,1 corpora
-brx,parallel_sentences,287,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&brx/corpus-result-table,2026-11-08,download,3 corpora
-bs,parallel_sentences,113569210,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bs/corpus-result-table,2026-11-08,download,"23 corpora; 77% web-mined; OPUS codes bs, bs_Cyrl, bs_Latn"
-bsn,parallel_sentences,12732,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bsn/corpus-result-table,2026-11-08,download,1 corpora
-btm,parallel_sentences,2665,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&btm/corpus-result-table,2026-11-08,download,1 corpora
-bto,parallel_sentences,985,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bto/corpus-result-table,2026-11-08,download,1 corpora
-bug,parallel_sentences,1242713,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bug/corpus-result-table,2026-11-08,download,"4 corpora; 100% web-mined; OPUS codes bug, bug_bugi"
-bum,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bum/corpus-result-table,2026-11-08,download,1 corpora
-bvy,parallel_sentences,29,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bvy/corpus-result-table,2026-11-08,download,1 corpora
-bwr,parallel_sentences,46,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bwr/corpus-result-table,2026-11-08,download,1 corpora
-bxk,parallel_sentences,9,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&luy/corpus-result-table,2026-11-08,download,1 corpora
-bxm,parallel_sentences,17,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bua/corpus-result-table,2026-11-08,download,1 corpora
-bxr,parallel_sentences,4094,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bxr/corpus-result-table,2026-11-08,download,2 corpora
-byv,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&byv/corpus-result-table,2026-11-08,download,1 corpora
-bzj,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bzj/corpus-result-table,2026-11-08,download,1 corpora
-ca,parallel_sentences,96317445,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ca/corpus-result-table,2026-11-08,download,"36 corpora; 73% web-mined; OPUS codes ca, ca_valencia, cat"
-cak,parallel_sentences,16126,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cak/corpus-result-table,2026-11-08,download,2 corpora
-cay,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cay/corpus-result-table,2026-11-08,download,1 corpora
-cbk,parallel_sentences,6148,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cbk/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes cbk, cbk_zam"
-ccp,parallel_sentences,1522,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ccp/corpus-result-table,2026-11-08,download,1 corpora
-cdo,parallel_sentences,1209,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cdo/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes cdo, cdo_hans, cdo_hant, cdo_latn"
-ce,parallel_sentences,47558,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ce/corpus-result-table,2026-11-08,download,4 corpora
-ceb,parallel_sentences,16040734,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ceb/corpus-result-table,2026-11-08,download,10 corpora; 98% web-mined
-ch,parallel_sentences,15481,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ch/corpus-result-table,2026-11-08,download,5 corpora
-chn,parallel_sentences,605,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chn/corpus-result-table,2026-11-08,download,2 corpora
-cho,parallel_sentences,1560,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cho/corpus-result-table,2026-11-08,download,3 corpora
-chq,parallel_sentences,15625,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chq/corpus-result-table,2026-11-08,download,1 corpora
-chr,parallel_sentences,16279,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chr/corpus-result-table,2026-11-08,download,4 corpora
-chy,parallel_sentences,45,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chy/corpus-result-table,2026-11-08,download,2 corpora
-cja,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cja_arab/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes cja_arab, cja_cham, cja_latn"
-cjk,parallel_sentences,214973,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cjk/corpus-result-table,2026-11-08,download,1 corpora; 100% web-mined
-cjm,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cjm_arab/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes cjm_arab, cjm_cham, cjm_latn"
-cjp,parallel_sentences,15895,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cjp/corpus-result-table,2026-11-08,download,1 corpora
-cjy,parallel_sentences,150,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cjy/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes cjy, cjy_hans, cjy_hant"
-ckb,parallel_sentences,66042,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ckb/corpus-result-table,2026-11-08,download,5 corpora
-cko,parallel_sentences,536,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cko/corpus-result-table,2026-11-08,download,1 corpora
-ckt,parallel_sentences,3,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ckt/corpus-result-table,2026-11-08,download,1 corpora
-cku,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cku/corpus-result-table,2026-11-08,download,1 corpora
-cmn,parallel_sentences,252499723,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cmn/corpus-result-table,2026-11-08,download,"36 corpora; 68% web-mined; OPUS codes cmn, zh, zh_CN, zh_TW, zh_cn, zh_en, zh_hans, zh_hant, zh_sg, zh_tw, zh_yue, zh_ze, zh_zh"
-cnh,parallel_sentences,307,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cnh/corpus-result-table,2026-11-08,download,2 corpora
-cni,parallel_sentences,15541,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cni/corpus-result-table,2026-11-08,download,1 corpora
-cnr,parallel_sentences,985,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cnr_cyrl/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes cnr_cyrl, cnr_latn"
-co,parallel_sentences,1773,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&co/corpus-result-table,2026-11-08,download,4 corpora
-cop,parallel_sentences,16681,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cop/corpus-result-table,2026-11-08,download,2 corpora
-cps,parallel_sentences,731,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cps/corpus-result-table,2026-11-08,download,1 corpora
-cpx,parallel_sentences,552,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cpx/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes cpx, cpx_hans, cpx_hant, cpx_latn"
-cr,parallel_sentences,128,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cr/corpus-result-table,2026-11-08,download,3 corpora
-crg,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&crg/corpus-result-table,2026-11-08,download,1 corpora
-crh,parallel_sentences,1944967,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&crh/corpus-result-table,2026-11-08,download,"6 corpora; 99% web-mined; OPUS codes crh, crh_cyrl, crh_latn, crh_ro"
-crk,parallel_sentences,42,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&crk/corpus-result-table,2026-11-08,download,1 corpora
-cs,parallel_sentences,409380337,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cs/corpus-result-table,2026-11-08,download,70 corpora; 57% web-mined
-csb,parallel_sentences,33132,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&csb/corpus-result-table,2026-11-08,download,5 corpora
-cv,parallel_sentences,206925,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chv/corpus-result-table,2026-11-08,download,"5 corpora; OPUS codes chv, cv"
-cy,parallel_sentences,21374144,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cy/corpus-result-table,2026-11-08,download,11 corpora; 92% web-mined
-cyo,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cyo/corpus-result-table,2026-11-08,download,1 corpora
-da,parallel_sentences,388833563,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&da/corpus-result-table,2026-11-08,download,"90 corpora; 56% web-mined; OPUS codes da, da_DK"
-dag,parallel_sentences,8357,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dag/corpus-result-table,2026-11-08,download,2 corpora
-dar,parallel_sentences,218,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dar/corpus-result-table,2026-11-08,download,2 corpora
-ddn,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ddn/corpus-result-table,2026-11-08,download,1 corpora
-de,parallel_sentences,943970797,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&de/corpus-result-table,2026-11-08,download,"124 corpora; 84% web-mined; OPUS codes de, de_AT, de_CH, de_DE, de_at, de_ch, de_formal"
-dga,parallel_sentences,7305,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dga/corpus-result-table,2026-11-08,download,2 corpora
-dik,parallel_sentences,172589,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dik/corpus-result-table,2026-11-08,download,2 corpora; 92% web-mined
-dip,parallel_sentences,3737,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&din/corpus-result-table,2026-11-08,download,3 corpora
-diq,parallel_sentences,879925,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&diq/corpus-result-table,2026-11-08,download,"4 corpora; 97% web-mined; OPUS codes diq, zza"
-dje,parallel_sentences,62075,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dje/corpus-result-table,2026-11-08,download,1 corpora
-djk,parallel_sentences,15743,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&djk/corpus-result-table,2026-11-08,download,1 corpora
-dlg,parallel_sentences,907,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dlg/corpus-result-table,2026-11-08,download,1 corpora
-dng,parallel_sentences,6,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dng/corpus-result-table,2026-11-08,download,1 corpora
-dop,parallel_sentences,15889,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dop/corpus-result-table,2026-11-08,download,1 corpora
-drt,parallel_sentences,14,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&drt/corpus-result-table,2026-11-08,download,1 corpora
-dru,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dru/corpus-result-table,2026-11-08,download,1 corpora
-dsb,parallel_sentences,13564,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dsb/corpus-result-table,2026-11-08,download,3 corpora
-dtp,parallel_sentences,16054,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dtp/corpus-result-table,2026-11-08,download,3 corpora
-dty,parallel_sentences,2669,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dty/corpus-result-table,2026-11-08,download,2 corpora
-dua,parallel_sentences,651,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dua/corpus-result-table,2026-11-08,download,1 corpora
-dv,parallel_sentences,95809,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dv/corpus-result-table,2026-11-08,download,6 corpora
-dyu,parallel_sentences,286391,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dyu/corpus-result-table,2026-11-08,download,1 corpora; 100% web-mined
-dz,parallel_sentences,57365,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dz/corpus-result-table,2026-11-08,download,6 corpora; 98% web-mined
-ee,parallel_sentences,18533,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ee/corpus-result-table,2026-11-08,download,5 corpora
-efi,parallel_sentences,2985,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&efi/corpus-result-table,2026-11-08,download,2 corpora
-egl,parallel_sentences,1634,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&egl/corpus-result-table,2026-11-08,download,2 corpora
-ekp,parallel_sentences,98,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ekp/corpus-result-table,2026-11-08,download,1 corpora
-el,parallel_sentences,361537841,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&el/corpus-result-table,2026-11-08,download,112 corpora; 52% web-mined
-elm,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&elm/corpus-result-table,2026-11-08,download,1 corpora
-en,parallel_sentences,1000000000.0,sentence pairs,OPUS,https://opus.nlpl.eu/,2026-11-08,download,English is the pivot; recorded at a nominal value
-eo,parallel_sentences,81704570,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&eo/corpus-result-table,2026-11-08,download,20 corpora; 96% web-mined
-es,parallel_sentences,1370513613,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&es/corpus-result-table,2026-11-08,download,"122 corpora; 81% web-mined; OPUS codes es, es_419, es_AR, es_CL, es_CO, es_CR, es_DO, es_EC, es_ES, es_GT, es_HN, es_MX, es_NI, es_PA, es_PE, es_PR, es_SV, es_UY, es_VE, es_ar, es_cl, es_formal, es_mx"
-esu,parallel_sentences,100,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&esu/corpus-result-table,2026-11-08,download,1 corpora
-et,parallel_sentences,142942108,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&et/corpus-result-table,2026-11-08,download,81 corpora; 51% web-mined
-eu,parallel_sentences,16483905,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&eu/corpus-result-table,2026-11-08,download,"22 corpora; 64% web-mined; OPUS codes eu, eu_ES"
-ext,parallel_sentences,2967,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ext/corpus-result-table,2026-11-08,download,3 corpora
-fa,parallel_sentences,125929518,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fa/corpus-result-table,2026-11-08,download,"28 corpora; 44% web-mined; OPUS codes fa, fa_AF, fa_IR, pes"
-fat,parallel_sentences,2125,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fat/corpus-result-table,2026-11-08,download,2 corpora
-fax,parallel_sentences,532,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fax/corpus-result-table,2026-11-08,download,1 corpora
-ff,parallel_sentences,1615900,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ff/corpus-result-table,2026-11-08,download,"6 corpora; 98% web-mined; OPUS codes ff, ful"
-fi,parallel_sentences,319796943,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fi/corpus-result-table,2026-11-08,download,86 corpora; 50% web-mined
-fil,parallel_sentences,76324678,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fil/corpus-result-table,2026-11-08,download,"21 corpora; 96% web-mined; OPUS codes fil, tl, tl_PH"
-fit,parallel_sentences,4333,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fit/corpus-result-table,2026-11-08,download,1 corpora
-fj,parallel_sentences,3854358,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fj/corpus-result-table,2026-11-08,download,5 corpora; 100% web-mined
-fkv,parallel_sentences,71,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fkv/corpus-result-table,2026-11-08,download,1 corpora
-fo,parallel_sentences,2939570,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fo/corpus-result-table,2026-11-08,download,8 corpora; 99% web-mined
-fon,parallel_sentences,1916321,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fon/corpus-result-table,2026-11-08,download,3 corpora; 100% web-mined
-fr,parallel_sentences,1131835751,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fr/corpus-result-table,2026-11-08,download,"124 corpora; 79% web-mined; OPUS codes fr, fr_BE, fr_CA, fr_FR, fr_ca"
-frc,parallel_sentences,1325,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&frc/corpus-result-table,2026-11-08,download,1 corpora
-frp,parallel_sentences,15330,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&frp/corpus-result-table,2026-11-08,download,2 corpora
-frr,parallel_sentences,5140,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&frr/corpus-result-table,2026-11-08,download,3 corpora
-frs,parallel_sentences,775,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&frs/corpus-result-table,2026-11-08,download,1 corpora
-fuc,parallel_sentences,6,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fuc/corpus-result-table,2026-11-08,download,1 corpora
-fur,parallel_sentences,966839,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fur/corpus-result-table,2026-11-08,download,5 corpora; 96% web-mined
-fuv,parallel_sentences,3106,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fuv/corpus-result-table,2026-11-08,download,2 corpora
-fvr,parallel_sentences,558,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fvr/corpus-result-table,2026-11-08,download,1 corpora
-fy,parallel_sentences,1741394,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fy/corpus-result-table,2026-11-08,download,"8 corpora; 81% web-mined; OPUS codes fy, fy_nl"
-ga,parallel_sentences,35891671,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ga/corpus-result-table,2026-11-08,download,"97 corpora; 86% web-mined; OPUS codes ga, ga_ie"
-gaa,parallel_sentences,1163,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gaa/corpus-result-table,2026-11-08,download,2 corpora
-gag,parallel_sentences,656,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gag/corpus-result-table,2026-11-08,download,3 corpora
-gan,parallel_sentences,1745,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gan/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes gan, gan_hans, gan_hant"
-gbi,parallel_sentences,15489,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gbi/corpus-result-table,2026-11-08,download,1 corpora
-gbm,parallel_sentences,239,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gbm/corpus-result-table,2026-11-08,download,2 corpora
-gbz,parallel_sentences,15,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gbz/corpus-result-table,2026-11-08,download,1 corpora
-gcf,parallel_sentences,2707,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gcf/corpus-result-table,2026-11-08,download,2 corpora
-gcr,parallel_sentences,1878,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gcr/corpus-result-table,2026-11-08,download,1 corpora
-gd,parallel_sentences,7157198,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gd/corpus-result-table,2026-11-08,download,11 corpora; 99% web-mined
-gil,parallel_sentences,14,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gil/corpus-result-table,2026-11-08,download,1 corpora
-gl,parallel_sentences,36781809,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gl/corpus-result-table,2026-11-08,download,18 corpora; 83% web-mined
-gld,parallel_sentences,824,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gld/corpus-result-table,2026-11-08,download,1 corpora
-glk,parallel_sentences,1210,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&glk/corpus-result-table,2026-11-08,download,2 corpora
-gn,parallel_sentences,2962533,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gn/corpus-result-table,2026-11-08,download,6 corpora; 100% web-mined
-gom,parallel_sentences,4882,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gom/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes gom, gom_deva, gom_latn, kok"
-gor,parallel_sentences,2389,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gor/corpus-result-table,2026-11-08,download,2 corpora
-gos,parallel_sentences,3634,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gos/corpus-result-table,2026-11-08,download,1 corpora
-gpe,parallel_sentences,39515,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gpe/corpus-result-table,2026-11-08,download,2 corpora
-gsw,parallel_sentences,12832,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gsw/corpus-result-table,2026-11-08,download,3 corpora
-gu,parallel_sentences,44597305,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gu/corpus-result-table,2026-11-08,download,"15 corpora; 88% web-mined; OPUS codes gu, gu_in"
-guc,parallel_sentences,953,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&guc/corpus-result-table,2026-11-08,download,2 corpora
-gur,parallel_sentences,5694,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gur/corpus-result-table,2026-11-08,download,2 corpora
-guw,parallel_sentences,4193,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&guw/corpus-result-table,2026-11-08,download,3 corpora
-gv,parallel_sentences,32051,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gv/corpus-result-table,2026-11-08,download,5 corpora
-ha,parallel_sentences,9767868,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ha/corpus-result-table,2026-11-08,download,"14 corpora; 88% web-mined; OPUS codes ha, hau"
-hak,parallel_sentences,1026,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hak/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes hak, hak_hans, hak_hant, hak_latn"
-hav,parallel_sentences,126,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hav/corpus-result-table,2026-11-08,download,1 corpora
-haw,parallel_sentences,2745,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&haw/corpus-result-table,2026-11-08,download,4 corpora
-hch,parallel_sentences,0,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hch/corpus-result-table,2026-11-08,download,1 corpora
-hdn,parallel_sentences,145,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hai/corpus-result-table,2026-11-08,download,1 corpora
-he,parallel_sentences,120551625,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&he/corpus-result-table,2026-11-08,download,21 corpora; 47% web-mined
-hi,parallel_sentences,84043743,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hi/corpus-result-table,2026-11-08,download,"31 corpora; 68% web-mined; OPUS codes hi, hi_IN, hi_in"
-hif,parallel_sentences,4513,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hif/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes hif, hif_deva, hif_latn"
-hil,parallel_sentences,5252,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hil/corpus-result-table,2026-11-08,download,2 corpora
-hke,parallel_sentences,777,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hke/corpus-result-table,2026-11-08,download,1 corpora
-hne,parallel_sentences,735688,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hne/corpus-result-table,2026-11-08,download,3 corpora; 87% web-mined
-hnj,parallel_sentences,4,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hnj/corpus-result-table,2026-11-08,download,1 corpora
-hno,parallel_sentences,534,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hno/corpus-result-table,2026-11-08,download,1 corpora
-ho,parallel_sentences,65,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ho/corpus-result-table,2026-11-08,download,1 corpora
-hoc,parallel_sentences,1952,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hoc/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes hoc, hoc_latn"
-hr,parallel_sentences,187496976,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hr/corpus-result-table,2026-11-08,download,89 corpora; 42% web-mined
-hrx,parallel_sentences,4985,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hrx/corpus-result-table,2026-11-08,download,2 corpora
-hsb,parallel_sentences,42648,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hsb/corpus-result-table,2026-11-08,download,3 corpora
-hsn,parallel_sentences,766,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hsn/corpus-result-table,2026-11-08,download,2 corpora
-ht,parallel_sentences,15789381,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ht/corpus-result-table,2026-11-08,download,8 corpora; 99% web-mined
-hu,parallel_sentences,301036445,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hu/corpus-result-table,2026-11-08,download,"57 corpora; 55% web-mined; OPUS codes hu, hu_formal"
-hup,parallel_sentences,35,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hup/corpus-result-table,2026-11-08,download,2 corpora
-hus,parallel_sentences,0,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hus/corpus-result-table,2026-11-08,download,1 corpora
-hy,parallel_sentences,18657729,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hy/corpus-result-table,2026-11-08,download,"14 corpora; 87% web-mined; OPUS codes hy, hy_am, hye"
-hyw,parallel_sentences,4821,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hyw/corpus-result-table,2026-11-08,download,3 corpora
-hz,parallel_sentences,4,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hz/corpus-result-table,2026-11-08,download,1 corpora
-iba,parallel_sentences,13369,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&iba/corpus-result-table,2026-11-08,download,3 corpora
-ibb,parallel_sentences,847,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ibb/corpus-result-table,2026-11-08,download,1 corpora
-id,parallel_sentences,244581152,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&id/corpus-result-table,2026-11-08,download,25 corpora; 65% web-mined
-ig,parallel_sentences,7023641,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ibo/corpus-result-table,2026-11-08,download,"12 corpora; 90% web-mined; OPUS codes ibo, ig"
-igb,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&igb/corpus-result-table,2026-11-08,download,1 corpora
-igl,parallel_sentences,2480,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&igl/corpus-result-table,2026-11-08,download,2 corpora
-ii,parallel_sentences,26,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ii/corpus-result-table,2026-11-08,download,2 corpora
-ik,parallel_sentences,98,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ik/corpus-result-table,2026-11-08,download,3 corpora
-ilo,parallel_sentences,1468513,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ilo/corpus-result-table,2026-11-08,download,6 corpora; 94% web-mined
-inh,parallel_sentences,7146,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&inh/corpus-result-table,2026-11-08,download,4 corpora
-is,parallel_sentences,42471980,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&is/corpus-result-table,2026-11-08,download,49 corpora; 65% web-mined
-ish,parallel_sentences,128,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ish/corpus-result-table,2026-11-08,download,1 corpora
-it,parallel_sentences,524280417,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&it/corpus-result-table,2026-11-08,download,"84 corpora; 77% web-mined; OPUS codes it, it_IT"
-iu,parallel_sentences,1390,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ike/corpus-result-table,2026-11-08,download,"4 corpora; OPUS codes ike, ike_cans, ike_latn, iu"
-izh,parallel_sentences,190,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&izh/corpus-result-table,2026-11-08,download,2 corpora
-ja,parallel_sentences,145803333,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ja/corpus-result-table,2026-11-08,download,26 corpora; 67% web-mined
-jab,parallel_sentences,21,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jab/corpus-result-table,2026-11-08,download,1 corpora
-jac,parallel_sentences,8,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jac/corpus-result-table,2026-11-08,download,1 corpora
-jak,parallel_sentences,15689,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jak/corpus-result-table,2026-11-08,download,1 corpora
-jam,parallel_sentences,1425,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jam/corpus-result-table,2026-11-08,download,3 corpora
-jax,parallel_sentences,811,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jax/corpus-result-table,2026-11-08,download,1 corpora
-jdt,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jdt/corpus-result-table,2026-11-08,download,1 corpora
-jiv,parallel_sentences,13116,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jiv/corpus-result-table,2026-11-08,download,1 corpora
-jje,parallel_sentences,616,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jje/corpus-result-table,2026-11-08,download,1 corpora
-juk,parallel_sentences,12,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&juk/corpus-result-table,2026-11-08,download,1 corpora
-jv,parallel_sentences,19576344,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jv/corpus-result-table,2026-11-08,download,"9 corpora; 99% web-mined; OPUS codes jv, jv_java"
-ka,parallel_sentences,16075839,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ka/corpus-result-table,2026-11-08,download,16 corpora; 87% web-mined
-kaa,parallel_sentences,56344,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kaa/corpus-result-table,2026-11-08,download,3 corpora
-kab,parallel_sentences,4211140,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kab/corpus-result-table,2026-11-08,download,5 corpora; 98% web-mined
-kac,parallel_sentences,1003254,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kac/corpus-result-table,2026-11-08,download,2 corpora; 100% web-mined
-kai,parallel_sentences,843,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kai/corpus-result-table,2026-11-08,download,2 corpora
-kaj,parallel_sentences,870,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kaj/corpus-result-table,2026-11-08,download,1 corpora
-kam,parallel_sentences,1628899,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kam/corpus-result-table,2026-11-08,download,2 corpora; 100% web-mined
-kbd,parallel_sentences,1240,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kbd/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes kbd, kbd_cyrl"
-kbh,parallel_sentences,10952,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kbh/corpus-result-table,2026-11-08,download,1 corpora
-kbp,parallel_sentences,1592880,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kbp/corpus-result-table,2026-11-08,download,2 corpora; 100% web-mined
-kcg,parallel_sentences,5327,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kcg/corpus-result-table,2026-11-08,download,2 corpora
-kck,parallel_sentences,464,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kck/corpus-result-table,2026-11-08,download,1 corpora
-kea,parallel_sentences,1236729,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kea/corpus-result-table,2026-11-08,download,2 corpora; 99% web-mined
-kek,parallel_sentences,62215,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kek/corpus-result-table,2026-11-08,download,2 corpora
-ken,parallel_sentences,14,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ken/corpus-result-table,2026-11-08,download,1 corpora
-kg,parallel_sentences,2234804,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kg/corpus-result-table,2026-11-08,download,5 corpora; 100% web-mined
-kge,parallel_sentences,3674,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kge/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes kge, kge_arab"
-kgp,parallel_sentences,380,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kgp/corpus-result-table,2026-11-08,download,1 corpora
-kha,parallel_sentences,1434,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kha/corpus-result-table,2026-11-08,download,1 corpora
-khw,parallel_sentences,1776,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&khw/corpus-result-table,2026-11-08,download,1 corpora
-ki,parallel_sentences,2203811,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ki/corpus-result-table,2026-11-08,download,"4 corpora; 100% web-mined; OPUS codes ki, kik"
-kip,parallel_sentences,229,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kip/corpus-result-table,2026-11-08,download,1 corpora
-kiu,parallel_sentences,1856,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kiu/corpus-result-table,2026-11-08,download,1 corpora
-kj,parallel_sentences,779,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kj/corpus-result-table,2026-11-08,download,2 corpora
-kjh,parallel_sentences,4424,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kjh/corpus-result-table,2026-11-08,download,2 corpora
-kjp,parallel_sentences,3273,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kjp/corpus-result-table,2026-11-08,download,1 corpora
-kk,parallel_sentences,35680872,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kk/corpus-result-table,2026-11-08,download,"16 corpora; 99% web-mined; OPUS codes kk, kk_arab, kk_cn, kk_cyrl, kk_kz, kk_latn, kk_tr"
-kl,parallel_sentences,6269,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kl/corpus-result-table,2026-11-08,download,4 corpora
-km,parallel_sentences,8637938,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&khm/corpus-result-table,2026-11-08,download,"16 corpora; 73% web-mined; OPUS codes khm, km"
-kmb,parallel_sentences,196240,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kmb/corpus-result-table,2026-11-08,download,1 corpora; 100% web-mined
-kn,parallel_sentences,40241625,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kn/corpus-result-table,2026-11-08,download,15 corpora; 86% web-mined
-ko,parallel_sentences,100280503,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ko/corpus-result-table,2026-11-08,download,"26 corpora; 52% web-mined; OPUS codes ko, ko_kp"
-koi,parallel_sentences,4225,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&koi/corpus-result-table,2026-11-08,download,2 corpora
-kr,parallel_sentences,1575895,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kau/corpus-result-table,2026-11-08,download,"7 corpora; 100% web-mined; OPUS codes kau, knc, kr, kr_Arab, kr_Latn"
-krc,parallel_sentences,20576,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&krc/corpus-result-table,2026-11-08,download,3 corpora
-kri,parallel_sentences,838,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kri/corpus-result-table,2026-11-08,download,1 corpora
-krj,parallel_sentences,434,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&krj/corpus-result-table,2026-11-08,download,1 corpora
-krl,parallel_sentences,1394,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&krl/corpus-result-table,2026-11-08,download,2 corpora
-ks,parallel_sentences,1064103,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ks/corpus-result-table,2026-11-08,download,"5 corpora; 98% web-mined; OPUS codes ks, ks_Arab, ks_Deva, ks_arab, ks_deva"
-ksf,parallel_sentences,35,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ksf/corpus-result-table,2026-11-08,download,1 corpora
-ksh,parallel_sentences,20069,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ksh/corpus-result-table,2026-11-08,download,4 corpora
-ksw,parallel_sentences,1371,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ksw/corpus-result-table,2026-11-08,download,1 corpora
-ku,parallel_sentences,1641891,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kmr/corpus-result-table,2026-11-08,download,"16 corpora; 70% web-mined; OPUS codes kmr, ku, ku_Arab, ku_Latn, ku_arab, ku_latn"
-kum,parallel_sentences,2857,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kum/corpus-result-table,2026-11-08,download,2 corpora
-kus,parallel_sentences,4742,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kus/corpus-result-table,2026-11-08,download,2 corpora
-kv,parallel_sentences,3893,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kpv/corpus-result-table,2026-11-08,download,"4 corpora; OPUS codes kpv, kv"
-kw,parallel_sentences,10304,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kw/corpus-result-table,2026-11-08,download,4 corpora
-ky,parallel_sentences,21656374,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ky/corpus-result-table,2026-11-08,download,9 corpora; 100% web-mined
-laa,parallel_sentences,9,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&laa/corpus-result-table,2026-11-08,download,1 corpora
-lad,parallel_sentences,2592,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lad/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes lad, lad_hebr"
-lag,parallel_sentences,574,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lag/corpus-result-table,2026-11-08,download,1 corpora
-laj,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&laj/corpus-result-table,2026-11-08,download,1 corpora
-lb,parallel_sentences,25145568,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lb/corpus-result-table,2026-11-08,download,12 corpora; 98% web-mined
-lbe,parallel_sentences,619,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lbe/corpus-result-table,2026-11-08,download,2 corpora
-lez,parallel_sentences,1479,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lez/corpus-result-table,2026-11-08,download,2 corpora
-lg,parallel_sentences,3648516,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lg/corpus-result-table,2026-11-08,download,9 corpora; 98% web-mined
-li,parallel_sentences,4358148,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&li/corpus-result-table,2026-11-08,download,6 corpora; 99% web-mined
-lij,parallel_sentences,1124338,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lij/corpus-result-table,2026-11-08,download,4 corpora; 99% web-mined
-liv,parallel_sentences,561,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&liv/corpus-result-table,2026-11-08,download,2 corpora
-ljp,parallel_sentences,2234,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ljp/corpus-result-table,2026-11-08,download,1 corpora
-lki,parallel_sentences,8603,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lki/corpus-result-table,2026-11-08,download,1 corpora
-lkt,parallel_sentences,6046,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lkt/corpus-result-table,2026-11-08,download,3 corpora
-lld,parallel_sentences,1845,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lld/corpus-result-table,2026-11-08,download,4 corpora
-lmo,parallel_sentences,8767965,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lmo/corpus-result-table,2026-11-08,download,6 corpora; 100% web-mined
-ln,parallel_sentences,2940421,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lin/corpus-result-table,2026-11-08,download,"8 corpora; 100% web-mined; OPUS codes lin, ln"
-lo,parallel_sentences,6380488,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lo/corpus-result-table,2026-11-08,download,12 corpora; 68% web-mined
-lou,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lou/corpus-result-table,2026-11-08,download,1 corpora
-loz,parallel_sentences,647,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&loz/corpus-result-table,2026-11-08,download,1 corpora
-lrc,parallel_sentences,6244,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lrc/corpus-result-table,2026-11-08,download,2 corpora
-lt,parallel_sentences,145217859,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lt/corpus-result-table,2026-11-08,download,60 corpora; 60% web-mined
-ltg,parallel_sentences,132424,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ltg/corpus-result-table,2026-11-08,download,5 corpora; 99% web-mined
-lua,parallel_sentences,2445268,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lua/corpus-result-table,2026-11-08,download,2 corpora; 100% web-mined
-lue,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lue/corpus-result-table,2026-11-08,download,1 corpora
-luo,parallel_sentences,2825314,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&luo/corpus-result-table,2026-11-08,download,2 corpora; 100% web-mined
-lus,parallel_sentences,6982283,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lus/corpus-result-table,2026-11-08,download,2 corpora; 100% web-mined
-lut,parallel_sentences,79,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lut/corpus-result-table,2026-11-08,download,1 corpora
-luz,parallel_sentences,1190,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&luz/corpus-result-table,2026-11-08,download,1 corpora
-lv,parallel_sentences,124394831,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lv/corpus-result-table,2026-11-08,download,68 corpora; 56% web-mined
-lzz,parallel_sentences,645,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lzz/corpus-result-table,2026-11-08,download,2 corpora
-mad,parallel_sentences,2618,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mad/corpus-result-table,2026-11-08,download,4 corpora
-mag,parallel_sentences,2226850,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mag/corpus-result-table,2026-11-08,download,2 corpora; 100% web-mined
-mai,parallel_sentences,4525171,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mai/corpus-result-table,2026-11-08,download,6 corpora; 98% web-mined
-mak,parallel_sentences,564,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mak/corpus-result-table,2026-11-08,download,1 corpora
-mam,parallel_sentences,15571,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mam/corpus-result-table,2026-11-08,download,1 corpora
-maw,parallel_sentences,417,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&maw/corpus-result-table,2026-11-08,download,1 corpora
-max,parallel_sentences,281,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&max/corpus-result-table,2026-11-08,download,1 corpora
-mdf,parallel_sentences,4535,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mdf/corpus-result-table,2026-11-08,download,3 corpora
-mdh,parallel_sentences,428,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mdh/corpus-result-table,2026-11-08,download,1 corpora
-mey,parallel_sentences,167,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mey/corpus-result-table,2026-11-08,download,1 corpora
-mfa,parallel_sentences,554,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mfa/corpus-result-table,2026-11-08,download,1 corpora
-mfe,parallel_sentences,705,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mfe/corpus-result-table,2026-11-08,download,3 corpora
-mg,parallel_sentences,5343222,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mg/corpus-result-table,2026-11-08,download,"13 corpora; 84% web-mined; OPUS codes mg, mlg, plt"
-mgm,parallel_sentences,33,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mgm/corpus-result-table,2026-11-08,download,1 corpora
-mh,parallel_sentences,33,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mh/corpus-result-table,2026-11-08,download,2 corpora
-mhr,parallel_sentences,6263,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mhr/corpus-result-table,2026-11-08,download,3 corpora
-mi,parallel_sentences,6014656,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mi/corpus-result-table,2026-11-08,download,8 corpora; 99% web-mined
-mic,parallel_sentences,100,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mic/corpus-result-table,2026-11-08,download,2 corpora
-mik,parallel_sentences,9,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mik/corpus-result-table,2026-11-08,download,1 corpora
-min,parallel_sentences,310710,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&min/corpus-result-table,2026-11-08,download,4 corpora; 97% web-mined
-mk,parallel_sentences,46813223,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mk/corpus-result-table,2026-11-08,download,25 corpora; 69% web-mined
-ml,parallel_sentences,62271857,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ml/corpus-result-table,2026-11-08,download,23 corpora; 82% web-mined
-mn,parallel_sentences,17285297,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mn/corpus-result-table,2026-11-08,download,11 corpora; 99% web-mined
-mnc,parallel_sentences,1439,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mnc/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes mnc, mnc_mong"
-mni,parallel_sentences,503776,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mni/corpus-result-table,2026-11-08,download,6 corpora; 97% web-mined
-mnr,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mnr/corpus-result-table,2026-11-08,download,1 corpora
-mns,parallel_sentences,518,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mns/corpus-result-table,2026-11-08,download,1 corpora
-mnw,parallel_sentences,10140,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mnw/corpus-result-table,2026-11-08,download,3 corpora
-moh,parallel_sentences,61,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&moh/corpus-result-table,2026-11-08,download,2 corpora
-mos,parallel_sentences,2203870,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mos/corpus-result-table,2026-11-08,download,3 corpora; 100% web-mined
-mr,parallel_sentences,42818832,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mr/corpus-result-table,2026-11-08,download,19 corpora; 84% web-mined
-mrh,parallel_sentences,2932,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mrh/corpus-result-table,2026-11-08,download,1 corpora
-mrj,parallel_sentences,4083,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mrj/corpus-result-table,2026-11-08,download,2 corpora
-mrt,parallel_sentences,161,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mrt/corpus-result-table,2026-11-08,download,1 corpora
-ms,parallel_sentences,93139355,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ms/corpus-result-table,2026-11-08,download,"19 corpora; 78% web-mined; OPUS codes ms, ms_MY, ms_arab, zsm"
-msi,parallel_sentences,635,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&msi/corpus-result-table,2026-11-08,download,1 corpora
-mt,parallel_sentences,31659275,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mt/corpus-result-table,2026-11-08,download,47 corpora; 61% web-mined
-mui,parallel_sentences,1503,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mui/corpus-result-table,2026-11-08,download,1 corpora
-mup,parallel_sentences,38,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&raj/corpus-result-table,2026-11-08,download,1 corpora
-mus,parallel_sentences,77,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mus/corpus-result-table,2026-11-08,download,2 corpora
-mvf,parallel_sentences,357,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mvf/corpus-result-table,2026-11-08,download,1 corpora
-mvv,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mvv/corpus-result-table,2026-11-08,download,1 corpora
-mwl,parallel_sentences,27370,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mwl/corpus-result-table,2026-11-08,download,5 corpora; 38% web-mined
-mwv,parallel_sentences,149,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mwv/corpus-result-table,2026-11-08,download,1 corpora
-mww,parallel_sentences,80,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mww/corpus-result-table,2026-11-08,download,1 corpora
-my,parallel_sentences,13711267,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&my/corpus-result-table,2026-11-08,download,17 corpora; 75% web-mined
-myv,parallel_sentences,5519,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&myv/corpus-result-table,2026-11-08,download,3 corpora
-mzn,parallel_sentences,3358,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mzn/corpus-result-table,2026-11-08,download,2 corpora
-na,parallel_sentences,42,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&na/corpus-result-table,2026-11-08,download,2 corpora
-nan,parallel_sentences,2713,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nan/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes nan, nan_hans, nan_hant, nan_latn_pehoeji, nan_latn_tailo"
-nap,parallel_sentences,10434,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nap/corpus-result-table,2026-11-08,download,3 corpora
-naq,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&naq/corpus-result-table,2026-11-08,download,1 corpora
-nb,parallel_sentences,241523342,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nb/corpus-result-table,2026-11-08,download,"85 corpora; 66% web-mined; OPUS codes nb, nb_NO, nb_no, no, no_nb"
-nch,parallel_sentences,16,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nch/corpus-result-table,2026-11-08,download,1 corpora
-nd,parallel_sentences,33,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nd/corpus-result-table,2026-11-08,download,2 corpora
-nds,parallel_sentences,411687,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nds/corpus-result-table,2026-11-08,download,"7 corpora; 11% web-mined; OPUS codes nds, nds_nl"
-ne,parallel_sentences,24230241,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ne/corpus-result-table,2026-11-08,download,"19 corpora; 86% web-mined; OPUS codes ne, ne_np, npi"
-new,parallel_sentences,4759,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&new/corpus-result-table,2026-11-08,download,2 corpora
-ngt,parallel_sentences,17,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ngt/corpus-result-table,2026-11-08,download,1 corpora
-ngu,parallel_sentences,38,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ngu/corpus-result-table,2026-11-08,download,1 corpora
-nhg,parallel_sentences,15635,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nhg/corpus-result-table,2026-11-08,download,1 corpora
-nhn,parallel_sentences,13,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nhn/corpus-result-table,2026-11-08,download,1 corpora
-nia,parallel_sentences,1961,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nia/corpus-result-table,2026-11-08,download,2 corpora
-nit,parallel_sentences,520,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nit/corpus-result-table,2026-11-08,download,1 corpora
-niu,parallel_sentences,199,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&niu/corpus-result-table,2026-11-08,download,2 corpora
-njo,parallel_sentences,41,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&njo/corpus-result-table,2026-11-08,download,1 corpora
-nl,parallel_sentences,445319170,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nl/corpus-result-table,2026-11-08,download,"66 corpora; 71% web-mined; OPUS codes nl, nl_BE, nl_NL, nl_informal"
-nlv,parallel_sentences,14,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nlv/corpus-result-table,2026-11-08,download,1 corpora
-nmz,parallel_sentences,556,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nmz/corpus-result-table,2026-11-08,download,1 corpora
-nn,parallel_sentences,1303027,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nn/corpus-result-table,2026-11-08,download,"17 corpora; 38% web-mined; OPUS codes nn, nn_NO, nn_no"
-nnb,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nnb/corpus-result-table,2026-11-08,download,1 corpora
-nnh,parallel_sentences,46,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nnh/corpus-result-table,2026-11-08,download,1 corpora
-nod,parallel_sentences,808,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nod/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes nod, nod_thai"
-nog,parallel_sentences,814,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nog/corpus-result-table,2026-11-08,download,2 corpora
-nqo,parallel_sentences,14248,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nqo/corpus-result-table,2026-11-08,download,2 corpora
-nr,parallel_sentences,1230,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nr/corpus-result-table,2026-11-08,download,3 corpora
-nrm,parallel_sentences,113,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nrm/corpus-result-table,2026-11-08,download,1 corpora
-nso,parallel_sentences,3487989,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nso/corpus-result-table,2026-11-08,download,6 corpora; 99% web-mined
-nst,parallel_sentences,805,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nst/corpus-result-table,2026-11-08,download,1 corpora
-nup,parallel_sentences,973,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nup/corpus-result-table,2026-11-08,download,2 corpora
-nus,parallel_sentences,1204006,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nus/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-nv,parallel_sentences,452,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nv/corpus-result-table,2026-11-08,download,4 corpora
-ny,parallel_sentences,1662241,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ny/corpus-result-table,2026-11-08,download,"6 corpora; 100% web-mined; OPUS codes ny, nya"
-nyn,parallel_sentences,990,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nyn/corpus-result-table,2026-11-08,download,1 corpora
-nyo,parallel_sentences,769,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nyo/corpus-result-table,2026-11-08,download,1 corpora
-nys,parallel_sentences,664,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nys/corpus-result-table,2026-11-08,download,2 corpora
-nzi,parallel_sentences,490,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nzi/corpus-result-table,2026-11-08,download,1 corpora
-oc,parallel_sentences,3834602,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&oc/corpus-result-table,2026-11-08,download,12 corpora; 91% web-mined
-oj,parallel_sentences,44,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&oj/corpus-result-table,2026-11-08,download,1 corpora
-ojb,parallel_sentences,14759,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ojb/corpus-result-table,2026-11-08,download,2 corpora
-olo,parallel_sentences,6681,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&olo/corpus-result-table,2026-11-08,download,2 corpora
-om,parallel_sentences,3263675,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gaz/corpus-result-table,2026-11-08,download,"8 corpora; 100% web-mined; OPUS codes gaz, om, orm"
-ood,parallel_sentences,25,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ood/corpus-result-table,2026-11-08,download,1 corpora
-or,parallel_sentences,15048134,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&or/corpus-result-table,2026-11-08,download,15 corpora; 92% web-mined
-os,parallel_sentences,2701,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&os/corpus-result-table,2026-11-08,download,4 corpora
-osi,parallel_sentences,70,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&osi/corpus-result-table,2026-11-08,download,1 corpora
-ovd,parallel_sentences,83,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ovd/corpus-result-table,2026-11-08,download,1 corpora
-pa,parallel_sentences,16391459,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pa/corpus-result-table,2026-11-08,download,"14 corpora; 69% web-mined; OPUS codes pa, pa_in, pan"
-pag,parallel_sentences,3358884,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pag/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-pam,parallel_sentences,3841,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pam/corpus-result-table,2026-11-08,download,4 corpora
-pap,parallel_sentences,15238087,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pap/corpus-result-table,2026-11-08,download,5 corpora; 100% web-mined
-pau,parallel_sentences,442,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pau/corpus-result-table,2026-11-08,download,1 corpora
-pbb,parallel_sentences,43,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pbb/corpus-result-table,2026-11-08,download,1 corpora
-pcd,parallel_sentences,1283,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pcd/corpus-result-table,2026-11-08,download,2 corpora
-pck,parallel_sentences,62193,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pck/corpus-result-table,2026-11-08,download,1 corpora
-pcm,parallel_sentences,3750,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pcm/corpus-result-table,2026-11-08,download,2 corpora
-pdc,parallel_sentences,2003,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pdc/corpus-result-table,2026-11-08,download,3 corpora
-pdt,parallel_sentences,406,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pdt/corpus-result-table,2026-11-08,download,1 corpora
-pey,parallel_sentences,174,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pey/corpus-result-table,2026-11-08,download,1 corpora
-pfl,parallel_sentences,2468,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pfl/corpus-result-table,2026-11-08,download,2 corpora
-pih,parallel_sentences,170,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pih/corpus-result-table,2026-11-08,download,2 corpora
-piu,parallel_sentences,496,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&piu/corpus-result-table,2026-11-08,download,1 corpora
-pl,parallel_sentences,310316202,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pl/corpus-result-table,2026-11-08,download,185 corpora; 65% web-mined
-pms,parallel_sentences,25038,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pms/corpus-result-table,2026-11-08,download,3 corpora
-pnb,parallel_sentences,13432,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pnb/corpus-result-table,2026-11-08,download,3 corpora
-pnt,parallel_sentences,1082,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pnt/corpus-result-table,2026-11-08,download,2 corpora
-pot,parallel_sentences,4153,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pot/corpus-result-table,2026-11-08,download,1 corpora
-ppk,parallel_sentences,15579,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ppk/corpus-result-table,2026-11-08,download,1 corpora
-ppl,parallel_sentences,1364,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ppl/corpus-result-table,2026-11-08,download,2 corpora
-prg,parallel_sentences,2662,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&prg/corpus-result-table,2026-11-08,download,2 corpora
-prs,parallel_sentences,6299081,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&prs/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-ps,parallel_sentences,11915219,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ps/corpus-result-table,2026-11-08,download,14 corpora; 98% web-mined
-pt,parallel_sentences,605893826,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pt/corpus-result-table,2026-11-08,download,"95 corpora; 74% web-mined; OPUS codes pt, pt_BR, pt_MZ, pt_PT, pt_br"
-pwn,parallel_sentences,957,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pwn/corpus-result-table,2026-11-08,download,2 corpora
-pwo,parallel_sentences,90,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pwo/corpus-result-table,2026-11-08,download,1 corpora
-pzh,parallel_sentences,50,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pzh/corpus-result-table,2026-11-08,download,1 corpora
-qu,parallel_sentences,2884579,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&qu/corpus-result-table,2026-11-08,download,"6 corpora; 100% web-mined; OPUS codes qu, que, quy, quz"
-quc,parallel_sentences,15771,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&quc/corpus-result-table,2026-11-08,download,2 corpora
-qug,parallel_sentences,580,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&qug/corpus-result-table,2026-11-08,download,1 corpora
-quw,parallel_sentences,15855,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&quw/corpus-result-table,2026-11-08,download,1 corpora
-qwh,parallel_sentences,132,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&qwh/corpus-result-table,2026-11-08,download,1 corpora
-qxp,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&qxp/corpus-result-table,2026-11-08,download,1 corpora
-rag,parallel_sentences,42,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rag/corpus-result-table,2026-11-08,download,1 corpora
-rap,parallel_sentences,215,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rap/corpus-result-table,2026-11-08,download,2 corpora
-rej,parallel_sentences,438,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rej/corpus-result-table,2026-11-08,download,1 corpora
-rel,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rel/corpus-result-table,2026-11-08,download,1 corpora
-rgn,parallel_sentences,476,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rgn/corpus-result-table,2026-11-08,download,1 corpora
-rhg,parallel_sentences,42,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rhg/corpus-result-table,2026-11-08,download,1 corpora
-rif,parallel_sentences,952,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rif/corpus-result-table,2026-11-08,download,2 corpora
-rki,parallel_sentences,4988,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rki/corpus-result-table,2026-11-08,download,2 corpora
-rm,parallel_sentences,4333,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rm/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes rm, rm_sursilv, rm_vallader"
-rmc,parallel_sentences,916,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rmc/corpus-result-table,2026-11-08,download,1 corpora
-rmf,parallel_sentences,196,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rmf/corpus-result-table,2026-11-08,download,1 corpora
-rml,parallel_sentences,51,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rml_cyrl/corpus-result-table,2026-11-08,download,1 corpora
-rmn,parallel_sentences,16580,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rom/corpus-result-table,2026-11-08,download,2 corpora
-rmy,parallel_sentences,430,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rmy/corpus-result-table,2026-11-08,download,2 corpora
-rn,parallel_sentences,774298,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rn/corpus-result-table,2026-11-08,download,"5 corpora; 100% web-mined; OPUS codes rn, run"
-ro,parallel_sentences,390054396,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mo/corpus-result-table,2026-11-08,download,"80 corpora; 52% web-mined; OPUS codes mo, ro"
-rsk,parallel_sentences,3818,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rsk/corpus-result-table,2026-11-08,download,2 corpora
-rtm,parallel_sentences,145,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rtm/corpus-result-table,2026-11-08,download,1 corpora
-ru,parallel_sentences,432582023,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ru/corpus-result-table,2026-11-08,download,42 corpora; 70% web-mined
-rue,parallel_sentences,8412,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rue/corpus-result-table,2026-11-08,download,3 corpora
-rup,parallel_sentences,1264,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rup/corpus-result-table,2026-11-08,download,3 corpora
-ruq,parallel_sentences,223,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ruq_cyrl/corpus-result-table,2026-11-08,download,"1 corpora; OPUS codes ruq_cyrl, ruq_latn"
-rut,parallel_sentences,591,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rut/corpus-result-table,2026-11-08,download,1 corpora
-rw,parallel_sentences,10395923,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kin/corpus-result-table,2026-11-08,download,"8 corpora; 97% web-mined; OPUS codes kin, rw"
-ryu,parallel_sentences,1104,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ryu/corpus-result-table,2026-11-08,download,1 corpora
-sah,parallel_sentences,10113,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sah/corpus-result-table,2026-11-08,download,3 corpora
-sas,parallel_sentences,835,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sas/corpus-result-table,2026-11-08,download,1 corpora
-sat,parallel_sentences,99077,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sat/corpus-result-table,2026-11-08,download,4 corpora; 79% web-mined
-saz,parallel_sentences,94,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&saz/corpus-result-table,2026-11-08,download,1 corpora
-sc,parallel_sentences,1326372,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sc/corpus-result-table,2026-11-08,download,5 corpora; 99% web-mined
-scn,parallel_sentences,1103096,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&scn/corpus-result-table,2026-11-08,download,5 corpora; 98% web-mined
-sco,parallel_sentences,18366,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sco/corpus-result-table,2026-11-08,download,4 corpora
-sd,parallel_sentences,10965067,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sd/corpus-result-table,2026-11-08,download,9 corpora; 97% web-mined
-sdc,parallel_sentences,3256,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sdc/corpus-result-table,2026-11-08,download,1 corpora
-sdh,parallel_sentences,4566,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sdh/corpus-result-table,2026-11-08,download,2 corpora
-se,parallel_sentences,60130,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&se/corpus-result-table,2026-11-08,download,5 corpora
-sei,parallel_sentences,645,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sei/corpus-result-table,2026-11-08,download,1 corpora
-ses,parallel_sentences,3238,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ses/corpus-result-table,2026-11-08,download,1 corpora
-sg,parallel_sentences,3607833,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sg/corpus-result-table,2026-11-08,download,5 corpora; 100% web-mined
-sgh,parallel_sentences,45,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sgh/corpus-result-table,2026-11-08,download,1 corpora
-sgs,parallel_sentences,2133,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sgs/corpus-result-table,2026-11-08,download,3 corpora
-shi,parallel_sentences,20310,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&shi/corpus-result-table,2026-11-08,download,"4 corpora; OPUS codes shi, shi_latn"
-shn,parallel_sentences,657147,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&shn/corpus-result-table,2026-11-08,download,3 corpora; 98% web-mined
-shs,parallel_sentences,43,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&shs/corpus-result-table,2026-11-08,download,1 corpora
-shy,parallel_sentences,1842,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&shy/corpus-result-table,2026-11-08,download,"2 corpora; OPUS codes shy, shy_latn"
-si,parallel_sentences,35744424,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&si/corpus-result-table,2026-11-08,download,15 corpora; 88% web-mined
-sjd,parallel_sentences,3019,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sjd/corpus-result-table,2026-11-08,download,1 corpora
-sje,parallel_sentences,2605,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sje/corpus-result-table,2026-11-08,download,1 corpora
-sju,parallel_sentences,110,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sju/corpus-result-table,2026-11-08,download,1 corpora
-sk,parallel_sentences,219247889,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sk/corpus-result-table,2026-11-08,download,62 corpora; 63% web-mined
-skr,parallel_sentences,20934,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&skr/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes skr, skr_arab"
-sl,parallel_sentences,154466843,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sl/corpus-result-table,2026-11-08,download,66 corpora; 57% web-mined
-sli,parallel_sentences,2008,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sli/corpus-result-table,2026-11-08,download,1 corpora
-sly,parallel_sentences,197,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sly/corpus-result-table,2026-11-08,download,1 corpora
-sm,parallel_sentences,6434172,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sm/corpus-result-table,2026-11-08,download,5 corpora; 100% web-mined
-sma,parallel_sentences,283,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sma/corpus-result-table,2026-11-08,download,2 corpora
-smj,parallel_sentences,179,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&smj/corpus-result-table,2026-11-08,download,1 corpora
-smn,parallel_sentences,9258,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&smn/corpus-result-table,2026-11-08,download,2 corpora
-sms,parallel_sentences,10860,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sms/corpus-result-table,2026-11-08,download,1 corpora
-sn,parallel_sentences,9474209,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sn/corpus-result-table,2026-11-08,download,"7 corpora; 99% web-mined; OPUS codes sn, sna"
-so,parallel_sentences,11147413,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&so/corpus-result-table,2026-11-08,download,"17 corpora; 97% web-mined; OPUS codes so, som"
-sq,parallel_sentences,113643034,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&als/corpus-result-table,2026-11-08,download,"27 corpora; 89% web-mined; OPUS codes als, sq"
-sr,parallel_sentences,135555938,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sr/corpus-result-table,2026-11-08,download,"29 corpora; 48% web-mined; OPUS codes sr, sr_Cyrl, sr_Latn, sr_ME, sr_ec, sr_el, srp"
-srn,parallel_sentences,733,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&srn/corpus-result-table,2026-11-08,download,3 corpora
-sro,parallel_sentences,2315,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sro/corpus-result-table,2026-11-08,download,1 corpora
-ss,parallel_sentences,267527,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ss/corpus-result-table,2026-11-08,download,7 corpora; 92% web-mined
-ssy,parallel_sentences,542,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ssy/corpus-result-table,2026-11-08,download,1 corpora
-st,parallel_sentences,1387163,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sot/corpus-result-table,2026-11-08,download,"7 corpora; 99% web-mined; OPUS codes sot, st"
-stq,parallel_sentences,3765,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&stq/corpus-result-table,2026-11-08,download,2 corpora
-sty,parallel_sentences,905,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sty/corpus-result-table,2026-11-08,download,1 corpora
-su,parallel_sentences,12699515,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&su/corpus-result-table,2026-11-08,download,7 corpora; 99% web-mined
-sv,parallel_sentences,324772123,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sv/corpus-result-table,2026-11-08,download,"96 corpora; 67% web-mined; OPUS codes sv, sv_se"
-sva,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sva/corpus-result-table,2026-11-08,download,1 corpora
-sw,parallel_sentences,32847014,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sw/corpus-result-table,2026-11-08,download,"21 corpora; 96% web-mined; OPUS codes sw, swa, swh"
-swc,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&swc/corpus-result-table,2026-11-08,download,1 corpora
-swg,parallel_sentences,35,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&swg/corpus-result-table,2026-11-08,download,1 corpora
-sxu,parallel_sentences,461,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sxu/corpus-result-table,2026-11-08,download,1 corpora
-syl,parallel_sentences,3053,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&syl/corpus-result-table,2026-11-08,download,3 corpora
-szl,parallel_sentences,1772632,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&szl/corpus-result-table,2026-11-08,download,7 corpora; 100% web-mined
-szy,parallel_sentences,6532,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&szy/corpus-result-table,2026-11-08,download,1 corpora
-ta,parallel_sentences,60855369,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ta/corpus-result-table,2026-11-08,download,"24 corpora; 84% web-mined; OPUS codes ta, ta_LK"
-taq,parallel_sentences,450220,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&taq/corpus-result-table,2026-11-08,download,1 corpora; 100% web-mined
-tay,parallel_sentences,2950,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tay/corpus-result-table,2026-11-08,download,2 corpora
-tcy,parallel_sentences,8474,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tcy/corpus-result-table,2026-11-08,download,2 corpora
-tdd,parallel_sentences,2315,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tdd/corpus-result-table,2026-11-08,download,1 corpora
-te,parallel_sentences,55907602,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&te/corpus-result-table,2026-11-08,download,20 corpora; 84% web-mined
-tet,parallel_sentences,1995,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tet/corpus-result-table,2026-11-08,download,5 corpora
-tg,parallel_sentences,14118410,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tg/corpus-result-table,2026-11-08,download,"13 corpora; 96% web-mined; OPUS codes tg, tg_TJ, tg_cyrl, tg_latn"
-th,parallel_sentences,40915923,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&th/corpus-result-table,2026-11-08,download,20 corpora; 26% web-mined
-thr,parallel_sentences,57,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&thr/corpus-result-table,2026-11-08,download,1 corpora
-ti,parallel_sentences,1417606,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ti/corpus-result-table,2026-11-08,download,"7 corpora; 99% web-mined; OPUS codes ti, tir"
-tig,parallel_sentences,4486,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tig/corpus-result-table,2026-11-08,download,3 corpora
-tiv,parallel_sentences,48,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tiv/corpus-result-table,2026-11-08,download,1 corpora
-tji,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tji/corpus-result-table,2026-11-08,download,1 corpora
-tk,parallel_sentences,366937,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tk/corpus-result-table,2026-11-08,download,7 corpora; 89% web-mined
-tkl,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tkl/corpus-result-table,2026-11-08,download,1 corpora
-tkr,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tkr/corpus-result-table,2026-11-08,download,1 corpora
-tly,parallel_sentences,6500,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tly/corpus-result-table,2026-11-08,download,"3 corpora; OPUS codes tly, tly_cyrl"
-tmr,parallel_sentences,118,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tmr/corpus-result-table,2026-11-08,download,1 corpora
-tmw,parallel_sentences,5,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tmw/corpus-result-table,2026-11-08,download,1 corpora
-tn,parallel_sentences,6355844,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tn/corpus-result-table,2026-11-08,download,6 corpora; 100% web-mined
-to,parallel_sentences,994,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&to/corpus-result-table,2026-11-08,download,4 corpora
-toi,parallel_sentences,8,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&toi/corpus-result-table,2026-11-08,download,2 corpora
-tpi,parallel_sentences,2164196,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tpi/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-tpn,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tpn/corpus-result-table,2026-11-08,download,1 corpora
-tpw,parallel_sentences,93,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tpw/corpus-result-table,2026-11-08,download,1 corpora
-tr,parallel_sentences,276508922,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tr/corpus-result-table,2026-11-08,download,"36 corpora; 54% web-mined; OPUS codes tr, tr_TR"
-tru,parallel_sentences,480,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tru/corpus-result-table,2026-11-08,download,1 corpora
-trv,parallel_sentences,1151,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&trv/corpus-result-table,2026-11-08,download,1 corpora
-trw,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&trw/corpus-result-table,2026-11-08,download,1 corpora
-ts,parallel_sentences,695675,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ts/corpus-result-table,2026-11-08,download,7 corpora; 99% web-mined
-tsd,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tsd/corpus-result-table,2026-11-08,download,1 corpora
-tsg,parallel_sentences,404,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tsg/corpus-result-table,2026-11-08,download,1 corpora
-tsw,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tsw/corpus-result-table,2026-11-08,download,1 corpora
-tt,parallel_sentences,10831445,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tt/corpus-result-table,2026-11-08,download,"11 corpora; 97% web-mined; OPUS codes tt, tt_cyrl, tt_latn"
-ttj,parallel_sentences,875,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ttj/corpus-result-table,2026-11-08,download,1 corpora
-ttq,parallel_sentences,5528,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tmh/corpus-result-table,2026-11-08,download,1 corpora
-tts,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tts/corpus-result-table,2026-11-08,download,1 corpora
-ttt,parallel_sentences,58,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ttt/corpus-result-table,2026-11-08,download,1 corpora
-tum,parallel_sentences,654511,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tum/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-tvl,parallel_sentences,15,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tvl/corpus-result-table,2026-11-08,download,1 corpora
-twd,parallel_sentences,4,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&twd/corpus-result-table,2026-11-08,download,1 corpora
-ty,parallel_sentences,186,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ty/corpus-result-table,2026-11-08,download,3 corpora
-tyv,parallel_sentences,4772,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tyv/corpus-result-table,2026-11-08,download,3 corpora
-tzm,parallel_sentences,213872,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tzm/corpus-result-table,2026-11-08,download,2 corpora; 99% web-mined
-udm,parallel_sentences,4888,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&udm/corpus-result-table,2026-11-08,download,3 corpora
-ug,parallel_sentences,9970759,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ug/corpus-result-table,2026-11-08,download,"10 corpora; 99% web-mined; OPUS codes ug, ug_arab, ug_latn"
-uk,parallel_sentences,200252287,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&uk/corpus-result-table,2026-11-08,download,36 corpora; 58% web-mined
-umb,parallel_sentences,298138,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&umb/corpus-result-table,2026-11-08,download,3 corpora; 100% web-mined
-ur,parallel_sentences,35868711,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ur/corpus-result-table,2026-11-08,download,"18 corpora; 92% web-mined; OPUS codes ur, ur_PK"
-usp,parallel_sentences,15771,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&usp/corpus-result-table,2026-11-08,download,1 corpora
-uz,parallel_sentences,32590411,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&uz/corpus-result-table,2026-11-08,download,"10 corpora; 95% web-mined; OPUS codes uz, uz_cyrl, uz_latn"
-vai,parallel_sentences,27,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vai/corpus-result-table,2026-11-08,download,1 corpora
-ve,parallel_sentences,2701,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ve/corpus-result-table,2026-11-08,download,4 corpora; 58% web-mined
-vec,parallel_sentences,4976771,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vec/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-vep,parallel_sentences,5596,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vep/corpus-result-table,2026-11-08,download,2 corpora
-vi,parallel_sentences,159136414,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vi/corpus-result-table,2026-11-08,download,"21 corpora; 71% web-mined; OPUS codes vi, vi_VN"
-vls,parallel_sentences,2083,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vls/corpus-result-table,2026-11-08,download,3 corpora
-vmf,parallel_sentences,647,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vmf/corpus-result-table,2026-11-08,download,1 corpora
-vmw,parallel_sentences,610,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vmw/corpus-result-table,2026-11-08,download,1 corpora
-vro,parallel_sentences,2043,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vro/corpus-result-table,2026-11-08,download,3 corpora
-wa,parallel_sentences,158570,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wa/corpus-result-table,2026-11-08,download,5 corpora
-wal,parallel_sentences,18498,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wal/corpus-result-table,2026-11-08,download,2 corpora
-war,parallel_sentences,9662998,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&war/corpus-result-table,2026-11-08,download,4 corpora; 100% web-mined
-wls,parallel_sentences,1404,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wls/corpus-result-table,2026-11-08,download,1 corpora
-wlx,parallel_sentences,885,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wlx/corpus-result-table,2026-11-08,download,1 corpora
-wo,parallel_sentences,1574721,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wo/corpus-result-table,2026-11-08,download,"8 corpora; 98% web-mined; OPUS codes wo, wol"
-wsg,parallel_sentences,315,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wsg/corpus-result-table,2026-11-08,download,1 corpora
-wuu,parallel_sentences,42066,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wuu/corpus-result-table,2026-11-08,download,"5 corpora; 42% web-mined; OPUS codes wuu, wuu_hans, wuu_hant"
-xal,parallel_sentences,6553,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xal/corpus-result-table,2026-11-08,download,3 corpora
-xh,parallel_sentences,29391313,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xh/corpus-result-table,2026-11-08,download,"13 corpora; 95% web-mined; OPUS codes xh, xho"
-xmf,parallel_sentences,14574,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xmf/corpus-result-table,2026-11-08,download,3 corpora
-xmm,parallel_sentences,303,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xmm/corpus-result-table,2026-11-08,download,1 corpora
-xon,parallel_sentences,530,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xon/corpus-result-table,2026-11-08,download,1 corpora
-xsy,parallel_sentences,880,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xsy/corpus-result-table,2026-11-08,download,1 corpora
-yaq,parallel_sentences,0,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yaq/corpus-result-table,2026-11-08,download,1 corpora
-yi,parallel_sentences,7915915,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yi/corpus-result-table,2026-11-08,download,8 corpora; 98% web-mined
-yo,parallel_sentences,1789575,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yo/corpus-result-table,2026-11-08,download,"9 corpora; 94% web-mined; OPUS codes yo, yor"
-yoi,parallel_sentences,174,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yoi/corpus-result-table,2026-11-08,download,1 corpora
-yrk,parallel_sentences,6,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yrk/corpus-result-table,2026-11-08,download,1 corpora
-yrl,parallel_sentences,2283,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yrl/corpus-result-table,2026-11-08,download,1 corpora
-yua,parallel_sentences,1834,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yua/corpus-result-table,2026-11-08,download,2 corpora
-yue,parallel_sentences,218468,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yue/corpus-result-table,2026-11-08,download,"6 corpora; OPUS codes yue, yue_hans, yue_hant, zh_HK, zh_hk, zh_mo"
-za,parallel_sentences,477,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&za/corpus-result-table,2026-11-08,download,3 corpora
-zam,parallel_sentences,124,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zam/corpus-result-table,2026-11-08,download,1 corpora
-zea,parallel_sentences,925,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zea/corpus-result-table,2026-11-08,download,3 corpora
-zgh,parallel_sentences,5699,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zgh/corpus-result-table,2026-11-08,download,3 corpora
-zlm,parallel_sentences,101,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zlm/corpus-result-table,2026-11-08,download,1 corpora
-zmi,parallel_sentences,176,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zmi/corpus-result-table,2026-11-08,download,1 corpora
-zu,parallel_sentences,4830560,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zu/corpus-result-table,2026-11-08,download,"10 corpora; 98% web-mined; OPUS codes zu, zul"
+*,parallel_sentences,0,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aaa/corpus-result-table,2026-11-12,download,
+aa,parallel_sentences,11239,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aa/corpus-result-table,2026-11-12,download,2 corpora
+aae,parallel_sentences,623,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aae/corpus-result-table,2026-11-12,download,1 corpora
+ab,parallel_sentences,7524,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ab/corpus-result-table,2026-11-12,download,4 corpora
+abr,parallel_sentences,707,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&abr/corpus-result-table,2026-11-12,download,1 corpora
+abs,parallel_sentences,578,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&abs/corpus-result-table,2026-11-12,download,1 corpora
+ace,parallel_sentences,2445624,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ace/corpus-result-table,2026-11-12,download,3 corpora; 100% web-mined
+acf,parallel_sentences,554,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&acf/corpus-result-table,2026-11-12,download,1 corpora
+ach,parallel_sentences,433,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ach/corpus-result-table,2026-11-12,download,1 corpora
+acm,parallel_sentences,4281,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&acm/corpus-result-table,2026-11-12,download,2 corpora
+acu,parallel_sentences,12953,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&acu/corpus-result-table,2026-11-12,download,1 corpora
+ada,parallel_sentences,72,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ada/corpus-result-table,2026-11-12,download,1 corpora
+ady,parallel_sentences,1487,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ady/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes ady, ady_cyrl"
+aeb,parallel_sentences,1159,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aeb/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes aeb, aeb_arab, aeb_latn"
+af,parallel_sentences,50309449,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&af/corpus-result-table,2026-11-12,download,20 corpora; 98% web-mined
+afb,parallel_sentences,81,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&afb/corpus-result-table,2026-11-12,download,1 corpora
+agr,parallel_sentences,13471,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&agr/corpus-result-table,2026-11-12,download,1 corpora
+ahr,parallel_sentences,4,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ahr/corpus-result-table,2026-11-12,download,1 corpora
+aig,parallel_sentences,1253,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aig/corpus-result-table,2026-11-12,download,1 corpora
+aii,parallel_sentences,16108,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aii/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes aii, syr"
+ain,parallel_sentences,78,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ain/corpus-result-table,2026-11-12,download,1 corpora
+ajg,parallel_sentences,110,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ajg/corpus-result-table,2026-11-12,download,1 corpora
+ak,parallel_sentences,4047196,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ak/corpus-result-table,2026-11-12,download,"6 corpora; 100% web-mined; OPUS codes ak, aka, tw"
+ake,parallel_sentences,13206,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ake/corpus-result-table,2026-11-12,download,1 corpora
+akl,parallel_sentences,27,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&akl/corpus-result-table,2026-11-12,download,1 corpora
+akz,parallel_sentences,288,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&akz/corpus-result-table,2026-11-12,download,1 corpora
+ale,parallel_sentences,85,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ale/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes ale, ale_cyrl"
+aln,parallel_sentences,3949,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aln/corpus-result-table,2026-11-12,download,2 corpora
+alt,parallel_sentences,4895,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&alt/corpus-result-table,2026-11-12,download,3 corpora
+am,parallel_sentences,16837532,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&am/corpus-result-table,2026-11-12,download,"14 corpora; 98% web-mined; OPUS codes am, amh"
+ami,parallel_sentences,993,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ami/corpus-result-table,2026-11-12,download,2 corpora
+amu,parallel_sentences,15719,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&amu/corpus-result-table,2026-11-12,download,1 corpora
+an,parallel_sentences,64629,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&an/corpus-result-table,2026-11-12,download,8 corpora; 36% web-mined
+ann,parallel_sentences,1128,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ann/corpus-result-table,2026-11-12,download,2 corpora
+anp,parallel_sentences,4757,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&anp/corpus-result-table,2026-11-12,download,2 corpora
+aoz,parallel_sentences,24,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aoz/corpus-result-table,2026-11-12,download,1 corpora
+apc,parallel_sentences,1033,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ajp/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes ajp, apc"
+apw,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&apw/corpus-result-table,2026-11-12,download,1 corpora
+ar,parallel_sentences,245093731,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ar/corpus-result-table,2026-11-12,download,"30 corpora; 46% web-mined; OPUS codes ar, ar_SY, ar_TN, ara"
+arn,parallel_sentences,1480,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&arn/corpus-result-table,2026-11-12,download,2 corpora
+aro,parallel_sentences,71,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&aro/corpus-result-table,2026-11-12,download,1 corpora
+arq,parallel_sentences,6246,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&arq/corpus-result-table,2026-11-12,download,4 corpora
+ary,parallel_sentences,9494,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ary/corpus-result-table,2026-11-12,download,3 corpora
+arz,parallel_sentences,173894,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&arz/corpus-result-table,2026-11-12,download,6 corpora; 10% web-mined
+as,parallel_sentences,5402317,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&as/corpus-result-table,2026-11-12,download,13 corpora; 96% web-mined
+ast,parallel_sentences,6719984,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ast/corpus-result-table,2026-11-12,download,11 corpora; 88% web-mined
+atj,parallel_sentences,1159,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&atj/corpus-result-table,2026-11-12,download,2 corpora
+av,parallel_sentences,4916,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&av/corpus-result-table,2026-11-12,download,4 corpora
+awa,parallel_sentences,2204986,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&awa/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+ay,parallel_sentences,1263382,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ay/corpus-result-table,2026-11-12,download,"6 corpora; 99% web-mined; OPUS codes ay, aym"
+ayh,parallel_sentences,101,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ayh/corpus-result-table,2026-11-12,download,1 corpora
+az,parallel_sentences,81094302,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&az/corpus-result-table,2026-11-12,download,"18 corpora; 95% web-mined; OPUS codes az, az_Arab, az_IR"
+azb,parallel_sentences,10107,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&azb/corpus-result-table,2026-11-12,download,2 corpora
+ba,parallel_sentences,8265979,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ba/corpus-result-table,2026-11-12,download,7 corpora; 99% web-mined
+ban,parallel_sentences,339428,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ban/corpus-result-table,2026-11-12,download,"3 corpora; 96% web-mined; OPUS codes ban, ban_bali"
+bar,parallel_sentences,45901,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bar/corpus-result-table,2026-11-12,download,5 corpora; 37% web-mined
+bas,parallel_sentences,48,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bas/corpus-result-table,2026-11-12,download,1 corpora
+bax,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bax/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes bax, bax_bamu"
+bbc,parallel_sentences,1113,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bbc/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes bbc, bbc_latn"
+bcc,parallel_sentences,5076,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bal/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes bal, bcc"
+bci,parallel_sentences,2182,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bci/corpus-result-table,2026-11-12,download,1 corpora
+bcl,parallel_sentences,80155,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bcl/corpus-result-table,2026-11-12,download,3 corpora
+bdr,parallel_sentences,656,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bdr/corpus-result-table,2026-11-12,download,2 corpora
+be,parallel_sentences,48662740,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&be/corpus-result-table,2026-11-12,download,"18 corpora; 98% web-mined; OPUS codes be, be_tarask"
+bem,parallel_sentences,427207,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bem/corpus-result-table,2026-11-12,download,2 corpora; 100% web-mined
+bew,parallel_sentences,10649,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bew/corpus-result-table,2026-11-12,download,2 corpora
+bfa,parallel_sentences,22,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bfa/corpus-result-table,2026-11-12,download,1 corpora
+bft,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bft/corpus-result-table,2026-11-12,download,1 corpora
+bg,parallel_sentences,258220138,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bg/corpus-result-table,2026-11-12,download,"84 corpora; 58% web-mined; OPUS codes bg, bg_BG"
+bgc,parallel_sentences,521,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bgc/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes bgc, bgc_arab"
+bgn,parallel_sentences,3730,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bgn/corpus-result-table,2026-11-12,download,1 corpora
+bho,parallel_sentences,2437169,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bho/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+bi,parallel_sentences,1811,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bi/corpus-result-table,2026-11-12,download,4 corpora
+bin,parallel_sentences,21,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bin/corpus-result-table,2026-11-12,download,1 corpora
+bjn,parallel_sentences,772175,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bjn/corpus-result-table,2026-11-12,download,4 corpora; 99% web-mined
+bkm,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bkm/corpus-result-table,2026-11-12,download,1 corpora
+blc,parallel_sentences,306,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&blc/corpus-result-table,2026-11-12,download,1 corpora
+blk,parallel_sentences,7699,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&blk/corpus-result-table,2026-11-12,download,2 corpora
+bm,parallel_sentences,182646,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bam/corpus-result-table,2026-11-12,download,"6 corpora; 99% web-mined; OPUS codes bam, bm"
+bn,parallel_sentences,88705427,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bn/corpus-result-table,2026-11-12,download,"25 corpora; 86% web-mined; OPUS codes bn, bn_IN, bn_bd, bn_in"
+bnn,parallel_sentences,43,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bnn/corpus-result-table,2026-11-12,download,1 corpora
+bo,parallel_sentences,723648,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bo/corpus-result-table,2026-11-12,download,"7 corpora; 99% web-mined; OPUS codes bo, bod"
+bol,parallel_sentences,563,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bol/corpus-result-table,2026-11-12,download,1 corpora
+bom,parallel_sentences,621,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bom/corpus-result-table,2026-11-12,download,2 corpora
+bpy,parallel_sentences,1467,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bpy/corpus-result-table,2026-11-12,download,2 corpora
+bqi,parallel_sentences,2859,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bqi/corpus-result-table,2026-11-12,download,1 corpora
+br,parallel_sentences,868143,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&br/corpus-result-table,2026-11-12,download,11 corpora; 68% web-mined
+brh,parallel_sentences,425,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&brh/corpus-result-table,2026-11-12,download,1 corpora
+brx,parallel_sentences,287,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&brx/corpus-result-table,2026-11-12,download,3 corpora
+bs,parallel_sentences,113569210,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bs/corpus-result-table,2026-11-12,download,"23 corpora; 77% web-mined; OPUS codes bs, bs_Cyrl, bs_Latn"
+bsn,parallel_sentences,12732,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bsn/corpus-result-table,2026-11-12,download,1 corpora
+btm,parallel_sentences,2665,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&btm/corpus-result-table,2026-11-12,download,1 corpora
+bto,parallel_sentences,985,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bto/corpus-result-table,2026-11-12,download,1 corpora
+bug,parallel_sentences,1242713,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bug/corpus-result-table,2026-11-12,download,"4 corpora; 100% web-mined; OPUS codes bug, bug_bugi"
+bum,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bum/corpus-result-table,2026-11-12,download,1 corpora
+bvy,parallel_sentences,29,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bvy/corpus-result-table,2026-11-12,download,1 corpora
+bwr,parallel_sentences,46,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bwr/corpus-result-table,2026-11-12,download,1 corpora
+bxk,parallel_sentences,9,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&luy/corpus-result-table,2026-11-12,download,1 corpora
+bxm,parallel_sentences,17,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bua/corpus-result-table,2026-11-12,download,1 corpora
+bxr,parallel_sentences,4094,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bxr/corpus-result-table,2026-11-12,download,2 corpora
+byv,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&byv/corpus-result-table,2026-11-12,download,1 corpora
+bzj,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&bzj/corpus-result-table,2026-11-12,download,1 corpora
+ca,parallel_sentences,96317445,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ca/corpus-result-table,2026-11-12,download,"36 corpora; 73% web-mined; OPUS codes ca, ca_valencia, cat"
+cak,parallel_sentences,16126,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cak/corpus-result-table,2026-11-12,download,2 corpora
+cay,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cay/corpus-result-table,2026-11-12,download,1 corpora
+cbk,parallel_sentences,6148,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cbk/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes cbk, cbk_zam"
+ccp,parallel_sentences,1522,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ccp/corpus-result-table,2026-11-12,download,1 corpora
+cdo,parallel_sentences,1209,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cdo/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes cdo, cdo_hans, cdo_hant, cdo_latn"
+ce,parallel_sentences,47558,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ce/corpus-result-table,2026-11-12,download,4 corpora
+ceb,parallel_sentences,16040734,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ceb/corpus-result-table,2026-11-12,download,10 corpora; 98% web-mined
+ch,parallel_sentences,15481,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ch/corpus-result-table,2026-11-12,download,5 corpora
+chn,parallel_sentences,605,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chn/corpus-result-table,2026-11-12,download,2 corpora
+cho,parallel_sentences,1560,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cho/corpus-result-table,2026-11-12,download,3 corpora
+chq,parallel_sentences,15625,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chq/corpus-result-table,2026-11-12,download,1 corpora
+chr,parallel_sentences,16279,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chr/corpus-result-table,2026-11-12,download,4 corpora
+chy,parallel_sentences,45,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chy/corpus-result-table,2026-11-12,download,2 corpora
+cja,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cja_arab/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes cja_arab, cja_cham, cja_latn"
+cjk,parallel_sentences,214973,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cjk/corpus-result-table,2026-11-12,download,1 corpora; 100% web-mined
+cjm,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cjm_arab/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes cjm_arab, cjm_cham, cjm_latn"
+cjp,parallel_sentences,15895,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cjp/corpus-result-table,2026-11-12,download,1 corpora
+cjy,parallel_sentences,150,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cjy/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes cjy, cjy_hans, cjy_hant"
+ckb,parallel_sentences,66042,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ckb/corpus-result-table,2026-11-12,download,5 corpora
+cko,parallel_sentences,536,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cko/corpus-result-table,2026-11-12,download,1 corpora
+ckt,parallel_sentences,3,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ckt/corpus-result-table,2026-11-12,download,1 corpora
+cku,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cku/corpus-result-table,2026-11-12,download,1 corpora
+cmn,parallel_sentences,252499723,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cmn/corpus-result-table,2026-11-12,download,"36 corpora; 68% web-mined; OPUS codes cmn, zh, zh_CN, zh_TW, zh_cn, zh_en, zh_hans, zh_hant, zh_sg, zh_tw, zh_yue, zh_ze, zh_zh"
+cnh,parallel_sentences,307,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cnh/corpus-result-table,2026-11-12,download,2 corpora
+cni,parallel_sentences,15541,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cni/corpus-result-table,2026-11-12,download,1 corpora
+cnr,parallel_sentences,985,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cnr_cyrl/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes cnr_cyrl, cnr_latn"
+co,parallel_sentences,1773,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&co/corpus-result-table,2026-11-12,download,4 corpora
+cop,parallel_sentences,16681,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cop/corpus-result-table,2026-11-12,download,2 corpora
+cps,parallel_sentences,731,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cps/corpus-result-table,2026-11-12,download,1 corpora
+cpx,parallel_sentences,552,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cpx/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes cpx, cpx_hans, cpx_hant, cpx_latn"
+cr,parallel_sentences,128,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cr/corpus-result-table,2026-11-12,download,3 corpora
+crg,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&crg/corpus-result-table,2026-11-12,download,1 corpora
+crh,parallel_sentences,1944967,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&crh/corpus-result-table,2026-11-12,download,"6 corpora; 99% web-mined; OPUS codes crh, crh_cyrl, crh_latn, crh_ro"
+crk,parallel_sentences,42,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&crk/corpus-result-table,2026-11-12,download,1 corpora
+cs,parallel_sentences,409380337,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cs/corpus-result-table,2026-11-12,download,70 corpora; 57% web-mined
+csb,parallel_sentences,33132,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&csb/corpus-result-table,2026-11-12,download,5 corpora
+cv,parallel_sentences,206925,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&chv/corpus-result-table,2026-11-12,download,"5 corpora; OPUS codes chv, cv"
+cy,parallel_sentences,21374144,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cy/corpus-result-table,2026-11-12,download,11 corpora; 92% web-mined
+cyo,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&cyo/corpus-result-table,2026-11-12,download,1 corpora
+da,parallel_sentences,388833563,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&da/corpus-result-table,2026-11-12,download,"90 corpora; 56% web-mined; OPUS codes da, da_DK"
+dag,parallel_sentences,8357,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dag/corpus-result-table,2026-11-12,download,2 corpora
+dar,parallel_sentences,218,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dar/corpus-result-table,2026-11-12,download,2 corpora
+ddn,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ddn/corpus-result-table,2026-11-12,download,1 corpora
+de,parallel_sentences,943970797,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&de/corpus-result-table,2026-11-12,download,"124 corpora; 84% web-mined; OPUS codes de, de_AT, de_CH, de_DE, de_at, de_ch, de_formal"
+dga,parallel_sentences,7305,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dga/corpus-result-table,2026-11-12,download,2 corpora
+dik,parallel_sentences,172589,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dik/corpus-result-table,2026-11-12,download,2 corpora; 92% web-mined
+dip,parallel_sentences,3737,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&din/corpus-result-table,2026-11-12,download,3 corpora
+diq,parallel_sentences,879925,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&diq/corpus-result-table,2026-11-12,download,"4 corpora; 97% web-mined; OPUS codes diq, zza"
+dje,parallel_sentences,62075,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dje/corpus-result-table,2026-11-12,download,1 corpora
+djk,parallel_sentences,15743,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&djk/corpus-result-table,2026-11-12,download,1 corpora
+dlg,parallel_sentences,907,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dlg/corpus-result-table,2026-11-12,download,1 corpora
+dng,parallel_sentences,6,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dng/corpus-result-table,2026-11-12,download,1 corpora
+dop,parallel_sentences,15889,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dop/corpus-result-table,2026-11-12,download,1 corpora
+drt,parallel_sentences,14,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&drt/corpus-result-table,2026-11-12,download,1 corpora
+dru,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dru/corpus-result-table,2026-11-12,download,1 corpora
+dsb,parallel_sentences,13564,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dsb/corpus-result-table,2026-11-12,download,3 corpora
+dtp,parallel_sentences,16054,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dtp/corpus-result-table,2026-11-12,download,3 corpora
+dty,parallel_sentences,2669,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dty/corpus-result-table,2026-11-12,download,2 corpora
+dua,parallel_sentences,651,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dua/corpus-result-table,2026-11-12,download,1 corpora
+dv,parallel_sentences,95809,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dv/corpus-result-table,2026-11-12,download,6 corpora
+dyu,parallel_sentences,286391,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dyu/corpus-result-table,2026-11-12,download,1 corpora; 100% web-mined
+dz,parallel_sentences,57365,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&dz/corpus-result-table,2026-11-12,download,6 corpora; 98% web-mined
+ee,parallel_sentences,18533,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ee/corpus-result-table,2026-11-12,download,5 corpora
+efi,parallel_sentences,2985,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&efi/corpus-result-table,2026-11-12,download,2 corpora
+egl,parallel_sentences,1634,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&egl/corpus-result-table,2026-11-12,download,2 corpora
+ekp,parallel_sentences,98,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ekp/corpus-result-table,2026-11-12,download,1 corpora
+el,parallel_sentences,361537841,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&el/corpus-result-table,2026-11-12,download,112 corpora; 52% web-mined
+elm,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&elm/corpus-result-table,2026-11-12,download,1 corpora
+en,parallel_sentences,1000000000.0,sentence pairs,OPUS,https://opus.nlpl.eu/,2026-11-12,download,English is the pivot; recorded at a nominal value
+eo,parallel_sentences,81704570,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&eo/corpus-result-table,2026-11-12,download,20 corpora; 96% web-mined
+es,parallel_sentences,1370513613,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&es/corpus-result-table,2026-11-12,download,"122 corpora; 81% web-mined; OPUS codes es, es_419, es_AR, es_CL, es_CO, es_CR, es_DO, es_EC, es_ES, es_GT, es_HN, es_MX, es_NI, es_PA, es_PE, es_PR, es_SV, es_UY, es_VE, es_ar, es_cl, es_formal, es_mx"
+esu,parallel_sentences,100,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&esu/corpus-result-table,2026-11-12,download,1 corpora
+et,parallel_sentences,142942108,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&et/corpus-result-table,2026-11-12,download,81 corpora; 51% web-mined
+eu,parallel_sentences,16483905,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&eu/corpus-result-table,2026-11-12,download,"22 corpora; 64% web-mined; OPUS codes eu, eu_ES"
+ext,parallel_sentences,2967,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ext/corpus-result-table,2026-11-12,download,3 corpora
+fa,parallel_sentences,125929518,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fa/corpus-result-table,2026-11-12,download,"28 corpora; 44% web-mined; OPUS codes fa, fa_AF, fa_IR, pes"
+fat,parallel_sentences,2125,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fat/corpus-result-table,2026-11-12,download,2 corpora
+fax,parallel_sentences,532,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fax/corpus-result-table,2026-11-12,download,1 corpora
+ff,parallel_sentences,1615900,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ff/corpus-result-table,2026-11-12,download,"6 corpora; 98% web-mined; OPUS codes ff, ful"
+fi,parallel_sentences,319796943,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fi/corpus-result-table,2026-11-12,download,86 corpora; 50% web-mined
+fil,parallel_sentences,76324678,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fil/corpus-result-table,2026-11-12,download,"21 corpora; 96% web-mined; OPUS codes fil, tl, tl_PH"
+fit,parallel_sentences,4333,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fit/corpus-result-table,2026-11-12,download,1 corpora
+fj,parallel_sentences,3854358,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fj/corpus-result-table,2026-11-12,download,5 corpora; 100% web-mined
+fkv,parallel_sentences,71,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fkv/corpus-result-table,2026-11-12,download,1 corpora
+fo,parallel_sentences,2939570,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fo/corpus-result-table,2026-11-12,download,8 corpora; 99% web-mined
+fon,parallel_sentences,1916321,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fon/corpus-result-table,2026-11-12,download,3 corpora; 100% web-mined
+fr,parallel_sentences,1131835751,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fr/corpus-result-table,2026-11-12,download,"124 corpora; 79% web-mined; OPUS codes fr, fr_BE, fr_CA, fr_FR, fr_ca"
+frc,parallel_sentences,1325,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&frc/corpus-result-table,2026-11-12,download,1 corpora
+frp,parallel_sentences,15330,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&frp/corpus-result-table,2026-11-12,download,2 corpora
+frr,parallel_sentences,5140,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&frr/corpus-result-table,2026-11-12,download,3 corpora
+frs,parallel_sentences,775,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&frs/corpus-result-table,2026-11-12,download,1 corpora
+fuc,parallel_sentences,6,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fuc/corpus-result-table,2026-11-12,download,1 corpora
+fur,parallel_sentences,966839,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fur/corpus-result-table,2026-11-12,download,5 corpora; 96% web-mined
+fuv,parallel_sentences,3106,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fuv/corpus-result-table,2026-11-12,download,2 corpora
+fvr,parallel_sentences,558,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fvr/corpus-result-table,2026-11-12,download,1 corpora
+fy,parallel_sentences,1741394,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&fy/corpus-result-table,2026-11-12,download,"8 corpora; 81% web-mined; OPUS codes fy, fy_nl"
+ga,parallel_sentences,35891671,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ga/corpus-result-table,2026-11-12,download,"97 corpora; 86% web-mined; OPUS codes ga, ga_ie"
+gaa,parallel_sentences,1163,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gaa/corpus-result-table,2026-11-12,download,2 corpora
+gag,parallel_sentences,656,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gag/corpus-result-table,2026-11-12,download,3 corpora
+gan,parallel_sentences,1745,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gan/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes gan, gan_hans, gan_hant"
+gbi,parallel_sentences,15489,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gbi/corpus-result-table,2026-11-12,download,1 corpora
+gbm,parallel_sentences,239,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gbm/corpus-result-table,2026-11-12,download,2 corpora
+gbz,parallel_sentences,15,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gbz/corpus-result-table,2026-11-12,download,1 corpora
+gcf,parallel_sentences,2707,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gcf/corpus-result-table,2026-11-12,download,2 corpora
+gcr,parallel_sentences,1878,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gcr/corpus-result-table,2026-11-12,download,1 corpora
+gd,parallel_sentences,7157198,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gd/corpus-result-table,2026-11-12,download,11 corpora; 99% web-mined
+gil,parallel_sentences,14,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gil/corpus-result-table,2026-11-12,download,1 corpora
+gl,parallel_sentences,36781809,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gl/corpus-result-table,2026-11-12,download,18 corpora; 83% web-mined
+gld,parallel_sentences,824,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gld/corpus-result-table,2026-11-12,download,1 corpora
+glk,parallel_sentences,1210,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&glk/corpus-result-table,2026-11-12,download,2 corpora
+gn,parallel_sentences,2962533,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gn/corpus-result-table,2026-11-12,download,6 corpora; 100% web-mined
+gom,parallel_sentences,4882,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gom/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes gom, gom_deva, gom_latn, kok"
+gor,parallel_sentences,2389,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gor/corpus-result-table,2026-11-12,download,2 corpora
+gos,parallel_sentences,3634,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gos/corpus-result-table,2026-11-12,download,1 corpora
+gpe,parallel_sentences,39515,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gpe/corpus-result-table,2026-11-12,download,2 corpora
+gsw,parallel_sentences,12832,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gsw/corpus-result-table,2026-11-12,download,3 corpora
+gu,parallel_sentences,44597305,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gu/corpus-result-table,2026-11-12,download,"15 corpora; 88% web-mined; OPUS codes gu, gu_in"
+guc,parallel_sentences,953,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&guc/corpus-result-table,2026-11-12,download,2 corpora
+gur,parallel_sentences,5694,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gur/corpus-result-table,2026-11-12,download,2 corpora
+guw,parallel_sentences,4193,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&guw/corpus-result-table,2026-11-12,download,3 corpora
+gv,parallel_sentences,32051,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gv/corpus-result-table,2026-11-12,download,5 corpora
+ha,parallel_sentences,9767868,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ha/corpus-result-table,2026-11-12,download,"14 corpora; 88% web-mined; OPUS codes ha, hau"
+hak,parallel_sentences,1026,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hak/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes hak, hak_hans, hak_hant, hak_latn"
+hav,parallel_sentences,126,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hav/corpus-result-table,2026-11-12,download,1 corpora
+haw,parallel_sentences,2745,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&haw/corpus-result-table,2026-11-12,download,4 corpora
+hch,parallel_sentences,0,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hch/corpus-result-table,2026-11-12,download,1 corpora
+hdn,parallel_sentences,145,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hai/corpus-result-table,2026-11-12,download,1 corpora
+he,parallel_sentences,120551625,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&he/corpus-result-table,2026-11-12,download,21 corpora; 47% web-mined
+hi,parallel_sentences,84043743,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hi/corpus-result-table,2026-11-12,download,"31 corpora; 68% web-mined; OPUS codes hi, hi_IN, hi_in"
+hif,parallel_sentences,4513,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hif/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes hif, hif_deva, hif_latn"
+hil,parallel_sentences,5252,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hil/corpus-result-table,2026-11-12,download,2 corpora
+hke,parallel_sentences,777,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hke/corpus-result-table,2026-11-12,download,1 corpora
+hne,parallel_sentences,735688,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hne/corpus-result-table,2026-11-12,download,3 corpora; 87% web-mined
+hnj,parallel_sentences,4,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hnj/corpus-result-table,2026-11-12,download,1 corpora
+hno,parallel_sentences,534,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hno/corpus-result-table,2026-11-12,download,1 corpora
+ho,parallel_sentences,65,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ho/corpus-result-table,2026-11-12,download,1 corpora
+hoc,parallel_sentences,1952,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hoc/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes hoc, hoc_latn"
+hr,parallel_sentences,187496976,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hr/corpus-result-table,2026-11-12,download,89 corpora; 42% web-mined
+hrx,parallel_sentences,4985,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hrx/corpus-result-table,2026-11-12,download,2 corpora
+hsb,parallel_sentences,42648,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hsb/corpus-result-table,2026-11-12,download,3 corpora
+hsn,parallel_sentences,766,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hsn/corpus-result-table,2026-11-12,download,2 corpora
+ht,parallel_sentences,15789381,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ht/corpus-result-table,2026-11-12,download,8 corpora; 99% web-mined
+hu,parallel_sentences,301036445,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hu/corpus-result-table,2026-11-12,download,"57 corpora; 55% web-mined; OPUS codes hu, hu_formal"
+hup,parallel_sentences,35,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hup/corpus-result-table,2026-11-12,download,2 corpora
+hus,parallel_sentences,0,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hus/corpus-result-table,2026-11-12,download,1 corpora
+hy,parallel_sentences,18657729,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hy/corpus-result-table,2026-11-12,download,"14 corpora; 87% web-mined; OPUS codes hy, hy_am, hye"
+hyw,parallel_sentences,4821,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hyw/corpus-result-table,2026-11-12,download,3 corpora
+hz,parallel_sentences,4,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&hz/corpus-result-table,2026-11-12,download,1 corpora
+iba,parallel_sentences,13369,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&iba/corpus-result-table,2026-11-12,download,3 corpora
+ibb,parallel_sentences,847,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ibb/corpus-result-table,2026-11-12,download,1 corpora
+id,parallel_sentences,244581152,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&id/corpus-result-table,2026-11-12,download,25 corpora; 65% web-mined
+ig,parallel_sentences,7023641,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ibo/corpus-result-table,2026-11-12,download,"12 corpora; 90% web-mined; OPUS codes ibo, ig"
+igb,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&igb/corpus-result-table,2026-11-12,download,1 corpora
+igl,parallel_sentences,2480,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&igl/corpus-result-table,2026-11-12,download,2 corpora
+ii,parallel_sentences,26,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ii/corpus-result-table,2026-11-12,download,2 corpora
+ik,parallel_sentences,98,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ik/corpus-result-table,2026-11-12,download,3 corpora
+ilo,parallel_sentences,1468513,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ilo/corpus-result-table,2026-11-12,download,6 corpora; 94% web-mined
+inh,parallel_sentences,7146,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&inh/corpus-result-table,2026-11-12,download,4 corpora
+is,parallel_sentences,42471980,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&is/corpus-result-table,2026-11-12,download,49 corpora; 65% web-mined
+ish,parallel_sentences,128,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ish/corpus-result-table,2026-11-12,download,1 corpora
+it,parallel_sentences,524280417,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&it/corpus-result-table,2026-11-12,download,"84 corpora; 77% web-mined; OPUS codes it, it_IT"
+iu,parallel_sentences,1390,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ike/corpus-result-table,2026-11-12,download,"4 corpora; OPUS codes ike, ike_cans, ike_latn, iu"
+izh,parallel_sentences,190,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&izh/corpus-result-table,2026-11-12,download,2 corpora
+ja,parallel_sentences,145803333,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ja/corpus-result-table,2026-11-12,download,26 corpora; 67% web-mined
+jab,parallel_sentences,21,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jab/corpus-result-table,2026-11-12,download,1 corpora
+jac,parallel_sentences,8,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jac/corpus-result-table,2026-11-12,download,1 corpora
+jak,parallel_sentences,15689,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jak/corpus-result-table,2026-11-12,download,1 corpora
+jam,parallel_sentences,1425,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jam/corpus-result-table,2026-11-12,download,3 corpora
+jax,parallel_sentences,811,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jax/corpus-result-table,2026-11-12,download,1 corpora
+jdt,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jdt/corpus-result-table,2026-11-12,download,1 corpora
+jiv,parallel_sentences,13116,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jiv/corpus-result-table,2026-11-12,download,1 corpora
+jje,parallel_sentences,616,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jje/corpus-result-table,2026-11-12,download,1 corpora
+juk,parallel_sentences,12,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&juk/corpus-result-table,2026-11-12,download,1 corpora
+jv,parallel_sentences,19576344,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&jv/corpus-result-table,2026-11-12,download,"9 corpora; 99% web-mined; OPUS codes jv, jv_java"
+ka,parallel_sentences,16075839,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ka/corpus-result-table,2026-11-12,download,16 corpora; 87% web-mined
+kaa,parallel_sentences,56344,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kaa/corpus-result-table,2026-11-12,download,3 corpora
+kab,parallel_sentences,4211140,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kab/corpus-result-table,2026-11-12,download,5 corpora; 98% web-mined
+kac,parallel_sentences,1003254,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kac/corpus-result-table,2026-11-12,download,2 corpora; 100% web-mined
+kai,parallel_sentences,843,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kai/corpus-result-table,2026-11-12,download,2 corpora
+kaj,parallel_sentences,870,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kaj/corpus-result-table,2026-11-12,download,1 corpora
+kam,parallel_sentences,1628899,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kam/corpus-result-table,2026-11-12,download,2 corpora; 100% web-mined
+kbd,parallel_sentences,1240,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kbd/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes kbd, kbd_cyrl"
+kbh,parallel_sentences,10952,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kbh/corpus-result-table,2026-11-12,download,1 corpora
+kbp,parallel_sentences,1592880,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kbp/corpus-result-table,2026-11-12,download,2 corpora; 100% web-mined
+kcg,parallel_sentences,5327,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kcg/corpus-result-table,2026-11-12,download,2 corpora
+kck,parallel_sentences,464,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kck/corpus-result-table,2026-11-12,download,1 corpora
+kea,parallel_sentences,1236729,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kea/corpus-result-table,2026-11-12,download,2 corpora; 99% web-mined
+kek,parallel_sentences,62215,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kek/corpus-result-table,2026-11-12,download,2 corpora
+ken,parallel_sentences,14,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ken/corpus-result-table,2026-11-12,download,1 corpora
+kg,parallel_sentences,2234804,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kg/corpus-result-table,2026-11-12,download,5 corpora; 100% web-mined
+kge,parallel_sentences,3674,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kge/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes kge, kge_arab"
+kgp,parallel_sentences,380,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kgp/corpus-result-table,2026-11-12,download,1 corpora
+kha,parallel_sentences,1434,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kha/corpus-result-table,2026-11-12,download,1 corpora
+khw,parallel_sentences,1776,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&khw/corpus-result-table,2026-11-12,download,1 corpora
+ki,parallel_sentences,2203811,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ki/corpus-result-table,2026-11-12,download,"4 corpora; 100% web-mined; OPUS codes ki, kik"
+kip,parallel_sentences,229,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kip/corpus-result-table,2026-11-12,download,1 corpora
+kiu,parallel_sentences,1856,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kiu/corpus-result-table,2026-11-12,download,1 corpora
+kj,parallel_sentences,779,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kj/corpus-result-table,2026-11-12,download,2 corpora
+kjh,parallel_sentences,4424,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kjh/corpus-result-table,2026-11-12,download,2 corpora
+kjp,parallel_sentences,3273,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kjp/corpus-result-table,2026-11-12,download,1 corpora
+kk,parallel_sentences,35680872,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kk/corpus-result-table,2026-11-12,download,"16 corpora; 99% web-mined; OPUS codes kk, kk_arab, kk_cn, kk_cyrl, kk_kz, kk_latn, kk_tr"
+kl,parallel_sentences,6269,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kl/corpus-result-table,2026-11-12,download,4 corpora
+km,parallel_sentences,8637938,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&khm/corpus-result-table,2026-11-12,download,"16 corpora; 73% web-mined; OPUS codes khm, km"
+kmb,parallel_sentences,196240,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kmb/corpus-result-table,2026-11-12,download,1 corpora; 100% web-mined
+kn,parallel_sentences,40241625,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kn/corpus-result-table,2026-11-12,download,15 corpora; 86% web-mined
+ko,parallel_sentences,100280503,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ko/corpus-result-table,2026-11-12,download,"26 corpora; 52% web-mined; OPUS codes ko, ko_kp"
+koi,parallel_sentences,4225,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&koi/corpus-result-table,2026-11-12,download,2 corpora
+kr,parallel_sentences,1575895,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kau/corpus-result-table,2026-11-12,download,"7 corpora; 100% web-mined; OPUS codes kau, knc, kr, kr_Arab, kr_Latn"
+krc,parallel_sentences,20576,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&krc/corpus-result-table,2026-11-12,download,3 corpora
+kri,parallel_sentences,838,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kri/corpus-result-table,2026-11-12,download,1 corpora
+krj,parallel_sentences,434,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&krj/corpus-result-table,2026-11-12,download,1 corpora
+krl,parallel_sentences,1394,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&krl/corpus-result-table,2026-11-12,download,2 corpora
+ks,parallel_sentences,1064103,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ks/corpus-result-table,2026-11-12,download,"5 corpora; 98% web-mined; OPUS codes ks, ks_Arab, ks_Deva, ks_arab, ks_deva"
+ksf,parallel_sentences,35,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ksf/corpus-result-table,2026-11-12,download,1 corpora
+ksh,parallel_sentences,20069,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ksh/corpus-result-table,2026-11-12,download,4 corpora
+ksw,parallel_sentences,1371,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ksw/corpus-result-table,2026-11-12,download,1 corpora
+ku,parallel_sentences,1641891,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kmr/corpus-result-table,2026-11-12,download,"16 corpora; 70% web-mined; OPUS codes kmr, ku, ku_Arab, ku_Latn, ku_arab, ku_latn"
+kum,parallel_sentences,2857,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kum/corpus-result-table,2026-11-12,download,2 corpora
+kus,parallel_sentences,4742,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kus/corpus-result-table,2026-11-12,download,2 corpora
+kv,parallel_sentences,3893,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kpv/corpus-result-table,2026-11-12,download,"4 corpora; OPUS codes kpv, kv"
+kw,parallel_sentences,10304,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kw/corpus-result-table,2026-11-12,download,4 corpora
+ky,parallel_sentences,21656374,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ky/corpus-result-table,2026-11-12,download,9 corpora; 100% web-mined
+laa,parallel_sentences,9,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&laa/corpus-result-table,2026-11-12,download,1 corpora
+lad,parallel_sentences,2592,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lad/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes lad, lad_hebr"
+lag,parallel_sentences,574,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lag/corpus-result-table,2026-11-12,download,1 corpora
+laj,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&laj/corpus-result-table,2026-11-12,download,1 corpora
+lb,parallel_sentences,25145568,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lb/corpus-result-table,2026-11-12,download,12 corpora; 98% web-mined
+lbe,parallel_sentences,619,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lbe/corpus-result-table,2026-11-12,download,2 corpora
+lez,parallel_sentences,1479,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lez/corpus-result-table,2026-11-12,download,2 corpora
+lg,parallel_sentences,3648516,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lg/corpus-result-table,2026-11-12,download,9 corpora; 98% web-mined
+li,parallel_sentences,4358148,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&li/corpus-result-table,2026-11-12,download,6 corpora; 99% web-mined
+lij,parallel_sentences,1124338,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lij/corpus-result-table,2026-11-12,download,4 corpora; 99% web-mined
+liv,parallel_sentences,561,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&liv/corpus-result-table,2026-11-12,download,2 corpora
+ljp,parallel_sentences,2234,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ljp/corpus-result-table,2026-11-12,download,1 corpora
+lki,parallel_sentences,8603,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lki/corpus-result-table,2026-11-12,download,1 corpora
+lkt,parallel_sentences,6046,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lkt/corpus-result-table,2026-11-12,download,3 corpora
+lld,parallel_sentences,1845,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lld/corpus-result-table,2026-11-12,download,4 corpora
+lmo,parallel_sentences,8767965,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lmo/corpus-result-table,2026-11-12,download,6 corpora; 100% web-mined
+ln,parallel_sentences,2940421,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lin/corpus-result-table,2026-11-12,download,"8 corpora; 100% web-mined; OPUS codes lin, ln"
+lo,parallel_sentences,6380488,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lo/corpus-result-table,2026-11-12,download,12 corpora; 68% web-mined
+lou,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lou/corpus-result-table,2026-11-12,download,1 corpora
+loz,parallel_sentences,647,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&loz/corpus-result-table,2026-11-12,download,1 corpora
+lrc,parallel_sentences,6244,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lrc/corpus-result-table,2026-11-12,download,2 corpora
+lt,parallel_sentences,145217859,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lt/corpus-result-table,2026-11-12,download,60 corpora; 60% web-mined
+ltg,parallel_sentences,132424,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ltg/corpus-result-table,2026-11-12,download,5 corpora; 99% web-mined
+lua,parallel_sentences,2445268,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lua/corpus-result-table,2026-11-12,download,2 corpora; 100% web-mined
+lue,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lue/corpus-result-table,2026-11-12,download,1 corpora
+luo,parallel_sentences,2825314,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&luo/corpus-result-table,2026-11-12,download,2 corpora; 100% web-mined
+lus,parallel_sentences,6982283,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lus/corpus-result-table,2026-11-12,download,2 corpora; 100% web-mined
+lut,parallel_sentences,79,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lut/corpus-result-table,2026-11-12,download,1 corpora
+luz,parallel_sentences,1190,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&luz/corpus-result-table,2026-11-12,download,1 corpora
+lv,parallel_sentences,124394831,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lv/corpus-result-table,2026-11-12,download,68 corpora; 56% web-mined
+lzz,parallel_sentences,645,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lzz/corpus-result-table,2026-11-12,download,2 corpora
+mad,parallel_sentences,2618,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mad/corpus-result-table,2026-11-12,download,4 corpora
+mag,parallel_sentences,2226850,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mag/corpus-result-table,2026-11-12,download,2 corpora; 100% web-mined
+mai,parallel_sentences,4525171,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mai/corpus-result-table,2026-11-12,download,6 corpora; 98% web-mined
+mak,parallel_sentences,564,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mak/corpus-result-table,2026-11-12,download,1 corpora
+mam,parallel_sentences,15571,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mam/corpus-result-table,2026-11-12,download,1 corpora
+maw,parallel_sentences,417,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&maw/corpus-result-table,2026-11-12,download,1 corpora
+max,parallel_sentences,281,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&max/corpus-result-table,2026-11-12,download,1 corpora
+mdf,parallel_sentences,4535,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mdf/corpus-result-table,2026-11-12,download,3 corpora
+mdh,parallel_sentences,428,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mdh/corpus-result-table,2026-11-12,download,1 corpora
+mey,parallel_sentences,167,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mey/corpus-result-table,2026-11-12,download,1 corpora
+mfa,parallel_sentences,554,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mfa/corpus-result-table,2026-11-12,download,1 corpora
+mfe,parallel_sentences,705,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mfe/corpus-result-table,2026-11-12,download,3 corpora
+mg,parallel_sentences,5343222,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mg/corpus-result-table,2026-11-12,download,"13 corpora; 84% web-mined; OPUS codes mg, mlg, plt"
+mgm,parallel_sentences,33,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mgm/corpus-result-table,2026-11-12,download,1 corpora
+mh,parallel_sentences,33,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mh/corpus-result-table,2026-11-12,download,2 corpora
+mhr,parallel_sentences,6263,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mhr/corpus-result-table,2026-11-12,download,3 corpora
+mi,parallel_sentences,6014656,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mi/corpus-result-table,2026-11-12,download,8 corpora; 99% web-mined
+mic,parallel_sentences,100,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mic/corpus-result-table,2026-11-12,download,2 corpora
+mik,parallel_sentences,9,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mik/corpus-result-table,2026-11-12,download,1 corpora
+min,parallel_sentences,310710,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&min/corpus-result-table,2026-11-12,download,4 corpora; 97% web-mined
+mk,parallel_sentences,46813223,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mk/corpus-result-table,2026-11-12,download,25 corpora; 69% web-mined
+ml,parallel_sentences,62271857,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ml/corpus-result-table,2026-11-12,download,23 corpora; 82% web-mined
+mn,parallel_sentences,17285297,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mn/corpus-result-table,2026-11-12,download,11 corpora; 99% web-mined
+mnc,parallel_sentences,1439,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mnc/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes mnc, mnc_mong"
+mni,parallel_sentences,503776,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mni/corpus-result-table,2026-11-12,download,6 corpora; 97% web-mined
+mnr,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mnr/corpus-result-table,2026-11-12,download,1 corpora
+mns,parallel_sentences,518,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mns/corpus-result-table,2026-11-12,download,1 corpora
+mnw,parallel_sentences,10140,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mnw/corpus-result-table,2026-11-12,download,3 corpora
+moh,parallel_sentences,61,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&moh/corpus-result-table,2026-11-12,download,2 corpora
+mos,parallel_sentences,2203870,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mos/corpus-result-table,2026-11-12,download,3 corpora; 100% web-mined
+mr,parallel_sentences,42818832,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mr/corpus-result-table,2026-11-12,download,19 corpora; 84% web-mined
+mrh,parallel_sentences,2932,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mrh/corpus-result-table,2026-11-12,download,1 corpora
+mrj,parallel_sentences,4083,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mrj/corpus-result-table,2026-11-12,download,2 corpora
+mrt,parallel_sentences,161,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mrt/corpus-result-table,2026-11-12,download,1 corpora
+ms,parallel_sentences,93139355,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ms/corpus-result-table,2026-11-12,download,"19 corpora; 78% web-mined; OPUS codes ms, ms_MY, ms_arab, zlm, zsm"
+msi,parallel_sentences,635,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&msi/corpus-result-table,2026-11-12,download,1 corpora
+mt,parallel_sentences,31659275,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mt/corpus-result-table,2026-11-12,download,47 corpora; 61% web-mined
+mui,parallel_sentences,1503,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mui/corpus-result-table,2026-11-12,download,1 corpora
+mup,parallel_sentences,38,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&raj/corpus-result-table,2026-11-12,download,1 corpora
+mus,parallel_sentences,77,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mus/corpus-result-table,2026-11-12,download,2 corpora
+mvf,parallel_sentences,357,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mvf/corpus-result-table,2026-11-12,download,1 corpora
+mvv,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mvv/corpus-result-table,2026-11-12,download,1 corpora
+mwl,parallel_sentences,27370,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mwl/corpus-result-table,2026-11-12,download,5 corpora; 38% web-mined
+mwv,parallel_sentences,149,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mwv/corpus-result-table,2026-11-12,download,1 corpora
+mww,parallel_sentences,80,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mww/corpus-result-table,2026-11-12,download,1 corpora
+my,parallel_sentences,13711267,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&my/corpus-result-table,2026-11-12,download,17 corpora; 75% web-mined
+myv,parallel_sentences,5519,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&myv/corpus-result-table,2026-11-12,download,3 corpora
+mzn,parallel_sentences,3358,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mzn/corpus-result-table,2026-11-12,download,2 corpora
+na,parallel_sentences,42,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&na/corpus-result-table,2026-11-12,download,2 corpora
+nan,parallel_sentences,2713,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nan/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes nan, nan_hans, nan_hant, nan_latn_pehoeji, nan_latn_tailo"
+nap,parallel_sentences,10434,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nap/corpus-result-table,2026-11-12,download,3 corpora
+naq,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&naq/corpus-result-table,2026-11-12,download,1 corpora
+nb,parallel_sentences,241523342,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nb/corpus-result-table,2026-11-12,download,"85 corpora; 66% web-mined; OPUS codes nb, nb_NO, nb_no, no, no_nb"
+nch,parallel_sentences,16,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nch/corpus-result-table,2026-11-12,download,1 corpora
+nd,parallel_sentences,33,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nd/corpus-result-table,2026-11-12,download,2 corpora
+nds,parallel_sentences,411687,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nds/corpus-result-table,2026-11-12,download,"7 corpora; 11% web-mined; OPUS codes nds, nds_nl"
+ne,parallel_sentences,24230241,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ne/corpus-result-table,2026-11-12,download,"19 corpora; 86% web-mined; OPUS codes ne, ne_np, npi"
+new,parallel_sentences,4759,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&new/corpus-result-table,2026-11-12,download,2 corpora
+ngt,parallel_sentences,17,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ngt/corpus-result-table,2026-11-12,download,1 corpora
+ngu,parallel_sentences,38,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ngu/corpus-result-table,2026-11-12,download,1 corpora
+nhg,parallel_sentences,15635,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nhg/corpus-result-table,2026-11-12,download,1 corpora
+nhn,parallel_sentences,13,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nhn/corpus-result-table,2026-11-12,download,1 corpora
+nia,parallel_sentences,1961,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nia/corpus-result-table,2026-11-12,download,2 corpora
+nit,parallel_sentences,520,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nit/corpus-result-table,2026-11-12,download,1 corpora
+niu,parallel_sentences,199,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&niu/corpus-result-table,2026-11-12,download,2 corpora
+njo,parallel_sentences,41,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&njo/corpus-result-table,2026-11-12,download,1 corpora
+nl,parallel_sentences,445319170,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nl/corpus-result-table,2026-11-12,download,"66 corpora; 71% web-mined; OPUS codes nl, nl_BE, nl_NL, nl_informal"
+nlv,parallel_sentences,14,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nlv/corpus-result-table,2026-11-12,download,1 corpora
+nmz,parallel_sentences,556,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nmz/corpus-result-table,2026-11-12,download,1 corpora
+nn,parallel_sentences,1303027,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nn/corpus-result-table,2026-11-12,download,"17 corpora; 38% web-mined; OPUS codes nn, nn_NO, nn_no"
+nnb,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nnb/corpus-result-table,2026-11-12,download,1 corpora
+nnh,parallel_sentences,46,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nnh/corpus-result-table,2026-11-12,download,1 corpora
+nod,parallel_sentences,808,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nod/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes nod, nod_thai"
+nog,parallel_sentences,814,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nog/corpus-result-table,2026-11-12,download,2 corpora
+nqo,parallel_sentences,14248,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nqo/corpus-result-table,2026-11-12,download,2 corpora
+nr,parallel_sentences,1230,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nr/corpus-result-table,2026-11-12,download,3 corpora
+nrm,parallel_sentences,113,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nrm/corpus-result-table,2026-11-12,download,1 corpora
+nso,parallel_sentences,3487989,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nso/corpus-result-table,2026-11-12,download,6 corpora; 99% web-mined
+nst,parallel_sentences,805,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nst/corpus-result-table,2026-11-12,download,1 corpora
+nup,parallel_sentences,973,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nup/corpus-result-table,2026-11-12,download,2 corpora
+nus,parallel_sentences,1204006,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nus/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+nv,parallel_sentences,452,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nv/corpus-result-table,2026-11-12,download,4 corpora
+ny,parallel_sentences,1662241,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ny/corpus-result-table,2026-11-12,download,"6 corpora; 100% web-mined; OPUS codes ny, nya"
+nyn,parallel_sentences,990,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nyn/corpus-result-table,2026-11-12,download,1 corpora
+nyo,parallel_sentences,769,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nyo/corpus-result-table,2026-11-12,download,1 corpora
+nys,parallel_sentences,664,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nys/corpus-result-table,2026-11-12,download,2 corpora
+nzi,parallel_sentences,490,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&nzi/corpus-result-table,2026-11-12,download,1 corpora
+oc,parallel_sentences,3834602,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&oc/corpus-result-table,2026-11-12,download,12 corpora; 91% web-mined
+oj,parallel_sentences,44,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&oj/corpus-result-table,2026-11-12,download,1 corpora
+ojb,parallel_sentences,14759,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ojb/corpus-result-table,2026-11-12,download,2 corpora
+olo,parallel_sentences,6681,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&olo/corpus-result-table,2026-11-12,download,2 corpora
+om,parallel_sentences,3263675,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&gaz/corpus-result-table,2026-11-12,download,"8 corpora; 100% web-mined; OPUS codes gaz, om, orm"
+ood,parallel_sentences,25,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ood/corpus-result-table,2026-11-12,download,1 corpora
+or,parallel_sentences,15048134,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&or/corpus-result-table,2026-11-12,download,15 corpora; 92% web-mined
+os,parallel_sentences,2701,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&os/corpus-result-table,2026-11-12,download,4 corpora
+osi,parallel_sentences,70,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&osi/corpus-result-table,2026-11-12,download,1 corpora
+ovd,parallel_sentences,83,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ovd/corpus-result-table,2026-11-12,download,1 corpora
+pa,parallel_sentences,16391459,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pa/corpus-result-table,2026-11-12,download,"14 corpora; 69% web-mined; OPUS codes pa, pa_in, pan"
+pag,parallel_sentences,3358884,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pag/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+pam,parallel_sentences,3841,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pam/corpus-result-table,2026-11-12,download,4 corpora
+pap,parallel_sentences,15238087,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pap/corpus-result-table,2026-11-12,download,5 corpora; 100% web-mined
+pau,parallel_sentences,442,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pau/corpus-result-table,2026-11-12,download,1 corpora
+pbb,parallel_sentences,43,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pbb/corpus-result-table,2026-11-12,download,1 corpora
+pcd,parallel_sentences,1283,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pcd/corpus-result-table,2026-11-12,download,2 corpora
+pck,parallel_sentences,62193,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pck/corpus-result-table,2026-11-12,download,1 corpora
+pcm,parallel_sentences,3750,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pcm/corpus-result-table,2026-11-12,download,2 corpora
+pdc,parallel_sentences,2003,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pdc/corpus-result-table,2026-11-12,download,3 corpora
+pdt,parallel_sentences,406,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pdt/corpus-result-table,2026-11-12,download,1 corpora
+pey,parallel_sentences,174,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pey/corpus-result-table,2026-11-12,download,1 corpora
+pfl,parallel_sentences,2468,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pfl/corpus-result-table,2026-11-12,download,2 corpora
+pih,parallel_sentences,170,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pih/corpus-result-table,2026-11-12,download,2 corpora
+piu,parallel_sentences,496,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&piu/corpus-result-table,2026-11-12,download,1 corpora
+pl,parallel_sentences,310316202,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pl/corpus-result-table,2026-11-12,download,185 corpora; 65% web-mined
+pms,parallel_sentences,25038,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pms/corpus-result-table,2026-11-12,download,3 corpora
+pnb,parallel_sentences,13432,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pnb/corpus-result-table,2026-11-12,download,3 corpora
+pnt,parallel_sentences,1082,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pnt/corpus-result-table,2026-11-12,download,2 corpora
+pot,parallel_sentences,4153,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pot/corpus-result-table,2026-11-12,download,1 corpora
+ppk,parallel_sentences,15579,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ppk/corpus-result-table,2026-11-12,download,1 corpora
+ppl,parallel_sentences,1364,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ppl/corpus-result-table,2026-11-12,download,2 corpora
+prg,parallel_sentences,2662,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&prg/corpus-result-table,2026-11-12,download,2 corpora
+prs,parallel_sentences,6299081,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&prs/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+ps,parallel_sentences,11915219,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ps/corpus-result-table,2026-11-12,download,14 corpora; 98% web-mined
+pt,parallel_sentences,605893826,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pt/corpus-result-table,2026-11-12,download,"95 corpora; 74% web-mined; OPUS codes pt, pt_BR, pt_MZ, pt_PT, pt_br"
+pwn,parallel_sentences,957,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pwn/corpus-result-table,2026-11-12,download,2 corpora
+pwo,parallel_sentences,90,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pwo/corpus-result-table,2026-11-12,download,1 corpora
+pzh,parallel_sentences,50,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&pzh/corpus-result-table,2026-11-12,download,1 corpora
+qu,parallel_sentences,2884579,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&qu/corpus-result-table,2026-11-12,download,"6 corpora; 100% web-mined; OPUS codes qu, que, quy, quz"
+quc,parallel_sentences,15771,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&quc/corpus-result-table,2026-11-12,download,2 corpora
+qug,parallel_sentences,580,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&qug/corpus-result-table,2026-11-12,download,1 corpora
+quw,parallel_sentences,15855,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&quw/corpus-result-table,2026-11-12,download,1 corpora
+qwh,parallel_sentences,132,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&qwh/corpus-result-table,2026-11-12,download,1 corpora
+qxp,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&qxp/corpus-result-table,2026-11-12,download,1 corpora
+rag,parallel_sentences,42,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rag/corpus-result-table,2026-11-12,download,1 corpora
+rap,parallel_sentences,215,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rap/corpus-result-table,2026-11-12,download,2 corpora
+rej,parallel_sentences,438,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rej/corpus-result-table,2026-11-12,download,1 corpora
+rel,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rel/corpus-result-table,2026-11-12,download,1 corpora
+rgn,parallel_sentences,476,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rgn/corpus-result-table,2026-11-12,download,1 corpora
+rhg,parallel_sentences,42,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rhg/corpus-result-table,2026-11-12,download,1 corpora
+rif,parallel_sentences,952,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rif/corpus-result-table,2026-11-12,download,2 corpora
+rki,parallel_sentences,4988,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rki/corpus-result-table,2026-11-12,download,2 corpora
+rm,parallel_sentences,4333,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rm/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes rm, rm_sursilv, rm_vallader"
+rmc,parallel_sentences,916,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rmc/corpus-result-table,2026-11-12,download,1 corpora
+rmf,parallel_sentences,196,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rmf/corpus-result-table,2026-11-12,download,1 corpora
+rml,parallel_sentences,51,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rml_cyrl/corpus-result-table,2026-11-12,download,1 corpora
+rmn,parallel_sentences,16580,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rom/corpus-result-table,2026-11-12,download,2 corpora
+rmy,parallel_sentences,430,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rmy/corpus-result-table,2026-11-12,download,2 corpora
+rn,parallel_sentences,774298,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rn/corpus-result-table,2026-11-12,download,"5 corpora; 100% web-mined; OPUS codes rn, run"
+ro,parallel_sentences,390054396,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&mo/corpus-result-table,2026-11-12,download,"80 corpora; 52% web-mined; OPUS codes mo, ro"
+rsk,parallel_sentences,3818,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rsk/corpus-result-table,2026-11-12,download,2 corpora
+rtm,parallel_sentences,145,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rtm/corpus-result-table,2026-11-12,download,1 corpora
+ru,parallel_sentences,432582023,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ru/corpus-result-table,2026-11-12,download,42 corpora; 70% web-mined
+rue,parallel_sentences,8412,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rue/corpus-result-table,2026-11-12,download,3 corpora
+rup,parallel_sentences,1264,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rup/corpus-result-table,2026-11-12,download,3 corpora
+ruq,parallel_sentences,223,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ruq_cyrl/corpus-result-table,2026-11-12,download,"1 corpora; OPUS codes ruq_cyrl, ruq_latn"
+rut,parallel_sentences,591,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rut/corpus-result-table,2026-11-12,download,1 corpora
+rw,parallel_sentences,10395923,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kin/corpus-result-table,2026-11-12,download,"8 corpora; 97% web-mined; OPUS codes kin, rw"
+ryu,parallel_sentences,1104,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ryu/corpus-result-table,2026-11-12,download,1 corpora
+sah,parallel_sentences,10113,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sah/corpus-result-table,2026-11-12,download,3 corpora
+sas,parallel_sentences,835,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sas/corpus-result-table,2026-11-12,download,1 corpora
+sat,parallel_sentences,99077,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sat/corpus-result-table,2026-11-12,download,4 corpora; 79% web-mined
+saz,parallel_sentences,94,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&saz/corpus-result-table,2026-11-12,download,1 corpora
+sc,parallel_sentences,1326372,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sc/corpus-result-table,2026-11-12,download,5 corpora; 99% web-mined
+scn,parallel_sentences,1103096,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&scn/corpus-result-table,2026-11-12,download,5 corpora; 98% web-mined
+sco,parallel_sentences,18366,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sco/corpus-result-table,2026-11-12,download,4 corpora
+sd,parallel_sentences,10965067,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sd/corpus-result-table,2026-11-12,download,9 corpora; 97% web-mined
+sdc,parallel_sentences,3256,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sdc/corpus-result-table,2026-11-12,download,1 corpora
+sdh,parallel_sentences,4566,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sdh/corpus-result-table,2026-11-12,download,2 corpora
+se,parallel_sentences,60130,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&se/corpus-result-table,2026-11-12,download,5 corpora
+sei,parallel_sentences,645,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sei/corpus-result-table,2026-11-12,download,1 corpora
+ses,parallel_sentences,3238,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ses/corpus-result-table,2026-11-12,download,1 corpora
+sg,parallel_sentences,3607833,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sg/corpus-result-table,2026-11-12,download,5 corpora; 100% web-mined
+sgh,parallel_sentences,45,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sgh/corpus-result-table,2026-11-12,download,1 corpora
+sgs,parallel_sentences,2133,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sgs/corpus-result-table,2026-11-12,download,3 corpora
+shi,parallel_sentences,20310,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&shi/corpus-result-table,2026-11-12,download,"4 corpora; OPUS codes shi, shi_latn"
+shn,parallel_sentences,657147,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&shn/corpus-result-table,2026-11-12,download,3 corpora; 98% web-mined
+shs,parallel_sentences,43,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&shs/corpus-result-table,2026-11-12,download,1 corpora
+shy,parallel_sentences,1842,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&shy/corpus-result-table,2026-11-12,download,"2 corpora; OPUS codes shy, shy_latn"
+si,parallel_sentences,35744424,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&si/corpus-result-table,2026-11-12,download,15 corpora; 88% web-mined
+sjd,parallel_sentences,3019,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sjd/corpus-result-table,2026-11-12,download,1 corpora
+sje,parallel_sentences,2605,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sje/corpus-result-table,2026-11-12,download,1 corpora
+sju,parallel_sentences,110,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sju/corpus-result-table,2026-11-12,download,1 corpora
+sk,parallel_sentences,219247889,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sk/corpus-result-table,2026-11-12,download,62 corpora; 63% web-mined
+skr,parallel_sentences,20934,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&skr/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes skr, skr_arab"
+sl,parallel_sentences,154466843,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sl/corpus-result-table,2026-11-12,download,66 corpora; 57% web-mined
+sli,parallel_sentences,2008,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sli/corpus-result-table,2026-11-12,download,1 corpora
+sly,parallel_sentences,197,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sly/corpus-result-table,2026-11-12,download,1 corpora
+sm,parallel_sentences,6434172,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sm/corpus-result-table,2026-11-12,download,5 corpora; 100% web-mined
+sma,parallel_sentences,283,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sma/corpus-result-table,2026-11-12,download,2 corpora
+smj,parallel_sentences,179,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&smj/corpus-result-table,2026-11-12,download,1 corpora
+smn,parallel_sentences,9258,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&smn/corpus-result-table,2026-11-12,download,2 corpora
+sms,parallel_sentences,10860,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sms/corpus-result-table,2026-11-12,download,1 corpora
+sn,parallel_sentences,9474209,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sn/corpus-result-table,2026-11-12,download,"7 corpora; 99% web-mined; OPUS codes sn, sna"
+so,parallel_sentences,11147413,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&so/corpus-result-table,2026-11-12,download,"17 corpora; 97% web-mined; OPUS codes so, som"
+sq,parallel_sentences,113643034,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&als/corpus-result-table,2026-11-12,download,"27 corpora; 89% web-mined; OPUS codes als, sq"
+sr,parallel_sentences,135555938,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sr/corpus-result-table,2026-11-12,download,"29 corpora; 48% web-mined; OPUS codes sr, sr_Cyrl, sr_Latn, sr_ME, sr_ec, sr_el, srp"
+srn,parallel_sentences,733,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&srn/corpus-result-table,2026-11-12,download,3 corpora
+sro,parallel_sentences,2315,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sro/corpus-result-table,2026-11-12,download,1 corpora
+ss,parallel_sentences,267527,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ss/corpus-result-table,2026-11-12,download,7 corpora; 92% web-mined
+ssy,parallel_sentences,542,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ssy/corpus-result-table,2026-11-12,download,1 corpora
+st,parallel_sentences,1387163,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sot/corpus-result-table,2026-11-12,download,"7 corpora; 99% web-mined; OPUS codes sot, st"
+stq,parallel_sentences,3765,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&stq/corpus-result-table,2026-11-12,download,2 corpora
+sty,parallel_sentences,905,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sty/corpus-result-table,2026-11-12,download,1 corpora
+su,parallel_sentences,12699515,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&su/corpus-result-table,2026-11-12,download,7 corpora; 99% web-mined
+sv,parallel_sentences,324772123,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sv/corpus-result-table,2026-11-12,download,"96 corpora; 67% web-mined; OPUS codes sv, sv_se"
+sva,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sva/corpus-result-table,2026-11-12,download,1 corpora
+sw,parallel_sentences,32847014,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sw/corpus-result-table,2026-11-12,download,"21 corpora; 96% web-mined; OPUS codes sw, swa, swh"
+swc,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&swc/corpus-result-table,2026-11-12,download,1 corpora
+swg,parallel_sentences,35,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&swg/corpus-result-table,2026-11-12,download,1 corpora
+sxu,parallel_sentences,461,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sxu/corpus-result-table,2026-11-12,download,1 corpora
+syl,parallel_sentences,3053,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&syl/corpus-result-table,2026-11-12,download,3 corpora
+szl,parallel_sentences,1772632,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&szl/corpus-result-table,2026-11-12,download,7 corpora; 100% web-mined
+szy,parallel_sentences,6532,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&szy/corpus-result-table,2026-11-12,download,1 corpora
+ta,parallel_sentences,60855369,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ta/corpus-result-table,2026-11-12,download,"24 corpora; 84% web-mined; OPUS codes ta, ta_LK"
+taq,parallel_sentences,450220,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&taq/corpus-result-table,2026-11-12,download,1 corpora; 100% web-mined
+tay,parallel_sentences,2950,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tay/corpus-result-table,2026-11-12,download,2 corpora
+tcy,parallel_sentences,8474,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tcy/corpus-result-table,2026-11-12,download,2 corpora
+tdd,parallel_sentences,2315,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tdd/corpus-result-table,2026-11-12,download,1 corpora
+te,parallel_sentences,55907602,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&te/corpus-result-table,2026-11-12,download,20 corpora; 84% web-mined
+tet,parallel_sentences,1995,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tet/corpus-result-table,2026-11-12,download,5 corpora
+tg,parallel_sentences,14118410,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tg/corpus-result-table,2026-11-12,download,"13 corpora; 96% web-mined; OPUS codes tg, tg_TJ, tg_cyrl, tg_latn"
+th,parallel_sentences,40915923,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&th/corpus-result-table,2026-11-12,download,20 corpora; 26% web-mined
+thr,parallel_sentences,57,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&thr/corpus-result-table,2026-11-12,download,1 corpora
+ti,parallel_sentences,1417606,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ti/corpus-result-table,2026-11-12,download,"7 corpora; 99% web-mined; OPUS codes ti, tir"
+tig,parallel_sentences,4486,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tig/corpus-result-table,2026-11-12,download,3 corpora
+tiv,parallel_sentences,48,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tiv/corpus-result-table,2026-11-12,download,1 corpora
+tji,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tji/corpus-result-table,2026-11-12,download,1 corpora
+tk,parallel_sentences,366937,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tk/corpus-result-table,2026-11-12,download,7 corpora; 89% web-mined
+tkl,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tkl/corpus-result-table,2026-11-12,download,1 corpora
+tkr,parallel_sentences,10,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tkr/corpus-result-table,2026-11-12,download,1 corpora
+tly,parallel_sentences,6500,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tly/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes tly, tly_cyrl"
+tmr,parallel_sentences,118,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tmr/corpus-result-table,2026-11-12,download,1 corpora
+tmw,parallel_sentences,5,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tmw/corpus-result-table,2026-11-12,download,1 corpora
+tn,parallel_sentences,6355844,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tn/corpus-result-table,2026-11-12,download,6 corpora; 100% web-mined
+to,parallel_sentences,994,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&to/corpus-result-table,2026-11-12,download,4 corpora
+toi,parallel_sentences,8,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&toi/corpus-result-table,2026-11-12,download,2 corpora
+tpi,parallel_sentences,2164196,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tpi/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+tpn,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tpn/corpus-result-table,2026-11-12,download,1 corpora
+tpw,parallel_sentences,93,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tpw/corpus-result-table,2026-11-12,download,1 corpora
+tr,parallel_sentences,276508922,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tr/corpus-result-table,2026-11-12,download,"36 corpora; 54% web-mined; OPUS codes tr, tr_TR"
+tru,parallel_sentences,480,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tru/corpus-result-table,2026-11-12,download,1 corpora
+trv,parallel_sentences,1151,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&trv/corpus-result-table,2026-11-12,download,1 corpora
+trw,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&trw/corpus-result-table,2026-11-12,download,1 corpora
+ts,parallel_sentences,695675,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ts/corpus-result-table,2026-11-12,download,7 corpora; 99% web-mined
+tsd,parallel_sentences,2,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tsd/corpus-result-table,2026-11-12,download,1 corpora
+tsg,parallel_sentences,404,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tsg/corpus-result-table,2026-11-12,download,1 corpora
+tsw,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tsw/corpus-result-table,2026-11-12,download,1 corpora
+tt,parallel_sentences,10831445,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tt/corpus-result-table,2026-11-12,download,"11 corpora; 97% web-mined; OPUS codes tt, tt_cyrl, tt_latn"
+ttj,parallel_sentences,875,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ttj/corpus-result-table,2026-11-12,download,1 corpora
+ttq,parallel_sentences,5528,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tmh/corpus-result-table,2026-11-12,download,1 corpora
+tts,parallel_sentences,1,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tts/corpus-result-table,2026-11-12,download,1 corpora
+ttt,parallel_sentences,58,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ttt/corpus-result-table,2026-11-12,download,1 corpora
+tum,parallel_sentences,654511,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tum/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+tvl,parallel_sentences,15,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tvl/corpus-result-table,2026-11-12,download,1 corpora
+twd,parallel_sentences,4,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&twd/corpus-result-table,2026-11-12,download,1 corpora
+ty,parallel_sentences,186,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ty/corpus-result-table,2026-11-12,download,3 corpora
+tyv,parallel_sentences,4772,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tyv/corpus-result-table,2026-11-12,download,3 corpora
+tzm,parallel_sentences,213872,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&tzm/corpus-result-table,2026-11-12,download,2 corpora; 99% web-mined
+udm,parallel_sentences,4888,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&udm/corpus-result-table,2026-11-12,download,3 corpora
+ug,parallel_sentences,9970759,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ug/corpus-result-table,2026-11-12,download,"10 corpora; 99% web-mined; OPUS codes ug, ug_arab, ug_latn"
+uk,parallel_sentences,200252287,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&uk/corpus-result-table,2026-11-12,download,36 corpora; 58% web-mined
+umb,parallel_sentences,298138,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&umb/corpus-result-table,2026-11-12,download,3 corpora; 100% web-mined
+ur,parallel_sentences,35868711,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ur/corpus-result-table,2026-11-12,download,"18 corpora; 92% web-mined; OPUS codes ur, ur_PK"
+usp,parallel_sentences,15771,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&usp/corpus-result-table,2026-11-12,download,1 corpora
+uz,parallel_sentences,32590411,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&uz/corpus-result-table,2026-11-12,download,"10 corpora; 95% web-mined; OPUS codes uz, uz_cyrl, uz_latn"
+vai,parallel_sentences,27,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vai/corpus-result-table,2026-11-12,download,1 corpora
+ve,parallel_sentences,2701,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ve/corpus-result-table,2026-11-12,download,4 corpora; 58% web-mined
+vec,parallel_sentences,4976771,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vec/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+vep,parallel_sentences,5596,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vep/corpus-result-table,2026-11-12,download,2 corpora
+vi,parallel_sentences,159136414,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vi/corpus-result-table,2026-11-12,download,"21 corpora; 71% web-mined; OPUS codes vi, vi_VN"
+vls,parallel_sentences,2083,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vls/corpus-result-table,2026-11-12,download,3 corpora
+vmf,parallel_sentences,647,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vmf/corpus-result-table,2026-11-12,download,1 corpora
+vmw,parallel_sentences,610,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vmw/corpus-result-table,2026-11-12,download,1 corpora
+vro,parallel_sentences,2043,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&vro/corpus-result-table,2026-11-12,download,3 corpora
+wa,parallel_sentences,158570,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wa/corpus-result-table,2026-11-12,download,5 corpora
+wal,parallel_sentences,18498,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wal/corpus-result-table,2026-11-12,download,2 corpora
+war,parallel_sentences,9662998,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&war/corpus-result-table,2026-11-12,download,4 corpora; 100% web-mined
+wls,parallel_sentences,1404,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wls/corpus-result-table,2026-11-12,download,1 corpora
+wlx,parallel_sentences,885,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wlx/corpus-result-table,2026-11-12,download,1 corpora
+wo,parallel_sentences,1574721,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wo/corpus-result-table,2026-11-12,download,"8 corpora; 98% web-mined; OPUS codes wo, wol"
+wsg,parallel_sentences,315,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wsg/corpus-result-table,2026-11-12,download,1 corpora
+wuu,parallel_sentences,42066,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&wuu/corpus-result-table,2026-11-12,download,"5 corpora; 42% web-mined; OPUS codes wuu, wuu_hans, wuu_hant"
+xal,parallel_sentences,6553,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xal/corpus-result-table,2026-11-12,download,3 corpora
+xh,parallel_sentences,29391313,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xh/corpus-result-table,2026-11-12,download,"13 corpora; 95% web-mined; OPUS codes xh, xho"
+xmf,parallel_sentences,14574,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xmf/corpus-result-table,2026-11-12,download,3 corpora
+xmm,parallel_sentences,303,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xmm/corpus-result-table,2026-11-12,download,1 corpora
+xon,parallel_sentences,530,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xon/corpus-result-table,2026-11-12,download,1 corpora
+xsy,parallel_sentences,880,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&xsy/corpus-result-table,2026-11-12,download,1 corpora
+yaq,parallel_sentences,0,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yaq/corpus-result-table,2026-11-12,download,1 corpora
+yi,parallel_sentences,7915915,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yi/corpus-result-table,2026-11-12,download,8 corpora; 98% web-mined
+yo,parallel_sentences,1789575,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yo/corpus-result-table,2026-11-12,download,"9 corpora; 94% web-mined; OPUS codes yo, yor"
+yoi,parallel_sentences,174,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yoi/corpus-result-table,2026-11-12,download,1 corpora
+yrk,parallel_sentences,6,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yrk/corpus-result-table,2026-11-12,download,1 corpora
+yrl,parallel_sentences,2283,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yrl/corpus-result-table,2026-11-12,download,1 corpora
+yua,parallel_sentences,1834,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yua/corpus-result-table,2026-11-12,download,2 corpora
+yue,parallel_sentences,218468,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&yue/corpus-result-table,2026-11-12,download,"6 corpora; OPUS codes yue, yue_hans, yue_hant, zh_HK, zh_hk, zh_mo"
+za,parallel_sentences,477,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&za/corpus-result-table,2026-11-12,download,3 corpora
+zam,parallel_sentences,124,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zam/corpus-result-table,2026-11-12,download,1 corpora
+zea,parallel_sentences,925,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zea/corpus-result-table,2026-11-12,download,3 corpora
+zgh,parallel_sentences,5699,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zgh/corpus-result-table,2026-11-12,download,3 corpora
+zmi,parallel_sentences,176,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zmi/corpus-result-table,2026-11-12,download,1 corpora
+zu,parallel_sentences,4830560,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&zu/corpus-result-table,2026-11-12,download,"10 corpora; 98% web-mined; OPUS codes zu, zul"
