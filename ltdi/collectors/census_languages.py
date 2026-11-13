@@ -37,6 +37,7 @@ UNDATA_URLS = [  # the site moved under /legacy/ in 2026
     "https://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27&DataMartId=POP&Format=csv",
 ]
 UNDATA_OUT = SOURCES / "undata_population_by_language.csv"
+UNDATA_NOTES = SOURCES / "undata_population_by_language_footnotes.csv"
 ACS_URL = ("https://www2.census.gov/programs-surveys/demo/tables/language-use/2017/"
            "2017-2021-acs-lang-tables-nation.xlsx")
 ACS_OUT = SOURCES / "acs_2017_2021_languages_us.csv"
@@ -65,6 +66,8 @@ def fetch_undata():
     rows = list(csv.reader(io.StringIO(text)))
     head = rows[0]
     print("UNdata columns:", head)
+    odd = [r for r in rows[1:] if len(r) != len(head)]
+    print(f"  {len(odd)} other rows, e.g.", odd[:4])
     for r in rows[1:4]:
         print("  ", r)
     col = {h.strip().lower(): i for i, h in enumerate(head)}
@@ -72,11 +75,19 @@ def fetch_undata():
     keep = [r for r in rows[1:] if len(r) == len(head)
             and (sex is None or r[sex].strip().lower().startswith("both"))
             and (area is None or r[area].strip().lower() == "total")]
+    # after the data, the export lists its footnotes (what each census asked: mother tongue, language
+    # spoken at home, ethnic group...), as rows of footnote number and text
+    notes = [r[:2] for r in rows[1:] if len(r) != len(head) and len(r) >= 2 and r[0].strip().isdigit()]
+    print(f"  {len(notes)} footnotes, e.g. {notes[:3]}")
     SOURCES.mkdir(parents=True, exist_ok=True)
     with UNDATA_OUT.open("w", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
         w.writerow(head)
         w.writerows(keep)
+    with UNDATA_NOTES.open("w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["footnote", "text"])
+        w.writerows(notes)
     # what it covers: countries, their latest census year, languages listed
     c, y = col.get("country or area"), col.get("year")
     latest, langs = {}, defaultdict(set)
