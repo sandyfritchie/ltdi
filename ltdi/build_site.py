@@ -27,6 +27,7 @@ SITE = ROOT / "site"
 EMBED_LIMIT = 3_000_000  # bytes of per-language data to embed in the page
 SHARD_SIZE = 150  # languages per detail file
 TOP_OPPORTUNITIES = 1000  # opportunities listed on the Opportunities page before choosing a language
+COUNTRY_OPPORTUNITIES = 30  # each country's own top opportunities, ranked by reach there
 PER_TYPE = 50            # of which at least this many of each kind of action, so every kind can be browsed
 
 
@@ -50,6 +51,53 @@ PROFILE = ("script_names", "script_source", "endangerment_source", "note", "sour
 # Region filter: one letter per region group, as the page reads them
 REGION_CODE = {"Africa": "A", "South Asia": "S", "Rest of Asia": "R", "Europe": "E", "Americas": "M", "Oceania": "O"}
 NOT_PLACES = {"aq", "bv", "gs", "hm", "tf", "um", "xa", "xb", "zz"}
+
+
+def country_opportunities(scores: dict) -> dict:
+    """Each country's top opportunities, ranked by reach in that country: priority recomputed with the
+    language's potential users scaled to its speakers there (LinguaMeta's per-country figures), so the
+    US list is led by the languages most spoken in the US, not cut from the global top list.
+
+    {"items": [opportunity, as in top_opportunities, plus b (gap x need / cost), u (users: all, now,
+    in five years) and m (momentum)], "by_country": {country: [[item index, speakers there], ...]}};
+    the page sums speakers over the countries chosen and recomputes the priorities from b, u and m."""
+    import math
+
+    def reach(n: float) -> float:
+        return max(0.0, math.log10(max(n, 1)) - 4)  # as opportunities._reach
+
+    cand: dict[str, list] = {}
+    opp = {}
+    for l in scores["languages"]:
+        sp = l.get("speakers") or 0
+        if not sp or l.get("extinct"):
+            continue
+        cs = [(c["code"], c.get("speakers")) for c in l["countries"] if c["code"] not in NOT_PLACES]
+        if len(cs) == 1 and not cs[0][1]:
+            cs = [(cs[0][0], sp)]  # one country, no breakdown: all its speakers are there
+        for o in l["opportunities"]:
+            opp[l["code"], o["key"]] = o
+        for c, n in cs:
+            if not n:
+                continue
+            frac = min(1.0, n / sp)
+            for o in l["opportunities"]:
+                base = o["gap"] * o["need"] / o["cost"]
+                cand.setdefault(c, []).append((reach(o["users"]["5y"] * frac) * base * o["momentum"], l["code"], o["key"], n))
+    items, index, by_country = [], {}, {}
+    for c, xs in sorted(cand.items()):
+        xs.sort(key=lambda x: (-x[0], x[1], x[2]))
+        rows = []
+        for _, lang, key, n in xs[:COUNTRY_OPPORTUNITIES]:
+            if (lang, key) not in index:
+                o = opp[lang, key]
+                index[lang, key] = len(items)
+                items.append({k: o[k] for k in ("key", "title", "why", "priority", "priority_now", "priority_5y")}
+                             | {"lang": lang, "b": round(o["gap"] * o["need"] / o["cost"], 4),
+                                "u": [o["users"]["speakers"], o["users"]["now"], o["users"]["5y"]], "m": o["momentum"]})
+            rows.append([index[lang, key], n])
+        by_country[c] = rows
+    return {"items": items, "by_country": by_country}
 
 
 def country_online() -> dict[str, float]:
@@ -184,6 +232,8 @@ def main() -> None:
         total += len(text.encode())
         (out / f"{n}.json").write_text(text, encoding="utf-8")
     embed = _dump(details) if total <= EMBED_LIMIT else "null"
+    # each country's own top opportunities, fetched when the country filter is first used
+    (SITE / "data" / "country_opportunities.json").write_text(_dump(country_opportunities(scores)), encoding="utf-8")
 
     template = (SITE / "template.html").read_text(encoding="utf-8")
     page = template.replace("/*__DATA__*/", _dump(index).replace("</", "<\\/"))
