@@ -346,8 +346,11 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .seg.open { background: var(--ord-open); color: var(--on-open); } .seg.none { background: var(--ord-none); color: var(--muted); }
 .maphead { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
 .maphead h3 { margin: 0; }
-.mapsub { min-height: 4.5em; }  /* three lines in either view, so switching doesn't move the map */
-@media (max-width: 640px) { .mapsub { min-height: 9em; } .legend.map { min-height: 70px; align-content: flex-start; } }
+/* the map's caption uses the map's full width, and keeps room for its longest wording (a country
+   chosen, in the areas view), so switching views or filters doesn't move the map */
+.chart .sub.mapsub { max-width: none; min-height: 4.5em; }
+@media (max-width: 900px) { .chart .sub.mapsub { min-height: 6em; } }
+@media (max-width: 640px) { .chart .sub.mapsub { min-height: 9em; } .legend.map { min-height: 70px; align-content: flex-start; } }
 .mapmode { margin: 0; }
 .areas path { stroke: none; cursor: pointer; outline: none; }
 .areas path:hover { fill-opacity: 0.85; }
