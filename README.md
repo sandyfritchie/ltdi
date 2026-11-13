@@ -234,8 +234,12 @@ the coalition workstream it fits.
   Regular font and Noto Sans CJK, against Hyperglot's orthographies (with its HarfBuzz shaping checks) or
   CLDR's exemplar characters. Noto displays 755 of the 764 languages with a documented character set; the
   other 9 fail on quirks in the reference data (a stray combining overline in Hyperglot's Japanese, "ჳ/უ̂"
-  as one Laz letter) or on strict shaping thresholds, so the indicator would add nothing. The 6,300 other
-  languages have no documented character set, so only their script could be checked.
+  as one Laz letter) or on strict shaping thresholds, so the indicator would add nothing. For 1,205 more
+  languages the letters come from a sample of their FineWeb-2 web text (`data/fineweb_chars.csv`, sampled
+  on GitHub Actions by `ltdi/collectors/fineweb_chars.py`); Noto displays all of them (3 fail only on
+  quoted Arabic). The samples also show letters from another script standing in for a language's own:
+  Greek ε for ɛ (Bambara, Mossi, Fon, Fanti, Kabyle), Greek ͻ and Cyrillic Ԑ for ɔ and Ɛ (Twi), Cyrillic
+  ӡ for ʒ (Aja), Cyrillic ә for ə (Tatar). About 5,100 languages remain with only their script checked.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
 - LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand, for the original 25.
 - LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's

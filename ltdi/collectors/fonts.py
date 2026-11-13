@@ -187,7 +187,11 @@ def web_letters() -> dict[str, tuple[str, set[str], set[str]]]:
     out = {}
     for code, r in best_rows.items():
         sc = r["subset"].split("_")[-1]
-        own = {ch for ch in r["letters"] if fud.script(ch) in (sc, "Zinh", "Zyyy")}
+        # its own script's letters, shared letters, and combining marks used with its script
+        # (Arabic vowel marks in a Latin-script language's text belong to quoted Arabic)
+        own = {ch for ch in r["letters"] if fud.script(ch) in (sc, "Zyyy")
+               or (fud.script(ch) == "Zinh" and (sc in fud.script_extension(ch) or fud.script_extension(ch) == {"Zinh"})
+                   and unicodedata.category(ch) == "Mn" and not 0xFE00 <= ord(ch) <= 0xFE0F)}
         other = set(r["letters"]) - own
         out[code] = (r["subset"], own, other)
     return out
@@ -198,6 +202,9 @@ def hyperglot_support(paths: list[Path]) -> tuple[dict, dict[tuple[str, str], st
     from hyperglot.checker import FontChecker
     from hyperglot.languages import Languages
     logging.disable(logging.WARNING)
+    cache = CACHE / f"hyperglot-noto-{NOTO_COMMIT[:12]}.json"
+    if cache.exists():  # the check takes a quarter of an hour; the fonts are pinned
+        return Languages(), {tuple(k.split("|")): v for k, v in json.loads(cache.read_text()).items()}
     ok: dict[tuple[str, str], str] = {}
     for i, p in enumerate(paths):
         res = FontChecker(str(p)).get_supported_languages(check=["base"], decomposed=True, marks=True, shaping=True)
@@ -206,6 +213,7 @@ def hyperglot_support(paths: list[Path]) -> tuple[dict, dict[tuple[str, str], st
                 ok.setdefault((iso, script), p.stem)
         if i % 25 == 0:
             print(f"  {i}/{len(paths)} fonts checked", flush=True)
+    cache.write_text(json.dumps({"|".join(k): v for k, v in ok.items()}))
     return Languages(), ok
 
 
