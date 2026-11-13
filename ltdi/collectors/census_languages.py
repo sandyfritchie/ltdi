@@ -28,8 +28,15 @@ from .. import DATA
 from ..http import fetch
 
 SOURCES = DATA / "sources"
-UNDATA_URL = ("https://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27"
-              "&DataMartId=POP&Format=csv")
+# UNdata's download link, with and without its column and sort options (tried in turn)
+UNDATA_URLS = [
+    "https://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27&DataMartId=POP&Format=csv"
+    "&c=2,3,6,8,10,12,13,14,15,16,17,18&s=_countryEnglishNameOrderBy:asc,refYear:desc,areaCode:asc",
+    "http://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode:27&DataMartId=POP&Format=csv"
+    "&c=2,3,6,8,10,12,13,14,15,16,17,18&s=_countryEnglishNameOrderBy:asc,refYear:desc,areaCode:asc",
+    "https://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=tableCode%3a27&DataMartId=POP&Format=csv",
+    "https://data.un.org/_Docs/SYB/CSV/",  # not this table; only to see what the server answers
+]
 UNDATA_OUT = SOURCES / "undata_population_by_language.csv"
 ACS_URL = ("https://www2.census.gov/programs-surveys/demo/tables/language-use/2017/"
            "2017-2021-acs-lang-tables-nation.xlsx")
@@ -45,7 +52,16 @@ def _unzip_csv(body: bytes) -> str:
 
 
 def fetch_undata():
-    text = _unzip_csv(fetch(UNDATA_URL, cache=False))
+    body = None
+    for url in UNDATA_URLS:
+        try:
+            body = fetch(url, cache=False)
+            print(f"UNdata: {url} -> {len(body)} bytes, starts {body[:60]!r}")
+            if body[:2] == b"PK" or b"Country" in body[:200]:
+                break
+        except Exception as e:
+            print(f"UNdata: {url} -> {e}")
+    text = _unzip_csv(body)
     rows = list(csv.reader(io.StringIO(text)))
     head = rows[0]
     print("UNdata columns:", head)
