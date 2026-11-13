@@ -77,9 +77,9 @@ def files(iso: str, limit: int = 2000) -> list[str]:
 
 
 def plain(word: str) -> bool:
-    """An everyday word rather than a name or a list entry: no capital first letter (in scripts with
-    case), no digits or brackets, not too long"""
-    return not ((word[:1].isupper() and not word.isupper()) or re.search(r"[\d()\[\]]", word) or len(word) > 24)
+    """An everyday word rather than a name or a list entry: no capital letters (in scripts with case:
+    names, and place lists typed in capitals), no digits or brackets, not too long"""
+    return not (word != word.lower() or re.search(r"[\d()\[\]]", word) or len(word) > 24)
 
 
 def glosses(iso: str) -> dict[str, str]:
