@@ -1,0 +1,31 @@
+# Picks a few Lingua Libre recordings for each language's page (ltdi/collectors/lingualibre.py), from
+# Wikimedia Commons and Wikidata, which aren't reachable from every network. Run by hand (Actions ->
+# Lingua Libre -> Run workflow); it commits data/lingualibre.csv.
+name: Lingua Libre
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Pick recordings
+        run: python -m ltdi.collectors.lingualibre
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/lingualibre.csv
+          git diff --cached --quiet && exit 0
+          git commit -m "Lingua Libre: recordings from run ${{ github.run_id }}"
+          git pull --rebase
+          git push
