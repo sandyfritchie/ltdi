@@ -945,6 +945,8 @@ function depthText(f, ind) {
   }
   return showValue(f);
 }
+// Benchmarks of a few languages (AfroBench: African languages) show a tile only where they have a result
+const ONLY_IF_MEASURED = new Set(['llm_afrobench_gpt4o', 'llm_afrobench_gemini']);
 // Regional providers appear only where they offer the language: a row of 'not yet' tiles for every language would be noise
 const regionalOn = (t, facts) => (t.regional || []).filter(id => facts[id] && facts[id].value);
 function svcTile(id, facts, open) {
@@ -957,10 +959,11 @@ function svcTile(id, facts, open) {
   let detail = '';
   if (f.unit === '% of English') detail = `${Math.round(f.value)}% of English`;
   else if (f.unit === 'accuracy') detail = `${Math.round(f.value * 100)}% accuracy`;
+  else if (f.unit === 'chrF') detail = `${Math.round(f.value)} chrF from English`;
   else if (on && DEPTH_OF[id]) detail = depthText(facts[DEPTH_OF[id]], DEPTH_OF[id]);
   const qf = on && QUALITY_OF[id] ? facts[QUALITY_OF[id].quality] : null;
   if (qf) detail = [detail, qualityText(qf, QUALITY_OF[id])].filter(Boolean).join(' · ');
-  const measured = f.unit === '% of English' || f.unit === 'accuracy';
+  const measured = ['% of English', 'accuracy', 'chrF'].includes(f.unit);
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : qf;
   const qline = qf && qf.unit !== '% WER' ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
   const hover = [f.source, qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note].filter(Boolean).join('\n');
@@ -978,7 +981,8 @@ function dimPanel(l, key, color) {
     const main = [], more = [], peek = [];
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
-      const ids = [...(t.consumer || []), ...regionalOn(t, facts), ...(t.open || []), ...Object.keys(t.measured || {})];
+      const ids = [...(t.consumer || []), ...regionalOn(t, facts), ...(t.open || []),
+        ...Object.keys(t.measured || {}).filter(id => facts[id] || !ONLY_IF_MEASURED.has(id))];
       const order = PROV_ORDER, rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
       const tiles = [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id))).join('');
       const row = `<div class="techrow">

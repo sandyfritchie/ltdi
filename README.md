@@ -95,10 +95,10 @@ any name it can't resolve.
 | Data | Datasets on the Hugging Face Hub | Hub API: the whole dataset listing, read once, by language tag; a dataset tagged with more than 20 languages counts 20 ÷ its languages for each | automated |
 | Data | Public benchmarks covering the language (of 9) | FLORES-200, Belebele, FLEURS, Global-MMLU, MMMLU, INCLUDE, XNLI, MGSM, IrokoBench | automated |
 | Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | automated |
-| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation, Amazon Transcribe; Whisper and MMS (open); depth: Whisper large-v3 FLEURS WER, Azure speech-to-text features | automated |
+| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation, Amazon Transcribe; Whisper, MMS and Omnilingual ASR (open); depth: Whisper large-v3 FLEURS WER, Omnilingual ASR's published character error rate per language, Azure speech-to-text features | automated |
 | Tech | Text-to-speech | Google Cloud TTS, Azure Speech, Amazon Polly; MMS-TTS (open); depth: number of Google voice types | automated |
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | automated |
-| Tech | LLMs | Availability: Gemini and Copilot app language lists. Quality: Anthropic's Global-MMLU (relative to English) and OpenAI's MMMLU (absolute accuracy) | automated; Anthropic's scores read by hand |
+| Tech | LLMs | Availability: Gemini and Copilot app language lists. Quality: Anthropic's Global-MMLU (relative to English), OpenAI's MMMLU (absolute accuracy), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50) | automated; Anthropic's scores read by hand |
 | Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |

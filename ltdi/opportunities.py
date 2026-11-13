@@ -61,16 +61,16 @@ RULES = {
     "kb-features": {"teams": ["keyboards"], "starter": ["web_text_words", "wikipedia_articles"],
         "missing": "A word list and prediction model built from the open text, and native speakers to review the "
                    "suggestions."},
-    "asr-vendors": {"teams": ["speech"], "starter": ["cv_validated_hours", "asr_open_whisper"],
+    "asr-vendors": {"teams": ["speech"], "starter": ["cv_validated_hours", "asr_open_omnilingual", "asr_open_whisper"],
         "missing": "Launches in the remaining services, each checked against a held-out test set in the main "
                    "regional accents."},
-    "asr-none": {"teams": ["speech"], "starter": ["cv_validated_hours", "asr_open_whisper"],
+    "asr-none": {"teams": ["speech"], "starter": ["cv_validated_hours", "asr_open_omnilingual", "asr_open_whisper"],
         "missing": "A production model and a launch. If the open recordings come from few speakers, more varied "
                    "voices first."},
     "asr-measure": {"teams": ["evaluation", "speech"], "starter": ["cv_validated_hours", "flores200"],
         "missing": "A public test set of read speech (FLORES sentences can serve as prompts) and published error "
                    "rates for open and commercial models."},
-    "asr-improve": {"teams": ["speech", "data"], "starter": ["cv_validated_hours", "asr_open_whisper"],
+    "asr-improve": {"teams": ["speech", "data"], "starter": ["cv_validated_hours", "asr_open_omnilingual", "asr_open_whisper"],
         "missing": "More transcribed speech in everyday domains, and fine-tuning of open models on it."},
     "asr-collect": {"teams": ["data", "funding", "speech"], "starter": ["cv_validated_hours", "web_text_words"],
         "missing": "Tens of hours of transcribed speech from many speakers, collected with informed consent and an "
@@ -129,7 +129,7 @@ RULES = {
     "va-vendors": {"teams": ["assistants"], "starter": ["cv_validated_hours"],
         "missing": "Launches on the remaining assistants, with test commands from speakers of the main regional "
                    "accents."},
-    "va-ready": {"teams": ["assistants", "speech"], "starter": ["cv_validated_hours", "asr_open_whisper"], "cost": 2,
+    "va-ready": {"teams": ["assistants", "speech"], "starter": ["cv_validated_hours", "asr_open_omnilingual", "asr_open_whisper"], "cost": 2,
         "missing": "Spoken-command data (how people actually phrase requests), and local content such as names, "
                    "places and services."},
     "lid-none": {"teams": ["data", "evaluation"], "starter": ["web_text_words", "wikipedia_articles"],

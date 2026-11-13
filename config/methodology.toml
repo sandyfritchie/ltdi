@@ -120,6 +120,8 @@ weight = 0.1
 # (Meta's FLORES-200 chrF++ for the Dense 3.3B model) and Whisper
 # (FLEURS word error rate, which also counts a listed language missing from
 # Whisper's published breakdown as poor).
+# Omnilingual ASR (Meta, 2025) by its published character error rate: 25% or
+# worse counts it at half, 5% or better in full.
 # Regional providers (services.csv role "regional": Yandex, Baidu, Alibaba
 # Cloud, Naver, Sarvam AI, Lelapa AI, GhanaNLP, Sunbird AI) count together as
 # one extra commercial service, only for the languages one of them offers, at
