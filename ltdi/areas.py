@@ -11,7 +11,8 @@ pixel at its 1000-pixel width, ~20 km). Equal Earth keeps areas true, so the sha
 tier covers is also its share of the land drawn.
 
 Run:  python -m ltdi.areas   (clones Glottography/asher2007world into .cache; needs shapely)
-Writes data/areas.json: {"paths": {code: SVG path}, "area": {code: square pixels}}
+Writes data/areas.json: {"paths": {code: SVG path}, "area": {code: square pixels},
+                         "labels": {country: [[code, x, y, square pixels], ...]}}
 """
 
 from __future__ import annotations
@@ -76,6 +77,55 @@ def svg_path(geom) -> str:
     return "".join(out)
 
 
+# Atlas areas drawn for one language that LTDI counts as several: each gets the whole area
+SHARED = {"sout1528": ["sr", "hr", "bs", "cnr"]}  # Serbian-Croatian-Bosnian
+
+LABELS_PER_COUNTRY = 15
+MIN_LABEL_AREA = 0.5  # square pixels of a language's area inside a country
+
+
+def labels(areas: dict) -> dict[str, list]:
+    """{country: [[code, x, y, square pixels], ...]}: for the languages whose areas reach into each
+    country, the most central point of their largest piece there (polylabel), largest first, so the
+    map can name a chosen country's languages where they're spoken in it (English in the US)."""
+    from shapely import STRtree
+    from shapely.ops import polylabel
+    from .geo import country_shapes
+
+    from shapely import make_valid
+    from shapely.geometry import MultiPolygon
+
+    def flat(g):
+        return [q for p in getattr(g, "geoms", [g]) for q in (flat(p) if hasattr(p, "geoms") else [p])]
+
+    def polygons(g):  # valid, polygons only (simplifying can leave a ring touching itself)
+        parts = [q for p in flat(g) if p.geom_type == "Polygon" for q in flat(make_valid(p)) if q.geom_type == "Polygon"]
+        return MultiPolygon(parts).buffer(0) if parts else None
+
+    areas = {c: p for c, g in areas.items() if (p := polygons(g)) is not None}
+    codes = list(areas)
+    tree = STRtree([areas[c] for c in codes])
+    out = {}
+    for a2, shape in sorted(country_shapes().items()):
+        shape = polygons(shape)
+        if shape is None:
+            continue
+        rows = []
+        for i in tree.query(shape):
+            inter = areas[codes[i]].intersection(shape)
+            if inter.is_empty or inter.area < MIN_LABEL_AREA:
+                continue
+            polys = [g for g in getattr(inter, "geoms", [inter]) if g.geom_type == "Polygon"]
+            if not polys:
+                continue
+            pt = polylabel(max(polys, key=lambda g: g.area), tolerance=0.2)
+            rows.append([codes[i], round(pt.x, 1), round(pt.y, 1), round(inter.area, 1)])
+        rows.sort(key=lambda r: -r[3])
+        if rows:
+            out[a2] = rows[:LABELS_PER_COUNTRY]
+    return out
+
+
 def main() -> None:
     from shapely.geometry import shape
     from shapely.ops import unary_union
@@ -86,18 +136,20 @@ def main() -> None:
     unmatched = 0
     for f in source()["features"]:
         gc = f["properties"].get("cldf:languageReference")
-        code = to_code.get(gc)
-        if not code or code not in scored or not f.get("geometry"):
+        codes = SHARED.get(gc) or [to_code.get(gc)]
+        if not any(c in scored for c in codes) or not f.get("geometry"):
             unmatched += 1
             continue
-        by_code.setdefault(code, []).append(shape(f["geometry"]).buffer(0))
-    paths, area = {}, {}
+        for code in codes:
+            if code in scored:
+                by_code.setdefault(code, []).append(shape(f["geometry"]).buffer(0))
+    paths, area, simplified = {}, {}, {}
     for code, geoms in sorted(by_code.items()):
         g = project(unary_union(geoms)).simplify(TOLERANCE, preserve_topology=True)
         p = svg_path(g)
         if p:
-            paths[code], area[code] = p, round(g.area, 1)
-    out = {"paths": paths, "area": area}
+            paths[code], area[code], simplified[code] = p, round(g.area, 1), g
+    out = {"paths": paths, "area": area, "labels": labels(simplified)}
     (DATA / "areas.json").write_text(json.dumps(out, separators=(",", ":")), encoding="utf-8")
     size = (DATA / "areas.json").stat().st_size
     print(f"areas for {len(paths)} languages ({unmatched} atlas areas not matched), {size / 1e6:.1f} MB")

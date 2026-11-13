@@ -356,6 +356,11 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .areas.focusing path { fill-opacity: 0.14; }
 .areas path.hit { fill-opacity: 0.8; }
 svg.focusing circle.sdot:not(.hit) { opacity: 0.35; }
+/* With countries chosen: borders over the areas, the chosen countries' stronger, the languages named */
+#worldmap .borders { fill: none; stroke: var(--ink); stroke-opacity: 0.28; stroke-width: 0.6px; vector-effect: non-scaling-stroke; pointer-events: none; }
+#worldmap .cborders { fill: none; stroke: var(--ink); stroke-opacity: 0.75; stroke-width: 1.4px; vector-effect: non-scaling-stroke; pointer-events: none; }
+#worldmap .alabels text { fill: var(--ink); stroke: var(--surface); stroke-opacity: 0.85; paint-order: stroke; stroke-linejoin: round;
+  font-family: var(--font-body); font-weight: 600; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
 #focusring { fill: none; stroke: var(--ink); stroke-width: 2px; vector-effect: non-scaling-stroke; pointer-events: none; }
 .mapctl button { width: 32px; height: 32px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); font: 600 17px/1 var(--font-body); cursor: pointer; display: grid; place-items: center; }
 .mapctl button:hover { border-color: var(--muted); }
@@ -673,6 +678,18 @@ function vOn(l) {
 const COUNTRY_N = {};  // languages listed for each country
 for (const l of LANGS) for (const c of l._cc) COUNTRY_N[c] = (COUNTRY_N[c] || 0) + 1;
 const COUNTRIES = Object.keys(COUNTRY_N).filter(c => COUNTRY_NAMES[c]).sort((a, b) => COUNTRY_NAMES[a].localeCompare(COUNTRY_NAMES[b]));
+// Names for the chosen countries' main languages on the areas map: the ten with the most speakers in
+// each country (LinguaMeta's per-country figures, then the area they cover there), at the most central
+// point of their largest piece inside it (from the areas step)
+function areaLabels() {
+  const L = (AREAS && AREAS.labels) || {}, seen = new Set(), out = [];
+  for (const c of countrySel) {
+    const rows = (L[c] || []).filter(([code]) => BY[code] && !BY[code].extinct && inView(BY[code]));
+    rows.sort((a, b) => (BY[b[0]]._cs[c] || 0) - (BY[a[0]]._cs[c] || 0) || b[3] - a[3]);
+    for (const r of rows.slice(0, 10)) if (!seen.has(r[0])) { seen.add(r[0]); out.push(r); }
+  }
+  return out;
+}
 // Two hundred countries: the drop-down has a search box, and lists the ticked ones first
 function countryPicker() {
   const opts = [...COUNTRIES].sort((a, b) => countrySel.has(b) - countrySel.has(a));
@@ -1387,7 +1404,11 @@ function mapSection() {
     const inTiers = l => !tierSel.size || tierSel.has(tierOf(l.ltdi)[0]) || l.code === mapFocus;
     const withArea = LANGS.filter(l => AREAS.paths[l.code] && inTiers(l));
     const order = { l: 0, m: 1, h: 2, vh: 3 };
-    layer = `<g class="areas${mapFocus ? ' focusing' : ''}">${withArea.sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0)).map(l =>
+    // One area the atlas draws for several LTDI languages (Serbian, Croatian, Bosnian, Montenegrin) is
+    // drawn once, for the one on top, so the shared area isn't darkened by stacking
+    const drawn = withArea.sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0));
+    const top = new Map(drawn.map(l => [AREAS.paths[l.code], l.code]));
+    layer = `<g class="areas${mapFocus ? ' focusing' : ''}"${countrySel.size ? ' filter="url(#soft)"' : ''}>${drawn.filter(l => top.get(AREAS.paths[l.code]) === l.code).map(l =>
       `<path d="${AREAS.paths[l.code]}" data-code="${l.code}"${l.code === mapFocus ? ' class="hit" filter="url(#soft)"' : ''} fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
     const sh = tierLandShares(withArea, tierKey, frame && frame.outline), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
@@ -1399,6 +1420,7 @@ function mapSection() {
     sub = `Each dot represents a language, placed in its traditional home. The ${LANGS.length.toLocaleString()} languages in the Index are coloured by their tier${bg.length ? `, with ${bg.length.toLocaleString()} other languages, not yet scored, in white` : ''}. Hover for names; select a dot for its profile.`;
   }
   const F = mapFocus && BY[mapFocus], fp = F && pt[F.code];
+  const C = countrySel.size > 0;  // countries chosen: borders, softened areas and the main languages named
   const focusBox = F ? `<div class="mapfocus" role="status"><span><b>${esc(F.name)}</b> · ${F.extinct ? 'extinct, so not on the map'
       : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F.ltdi)[1]} · rank ${F.rank}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
       <a href="#lang-${F.code}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
@@ -1410,10 +1432,12 @@ function mapSection() {
     <div class="mapwrap"><div class="mapctl">
         <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
       </div><svg id="worldmap"${F ? ' class="focusing"' : ''} viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
-      ${F && areasOn ? '<defs><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="softblur" stdDeviation="1"/></filter></defs>' : ''}
+      ${(F || C) && areasOn ? '<defs><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="softblur" stdDeviation="1"/></filter></defs>' : ''}
       <path d="${path}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
       ${areasOn ? layer : `<path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
       ${dots}`}
+      ${C ? `<path class="borders" d="${path}"/><path class="cborders" d="${[...countrySel].map(c => (GEO.basemap.countries || {})[c]?.outline || '').join('')}"/>` : ''}
+      ${C && areasOn ? `<g class="alabels">${areaLabels().map(([code, x, y]) => `<text x="${x}" y="${y}" data-code="${code}">${esc(BY[code].name)}</text>`).join('')}</g>` : ''}
       ${F && !F.extinct && areasOn && !AREAS.paths[F.code] && fp ? `<circle class="sdot hit" cx="${fp[2]}" cy="${fp[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[tierKey(F)]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"/>` : ''}
       ${F && !F.extinct && (fp || (areasOn && AREAS.paths[F.code])) ? '<circle id="focusring" r="0"/>' : ''}
     </svg></div>
@@ -1433,10 +1457,26 @@ function bindMap() {
   let vb = mapView ? { ...mapView } : { x: 0, y: 0, w: W, h: H }, raf = 0;
   const k = () => W / vb.w;
   const soft = document.getElementById('softblur');
+  // Language names keep about 13px on screen; where two would overlap, the one listed first (more
+  // speakers) stays
+  const labs = [...svg.querySelectorAll('.alabels text')];
+  const placeLabels = () => {
+    if (!labs.length) return;
+    const fs = vb.w / 80, kept = [];
+    for (const t of labs) {
+      t.setAttribute('font-size', fs.toFixed(3)); t.setAttribute('stroke-width', (fs * 0.28).toFixed(3));
+      const x = +t.getAttribute('x'), y = +t.getAttribute('y'), w = t.textContent.length * fs * 0.56, h = fs * 1.1;
+      const box = [x - w / 2, y - h / 2, x + w / 2, y + h / 2];
+      const clash = kept.some(b => box[0] < b[2] && box[2] > b[0] && box[1] < b[3] && box[3] > b[1]);
+      t.style.display = clash ? 'none' : '';
+      if (!clash) kept.push(box);
+    }
+  };
   const apply = () => {
     svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
     mapView = { ...vb };
     if (soft) soft.setAttribute('stdDeviation', (vb.w / 450).toFixed(3));  // about 2px on screen at any zoom
+    placeLabels();
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(() => {   // keep dots the same size on screen
       const z = k();
@@ -1460,7 +1500,10 @@ function bindMap() {
   const rv = !mapView && regionFrame();
   if (mapView) apply();
   else if (rv) {
-    const [x0, y0, x1, y1] = rv.box, w = Math.max(x1 - x0, (y1 - y0) * W / H) * 1.04;
+    // a region fills the view; a country gets a margin, and a small one still shows its neighbours
+    // (the view is never narrower than a twelfth of the world), centred on it
+    const [x0, y0, x1, y1] = rv.box, fit = Math.max(x1 - x0, (y1 - y0) * W / H);
+    const w = countrySel.size ? Math.min(W, Math.max(W / 12, fit * 1.3)) : fit * 1.04;
     vb = { x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - w * H / W / 2, w, h: w * H / W };
     clamp(); apply();
   }

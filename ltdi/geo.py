@@ -79,11 +79,16 @@ def basemap() -> dict:
 
     parts = []
     by_country: dict[str, list[list[tuple[float, float]]]] = {}
+    shapes: dict[str, list] = {}  # country -> polygons -> rings (shell first)
     for geom in topo["objects"]["countries"]["geometries"]:
         if geom.get("id") == "010" or geom.get("properties", {}).get("name") == "Antarctica":
             continue
         polys = geom["arcs"] if geom["type"] == "MultiPolygon" else [geom["arcs"]]
+        a2 = _alpha2(geom.get("id"))
         for poly in polys:
+            kept: list = []
+            if a2:
+                shapes.setdefault(a2, []).append(kept)
             for r in poly:
                 lonlat = ring(r)
                 lons = [lon for lon, _ in lonlat]
@@ -94,9 +99,29 @@ def basemap() -> dict:
                 pts = [to_svg(lon, lat) for lon, lat in lonlat]
                 if len(pts) > 2:
                     parts.append("M" + "L".join(f"{x:g},{y:g}" for x, y in pts) + "Z")
-                    if (a2 := _alpha2(geom.get("id"))):
+                    if a2:
                         by_country.setdefault(a2, []).append(pts)
+                        kept.append(pts)
+    global COUNTRY_SHAPES
+    COUNTRY_SHAPES = shapes
     return {"width": WIDTH, "height": HEIGHT, "path": "".join(parts), "countries": _country_views(by_country)}
+
+
+COUNTRY_SHAPES: dict | None = None
+
+
+def country_shapes() -> dict:
+    """{country: shapely geometry in basemap pixels}, for the areas step's labels."""
+    from shapely.geometry import MultiPolygon, Polygon
+    if COUNTRY_SHAPES is None:
+        basemap()
+    out = {}
+    for a2, polys in COUNTRY_SHAPES.items():
+        ps = [Polygon(rings[0], rings[1:]).buffer(0) for rings in polys if rings]
+        parts = [q for p in ps for q in getattr(p, "geoms", [p]) if q.geom_type == "Polygon"]
+        if parts:
+            out[a2] = MultiPolygon(parts).buffer(0)
+    return out
 
 
 def _alpha2(numeric: str | None) -> str | None:
