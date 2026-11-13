@@ -63,10 +63,23 @@ def categories() -> dict[str, int]:
         cont = d["continue"]
 
 
-def files(iso: str, limit: int = 500) -> list[str]:
-    d = api({"action": "query", "list": "categorymembers", "cmtitle": f"Category:{PREFIX}{iso}",
-             "cmtype": "file", "cmlimit": limit, "cmsort": "timestamp", "cmdir": "desc"})
-    return [m["title"] for m in d["query"]["categorymembers"]]
+def files(iso: str, limit: int = 2000) -> list[str]:
+    """The category's latest files, up to limit"""
+    out, cont = [], {}
+    while len(out) < limit:
+        d = api({"action": "query", "list": "categorymembers", "cmtitle": f"Category:{PREFIX}{iso}",
+                 "cmtype": "file", "cmlimit": 500, "cmsort": "timestamp", "cmdir": "desc"} | cont)
+        out += [m["title"] for m in d["query"]["categorymembers"]]
+        if "continue" not in d:
+            break
+        cont = d["continue"]
+    return out[:limit]
+
+
+def plain(word: str) -> bool:
+    """An everyday word rather than a name or a list entry: no capital first letter (in scripts with
+    case), no digits or brackets, not too long"""
+    return not ((word[:1].isupper() and not word.isupper()) or re.search(r"[\d()\[\]]", word) or len(word) > 24)
 
 
 def glosses(iso: str) -> dict[str, str]:
@@ -106,11 +119,12 @@ def mp3s(titles: list[str]) -> dict[str, str]:
 def main(argv=None):
     cats = categories()
     print(f"{len(cats)} Lingua Libre language categories, {sum(cats.values()):,} files", flush=True)
-    rows = []
+    rows, done = [], set()
     for iso, n in sorted(cats.items(), key=lambda kv: -kv[1]):
         code = to_ltdi(iso)
-        if not code or not n:
-            continue
+        if not code or not n or code in done:
+            continue  # several categories for one language (Quechua's): the largest
+        done.add(code)
         parsed = []
         for t in files(iso):
             m = NAME.match(t)
@@ -124,8 +138,9 @@ def main(argv=None):
         by_speaker = defaultdict(list)
         for t, sp, word in parsed:
             by_speaker[sp].append((t, word))
-        voice = max(by_speaker, key=lambda sp: (sum(t in g for t, _ in by_speaker[sp]), len(by_speaker[sp])))
-        pick = sorted(by_speaker[voice], key=lambda tw: (tw[0] not in g, len(tw[1]) > 24,
+        voice = max(by_speaker, key=lambda sp: (sum(t in g for t, _ in by_speaker[sp]),
+                                                sum(plain(w) for _, w in by_speaker[sp]), len(by_speaker[sp])))
+        pick = sorted(by_speaker[voice], key=lambda tw: (tw[0] not in g, not plain(tw[1]),
                                                           hashlib.md5(tw[0].encode()).hexdigest()))[:CLIPS]
         urls = mp3s([t for t, _ in pick])
         for t, word in pick:
