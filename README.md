@@ -181,6 +181,13 @@ projection keeps areas true, so pixel shares are land shares.
 
 ## Charts and regions
 
+"No commercial service" has one definition everywhere it appears (the Ranking page's speaker figures,
+the Gaps column and the Charts bars): no commercial or regional service found for the language, so an
+open model or a benchmark result alone still counts as a gap. Text technologies (those listed under
+`[written_standard]`) count a spoken variety through the standard its speakers write, as opportunities
+do, so a Kölsch speaker isn't counted as lacking a keyboard. The LLM figure counts languages in no
+official assistant app's language list; the models may still answer in them.
+
 Languages are grouped into Africa, South Asia, Rest of Asia, Europe, Americas
 and Oceania, from the UN M49 region of the country with the most speakers
 (South Asia is M49 Southern Asia), with overrides in `config/language_overrides.csv`.

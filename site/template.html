@@ -1097,7 +1097,10 @@ function gapsCell(l) {
 // several are counted in each), the share of languages and of speakers in each tier, and the
 // speakers whose language has no commercial service for each main technology
 const pctBand = r => r >= 0.75 ? 4 : r >= 0.5 ? 3 : r >= 0.25 ? 2 : 1;  // share online, for colour
-const GAP_SHORT = { speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs', keyboard: 'Keyboard', assistant: 'Voice assistant' };
+const GAP_SHORT = { speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLM app lists', keyboard: 'Keyboard', assistant: 'Voice assistant' };
+const GAP_TITLE = { llm: "Speakers whose language is in no official AI assistant app's language list (models may still answer in it)" };
+// technologies counted through a spoken variety's written standard ([written_standard] in the methodology)
+const WRITTEN_TECH = new Set(DATA.config.written_standard ? DATA.config.written_standard.technologies : []);
 const GAP_GROUPS = [['Text', ['keyboard', 'mt']], ['Speech', ['speech_input', 'tts']], ['AI', ['llm', 'assistant']]];
 function rankSummary(ls) {
   const sum = f => ls.reduce((n, l) => n + (f(l) || 0), 0);
@@ -1111,11 +1114,12 @@ function rankSummary(ls) {
       const v = pct(by[t][key], total);
       return v ? `<i style="width:${v}%;background:var(${TIERC[t]})" title="${label[t]}: ${fmtPct(v)} of ${key === 'n' ? 'languages' : 'speakers'}\n${by[t].n.toLocaleString()} ${by[t].n === 1 ? 'language' : 'languages'} with ${people(by[t].sp)} speakers"></i>` : '';
     }).join('')}</div></div>`;
-  // Grouped by kind, two technologies each: no commercial service at all
-  const none = (l, k) => l.gaps[k] === 'none';  // as in the Gaps column
+  // Grouped by kind, two technologies each: no commercial or regional service (an open model or benchmark
+  // alone still counts), the same definition as the Gaps column and the Charts bars' last two segments
+  const noCommercial = (l, k) => !!l.gaps[k];
   const gapItem = k => {
-    const t = CFG.tech.technologies[k], n = sum(l => none(l, k) ? vSpk(l) : 0);
-    return `<span class="rgap" title="Speakers whose language has no commercial ${esc(t.label.toLowerCase())} service">
+    const t = CFG.tech.technologies[k], n = sum(l => noCommercial(l, k) ? vSpk(l) : 0);
+    return `<span class="rgap" title="${esc(GAP_TITLE[k] || `Speakers whose language has no commercial ${t.label.toLowerCase()} service`)}${WRITTEN_TECH.has(k) ? '. Spoken varieties count through the standard language their speakers write' : ''}">
       <span class="gap-i none">${TICON[k]}</span><b>${n ? people(n) : '0'}</b><small>${esc(GAP_SHORT[k] || t.label)}</small></span>`;
   };
   const gaps = GAP_GROUPS.map(([g, ks]) => `<div class="rgcol" aria-label="${g}">${ks.map(gapItem).join('')}</div>`).join('');
@@ -1132,7 +1136,7 @@ function rankSummary(ls) {
       <div class="tbar-key">${tiers.map(t => `${t === DATA.config.tiers.stages[0][0] ? '<span class="tk-sep">below Medium, by what exists:</span>' : ''}<span${TIER_DESC[t] ? ` title="${esc(TIER_DESC[t])}"` : ''}><i style="background:var(${TIERC[t]})"></i>${label[t]}</span>`).join('')}</div>
     </div>
     <div class="rsum-gaps">
-      <div class="eyebrow">Speakers with no commercial service</div>
+      <div class="eyebrow" title="No commercial or regional service found; an open model alone doesn't count. Text technologies count spoken varieties through the standard language their speakers write">Speakers with no commercial service found</div>
       <div class="rgaps">${gaps}</div>
     </div>
 `;
@@ -2116,7 +2120,7 @@ function charts() {
       <button type="button" class="reset" id="cresetf"${!regionSel.size && !countrySel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
-      <p class="sub">${P ? `Each bar splits the ${N.toLocaleString()} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N.toLocaleString() + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are AI assistant apps, and language identification counts open models.'} Hover a segment to see which languages.</p>
+      <p class="sub">${P ? `Each bar splits the ${N.toLocaleString()} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N.toLocaleString() + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are the official language lists of AI assistant apps, and language identification counts open models. Text technologies count spoken varieties through the standard language their speakers write. The last two segments together are the speakers with no commercial service on the Ranking page.'} Hover a segment to see which languages.</p>
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
       ${absent.length ? `<p class="note">No ${esc(pn)} service tracked for: ${esc(absent.join(', '))}.</p>` : ''}

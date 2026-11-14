@@ -381,7 +381,9 @@ def main() -> None:
             o["kit"] = starter_kit(o, facts_l)
             o["why"] = explain(lang, o, opp_facts)
         results.append({**lang, **s, "tier": tier_of(s["ltdi"], facts_l, s["dimensions"], cfg),
-                        **({"via": via} if via else {}), **coverage(facts_l, cfg), "opportunities": opps,
+                        # coverage as speakers meet it: text technologies through the standard they write,
+                        # as for opportunities, so a Kölsch speaker isn't counted as lacking a keyboard
+                        **({"via": via} if via else {}), **coverage(opp_facts, cfg), "opportunities": opps,
                         "evidence": evidence(facts_l, cfg),
                         "written_in": written.get(code), "shares_written": code in shared,
                         "reach_by_country": reach_by_country(lang, countries)})
