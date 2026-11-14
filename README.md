@@ -137,11 +137,11 @@ any name it can't resolve.
 | Tech | Speech input | Google Cloud STT, Azure AI Speech, iOS dictation, Amazon Transcribe; Whisper, MMS and Omnilingual ASR (open); depth: Whisper large-v3 FLEURS WER, Omnilingual ASR's published character error rate per language, Azure speech-to-text features | automated |
 | Tech | Text-to-speech | Google Cloud TTS, Azure AI Speech, Amazon Polly, OpenAI API text-to-speech; MMS-TTS (open); depth: number of Google voice types | automated |
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | automated |
-| Tech | LLMs | Availability: Gemini, Copilot and ChatGPT app language lists (ChatGPT's transcribed by hand from OpenAI's help page, `ltdi/collectors/openai_docs.py`). Quality: Anthropic's Global-MMLU (relative to English, scaled from 70% to 95%), OpenAI's MMMLU (o3's accuracy, scaled from 0.60 to 0.88), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50); at or above the top of each scale a result counts in full, as strong translation results do | automated; Anthropic's scores read by hand |
+| Tech | LLMs | Availability: Gemini, Copilot and ChatGPT app language lists (ChatGPT's transcribed by hand from OpenAI's help page, `ltdi/collectors/openai_docs.py`). Quality: Anthropic's Global-MMLU for Claude Fable 5.2 (relative to English, scaled from 70% to 95%), OpenAI's MMMLU (o3's accuracy, scaled from 0.60 to 0.88), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50); at or above the top of each scale a result counts in full, as strong translation results do | automated; Anthropic's scores read by hand |
 | Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
-| Tech | Voice assistant (half weight) | Google Assistant (speakers and displays), Siri, Alexa | automated |
+| Tech | Voice assistant (half weight) | Google Assistant (speakers and displays), Siri, Alexa (skills languages). These are the outgoing generations: Google's help page also lists Gemini for Home, in early access in 10 of Assistant's 16 languages (13 Nov 2026), and Amazon lists Alexa+ by country, not language (12 countries, 28 Oct 2026), so neither replaces its row yet | automated |
 | Tech | Regional providers | Translation: Yandex, Baidu, Alibaba Cloud (Qwen-MT), Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP Khaya, Sunbird AI. Speech recognition: Yandex SpeechKit, Sarvam, Lelapa, Khaya, Sunbird. Text-to-speech: Yandex SpeechKit, Sarvam, Khaya, Sunbird | read by hand from each provider's language list (`ltdi/collectors/regional.py`) |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
 | Tech | Locale data (half weight) | Unicode CLDR coverage level: basic, moderate or modern | automated |
@@ -350,7 +350,7 @@ the coalition workstream it fits.
   Greek ε for ɛ (Bambara, Mossi, Fon, Fanti, Kabyle), Greek ͻ and Cyrillic Ԑ for ɔ and Ɛ (Twi), Cyrillic
   ӡ for ʒ (Aja), Cyrillic ә for ə (Tatar). About 5,100 languages remain with only their script checked.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
-- LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand (12 languages recorded).
+- LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand (15 languages, for its most capable model).
 - LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's
   infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
   scripts for about 690 more; another 71 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a

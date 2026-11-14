@@ -1,0 +1,11 @@
+checked_on,list,indicator,page,recorded,result,note
+2026-11-13,Gemini app,llm_app_gemini,https://support.google.com/gemini/answer/13575153?hl=en,71,matches,"Page re-read today: no change. Sample of 10 (5 recorded, 5 not) agrees; Persian is 'Farsi' on the page"
+2026-11-13,ChatGPT,llm_app_chatgpt,https://help.openai.com/en/articles/8357869-how-to-change-your-language-setting-in-chatgpt,60,matches,"59 languages on the page, all recorded, plus English; Chinese, Tagalog, Norwegian and Punjabi recorded as Mandarin, Filipino, Bokmål and Punjabi (Gurmukhi)"
+2026-11-13,Copilot app,llm_app_copilot,https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,43,matches,"Page re-read today: no change. Sample of 10 agrees; Mandarin is 'Chinese (Simplified)' on the page"
+2026-11-13,Gboard,kb_gboard,https://support.google.com/gboard/answer/6380730,633,matches,"Page re-read today: no change. Sample of 10 agrees ('Nauruan', 'Southern Ndebele' on the page)"
+2026-11-13,Google Cloud Translation,mt_google,https://docs.cloud.google.com/translate/docs/languages,186,matches,"Page re-read today: no change. Sample of 10 agrees"
+2026-11-13,Azure AI Translator,mt_azure,https://learn.microsoft.com/azure/ai-services/Translator/language-support,126,corrected,"Azure's code 'ku' is Kurdish (Central), Sorani: it had been counted as Kurmanji, so Central Kurdish was missing. Fixed for Azure Translator, and for Microsoft's ku-Arab locales (Windows display language, Azure OCR)"
+2026-11-13,DeepL,mt_deepl,https://support.deepl.com/hc/en-us/articles/360019925219,112,matches,"114 names on DeepL's own list; the 112 living languages match exactly. Latin and Sanskrit are outside the Index's language list"
+2026-11-13,Siri,va_siri,https://www.apple.com/ios/feature-availability/#siri,23,matches,"37 countries listed with their languages; Arabic in the United Arab Emirates counts as Gulf Arabic, as speech locales do"
+2026-11-13,OpenAI text to speech,tts_openai,https://developers.openai.com/api/docs/guides/text-to-speech,57,matches,"57 languages on the page, all recorded"
+2026-11-13,Claude Global-MMLU,llm_global_mmlu_rel,https://platform.claude.com/docs/en/build-with-claude/multilingual-support,15,updated,"The page now gives Claude Fable 5.2, with German, Italian and Korean added: re-read by hand (15 languages, was 12 for Fable 5.1)"

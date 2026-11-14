@@ -272,6 +272,8 @@ def collect() -> list[Record]:
     mt = defaultdict(set)
     for r in table(AZURE_MT, heading="Translation"):
         c = code(r["Language code"])
+        if c == "ku" and "Central" in r.get("Language", ""):
+            c = "ckb"  # Azure's "ku" is Kurdish (Central), Sorani; Kurmanji is "kmr"
         if not c or not r.get("Cloud – Text translation and Document translation", "").startswith(TICK):
             continue
         mt[c]
