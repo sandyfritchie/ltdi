@@ -264,6 +264,15 @@ table.ranktab { table-layout: fixed; }
 .lhead h2 { font: 800 clamp(28px, 4.5vw, 42px)/1.05 var(--font-display); font-stretch: 80%; margin: 0; }
 .big { font: 800 52px/1 var(--font-display); font-stretch: 80%; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
+/* a note about a fact, behind a small "i" */
+details.info { display: inline-block; position: relative; margin-inline-start: 6px; vertical-align: 1px; }
+details.info summary { list-style: none; display: grid; place-items: center; width: 15px; height: 15px; border: 1px solid var(--muted); border-radius: 50%;
+  font: italic 700 10px/1 Georgia, "Times New Roman", serif; color: var(--muted); cursor: pointer; user-select: none; }
+details.info summary::-webkit-details-marker { display: none; }
+details.info summary:hover, details.info[open] summary { border-color: var(--ink); color: var(--ink); }
+.info-pop { position: absolute; top: 22px; left: -8px; z-index: 30; width: min(340px, calc(100vw - 32px)); padding: 10px 12px; background: var(--surface);
+  border: 1px solid var(--rule); border-radius: 6px; box-shadow: 0 6px 20px rgba(0, 0, 0, .12); color: var(--ink); font-size: 13px; line-height: 1.5; font-weight: 400; }
+.info-src { display: block; margin-top: 6px; color: var(--muted); }
 .facts b { color: var(--ink); font-weight: 600; }
 .pnote { margin: 8px 0 0; color: var(--muted); font-size: 14px; max-width: 70ch; }
 .linkish { background: none; border: 0; padding: 0; font: inherit; color: var(--accent); text-decoration: underline; cursor: pointer; }
@@ -796,11 +805,24 @@ function regionFrame() {
 }
 // After a view redraws itself, open its drop-down again so several boxes can be ticked in a row
 document.addEventListener('click', e => {
-  document.querySelectorAll('details.msel[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
+  document.querySelectorAll('details.msel[open], details.info[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.querySelectorAll('details.msel[open]').forEach(d => { d.open = false; d.querySelector('summary')?.focus(); });
+  if (e.key === 'Escape') document.querySelectorAll('details.msel[open], details.info[open]').forEach(d => { d.open = false; d.querySelector('summary')?.focus(); });
 });
+// A small "i" after a fact, opening a note about it (where its figures come from, how it's counted)
+function infoTip(label, html) {
+  return `<details class="info"><summary aria-label="${esc(label)}" title="${esc(label)}">i</summary><div class="info-pop" role="note">${html}</div></details>`;
+}
+// keep an opened note inside the window
+document.addEventListener('toggle', e => {
+  const d = e.target;
+  if (!(d instanceof HTMLElement) || !d.matches('details.info') || !d.open) return;
+  const pop = d.querySelector('.info-pop');
+  pop.style.left = '';
+  const r = pop.getBoundingClientRect(), over = r.right - (document.documentElement.clientWidth - 12);
+  if (over > 0) pop.style.left = `${-8 - over}px`;
+}, true);
 const reopen = wrap => { const d = $(`#${wrap} details`); if (d) d.open = true; };
 const reopenCountries = wrap => { const d = $(`#${wrap} details`); if (!d) return; d.open = true;
   const f = d.querySelector('.msel-find'); if (f) { f.focus(); f.setSelectionRange(f.value.length, f.value.length); } };
@@ -1297,14 +1319,20 @@ function bindHear() {
 }
 // Where its speakers in a country are counted from a census (immigrant languages LinguaMeta doesn't
 // list there): which countries, and the source
-function censusLine(l) {
+function censusInfo(l) {
   const cs = l.census || [];
   if (!cs.length) return '';
-  const names = cs.map(c => c[0]);
-  const shown = names.length > 3 ? `${names.slice(0, 3).join(', ')} and ${names.length - 3} other ${names.length - 3 === 1 ? 'country' : 'countries'}`
-    : names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names[names.length - 1]}` : names[0];
+  const year = c => (c[1].match(/(\d{4}(?:-\d{4})?)$/) || [])[1];
   const src = [...new Map(cs.map(c => [c[2], c[1].startsWith('UN') ? 'UN Statistics Division' : 'US Census Bureau'])).entries()];
-  return `<p class="pnote" title="${esc(cs.map(c => `${c[0]}: ${c[1]}`).join('\n'))}">Speakers in ${esc(shown)} are counted from ${cs.length > 1 ? 'their censuses' : 'its census'} (${src.map(([u, n]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`).join(', ')}).</p>`;
+  return infoTip('Where these countries come from', `Countries and speaker numbers are from LinguaMeta, except in ${cs.length > 1 ? 'these countries' : 'this country'}, where they come from ${cs.length > 1 ? 'national censuses' : 'its census'} (LinguaMeta doesn't list the language there, or gives no count):
+    ${cs.map(c => `${esc(c[0])}${year(c) ? ` (${year(c).replace('-', '–')})` : ''}`).join(', ')}.
+    <span class="info-src">${src.map(([u, n]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`).join(' · ')}</span>`);
+}
+// Spoken varieties counted from a written standard for writing and text
+function writtenInfo(l) {
+  if (!l.written_in || !BY[l.written_in]) return '';
+  const w = BY[l.written_in];
+  return infoTip('How writing is counted', `Writing, written data and text technologies are counted from <a href="#lang-${w.code}">${esc(w.name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(w.name)}. Speech data and technologies are counted separately.`);
 }
 // Countries, by number of speakers: the top three, or all of them with a link back
 function whereLine(l, all) {
@@ -1322,11 +1350,9 @@ async function language(code) {
     <div class="lhead lang">
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span></h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
-        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b></span>
-        <span id="where">${whereLine(l, false)}</span>${endKey(l) !== 'none' ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
+        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${writtenInfo(l)}</span>
+        <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>${endKey(l) !== 'none' ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
-        ${censusLine(l)}
-        ${l.written_in && BY[l.written_in] ? `<p class="pnote">Writing, written data and text technologies are counted from <a href="#lang-${l.written_in}">${esc(BY[l.written_in].name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(BY[l.written_in].name)}. Speech data and technologies are counted separately.</p>` : ''}
         ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
         ${sampleBlock(l)}
         ${hearBlock(l)}
