@@ -993,7 +993,7 @@ async function oppDetail(id) {
 }
 
 // ---------------------------------------------------------------- ranking
-let query = '', rankAll = false, sortBy = 'rank', sortDir = 1, sortChosen = false;  // until a column is chosen: by rank, or by speakers with countries chosen
+let query = '', rankAll = false, sortBy = 'rank', sortDir = 1, sortChosen = false;  // until a column is chosen: by rank, or by speakers with a region or country chosen
 const tierSel = new Set();  // tiers shown in the ranking; empty means all
 let showGaps = false;       // only languages with something in the Gaps column
 const endSel = new Set();   // endangerment levels shown; empty means every living language
@@ -1145,7 +1145,7 @@ function ranking() {
     const q = query.trim().toLowerCase();
     const all = (endSel.size ? ALL.filter(l => endSel.has(endKey(l))) : LANGS).filter(l => inView(l)
       && (!showGaps || GAP_TECH.some(k => l.gaps[k])) && (!q || matches(l, q)));
-    if (!sortChosen) { sortBy = countrySel.size ? 'speakers' : 'rank'; sortDir = SORTS[sortBy][2]; }
+    if (!sortChosen) { sortBy = countrySel.size || regionSel.size ? 'speakers' : 'rank'; sortDir = SORTS[sortBy][2]; }
     const [, val, natural] = SORTS[sortBy], dir = sortDir;
     all.sort((a, b) => { const x = val(a), y = val(b); return (x < y ? -1 : x > y ? 1 : (a.rank ?? 1e9) - (b.rank ?? 1e9)) * dir; });
     $('#rsum').innerHTML = rankSummary(all);
