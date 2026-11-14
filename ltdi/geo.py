@@ -153,18 +153,47 @@ def _alpha2(numeric: str | None) -> str | None:
     return c.alpha_2.lower() if c else None
 
 
+FRAME_MIN_SHARE = 0.01  # of the largest polygon's area: smaller islands don't widen a country's frame
+FRAME_REACH = 0.6       # of the frame's size: how far away a large polygon can be and still join it
+FRAME_REACH_MIN = 8     # pixels (about 300 km): an archipelago of small islands is framed whole
+FRAME_MAIN_ONLY = {"us", "no"}  # framed on the mainland: the contiguous US (not Alaska), Norway (not Svalbard)
+
+
+def _frame(rings: list, a2: str = "") -> list[float]:
+    """The box a country is framed by: its largest polygon, grown to take in the other large ones near it
+    (New Zealand's two main islands, Indonesia's, Great Britain and Northern Ireland), but not distant
+    ones (French Guiana, Alaska) or small islands (the Canaries, the Galápagos)."""
+    def extent(r):
+        xs, ys = [x for x, _ in r], [y for _, y in r]
+        return [min(xs), min(ys), max(xs), max(ys)]
+
+    def area(r):
+        return abs(sum(x0 * y1 - x1 * y0 for (x0, y0), (x1, y1) in zip(r, r[1:] + r[:1]))) / 2
+
+    sizes = [area(r) for r in rings]
+    big = max(range(len(rings)), key=sizes.__getitem__)
+    box, left = extent(rings[big]), [i for i in range(len(rings)) if i != big and sizes[i] >= FRAME_MIN_SHARE * sizes[big]]
+    if a2 in FRAME_MAIN_ONLY:
+        left = []
+    grown = True
+    while grown:
+        grown = False
+        for i in list(left):
+            e, reach = extent(rings[i]), max(FRAME_REACH_MIN, FRAME_REACH * max(box[2] - box[0], box[3] - box[1]))
+            gap = max(box[0] - e[2], e[0] - box[2], box[1] - e[3], e[1] - box[3], 0)
+            if gap <= reach:
+                box = [min(box[0], e[0]), min(box[1], e[1]), max(box[2], e[2]), max(box[3], e[3])]
+                left.remove(i)
+                grown = True
+    return box
+
+
 def _country_views(by_country: dict[str, list[list[tuple[float, float]]]]) -> dict[str, dict]:
-    """Country -> {"box": [x0, y0, x1, y1], "outline": SVG path}: the box frames its largest polygon
-    (the mainland, so France isn't framed with French Guiana), the outline is all of it."""
-    out = {}
-    for a2, rings in by_country.items():
-        def extent(r):
-            xs, ys = [x for x, _ in r], [y for _, y in r]
-            return min(xs), min(ys), max(xs), max(ys)
-        main = max(rings, key=lambda r: (lambda e: (e[2] - e[0]) * (e[3] - e[1]))(extent(r)))
-        out[a2] = {"box": [round(v, 1) for v in extent(main)],
-                   "outline": "".join("M" + "L".join(f"{x:g},{y:g}" for x, y in r) + "Z" for r in rings)}
-    return out
+    """Country -> {"box": [x0, y0, x1, y1], "outline": SVG path}: the box frames the country's main land
+    (_frame), the outline is all of it."""
+    return {a2: {"box": [round(v, 1) for v in _frame(rings, a2)],
+                 "outline": "".join("M" + "L".join(f"{x:g},{y:g}" for x, y in r) + "Z" for r in rings)}
+            for a2, rings in by_country.items()}
 
 
 def linguameta_dir():
