@@ -193,7 +193,7 @@ table.ranktab { table-layout: fixed; }
 @media (max-width: 1040px) { .hide-tab { display: none; } }  /* the score already gives the tier */
 @media (max-width: 860px) { .hide-nar { display: none; } }  /* Online, with its share, says more than Speakers */
 @media (max-width: 780px) { .ranktab .c-name { width: 9.5em; } .ranktab .c-spk { width: 5.8em; } .ranktab .c-onl { width: 8.4em; } .ranktab .c-rank { width: 3.5em; } }
-.rank { font: 700 18px var(--font-display); font-stretch: 80%; color: var(--muted); width: 2.5em; }
+.rank { font: 700 18px var(--font-display); font-stretch: 80%; color: var(--muted); width: 3em; white-space: nowrap; }
 .lname { font-weight: 600; }
 .auto { color: var(--muted); font-size: 14px; }
 .code { font: 12px var(--font-mono); color: var(--muted); }
@@ -714,6 +714,8 @@ const inCountry = l => !countrySel.size || [...countrySel].some(c => l._cc.has(c
 // region, country and tier together (the tier set is shared by every page)
 const inView = l => inRegion(l) && inCountry(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]));
 const COUNTRY_NAMES = DATA.country_names || {};
+// A rank, with "=" where languages share a score (and so a rank): "=1,914"
+const rankLabel = l => l.rank ? `${l.tied ? '=' : ''}${l.rank.toLocaleString()}` : '–';
 // Countries with census figures on language (immigrant languages counted); for the others a filtered
 // view says their immigrant communities' languages are missing
 const CENSUS = new Set(DATA.census_countries || []);
@@ -1107,7 +1109,7 @@ function ranking() {
     </table></div>
     <div id="rankmore"></div>
     <div id="censusnote"></div>
-    <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech input, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Select a language to see every value and its source.</p>`;
+    <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech input, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Languages with the same score share a rank, shown as =1,914. Select a language to see every value and its source.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const all = (endSel.size ? ALL.filter(l => endSel.has(endKey(l))) : LANGS).filter(l => inView(l)
@@ -1124,7 +1126,7 @@ function ranking() {
     const btn = $('#rankall'); if (btn) btn.onclick = () => { rankAll = true; draw(); };
     $('#rows').innerHTML = rows.map(l => `
       <tr tabindex="0" data-code="${l.code}">
-        <td class="rank">${l.rank ?? '–'}</td>
+        <td class="rank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} other ${l.tied === 1 ? 'language' : 'languages'}"` : ''}>${rankLabel(l)}</td>
         <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">[${l.code}]</span></div></td>
         <td class="num hide-sm hide-nar">${people(vSpk(l))}</td>
         <td class="num hide-sm">${people(vOn(l))}${vOn(l) && vSpk(l) ? ` <span class="pct p${pctBand(vOn(l) / vSpk(l))}">(${Math.round(vOn(l) / vSpk(l) * 100)}%)</span>` : ''}</td>
@@ -1370,7 +1372,7 @@ async function language(code) {
         ${sampleBlock(l)}
         ${hearBlock(l)}
       </div>
-      <div class="lscore"><div class="eyebrow">${l.rank ? `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}` : 'Extinct · not ranked'}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}${miniMap(l)}</div>
+      <div class="lscore"><div class="eyebrow">${!l.rank ? 'Extinct · not ranked' : l.tied ? `Joint rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()} · tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other' : 'others'}` : `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}${miniMap(l)}</div>
     </div>
     <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}</div>
     <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
@@ -1549,7 +1551,7 @@ function mapSection() {
   const P = provider !== 'All', pn = P ? PROV_ALL[provider] : '';
   const val = l => P ? provCoverage(l, provider).share : l.ltdi;
   const tierKey = l => P ? covTier(val(l)) : tierOf(l.ltdi)[0];
-  const tip = l => { if (!P) return `LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${l.rank}`;
+  const tip = l => { if (!P) return `LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${rankLabel(l)}`;
     const c = provCoverage(l, provider); return `${esc(pn)}: ${c.n} of ${c.of} ${provWhat(provider)}`; };
   const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || val(a) - val(b)).map(l => {
     const c = tierKey(l), p = pt[l.code];
@@ -1593,7 +1595,7 @@ function mapSection() {
   if (C && !BORDERS) loadBorders();
   const land = C && BORDERS ? BORDERS.all : path;  // detailed coasts when zoomed to countries
   const focusBox = F ? `<div class="mapfocus" role="status"><span><b>${esc(F.name)}</b> · ${F.extinct ? 'extinct, so not on the map'
-      : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F.ltdi)[1]} · rank ${F.rank}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
+      : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F.ltdi)[1]} · rank ${rankLabel(F)}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
       <a href="#lang-${F.code}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
   return `<section class="chart">
     <div class="maphead"><h3>The world's languages</h3>${toggle}</div>
@@ -1954,7 +1956,7 @@ function charts() {
         else if (x - prevX < 13) { dy = 6 * flip; flip = -flip; } else flip = 1;
         prevX = x; return { l, x, y: cy + dy }; });
       return `<text x="0" y="${cy + 4}" fill="var(--ink)" font-size="13" font-weight="600">${esc(r)}</text>
-        ${dots.map(d => `<a href="#lang-${d.l.code}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="${crowd ? 3 : 6.5}" fill="var(--accent)" fill-opacity="${crowd ? 0.45 : 0.85}" stroke="var(--surface)" stroke-width="${crowd ? 0 : 2}" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>${P ? `${esc(pn)}: ${provCoverage(d.l, provider).n} of ${provCoverage(d.l, provider).of} ${provWhat(provider)}` : `LTDI ${d.l.ltdi.toFixed(3)} · rank ${d.l.rank}`}"/></a>`).join('')}
+        ${dots.map(d => `<a href="#lang-${d.l.code}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="${crowd ? 3 : 6.5}" fill="var(--accent)" fill-opacity="${crowd ? 0.45 : 0.85}" stroke="var(--surface)" stroke-width="${crowd ? 0 : 2}" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>${P ? `${esc(pn)}: ${provCoverage(d.l, provider).n} of ${provCoverage(d.l, provider).of} ${provWhat(provider)}` : `LTDI ${d.l.ltdi.toFixed(3)} · rank ${rankLabel(d.l)}`}"/></a>`).join('')}
         <text x="${sx(sval(lo))}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(lo.name)}</text>
         ${ls.length > 1 ? `<text x="${Math.min(sx(sval(hi)), SW - 4)}" y="${cy - 14}" text-anchor="${sx(sval(hi)) > SW - 40 ? 'end' : 'middle'}" fill="var(--muted)" font-size="11">${esc(hi.name)}</text>` : ''}`;
     }).join('')}

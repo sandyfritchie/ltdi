@@ -368,8 +368,13 @@ def find(f: dict[str, Record]) -> list[dict]:
     # Writing system
     cldr = _v(f, "cldr_coverage")
     if cldr is not None and cldr < 3:
-        level = ["missing", "basic", "moderate"][int(cldr)]
-        add("cldr", "standardise", "writing", f"Locale data in Unicode CLDR is {level}",
+        if cldr:
+            title = f"Locale data in Unicode CLDR is {['', 'basic', 'moderate'][int(cldr)]}"
+        elif "below basic" in (f["cldr_coverage"].note or ""):
+            title = "Unicode CLDR's locale is below basic coverage"  # in CLDR: complete it
+        else:
+            title = "No locale in Unicode CLDR"  # add one
+        add("cldr", "standardise", "writing", title,
             "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, "
             "keyboards and reading numbers aloud in text-to-speech.",
             (3 - cldr) / 3, ["cldr_coverage"])

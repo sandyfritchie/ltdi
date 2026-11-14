@@ -133,3 +133,16 @@ class TestRegional:
 
     def test_several_regional_count_once(self):
         assert tier(self.facts(a=0, b=0, r1=1, r2=1), self.TECH) == round(0.25 + 0.75 * 1 / 3, 3)
+
+
+class RankTests(unittest.TestCase):
+    def test_ties_share_a_rank(self):
+        from ltdi.score import assign_ranks
+        rs = [{"code": c, "name": n, "ltdi": v} for c, n, v in
+              [("a", "Zed", 0.5), ("b", "Bee", 0.9), ("c", "Ace", 0.5), ("d", "Dee", 0.1), ("x", "Old", 0.5)]]
+        rs[-1]["extinct"] = True
+        assign_ranks(rs)
+        got = {r["code"]: (r["rank"], r["tied"]) for r in rs}
+        self.assertEqual(got, {"b": (1, 0), "c": (2, 1), "a": (2, 1), "d": (4, 0), "x": (None, 0)})
+        # within a tie, by name
+        self.assertEqual([r["code"] for r in rs if r["rank"] == 2], ["c", "a"])

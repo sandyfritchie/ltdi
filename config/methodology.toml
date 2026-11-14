@@ -1,5 +1,5 @@
-# LTDI methodology config, slice edition.
-# Every number here is a draft for discussion; see the project plan doc.
+# LTDI methodology config.
+# The weights, goalposts and thresholds here are working choices, open to discussion; README.md explains them.
 
 [meta]
 edition = "2026-11"
@@ -27,8 +27,9 @@ max = 3
 weight = 0.5
 
 # ------------------------------------------------------------------- data ---
-# Missing indicators (e.g. Wikipedia before its collector has run) are left
-# out and the remaining weights rescaled; the language is flagged.
+# Collectors record a value (zero where they find nothing) for every language, so an
+# indicator is missing only before its collector has first run. A missing indicator
+# is then left out, the remaining weights rescaled, and the language flagged.
 [dimensions.data]
 label = "Data availability"
 
@@ -119,8 +120,9 @@ weight = 0.1
 # Depth indicators named after a service (tts_google_voice_types belongs to
 # tts_google) weight that service's share: it earns half for offering the
 # language and half for the depth it offers, so adding a service never lowers
-# a score. Depth that describes the technology as a whole is averaged with the
-# presence score.
+# a score. (score.py can also average a depth indicator describing a technology as a
+# whole with the presence score, but none is configured: every depth indicator
+# belongs to a service.)
 # Quality: where a service's quality for the language has been published
 # (services.csv: quality, with a poor and a good mark), it counts in full at or
 # above the good mark, down to half at or below the poor mark. Unmeasured

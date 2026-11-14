@@ -42,17 +42,16 @@ def _table() -> dict[str, str | None]:
     for m, r in macros.items():
         if m not in in_scope and r["label_to"]:
             table.setdefault(m, r["label_to"])
-    try:  # other macrolanguages represented by members: credit the most-spoken member in scope
-        pop = {c: d.get("total_population") or 0 for c, d in recs.items()}
-        for c, d in recs.items():
-            if d.get("language_scope", {}).get("scope") == "MACROLANGUAGE" and c not in in_scope and c not in table:
-                members = [m for m in d.get("individual_language_bcp_47_codes", []) if m in in_scope]
-                if members and c not in macros:
-                    table[c] = max(members, key=lambda m: pop.get(m, 0))
-                if d.get("iso_639_3_code") and c in table:
-                    table.setdefault(d["iso_639_3_code"], table[c])
-    except Exception:
-        pass
+    # other macrolanguages represented by members: credit the most-spoken member in scope. Missing fields
+    # are allowed for; anything else malformed raises, since it would change how labels such as zh resolve.
+    pop = {c: d.get("total_population") or 0 for c, d in recs.items()}
+    for c, d in recs.items():
+        if (d.get("language_scope") or {}).get("scope") == "MACROLANGUAGE" and c not in in_scope and c not in table:
+            members = [m for m in d.get("individual_language_bcp_47_codes") or [] if m in in_scope]
+            if members and c not in macros:
+                table[c] = max(members, key=lambda m: pop.get(m, 0))
+            if d.get("iso_639_3_code") and c in table:
+                table.setdefault(d["iso_639_3_code"], table[c])
     with (CONFIG / "crosswalk.csv").open(encoding="utf-8") as f:
         for row in csv.DictReader(f):
             table[row["label"].lower()] = None if row["ltdi"] == "-" else row["ltdi"]

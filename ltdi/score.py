@@ -245,6 +245,25 @@ def inherit_written(by_lang: dict[str, dict[str, Record]], names: dict[str, str]
                             own.pop(narrow, None)
 
 
+def assign_ranks(results: list[dict]) -> None:
+    """Competition ranks over living languages: equal scores share a rank (1, 2, 2, 4), and "tied" is how
+    many others share it. Within a tie the order is by name, since the scores can't tell them apart.
+    Extinct languages are outside the ranking (rank None). Sorts results in place."""
+    results.sort(key=lambda r: (-round(r["ltdi"], 9), r["name"].lower(), r["code"]))
+    ranked = [r for r in results if not r.get("extinct")]
+    groups: dict[float, list[dict]] = defaultdict(list)
+    for r in ranked:
+        groups[round(r["ltdi"], 9)].append(r)
+    position = 1
+    for key in sorted(groups, reverse=True):
+        for r in groups[key]:
+            r["rank"], r["tied"] = position, len(groups[key]) - 1
+        position += len(groups[key])
+    for r in results:
+        r.setdefault("rank", None)  # extinct: outside the ranking
+        r.setdefault("tied", 0)
+
+
 def main() -> None:
     cfg = load_config()
     langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
@@ -274,11 +293,9 @@ def main() -> None:
         results.append({**lang, **s, **coverage(facts_l, cfg), "opportunities": opps,
                         "written_in": written.get(lang["code"]),
                         "reach_by_country": reach_by_country(lang, countries)})
-    results.sort(key=lambda r: -r["ltdi"])
-    for i, r in enumerate((r for r in results if not r.get("extinct")), 1):
-        r["rank"] = i
-    for r in results:
-        r.setdefault("rank", None)  # extinct: outside the ranking
+    assign_ranks(results)
+    ties = max((r["tied"] + 1 for r in results if r["rank"]), default=0)
+    print(f"largest tie: {ties} languages share one score")
 
     facts = {
         code: {i: {k: getattr(r, k) for k in ("value", "unit", "source", "url", "retrieved", "method", "note")}

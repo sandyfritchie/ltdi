@@ -72,9 +72,9 @@ plus 0.75 times the share of the commercial services checked that offer it
 Counting by share keeps scores comparable as more services are added. A service
 with depth indicators (features, voice types, partial translation) earns half its
 share for offering the language and half for the depth it offers, so adding a
-service never lowers a score. Depth that describes the technology as a whole
-(a published error rate) is averaged with presence. LLMs average availability in AI assistant apps with
-measured benchmark quality. Language identification counts open models, at half weight.
+service never lowers a score. Published error rates and benchmark scores work as quality factors
+on the service they measure (below). LLMs average availability in the Gemini, Copilot and ChatGPT
+apps with measured benchmark quality. Language identification counts open models, at half weight.
 
 Regional providers (Yandex, Baidu, Alibaba Cloud's Qwen-MT, Naver Papago, Sarvam AI, Lelapa AI,
 GhanaNLP's Khaya, Sunbird AI) count together as one extra commercial service, and only for the
@@ -97,12 +97,12 @@ any name it can't resolve.
 | Data | Wikipedia articles and active editors | Meta-Wiki's List of Wikipedias (refreshed from each edition's statistics); articles count up to 1,000 per active editor (at least 10,000), since editions far beyond that are mostly bot-generated | automated |
 | Data | Open transcribed speech (hours) | Summed across Common Voice 27.0, FLEURS, YODAS2, WAXAL (automated) and Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech (`config/speech_datasets.csv`, from each paper or card) | automated and curated |
 | Data | Datasets on the Hugging Face Hub | Hub API: the whole dataset listing, read once, by language tag; a dataset tagged with more than 20 languages counts 20 ÷ its languages for each | automated |
-| Data | Public benchmarks covering the language (of 9) | FLORES-200, Belebele, FLEURS, Global-MMLU, MMMLU, INCLUDE, XNLI, MGSM, IrokoBench | automated |
+| Data | Public benchmarks covering the language (nine tracked; six or more is full marks) | FLORES-200, Belebele, FLEURS, Global-MMLU, MMMLU, INCLUDE, XNLI, MGSM, IrokoBench | automated |
 | Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | automated |
-| Tech | Speech input | Google Cloud STT, Azure Speech, Apple dictation, Amazon Transcribe; Whisper, MMS and Omnilingual ASR (open); depth: Whisper large-v3 FLEURS WER, Omnilingual ASR's published character error rate per language, Azure speech-to-text features | automated |
-| Tech | Text-to-speech | Google Cloud TTS, Azure Speech, Amazon Polly; MMS-TTS (open); depth: number of Google voice types | automated |
+| Tech | Speech input | Google Cloud STT, Azure AI Speech, iOS dictation, Amazon Transcribe; Whisper, MMS and Omnilingual ASR (open); depth: Whisper large-v3 FLEURS WER, Omnilingual ASR's published character error rate per language, Azure speech-to-text features | automated |
+| Tech | Text-to-speech | Google Cloud TTS, Azure AI Speech, Amazon Polly, OpenAI API text-to-speech; MMS-TTS (open); depth: number of Google voice types | automated |
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | automated |
-| Tech | LLMs | Availability: Gemini and Copilot app language lists. Quality: Anthropic's Global-MMLU (relative to English), OpenAI's MMMLU (absolute accuracy), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50) | automated; Anthropic's scores read by hand |
+| Tech | LLMs | Availability: Gemini, Copilot and ChatGPT app language lists (ChatGPT's transcribed by hand from OpenAI's help page, `ltdi/collectors/openai_docs.py`). Quality: Anthropic's Global-MMLU (relative to English), OpenAI's MMMLU (absolute accuracy), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50) | automated; Anthropic's scores read by hand |
 | Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
@@ -264,7 +264,7 @@ the coalition workstream it fits.
 ## Known limitations
 
 - Keyboard and text-to-speech depth still come from one vendor each (Apple, Google); speech, translation and LLMs have two.
-- AI assistant app lists cover Gemini and Copilot; ChatGPT's and Meta AI's official lists couldn't be read from here.
+- AI assistant app lists cover Gemini, Copilot and ChatGPT (ChatGPT's transcribed by hand); Meta AI's official list couldn't be read from here.
 - Spelling and grammar has one commercial source, so it alone gives full presence. Google's assistant list covers
   speakers and displays; Gemini Live on phones has no full public language list yet. Siri's list is by country,
   so Portuguese, Russian and Japanese are inferred from Brazil, Russia and Japan.
