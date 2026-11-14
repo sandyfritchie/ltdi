@@ -149,7 +149,7 @@ input[type=search], input.pick { width: 17em; max-width: 100%; }
 .rsum-totals { display: grid; grid-template-columns: 4.6em 5.6em 5.6em; column-gap: 20px; justify-content: start; }  /* fixed, so typing a search doesn't shift them */
 .rsum-totals > div { white-space: nowrap; }
 .rsum-totals b { font: 700 24px/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
-.tbar-row { display: grid; grid-template-columns: 5.6em 1fr 4.4em; align-items: center; gap: 8px; font-size: 13px; margin: 3px 0; }
+.tbar-row { display: grid; grid-template-columns: 5.6em 1fr; align-items: center; gap: 8px; font-size: 13px; margin: 3px 0; }
 .tbar-k { color: var(--muted); } .tbar-v { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
 .tbar { display: flex; height: 12px; border-radius: 3px; overflow: hidden; background: var(--rule); }
 .tbar i { display: block; height: 100%; }
@@ -286,6 +286,8 @@ table.ranktab { table-layout: fixed; }
 .minimap .mring { fill: none; stroke: var(--ink); stroke-width: 2px; vector-effect: non-scaling-stroke; }
 .lhead h2 { font: 800 clamp(28px, 4.5vw, 42px)/1.05 var(--font-display); font-stretch: 80%; margin: 0; }
 .big { font: 800 52px/1 var(--font-display); font-stretch: 80%; }
+.facts a.uni { font-size: 12px; color: var(--muted); text-decoration: none; border-bottom: 1px dotted var(--muted); margin-inline-start: 2px; }
+.facts a.uni.no { color: var(--ink); }
 .snote { margin-top: 6px; font-size: 13px; color: var(--muted); }
 .snote b { color: var(--ink); font-weight: 700; }
 .tier.sm { font-size: 10px; padding: 2px 5px; vertical-align: 1px; }
@@ -351,6 +353,9 @@ a.tile:hover { border-color: var(--muted); }
 .tile.off b { color: var(--muted); }
 .ind { display: grid; gap: 4px; padding-block: 9px; border-top: 1px solid var(--rule); }
 .ind:first-of-type { border-top: 0; }
+.inds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
+.inds .ind:nth-child(2) { border-top: 0; }
+@media (max-width: 860px) { .inds { grid-template-columns: 1fr; } .inds .ind:nth-child(2) { border-top: 1px solid var(--rule); } }
 .ind-top { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
 .ind-top b { font-weight: 600; }
 .ind-val { font-variant-numeric: tabular-nums; white-space: nowrap; }
@@ -670,7 +675,7 @@ document.getElementById('edition').textContent = `Edition ${DATA.edition} · ${L
 
 // A language's tier [key, label]; or of a tier key ("through German": the standard's tier)
 const tierOf = l => { const k = typeof l === 'string' ? l : l.tier; return [k, TIER_LABEL[k] || k]; };
-const tierChip = l => { const [c, t] = tierOf(l); return `<span class="tier ${c}">${esc(t)}</span>`; };
+const tierChip = l => { const [c, t] = tierOf(l); return `<span class="tier ${c}"${TIER_DESC[c] ? ` title="${esc(TIER_DESC[c])}"` : ''}>${esc(t)}</span>`; };
 function people(n) {
   if (!n) return '—';
   if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B';
@@ -997,6 +1002,9 @@ const endPicker = () => msel('endsel', endSel, END_LEVELS.map(([k, t]) => [k, t,
 // Tiers ([tiers] in the methodology): score cut-offs for the top three, then stages by what's recorded
 const TIER_KEYS = [...DATA.config.tiers.cutoffs.map(([k, t]) => [k, t]), ...DATA.config.tiers.stages];
 const TIER_LABEL = Object.fromEntries(TIER_KEYS);
+// what each tier means, on hover: the score range for the top three, what's recorded for the stages
+const TIER_DESC = Object.fromEntries([...DATA.config.tiers.cutoffs.map(([k, , c], i, a) => [k, `LTDI ${c.toFixed(2)}${i ? `–${a[i - 1][2].toFixed(2)}` : ' and above'}`]),
+  ...DATA.config.tiers.stages.map(([k, , d]) => [k, `Below ${DATA.config.tiers.cutoffs.at(-1)[1]}: ${d.charAt(0).toLowerCase() + d.slice(1)}`])]);
 // A drop-down of tick boxes, so several values can be chosen at once (Medium and Low, say)
 function msel(id, sel, opts, none, all, prefix, clear) {
   const label = !sel.size ? none : sel.size === opts.length && all ? all
@@ -1058,7 +1066,7 @@ const GAP_GROUPS = [['Text', ['keyboard', 'mt']], ['Speech', ['speech_input', 't
 function rankSummary(ls) {
   const sum = f => ls.reduce((n, l) => n + (f(l) || 0), 0);
   const sp = sum(vSpk), on = sum(vOn);
-  const tiers = TIER_KEYS.map(([k]) => k), label = TIER_LABEL, low = DATA.config.tiers.stages.map(([k]) => k);
+  const tiers = TIER_KEYS.map(([k]) => k), label = TIER_LABEL;
   const by = Object.fromEntries(tiers.map(t => [t, { n: 0, sp: 0 }]));
   for (const l of ls) { const t = tierOf(l)[0]; by[t].n++; by[t].sp += vSpk(l) || 0; }
   const pct = (x, of) => of ? x / of * 100 : 0;
@@ -1066,7 +1074,7 @@ function rankSummary(ls) {
   const row = (name, key, total) => `<div class="tbar-row"><span class="tbar-k">${name}</span><div class="tbar">${tiers.map(t => {
       const v = pct(by[t][key], total);
       return v ? `<i style="width:${v}%;background:var(${TIERC[t]})" title="${label[t]}: ${fmtPct(v)} of ${key === 'n' ? 'languages' : 'speakers'}\n${by[t].n.toLocaleString()} ${by[t].n === 1 ? 'language' : 'languages'} with ${people(by[t].sp)} speakers"></i>` : '';
-    }).join('')}</div><span class="tbar-v" title="Below Medium: the four stages by what's recorded">${fmtPct(pct(low.reduce((n, t) => n + by[t][key], 0), total))} below Medium</span></div>`;
+    }).join('')}</div></div>`;
   // Grouped by kind, two technologies each: no commercial service at all
   const none = (l, k) => l.gaps[k] === 'none';  // as in the Gaps column
   const gapItem = k => {
@@ -1085,7 +1093,7 @@ function rankSummary(ls) {
     <div class="rsum-tiers">
       <div class="eyebrow">Share by tier</div>
       ${row('Languages', 'n', ls.length)}${row('Speakers', 'sp', sp)}
-      <div class="tbar-key">${tiers.map(t => `<span><i style="background:var(${TIERC[t]})"></i>${label[t]}</span>`).join('')}</div>
+      <div class="tbar-key">${tiers.map(t => `<span${TIER_DESC[t] ? ` title="${esc(TIER_DESC[t])}"` : ''}><i style="background:var(${TIERC[t]})"></i>${label[t]}</span>`).join('')}</div>
     </div>
     <div class="rsum-gaps">
       <div class="eyebrow">Speakers with no commercial service</div>
@@ -1309,6 +1317,7 @@ function dimPanel(l, key, color) {
     if (more.length) body += `<details class="more-tech"${moreOpen ? ' open' : ''}>
       <summary><span class="mt-title">More technologies</span><span class="mt-peek">${peek.join('')}</span></summary>${more.join('')}</details>`;
   } else {
+    body += '<div class="inds">';
     for (const [ik, spec] of Object.entries(cfg.indicators)) {
       const f = facts[ik], n = d.indicators[ik];
       const hover = f ? [f.source, 'Retrieved ' + f.retrieved, f.note].filter(Boolean).join('\n') : '';
@@ -1321,8 +1330,9 @@ function dimPanel(l, key, color) {
       body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
     }
+    body += '</div>';
   }
-  return `<section class="dim${key === 'tech' ? ' wide' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</section>`;
+  return `<section class="dim wide${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</section>`;
 }
 
 function reachLine(l) {
@@ -1385,6 +1395,12 @@ function censusInfo(l) {
     ${cs.map(c => `${esc(c[0])}${year(c) ? ` (${year(c).replace('-', '–')})` : ''}`).join(', ')}.
     <span class="info-src">${src.map(([u, n]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`).join(' · ')}</span>`);
 }
+// Whether the main script is encoded in Unicode: reported, not scored
+function unicodeNote(l) {
+  const f = (DATA.facts[l.code] || {}).script_encoded;
+  if (!f || !l.script_names.length) return '';
+  return ` <a class="uni${f.value ? '' : ' no'}" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc([f.source, f.note].filter(Boolean).join('\n'))}">${f.value ? 'in Unicode' : 'not yet in Unicode'}</a>`;
+}
 // Spoken varieties counted from a written standard for writing and text
 function writtenInfo(l) {
   if (!l.written_in || !BY[l.written_in]) return '';
@@ -1420,7 +1436,7 @@ async function language(code) {
     <div class="lhead lang">
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span>${l.note ? infoTip('About this language', esc(l.note)) : ''}</h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
-        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${writtenInfo(l)}</span>
+        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${unicodeNote(l)}${writtenInfo(l)}</span>
         <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>${!['none', 'not_endangered'].includes(endKey(l)) ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
         ${sampleBlock(l)}
@@ -1441,7 +1457,7 @@ async function language(code) {
   if (mt) mt.ontoggle = () => { moreOpen = mt.open; };
   $('#view').querySelectorAll('[data-pv]').forEach(b => b.onclick = () => {
     provFocus = provFocus === b.dataset.pv ? null : b.dataset.pv;
-    const sec = $('section.dim.wide');
+    const sec = $('section.dim.techdim');
     sec.className = sec.className.replace(/ focus-\w+/g, '') + (provFocus ? ' focus-' + provFocus : '');
     $('#view').querySelectorAll('[data-pv]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.pv === provFocus)));
   });
@@ -1623,7 +1639,7 @@ function mapSection() {
       <button class="chip" data-mode="dots" aria-pressed="${!areasOn}">Languages</button></div>` : '';
   let layer = dots, legend, sub;
   const colour = P ? `the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? ' (a benchmark counts where it publishes a result)' : ''}`
-    : `LTDI tier (very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75; below that, by what's recorded: some commercial support, open tools only, data only, or nothing)`;
+    : `LTDI tier (very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75; below that, by what's recorded: low, some commercial support; very low, open tools only; data only; or none recorded)`;
   if (areasOn) {
     // a region is a place here: its frame, with every area in it at full strength (English and Spanish
     // in the Americas, though their region group is Europe)
@@ -2109,7 +2125,7 @@ function about() {
     <h3>How a language is scored</h3>
     <p>Each dimension averages a few indicators, each scaled from 0 to 1 between a floor and a goal (most on a logarithmic scale, so the first thousand sentences count for more than the millionth). The two are combined with a geometric mean, LTDI = √(data × technology), as in the UN's Human Development Index, so a gap in either pulls the score down: a language with excellent data but no keyboard can't score highly. A technology scores by the share of the services checked that offer the language, weighted by how fully each does (features, voice types, published error rates), with open models counting for less than commercial services. Locale data (CLDR's dates, numbers and names, which software needs before it can support a language) counts as a technology; voice assistants count half as much as other technologies, since few languages have one. Whether a language's script is encoded in Unicode is reported but not scored, as nearly every recorded script is.</p>
     <p>Each dimension has a floor of ${DATA.config.meta.floor}, so a language with nothing recorded in one still has a score, but ranks use the unfloored values: any language with something recorded ranks above every language with nothing, and a language's page shows its score before the floor where the floor lifts it.</p>
-    <p>The top three tiers are set by score: ${DATA.config.tiers.cutoffs.map(([, t, c]) => `${t} from ${c}`).join(', ')}. Below Medium, where scores are close together and small differences mean little, a language's tier says what's recorded for it: some support from a commercial or regional service; open tools only; data only; or nothing recorded.</p>
+    <p>The top three tiers are set by score: ${DATA.config.tiers.cutoffs.map(([, t, c]) => `${t} from ${c}`).join(', ')}. Below Medium, where scores are close together and small differences mean little, a language's tier says what's recorded for it: ${DATA.config.tiers.stages.map(([, t, d]) => `<b>${esc(t)}</b>, ${esc(d.charAt(0).toLowerCase() + d.slice(1))}`).join('; ')}.</p>
     <p>A spoken variety whose speakers typically write a standard language (Swiss German, Kölsch and Egyptian Arabic, say) is scored and ranked on what exists for it alone. Its page also gives a second score counting the standard's written data and text technologies, which most of its speakers can use, and marks those values “through” the standard.</p>
     <h3>Why something is missing for a language</h3>
     <p>Most sources cover only a small share of the world's languages, so most values on most pages are missing. A missing value nearly always means a source doesn't list or measure the language, not that the language has nothing: a language may have speech data in an archive no source here counts, or a keyboard that isn't in any app store. These are the ${N.toLocaleString()} ranked languages each source covers.</p>

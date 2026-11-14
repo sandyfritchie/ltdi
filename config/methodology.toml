@@ -209,7 +209,11 @@ weight = 0.5
 # nothing recorded.
 [tiers]
 cutoffs = [["vh", "Very high", 0.9], ["h", "High", 0.75], ["m", "Medium", 0.6]]
-stages = [["lc", "Some commercial support"], ["lo", "Open tools only"], ["ld", "Data only"], ["ln", "Nothing recorded"]]
+# Each stage: key, label, what it means (shown on hover and on the About page)
+stages = [["lc", "Low", "Some support from a commercial or regional service"],
+          ["lo", "Very low", "Open tools only, no commercial service"],
+          ["ld", "Data only", "Data, but no technology recorded"],
+          ["ln", "None recorded", "No data or technology recorded in the sources tracked"]]
 
 # ------------------------------------------------------- written standard ---
 # Spoken varieties whose speakers read and write a standard language

@@ -101,8 +101,8 @@ where the floor lifts it.
 
 Tiers are in `[tiers]` in `config/methodology.toml`. The top three are set by score (Very high from
 0.9, High from 0.75, Medium from 0.6). Below Medium, where scores are close and small differences
-mean little, the tier is a stage, by what's recorded for the language: some support from a commercial
-or regional service; open tools only; data only; or nothing recorded.
+mean little, the tier is a stage, by what's recorded for the language: Low (some support from a
+commercial or regional service), Very low (open tools only), Data only, and None recorded.
 
 Regional providers (Yandex, Baidu, Alibaba Cloud's Qwen-MT, Naver Papago, Sarvam AI, Lelapa AI,
 GhanaNLP's Khaya, Sunbird AI) count together as one extra commercial service, and only for the
