@@ -1,92 +1,92 @@
-code,standard,note
-aao,ar,Modern Standard Arabic is the written standard
-abv,ar,Modern Standard Arabic is the written standard
-acm,ar,Modern Standard Arabic is the written standard
-acq,ar,Modern Standard Arabic is the written standard
-acw,ar,Modern Standard Arabic is the written standard
-acx,ar,Modern Standard Arabic is the written standard
-adf,ar,Modern Standard Arabic is the written standard
-aeb,ar,Modern Standard Arabic is the written standard
-aec,ar,Modern Standard Arabic is the written standard
-afb,ar,Modern Standard Arabic is the written standard
-apc,ar,Modern Standard Arabic is the written standard
-apd,ar,Modern Standard Arabic is the written standard
-arq,ar,Modern Standard Arabic is the written standard
-ars,ar,Modern Standard Arabic is the written standard
-ary,ar,Modern Standard Arabic is the written standard
-arz,ar,Modern Standard Arabic is the written standard
-avl,ar,Modern Standard Arabic is the written standard
-ayh,ar,Modern Standard Arabic is the written standard
-ayl,ar,Modern Standard Arabic is the written standard
-ayn,ar,Modern Standard Arabic is the written standard
-ayp,ar,Modern Standard Arabic is the written standard
-shu,ar,Modern Standard Arabic is the written standard
-ssh,ar,Modern Standard Arabic is the written standard
-mey,ar,Modern Standard Arabic is the written standard
-cdo,cmn,Standard written Chinese is based on Mandarin
-cjy,cmn,Standard written Chinese is based on Mandarin
-cnp,cmn,Standard written Chinese is based on Mandarin
-cpx,cmn,Standard written Chinese is based on Mandarin
-csp,cmn,Standard written Chinese is based on Mandarin
-czh,cmn,Standard written Chinese is based on Mandarin
-czo,cmn,Standard written Chinese is based on Mandarin
-gan,cmn,Standard written Chinese is based on Mandarin
-hak,cmn,Standard written Chinese is based on Mandarin
-hsn,cmn,Standard written Chinese is based on Mandarin
-mnp,cmn,Standard written Chinese is based on Mandarin
-nan,cmn,Standard written Chinese is based on Mandarin
-wuu,cmn,Standard written Chinese is based on Mandarin
-yue,cmn,Standard written Chinese is based on Mandarin
-bhr,mg,Official Malagasy is the written standard
-bmm,mg,Official Malagasy is the written standard
-bzc,mg,Official Malagasy is the written standard
-msh,mg,Official Malagasy is the written standard
-skg,mg,Official Malagasy is the written standard
-tdx,mg,Official Malagasy is the written standard
-tkg,mg,Official Malagasy is the written standard
-txy,mg,Official Malagasy is the written standard
-xmv,mg,Official Malagasy is the written standard
-xmw,mg,Official Malagasy is the written standard
-rwr,hi,Hindi is the written standard
-mag,hi,Hindi is the written standard
-bgc,hi,Hindi is the written standard
-hne,hi,Hindi is the written standard
-dhd,hi,Hindi is the written standard
-bjj,hi,Hindi is the written standard
-wtm,hi,Hindi is the written standard
-mup,hi,Hindi is the written standard
-bho,hi,Hindi is the written standard
-awa,hi,Hindi is the written standard
-bns,hi,Hindi is the written standard
-gbm,hi,Hindi is the written standard
-kfy,hi,Hindi is the written standard
-hoj,hi,Hindi is the written standard
-mtr,hi,Hindi is the written standard
-bfy,hi,Hindi is the written standard
-swv,hi,Hindi is the written standard
-wbr,hi,Hindi is the written standard
-bgq,hi,Hindi is the written standard
-noe,hi,Hindi is the written standard
-anp,hi,Hindi is the written standard
-bra,hi,Hindi is the written standard
-tts,th,Standard Thai is the written standard
-nod,th,Standard Thai is the written standard
-sou,th,Standard Thai is the written standard
-bar,de,Standard German is the written standard
-gsw,de,Standard German is the written standard
-swg,de,Standard German is the written standard
-sxu,de,Standard German is the written standard
-pfl,de,Standard German is the written standard
-ksh,de,Standard German is the written standard
-vmf,de,Standard German is the written standard
-pbt,ps,Standard Pashto is the written standard
-pst,ps,Standard Pashto is the written standard
-prs,fa,Persian is the written standard
-haz,fa,Persian is the written standard
-aln,sq,Standard Albanian is the written standard
-syl,bn,Standard Bengali is the written standard
-rkt,bn,Standard Bengali is the written standard
-ctg,bn,Standard Bengali is the written standard
-dcc,ur,Urdu is the written standard
-vah,mr,Marathi is the written standard
-bew,id,Indonesian is the written standard
+code,standard,shares_written_form,note
+aao,ar,,Modern Standard Arabic is the written standard
+abv,ar,,Modern Standard Arabic is the written standard
+acm,ar,,Modern Standard Arabic is the written standard
+acq,ar,,Modern Standard Arabic is the written standard
+acw,ar,,Modern Standard Arabic is the written standard
+acx,ar,,Modern Standard Arabic is the written standard
+adf,ar,,Modern Standard Arabic is the written standard
+aeb,ar,,Modern Standard Arabic is the written standard
+aec,ar,,Modern Standard Arabic is the written standard
+afb,ar,,Modern Standard Arabic is the written standard
+apc,ar,,Modern Standard Arabic is the written standard
+apd,ar,,Modern Standard Arabic is the written standard
+arq,ar,,Modern Standard Arabic is the written standard
+ars,ar,,Modern Standard Arabic is the written standard
+ary,ar,,Modern Standard Arabic is the written standard
+arz,ar,,Modern Standard Arabic is the written standard
+avl,ar,,Modern Standard Arabic is the written standard
+ayh,ar,,Modern Standard Arabic is the written standard
+ayl,ar,,Modern Standard Arabic is the written standard
+ayn,ar,,Modern Standard Arabic is the written standard
+ayp,ar,,Modern Standard Arabic is the written standard
+shu,ar,,Modern Standard Arabic is the written standard
+ssh,ar,,Modern Standard Arabic is the written standard
+mey,ar,,Modern Standard Arabic is the written standard
+cdo,cmn,,Standard written Chinese is based on Mandarin
+cjy,cmn,,Standard written Chinese is based on Mandarin
+cnp,cmn,,Standard written Chinese is based on Mandarin
+cpx,cmn,,Standard written Chinese is based on Mandarin
+csp,cmn,,Standard written Chinese is based on Mandarin
+czh,cmn,,Standard written Chinese is based on Mandarin
+czo,cmn,,Standard written Chinese is based on Mandarin
+gan,cmn,,Standard written Chinese is based on Mandarin
+hak,cmn,,Standard written Chinese is based on Mandarin
+hsn,cmn,,Standard written Chinese is based on Mandarin
+mnp,cmn,,Standard written Chinese is based on Mandarin
+nan,cmn,,Standard written Chinese is based on Mandarin
+wuu,cmn,,Standard written Chinese is based on Mandarin
+yue,cmn,,Standard written Chinese is based on Mandarin
+bhr,mg,,Official Malagasy is the written standard
+bmm,mg,,Official Malagasy is the written standard
+bzc,mg,,Official Malagasy is the written standard
+msh,mg,,Official Malagasy is the written standard
+skg,mg,,Official Malagasy is the written standard
+tdx,mg,,Official Malagasy is the written standard
+tkg,mg,,Official Malagasy is the written standard
+txy,mg,,Official Malagasy is the written standard
+xmv,mg,,Official Malagasy is the written standard
+xmw,mg,,Official Malagasy is the written standard
+rwr,hi,,Hindi is the written standard
+mag,hi,,Hindi is the written standard
+bgc,hi,,Hindi is the written standard
+hne,hi,,Hindi is the written standard
+dhd,hi,,Hindi is the written standard
+bjj,hi,,Hindi is the written standard
+wtm,hi,,Hindi is the written standard
+mup,hi,,Hindi is the written standard
+bho,hi,,Hindi is the written standard
+awa,hi,,Hindi is the written standard
+bns,hi,,Hindi is the written standard
+gbm,hi,,Hindi is the written standard
+kfy,hi,,Hindi is the written standard
+hoj,hi,,Hindi is the written standard
+mtr,hi,,Hindi is the written standard
+bfy,hi,,Hindi is the written standard
+swv,hi,,Hindi is the written standard
+wbr,hi,,Hindi is the written standard
+bgq,hi,,Hindi is the written standard
+noe,hi,,Hindi is the written standard
+anp,hi,,Hindi is the written standard
+bra,hi,,Hindi is the written standard
+tts,th,,Standard Thai is the written standard
+nod,th,,Standard Thai is the written standard
+sou,th,,Standard Thai is the written standard
+bar,de,,Standard German is the written standard
+gsw,de,,Standard German is the written standard
+swg,de,,Standard German is the written standard
+sxu,de,,Standard German is the written standard
+pfl,de,,Standard German is the written standard
+ksh,de,,Standard German is the written standard
+vmf,de,,Standard German is the written standard
+pbt,ps,yes,Southern Pashto speakers write standard Pashto
+pst,ps,,Standard Pashto is the written standard
+prs,fa,yes,Written Dari is Persian as written in Afghanistan
+haz,fa,,Persian is the written standard
+aln,sq,,Standard Albanian is the written standard
+syl,bn,,Standard Bengali is the written standard
+rkt,bn,,Standard Bengali is the written standard
+ctg,bn,,Standard Bengali is the written standard
+dcc,ur,,Urdu is the written standard
+vah,mr,,Marathi is the written standard
+bew,id,,Indonesian is the written standard

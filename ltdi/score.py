@@ -223,6 +223,14 @@ def written_standards() -> dict[str, str]:
         return {r["code"]: r["standard"] for r in csv.DictReader(f)}
 
 
+def shares_written_form() -> set[str]:
+    """Varieties whose written form is the standard itself (Dari's is Persian as written in
+    Afghanistan), so sources label their text with the standard's code: these are scored and ranked with
+    the standard's written resources as their own, and have no separate "through" score."""
+    with (CONFIG / "written_standards.csv").open(encoding="utf-8") as f:
+        return {r["code"] for r in csv.DictReader(f) if (r.get("shares_written_form") or "").strip() == "yes"}
+
+
 def inherited(cfg: dict) -> set[str]:
     """Indicators a spoken variety takes from its written standard: writing, written data, and every
     service and measure of the written-language technologies."""
@@ -326,7 +334,10 @@ def main() -> None:
             for row in csv.DictReader(f):
                 countries[row["country"]][row["indicator"]] = float(row["value"])
     results = []
-    written = written_standards()
+    written, shared = written_standards(), shares_written_form()
+    for code in shared:  # its written form is the standard's, so the standard's written resources are its own
+        if code in effective:
+            by_lang[code] = effective[code]
     via_facts: dict[str, dict[str, Record]] = {}
     for lang in langs:
         code = lang["code"]
@@ -350,7 +361,7 @@ def main() -> None:
             o["why"] = explain(lang, o, opp_facts)
         results.append({**lang, **s, "tier": tier_of(s["ltdi"], facts_l, s["dimensions"], cfg),
                         **({"via": via} if via else {}), **coverage(facts_l, cfg), "opportunities": opps,
-                        "written_in": written.get(code),
+                        "written_in": written.get(code), "shares_written": code in shared,
                         "reach_by_country": reach_by_country(lang, countries)})
     assign_ranks(results)
     big = max((r for r in results if r["rank"]), key=lambda r: r["tied"], default=None)

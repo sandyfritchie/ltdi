@@ -155,6 +155,13 @@ effective values (no one needs a Kölsch keyboard to type German), but data
 opportunities and starter kits use the variety's own, so its gaps show where
 they really are.
 
+Two are different: Dari, whose written form is Persian as written in Afghanistan,
+and Southern Pashto, whose speakers write standard Pashto. Sources label their
+text and tools `fa` and `ps`, so an "own" score would measure labelling rather
+than gaps. Marked `shares_written_form` in `config/written_standards.csv`, they
+are scored and ranked with the standard's written resources as their own, with
+their speech resources still their own.
+
 ## Map
 
 The charts page's map shows each language as a dot, or, under **Tier areas**, the areas where

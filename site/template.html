@@ -186,10 +186,10 @@ tbody tr { cursor: pointer; }
 tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
 /* Ranking columns keep their widths whatever the sort, so headers don't jump */
 table.ranktab { table-layout: fixed; }
-.ranktab .c-rank { width: 4.5em; } .ranktab .c-spk { width: 7.5em; } .ranktab .c-onl { width: 10em; }
+.ranktab .c-rank { width: 4.5em; } .ranktab .c-spk { width: 7.5em; } .ranktab .c-onl { width: 8.6em; }
 .ranktab .pct, .tbl .pct { color: var(--muted); font-size: 13px; }
 .ranktab .pct.p4 { color: var(--pct-4); } .ranktab .pct.p3 { color: var(--pct-3); } .ranktab .pct.p2 { color: var(--pct-2); } .ranktab .pct.p1 { color: var(--pct-1); } .ranktab .c-reg { width: 9em; }
-.ranktab .c-name { width: 15em; } .ranktab .c-ltdi { width: 5.5em; } .ranktab .c-tier { width: 7.5em; } .ranktab .c-gaps { width: 10.2em; }  /* room for six icons */
+.ranktab .c-name { width: 15em; } .ranktab .c-ltdi { width: 5.5em; } .ranktab .c-tier { width: 10em; } .ranktab .c-gaps { width: 10.2em; }  /* room for six icons */
 .ranktab .gaps { gap: 3px; } .ranktab .gaps .ticon { width: 16px; height: 16px; }
 .ranktab .c-name .lname, .ranktab .c-name .auto { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ranktab .bars { min-width: 0; }  /* the Dimensions column takes the width left over */
@@ -553,7 +553,7 @@ async function need(...codes) {
     // a spoken variety: the values counted from the standard it writes, beside its own
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
-                       script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in,
+                       script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
                        script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
@@ -655,7 +655,7 @@ document.getElementById('go').addEventListener('change', e => {
     const y = scrollY; mapPage(); scrollTo(0, y);  // the page stays put, so the box stays in reach
   } else location.hash = 'lang-' + c;
 });
-const DIMS = [['data', 'd', '--data'], ['tech', 't', '--tech']];
+const DIMS = [['tech', 't', '--tech'], ['data', 'd', '--data']];  // the order on a language's page
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const OT = DATA.opportunity_types;
@@ -1003,8 +1003,8 @@ const endPicker = () => msel('endsel', endSel, END_LEVELS.map(([k, t]) => [k, t,
 const TIER_KEYS = [...DATA.config.tiers.cutoffs.map(([k, t]) => [k, t]), ...DATA.config.tiers.stages];
 const TIER_LABEL = Object.fromEntries(TIER_KEYS);
 // what each tier means, on hover: the score range for the top three, what's recorded for the stages
-const TIER_DESC = Object.fromEntries([...DATA.config.tiers.cutoffs.map(([k, , c], i, a) => [k, `LTDI ${c.toFixed(2)}${i ? `–${a[i - 1][2].toFixed(2)}` : ' and above'}`]),
-  ...DATA.config.tiers.stages.map(([k, , d]) => [k, `Below ${DATA.config.tiers.cutoffs.at(-1)[1]}: ${d.charAt(0).toLowerCase() + d.slice(1)}`])]);
+const TIER_DESC = Object.fromEntries([...DATA.config.tiers.cutoffs.map(([k, t, c], i, a) => [k, `${t}: LTDI ${c.toFixed(2)}${i ? `–${a[i - 1][2].toFixed(2)}` : ' and above'}`]),
+  ...DATA.config.tiers.stages.map(([k, t, d]) => [k, `${t}: ${d.charAt(0).toLowerCase() + d.slice(1)}`])]);
 // A drop-down of tick boxes, so several values can be chosen at once (Medium and Low, say)
 function msel(id, sel, opts, none, all, prefix, clear) {
   const label = !sel.size ? none : sel.size === opts.length && all ? all
@@ -1398,13 +1398,14 @@ function censusInfo(l) {
 // Whether the main script is encoded in Unicode: reported, not scored
 function unicodeNote(l) {
   const f = (DATA.facts[l.code] || {}).script_encoded;
-  if (!f || !l.script_names.length) return '';
-  return ` <a class="uni${f.value ? '' : ' no'}" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc([f.source, f.note].filter(Boolean).join('\n'))}">${f.value ? 'in Unicode' : 'not yet in Unicode'}</a>`;
+  if (!f || f.value || !l.script_names.length) return '';  // nearly every recorded script is: only the exceptions are noted
+  return ` <a class="uni no" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc([f.source, f.note].filter(Boolean).join('\n'))}">not yet in Unicode</a>`;
 }
 // Spoken varieties counted from a written standard for writing and text
 function writtenInfo(l) {
   if (!l.written_in || !BY[l.written_in]) return '';
   const w = BY[l.written_in];
+  if (l.shares_written) return infoTip('How writing is counted', `${esc(l.name)} is written in the standard form of <a href="#lang-${w.code}">${esc(w.name)}</a>, and sources label that text and its tools as ${esc(w.name)}, so ${esc(w.name)}’s written data and text technologies count as ${esc(l.name)}’s. Speech data and technologies are counted separately.`);
   return infoTip('How the standard is counted', `${esc(l.name)} speakers typically write the standard form of <a href="#lang-${w.code}">${esc(w.name)}</a>. The score and rank count only what exists for ${esc(l.name)} itself; a second score counts ${esc(w.name)}’s written data and text technologies too, as most speakers can use them. On this page, values marked “through ${esc(w.name)}” are ${esc(w.name)}’s.`);
 }
 // Under the score: a spoken variety's score through its written standard; the score before the floor
@@ -2126,7 +2127,7 @@ function about() {
     <p>Each dimension averages a few indicators, each scaled from 0 to 1 between a floor and a goal (most on a logarithmic scale, so the first thousand sentences count for more than the millionth). The two are combined with a geometric mean, LTDI = √(data × technology), as in the UN's Human Development Index, so a gap in either pulls the score down: a language with excellent data but no keyboard can't score highly. A technology scores by the share of the services checked that offer the language, weighted by how fully each does (features, voice types, published error rates), with open models counting for less than commercial services. Locale data (CLDR's dates, numbers and names, which software needs before it can support a language) counts as a technology; voice assistants count half as much as other technologies, since few languages have one. Whether a language's script is encoded in Unicode is reported but not scored, as nearly every recorded script is.</p>
     <p>Each dimension has a floor of ${DATA.config.meta.floor}, so a language with nothing recorded in one still has a score, but ranks use the unfloored values: any language with something recorded ranks above every language with nothing, and a language's page shows its score before the floor where the floor lifts it.</p>
     <p>The top three tiers are set by score: ${DATA.config.tiers.cutoffs.map(([, t, c]) => `${t} from ${c}`).join(', ')}. Below Medium, where scores are close together and small differences mean little, a language's tier says what's recorded for it: ${DATA.config.tiers.stages.map(([, t, d]) => `<b>${esc(t)}</b>, ${esc(d.charAt(0).toLowerCase() + d.slice(1))}`).join('; ')}.</p>
-    <p>A spoken variety whose speakers typically write a standard language (Swiss German, Kölsch and Egyptian Arabic, say) is scored and ranked on what exists for it alone. Its page also gives a second score counting the standard's written data and text technologies, which most of its speakers can use, and marks those values “through” the standard.</p>
+    <p>A spoken variety whose speakers typically write a standard language (Swiss German, Kölsch and Egyptian Arabic, say) is scored and ranked on what exists for it alone. Its page also gives a second score counting the standard's written data and text technologies, which most of its speakers can use, and marks those values “through” the standard. Dari and Southern Pashto are the exceptions: their written form is the standard itself (Persian as written in Afghanistan, standard Pashto), which sources label as Persian and Pashto, so those resources count as their own.</p>
     <h3>Why something is missing for a language</h3>
     <p>Most sources cover only a small share of the world's languages, so most values on most pages are missing. A missing value nearly always means a source doesn't list or measure the language, not that the language has nothing: a language may have speech data in an archive no source here counts, or a keyboard that isn't in any app store. These are the ${N.toLocaleString()} ranked languages each source covers.</p>
     <h4>Language information</h4>
