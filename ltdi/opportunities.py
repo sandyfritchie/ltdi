@@ -514,6 +514,7 @@ def _people(n: float) -> str:
 def starter_kit(o: dict, facts: dict[str, Record]) -> list[dict]:
     res = resources()
     return [{"indicator": i, "name": res[i]["name"], "what": res[i]["what"], "licence": res[i]["licence"],
+             "commercial": res[i].get("commercial", ""),
              "link": res[i]["link"], "size": _size(facts[i])} for i in o["starter"] if i in res and i in facts]
 
 

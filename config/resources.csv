@@ -1,29 +1,30 @@
-indicator,name,what,licence,link
-cv_validated_hours,Mozilla Common Voice,Transcribed read speech from many volunteers,CC0 1.0,https://commonvoice.mozilla.org/en/datasets
-web_text_words,FineWeb-2,Filtered web text,ODC-By 1.0,https://huggingface.co/datasets/HuggingFaceFW/fineweb-2
-wikipedia_articles,Wikipedia,Encyclopedia articles,CC BY-SA 4.0,https://dumps.wikimedia.org/
-wikipedia_active_editors,Wikipedia editing community,Editors active in the last 30 days,,https://stats.wikimedia.org/
-flores200,FLORES-200,Professionally translated evaluation sentences,CC BY-SA 4.0,https://github.com/facebookresearch/flores
-belebele,Belebele,Reading-comprehension questions,CC BY-SA 4.0,https://github.com/facebookresearch/belebele
-mt_open_nllb,NLLB-200,Open translation model,CC BY-NC 4.0 (non-commercial),https://github.com/facebookresearch/fairseq/tree/nllb
-asr_open_whisper,Whisper,Open speech recognition model,MIT,https://github.com/openai/whisper
-cldr_coverage,Unicode CLDR,"Locale data: names, dates, numbers, character set",Unicode License v3,https://cldr.unicode.org/
-kb_gboard,Android keyboard layout,A layout already shipping on Android,Not openly licensed,https://support.google.com/gboard/answer/6380730
-ui_firefox,Firefox localisation (Pontoon),Volunteer interface translations and terminology for the browser,MPL 2.0,https://pontoon.mozilla.org/
-ocr_open_tesseract,Tesseract OCR,Open text recognition model (tessdata_best),Apache 2.0,https://github.com/tesseract-ocr/tessdata_best
-proof_hunspell,LibreOffice dictionaries,Hunspell spelling dictionaries and hyphenation patterns,Varies by language (GPL/LGPL/MPL),https://github.com/LibreOffice/dictionaries
-proof_languagetool,LanguageTool,Open grammar and style checker,LGPL 2.1,https://github.com/languagetool-org/languagetool
-lid_glotlid,GlotLID,Open language identification for 2000+ languages,Apache 2.0,https://github.com/cisnlp/GlotLID
-lid_cld3,CLD3,Compact open language identifier,Apache 2.0,https://github.com/google/cld3
-kb_open_keyman,Keyman keyboards,Open keyboard layouts from SIL and contributors,MIT (most layouts),https://github.com/keymanapp/keyboards
-asr_open_mms,MMS speech recognition,Open speech recognition for 1100+ languages,CC BY-NC 4.0,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
-tts_open_mms,MMS text-to-speech,Open text-to-speech models for 1100+ languages,CC BY-NC 4.0,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
-speech_shrutilipi,Shrutilipi,Radio news bulletins aligned with transcripts (AI4Bharat),CC BY 4.0,https://huggingface.co/datasets/ai4bharat/Shrutilipi
-speech_kathbath,Kathbath,Read speech from many speakers (AI4Bharat),CC BY 4.0,https://huggingface.co/datasets/ai4bharat/kathbath
-speech_indicvoices,IndicVoices,Natural and read speech from across India (AI4Bharat),CC BY 4.0,https://huggingface.co/datasets/ai4bharat/IndicVoices
-speech_vaani,Vaani,Image-prompted speech from every district of India (IISc and ARTPARK),CC BY 4.0,https://huggingface.co/datasets/ARTPARK-IISC/Vaani
-speech_naijavoices,NaijaVoices,Read speech in Nigerian languages,CC BY-NC-SA 4.0,https://naijavoices.com/
-speech_waxal,WAXAL,Natural speech in African languages (Google and African universities),CC BY / CC BY-SA 4.0,https://huggingface.co/datasets/google/WaxalNLP
-speech_yodas,YODAS2,YouTube videos with manually uploaded subtitles,CC BY 3.0,https://huggingface.co/datasets/espnet/yodas2
-speech_fleurs,FLEURS,Read Wikipedia sentences; also a speech benchmark,CC BY 4.0,https://huggingface.co/datasets/google/fleurs
-speech_multilingual_librispeech,Multilingual LibriSpeech,Audiobooks,CC BY 4.0,https://www.openslr.org/94/
+indicator,name,what,licence,commercial,link
+cv_validated_hours,Mozilla Common Voice,Transcribed read speech from many volunteers,CC0 1.0,yes,https://commonvoice.mozilla.org/en/datasets
+web_text_words,FineWeb-2,Filtered web text,ODC-By 1.0,yes,https://huggingface.co/datasets/HuggingFaceFW/fineweb-2
+wikipedia_articles,Wikipedia,Encyclopedia articles,CC BY-SA 4.0,yes,https://dumps.wikimedia.org/
+wikipedia_active_editors,Wikipedia editing community,Editors active in the last 30 days,,,https://stats.wikimedia.org/
+flores200,FLORES-200,Professionally translated evaluation sentences,CC BY-SA 4.0,yes,https://github.com/facebookresearch/flores
+belebele,Belebele,Reading-comprehension questions,CC BY-SA 4.0,yes,https://github.com/facebookresearch/belebele
+mt_open_nllb,NLLB-200,Open translation model,CC BY-NC 4.0 (non-commercial),no,https://github.com/facebookresearch/fairseq/tree/nllb
+asr_open_whisper,Whisper,Open speech recognition model,MIT,yes,https://github.com/openai/whisper
+cldr_coverage,Unicode CLDR,"Locale data: names, dates, numbers, character set",Unicode License v3,yes,https://cldr.unicode.org/
+kb_gboard,Android keyboard layout,A layout already shipping on Android,Not openly licensed,no,https://support.google.com/gboard/answer/6380730
+ui_firefox,Firefox localisation (Pontoon),Volunteer interface translations and terminology for the browser,MPL 2.0,yes,https://pontoon.mozilla.org/
+ocr_open_tesseract,Tesseract OCR,Open text recognition model (tessdata_best),Apache 2.0,yes,https://github.com/tesseract-ocr/tessdata_best
+proof_hunspell,LibreOffice dictionaries,Hunspell spelling dictionaries and hyphenation patterns,Varies by language (GPL/LGPL/MPL),varies,https://github.com/LibreOffice/dictionaries
+proof_languagetool,LanguageTool,Open grammar and style checker,LGPL 2.1,yes,https://github.com/languagetool-org/languagetool
+lid_glotlid,GlotLID,Open language identification for 2000+ languages,Apache 2.0,yes,https://github.com/cisnlp/GlotLID
+lid_cld3,CLD3,Compact open language identifier,Apache 2.0,yes,https://github.com/google/cld3
+kb_open_keyman,Keyman keyboards,Open keyboard layouts from SIL and contributors,MIT (most layouts),varies,https://github.com/keymanapp/keyboards
+asr_open_mms,MMS speech recognition,Open speech recognition for 1100+ languages,CC BY-NC 4.0,no,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
+tts_open_mms,MMS text-to-speech,Open text-to-speech models for 1100+ languages,CC BY-NC 4.0,no,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
+speech_shrutilipi,Shrutilipi,Radio news bulletins aligned with transcripts (AI4Bharat),CC BY 4.0,yes,https://huggingface.co/datasets/ai4bharat/Shrutilipi
+speech_kathbath,Kathbath,Read speech from many speakers (AI4Bharat),CC BY 4.0,yes,https://huggingface.co/datasets/ai4bharat/kathbath
+speech_indicvoices,IndicVoices,Natural and read speech from across India (AI4Bharat),CC BY 4.0,yes,https://huggingface.co/datasets/ai4bharat/IndicVoices
+speech_vaani,Vaani,Image-prompted speech from every district of India (IISc and ARTPARK),CC BY 4.0,yes,https://huggingface.co/datasets/ARTPARK-IISC/Vaani
+speech_naijavoices,NaijaVoices,Read speech in Nigerian languages,CC BY-NC-SA 4.0,no,https://naijavoices.com/
+speech_waxal,WAXAL,Natural speech in African languages (Google and African universities),CC BY / CC BY-SA 4.0,yes,https://huggingface.co/datasets/google/WaxalNLP
+speech_yodas,YODAS2,YouTube videos with manually uploaded subtitles,CC BY 3.0,yes,https://huggingface.co/datasets/espnet/yodas2
+speech_fleurs,FLEURS,Read Wikipedia sentences; also a speech benchmark,CC BY 4.0,yes,https://huggingface.co/datasets/google/fleurs
+speech_multilingual_librispeech,Multilingual LibriSpeech,Audiobooks,CC BY 4.0,yes,https://www.openslr.org/94/
+asr_open_omnilingual,Omnilingual ASR,"Open speech recognition for 1,600+ languages (Meta)",Apache 2.0,yes,https://github.com/facebookresearch/omnilingual-asr

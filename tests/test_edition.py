@@ -32,3 +32,15 @@ def test_edition_table_and_metadata(tmp_path, monkeypatch):
     meta = json.loads((tmp_path / "editions" / "2099-01.json").read_text())
     assert meta["methodology_version"] == "9.9" and meta["ranked"] == 2
     assert set(meta["columns"]) == set(rows[0])  # every column is described
+
+
+def test_usable_hours_count_only_commercial_licences():
+    from ltdi.build_site import planner_fields, usable_hours
+    res = {"cv_validated_hours": {"commercial": "yes"}, "speech_naijavoices": {"commercial": "no"},
+           "speech_fleurs": {"commercial": "yes"}}
+    facts = {"open_speech_hours": {"value": 627}, "cv_validated_hours": {"value": 6}, "speech_naijavoices": {"value": 607},
+             "speech_fleurs": {"value": 12}, "reach_voice_share_5y": {"value": 0.5}, "speaker_growth_5y": {"value": 1.1}}
+    assert usable_hours(facts, res) == 18
+    p = planner_fields({"speakers": 1000, "written_in": "de"}, facts, res)
+    assert p["sh"] == 627 and p["shc"] == 18 and p["o5"] == 550 and p["wi"] == "de"
+    assert "wi" not in planner_fields({"speakers": 1, "written_in": "fa", "shares_written": True}, facts, res)

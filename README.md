@@ -265,6 +265,25 @@ history (`ltdi/collectors/history.py`) comes from sources with a public record:
 | Commercial translation | Git history of DeepL's docs language table, from May 2025 |
 | Open translation model, open speech recognition model, reading benchmark | NLLB-200, Whisper and Belebele release dates, with today's language lists |
 
+## Plan
+
+The Plan tab (`#plan`) answers a product team's question: given what we support today, which languages
+next? Choose a technology and a starting point (nothing, a tracked service's list, or a pasted list of
+codes or names), and optionally a region or countries. The languages not yet supported are ranked by
+the people they'd reach online in five years (voice technologies count everyone online, text
+technologies those also able to text), with a curve of the share reached as each is added (it ends at
+100%). Each row shows how many other commercial services already offer it, the open models listed for
+it with their published quality and licence, the open data for that technology, and its main
+countries. Two switches: **Exclude varieties of major languages** (on by default) leaves out spoken
+varieties whose speakers mostly write a standard language (`config/written_standards.csv`), from the
+list and the totals, unless the starting list includes them; **Commercially usable data and models
+only** counts only open speech data and models whose licence permits commercial use
+(`commercial` in `config/resources.csv`: yes, no or varies, from each published licence). The state is
+kept in the address, so a plan can be shared, and the table downloads as CSV.
+
+Language pages say how much open speech is licensed for commercial use (Yoruba: about 20 of 627
+hours, the rest NaijaVoices, CC BY-NC-SA), and starter kits have a commercial-use column.
+
 ## Opportunities
 
 `ltdi/opportunities.py` compares what each language has with what each technology

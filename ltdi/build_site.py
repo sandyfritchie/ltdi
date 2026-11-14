@@ -335,6 +335,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             **({"extinct": 1} if l.get("extinct") else {}),
             "online": round(l["speakers"] * reach["value"]) if l.get("speakers") and (
                 reach := scores["facts"].get(l["code"], {}).get("reach_voice_share")) else None,
+            **planner_fields(l, scores["facts"].get(l["code"], {}), scores["resources"]),
         })
     top.sort(key=lambda o: (-o["priority_5y"], o["lang"], o["key"]))
     listed = top_listed(top)
@@ -372,6 +373,44 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
               "sources": [list(k) for k in sorted(sources, key=sources.get)]}
     return index, details
+
+
+PLAN_QUALITY = ("asr_whisper_fleurs_wer", "asr_omnilingual_cer", "mt_nllb_flores_chrf")
+
+
+def usable_hours(facts: dict, resources: dict) -> float:
+    """Open transcribed speech whose licence permits commercial use (resources.csv: commercial = yes)."""
+    return sum(f["value"] for i, f in facts.items()
+               if (i.startswith("speech_") or i == "cv_validated_hours") and resources.get(i, {}).get("commercial") == "yes")
+
+
+def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
+    """What the Plan tab needs for each language, compactly: people online in five years (voice) and
+    able to text now and in five years; open speech hours, all and commercially usable; web text and
+    parallel sentences; the open models' published quality; and, for a spoken variety, the standard
+    its speakers write ("wi")."""
+    v = lambda i: facts[i]["value"] if i in facts else None
+    sp, g = l.get("speakers") or 0, v("speaker_growth_5y") or 1.0
+    out = {}
+    if sp and v("reach_voice_share_5y") is not None:
+        out["o5"] = round(sp * g * v("reach_voice_share_5y"))
+    if sp and v("reach_text_share") is not None:
+        out["ot"] = round(sp * v("reach_text_share"))
+    if sp and v("reach_text_share_5y") is not None:
+        out["ot5"] = round(sp * g * v("reach_text_share_5y"))
+    if v("open_speech_hours"):
+        out["sh"] = round(v("open_speech_hours"), 1)
+        out["shc"] = round(usable_hours(facts, resources), 1)
+    if v("web_text_words"):
+        out["ww"] = round(v("web_text_words"))
+    if v("parallel_sentences"):
+        out["ps"] = round(v("parallel_sentences"))
+    q = {i: v(i) for i in PLAN_QUALITY if v(i) is not None and not (i.endswith("_wer") and v(i) >= 100)}
+    if q:
+        out["qv"] = q
+    if l.get("written_in") and not l.get("shares_written"):
+        out["wi"] = l["written_in"]
+    return out
 
 
 def edition_line(scores: dict) -> str:
