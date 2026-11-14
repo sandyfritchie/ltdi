@@ -31,13 +31,13 @@ jobs:
         run: python -m ltdi.score > /dev/null
       - name: Build the site
         run: python -m ltdi.build_site
-      - name: The committed site matches the build
+      - name: The committed site and edition table match the build
         run: |
-          changed=$(git status --porcelain -- site/)
+          changed=$(git status --porcelain -- site/ data/editions/)
           if [ -n "$changed" ]; then
-            echo "::error::site/ doesn't match a fresh build from data/ and config/. Run python -m ltdi.score && python -m ltdi.build_site and commit site/."
+            echo "::error::site/ or data/editions/ doesn't match a fresh build from data/ and config/. Run python -m ltdi.score && python -m ltdi.build_site and commit both."
             echo "$changed" | head -40
-            git diff --stat -- site/ | tail -5
+            git diff --stat -- site/ data/editions/ | tail -5
             exit 1
           fi
-          echo "site/ matches the build"
+          echo "site/ and data/editions/ match the build"

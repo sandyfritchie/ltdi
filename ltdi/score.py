@@ -14,6 +14,7 @@ from collections import defaultdict
 
 from . import CONFIG, DATA
 from .config import load_config, services
+from .edition import write_edition
 from .opportunities import RULES, TEAMS, TYPES, explain, find, rank, reach_by_country, resources, starter_kit
 from .records import Record, read_dir
 
@@ -396,6 +397,7 @@ def main() -> None:
            "resources": resources(), "opportunity_types": TYPES, "teams": TEAMS, "history": history,
            "languages": results, "facts": facts, "via_facts": via}
     (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    write_edition(results, cfg)
     for r in results:
         d = r["dimensions"]
         print(f"{r['rank'] or '-':>4} {r['code']:<4} {r['name']:<18} LTDI {r['ltdi']:.3f}  "

@@ -3,6 +3,11 @@
 
 [meta]
 edition = "2026-11"
+# The method's version: raise the major number when the formula, dimensions or tiers change, the
+# minor number when weights, goalposts or the services counted change. 1.x had three dimensions
+# (writing, data, technology); 2.0 is the two-dimension method from edition 2026-11. Each edition's
+# scores are archived in data/editions/ with this version and a hash of the config.
+methodology_version = "2.0"
 # Lowest value a dimension index can take, so one empty dimension doesn't zero the LTDI
 floor = 0.05
 

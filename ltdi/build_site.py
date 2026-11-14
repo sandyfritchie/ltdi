@@ -20,6 +20,7 @@ import json
 import re
 import shutil
 from collections import Counter
+from html import escape as html_escape
 
 from . import DATA, ROOT
 
@@ -367,6 +368,26 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     return index, details
 
 
+def edition_line(scores: dict) -> str:
+    n = sum(1 for l in scores["languages"] if l.get("rank"))
+    return f"Edition {scores['edition']} · {n:,} languages"
+
+
+def static_summary(scores: dict) -> str:
+    """What the page says before (or without) JavaScript: the top 20 and where to download the scores,
+    for search engines, link previews and plain fetchers."""
+    tiers = {k: t for k, t, *_ in scores["config"]["tiers"]["cutoffs"]} | {k: t for k, t, *_ in scores["config"]["tiers"]["stages"]}
+    ranked = [l for l in scores["languages"] if l.get("rank")]
+    rows = "".join(f"<tr><td>{l['rank']}</td><td>{html_escape(l['name'])}</td><td>{l['ltdi']:.3f}</td><td>{tiers.get(l['tier'], '')}</td></tr>"
+                   for l in ranked[:20])
+    ed = scores["edition"]
+    return (f'<noscript><div class="static"><p>The Language Technology Development Index scores {len(ranked):,} living languages '
+            f"on how well technology supports them and how much data exists to build more. This page needs JavaScript; "
+            f'the scores are also a <a href="data/ltdi-{ed}.csv">CSV file</a> (edition {ed}, CC BY-SA 4.0), and the code and data '
+            f'are on <a href="https://github.com/sandyfritchie/ltdi">GitHub</a>.</p>'
+            f"<table><thead><tr><th>Rank</th><th>Language</th><th>LTDI</th><th>Tier</th></tr></thead><tbody>{rows}</tbody></table></div></noscript>")
+
+
 def main() -> None:
     scores = json.loads((DATA / "scores.json").read_text(encoding="utf-8"))
     add_census(scores)
@@ -397,7 +418,15 @@ def main() -> None:
     # each country's own top opportunities, fetched when the country filter is first used
     (SITE / "data" / "country_opportunities.json").write_text(_dump(country_opportunities(scores)), encoding="utf-8")
 
+    # the edition's scores, for download (written by ltdi.score: data/editions/)
+    edition = scores["edition"]
+    for ext in ("csv", "json"):
+        src = DATA / "editions" / f"{edition}.{ext}"
+        if src.exists():
+            shutil.copyfile(src, SITE / "data" / f"ltdi-{edition}.{ext}")
+
     template = (SITE / "template.html").read_text(encoding="utf-8")
+    template = template.replace("<!--__STATIC__-->", static_summary(scores)).replace("__EDITION_LINE__", edition_line(scores))
     page = template.replace("/*__DATA__*/", _dump(index).replace("</", "<\\/"))
     page = page.replace("/*__LANGS__*/", embed.replace("</", "<\\/"))
     if (DATA / "basemap.json").exists() and (DATA / "world_languages.json").exists():

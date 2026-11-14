@@ -38,7 +38,7 @@ python -m ltdi.areas           # map's tier view: Glottography language areas, p
 python -m ltdi.collectors.census_languages  # census languages by country -> data/census_languages.csv
 python -m ltdi.collectors.udhr # Article 1 of the UDHR for each language's page -> data/udhr_article1.csv
 python -m ltdi.collectors.lingualibre  # a few spoken words per language (GitHub Actions) -> data/lingualibre.csv
-python -m ltdi.score           # records + config/methodology.toml -> data/scores.json
+python -m ltdi.score           # records + config/methodology.toml -> data/scores.json, data/editions/<edition>.csv
 python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
 
@@ -72,6 +72,8 @@ only small builds work, because then the detail is embedded.
 | `ltdi/collectors/` | One module per source |
 | `data/records/` | Automated collector output |
 | `data/manual/` | Lists read by hand where no page can be parsed (`*.lists.csv`: languages, notes, URL, date) |
+| `data/editions/` | Each edition's scores (`<edition>.csv`) and what produced them (`<edition>.json`: method version, config and records hashes, column descriptions) |
+| `tools/edition_diff.py` | Splits the change in scores since an earlier commit into the method's part and the data's |
 | `site/` | Static site template and build output |
 
 ## Technology scores
@@ -365,6 +367,26 @@ the coalition workstream it fits.
   census names, or counted as Mandarin where it names none, although in some countries many are Cantonese speakers.
   Tables that don't count speakers are left out: the Philippines (households), Rwanda (literacy), Sri Lanka,
   Russia and Ireland (ability to speak), Ghana (ethnic groups).
+
+## Editions and citation
+
+`python -m ltdi.score` writes the edition's scores to `data/editions/<edition>.csv`, one row per
+language: rank (shared by ties), tier, both dimensions before and after the floor, each technology's
+score, and a spoken variety's score through its written standard. `<edition>.json` beside it gives the
+methodology version (`[meta] methodology_version`: the major number changes with the formula,
+dimensions or tiers, the minor with weights, goalposts or services), SHA-256 hashes of `config/` and
+of the records scored, and a description of each column. Both are committed, checked by CI, and
+published on the site (`data/ltdi-<edition>.csv`), linked from the ranking and About pages. A new
+edition starts by changing `[meta] edition`; earlier editions' files stay as they were.
+
+Scores move between editions for two reasons, and `tools/edition_diff.py OLD_REF` separates them. It
+scores the earlier commit's records with the earlier method (what was published), the same records
+with today's method, and today's records with today's method, then reports each part's mean change,
+rank correlation and largest moves (`--csv` writes every language's three scores). Comparing against
+the review baseline, `python tools/edition_diff.py 5d79055`, shows the 2.0 method change on its own.
+
+To cite: Ritchie, Sandy (2026). Language Technology Development Index (LTDI), edition 2026-11
+(methodology 2.0). https://langtechindex.org
 
 ## Licence
 

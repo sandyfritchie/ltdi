@@ -1,4 +1,11 @@
 <title>Language Technology Development Index</title>
+<meta name="description" content="How well technology supports each of the world's languages, and how much data exists to build more: scores, gaps and opportunities for 6,800 living languages, every value linked to its source.">
+<meta property="og:title" content="Language Technology Development Index">
+<meta property="og:description" content="How well technology supports each of the world's languages, and how much data exists to build more. Scores, gaps and opportunities for 6,800 living languages.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://langtechindex.org/">
+<meta property="og:image" content="https://langtechindex.org/apple-touch-icon.png">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
@@ -472,13 +479,15 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .opp-hero h2 { font: 800 clamp(24px, 4vw, 34px)/1.1 var(--font-display); font-stretch: 82%; margin: 0; text-wrap: balance; }
 .why { font-size: 18px; margin: 0; max-width: 64ch; }
 .needed { font-size: 17px; margin: 0 0 6px; max-width: 64ch; }
+.about .cite { font: 14px/1.5 var(--font-mono); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; overflow-wrap: anywhere; }
+.static { padding-block: 16px; max-width: 70ch; } .static table { margin-top: 12px; }
 .panel-h { font: 700 20px var(--font-display); font-stretch: 85%; margin: 28px 0 10px; }
 @media (max-width: 520px) { .opp { grid-template-columns: 1fr; } .opp .prio { grid-row: auto; text-align: left; } .opp .prio small { display: inline; margin-left: 6px; } }
 </style>
 
 <div class="wrap">
   <header class="mast">
-    <div class="eyebrow" id="edition">Slice edition</div>
+    <div class="eyebrow" id="edition">__EDITION_LINE__</div>
     <h1><a class="home" href="#ranking">Language Technology Development Index</a></h1>
     <p class="lede">How well technology supports each language, and how much data exists to build more. Two dimensions, each scored 0 to 1, combined with a geometric mean so a gap in either pulls the score down.</p>
     <div class="formula">LTDI = √(<b class="d">data</b> × <b class="t">technology</b>)</div>
@@ -486,7 +495,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
   <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a><a href="#about" id="tab-about">About</a>
     <span class="pickwrap navsearch" role="search"><input class="pick" id="go" autocomplete="off" role="combobox" aria-autocomplete="list"
       aria-expanded="false" aria-controls="go-list" aria-label="Find a language name or code" placeholder="Find a language name or code" onfocus="this.select()"><ul class="picklist" id="go-list" role="listbox" hidden></ul></span></nav>
-  <main id="view"></main>
+  <main id="view"><!--__STATIC__--></main>
   <div id="tip" hidden></div>
 </div>
 
@@ -1133,7 +1142,7 @@ function ranking() {
     </table></div>
     <div id="rankmore"></div>
     <div id="censusnote"></div>
-    <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech input, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Languages with the same score share a rank, shown as =1,914. Select a language to see every value and its source.</p>`;
+    <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech input, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Languages with the same score share a rank, shown as =1,914. Select a language to see every value and its source. <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">Download the scores (CSV)</a>.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const all = (endSel.size ? ALL.filter(l => endSel.has(endKey(l))) : LANGS).filter(l => inView(l)
@@ -2099,6 +2108,7 @@ function mapPage() {
 // ---------------------------------------------------------------- about
 // What the Index is for, how far each source reaches, and the limits of the data, sources and views
 const REPO_URL = 'https://github.com/sandyfritchie/ltdi';
+const citeText = () => `Ritchie, Sandy (${DATA.edition.slice(0, 4)}). Language Technology Development Index (LTDI), edition ${DATA.edition} (methodology ${DATA.config.meta.methodology_version}). https://langtechindex.org`;
 function about() {
   const C = DATA.coverage || { n: LANGS.length, meta: [], data: [], tech: [] }, N = C.n;
   const pct = n => { const p = n / N * 100; return p > 0 && p < 1 ? '<1%' : Math.round(p) + '%'; };
@@ -2182,6 +2192,9 @@ function about() {
     <p>The Index isn't affiliated with any organisation or company. It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
     <p>If you spot a mistake or know of a source we've missed, please <a href="${REPO_URL}/issues" target="_blank" rel="noopener">open an issue on GitHub</a>.</p>
 
+    <h3>Download and cite</h3>
+    <p>The scores for this edition are a <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">CSV file</a>: one row per language, with its rank, tier, both dimensions before and after the floor, each technology's score, and, for spoken varieties, the score through their written standard (<a href="data/ltdi-${DATA.edition}.json" target="_blank" rel="noopener">column descriptions and the method's hashes</a>). Every edition is kept in the repository's <a href="${REPO_URL}/tree/main/data/editions" target="_blank" rel="noopener">data/editions</a> folder, so editions can be compared. The data is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> and the code MIT.</p>
+    <p class="cite">${esc(citeText())}</p>
     <h3>Sources and credits</h3>
     <p>Language metadata from LinguaMeta, with scripts from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a> (CC BY-SA 4.0, so data derived from it carries the same licence), endangerment from Glottolog where LinguaMeta gives none, and speaker counts from Wikipedia where neither does. Census figures from the UN Statistics Division and the US Census Bureau; connectivity from the World Bank. Language areas from <a href="https://glottography.github.io" target="_blank" rel="noopener">Glottography</a> (CC BY 4.0); map from Natural Earth. Writing samples from <a href="https://github.com/eric-muller/udhr" target="_blank" rel="noopener">UDHR in XML</a>; spoken words from <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a> (CC BY-SA 4.0). Every other value names its source on the language's page. The method builds on van Esch, Ritchie et al. (2024), <a href="https://aclanthology.org/2024.lrec-main.331/" target="_blank" rel="noopener">Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages</a>.</p>
   </article>`;
