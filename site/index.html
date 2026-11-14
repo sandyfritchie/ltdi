@@ -503,8 +503,19 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .vtab .vbar i { display: block; height: 100%; }
 .about .cite { font: 14px/1.5 var(--font-mono); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; overflow-wrap: anywhere; }
 .static { padding-block: 16px; max-width: 70ch; } .static table { margin-top: 12px; }
-.plan-h { font: 800 clamp(24px, 3.4vw, 32px)/1.1 var(--font-display); font-stretch: 85%; margin: 0 0 6px; }
-.plan-controls, .plan-toggles { margin-block: 12px 4px; }
+.plan-h { font: 800 26px/1.1 var(--font-display); font-stretch: 85%; margin: 0 0 6px; text-wrap: balance; }
+/* Plan: the controls stacked on the left, the curve beside them on wide screens */
+.plan-top { display: grid; grid-template-columns: minmax(280px, 360px) minmax(0, 1fr); gap: 16px; align-items: stretch; margin-top: 18px; }
+.plan-top > .chart { margin-top: 0; }
+@media (max-width: 900px) { .plan-top { grid-template-columns: 1fr; } }
+.plan-controls { display: grid; gap: 12px; margin-top: 14px; }
+.plan-controls .plan-l select { width: 100%; min-width: 0; }
+.plan-scope { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 8px; }
+.plan-scope > .plan-l { grid-column: 1 / -1; }
+.plan-scope .msel summary { width: 100%; box-sizing: border-box; }
+.plan-toggles { display: grid; gap: 10px; margin-top: 16px; }
+.plan-toggles .switch { white-space: normal; align-items: flex-start; line-height: 1.3; }
+.plangraph .plancurve { max-width: none; }
 .plan-l { display: inline-flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--muted); }
 .plan-l select { font: 15px var(--font-body); padding: 6px 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); max-width: 100%; }
 .plan-paste textarea { width: 100%; box-sizing: border-box; font: 14px var(--font-mono); padding: 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); }
@@ -512,6 +523,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .plan-steps { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 6px; }
 .plan-steps b { color: var(--ink); font-weight: 700; margin-inline-start: 4px; }
 .plan-l select { min-width: 15em; }
+.plan-paste { margin-top: 12px; }
 .plancurve .grid line { stroke: var(--rule); } .plancurve .grid text, .plancurve .mk { font-size: 11px; fill: var(--muted); }
 .plan-tablehead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .plantab td { vertical-align: top; } .plantab .small, .muted.small { font-size: 12.5px; } .plantab .muted { color: var(--muted); }
@@ -2447,7 +2459,7 @@ function planCells(r, T) {
 }
 function planCurve(rows, base, total) {
   if (!rows.length || !total) return '';
-  const W = 720, H = 210, L = 48, R = 16, Tp = 14, B = 34, N = rows.length;
+  const W = 720, H = 300, L = 48, R = 16, Tp = 14, B = 34, N = rows.length;
   const sx = i => L + Math.sqrt(i / N) * (W - L - R), y0 = base / total;
   const lo = y0 > 0.3 ? Math.floor(y0 * 10) / 10 : 0;  // start the axis just below where the list starts
   const sy = v => Tp + (1 - (v - lo) / (1 - lo)) * (H - Tp - B);
@@ -2482,32 +2494,34 @@ function planPage() {
   const scopeName = countrySel.size ? [...countrySel].map(c => COUNTRY_NAMES[c]).join(', ') : regionSel.size ? [...regionSel].join(', ') : 'the world';
   const who = P.voice ? 'people online' : 'people online and able to text';
   $('#view').innerHTML = `
+    <div class="plan-top">
     <section class="chart planhead">
       <h2 class="plan-h">Plan which languages to add next</h2>
-      <p class="sub">Choose a technology and what your product supports today. The languages it doesn't yet support are ranked by the ${who} they would reach in five years, with what already exists for each. Reach comes from LinguaMeta's speakers and the World Bank's connectivity, so it's an estimate; spoken varieties and second-language speakers are counted as the sources count them.</p>
-      <div class="controls plan-controls">
+      <p class="sub">Choose a technology and what your product supports today. The languages it doesn't yet support are ranked by the ${who} they'd reach in five years, with what already exists for each.</p>
+      <div class="plan-controls">
         <label class="plan-l">Technology <select id="pl-t">${PLAN_TECHS.map(k => `<option value="${k}"${plan.t === k ? ' selected' : ''}>${esc(CFG.tech.technologies[k].label)}</option>`).join('')}</select></label>
         <label class="plan-l">Starting from <select id="pl-from"><option value="none"${plan.from === 'none' ? ' selected' : ''}>Nothing yet</option><option value="list"${plan.from === 'list' ? ' selected' : ''}>A list I paste</option><optgroup label="This list">${svcOpts}</optgroup></select></label>
-        <span id="plregwrap">${regionPicker()}</span><span id="plctrywrap">${countryPicker()}</span>
+        <div class="plan-scope"><span class="plan-l">Where</span><span id="plregwrap">${regionPicker()}</span><span id="plctrywrap">${countryPicker()}</span></div>
       </div>
       ${plan.from === 'list' ? `<div class="plan-paste"><textarea id="pl-codes" rows="3" placeholder="Language codes or names, separated by commas, spaces or new lines: en, es, yo, Hausa ...">${esc(plan.codes)}</textarea>
         <p class="note">${P.supported.size.toLocaleString()} recognised${P.unknown.length ? `; not recognised: ${esc(P.unknown.slice(0, 12).join(', '))}${P.unknown.length > 12 ? ' …' : ''}` : ''}.</p></div>` : ''}
-      <div class="controls plan-toggles">
+      <div class="plan-toggles">
         <label class="switch" title="Leave out spoken varieties whose speakers mostly read and write a major standard language (Wu, Egyptian Arabic, Bhojpuri), unless your list includes them"><input type="checkbox" role="switch" id="pl-ex"${plan.ex ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Exclude varieties of major languages</label>
         <label class="switch" title="Count only open data and models whose licence permits commercial use"><input type="checkbox" role="switch" id="pl-com"${plan.com ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Commercially usable data and models only</label>
       </div>
     </section>
-    <section class="chart">
+    <section class="chart plangraph">
       <h3>${P.rows.length ? `From ${pct(P.base / (P.total || 1))} to 100% of ${who} in ${esc(scopeName)}` : 'Nothing left to add'}</h3>
       <p class="sub">${P.baseName ? `Starting from ${esc(P.baseName)}: ${P.nSupported.toLocaleString()} ${P.nSupported === 1 ? 'language' : 'languages'} reaching ${people(P.base)} of ${people(P.total)} in five years.` : `Starting from nothing: ${people(P.total)} ${who} in five years across ${P.rows.length.toLocaleString()} languages.`}${plan.ex ? ' Varieties of major languages are left out of the list and the totals.' : ''} Each step adds the next language in the table below.</p>
       ${planCurve(P.rows, P.base, P.total)}
     </section>
+    </div>
     <section class="chart">
       <div class="plan-tablehead"><h3>Languages to add, by reach</h3><span><button type="button" class="chip" id="pl-csv">Download CSV</button> <button type="button" class="chip" id="pl-link">Copy link</button></span></div>
       <div class="tablebox"><table class="plantab"><thead><tr><th class="num">#</th><th>Language</th><th class="num" title="Estimated ${who} in five years, in ${esc(scopeName)}">Online in 5 years</th><th class="num">Today</th><th class="num" title="Share of the total reached once this language is added">Reached</th><th title="Comparable commercial services already offering it${P.baseName && plan.from.startsWith('svc:') ? ` (other than ${esc(P.baseName)})` : ''}">Others offering</th><th>Open models</th><th>Open data</th><th class="hide-md">Countries</th></tr></thead>
       <tbody>${shown.map((r, i) => { const c = planCells(r, T); return `<tr><td class="num">${i + 1}</td><td><a href="#lang-${r.l.code}">${esc(r.l.name)}</a> <span class="code">[${r.l.code}]</span>${r.l.wi && BY[r.l.wi] ? `<div class="muted small">speakers write ${esc(BY[r.l.wi].name)}</div>` : ''}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td><td class="small hide-md">${esc(c.countries)}</td></tr>`; }).join('')}</tbody></table></div>
       ${P.rows.length > shown.length ? `<button type="button" class="chip" id="pl-more">Show ${Math.min(50, P.rows.length - shown.length)} more of ${(P.rows.length - shown.length).toLocaleString()}</button>` : ''}
-      <p class="note">Others offering counts the commercial services tracked for ${esc(T.label.toLowerCase())}${P.baseName && plan.from.startsWith('svc:') ? ', other than the one you started from' : ''}; "+ regional" means a regional provider offers it too. Open models are those listed for the language, with published quality where there is a figure (the makers' own measurement unless marked otherwise) and their licence where it doesn't permit commercial use. Open data is ${P.voice ? 'transcribed speech from the open datasets tracked' : plan.t === 'mt' ? 'sentence pairs with English in OPUS' : 'web text in FineWeb-2'}${plan.com && P.voice ? ', counting only datasets whose licence permits commercial use' : plan.com && plan.t === 'mt' ? '; OPUS corpora carry their own licences, which aren\'t checked here' : ''}. Licences are as each project publishes them; this isn't legal advice.</p>
+      <p class="note">Reach is an estimate from LinguaMeta's speaker counts and the World Bank's connectivity; spoken varieties and second-language speakers are counted as those sources count them. Others offering counts the commercial services tracked for ${esc(T.label.toLowerCase())}${P.baseName && plan.from.startsWith('svc:') ? ', other than the one you started from' : ''}; "+ regional" means a regional provider offers it too. Open models are those listed for the language, with published quality where there is a figure (the makers' own measurement unless marked otherwise) and their licence where it doesn't permit commercial use. Open data is ${P.voice ? 'transcribed speech from the open datasets tracked' : plan.t === 'mt' ? 'sentence pairs with English in OPUS' : 'web text in FineWeb-2'}${plan.com && P.voice ? ', counting only datasets whose licence permits commercial use' : plan.com && plan.t === 'mt' ? '; OPUS corpora carry their own licences, which aren\'t checked here' : ''}. Licences are as each project publishes them; this isn't legal advice.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', planHash()); const y = scrollY; planPage(); scrollTo(0, y); };
   $('#pl-t').onchange = e => { plan.t = e.target.value; if (plan.from.startsWith('svc:')) plan.from = 'none'; plan.n = 50; redraw(); };
