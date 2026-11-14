@@ -2525,7 +2525,7 @@ function planPage() {
       ${plan.from === 'list' ? `<div class="plan-paste"><textarea id="pl-codes" rows="3" placeholder="Language codes or names, separated by commas, spaces or new lines: en, es, yo, Hausa ...">${esc(plan.codes)}</textarea>
         <p class="note">${P.supported.size.toLocaleString()} recognised${P.unknown.length ? `; not recognised: ${esc(P.unknown.slice(0, 12).join(', '))}${P.unknown.length > 12 ? ' …' : ''}` : ''}.</p></div>` : ''}
       <div class="plan-toggles">
-        <label class="switch" title="Leave out spoken varieties whose speakers mostly read and write a major standard language (Wu, Egyptian Arabic, Bhojpuri), unless your list includes them"><input type="checkbox" role="switch" id="pl-ex"${plan.ex ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Exclude varieties of major languages</label>
+        <label class="switch" title="Count spoken varieties whose speakers mostly read and write a major standard language (Wu, Egyptian Arabic, Bhojpuri). When off, they're left out unless your list includes them"><input type="checkbox" role="switch" id="pl-ex"${plan.ex ? '' : ' checked'}><span class="track" aria-hidden="true"></span>Include varieties of major languages</label>
         <label class="switch" title="Count only open data and models whose licence permits commercial use"><input type="checkbox" role="switch" id="pl-com"${plan.com ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Commercially usable data and models only</label>
       </div>
     </section>
@@ -2545,7 +2545,7 @@ function planPage() {
   const redraw = () => { history.replaceState(null, '', planHash()); const y = scrollY; planPage(); scrollTo(0, y); };
   $('#pl-t').onchange = e => { plan.t = e.target.value; if (plan.from.startsWith('svc:')) plan.from = 'none'; plan.n = 50; redraw(); };
   $('#pl-from').onchange = e => { plan.from = e.target.value; plan.n = 50; redraw(); };
-  $('#pl-ex').onchange = e => { plan.ex = e.target.checked; redraw(); };
+  $('#pl-ex').onchange = e => { plan.ex = !e.target.checked; redraw(); };
   $('#pl-com').onchange = e => { plan.com = e.target.checked; redraw(); };
   const ta = $('#pl-codes');
   if (ta) ta.onchange = e => { plan.codes = e.target.value; plan.n = 50; redraw(); };
