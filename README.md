@@ -38,7 +38,13 @@ python -m ltdi.score           # records + config/methodology.toml -> data/score
 python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
 
-No dependencies beyond the Python 3.11+ standard library.
+No dependencies beyond the Python 3.11+ standard library (pytest for the tests).
+
+Every push and pull request is checked on GitHub Actions (`.github/workflows/check.yml`): the tests
+run, then scoring and the site build, and the check fails if the committed `site/` differs from what
+the build makes. So after changing data, config or code, run `python -m ltdi.score` and
+`python -m ltdi.build_site` and commit `site/` with the change. The build gives the same bytes on
+every run.
 
 The page carries an index of every language (scores, coverage, gaps and the top
 opportunities); each language's own detail is in `site/data/lang/<n>.json` (150

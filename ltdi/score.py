@@ -230,7 +230,7 @@ def inherit_written(by_lang: dict[str, dict[str, Record]], names: dict[str, str]
         if code not in names or std not in by_lang:
             continue
         own = by_lang.setdefault(code, {})
-        for ind in inds:
+        for ind in sorted(inds):  # sorted, so the output is the same on every run
             f = by_lang[std].get(ind)
             if f and f.value and (ind not in own or own[ind].value < f.value):
                 note = f"Counted from {names[std]}" + (f". {f.note}" if f.note else "")
