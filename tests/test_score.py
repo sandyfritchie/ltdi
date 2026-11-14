@@ -193,3 +193,39 @@ class LocaleTests(unittest.TestCase):
         f = Record("xx", "cldr_coverage", 2, "level", "test", "http://example.org")
         self.assertAlmostEqual(tech_score({"cldr_coverage": f}, spec), 0.667)
         self.assertIsNone(tech_score({}, spec))
+
+
+class MonotonicityTests(unittest.TestCase):
+    """Adding a service, or a higher value, never lowers a score (E4). Measured quality is the documented
+    exception: a poor benchmark result can count a service at half."""
+
+    def test_offering_more_never_lowers_a_technology(self):
+        import random
+        from ltdi.config import load_config
+        rng = random.Random(7)
+        for name, t in load_config()["dimensions"]["tech"]["technologies"].items():
+            if "indicator" in t:
+                continue
+            ids = [*t.get("consumer", []), *t.get("open", []), *(t.get("regional") or [])]
+            for _ in range(200):
+                facts = {i: fact(i, rng.random() < 0.5) for i in ids if rng.random() < 0.9}
+                base = tech_score(facts, t) or 0
+                off = [i for i in ids if i in facts and not facts[i].value]
+                if not off:
+                    continue
+                more = {**facts, (i := rng.choice(off)): fact(i, 1)}
+                self.assertGreaterEqual(tech_score(more, t) + 1e-9, base, f"{name}: adding {i}")
+
+    def test_more_data_never_lowers_the_data_dimension(self):
+        import random
+        from ltdi.config import load_config
+        from ltdi.score import score_language
+        cfg = load_config()
+        rng = random.Random(3)
+        spec = cfg["dimensions"]["data"]["indicators"]
+        for _ in range(200):
+            facts = {i: Record("xx", i, rng.choice([0, 10, 1e3, 1e6]), "x", "t", "u") for i in spec}
+            base = score_language(facts, cfg)["dimensions"]["data"]["raw"]
+            i = rng.choice(list(spec))
+            more = {**facts, i: Record("xx", i, facts[i].value * 10 + 1, "x", "t", "u")}
+            self.assertGreaterEqual(score_language(more, cfg)["dimensions"]["data"]["raw"] + 1e-9, base, i)

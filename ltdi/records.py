@@ -20,10 +20,16 @@ FIELDS = [
     "unit",       # e.g. articles, hours, share, bool, level
     "source",     # human-readable source name
     "url",        # where the value was read from
-    "retrieved",  # ISO date the value was read
+    "retrieved",  # ISO date the bytes the value was read from were downloaded
     "method",     # api | scrape | download | manual
     "note",       # anything a reader needs to interpret the value
 ]
+
+
+def _retrieved() -> str:
+    """The download day of the oldest bytes the running collector has used (ltdi.http), or today."""
+    from .http import oldest_fetch
+    return oldest_fetch() or dt.date.today().isoformat()
 
 
 @dataclasses.dataclass
@@ -34,7 +40,7 @@ class Record:
     unit: str
     source: str
     url: str
-    retrieved: str = dataclasses.field(default_factory=lambda: dt.date.today().isoformat())
+    retrieved: str = dataclasses.field(default_factory=_retrieved)
     method: str = "download"
     note: str = ""
 

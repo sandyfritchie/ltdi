@@ -9,7 +9,7 @@ from ._common import ltdi_codes
 
 # Latest full release file in github.com/common-voice/cv-dataset/tree/main/datasets/scripted-speech
 RELEASE = "cv-corpus-27.0-2026-09-11"
-URL = f"https://raw.githubusercontent.com/common-voice/cv-dataset/main/datasets/scripted-speech/{RELEASE}.json"
+URL = f"https://raw.githubusercontent.com/common-voice/cv-dataset/65ca2460d5e686ea03902a932bbca09b322dc4b0/datasets/scripted-speech/{RELEASE}.json"
 
 
 def collect() -> list[Record]:

@@ -12,7 +12,7 @@ from .. import DATA
 from ..http import fetch_json
 from ..records import Record
 
-URL = "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/scriptMetadata.json"
+URL = "https://raw.githubusercontent.com/unicode-org/cldr-json/7d2b9cb11cec08f4d333ad73209deb3df0711c3b/cldr-json/cldr-core/scriptMetadata.json"
 
 
 def collect() -> list[Record]:

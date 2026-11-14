@@ -15,8 +15,10 @@ import json
 from . import CONFIG, DATA
 from .http import fetch_json
 
-LINGUAMETA = "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data"
-CLDR_TERRITORIES = ("https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/"
+LINGUAMETA = "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data"  # linked from pages
+LINGUAMETA_COMMIT = "452a21ad3dae5668c06ceeac21ff073e1e40f9be"  # what is read (geo.linguameta_dir clones the same)
+LINGUAMETA_RAW = f"https://raw.githubusercontent.com/google-research/url-nlp/{LINGUAMETA_COMMIT}/linguameta/data"
+CLDR_TERRITORIES = ("https://raw.githubusercontent.com/unicode-org/cldr-json/7d2b9cb11cec08f4d333ad73209deb3df0711c3b/cldr-json/"
                     "cldr-localenames-full/main/en/territories.json")
 # Short country names for display: CLDR's English names, with these overrides
 SHORT_NAMES = {"HK": "Hong Kong", "MO": "Macao", "MM": "Myanmar", "PS": "Palestine",
@@ -74,7 +76,7 @@ def scope(records: dict[str, dict]) -> list[str]:
 
 
 def _locales() -> dict[str, dict]:
-    data = fetch_json(f"{LINGUAMETA}/locales.json")
+    data = fetch_json(f"{LINGUAMETA_RAW}/locales.json")
     out = {}
     for entry in data.get("locale_map", []):
         loc = entry.get("locale", {})
@@ -98,7 +100,7 @@ def country_names() -> dict[str, str]:
 
 def script_names() -> dict[str, str]:
     """ISO 15924 code -> full name from LinguaMeta, e.g. latn -> Latin, hans -> Han (Simplified)."""
-    data = fetch_json(f"{LINGUAMETA}/scripts.json")["script_map"]
+    data = fetch_json(f"{LINGUAMETA_RAW}/scripts.json")["script_map"]
     return {e["script"]["name"]: e["script"]["full_name"].replace(" variant)", ")") for e in data}
 
 

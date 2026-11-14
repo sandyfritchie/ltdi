@@ -13,8 +13,8 @@
     "tiers": {
      "lc": 368,
      "lo": 744,
-     "ld": 266,
-     "ln": 391
+     "ld": 273,
+     "ln": 384
     }
    },
    {
@@ -23,8 +23,8 @@
     "n": 194,
     "median_ltdi": 0.228,
     "tiers": {
-     "m": 11,
-     "lc": 172,
+     "m": 12,
+     "lc": 171,
      "lo": 8,
      "ld": 2,
      "ln": 1
@@ -78,7 +78,7 @@
     "code": "pih",
     "name": "Pitcairn-Norfolk",
     "ltdi": 0.05,
-    "rank": 3290,
+    "rank": 3298,
     "tier": "ld",
     "other": 1,
     "gap": -0.658
@@ -87,7 +87,7 @@
     "code": "prp",
     "name": "Parsi",
     "ltdi": 0.05,
-    "rank": 3999,
+    "rank": 4006,
     "tier": "ln",
     "other": 1,
     "gap": -0.658
@@ -96,7 +96,7 @@
     "code": "prs",
     "name": "Dari",
     "ltdi": 0.5947,
-    "rank": 73,
+    "rank": 74,
     "tier": "lc",
     "other": 0,
     "gap": 0.53
@@ -114,7 +114,7 @@
     "code": "shn",
     "name": "Shan",
     "ltdi": 0.2727,
-    "rank": 147,
+    "rank": 148,
     "tier": "lc",
     "other": 0,
     "gap": 0.495
@@ -123,16 +123,16 @@
     "code": "mni",
     "name": "Meiteilon (Manipuri)",
     "ltdi": 0.2649,
-    "rank": 151,
+    "rank": 152,
     "tier": "lc",
     "other": 0,
-    "gap": 0.494
+    "gap": 0.493
    },
    {
     "code": "dag",
     "name": "Dagbani",
     "ltdi": 0.2578,
-    "rank": 156,
+    "rank": 157,
     "tier": "lc",
     "other": 0,
     "gap": 0.491
@@ -177,7 +177,7 @@
     "code": "mww",
     "name": "Hmong Daw",
     "ltdi": 0.2125,
-    "rank": 195,
+    "rank": 196,
     "tier": "lc",
     "other": 0,
     "gap": 0.472
@@ -186,16 +186,16 @@
     "code": "nyn",
     "name": "Nyankole",
     "ltdi": 0.2102,
-    "rank": 200,
+    "rank": 201,
     "tier": "lc",
     "other": 0,
-    "gap": 0.471
+    "gap": 0.47
    },
    {
     "code": "fon",
     "name": "Fon",
     "ltdi": 0.2065,
-    "rank": 204,
+    "rank": 205,
     "tier": "lc",
     "other": 0,
     "gap": 0.469
@@ -204,7 +204,7 @@
     "code": "kam",
     "name": "Kamba",
     "ltdi": 0.2085,
-    "rank": 203,
+    "rank": 204,
     "tier": "lc",
     "other": 0,
     "gap": 0.469
@@ -213,7 +213,7 @@
     "code": "kac",
     "name": "Kachin",
     "ltdi": 0.2049,
-    "rank": 206,
+    "rank": 207,
     "tier": "lc",
     "other": 0,
     "gap": 0.468
@@ -372,8 +372,8 @@
     "tiers": {
      "lo": 208,
      "lc": 52,
-     "ln": 23,
-     "ld": 24
+     "ln": 21,
+     "ld": 26
     }
    },
    {
@@ -422,7 +422,7 @@
     "code": "sro",
     "name": "Campidanese Sardinian",
     "ltdi": 0.05,
-    "rank": 2130,
+    "rank": 2132,
     "tier": "lo",
     "other": "Ascending",
     "gap": -0.62
@@ -431,7 +431,7 @@
     "code": "cqd",
     "name": "Chuanqiandian Cluster Miao",
     "ltdi": 0.05,
-    "rank": 3999,
+    "rank": 4006,
     "tier": "ln",
     "other": "Ascending",
     "gap": -0.615
@@ -440,7 +440,7 @@
     "code": "bwr",
     "name": "Bura-Pabir",
     "ltdi": 0.05,
-    "rank": 2236,
+    "rank": 2238,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.56
@@ -458,7 +458,7 @@
     "code": "cng",
     "name": "Northern Qiang",
     "ltdi": 0.0513,
-    "rank": 1724,
+    "rank": 1725,
     "tier": "lc",
     "other": "Still",
     "gap": 0.501
@@ -485,7 +485,7 @@
     "code": "xte",
     "name": "Ketengban",
     "ltdi": 0.0513,
-    "rank": 1742,
+    "rank": 1743,
     "tier": "lo",
     "other": "Still",
     "gap": 0.501
@@ -494,7 +494,7 @@
     "code": "anu",
     "name": "Anuak",
     "ltdi": 0.05,
-    "rank": 2440,
+    "rank": 2441,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -503,7 +503,7 @@
     "code": "bfm",
     "name": "Mmen",
     "ltdi": 0.05,
-    "rank": 2425,
+    "rank": 2426,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -512,7 +512,7 @@
     "code": "bqm",
     "name": "Wumboko",
     "ltdi": 0.05,
-    "rank": 2440,
+    "rank": 2441,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -521,7 +521,7 @@
     "code": "cts",
     "name": "Northern Catanduanes Bikol",
     "ltdi": 0.05,
-    "rank": 3999,
+    "rank": 4006,
     "tier": "ln",
     "other": "Emerging",
     "gap": -0.495
@@ -530,7 +530,7 @@
     "code": "kwu",
     "name": "Kwakum",
     "ltdi": 0.05,
-    "rank": 2409,
+    "rank": 2410,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -539,7 +539,7 @@
     "code": "mls",
     "name": "Masalit",
     "ltdi": 0.05,
-    "rank": 2498,
+    "rank": 2499,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -548,7 +548,7 @@
     "code": "mrr",
     "name": "Maria",
     "ltdi": 0.05,
-    "rank": 2198,
+    "rank": 2200,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -557,7 +557,7 @@
     "code": "ria",
     "name": "Riang",
     "ltdi": 0.05,
-    "rank": 2150,
+    "rank": 2152,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -566,7 +566,7 @@
     "code": "ssc",
     "name": "Suba-Simbiti",
     "ltdi": 0.05,
-    "rank": 2644,
+    "rank": 2645,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -575,7 +575,7 @@
     "code": "ttr",
     "name": "Tera",
     "ltdi": 0.05,
-    "rank": 2219,
+    "rank": 2221,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.495
@@ -593,7 +593,7 @@
     "code": "fuq",
     "name": "Central-Eastern Niger Fulfulde",
     "ltdi": 0.05,
-    "rank": 2109,
+    "rank": 2111,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.476
@@ -602,7 +602,7 @@
     "code": "ijs",
     "name": "Southeast Ijo",
     "ltdi": 0.05,
-    "rank": 2440,
+    "rank": 2441,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.476
@@ -611,7 +611,7 @@
     "code": "cuh",
     "name": "Chuka",
     "ltdi": 0.05,
-    "rank": 3418,
+    "rank": 3426,
     "tier": "ld",
     "other": "Emerging",
     "gap": -0.461
@@ -629,7 +629,7 @@
     "code": "ahl",
     "name": "Igo",
     "ltdi": 0.05,
-    "rank": 3206,
+    "rank": 3213,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.412
@@ -665,7 +665,7 @@
     "code": "cay",
     "name": "Cayuga",
     "ltdi": 0.05,
-    "rank": 2498,
+    "rank": 2499,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.412
@@ -674,7 +674,7 @@
     "code": "ckl",
     "name": "Cibak",
     "ltdi": 0.05,
-    "rank": 3232,
+    "rank": 3240,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.412

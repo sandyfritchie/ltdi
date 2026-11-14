@@ -58,7 +58,7 @@ def _scores(pairs) -> dict[str, float]:
 
 
 def collect() -> list[Record]:
-    google = next(iter(git_files(REPO, "/scores/google-translate.tsv").values()))
+    google = next(iter(git_files(REPO, "/scores/google-translate.tsv", COMMIT).values()))
     g = _scores((r["Lang"], float(r["chrF2++"])) for r in csv.DictReader(google.splitlines(), delimiter="\t"))
     with NLLB_FILE.open(encoding="utf-8") as f:
         n = _scores((r["direction"].split("-", 1)[1], float(r["chrf++"])) for r in csv.DictReader(f)

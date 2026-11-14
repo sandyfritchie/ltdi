@@ -197,12 +197,17 @@ def _country_views(by_country: dict[str, list[list[tuple[float, float]]]]) -> di
 
 
 def linguameta_dir():
+    """LinguaMeta's data folder, from a sparse clone at the pinned commit (backbone.LINGUAMETA_COMMIT)."""
+    from .backbone import LINGUAMETA_COMMIT
     repo = CACHE / "url-nlp"
     if not repo.exists():
         CACHE.mkdir(parents=True, exist_ok=True)
-        subprocess.run(["git", "clone", "-q", "--depth", "1", "--filter=blob:none", "--sparse",
+        subprocess.run(["git", "clone", "-q", "--filter=blob:none", "--sparse",
                         "https://github.com/google-research/url-nlp", str(repo)], check=True)
         subprocess.run(["git", "-C", str(repo), "sparse-checkout", "set", "linguameta/data"], check=True)
+    if subprocess.run(["git", "-C", str(repo), "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip() != LINGUAMETA_COMMIT:
+        subprocess.run(["git", "-C", str(repo), "fetch", "-q", "--filter=blob:none", "origin", LINGUAMETA_COMMIT], check=True)
+        subprocess.run(["git", "-C", str(repo), "checkout", "-q", LINGUAMETA_COMMIT], check=True)
     return repo / "linguameta" / "data"
 
 

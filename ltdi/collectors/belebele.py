@@ -9,7 +9,7 @@ from ..records import Record
 from . import present
 from ._common import presence
 
-URL = "https://raw.githubusercontent.com/facebookresearch/belebele/main/README.md"
+URL = "https://raw.githubusercontent.com/facebookresearch/belebele/918890beb2290a8d3ef2d7a90369925959e1bacf/README.md"
 
 
 def collect() -> list[Record]:

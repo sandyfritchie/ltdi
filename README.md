@@ -125,7 +125,7 @@ any name it can't resolve.
 | Reported, not scored | Main script encoded | Unicode CLDR script metadata | automated |
 | Data | Web text (words) | FineWeb-2 language distribution; scaled by 1 − 0.5 × FineWeb-2's share of the language's documents from Bible-related sites (most documents for 1,252 languages) | automated |
 | Data | Parallel text with English (sentence pairs) | OPUS, all corpora for the pair; web-mined corpora up to 20M pairs count at the share of distinct lines in a random sample that GlotLID identifies as the language (or a member, macrolanguage or indistinguishable neighbour) (`ltdi/collectors/opus_lid.py`, run on GitHub Actions) | automated |
-| Data | Annotated text (treebank words) | Universal Dependencies, latest release | automated |
+| Data | Annotated text (treebank words) | Universal Dependencies, latest release (each treebank at its release tag) | automated |
 | Data | Wikipedia articles and active editors | Meta-Wiki's List of Wikipedias (refreshed from each edition's statistics); articles count up to 1,000 per active editor (at least 10,000), since editions far beyond that are mostly bot-generated | automated |
 | Data | Open transcribed speech (hours) | Summed across Common Voice 27.0, FLEURS, YODAS2, WAXAL (automated) and Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech (`config/speech_datasets.csv`, from each paper or card) | automated and curated |
 | Data | Datasets on the Hugging Face Hub | Hub API: the whole dataset listing, read once, by language tag; a dataset tagged with more than 20 languages counts 20 ÷ its languages for each | automated |
@@ -390,9 +390,9 @@ output is reproducible; CI re-runs it and checks the committed files.
 
 Language pages show the 5th–95th percentile range ("Rank range 69–79"), and the ranking table shows
 it on hovering a rank. The top 60 move by a median of 4 places and ranks 61–200 by 14, but ranks
-201–1,000 by 191: there, the tier says more than the exact rank. Fixed scenarios test the weights the
+201–1,000 by 193: there, the tier says more than the exact rank. Fixed scenarios test the weights the
 review questioned: voice assistants at full weight or left out move no language in the top 300 by
-more than 10 places; weighting every technology equally moves 13.
+more than 10 places; weighting every technology equally moves 14.
 
 Each language page also says what its technology score rests on: how many entries in services'
 language lists, and how many quality measurements (benchmarks, error rates, translation scores),
@@ -416,6 +416,36 @@ DLS 0.74. No two such measures agree exactly, since each draws on different, inc
 a different year. Both studies are older than LTDI's sources, so some disagreement is progress
 since; the lists are for checking LTDI's method and data language by language. Re-run the tool after scoring changes (it needs
 network for the DLS sample); the About page shows the result.
+
+## Reproducibility
+
+- **Retrieval dates are download dates.** `ltdi/http.py` keeps, beside each cached page, the day its
+  bytes were downloaded and their SHA-256; a record's `retrieved` date is the download day of the
+  oldest bytes its collector used, so re-running a collector on cached pages doesn't make old data
+  look new. `python -m ltdi.collectors --refresh` downloads everything again; `--max-age DAYS`
+  re-downloads anything cached longer than that.
+- **A manifest of what was read.** Each collector run updates `data/sources_manifest.csv`: every URL
+  (or repository and commit) the collector read, with its SHA-256 and download day.
+- **Pinned sources.** Every source in a repository is read at a fixed commit or tag: CLDR, FineWeb-2's
+  distribution, GlotLID, CLD3, Firefox's locales, Whisper, OpenAI's simple-evals, FLORES-200,
+  Belebele, DeepL's language table, Common Voice, LinguaMeta, Tesseract, the LibreOffice dictionaries,
+  LanguageTool and Keyman (each pin is the commit whose content the current records came from), and
+  each Universal Dependencies treebank at its release tag. Updating a pin is a deliberate change.
+  Not pinnable: vendors' documentation pages, Wikipedia, the Hugging Face Hub listing and the World
+  Bank API, which are live; the manifest's hashes record what was read. Three Hugging Face speech files
+  (`ltdi/collectors/speech.py`) are still read from `main`, since the Hub isn't reachable from where
+  pins were checked. Vendor pages aren't archived in the repository, as they're the vendors' content.
+- **Lists can't silently shrink.** A collector run prints, for every indicator, the languages added
+  and removed since the last run, and stops without writing if a list lost more than 5% of its
+  languages or any of the 100 most-spoken, unless run with `--accept`.
+- **Tests.** Besides the scoring, opportunity and parser tests: checks on the committed records (no
+  language with an indicator twice, every scored indicator and service collected, valid values and
+  dates), monotonicity (adding a service or more data never lowers a score), crosswalk cases, the
+  vendor parsers re-run on the cached pages they last read (skipped where the cache is absent), and
+  `tests/fixtures/golden.csv`: the top 50 and sentinel languages, so any change that moves them shows
+  up for review (`UPDATE_GOLDEN=1 python -m pytest tests/test_golden.py` after a deliberate change).
+- **Every value's source on the page.** Each panel on a language page ends with a list of every value's
+  source, retrieval date and note, which opens by click, tap or keyboard.
 
 ## Editions and citation
 

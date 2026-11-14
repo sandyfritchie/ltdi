@@ -301,6 +301,11 @@ table.ranktab { table-layout: fixed; }
 .thru-dim { margin: -4px 0 10px; font-size: 13px; color: var(--muted); }
 .thru-line { font-size: 12px; color: var(--muted); margin-top: -2px; }
 .thru-v { font-size: 12px; color: var(--muted); font-weight: 400; margin-inline-start: 4px; }
+details.prov { margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 10px; font-size: 13px; }
+details.prov summary { cursor: pointer; color: var(--muted); font-weight: 600; }
+details.prov summary:hover, details.prov[open] summary { color: var(--ink); }
+details.prov ul { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 4px; max-width: 80ch; }
+details.prov li { overflow-wrap: anywhere; }
 .tile.thru .mark { border: 1.5px solid var(--c); color: var(--c); }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
 /* a note about a fact, behind a small "i" */
@@ -1305,6 +1310,34 @@ function localeTile(f, vf, wname) {
     <span class="mark" aria-hidden="true">${thru ? '↳' : lv ? '✓' : '–'}</span>
     <div><span class="by">Unicode CLDR</span><b>Locale data</b><small>Dates, numbers, names${lv ? '' : ` · <span class="vis">${below ? 'Below basic' : 'Not in CLDR'}</span>`}</small>${lv ? `<span class="det">${esc(det)}</span>` : ''}</div></a>`;
 }
+// Every value's source, retrieval date and note, in a list that opens by click, tap or keyboard
+// (the same details are on hover over each value, which touch and keyboard users can't reach)
+const fmtDay = d => { try { return new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return d; } };
+function provItem(label, f, thru) {
+  const u = (f.url || '').split(' ')[0];
+  return `<li><b>${esc(label)}</b>${thru ? ` <span class="muted">through ${esc(thru)}</span>` : ''}: ${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(f.source)}</a>` : esc(f.source)}, retrieved ${esc(fmtDay(f.retrieved))}${f.note ? `. ${esc(f.note)}` : ''}</li>`;
+}
+function provList(l, key, facts, vfacts, wname) {
+  const items = [];
+  const add = (label, id) => {
+    if (facts[id]) items.push(provItem(label, facts[id]));
+    if (vfacts && vfacts[id] && vfacts[id] !== facts[id]) items.push(provItem(label, vfacts[id], wname));
+  };
+  if (key === 'tech') {
+    for (const [tk, t] of Object.entries(CFG.tech.technologies)) {
+      const ids = t.indicator ? [t.indicator] : [...(t.consumer || []), ...(t.regional || []), ...(t.open || []),
+        ...Object.keys(t.measured || {}), ...Object.keys(t.depth || {}), ...Object.values(t.quality || {}).map(q => q.indicator)];
+      for (const id of [...new Set(ids)]) add(`${t.label} · ${(SVC[id] || [])[0] || DATA.labels[id] || id}`, id);
+    }
+  } else {
+    for (const [ik, spec] of Object.entries(CFG[key].indicators)) {
+      add(spec.label, ik);
+      if (spec.narrowed_by) add(spec.label + ' · Bible-site share', spec.narrowed_by);
+    }
+  }
+  if (!items.length) return '';
+  return `<details class="prov"><summary>Sources, dates and notes <span class="muted">· ${items.length}</span></summary><ul>${items.join('')}</ul></details>`;
+}
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
   const vfacts = (DATA.via || {})[l.code], vd = l.via_dims && l.via_dims[key], w = BY[l.written_in], wname = w ? w.name : '';
@@ -1348,6 +1381,7 @@ function dimPanel(l, key, color) {
     }
     body += '</div>';
   }
+  body += provList(l, key, facts, vfacts, wname);
   return `<section class="dim wide${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${key === 'tech' ? evidenceLine(l) : ''}${body}</section>`;
 }
 

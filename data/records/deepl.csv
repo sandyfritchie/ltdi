@@ -1,148 +1,148 @@
 language,indicator,value,unit,source,url,retrieved,method,note
-*,mt_deepl,0,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ace,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-af,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-an,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ar,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-as,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ay,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-az,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ba,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-be,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-bg,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-bho,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-bn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-br,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-bs,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ca,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ceb,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ckb,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-cmn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-cs,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-cy,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-da,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-de,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-el,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-en,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-eo,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-es,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-et,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-eu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-fa,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-fi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-fil,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-fr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ga,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-gl,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-gn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-gom,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-gu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ha,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-he,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-hi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-hr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ht,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-hu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-hy,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-id,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ig,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-is,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-it,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ja,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-jv,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ka,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-kk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ko,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ku,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ky,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-lb,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-lmo,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ln,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-lt,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-lv,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-mai,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-mg,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-mi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-mk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ml,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-mn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-mr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ms,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-mt,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-my,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-nb,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ne,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-nl,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-oc,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-om,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-pa,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-pag,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-pam,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-pl,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-prs,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ps,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-pt,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-qu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ro,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ru,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-scn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-sk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-sl,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-sq,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-sr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-st,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-su,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-sv,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-sw,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ta,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-te,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-tg,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-th,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-tk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-tn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-tr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ts,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-tt,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-uk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-ur,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-uz,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-vi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-wo,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-xh,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-yi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-yue,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-zu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,
-*,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,None of the four
-ar,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-bg,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-cmn,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-cs,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-da,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-de,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-el,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-en,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-es,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-et,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-fi,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-fr,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-he,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-hu,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-id,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-it,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-ja,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-ko,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-lt,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-lv,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-nb,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-nl,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-pl,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-pt,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
-ro,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-ru,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-sk,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-sl,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-sv,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-th,mt_deepl_features,2,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: styleRules, translationMemory"
-tr,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-uk,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
-vi,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+*,mt_deepl,0,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ace,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+af,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+an,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ar,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+as,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ay,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+az,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ba,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+be,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+bg,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+bho,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+bn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+br,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+bs,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ca,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ceb,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ckb,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+cmn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+cs,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+cy,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+da,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+de,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+el,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+en,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+eo,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+es,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+et,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+eu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+fa,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+fi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+fil,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+fr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ga,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+gl,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+gn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+gom,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+gu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ha,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+he,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+hi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+hr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ht,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+hu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+hy,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+id,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ig,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+is,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+it,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ja,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+jv,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ka,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+kk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ko,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ku,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ky,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+lb,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+lmo,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ln,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+lt,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+lv,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+mai,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+mg,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+mi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+mk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ml,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+mn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+mr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ms,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+mt,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+my,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+nb,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ne,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+nl,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+oc,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+om,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+pa,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+pag,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+pam,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+pl,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+prs,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ps,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+pt,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+qu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ro,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ru,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+scn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+sk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+sl,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+sq,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+sr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+st,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+su,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+sv,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+sw,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ta,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+te,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+tg,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+th,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+tk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+tn,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+tr,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ts,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+tt,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+uk,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+ur,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+uz,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+vi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+wo,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+xh,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+yi,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+yue,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+zu,mt_deepl,1,bool,DeepL,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,
+*,mt_deepl_features,0,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,None of the four
+ar,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+bg,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+cmn,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+cs,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+da,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+de,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+el,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+en,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+es,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+et,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+fi,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+fr,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+he,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+hu,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+id,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+it,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+ja,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+ko,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+lt,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+lv,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+nb,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+nl,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+pl,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+pt,mt_deepl_features,4,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, textImprovement, translationMemory"
+ro,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+ru,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+sk,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+sl,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+sv,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+th,mt_deepl_features,2,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: styleRules, translationMemory"
+tr,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+uk,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"
+vi,mt_deepl_features,3,features of 4,DeepL language features,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,2026-11-08,download,"Has: glossaries, styleRules, translationMemory"

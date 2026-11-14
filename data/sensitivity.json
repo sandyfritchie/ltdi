@@ -3,31 +3,31 @@
  "seed": 2026,
  "edition": "2026-11",
  "varied": "technology and data weights x0.5-1.5; log-scale data goals up to 10x either way, the benchmark goal x0.5-1.5; floor 0.025-0.075",
- "nothing_recorded": 2819,
+ "nothing_recorded": 2812,
  "bands": [
   {
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.7
+   "within_10pct": 0.717
   },
   {
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.907
+   "within_10pct": 0.914
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 191,
-   "within_10pct": 0.16
+   "median_range": 193,
+   "within_10pct": 0.158
   },
   {
    "ranks": "1,001 and below",
-   "languages": 2998,
-   "median_range": 372,
-   "within_10pct": 0.495
+   "languages": 3005,
+   "median_range": 375,
+   "within_10pct": 0.494
   }
  ],
  "scenarios": [
@@ -36,11 +36,6 @@
    "spearman": 0.9995,
    "moved_10_in_top_300": 0,
    "largest": [
-    {
-     "name": "Ukrainian",
-     "from": 21,
-     "to": 24
-    },
     {
      "name": "Norwegian Bokmål",
      "from": 28,
@@ -52,14 +47,19 @@
      "to": 32
     },
     {
+     "name": "Ukrainian",
+     "from": 21,
+     "to": 23
+    },
+    {
+     "name": "Romanian",
+     "from": 22,
+     "to": 24
+    },
+    {
      "name": "Finnish",
      "from": 23,
      "to": 21
-    },
-    {
-     "name": "Danish",
-     "from": 24,
-     "to": 22
     }
    ]
   },
@@ -98,12 +98,12 @@
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9978,
-   "moved_10_in_top_300": 13,
+   "moved_10_in_top_300": 14,
    "largest": [
     {
      "name": "Ladin",
      "from": 316,
-     "to": 292
+     "to": 293
     },
     {
      "name": "Kusaal",
@@ -117,7 +117,7 @@
     },
     {
      "name": "Western Armenian",
-     "from": 278,
+     "from": 280,
      "to": 264
     },
     {

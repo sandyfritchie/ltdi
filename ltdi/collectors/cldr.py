@@ -9,7 +9,7 @@ from ..http import fetch_json
 from ..records import Record
 from ._common import ltdi_codes
 
-URL = "https://raw.githubusercontent.com/unicode-org/cldr-json/main/cldr-json/cldr-core/coverageLevels.json"
+URL = "https://raw.githubusercontent.com/unicode-org/cldr-json/7d2b9cb11cec08f4d333ad73209deb3df0711c3b/cldr-json/cldr-core/coverageLevels.json"
 LEVELS = {"modern": 3, "moderate": 2, "basic": 1}
 
 

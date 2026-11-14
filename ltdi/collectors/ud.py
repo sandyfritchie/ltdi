@@ -18,8 +18,9 @@ from ..records import Record
 from . import present
 from ._common import ltdi_codes
 
-AUTOMATION = "https://raw.githubusercontent.com/UniversalDependencies/docs-automation/master"
-RAW = "https://raw.githubusercontent.com/UniversalDependencies/{repo}/master/stats.xml"
+# The release list pinned to a docs-automation commit; each treebank's statistics read at its release tag
+AUTOMATION = "https://raw.githubusercontent.com/UniversalDependencies/docs-automation/88bda9ecd582691bbed991ae985544902d6805d1"
+RAW = "https://raw.githubusercontent.com/UniversalDependencies/{repo}/r{version}/stats.xml"
 SITE = "https://universaldependencies.org/"
 
 
@@ -51,7 +52,7 @@ def collect() -> list[Record]:
         if not code:
             continue
         try:
-            stats = fetch_text(RAW.format(repo=repo))
+            stats = fetch_text(RAW.format(repo=repo, version=version))
         except Exception:
             continue
         m = re.search(r"<total>.*?<words>(\d+)</words>", stats, flags=re.S)

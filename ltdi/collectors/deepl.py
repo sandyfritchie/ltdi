@@ -16,7 +16,7 @@ from ..http import fetch_text
 from ..records import Record
 from ._common import ltdi_codes
 
-URL = "https://raw.githubusercontent.com/DeepLcom/api-docs/main/snippets/language-table.jsx"
+URL = "https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx"
 FEATURES = ["glossaries", "translationMemory", "styleRules", "textImprovement"]
 
 

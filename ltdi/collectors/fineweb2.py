@@ -17,7 +17,7 @@ from ..records import Record
 from . import sum_by_language
 from ._common import ltdi_codes
 
-URL = "https://raw.githubusercontent.com/huggingface/fineweb-2/main/fineweb2-language-distribution.csv"
+URL = "https://raw.githubusercontent.com/huggingface/fineweb-2/d0defb24f193bb9a5a11b8b14524a03c4858e1b6/fineweb2-language-distribution.csv"
 
 
 def _share(r: dict, col: str) -> float:

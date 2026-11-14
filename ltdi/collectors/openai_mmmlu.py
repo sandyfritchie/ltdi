@@ -14,8 +14,8 @@ import re
 from ..http import fetch_text
 from ..records import Record
 
-URL = "https://raw.githubusercontent.com/openai/simple-evals/main/multilingual_mmlu_benchmark_results.md"
-README = "https://raw.githubusercontent.com/openai/simple-evals/main/README.md"  # English MMLU, same models
+URL = "https://raw.githubusercontent.com/openai/simple-evals/652c89d0ca9df547706735883097e9537d40dc47/multilingual_mmlu_benchmark_results.md"
+README = "https://raw.githubusercontent.com/openai/simple-evals/652c89d0ca9df547706735883097e9537d40dc47/README.md"  # English MMLU, same models
 NAMES = {"Arabic": "ar", "Bengali": "bn", "Chinese (Simplified)": "cmn", "French": "fr", "German": "de",
          "Hindi": "hi", "Indonesian": "id", "Italian": "it", "Japanese": "ja", "Korean": "ko",
          "Portuguese (Brazil)": "pt", "Spanish": "es", "Swahili": "sw", "Yoruba": "yo"}

@@ -21,8 +21,8 @@ from ..records import Record
 from . import present
 from ._common import ltdi_codes
 
-URL = "https://raw.githubusercontent.com/openai/whisper/main/whisper/tokenizer.py"
-CHART = "https://raw.githubusercontent.com/openai/whisper/main/language-breakdown.svg"
+URL = "https://raw.githubusercontent.com/openai/whisper/86098128c0b4f24f0e2aa2994de830614b474227/whisper/tokenizer.py"
+CHART = "https://raw.githubusercontent.com/openai/whisper/86098128c0b4f24f0e2aa2994de830614b474227/language-breakdown.svg"
 ALIASES = {"Mandarin": "cmn"}
 
 
