@@ -23,7 +23,8 @@ import shutil
 from collections import Counter
 from html import escape as html_escape
 
-from . import DATA, ROOT
+from . import CONFIG, DATA, ROOT
+from .organisations import for_language
 
 SITE = ROOT / "site"
 EMBED_LIMIT = 3_000_000  # bytes of per-language data to embed in the page
@@ -278,6 +279,9 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     from .families import paths as family_paths
     from .glottolog import names as glottolog_names
     fam, isolates = family_paths(scores["languages"])  # Glottolog groups above each language (ltdi.families)
+    from .demand import language_literacy, official
+    off, lit = official(), language_literacy()  # CLDR: official status and literacy by country (ltdi.demand)
+    org_label = what_label(scores)
     gnames = glottolog_names()
     node_id: dict[str, int] = {}
     for p in fam.values():
@@ -324,6 +328,8 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                               "reach_by_country": l["reach_by_country"], "evidence": l.get("evidence"),
                               "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES],
                               **({"lookalikes": eng[l["code"]]["lookalikes"]} if "lookalikes" in eng.get(l["code"], {}) else {}),
+                              **({"literacy": lit[l["code"]]} if l["code"] in lit else {}),
+                              **({"orgs": orgs} if (orgs := for_language(set(l["offers"]), scores["facts"].get(l["code"], {}), org_label)) else {}),
                               **{k: l.get(k) for k in PROFILE}}
         langs.append({k: l.get(k) for k in SUMMARY} | {
             "scores": {k: d["score"] for k, d in l["dimensions"].items()},
@@ -350,6 +356,9 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                                               if c.get("scripts") and c["scripts"] != l["scripts"][:1] and c["code"] not in NOT_PLACES)) else {}),
             # engineering flags, one letter each (FLAG_LETTER)
             **({"fx": "".join(FLAG_LETTER[f] for f in eng[l["code"]]["flags"])} if l["code"] in eng else {}),
+            # countries where it's official (CLDR): "ng", or "in:r" (regionally), "us:d" (in practice)
+            **({"of": " ".join(c + ("" if st == "o" else ":" + st) for c, st in sorted(off[l["code"]].items()))}
+               if l["code"] in off else {}),
             # its family and the groups below it, as indexes into "gnodes" (base 36); "giso" for isolates
             **({"gp": " ".join(_b36(node_id[g]) for g in fam[l["code"]])} if l["code"] in fam else {}),
             **({"giso": 1} if l["code"] in isolates else {}),
@@ -392,6 +401,8 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     country_names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"] if c["code"] not in NOT_PLACES}
     index |= {"country_regions": {c: REGION_CODE[r] for c, r in country_region.items() if r in REGION_CODE},
               "country_online": country_online()}
+    from .demand import country_literacy
+    index["country_literacy"] = country_literacy()
     index["gnodes"] = [[g, gnames.get(g, g)] for g in sorted(node_id, key=node_id.get)]
     from .engineering import FLAGS
     index["flags"] = {FLAG_LETTER[k]: [k, v] for k, v in FLAGS.items()}
@@ -400,6 +411,28 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
               "sources": [list(k) for k in sorted(sources, key=sources.get)]}
     return index, details
+
+
+def what_label(scores: dict):
+    """Names what each organisations.csv id stands for, as a language page lists it."""
+    svc = {s["id"]: s for s in scores["services"]}
+    techs = scores["config"]["dimensions"]["tech"]["technologies"]
+    res = {r["indicator"]: r["name"] for r in csv.DictReader((CONFIG / "resources.csv").open(encoding="utf-8"))}
+    bench = {"bench_global_mmlu": "Global-MMLU", "bench_mmmlu": "MMMLU", "bench_include": "INCLUDE", "bench_xnli": "XNLI",
+             "bench_mgsm": "MGSM", "bench_irokobench": "IrokoBench", "llm_afrobench_gpt4o": "AfroBench results",
+             "llm_afrobench_gemini": "AfroBench results", "ud_treebank_words": "Universal Dependencies treebank",
+             "wikipedia_articles": "Wikipedia"}
+
+    def label(i: str) -> str:
+        if i in bench:
+            return bench[i]
+        if i in res:
+            return res[i]
+        s = svc.get(i)
+        if s and s["role"] == "regional":
+            return techs[s["technology"]]["label"]
+        return s["name"] if s else i
+    return label
 
 
 def _b36(n: int) -> str:
@@ -451,6 +484,9 @@ def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
         out["qv"] = q
     if l.get("written_in") and not l.get("shares_written"):
         out["wi"] = l["written_in"]
+    for key, i in (("wv", "wikipedia_pageviews"), ("hm", "hf_models"), ("hd", "hf_model_downloads")):
+        if v(i):
+            out[key] = round(v(i))
     rk = "".join(k for k, (i, above) in READY_FLAGS.items() if (v(i) or 0) > above)
     if rk:
         out["rk"] = rk
@@ -511,6 +547,10 @@ def main() -> None:
         shutil.copyfile(DATA / "borders.json", SITE / "data" / "borders.json")
     # each country's own top opportunities, fetched when the country filter is first used
     (SITE / "data" / "country_opportunities.json").write_text(_dump(country_opportunities(scores)), encoding="utf-8")
+
+    # what changed, and when: the Changes page's data and its Atom feed (ltdi.changes)
+    from .changes import write as write_changes
+    write_changes(SITE, {l["code"]: l["name"] for l in scores["languages"]}, scores["edition"])
 
     # one JSON file per language, with a schema, for other people's tools (ltdi.api)
     from .api import write_api

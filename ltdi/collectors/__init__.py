@@ -15,7 +15,7 @@ from .. import DATA
 from ..crosswalk import to_ltdi
 from ..records import Record, write_records
 
-AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "openai_docs", "mt_quality", "regional", "afrobench", "omnilingual", "open_tools", "ud", "speech", "benchmarks", "opus", "hf_hub", "wikipedia", "connectivity", "mms", "vendors"]
+AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "openai_docs", "mt_quality", "regional", "afrobench", "omnilingual", "open_tools", "ud", "speech", "benchmarks", "opus", "hf_hub", "wikipedia", "connectivity", "mms", "vendors", "hf_models", "wikipedia_views"]
 
 
 def sum_by_language(pairs) -> dict[str, float]:

@@ -104,10 +104,14 @@ def deepl() -> list[tuple[str, set[str]]]:
         for f in files:
             r = subprocess.run(["git", "-C", str(repo), "show", f"{sha}:{f}"], capture_output=True, text=True)
             text += r.stdout if r.returncode == 0 else ""
-        if "name: '" in text:  # the generated table: count only rows available for translation
-            rows = re.findall(r"\{\s*code:\s*'[^']+',\s*name:\s*'([^']+)'[^}]*translation:\s*true", text)
-            text = "\n".join(rows)
-        out.append((day, {c for c, ns in names.items() if any(re.search(rf"\b{re.escape(n)}\b", text) for n in ns)}))
+        by_code = set()
+        if "name: '" in text:  # the generated table: count only rows available for translation, by code
+            rows = re.findall(r"\{\s*code:\s*'([^']+)',\s*name:\s*'([^']+)'[^}]*translation:\s*true", text)
+            by_code = {c for c in (to_ltdi(code.lower()) for code, _ in rows) if c}
+            text = "\n".join(n for _, n in rows)
+        else:  # the older hand-written list: "- `ACE` - Acehnese"
+            by_code = {c for c in (to_ltdi(code.lower()) for code in re.findall(r"^\s*[-*]\s*`([A-Z]{2,3}(?:-[A-Z]+)?)`\s*-", text, re.M)) if c}
+        out.append((day, by_code | {c for c, ns in names.items() if any(re.search(rf"\b{re.escape(n)}\b", text) for n in ns)}))
     return out
 
 

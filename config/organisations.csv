@@ -1,0 +1,53 @@
+id,organisation,kind,url,source
+cv_validated_hours,Mozilla Foundation,Nonprofit,https://commonvoice.mozilla.org/,https://commonvoice.mozilla.org/en/about
+web_text_words,Hugging Face,Company,https://huggingface.co/HuggingFaceFW,https://huggingface.co/datasets/HuggingFaceFW/fineweb-2
+wikipedia_articles,Wikimedia Foundation and Wikipedia's volunteer editors,Nonprofit and volunteer community,https://wikimediafoundation.org/,https://wikimediafoundation.org/
+flores200,Meta AI,Company research lab,https://ai.meta.com/research/,https://github.com/facebookresearch/flores
+belebele,Meta AI,Company research lab,https://ai.meta.com/research/,https://github.com/facebookresearch/belebele
+mt_open_nllb,Meta AI,Company research lab,https://ai.meta.com/research/,https://github.com/facebookresearch/fairseq/tree/nllb
+asr_open_mms,Meta AI,Company research lab,https://ai.meta.com/research/,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
+tts_open_mms,Meta AI,Company research lab,https://ai.meta.com/research/,https://github.com/facebookresearch/fairseq/tree/main/examples/mms
+asr_open_omnilingual,Meta AI,Company research lab,https://ai.meta.com/research/,https://github.com/facebookresearch/omnilingual-asr
+speech_multilingual_librispeech,Meta AI,Company research lab,https://ai.meta.com/research/,https://www.openslr.org/94/
+asr_open_whisper,OpenAI,Company,https://openai.com/,https://github.com/openai/whisper
+cldr_coverage,Unicode Consortium,Standards body,https://cldr.unicode.org/,https://cldr.unicode.org/
+ui_firefox,Mozilla's volunteer localisers,Volunteer community,https://pontoon.mozilla.org/,https://pontoon.mozilla.org/
+ocr_open_tesseract,Tesseract OCR project,Open-source project,https://github.com/tesseract-ocr,https://github.com/tesseract-ocr/tessdata_best
+proof_hunspell,LibreOffice community,Open-source project,https://www.libreoffice.org/,https://github.com/LibreOffice/dictionaries
+proof_languagetool,LanguageTool,Company and open-source project,https://languagetool.org/,https://github.com/languagetool-org/languagetool
+lid_glotlid,"CIS, LMU Munich",University,https://www.cis.lmu.de/,https://github.com/cisnlp/GlotLID
+kb_open_keyman,SIL Global,Nonprofit,https://keyman.com/,https://keyman.com/about/
+speech_shrutilipi,"AI4Bharat, IIT Madras",University research lab,https://ai4bharat.iitm.ac.in/,https://huggingface.co/datasets/ai4bharat/Shrutilipi
+speech_kathbath,"AI4Bharat, IIT Madras",University research lab,https://ai4bharat.iitm.ac.in/,https://huggingface.co/datasets/ai4bharat/kathbath
+speech_indicvoices,"AI4Bharat, IIT Madras",University research lab,https://ai4bharat.iitm.ac.in/,https://huggingface.co/datasets/ai4bharat/IndicVoices
+speech_vaani,IISc Bangalore and ARTPARK,University and research park,https://vaani.iisc.ac.in/,https://huggingface.co/datasets/ARTPARK-IISC/Vaani
+speech_naijavoices,NaijaVoices community and Lanfrica,Data collective,https://naijavoices.com/,https://arxiv.org/abs/2505.20564
+speech_waxal,Google Research with African academic and community partners,Company research lab and partners,https://research.google/,https://research.google/pubs/waxal-a-large-scale-multilingual-african-language-speech-corpus/
+speech_yodas,ESPnet,Open-source research project,https://github.com/espnet/espnet,https://huggingface.co/datasets/espnet/yodas2
+speech_fleurs,Google Research,Company research lab,https://research.google/,https://huggingface.co/datasets/google/fleurs
+bench_global_mmlu,Cohere Labs,Company research lab,https://cohere.com/research,https://huggingface.co/datasets/CohereLabs/Global-MMLU
+bench_mmmlu,OpenAI,Company,https://openai.com/,https://huggingface.co/datasets/openai/MMMLU
+bench_include,"EPFL, ETH Zurich and Cohere Labs",Universities and company research lab,https://huggingface.co/datasets/CohereLabs/include-base-44,https://ai.epfl.ch/beyond-translation-making-ai-multicultural
+bench_xnli,Meta AI and New York University,Company research lab and university,https://github.com/facebookresearch/XNLI,https://github.com/facebookresearch/XNLI
+bench_mgsm,Google Research,Company research lab,https://github.com/google-research/url-nlp,https://github.com/google-research/url-nlp/tree/main/mgsm
+bench_irokobench,Masakhane,Research community,https://www.masakhane.io/,https://huggingface.co/datasets/masakhane/afrixnli
+llm_afrobench_gpt4o,McGill NLP and Masakhane,University lab and research community,https://github.com/McGill-NLP/AfroBench,https://github.com/McGill-NLP/AfroBench
+llm_afrobench_gemini,McGill NLP and Masakhane,University lab and research community,https://github.com/McGill-NLP/AfroBench,https://github.com/McGill-NLP/AfroBench
+ud_treebank_words,Universal Dependencies contributors,Research community,https://universaldependencies.org/,https://universaldependencies.org/
+mt_sarvam,Sarvam AI,Regional provider,https://www.sarvam.ai/,https://www.sarvam.ai/
+asr_sarvam,Sarvam AI,Regional provider,https://www.sarvam.ai/,https://www.sarvam.ai/
+tts_sarvam,Sarvam AI,Regional provider,https://www.sarvam.ai/,https://www.sarvam.ai/
+mt_lelapa,Lelapa AI,Regional provider,https://lelapa.ai/,https://lelapa.ai/
+asr_lelapa,Lelapa AI,Regional provider,https://lelapa.ai/,https://lelapa.ai/
+mt_khaya,GhanaNLP,Regional provider,https://ghananlp.org/,https://ghananlp.org/
+asr_khaya,GhanaNLP,Regional provider,https://ghananlp.org/,https://ghananlp.org/
+tts_khaya,GhanaNLP,Regional provider,https://ghananlp.org/,https://ghananlp.org/
+mt_sunbird,Sunbird AI,Regional provider,https://sunbird.ai/,https://sunbird.ai/
+asr_sunbird,Sunbird AI,Regional provider,https://sunbird.ai/,https://sunbird.ai/
+tts_sunbird,Sunbird AI,Regional provider,https://sunbird.ai/,https://sunbird.ai/
+mt_yandex,Yandex,Regional provider,https://yandex.cloud/,https://yandex.cloud/
+asr_yandex,Yandex,Regional provider,https://yandex.cloud/,https://yandex.cloud/
+tts_yandex,Yandex,Regional provider,https://yandex.cloud/,https://yandex.cloud/
+mt_baidu,Baidu,Regional provider,https://fanyi-api.baidu.com/,https://fanyi-api.baidu.com/
+mt_alibaba,Alibaba Cloud,Regional provider,https://www.alibabacloud.com/,https://www.alibabacloud.com/
+mt_papago,Naver,Regional provider,https://papago.naver.com/,https://papago.naver.com/

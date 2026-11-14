@@ -55,6 +55,10 @@ def write_api(site, scores: dict, flags: dict, families: tuple[dict, set], gname
     if (DATA / "sensitivity.csv").exists():
         rr = {r["code"]: [int(r["rank_p5"]), int(r["rank_p95"])] for r in csv.DictReader((DATA / "sensitivity.csv").open(encoding="utf-8"))}
     fam, isolates = families
+    from .build_site import what_label
+    from .demand import STATUS_LABEL, country_literacy, language_literacy, official
+    from .organisations import for_language
+    off, lit, clit, label = official(), language_literacy(), country_literacy(), what_label(scores)
 
     # shared tables: sources (url may hold {lang}), and each indicator's unit and most common note
     sources: dict[tuple, int] = {}
@@ -88,6 +92,10 @@ def write_api(site, scores: dict, flags: dict, families: tuple[dict, set], gname
                            "census_only": bool(c.get("census_only"))} for c in l["countries"]],
             "locales": [f"{code}-{s.title()}-{c['code'].upper()}" for c in l["countries"] if not c.get("census_only")
                         for s in (c.get("scripts") or (l.get("scripts") or [])[:1])],
+            "official_in": {c: STATUS_LABEL[st] for c, st in sorted(off.get(code, {}).items())},
+            "literacy": {c["code"]: {"adults": clit.get(c["code"]), **({"in_language": lit[code][c["code"]]} if c["code"] in lit.get(code, {}) else {})}
+                         for c in l["countries"] if not c.get("census_only") and c["code"] in clit},
+            "organisations": for_language(set(l["offers"]), fs, label),
             "engineering_flags": flags.get(code, {}).get("flags", []),
             **({"lookalike_letters": flags[code]["lookalikes"]} if "lookalikes" in flags.get(code, {}) else {}),
             "score": {"ltdi": l["ltdi"], "rank": l.get("rank"), "tied_with": l.get("tied") or 0,
@@ -158,6 +166,13 @@ SCHEMA = {
             "scripts": {"type": "array", "items": {"type": "string"}},
             "census_only": {"type": "boolean", "description": "Spoken there by immigrant or diaspora communities, from a census"}}}},
         "locales": {"type": "array", "items": {"type": "string"}, "description": "language-Script-REGION for each country and script in use, leaving out census-only countries"},
+        "official_in": {"type": "object", "additionalProperties": {"enum": ["official", "official in practice", "official in a region"]},
+                        "description": "Countries where it's official, from Unicode CLDR's territory data"},
+        "literacy": {"type": "object", "description": "Adult literacy (%) in each country it's spoken in, and in the language itself where CLDR records it",
+                     "additionalProperties": {"type": "object", "properties": {"adults": _num, "in_language": _num}}},
+        "organisations": {"type": "array", "description": "Organisations behind its datasets, open models, benchmarks and regional services",
+                          "items": {"type": "object", "properties": {"organisation": {"type": "string"}, "kind": {"type": "string"},
+                                                                     "url": {"type": "string"}, "what": {"type": "array", "items": {"type": "string"}}}}},
         "engineering_flags": {"type": "array", "items": {"enum": ["rtl", "shaping", "nospace", "ime", "scripts", "lookalike"]}},
         "lookalike_letters": {"type": "array", "items": {"type": "array", "items": {"type": "string"}, "minItems": 2, "maxItems": 2},
                               "description": "[letter used, letter it stands in for]"},

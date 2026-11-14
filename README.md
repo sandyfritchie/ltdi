@@ -311,6 +311,29 @@ character sample: Greek ε for ɛ in Fanti, Cyrillic а е о р for Latin in Ba
 marks left out in everyday writing, and spelling that varies, aren't in any source tracked, so have no
 flag.
 
+## Demand, organisations and changes
+
+Language pages show **demand signals** beside the speaker count: the countries where the language is
+official (Unicode CLDR's territory data: official, official in practice, or official in a region;
+`ltdi/demand.py`), adult literacy there, page views of its Wikipedia over the last 12 months
+(`wikipedia_views` collector, Wikimedia's pageviews API, people only), and the models on the Hugging
+Face Hub made for it: tagged with it and at most five languages, downloaded at least ten times in 30
+days (`hf_models` collector). Official countries are in bold in the Plan table, and the CSV carries all
+four. First- and second-language speakers counted separately would be the most useful signal of all,
+but no open source records them across languages.
+
+**Who's already working on it** lists the organisations behind a language's datasets, open models,
+benchmarks and regional services (`config/organisations.csv`, each checked against the project's own
+page; `ltdi/organisations.py`), community and university work first. The global commercial services
+are left out, since every page already shows them.
+
+**Changes** (`#changes`, and an Atom feed at `/changes.xml`) lists the languages services and open
+resources added, newest first (`ltdi/changes.py`). Until there are two editions, it comes from the
+reconstructed history (`data/history.csv`: DeepL's documentation history, every Common Voice and CLDR
+release), which reports additions only, since matching names in old documents can make a renamed
+entry look like a dropped language. From the second edition, each edition's services table is compared
+with the last, for every service and benchmark, both ways.
+
 ## JSON API
 
 One file per language at a stable address, for other people's tools:

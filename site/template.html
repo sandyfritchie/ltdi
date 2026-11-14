@@ -1,4 +1,5 @@
 <title>Language Technology Development Index</title>
+<link rel="alternate" type="application/atom+xml" title="LTDI: what changed" href="changes.xml">
 <meta name="description" content="How well technology supports each of the world's languages, and how much data exists to build more: scores, gaps and opportunities for 6,800 living languages, every value linked to its source.">
 <meta property="og:title" content="Language Technology Development Index">
 <meta property="og:description" content="How well technology supports each of the world's languages, and how much data exists to build more. Scores, gaps and opportunities for 6,800 living languages.">
@@ -520,6 +521,15 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .plan-l select { font: 15px var(--font-body); padding: 6px 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); max-width: 100%; }
 .plan-paste textarea { width: 100%; box-sizing: border-box; font: 14px var(--font-mono); padding: 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); }
 .plancurve { width: 100%; height: auto; max-width: 760px; display: block; }
+.demand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+.dcard { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; min-width: 0; }
+.dh { font: 600 11px/1.2 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.dv { font-size: 24px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; } .dn { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
+.chg-when { margin: 18px 0 6px; font-size: 16px; } .chg-when:first-child { margin-top: 0; }
+.chg-row { padding: 8px 0; border-bottom: 1px solid var(--rule); } .chg-langs { font-size: 14px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+.chg-lang { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
+.org-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 4px 18px; }
+.org-list li { padding: 7px 0; border-bottom: 1px solid var(--rule); min-width: 0; } .org-list .small { color: var(--muted); margin-top: 2px; }
 .ready-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
 .rcard { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; min-width: 0; }
 .rhead { display: flex; align-items: center; gap: 8px; } .rhead .ticon { width: 18px; height: 18px; color: var(--muted); }
@@ -567,7 +577,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
     <p class="lede">How well technology supports each language, and how much data exists to build more. Two dimensions, each scored 0 to 1, combined with a geometric mean so a gap in either pulls the score down.</p>
     <div class="formula">LTDI = √(<b class="d">data</b> × <b class="t">technology</b>)</div>
   </header>
-  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities</a><a href="#plan" id="tab-plan">Plan</a><a href="#about" id="tab-about">About</a>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities</a><a href="#plan" id="tab-plan">Plan</a><a href="#changes" id="tab-changes">Changes</a><a href="#about" id="tab-about">About</a>
     <span class="pickwrap navsearch" role="search"><input class="pick" id="go" autocomplete="off" role="combobox" aria-autocomplete="list"
       aria-expanded="false" aria-controls="go-list" aria-label="Find a language name or code" placeholder="Find a language name or code" onfocus="this.select()"><ul class="picklist" id="go-list" role="listbox" hidden></ul></span></nav>
   <main id="view"><!--__STATIC__--></main>
@@ -602,6 +612,7 @@ for (const l of ALL) {
   l._im = new Set((l.im || '').split(' ').filter(Boolean));  // countries where only immigrant communities speak it
   l._sc = (l.sc || '').split(' ').filter(Boolean);  // its scripts, main one first
   l._fx = (l.fx || '').split('');  // engineering flags (DATA.flags)
+  l._of = Object.fromEntries((l.of || '').split(' ').filter(Boolean).map(t => { const [c, st] = t.split(':'); return [c, st || 'o']; }));  // official status by country (CLDR)
   l._gp = l.gp ? l.gp.split(' ').map(x => parseInt(x, 36)) : [];  // Glottolog groups above it, family first (DATA.gnodes)
   l._csc = Object.fromEntries((l.csc || '').split(' ').filter(Boolean).map(t => { const [c, v] = t.split('='); return [c, v.split(',')]; }));
   // every region it's spoken in, not just its home: English counts in the Americas and Oceania too
@@ -617,6 +628,9 @@ const TOP = DATA.top_opportunities.map(o => withRule(o, o.lang));
 // fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
 // the countries chosen, then priority = reach x (gap x need / cost) [x momentum], as for the global list
 let COPP = null;
+// What changed, and when (ltdi.changes): fetched the first time the Changes page or a language page needs it
+let CHG;
+const changesData = () => CHG ??= fetch('data/changes.json').then(r => r.json()).catch(() => ({ series: {}, events: [] }));
 const countryOpps = () => COPP ??= fetch('data/country_opportunities.json').then(r => r.json())
   .then(d => ({ ...d, items: d.items.map(o => withRule(o, o.lang)) }));
 async function countryPool() {
@@ -643,7 +657,7 @@ async function need(...codes) {
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, lookalikes: d.lookalikes });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, lookalikes: d.lookalikes, literacy: d.literacy, orgs: d.orgs });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -1662,6 +1676,72 @@ function whereLine(l, all) {
   return all ? `Spoken in <b>${cs.map(esc).join(', ')}</b> <button class="linkish" data-more="0">less</button>`
              : `Mainly in <b>${cs.slice(0, 3).map(esc).join(', ')}</b> <button class="linkish" data-more="1">and ${n} more</button>`;
 }
+// Demand: who could use it is the speaker count; these say who's reaching for it
+function demandPanel(l) {
+  const f = DATA.facts[l.code] || {}, v = i => f[i] && f[i].value ? f[i].value : 0;
+  const off = officialList(l);
+  const top = Object.entries(l._cs).filter(([c]) => !l._im.has(c)).sort((a, b) => (b[1] || 0) - (a[1] || 0)).slice(0, 3).map(([c]) => c);
+  const lit = top.filter(c => DATA.country_literacy[c] != null).map(c => `${COUNTRY_NAMES[c] || c.toUpperCase()} ${Math.round(DATA.country_literacy[c])}%${l.literacy && l.literacy[c] != null ? ` (in ${esc(l.name)}: ${Math.round(l.literacy[c])}%)` : ''}`);
+  const card = (h, big, note, title) => `<div class="dcard"${title ? ` title="${esc(title)}"` : ''}><div class="dh">${h}</div><div class="dv">${big}</div><div class="dn">${note}</div></div>`;
+  return `<h3 class="panel-h">Demand signals</h3>
+    <div class="demand-grid">
+      ${card('Official status', off.length ? `${off.length} ${off.length === 1 ? 'country' : 'countries'}` : 'None recorded', off.length ? esc(off.slice(0, 6).join(', ') + (off.length > 6 ? ` and ${off.length - 6} more` : '')) : 'Not official in any country in CLDR’s territory data', 'Unicode CLDR territory data: official, official in practice, or official in a region')}
+      ${card('Adult literacy', lit.length ? `${Math.round(DATA.country_literacy[top.find(c => DATA.country_literacy[c] != null)])}%` : '—', lit.length ? esc(lit.join('; ')) : 'Not recorded for its countries', 'Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it')}
+      ${card('Wikipedia readers', v('wikipedia_pageviews') ? big(v('wikipedia_pageviews')) : '—', v('wikipedia_pageviews') ? `page views in 12 months${v('wikipedia_active_editors') ? `; ${v('wikipedia_active_editors').toLocaleString()} active editors` : ''}` : 'No Wikipedia edition with page views', f.wikipedia_pageviews ? `${f.wikipedia_pageviews.source}: ${f.wikipedia_pageviews.note}` : '')}
+      ${card('Builders on Hugging Face', v('hf_models') ? v('hf_models').toLocaleString() + (v('hf_models') === 1 ? ' model' : ' models') : '—', v('hf_models') ? `made for it, ${big(v('hf_model_downloads'))} downloads in 30 days${v('hf_datasets') ? `; ${Math.round(v('hf_datasets')).toLocaleString()} datasets` : ''}` : `No models made for it with recent downloads${v('hf_datasets') ? `; ${Math.round(v('hf_datasets')).toLocaleString()} datasets` : ''}`, f.hf_models ? `Models tagged with it and at most five languages, downloaded at least 10 times in 30 days. ${f.hf_models.note}` : '')}
+    </div>
+    <p class="note">Speaker counts say who could use a product; these say who's reaching for one. Official status brings public-sector demand, page views show reading demand, and models with downloads show builders already at work.</p>`;
+}
+function whenLabel(a, b) {
+  const m = p => /^\d{4}-\d\d$/.test(p) ? new Date(p + '-15T12:00:00') : null, fa = m(a), fb = m(b);
+  if (!fa || !fb) return `${a} to ${b}`;
+  const mo = d => d.toLocaleDateString('en-GB', { month: 'short' });
+  return fa.getFullYear() === fb.getFullYear() ? `${mo(fa)} to ${mo(fb)} ${fb.getFullYear()}` : `${mo(fa)} ${fa.getFullYear()} to ${mo(fb)} ${fb.getFullYear()}`;
+}
+function changesLine(code, C) {
+  const ev = C.events.filter(e => e[3] === code);
+  if (!ev.length) return '';
+  return `<h3 class="panel-h">What changed <a href="#changes" style="font-size:14px;font-weight:600">All changes</a></h3>
+    <ul class="chg-lang">${ev.map(([a, b, s, , d]) => `<li><span class="muted">${esc(whenLabel(a, b))}</span> ${esc(C.series[s] || s)}: ${d > 0 ? 'added' : 'no longer listed'}</li>`).join('')}</ul>`;
+}
+let chgSeries = '', chgShowAll = new Set();
+async function changesPage() {
+  const C = await changesData();
+  const groups = new Map();
+  for (const e of C.events) {
+    if (chgSeries && e[2] !== chgSeries) continue;
+    const k = `${e[1]}|${e[0]}|${e[2]}|${e[4]}`;
+    (groups.get(k) || groups.set(k, []).get(k)).push(e[3]);
+  }
+  const byWhen = new Map();
+  for (const [k, codes] of groups) { const w = k.split('|').slice(0, 2).join('|'); (byWhen.get(w) || byWhen.set(w, []).get(w)).push([k, codes]); }
+  const keys = [...byWhen.keys()].sort().reverse();
+  const nameOf = c => BY[c] ? BY[c].name : c;
+  $('#view').innerHTML = `
+    <section class="chart">
+      <h2 class="plan-h">What changed</h2>
+      <p class="sub">Languages that services and open resources added, newest first. Follow it in a feed reader at <span class="code">https://langtechindex.org/changes.xml</span>.</p>
+      <div class="sl-controls"><label class="plan-l">Show <select id="chg-s"><option value="">Everything tracked</option>${Object.entries(C.series).map(([k, v]) => `<option value="${esc(k)}"${chgSeries === k ? ' selected' : ''}>${esc(v)}</option>`).join('')}</select></label></div>
+    </section>
+    <section class="chart">
+      ${keys.length ? keys.map(w => { const [b, a] = w.split('|'); return `<h3 class="chg-when">${esc(whenLabel(a, b))}</h3>
+        ${byWhen.get(w).map(([k, codes]) => { codes.sort((x, y) => (BY[y] ? BY[y].speakers || 0 : 0) - (BY[x] ? BY[x].speakers || 0 : 0));
+          const [, , s, d] = k.split('|'), all = chgShowAll.has(k), shown = all ? codes : codes.slice(0, 24);
+          return `<div class="chg-row"><b>${esc(C.series[s] || s)}</b>: ${codes.length} ${codes.length === 1 ? 'language' : 'languages'} ${+d > 0 ? 'added' : 'no longer listed'}
+            <div class="chg-langs">${shown.map(c => BY[c] ? `<a href="#lang-${c}">${esc(nameOf(c))}</a>` : esc(c)).join(', ')}${codes.length > shown.length ? ` <button type="button" class="linkish" data-chg="${esc(k)}">and ${codes.length - shown.length} more</button>` : ''}</div></div>`; }).join('')}`; }).join('')
+        : '<p class="note">Nothing recorded for this yet.</p>'}
+      <p class="note">History is rebuilt from each source's own records: DeepL's documentation history (from May 2025), every Common Voice release, and every CLDR release; NLLB-200, Whisper and Belebele count from their release. Because the rebuilt history matches entries in old documents, it reports additions only: a renamed entry could otherwise look like a language dropped. From the next edition, every service and benchmark tracked is compared with the last edition's records, and those comparisons report both additions and languages no longer listed.</p>
+    </section>`;
+  $('#chg-s').onchange = e => { chgSeries = e.target.value; chgShowAll.clear(); changesPage(); };
+  $('#view').querySelectorAll('[data-chg]').forEach(b => b.onclick = () => { chgShowAll.add(b.dataset.chg); const y = scrollY; changesPage().then(() => scrollTo(0, y)); });
+}
+// Who is already working on it: the organisations behind its datasets, models, benchmarks and regional services
+function orgPanel(l) {
+  if (!l.orgs || !l.orgs.length) return '';
+  return `<h3 class="panel-h">Who’s already working on it</h3>
+    <ul class="org-list">${l.orgs.map(o => `<li><div><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.organisation)}</a> <span class="muted small">${esc(o.kind)}</span></div><div class="small">${esc(o.what.join(', '))}</div></li>`).join('')}</ul>
+    <p class="note">The organisations behind the datasets, open models, benchmarks and regional services recorded for ${esc(l.name)}, community and university work first: the likeliest partners for a new project. The global commercial services are in the technology panel above.</p>`;
+}
 function readyCard(l, t) {
   const r = readiness(l, t);
   return `<div class="rcard"><div class="rhead">${TICON[t] || ''}<b>${esc(TECHL[t] || t)}</b><span class="rn">${r.n} of ${r.of}</span></div>
@@ -1686,15 +1766,19 @@ async function language(code) {
     </div>
     <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}${l.extinct ? '' : slWide(l)}</div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
+    ${l.extinct ? '' : demandPanel(l)}
     <h3 class="panel-h">Readiness to build</h3>
     <div class="ready-grid">${PLAN_TECHS.map(t => readyCard(l, t)).join('')}</div>
     <p class="note">What a team would look for before building each technology, and whether it's recorded here for ${esc(l.name)} itself. The Plan tab sorts languages on these and can count only data and models licensed for commercial use.</p>
     ${relatedPanel(l)}
+    ${orgPanel(l)}
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
-    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">langtechindex@gmail.com</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>`;
+    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">langtechindex@gmail.com</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>
+    <div id="lchg"></div>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
   bindMiniMap(l);
+  changesData().then(C => { const el = document.getElementById('lchg'); if (el && location.hash === '#lang-' + code) el.innerHTML = changesLine(code, C); });
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
   const mt = $('#view').querySelector('details.more-tech');
@@ -2633,16 +2717,20 @@ function planCurve(rows, base, total) {
   <div class="plan-steps"><span>Today <b>${Math.round(y0 * 100)}%</b></span>${marks.map(([k, v]) => `<span>+${k} languages <b>${Math.round(v * 100)}%</b></span>`).join('')}<span>All ${N.toLocaleString()} <b>100%</b></span></div>`;
 }
 // up to four country codes, then how many more
-function planCodes(cs) {
+// up to four country codes, then how many more; where it's official (CLDR) in bold
+function planCodes(cs, l) {
   if (!cs.length) return '—';
-  const up = cs.map(c => c.toUpperCase());
+  const up = cs.map(c => l && l._of[c] ? `<b title="${esc(OFFICIAL_LABEL[l._of[c]])}">${c.toUpperCase()}</b>` : c.toUpperCase());
   return up.slice(0, 4).join(' ') + (up.length > 4 ? ` <span class="muted">+${up.length - 4}</span>` : '');
 }
+const OFFICIAL_LABEL = { o: 'Official', d: 'Official in practice', r: 'Official in a region' };
+const officialList = l => Object.entries(l._of).map(([c, st]) => `${(COUNTRY_NAMES[c] || c.toUpperCase())}${st === 'o' ? '' : st === 'd' ? ' (in practice)' : ' (in a region)'}`);
 function planCSV(P, sl = false) {
-  const head = ['rank', 'code', 'name', 'family', 'branch', 'scripts', 'engineering_flags', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'ready', 'missing', 'other_services_offering', 'open_models', 'data'];
+  const head = ['rank', 'code', 'name', 'family', 'branch', 'official_in', 'wikipedia_views_12_months', 'hf_models', 'hf_model_downloads_30_days', 'scripts', 'engineering_flags', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'ready', 'missing', 'other_services_offering', 'open_models', 'data'];
   const q = v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v;
   const lines = [head.join(',')].concat(P.rows.map((r, i) => { const c = planCells(r, P.T, sl);
-    return [i + 1, r.l.code, r.l.name, famName(r.l), branchName(r.l), c.scripts.join(' '), flagLabels(r.l).join('; '), c.countries.map(x => x.toUpperCase()).join(' '), c.locales.join(' '),
+    return [i + 1, r.l.code, r.l.name, famName(r.l), branchName(r.l), Object.entries(r.l._of).map(([cc, st]) => cc.toUpperCase() + (st === 'o' ? '' : ':' + st)).join(' '),
+      r.l.wv || '', r.l.hm || '', r.l.hd || '', c.scripts.join(' '), flagLabels(r.l).join('; '), c.countries.map(x => x.toUpperCase()).join(' '), c.locales.join(' '),
       Math.round(r.r5), Math.round(r.r0), r.share.toFixed(4), `${r.rd.n} of ${r.rd.of}`, r.rd.items.filter(x => !x.ok).map(x => x.label).join('; '), c.others, c.models, c.data].map(q).join(','); }));
   return lines.join('\n') + '\n';
 }
@@ -2752,7 +2840,7 @@ function planHead(T, P, who, scopeName, sl) {
 }
 function planRow(r, i, T, sl) {
   const c = planCells(r, T, sl), pct = v => `${Math.round(v * 100)}%`;
-  return `<tr><td class="num">${i + 1}</td><td>${slButton(r.l)}<a href="#lang-${r.l.code}" title="${esc([famName(r.l), branchName(r.l)].filter(Boolean).join(' › '))}">${esc(r.l.name)}</a></td><td class="pc-m">${r.l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}${flagTags(r.l)}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries)}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td class="num" title="${esc(readyTitle(r.rd))}">${r.rd.of ? `${r.rd.n} of ${r.rd.of}` : '—'}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td></tr>`;
+  return `<tr><td class="num">${i + 1}</td><td>${slButton(r.l)}<a href="#lang-${r.l.code}" title="${esc([famName(r.l), branchName(r.l)].filter(Boolean).join(' › '))}">${esc(r.l.name)}</a></td><td class="pc-m">${r.l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}${flagTags(r.l)}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, r.l)}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td class="num" title="${esc(readyTitle(r.rd))}">${r.rd.of ? `${r.rd.n} of ${r.rd.of}` : '—'}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td></tr>`;
 }
 function planPage() {
   const P = planRows(), T = P.T;
@@ -2839,14 +2927,15 @@ function route() {
   else if ((m = h.match(/^opp-([a-z0-9-]+)$/))) oppDetail(m[1]);
   else if (h === 'plan' || h.startsWith('plan?')) { planFromHash(h); planPage(); }
   else if (h === 'shortlist' || h.startsWith('shortlist?')) { slFromHash(h); shortlistPage(); }
+  else if (h === 'changes') changesPage();
   else ranking();
   // From a language (or compare) page, the Opportunities tab opens that language's opportunities
   const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
   const otab = document.getElementById('tab-opportunities');
   if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
-  const tab = h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about'].includes(h) ? h : (h === '' || h === 'ranking') ? 'ranking' : '';
+  const tab = h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about', 'changes'].includes(h) ? h : (h === '' || h === 'ranking') ? 'ranking' : '';
   tipHide();
-  for (const t of ['ranking', 'map', 'charts', 'opportunities', 'plan', 'about']) {
+  for (const t of ['ranking', 'map', 'charts', 'opportunities', 'plan', 'changes', 'about']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   }

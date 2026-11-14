@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>tag:langtechindex.org,2026:changes</id>
+  <title>Language Technology Development Index: what changed</title>
+  <subtitle>Languages that services and open resources added or dropped</subtitle>
+  <link href="https://langtechindex.org/#changes"/>
+  <link rel="self" href="https://langtechindex.org/changes.xml"/>
+  <updated>2026-06-30T00:00:00Z</updated>
+  <author><name>Language Technology Development Index</name></author>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2026-06/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 6 languages added</title>
+    <updated>2026-06-30T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Dec 2025 to Jun 2026: Dagbani, Dargwa, Laz, Oromo, Puno Quechua, Romansh</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2025-12/deepl/add</id>
+    <title>Commercial translation (DeepL): 80 languages added</title>
+    <updated>2025-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2025: Achinese, Afrikaans, Albanian, Aragonese, Armenian, Assamese, Aymara, Azerbaijani, Bashkir, Basque, Belarusian, Bengali, Bhojpuri, Bosnian, Breton, Catalan, Cebuano, Croatian, Dari, Esperanto, Filipino, Galician, Georgian, Guarani, Gujarati, Haitian Creole, Hausa, Hindi, Icelandic, Igbo, Irish, Javanese, Kazakh, Konkani, Konkani, Kurmanji Kurdish, Kyrgyz, Lingala, Lombard, Luxembourgish, Macedonian, Maithili, Malagasy, Malay, Malayalam, Maltese, Maori, Marathi, Mongolian, Myanmar (Burmese), Nepali, Occitan, Oromo, Pampanga, Pangasinan, Pashto, Persian, Punjabi (Gurmukhi), Quechua, Serbian, Sesotho, Sicilian, Sorani Kurdish, Sundanese, Swahili, Tajik, Tamil, Tatar, Telugu, Tsonga, Tswana, Turkmen, Urdu, Uzbek, Welsh, Wolof, Xhosa, Yiddish, Yue Chinese, Zulu</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2025-12/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 131 languages added</title>
+    <updated>2025-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2025: Adamawa Fulfulde, Adyghe, Aja, Ambo-Pasco Quechua, Aragonese, Arequipa-La Unión Quechua, Ashéninka Perené, Atayal, Baatonum, Bafia, Bafut, Bakoko, Balti, Bamenyam, Bamun, Bankon, Baoulé, Batanga, Bateri, Bats, Bebele, Borgu Fulfulde, Brahui, Bulu, Bunun, Burushaski, Cajatambo North Lima Quechua, Cameroon Pidgin, Central Puebla Nahuatl, Chiquián Ancash Quechua, Chokwe, Copainalá Zoque, Cornish, Dameli, Domaaki, Duala, Eastern Balochi, Eton, Ewondo, Fang, Fe&#x27;fe&#x27;, Gawar-Bati, Gawri, Gen, Ghomálá&#x27;, Gidar, Goaria, Gujari, Hazaragi, Hemba, Huarijio, Huautla Mazatec, Ibibio, Imbabura Highland Quichua, Indus Kohistani, Irish, Jauja Wanca Quechua, Kabardian, Kachi Koli, Kalasha, Kalkoti, Kati, Khetrani, Khowar, Kohistani Shina, Kom, Koti, Kwasio, Loarki, Loja Highland Quichua, Luba-Lulua, Mada, Manx, Marwari, Masana, Matsés, Mbo, Mbum, Medumba, Mingrelian, Mokpwe, Mpiemo, Mpumpong, Mundang, Mungaka, Musey, Musgu, Nawdm, Ngiemboon, Ngomba, Nigerian Pidgin, Northern Hindko, Nyungwe, Od, Orizaba Nahuatl, Ormuri, Pahari-Potwari, Paiwan, Parkari Koli, Phalura, Rombo, Rukai, Sakizaya, Sansi, Santa Ana De Tusi Pasco Quechua, Santiago Del Estero Quichua, Seri, Shina, Sihuas Ancash Quechua, Sindhi Bhil, South Giziga, South Ucayali Ashéninka, Southern Pastaza Quechua, Svan, Tem, Tepeuxila Cuicatec, Teutila Cuicatec, Tlingit, Torwali, Tuki, Tunen, Tupuri, Wadiyara Koli, Wakhi, Western Highland Purepecha, Wuzlam, Yanahuanca Pasco Quechua, Yangben, Yaqui, Yauyos Quechua, Yidgha</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2025-12/cldr_modern/add</id>
+    <title>Full locale data (CLDR modern coverage): 6 languages added</title>
+    <updated>2025-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2025: Bashkir, Chuvash, Quechua, Romansh, Shan, Twi</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2025-06/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 2 languages added</title>
+    <updated>2025-06-30T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Dec 2024 to Jun 2025: Tigre, Yakut</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2025-06/cldr_modern/add</id>
+    <title>Full locale data (CLDR modern coverage): 1 language added</title>
+    <updated>2025-06-30T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Dec 2024 to Jun 2025: Haitian Creole</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2024-12/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 3 languages added</title>
+    <updated>2024-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2024: Basa, Macedonian, Min Nan Chinese</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2024-12/cldr_modern/add</id>
+    <title>Full locale data (CLDR modern coverage): 2 languages added</title>
+    <updated>2024-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2024: Nigerian Pidgin, Tigrinya</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2024-06/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 4 languages added</title>
+    <updated>2024-06-30T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Dec 2023 to Jun 2024: Kipsigis, Latgalian, Luo, Pashto</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2023-12/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 1 language added</title>
+    <updated>2023-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2023: Armenian</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2023-12/cldr_modern/add</id>
+    <title>Full locale data (CLDR modern coverage): 3 languages added</title>
+    <updated>2023-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2023: Cherokee, Lower Sorbian, Upper Sorbian</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2023-06/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 4 languages added</title>
+    <updated>2023-06-30T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Dec 2022 to Jun 2023: Breton, Bulgarian, Finnish, Latvian</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2022-12/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 4 languages added</title>
+    <updated>2022-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2022: Danish, Georgian, Slovenian, Western Mari</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2022-12/cldr_modern/add</id>
+    <title>Full locale data (CLDR modern coverage): 11 languages added</title>
+    <updated>2022-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2022: Cherokee, Hausa, Igbo, Konkani, Lower Sorbian, Nigerian Pidgin, Quechua, Scots Gaelic, Tonga, Upper Sorbian, Yoruba</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2022-06/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 11 languages added</title>
+    <updated>2022-06-30T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Dec 2021 to Jun 2022: Abkhazian, Bengali, Chuvash, Eastern Mari, Galician, Hindi, Marathi, Sorani Kurdish, Swahili, Urdu, Uzbek</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2021-12/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 13 languages added</title>
+    <updated>2021-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2021: Bashkir, Belarusian, Greek, Hungarian, Indonesian, Japanese, Kurmanji Kurdish, Lithuanian, Luganda, Romanian, Slovak, Thai, Uyghur</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2021-06/cldr_modern/add</id>
+    <title>Full locale data (CLDR modern coverage): 1 language added</title>
+    <updated>2021-06-30T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Dec 2020 to Jun 2021: Norwegian Nynorsk</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2020-12/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 2 languages added</title>
+    <updated>2020-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2020: Dhivehi, Frisian</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2020-06/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 9 languages added</title>
+    <updated>2020-06-30T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Dec 2019 to Jun 2020: Arabic, Czech, Kinyarwanda, Mongolian, Polish, Swedish, Tamil, Ukrainian, Yue Chinese</content>
+  </entry>
+  <entry>
+    <id>tag:langtechindex.org,2026:changes/2019-12/cv_10h/add</id>
+    <title>At least 10 hours of open transcribed speech (Common Voice): 3 languages added</title>
+    <updated>2019-12-31T00:00:00Z</updated>
+    <link href="https://langtechindex.org/#changes"/>
+    <content type="text">Jun to Dec 2019: Kyrgyz, Portuguese, Turkish</content>
+  </entry>
+</feed>
