@@ -1,4 +1,4 @@
-"""What changed, and when: languages a service added or dropped, for the Changes page and its feed.
+"""What changed, and when: languages a service added or dropped, for language pages and the feed.
 
 Two sources:
   history      data/history.csv: half-yearly snapshots of a few series reconstructed from their own
@@ -108,7 +108,7 @@ def feed(data: dict, names: dict[str, str]) -> str:
     <id>tag:langtechindex.org,2026:changes/{escape(b)}/{escape(s)}/{'add' if d > 0 else 'drop'}</id>
     <title>{escape(title)}</title>
     <updated>{_day(b)}T00:00:00Z</updated>
-    <link href="{SITE_URL}/#changes"/>
+    <link href="{SITE_URL}/#charts"/>
     <content type="text">{escape(_when(a, b))}: {escape(', '.join(sorted(langs)))}</content>
   </entry>""")
     return f"""<?xml version="1.0" encoding="utf-8"?>
@@ -116,7 +116,7 @@ def feed(data: dict, names: dict[str, str]) -> str:
   <id>tag:langtechindex.org,2026:changes</id>
   <title>Language Technology Development Index: what changed</title>
   <subtitle>Languages that services and open resources added or dropped</subtitle>
-  <link href="{SITE_URL}/#changes"/>
+  <link href="{SITE_URL}/#charts"/>
   <link rel="self" href="{SITE_URL}/changes.xml"/>
   <updated>{updated}</updated>
   <author><name>Language Technology Development Index</name></author>

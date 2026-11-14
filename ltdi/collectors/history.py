@@ -4,6 +4,7 @@ Sources with a public history:
   Common Voice     every release's per-language stats (github.com/common-voice/cv-dataset)
   Unicode CLDR     every release's modern-coverage locales (cldr-json tags; dates from npm)
   DeepL            git history of its docs' language table (github.com/DeepLcom/api-docs), from May 2025
+  Universal Dependencies   every release's treebanks, with its date (UD's docs-automation records)
   Dated releases   NLLB-200 and FLORES-200 (July 2022), Whisper (September 2022), Belebele (August 2023):
                    languages counted from the release year, using today's lists
 
@@ -29,6 +30,7 @@ SERIES = {
     "cv_10h": "At least 10 hours of open transcribed speech (Common Voice)",
     "cldr_modern": "Full locale data (CLDR modern coverage)",
     "deepl": "Commercial translation (DeepL)",
+    "ud": "Annotated grammar data (Universal Dependencies)",
     "open_mt": "Open translation model (NLLB-200)",
     "open_asr": "Open speech recognition model (Whisper)",
     "reading_bench": "Reading-comprehension benchmark (Belebele)",
@@ -115,6 +117,20 @@ def deepl() -> list[tuple[str, set[str]]]:
     return out
 
 
+def ud() -> list[tuple[str, set[str]]]:
+    from .ud import AUTOMATION, language_codes
+    codes = language_codes()
+    out = []
+    for version, r in fetch_json(f"{AUTOMATION}/valdan/releases.json")["releases"].items():
+        langs = set()
+        for tb in r["treebanks"]:
+            name = tb[3:].split("-")[0]  # UD_Ancient_Greek-PROIEL -> Ancient_Greek
+            if (lc := codes.get(name)) and (c := to_ltdi(lc)):
+                langs.add(c)
+        out.append((r["date"], langs))
+    return out
+
+
 def collect():
     return []  # history isn't per-language records; see main
 
@@ -128,7 +144,8 @@ def main() -> None:
     rows = []
     for series, snaps, source in (("cv_10h", common_voice(), "Common Voice releases"),
                                   ("cldr_modern", cldr(), "Unicode CLDR releases"),
-                                  ("deepl", deepl(), "DeepL docs history")):
+                                  ("deepl", deepl(), "DeepL docs history"),
+                                  ("ud", ud(), "Universal Dependencies releases")):
         snaps.sort()
         for period in PERIODS:
             before = [have for when, have in snaps if when <= _end(period)]

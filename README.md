@@ -327,12 +327,16 @@ benchmarks and regional services (`config/organisations.csv`, each checked again
 page; `ltdi/organisations.py`), community and university work first. The global commercial services
 are left out, since every page already shows them.
 
-**Changes** (`#changes`, and an Atom feed at `/changes.xml`) lists the languages services and open
-resources added, newest first (`ltdi/changes.py`). Until there are two editions, it comes from the
-reconstructed history (`data/history.csv`: DeepL's documentation history, every Common Voice and CLDR
-release), which reports additions only, since matching names in old documents can make a renamed
-entry look like a dropped language. From the second edition, each edition's services table is compared
-with the last, for every service and benchmark, both ways.
+**Growth over time.** The Charts page shows how each kind of support has grown since 2019, counting
+languages or their speakers, and when each source added languages, half-year by half-year, so the
+large expansions stand out (Common Voice's September 2025 release, DeepL's beta languages that
+October). The history (`data/history.csv`, `python -m ltdi.collectors history`) is rebuilt from each
+source's own records: DeepL's documentation history (read by language code, so renamed entries match),
+every Common Voice, CLDR and Universal Dependencies release, and the release dates of NLLB-200, Whisper
+and Belebele. Language pages list their own additions, and `/changes.xml` is an Atom feed of them
+(`ltdi/changes.py`). The rebuilt history reports additions only, since matching old documents can make
+a renamed entry look like a dropped language; from the second edition, each edition's services table
+is compared with the last, for every service and benchmark, both ways.
 
 ## JSON API
 

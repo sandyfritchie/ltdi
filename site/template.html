@@ -473,6 +473,10 @@ svg.focusing circle.sdot:not(.hit) { opacity: 0.35; }
 .maphint { font-size: 12px; color: var(--muted); margin-top: 6px; }
 .mapwrap svg { width: 100%; height: auto; display: block; }
 .legend.map i.dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.added { display: grid; gap: 2px; }
+.added-row { display: grid; grid-template-columns: minmax(150px, 230px) minmax(0, 1fr); gap: 12px; align-items: end; }
+.added-lab { font-size: 13px; line-height: 1.3; padding-bottom: 4px; }
+@media (max-width: 640px) { .added-row { grid-template-columns: 1fr; gap: 0; } .added-row > div:first-child:empty { display: none; } }
 .multiples { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
 .panel { min-width: 0; }
 .panel h4 { margin: 0; font-size: 14px; font-weight: 600; }
@@ -525,8 +529,6 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .dcard { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; min-width: 0; }
 .dh { font: 600 11px/1.2 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .dv { font-size: 24px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; } .dn { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
-.chg-when { margin: 18px 0 6px; font-size: 16px; } .chg-when:first-child { margin-top: 0; }
-.chg-row { padding: 8px 0; border-bottom: 1px solid var(--rule); } .chg-langs { font-size: 14px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
 .chg-lang { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
 .org-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 4px 18px; }
 .org-list li { padding: 7px 0; border-bottom: 1px solid var(--rule); min-width: 0; } .org-list .small { color: var(--muted); margin-top: 2px; }
@@ -577,7 +579,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
     <p class="lede">How well technology supports each language, and how much data exists to build more. Two dimensions, each scored 0 to 1, combined with a geometric mean so a gap in either pulls the score down.</p>
     <div class="formula">LTDI = √(<b class="d">data</b> × <b class="t">technology</b>)</div>
   </header>
-  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities</a><a href="#plan" id="tab-plan">Plan</a><a href="#changes" id="tab-changes">Changes</a><a href="#about" id="tab-about">About</a>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities</a><a href="#plan" id="tab-plan">Plan</a><a href="#about" id="tab-about">About</a>
     <span class="pickwrap navsearch" role="search"><input class="pick" id="go" autocomplete="off" role="combobox" aria-autocomplete="list"
       aria-expanded="false" aria-controls="go-list" aria-label="Find a language name or code" placeholder="Find a language name or code" onfocus="this.select()"><ul class="picklist" id="go-list" role="listbox" hidden></ul></span></nav>
   <main id="view"><!--__STATIC__--></main>
@@ -628,7 +630,7 @@ const TOP = DATA.top_opportunities.map(o => withRule(o, o.lang));
 // fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
 // the countries chosen, then priority = reach x (gap x need / cost) [x momentum], as for the global list
 let COPP = null;
-// What changed, and when (ltdi.changes): fetched the first time the Changes page or a language page needs it
+// What changed, and when (ltdi.changes): fetched the first time a language page needs it
 let CHG;
 const changesData = () => CHG ??= fetch('data/changes.json').then(r => r.json()).catch(() => ({ series: {}, events: [] }));
 const countryOpps = () => COPP ??= fetch('data/country_opportunities.json').then(r => r.json())
@@ -1701,39 +1703,8 @@ function whenLabel(a, b) {
 function changesLine(code, C) {
   const ev = C.events.filter(e => e[3] === code);
   if (!ev.length) return '';
-  return `<h3 class="panel-h">What changed <a href="#changes" style="font-size:14px;font-weight:600">All changes</a></h3>
+  return `<h3 class="panel-h">What changed <a href="#charts" style="font-size:14px;font-weight:600">Growth over time</a></h3>
     <ul class="chg-lang">${ev.map(([a, b, s, , d]) => `<li><span class="muted">${esc(whenLabel(a, b))}</span> ${esc(C.series[s] || s)}: ${d > 0 ? 'added' : 'no longer listed'}</li>`).join('')}</ul>`;
-}
-let chgSeries = '', chgShowAll = new Set();
-async function changesPage() {
-  const C = await changesData();
-  const groups = new Map();
-  for (const e of C.events) {
-    if (chgSeries && e[2] !== chgSeries) continue;
-    const k = `${e[1]}|${e[0]}|${e[2]}|${e[4]}`;
-    (groups.get(k) || groups.set(k, []).get(k)).push(e[3]);
-  }
-  const byWhen = new Map();
-  for (const [k, codes] of groups) { const w = k.split('|').slice(0, 2).join('|'); (byWhen.get(w) || byWhen.set(w, []).get(w)).push([k, codes]); }
-  const keys = [...byWhen.keys()].sort().reverse();
-  const nameOf = c => BY[c] ? BY[c].name : c;
-  $('#view').innerHTML = `
-    <section class="chart">
-      <h2 class="plan-h">What changed</h2>
-      <p class="sub">Languages that services and open resources added, newest first. Follow it in a feed reader at <span class="code">https://langtechindex.org/changes.xml</span>.</p>
-      <div class="sl-controls"><label class="plan-l">Show <select id="chg-s"><option value="">Everything tracked</option>${Object.entries(C.series).map(([k, v]) => `<option value="${esc(k)}"${chgSeries === k ? ' selected' : ''}>${esc(v)}</option>`).join('')}</select></label></div>
-    </section>
-    <section class="chart">
-      ${keys.length ? keys.map(w => { const [b, a] = w.split('|'); return `<h3 class="chg-when">${esc(whenLabel(a, b))}</h3>
-        ${byWhen.get(w).map(([k, codes]) => { codes.sort((x, y) => (BY[y] ? BY[y].speakers || 0 : 0) - (BY[x] ? BY[x].speakers || 0 : 0));
-          const [, , s, d] = k.split('|'), all = chgShowAll.has(k), shown = all ? codes : codes.slice(0, 24);
-          return `<div class="chg-row"><b>${esc(C.series[s] || s)}</b>: ${codes.length} ${codes.length === 1 ? 'language' : 'languages'} ${+d > 0 ? 'added' : 'no longer listed'}
-            <div class="chg-langs">${shown.map(c => BY[c] ? `<a href="#lang-${c}">${esc(nameOf(c))}</a>` : esc(c)).join(', ')}${codes.length > shown.length ? ` <button type="button" class="linkish" data-chg="${esc(k)}">and ${codes.length - shown.length} more</button>` : ''}</div></div>`; }).join('')}`; }).join('')
-        : '<p class="note">Nothing recorded for this yet.</p>'}
-      <p class="note">History is rebuilt from each source's own records: DeepL's documentation history (from May 2025), every Common Voice release, and every CLDR release; NLLB-200, Whisper and Belebele count from their release. Because the rebuilt history matches entries in old documents, it reports additions only: a renamed entry could otherwise look like a language dropped. From the next edition, every service and benchmark tracked is compared with the last edition's records, and those comparisons report both additions and languages no longer listed.</p>
-    </section>`;
-  $('#chg-s').onchange = e => { chgSeries = e.target.value; chgShowAll.clear(); changesPage(); };
-  $('#view').querySelectorAll('[data-chg]').forEach(b => b.onclick = () => { chgShowAll.add(b.dataset.chg); const y = scrollY; changesPage().then(() => scrollTo(0, y)); });
 }
 // Who is already working on it: the organisations behind its datasets, models, benchmarks and regional services
 function orgPanel(l) {
@@ -1852,6 +1823,7 @@ const levelOf = (l, key) => l.levels[key];  // worked out when scoring: full, pa
 // A provider's view counts its own services only: how many languages each one offers.
 let provider = 'All';
 const SERIES_PROV = { deepl: 'deepl', open_mt: 'meta', reading_bench: 'meta', open_asr: 'openai' };
+let histMode = 'langs';  // the growth charts count languages, or their speakers
 const offers = (l, id) => l._offers.has(id);
 const provIds = (t, prov) => [...(t.consumer || []), ...(t.regional || []), ...(t.open || []), ...Object.keys(t.measured || {})].filter(id => (SVC[id] || [])[2] === prov);
 const PLEVELS = [['full', 'Offered'], ['part', 'In some of its services'], ['none', 'Not found']];
@@ -2292,15 +2264,18 @@ function charts() {
   const H = DATA.history;
   // one string per series and language: '1', '0' or '.' (no data) for each period
   const hv = (key, code, i) => { const c = ((H.values[key] || {})[code] || '')[i]; return c === '1' ? 1 : c === '0' ? 0 : null; };
-  let multiples = '<p class="note">No history collected yet.</p>';
+  let multiples = '<p class="note">No history collected yet.</p>', added = '';
   if (H) {
-    const P = H.periods, W = 300, Ht = 150, L = 30, R = 34, T = 12, B = 26;
+    const spkMode = histMode === 'speakers';
+    const P = H.periods, W = 300, Ht = 150, L = spkMode ? 38 : 30, R = spkMode ? 44 : 34, T = 12, B = 26;
+    const axisN = v => !v ? '0' : v >= 1e9 ? `${+(v / 1e9).toFixed(1)}B` : v >= 1e6 ? `${+(v / 1e6).toFixed(1)}M` : v >= 1e3 ? `${+(v / 1e3).toFixed(1)}K` : `${v}`;
     const series = Object.entries(H.series).filter(([key]) => provider === 'All' || SERIES_PROV[key] === provider);  // P is the periods here
+    const wt = histMode === 'speakers' ? (l => vSpk(l) || 0) : (() => 1), fmtH = histMode === 'speakers' ? people : (v => v.toLocaleString());
     const VALS = Object.fromEntries(series.map(([key]) => [key, P.map((p, pi) => {
-      const vs = langs.map(l => hv(key, l.code, pi)); return vs.every(v => v == null) ? null : vs.filter(v => v === 1).length; })]));
+      const vs = langs.map(l => [l, hv(key, l.code, pi)]); return vs.every(([, v]) => v == null) ? null : vs.reduce((n, [l, v]) => n + (v === 1 ? wt(l) : 0), 0); })]));
     // one scale for all panels, up to a round number just above the largest count, so they compare
     const top = Math.max(1, ...Object.values(VALS).flat().filter(v => v != null));
-    const mag = 10 ** Math.floor(Math.log10(top)), YMAX = Math.min(N, [1, 2, 2.5, 5, 10].map(m => m * mag).find(v => v >= top));
+    const mag = 10 ** Math.floor(Math.log10(top)), YMAX0 = [1, 2, 2.5, 5, 10].map(m => m * mag).find(v => v >= top), YMAX = histMode === 'speakers' ? YMAX0 : Math.min(N, YMAX0);
     const x = i => L + i * (W - L - R) / (P.length - 1), y = v => T + (Ht - T - B) * (1 - v / Math.max(YMAX, 1));
     const yearTicks = P.map((p, i) => [p, i]).filter(([p]) => p.endsWith('-12') && ['2019', '2022', '2025'].includes(p.slice(0, 4)));
     multiples = series.map(([key, label]) => {
@@ -2314,21 +2289,39 @@ function charts() {
         const prev = j ? vals[pts[j - 1][3]] : null;
         const gained = j ? langs.filter(l => hv(key, l.code, i) === 1 && hv(key, l.code, pts[j - 1][3]) !== 1) : [];
         const when = (P[i].endsWith('-06') ? 'Mid ' : 'End ') + P[i].slice(0, 4);
-        const tip = `<b>${when}</b><br>${v} of ${N} languages${gained.length ? `<br>New: ${names(gained)}` : ''}`;
+        const tip = `<b>${when}</b><br>${histMode === 'speakers' ? `${people(v)} speakers` : `${v} of ${N} languages`}${gained.length ? `<br>New: ${names(gained)}` : ''}`;
         const w = (W - L - R) / (P.length - 1);
         return `<rect x="${(px - w / 2).toFixed(1)}" y="${T}" width="${w.toFixed(1)}" height="${Ht - T - B}" fill="transparent" data-tip="${esc(tip)}"/>`;
       }).join('');
-      return `<div class="panel"><h4>${esc(label)}</h4><div class="now">${last[2]} of ${N.toLocaleString()} languages now</div>
+      return `<div class="panel"><h4>${esc(label)}</h4><div class="now">${histMode === 'speakers' ? `${people(last[2])} speakers now` : `${last[2]} of ${N.toLocaleString()} languages now`}</div>
         <svg viewBox="0 0 ${W} ${Ht}" role="img" aria-label="${esc(label)}: ${pts.map(([, , v, i]) => `${P[i]} ${v}`).join(', ')}">
-          <g class="grid">${[0, YMAX / 2, YMAX].map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`).join('')}</g>
+          <g class="grid">${[0, YMAX / 2, YMAX].map(v => `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${spkMode ? axisN(v) : v}</text>`).join('')}</g>
           <g class="axis">${yearTicks.map(([p, i]) => `<text x="${x(i)}" y="${Ht - 8}" text-anchor="middle">${p.slice(0, 4)}</text>`).join('')}</g>
           <path d="${area}" fill="var(--accent)" fill-opacity="0.12"/>
           <path d="${step}" fill="none" stroke="var(--accent)" stroke-width="2"/>
           <circle cx="${last[0]}" cy="${last[1]}" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="2"/>
-          <text x="${last[0] + 8}" y="${last[1] + 4}" fill="var(--ink)" font-size="12" font-weight="600">${last[2]}</text>
+          <text x="${last[0] + 8}" y="${last[1] + 4}" fill="var(--ink)" font-size="12" font-weight="600">${spkMode ? axisN(last[2]) : last[2]}</text>
           ${hits}
         </svg></div>`;
     }).join('');
+    // When languages were added: one row of bars per source, a bar for each half-year's additions
+    const gains = series.map(([key, label]) => {
+      const avail = P.map((p, i) => i).filter(i => VALS[key][i] != null);
+      return [key, label, avail.slice(1).map((i, j) => { const prev = avail[j];
+        const g = langs.filter(l => hv(key, l.code, i) === 1 && hv(key, l.code, prev) !== 1);
+        return [i, g, g.reduce((n, l) => n + wt(l), 0)]; })];
+    }).filter(([, , gs]) => gs.some(g => g[1].length));  // sources that launched in one release add nothing later
+    const gTop = Math.max(1, ...gains.flatMap(([, , gs]) => gs.map(g => g[2])));
+    const AW = 720, AH = 64, AL = 8, AR = 8, AT = 16, AB = 4, bw = (AW - AL - AR) / P.length;
+    const ax = i => AL + i * bw;
+    added = gains.length ? `<div class="added">${gains.map(([key, label, gs]) => `<div class="added-row"><div class="added-lab">${esc(label)}</div>
+      <svg viewBox="0 0 ${AW} ${AH}" role="img" aria-label="${esc(label)}: ${gs.filter(g => g[1].length).map(([i, g]) => `${P[i]} ${g.length}`).join(', ') || 'no additions'}">
+        <line x1="${AL}" x2="${AW - AR}" y1="${AH - AB}" y2="${AH - AB}" stroke="var(--rule)"/>
+        ${gs.map(([i, g, v]) => { const h = v ? Math.max(2, (AH - AT - AB) * v / gTop) : 0, when = (P[i].endsWith('-06') ? 'First half of ' : 'Second half of ') + P[i].slice(0, 4);
+          return `${h ? `<rect x="${(ax(i) + 2).toFixed(1)}" y="${(AH - AB - h).toFixed(1)}" width="${(bw - 4).toFixed(1)}" height="${h.toFixed(1)}" rx="2" fill="var(--accent)"/>` : ''}${g.length && v / gTop > 0.06 ? `<text x="${(ax(i) + bw / 2).toFixed(1)}" y="${(AH - AB - h - 4).toFixed(1)}" text-anchor="middle" font-size="11" fill="var(--ink)">${histMode === 'speakers' ? people(v) : g.length}</text>` : ''}
+            <rect x="${ax(i).toFixed(1)}" y="0" width="${bw.toFixed(1)}" height="${AH}" fill="transparent" data-tip="${esc(`<b>${when}</b><br>${g.length ? `${g.length} ${g.length === 1 ? 'language' : 'languages'} added${histMode === 'speakers' ? ` (${people(v)} speakers)` : ''}: ${names(g)}` : 'None added'}`)}"/>`; }).join('')}
+      </svg></div>`).join('')}
+      <div class="added-row"><div></div><svg viewBox="0 0 ${AW} 16" aria-hidden="true">${P.map((p, i) => p.endsWith('-12') ? `<text x="${(ax(i)).toFixed(1)}" y="12" text-anchor="middle" font-size="11" fill="var(--muted)">${p.slice(0, 4)}</text>` : '').join('')}</svg></div></div>` : '';
     multiples = series.length ? `<div class="multiples">${multiples}</div>`
       : `<p class="note">No history collected yet for ${esc(pn)}'s services. History so far comes from DeepL's docs, Meta's NLLB-200 and Belebele, OpenAI's Whisper, Common Voice and CLDR.</p>`;
   }
@@ -2385,12 +2378,18 @@ function charts() {
       <details class="tbl"><summary>Show as a table</summary>${tableS}</details>
     </section>
     ${P && !Object.keys(H ? H.series : {}).some(k => SERIES_PROV[k] === provider) ? '' : `<section class="chart">
-      <h3>How support has grown since 2019</h3>
-      <p class="sub">Number of these languages with each kind of support, at mid-year and year-end. Lines start when the source's history does. Hover for the languages added.</p>
+      <div class="plan-tablehead"><h3>How support has grown since 2019</h3><span class="chips" role="group" aria-label="Count">${[['langs', 'Languages'], ['speakers', 'Speakers']].map(([k, lab]) => `<button type="button" class="chip" data-hm="${k}" aria-pressed="${histMode === k}">${lab}</button>`).join('')}</span></div>
+      <p class="sub">How many of these languages have each kind of support, or how many people speak them (added up per language), at mid-year and year-end. Lines start when the source's history does. Hover for the languages added.</p>
       ${multiples}
-      <p class="note">Common Voice, CLDR and DeepL from each project's release history. Open models and benchmarks are counted from their release dates using today's language lists.</p>
+      <p class="note">Common Voice, CLDR, DeepL and Universal Dependencies from each project's release history. Open models and benchmarks are counted from their release dates using today's language lists.</p>
       <details class="tbl"><summary>Show as a table</summary>${table2}</details>
-    </section>`}
+    </section>
+    ${added ? `<section class="chart">
+      <h3>When languages were added</h3>
+      <p class="sub">The languages each source added in each half-year, or their speakers, on one scale, so the big expansions stand out, like Common Voice's September 2025 release and DeepL's additions that October. Hover a bar for the languages.</p>
+      ${added}
+      <p class="note">Counted from each source's own release records. A language counts in the half-year it first appears; one that dropped out and came back counts again when it returns. To follow additions as they happen, add <span class="code">https://langtechindex.org/changes.xml</span> to a feed reader.</p>
+    </section>` : ''}`}
     <section class="chart">
       <h3>Where each language stands</h3>
       <p class="sub">${P ? `Share of ${esc(pn)}'s ${provWhat(provider)} tracked here that cover each language, by region.` : 'Language Technology Development Index by region.'} Each dot is a language, in every region where it's spoken (English appears in several), with the lowest named below its row and the highest above. Select a dot to open its profile.</p>
@@ -2404,6 +2403,7 @@ function charts() {
   wireCountries('cctrywrap', () => { const y = scrollY; charts(); reopenCountries('cctrywrap'); scrollTo(0, y); });
   wireMsel('ctierwrap', tierPicker, tierSel, TIER_KEYS.length, () => { const y = scrollY; charts(); reopen('ctierwrap'); scrollTo(0, y); });
   $('#cpsel').onchange = keep(v => { provider = v; });
+  $('#view').querySelectorAll('[data-hm]').forEach(b => b.onclick = () => { const y = scrollY; histMode = b.dataset.hm; charts(); scrollTo(0, y); });
   $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; charts(); scrollTo(0, y); };
   pinBar($('.controls.sticky'));
 }
@@ -2927,15 +2927,14 @@ function route() {
   else if ((m = h.match(/^opp-([a-z0-9-]+)$/))) oppDetail(m[1]);
   else if (h === 'plan' || h.startsWith('plan?')) { planFromHash(h); planPage(); }
   else if (h === 'shortlist' || h.startsWith('shortlist?')) { slFromHash(h); shortlistPage(); }
-  else if (h === 'changes') changesPage();
   else ranking();
   // From a language (or compare) page, the Opportunities tab opens that language's opportunities
   const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
   const otab = document.getElementById('tab-opportunities');
   if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
-  const tab = h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about', 'changes'].includes(h) ? h : (h === '' || h === 'ranking') ? 'ranking' : '';
+  const tab = h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about'].includes(h) ? h : (h === '' || h === 'ranking') ? 'ranking' : '';
   tipHide();
-  for (const t of ['ranking', 'map', 'charts', 'opportunities', 'plan', 'changes', 'about']) {
+  for (const t of ['ranking', 'map', 'charts', 'opportunities', 'plan', 'about']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   }
