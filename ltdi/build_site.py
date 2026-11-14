@@ -114,6 +114,64 @@ def lingualibre_clips() -> dict[str, dict]:
     return out
 
 
+def coverage(scores: dict) -> dict:
+    """How many of the ranked languages each source covers, for the About page: a value missing from
+    a language's page usually means its source doesn't cover the language.
+
+    {"n": ranked languages, "meta": [[label, count], ...], "writing"/"data": [[label, count], ...],
+     "tech": [[technology label, any service, [[service, provider, role, count], ...]], ...]}"""
+    import csv
+    from collections import Counter
+    ranked = [l for l in scores["languages"] if not l.get("extinct")]
+    codes = {l["code"] for l in ranked}
+    facts = scores["facts"]
+
+    def has(f: dict) -> bool:
+        v = f.get("value")
+        if v is None or isinstance(v, str):
+            return bool(v)
+        return v < 100 if f.get("unit") == "% WER" else v > 0
+
+    count = Counter(ind for c in codes for ind, f in facts.get(c, {}).items() if has(f))
+    dims = scores["config"]["dimensions"]
+    svc = {x["id"]: x for x in scores["services"]}
+    tech = []
+    for t in dims["tech"]["technologies"].values():
+        ids = [*t.get("consumer", []), *t.get("open", []), *(t.get("regional") or [])]
+        rows = [[svc[i]["name"], svc[i]["provider"], "regional" if i in (t.get("regional") or []) else svc[i]["role"], count[i]]
+                for i in ids if i in svc]
+        rows += [[svc[i]["name"] if i in svc else i, svc.get(i, {}).get("provider", ""), "quality", count[i]]
+                 for i in (t.get("measured") or {})]
+        anyc = sum(1 for c in codes if any(has(facts.get(c, {}).get(i, {})) for i in ids))
+        tech.append([t["label"], anyc, sorted(rows, key=lambda r: -r[3])])
+
+    def rows_of(path: str) -> int:
+        p = DATA / path
+        return sum(1 for _ in csv.DictReader(p.open(encoding="utf-8"))) if p.exists() else 0
+    geo_points = set()
+    if (DATA / "world_languages.json").exists():
+        geo_points = {p[0] for p in json.loads((DATA / "world_languages.json").read_text(encoding="utf-8"))}
+    areas = json.loads((DATA / "areas.json").read_text(encoding="utf-8"))["paths"] if (DATA / "areas.json").exists() else {}
+    census = {r["language"] for r in csv.DictReader((DATA / "census_languages.csv").open(encoding="utf-8"))} \
+        if (DATA / "census_languages.csv").exists() else set()
+    lingualibre = {r["language"] for r in csv.DictReader((DATA / "lingualibre.csv").open(encoding="utf-8"))} \
+        if (DATA / "lingualibre.csv").exists() else set()
+    meta = [
+        ["Speaker count (LinguaMeta; Wikipedia where it has none)", sum(1 for l in ranked if l.get("speakers"))],
+        ["Script (LinguaMeta; QQ where it has none)", sum(1 for l in ranked if l.get("script_names"))],
+        ["Endangerment level (LinguaMeta; Glottolog where it has none)", sum(1 for l in ranked if l.get("endangerment"))],
+        ["Location on the map (LinguaMeta)", len(codes & geo_points)],
+        ["Area on the map (Glottography)", len(codes & set(areas))],
+        ["Speakers in another country from its census (UN Statistics Division, US Census Bureau)", len(codes & census)],
+        ["Writing sample: Article 1 of the UDHR (UDHR in XML)", rows_of("udhr_article1.csv")],
+        ["Spoken words (Lingua Libre)", len(codes & lingualibre)],
+    ]
+    return {"n": len(codes), "meta": meta,
+            "writing": [[i["label"], count[k]] for k, i in dims["writing"]["indicators"].items()],
+            "data": [[i["label"], count[k]] for k, i in dims["data"]["indicators"].items()],
+            "tech": tech}
+
+
 def census_countries() -> list[str]:
     """Countries with census figures on language (data/census_languages.csv); the page notes the others."""
     import csv
@@ -299,6 +357,7 @@ def main() -> None:
     add_census(scores)
     index, details = split(scores)
     index["census_countries"] = census_countries()
+    index["coverage"] = coverage(scores)
     for code, sample in udhr_samples().items():
         if code in details:
             details[code]["sample"] = sample

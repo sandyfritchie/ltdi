@@ -219,6 +219,26 @@ table.ranktab { table-layout: fixed; }
   .ranktab .c-rank { width: 2.8em; } .ranktab .c-name { width: auto; } .ranktab .c-dim { width: 5.5em; } .ranktab .c-ltdi { width: 4.8em; } }
 
 .note { margin-top: 16px; font-size: 14px; color: var(--muted); max-width: 72ch; }
+/* About */
+.about { max-width: 920px; }
+.about h2 { font: 800 clamp(26px, 4vw, 36px)/1.1 var(--font-display); font-stretch: 80%; margin: 8px 0 10px; }
+.about h3 { font: 700 21px var(--font-display); font-stretch: 85%; margin: 34px 0 8px; }
+.about h4 { font: 700 15px var(--font-body); margin: 20px 0 6px; }
+.about p, .about li { max-width: 72ch; line-height: 1.55; }
+.about ul { padding-inline-start: 20px; margin: 6px 0; }
+.about li + li { margin-top: 6px; }
+.about .lede { font-size: 17px; }
+.about .tablebox { margin-top: 6px; }
+.covtab { width: 100%; }
+.covtab td.covbar, .covtab th.covbar { width: 34%; }
+.covtab tr.grp td { vertical-align: top; }
+.covtab .covbar span { display: block; height: 8px; border-radius: 4px; background: var(--accent); min-width: 0; }
+.covtab .pct { color: var(--muted); }
+.covtab .muted, .covsvc .muted { color: var(--muted); font-weight: 400; }
+.covsvc summary { cursor: pointer; }
+.covsvc ul { list-style: none; padding: 6px 0 2px 14px; margin: 0; }
+.covsvc li { display: flex; justify-content: space-between; gap: 12px; max-width: 30em; font-size: 13px; margin: 2px 0; }
+.covsvc .tag { font-size: 11px; color: var(--muted); border: 1px solid var(--rule); border-radius: 4px; padding: 0 4px; margin-inline-start: 4px; }
 .note strong { color: var(--ink); }
 
 /* Language view */
@@ -443,7 +463,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
     <p class="lede">How well technology supports each language, and how much data exists to build more. Three dimensions, each scored 0 to 1, combined with a geometric mean so a gap anywhere pulls the score down.</p>
     <div class="formula">LTDI = (<b class="w">writing</b> × <b class="d">data</b> × <b class="t">technology</b>)<sup>1/3</sup></div>
   </header>
-  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a><a href="#about" id="tab-about">About</a>
     <span class="pickwrap navsearch" role="search"><input class="pick" id="go" autocomplete="off" role="combobox" aria-autocomplete="list"
       aria-expanded="false" aria-controls="go-list" aria-label="Find a language name or code" placeholder="Find a language name or code" onfocus="this.select()"><ul class="picklist" id="go-list" role="listbox" hidden></ul></span></nav>
   <main id="view"></main>
@@ -2002,6 +2022,92 @@ function mapPage() {
   pinBar($('.controls.sticky'));
 }
 
+// ---------------------------------------------------------------- about
+// What the Index is for, how far each source reaches, and the limits of the data, sources and views
+const REPO_URL = 'https://github.com/sandyfritchie/ltdi';
+function about() {
+  const C = DATA.coverage || { n: LANGS.length, meta: [], writing: [], data: [], tech: [] }, N = C.n;
+  const pct = n => { const p = n / N * 100; return p > 0 && p < 1 ? '<1%' : Math.round(p) + '%'; };
+  const row = (label, n, extra = '') => `<tr><td>${label}</td><td class="num">${n.toLocaleString()}</td>
+    <td class="covbar"><span style="width:${Math.max(n ? 0.6 : 0, n / N * 100).toFixed(2)}%"></span></td><td class="num pct">${pct(n)}</td>${extra}</tr>`;
+  const table = (rows, head = 'Source') => `<div class="tablebox"><table class="covtab"><thead><tr><th>${head}</th><th class="num">Languages</th><th class="covbar" aria-label="Share of languages"></th><th class="num">Share</th></tr></thead>
+    <tbody>${rows}</tbody></table></div>`;
+  const ROLE = { consumer: '', open: 'open', regional: 'regional', quality: 'quality measured' };
+  const techRows = C.tech.map(([label, any, svcs]) => `<tr class="grp"><td><details class="covsvc"><summary>${esc(label)} <span class="muted">· any service</span></summary>
+      <ul>${svcs.map(([name, prov, role, n]) => `<li><span>${esc(name)}${prov && PROV_ALL[prov] && !name.includes(PROV_ALL[prov]) && prov !== 'open' ? ` <span class="muted">${esc(PROV_ALL[prov])}</span>` : ''}${ROLE[role] ? ` <span class="tag">${ROLE[role]}</span>` : ''}</span><b>${n.toLocaleString()}</b></li>`).join('')}</ul></details></td>
+    <td class="num">${any.toLocaleString()}</td><td class="covbar"><span style="width:${(any / N * 100).toFixed(2)}%"></span></td><td class="num pct">${pct(any)}</td></tr>`).join('');
+  const nArea = (C.meta.find(m => /Area on the map/.test(m[0])) || [0, 0])[1];
+  $('#view').innerHTML = `<article class="about">
+    <h2>About the Index</h2>
+    <p class="lede">The Language Technology Development Index tracks how well technology supports each of the world's languages, and how much data exists to build more. It covers ${LANGS.length.toLocaleString()} living languages, each scored from 0 to 1 on three dimensions: writing system, data and technology.</p>
+    <h3>What it's for</h3>
+    <ul class="aims">
+      <li><b>The whole picture.</b> Every language with a record, not only the hundred or so that technology companies and benchmarks usually report on, so the gap between the best- and least-served languages is visible.</li>
+      <li><b>Gaps you can act on.</b> Which technologies, services and kinds of data a language lacks, one language at a time, with the Opportunities pages suggesting where builders, researchers and funders could make the most difference.</li>
+      <li><b>Speakers, not just languages.</b> How many people each language reaches, where they live and how many are online, so the views can be weighed by people as well as by languages.</li>
+      <li><b>Checkable.</b> Every value on a language's page links to its source, and the code and data are open on <a href="${REPO_URL}" target="_blank" rel="noopener">GitHub</a>.</li>
+      <li><b>Change over time.</b> Where a source keeps a record, the Charts show how support has grown since 2019.</li>
+    </ul>
+    <h3>How a language is scored</h3>
+    <p>Each dimension averages a few indicators, each scaled from 0 to 1 between a floor and a goal (most on a logarithmic scale, so the first thousand sentences count for more than the millionth). The three are combined with a geometric mean, as in the UN's Human Development Index, so a gap anywhere pulls the score down: a language with excellent data but no keyboard can't score highly. A technology scores by the share of the services checked that offer the language, weighted by how fully each does (features, voice types, published error rates), with open models counting for less than commercial services.</p>
+    <h3>Why something is missing for a language</h3>
+    <p>Most sources cover only a small share of the world's languages, so most values on most pages are missing. A missing value nearly always means a source doesn't list or measure the language, not that the language has nothing: a language may have speech data in an archive no source here counts, or a keyboard that isn't in any app store. These are the ${N.toLocaleString()} ranked languages each source covers.</p>
+    <h4>Language information</h4>
+    ${table(C.meta.map(([l, n]) => row(esc(l), n)).join(''), 'What the page shows')}
+    <h4>Writing system</h4>
+    ${table(C.writing.map(([l, n]) => row(esc(l), n)).join(''), 'Indicator')}
+    <h4>Data</h4>
+    ${table(C.data.map(([l, n]) => row(esc(l), n)).join(''), 'Indicator')}
+    <h4>Technology</h4>
+    <p class="note">Languages offered by at least one service of each kind; open a technology for each service. Quality is measured, by benchmarks, for far fewer languages than services offer.</p>
+    ${table(techRows, 'Technology')}
+
+    <h3>Caveats and shortcomings</h3>
+    <h4>Languages and speakers</h4>
+    <ul>
+      <li>The list of languages, their codes, names, countries, speaker counts, scripts and endangerment levels come from <a href="https://github.com/google-research/url-nlp/tree/main/linguameta" target="_blank" rel="noopener">LinguaMeta</a>, which brings together several sources of different dates. Speaker counts for widely used languages often include second-language speakers (English's 1.27 billion), and for others only first-language speakers, so they aren't strictly comparable.</li>
+      <li>What counts as a language follows LinguaMeta, by ISO 639-3 code. Some macrolanguages are scored as one language (Arabic, Swahili, Persian), with a note on the language's page; spoken varieties whose speakers write a standard language (Yue Chinese and Mandarin, say) are counted from that standard for writing and text.</li>
+      <li>Without a recorded script, a language's writing score sits at its floor; without a speaker count, its opportunities can't be ranked by reach.</li>
+      <li>Endangerment levels sometimes belong to a minority variety rather than the whole language; clear cases are corrected. A language listed as extinct with no speakers recorded keeps its page but is left out of the ranking, totals and charts.</li>
+    </ul>
+    <h4>Countries</h4>
+    <ul>
+      <li>LinguaMeta lists the languages traditionally spoken in each country. Immigrant and diaspora languages come from national censuses: the UN Statistics Division's census tables and, for the United States, the American Community Survey. Many countries with large immigrant communities have no usable census figures on language (France, Germany, Spain, Italy, the Netherlands, the Gulf states, Japan, Brazil and Nigeria among them), so their views show only the languages LinguaMeta lists; a note says so when one is chosen.</li>
+      <li>Censuses ask different questions (mother tongue, language spoken at home, main language), some are old, and some group languages ("Chinese"), so census counts aren't comparable between countries. They change only the country and region views, never the scores.</li>
+    </ul>
+    <h4>Data</h4>
+    <ul>
+      <li>Web-crawled text for low-resource languages is often not in the language at all (Kreutzer et al., 2022). FineWeb-2 filters by language identification; text mostly from Bible sites counts for less; OPUS's web-mined corpora are checked by language identification on a random sample, which catches the wrong language but not poor translations, so OPUS counts are an upper bound.</li>
+      <li>Wikipedia article counts include bot-generated stubs, so articles count only up to a limit per active editor. Hugging Face datasets are counted by their language tags, and datasets tagged with dozens of languages count in part.</li>
+      <li>Open speech hours add up datasets of very different kinds: read speech, crowd-sourced recordings and video with uploaded subtitles.</li>
+      <li>Font support is checked but not scored: Noto displays nearly every language whose letters are known.</li>
+    </ul>
+    <h4>Technology</h4>
+    <ul>
+      <li>Coverage is read from each company's published language lists, which can lag behind or run ahead of what a product actually does, and "supported" means different things to different vendors. A few lists are read by hand where no page could be read automatically.</li>
+      <li>Quality is published for few languages. Where a benchmark result exists (translation, speech recognition, LLMs) a weak result counts for less; elsewhere a listed service counts in full, however well it works.</li>
+      <li>Regional providers count together as one extra service, and only for the languages they offer.</li>
+      <li>Speech services name varieties by country (ar-EG for Egyptian Arabic), so speech locales are matched to the variety spoken there; text services count as the standard language.</li>
+    </ul>
+    <h4>Reach</h4>
+    <ul><li>People online and able to text are estimated from the World Bank's national averages for each country a language is spoken in, which overstate connectivity for rural and minority-language speakers.</li></ul>
+    <h4>Maps</h4>
+    <ul>
+      <li>Language areas come from Glottography's digitisation of Asher and Moseley's <i>Atlas of the World's Languages</i> (2007), drawn for a world map, so they're coarse and many overlap; ${nArea.toLocaleString()} languages have one. For ${officialNames() || 'a few languages'}, whose countries the atlas fits poorly, the areas are where they're official, from Wikipedia's list via Glottography.</li>
+      <li>On the Languages map, each language is a single dot at a point LinguaMeta gives for it, so a language spoken across several countries appears in only one of them.</li>
+      <li>The share of land in each tier counts, in each place, the best-covered language spoken there, so it shows where people can find some technology in a language they speak, not that everyone there can.</li>
+    </ul>
+    <h4>Language pages</h4>
+    <ul><li>The writing sample is Article 1 of the Universal Declaration of Human Rights where there's a translation; the spoken words are volunteers' recordings for Lingua Libre, chosen automatically, so a name or an unusual word sometimes gets through.</li></ul>
+    <h4>Opportunities</h4>
+    <ul><li>Opportunities are gaps in the sources tracked here, ranked by how many people could use the technology, how big the gap is and the rough cost of acting. The costs are rough guides, not estimates, and a gap may already be filled by something no source here records.</li></ul>
+
+    <h3>Sources and credits</h3>
+    <p>Language metadata from LinguaMeta, with scripts from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a> (CC BY-SA 4.0, so data derived from it carries the same licence), endangerment from Glottolog where LinguaMeta gives none, and speaker counts from Wikipedia where neither does. Census figures from the UN Statistics Division and the US Census Bureau; connectivity from the World Bank. Language areas from <a href="https://glottography.github.io" target="_blank" rel="noopener">Glottography</a> (CC BY 4.0); map from Natural Earth. Writing samples from <a href="https://github.com/eric-muller/udhr" target="_blank" rel="noopener">UDHR in XML</a>; spoken words from <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a> (CC BY-SA 4.0). Every other value names its source on the language's page. The method builds on van Esch, Ritchie et al. (2024), <a href="https://aclanthology.org/2024.lrec-main.331/" target="_blank" rel="noopener">Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages</a>.</p>
+    <p>Corrections and suggestions are welcome as issues on <a href="${REPO_URL}/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+  </article>`;
+}
+
 function route() {
   const h = location.hash.slice(1);
   let m;
@@ -2011,6 +2117,7 @@ function route() {
   else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
   else if (h === 'charts') charts();
   else if (h === 'map') mapPage();
+  else if (h === 'about') about();
   else if (h === 'opportunities') opportunities();
   else if ((m = h.match(/^opportunities-([a-z]+)$/))) opportunities(m[1]);
   else if ((m = h.match(/^opp-([a-z0-9-]+)$/))) oppDetail(m[1]);
@@ -2019,9 +2126,9 @@ function route() {
   const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
   const otab = document.getElementById('tab-opportunities');
   if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
-  const tab = h.startsWith('opp') ? 'opportunities' : ['charts', 'map'].includes(h) ? h : (h === '' || h === 'ranking') ? 'ranking' : '';
+  const tab = h.startsWith('opp') ? 'opportunities' : ['charts', 'map', 'about'].includes(h) ? h : (h === '' || h === 'ranking') ? 'ranking' : '';
   tipHide();
-  for (const t of ['ranking', 'map', 'charts', 'opportunities']) {
+  for (const t of ['ranking', 'map', 'charts', 'opportunities', 'about']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
   }

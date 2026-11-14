@@ -183,6 +183,12 @@ the speaker credited. Words with an English gloss (from the Wikidata lexemes man
 first, then everyday words rather than names, all from the speaker with most of them. Most languages' words
 have no gloss, and the recordings are of words, not of the UDHR text.
 
+## About page
+
+The site's About tab sets out the Index's aims, how a language is scored, how many languages each source
+covers (computed at build time by `coverage()` in `ltdi/build_site.py`, so it stays current), and the
+caveats below in plain language. Keep it in step with this README when sources or methods change.
+
 ## Countries
 
 A language's countries, and its speakers in each, are LinguaMeta's, which lists the languages traditionally
