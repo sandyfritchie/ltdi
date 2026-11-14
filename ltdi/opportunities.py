@@ -374,7 +374,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             title = "Unicode CLDR's locale is below basic coverage"  # in CLDR: complete it
         else:
             title = "No locale in Unicode CLDR"  # add one
-        add("cldr", "standardise", "writing", title,
+        add("cldr", "standardise", "locale", title,
             "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, "
             "keyboards and reading numbers aloud in text-to-speech.",
             (3 - cldr) / 3, ["cldr_coverage"])
@@ -436,8 +436,6 @@ def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | 
         t = TYPES[o["type"]]
         if o["technology"] in tech:
             current = tech[o["technology"]]
-        elif o["technology"] == "writing":
-            current = scores["dimensions"]["writing"]["score"]
         elif o["technology"] == "data":
             current = scores["dimensions"]["data"]["score"]
         else:

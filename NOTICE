@@ -1,0 +1,45 @@
+Language Technology Development Index (LTDI)
+https://github.com/sandyfritchie/ltdi
+
+Code: MIT licence (LICENSE).
+
+Data: the data the Index publishes (data/, the scores, and the site's data files under site/) is
+licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0),
+https://creativecommons.org/licenses/by-sa/4.0/. Attribute it as "Language Technology Development
+Index (langtechindex.org)", and keep the attributions below for the upstream data it draws on.
+
+Each upstream source keeps its own terms. The ones whose data the Index redistributes or derives
+values from, as each source states them:
+
+- LinguaMeta (Google Research): compiled from sources with their own licences, listed in its README:
+  Google Research CC BY 4.0, Glottolog CC BY 4.0, IETF CC BY 4.0, Unicode CLDR (Unicode licence),
+  SIL ISO 639 code tables (SIL's terms of use), Wikidata (CC0 / CC BY-SA 3.0), Wikipedia and
+  Wiktionary (CC BY-SA 4.0).
+  https://github.com/google-research/url-nlp/tree/main/linguameta
+- QQ (qwanqwa; Poelman, Chen & de Lhoneux): data CC BY-SA 4.0, software Apache 2.0. Data derived
+  from QQ is why the Index's data is CC BY-SA 4.0. https://github.com/WPoelman/qwanqwa
+- Glottolog: CC BY 4.0. https://glottolog.org
+- Glottography, Asher & Moseley's Atlas of the World's Languages (contemporary version) and
+  Wikipedia's official languages by country: CC BY 4.0. https://glottography.github.io
+- Unicode CLDR: Unicode License v3. https://www.unicode.org/license.txt
+- Lingua Libre recordings (Wikimedia Commons): CC BY-SA 4.0; each clip credits its speaker on the
+  language's page. https://lingualibre.org
+- UDHR in XML (Eric Muller), from the translations collected by the UN Office of the High
+  Commissioner for Human Rights: the project states no licence; Article 1 is quoted with a link to
+  each file. https://github.com/eric-muller/udhr
+- FineWeb-2 (Hugging Face): Open Data Commons Attribution (ODC-By); only word counts and character
+  samples are used. https://huggingface.co/datasets/HuggingFaceFW/fineweb-2
+- World Bank World Development Indicators: CC BY 4.0, with the World Bank's additional terms.
+  https://data.worldbank.org/summary-terms-of-use
+- UNdata (UN Statistics Division) census tables: "may be copied freely, duplicated and further
+  distributed provided that UNdata is cited as the reference." https://data.un.org
+- US Census Bureau, American Community Survey: a work of the US government.
+  https://www.census.gov
+- Natural Earth (via world-atlas, ISC licence): public domain. https://www.naturalearthdata.com
+- Wikipedia statistics and infobox speaker counts: CC BY-SA 4.0. https://meta.wikimedia.org
+- OPUS, Universal Dependencies, Hugging Face Hub datasets, open speech datasets and benchmarks:
+  only counts are recorded (sentence pairs, words, hours, datasets, results); each corpus, treebank
+  or dataset keeps its own licence, given on its own page.
+- Company and provider language lists: facts read from public documentation (which languages a
+  product supports); each value links to the page it came from. No affiliation with, or endorsement
+  by, any company is implied.

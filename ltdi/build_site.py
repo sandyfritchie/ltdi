@@ -44,7 +44,7 @@ def top_listed(top: list[dict]) -> list[dict]:
             break
         picked.add(i)
     return [{k: v for k, v in o.items() if k != "_type"} for i, o in enumerate(top) if i in picked]
-SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "tied", "gaps", "endangerment")
+SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "tied", "tier", "gaps", "endangerment")
 PROFILE = ("script_names", "script_source", "endangerment_source", "note", "source", "written_in", "joshi", "ud", "census")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
 # pseudo-regions (LinguaMeta lists them without speaker counts)
@@ -118,7 +118,7 @@ def coverage(scores: dict) -> dict:
     """How many of the ranked languages each source covers, for the About page: a value missing from
     a language's page usually means its source doesn't cover the language.
 
-    {"n": ranked languages, "meta": [[label, count], ...], "writing"/"data": [[label, count], ...],
+    {"n": ranked languages, "meta": [[label, count], ...], "data": [[label, count], ...],
      "tech": [[technology label, any service, [[service, provider, role, count], ...]], ...]}"""
     import csv
     from collections import Counter
@@ -137,6 +137,9 @@ def coverage(scores: dict) -> dict:
     svc = {x["id"]: x for x in scores["services"]}
     tech = []
     for t in dims["tech"]["technologies"].values():
+        if "indicator" in t:  # locale data: CLDR's coverage, no services
+            tech.append([t["label"], count[t["indicator"]], [["Unicode CLDR", "", "quality", count[t["indicator"]]]]])
+            continue
         ids = [*t.get("consumer", []), *t.get("open", []), *(t.get("regional") or [])]
         rows = [[svc[i]["name"], svc[i]["provider"], "regional" if i in (t.get("regional") or []) else svc[i]["role"], count[i]]
                 for i in ids if i in svc]
@@ -159,6 +162,7 @@ def coverage(scores: dict) -> dict:
     meta = [
         ["Speaker count (LinguaMeta; Wikipedia where it has none)", sum(1 for l in ranked if l.get("speakers"))],
         ["Script (LinguaMeta; QQ where it has none)", sum(1 for l in ranked if l.get("script_names"))],
+        ["Script encoded in Unicode (reported, not scored)", count["script_encoded"]],
         ["Endangerment level (LinguaMeta; Glottolog where it has none)", sum(1 for l in ranked if l.get("endangerment"))],
         ["Location on the map (LinguaMeta)", len(codes & geo_points)],
         ["Area on the map (Glottography)", len(codes & set(areas))],
@@ -167,7 +171,6 @@ def coverage(scores: dict) -> dict:
         ["Spoken words (Lingua Libre)", len(codes & lingualibre)],
     ]
     return {"n": len(codes), "meta": meta,
-            "writing": [[i["label"], count[k]] for k, i in dims["writing"]["indicators"].items()],
             "data": [[i["label"], count[k]] for k, i in dims["data"]["indicators"].items()],
             "tech": tech}
 
@@ -279,13 +282,17 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                 if f not in ("key", "id", "kit") and all(o.get(f) == v for o in opps)}
         rules.setdefault(key, {}).update(same)
         hoisted[key] = set(same)
-    for l in scores["languages"]:
-        facts = {}
-        for ind, f in scores["facts"].get(l["code"], {}).items():
-            url = re.sub(rf"(?<=[=:&/#]){re.escape(l['code'])}(?=$|[/&#?])", "{lang}", f["url"])
+    def encode(code: str, inds: dict) -> dict:
+        out = {}
+        for ind, f in inds.items():
+            url = re.sub(rf"(?<=[=:&/#]){re.escape(code)}(?=$|[/&#?])", "{lang}", f["url"])
             key = (f["source"], url, f["retrieved"], f["method"])
-            facts[ind] = [f["value"], sources.setdefault(key, len(sources))] + ([f["note"]] if f["note"] else [])
+            out[ind] = [f["value"], sources.setdefault(key, len(sources))] + ([f["note"]] if f["note"] else [])
             units[ind] = f["unit"]
+        return out
+
+    for l in scores["languages"]:
+        facts = encode(l["code"], scores["facts"].get(l["code"], {}))
         opps = []
         for o in l["opportunities"]:
             top.append({k: o[k] for k in ("key", "title", "why", "priority", "priority_now", "priority_5y")}
@@ -293,12 +300,20 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             o = {k: v for k, v in o.items() if k not in ("teams", "missing", "starter", "id", *hoisted[o["key"]])}
             o["kit"] = [[k["indicator"], k["size"]] for k in o["kit"]]
             opps.append(o)
+        via = l.get("via")
         details[l["code"]] = {"dimensions": l["dimensions"], "facts": facts, "opportunities": opps,
+                              # a spoken variety's values through the standard it writes, beside its own
+                              **({"via": {"dimensions": via["dimensions"],
+                                          "facts": encode(l["code"], scores.get("via_facts", {}).get(l["code"], {}))}}
+                                 if via else {}),
                               "reach_by_country": l["reach_by_country"],
                               "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES],
                               **{k: l.get(k) for k in PROFILE}}
         langs.append({k: l.get(k) for k in SUMMARY} | {
             "scores": {k: d["score"] for k, d in l["dimensions"].items()},
+            # unfloored dimension scores, shown where the floor lifts a dimension (and used for the rank)
+            "raw": {k: d["raw"] for k, d in l["dimensions"].items() if d["raw"] < d["score"]} or None,
+            **({"via": [l["via"]["ltdi"], l["via"]["tier"]]} if l.get("via") else {}),
             "levels": "".join(l["levels"][t][0] for t in techs),  # f(ull) p(art) o(pen) n(one), in config order
             "offers": [svc_index[i] for i in l["offers"]],
             "opportunity_count": len(opps),

@@ -6,25 +6,16 @@ edition = "2026-11"
 # Lowest value a dimension index can take, so one empty dimension doesn't zero the LTDI
 floor = 0.05
 
-# ---------------------------------------------------------------- writing ---
-[dimensions.writing]
-label = "Writing system readiness"
-
-[dimensions.writing.indicators.script_encoded]
-label = "Main script encoded in Unicode"
-scale = "bool"
-weight = 0.5
-
+# LTDI = geometric mean of the two dimensions, data and technology: sqrt(data x technology),
+# so a gap in either pulls it down. (Until edition 2026-11 a third, writing-system, dimension
+# was scored. It took five values and was 0.5 for 92% of languages: CLDR's locale data now
+# counts as a technology, and whether a language's script is in Unicode is reported on its page
+# but not scored, since it is for nearly every language with a recorded script.)
+#
 # Font support (ltdi/collectors/fonts.py, data/records/fonts.csv) is checked but
 # not scored: Google's Noto fonts display every language with a documented
 # character set except a handful, and those failures are mostly quirks in the
 # reference data, so it would add no information to the index.
-[dimensions.writing.indicators.cldr_coverage]
-label = "CLDR locale data coverage"
-scale = "linear"
-min = 0
-max = 3
-weight = 0.5
 
 # ------------------------------------------------------------------- data ---
 # Collectors record a value (zero where they find nothing) for every language, so an
@@ -162,14 +153,19 @@ weight = 1
 
 [dimensions.tech.technologies.llm]
 label = "LLMs"
-# Mean of two parts: availability in assistant apps (presence score over the
-# apps), and quality: the measured benchmarks available for the language,
-# each scaled linearly between its min and max.
+# Availability in the official app language lists (Gemini, Copilot, ChatGPT; a
+# presence score over the apps), times a quality factor from the measured
+# benchmarks: their mean, each scaled linearly between its min and max, counts
+# from half (poor) to full (good), as published quality does for translation
+# and speech. Unmeasured languages count in full, so being benchmarked never
+# lowers a language below its unmeasured peers. A language no app lists but a
+# benchmark has measured counts as offered at the base level (0.25).
 weight = 1
 
 [dimensions.tech.technologies.assistant]
 label = "Voice assistant"
-weight = 1
+# Half weight: two of its three sources are smart-speaker language lists.
+weight = 0.5
 
 [dimensions.tech.technologies.interface]
 label = "Interface language"
@@ -193,12 +189,37 @@ group = "more"  # shown under "More technologies" on the site
 # Mostly invisible to users, but every web-scale data pipeline starts with it.
 weight = 0.5
 
+[dimensions.tech.technologies.locale]
+label = "Locale data"
+short = "Locale"
+group = "more"  # shown under "More technologies" on the site
+# Unicode CLDR's coverage level for the language's best locale (0 none or below
+# basic, 1 basic, 2 moderate, 3 modern), scaled linearly. Names, dates, numbers
+# and character sets that interfaces, keyboards and text-to-speech build on.
+indicator = "cldr_coverage"
+min = 0
+max = 3
+weight = 0.5
+
+# ------------------------------------------------------------------ tiers ---
+# Score cut-offs for the top three tiers; below them, stages by what's recorded
+# for the language, which separate the 96% of languages a single "Low" tier
+# lumped together: some commercial or regional service; open tools only (an
+# open model, a Keyman layout, a language identifier); some data but no tool;
+# nothing recorded.
+[tiers]
+cutoffs = [["vh", "Very high", 0.9], ["h", "High", 0.75], ["m", "Medium", 0.6]]
+stages = [["lc", "Some commercial support"], ["lo", "Open tools only"], ["ld", "Data only"], ["ln", "Nothing recorded"]]
+
 # ------------------------------------------------------- written standard ---
 # Spoken varieties whose speakers read and write a standard language
 # (config/written_standards.csv: Egyptian Arabic -> Arabic, Wu -> Mandarin, ...)
-# take the standard's value for written-language indicators where it is
-# higher. Speech, speech data, benchmarks and language identification stay
-# the variety's own.
+# are scored and ranked on their own records. Beside that, each gets a second
+# score "through" its standard: the standard's value for written-language
+# indicators where it is higher (speech, speech data, benchmarks and language
+# identification stay the variety's own), shown on its page. Technology gaps
+# in its opportunities are as speakers meet them, through the standard; data
+# gaps and starter kits come from its own records only.
 [written_standard]
 data = ["web_text_words", "parallel_sentences", "ud_treebank_words", "wikipedia_articles", "wikipedia_active_editors"]
-technologies = ["keyboard", "mt", "llm", "interface", "ocr", "proofing"]
+technologies = ["keyboard", "mt", "llm", "interface", "ocr", "proofing", "locale"]

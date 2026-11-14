@@ -1,18 +1,22 @@
 # Language Technology Development Index (LTDI)
 
 How well technology supports each of the world's languages, and how much data
-exists to build more. Modelled on the UN's Human Development Index: three
-dimension indices, each 0–1, combined with a geometric mean so a gap anywhere
+exists to build more. Modelled on the UN's Human Development Index: two
+dimension indices, each 0–1, combined with a geometric mean so a gap in either
 pulls the score down.
 
-    LTDI = (writing × data × technology) ^ 1/3
+    LTDI = √(data × technology)
+
+Whether a language's main script is encoded in Unicode is reported, not scored:
+nearly every recorded script is, so it told languages apart only by whether a
+script was recorded at all. Locale data (CLDR) counts as a technology.
 
 Builds on van Esch, Ritchie et al. (2024),
 [Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages](https://aclanthology.org/2024.lrec-main.331/),
 with language metadata from [LinguaMeta](https://github.com/google-research/url-nlp/tree/main/linguameta),
 including its endangerment levels (UNESCO's scale), and scripts from [QQ](https://github.com/WPoelman/qwanqwa) (Poelman, Chen & de Lhoneux,
 [arXiv:2603.00620](https://arxiv.org/abs/2603.00620)) where LinguaMeta has none. QQ's data is CC BY-SA 4.0, so
-LTDI data derived from it carries the same licence.
+LTDI data derived from it carries the same licence (see [Licence](#licence)).
 
 ## Status
 
@@ -79,8 +83,26 @@ Counting by share keeps scores comparable as more services are added. A service
 with depth indicators (features, voice types, partial translation) earns half its
 share for offering the language and half for the depth it offers, so adding a
 service never lowers a score. Published error rates and benchmark scores work as quality factors
-on the service they measure (below). LLMs average availability in the Gemini, Copilot and ChatGPT
-apps with measured benchmark quality. Language identification counts open models, at half weight.
+on the service they measure (below). LLMs score availability in the official app language lists
+for Gemini, Copilot and ChatGPT, times a quality factor from published benchmarks: 0.5 + 0.5 × the
+measured quality, so a poor result halves the score and an unmeasured language counts in full (being
+measured never lowers a score). A language measured by a benchmark but in no app list counts at the
+0.25 base for availability. Language identification counts open models, and voice assistants and
+locale data count, at half weight: few languages have a voice assistant, and locale data is a
+prerequisite rather than a product.
+
+## Ranks and tiers
+
+Each dimension has a floor of 0.05 so a language with nothing recorded in one still has a score.
+Ranks use the unfloored values as a tie-break: languages are ordered by LTDI, then by the mean of their
+unfloored dimension scores, so any language with something recorded ranks above every language with
+nothing. Languages still level share a rank ("=1,914"), and the page shows the score before the floor
+where the floor lifts it.
+
+Tiers are in `[tiers]` in `config/methodology.toml`. The top three are set by score (Very high from
+0.9, High from 0.75, Medium from 0.6). Below Medium, where scores are close and small differences
+mean little, the tier is a stage, by what's recorded for the language: some support from a commercial
+or regional service; open tools only; data only; or nothing recorded.
 
 Regional providers (Yandex, Baidu, Alibaba Cloud's Qwen-MT, Naver Papago, Sarvam AI, Lelapa AI,
 GhanaNLP's Khaya, Sunbird AI) count together as one extra commercial service, and only for the
@@ -95,8 +117,7 @@ any name it can't resolve.
 
 | Dimension | Indicator | Source | Method |
 | --- | --- | --- | --- |
-| Writing | Main script encoded | Unicode CLDR script metadata | automated |
-| Writing | Locale data coverage | Unicode CLDR | automated |
+| Reported, not scored | Main script encoded | Unicode CLDR script metadata | automated |
 | Data | Web text (words) | FineWeb-2 language distribution; scaled by 1 − 0.5 × FineWeb-2's share of the language's documents from Bible-related sites (most documents for 1,252 languages) | automated |
 | Data | Parallel text with English (sentence pairs) | OPUS, all corpora for the pair; web-mined corpora up to 20M pairs count at the share of distinct lines in a random sample that GlotLID identifies as the language (or a member, macrolanguage or indistinguishable neighbour) (`ltdi/collectors/opus_lid.py`, run on GitHub Actions) | automated |
 | Data | Annotated text (treebank words) | Universal Dependencies, latest release | automated |
@@ -112,23 +133,27 @@ any name it can't resolve.
 | Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
-| Tech | Voice assistant | Google Assistant (speakers and displays), Siri, Alexa | automated |
+| Tech | Voice assistant (half weight) | Google Assistant (speakers and displays), Siri, Alexa | automated |
 | Tech | Regional providers | Translation: Yandex, Baidu, Alibaba Cloud (Qwen-MT), Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP Khaya, Sunbird AI. Speech recognition: Yandex SpeechKit, Sarvam, Lelapa, Khaya, Sunbird. Text-to-speech: Yandex SpeechKit, Sarvam, Khaya, Sunbird | read by hand from each provider's language list (`ltdi/collectors/regional.py`) |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
+| Tech | Locale data (half weight) | Unicode CLDR coverage level: basic, moderate or modern | automated |
 
 ## Spoken varieties and their written standard
 
 Many languages are mostly spoken, and their speakers read and write a standard
 language: Egyptian Arabic and Modern Standard Arabic, Wu and Mandarin, Marwari
 and Hindi, Swiss German and German. `config/written_standards.csv` lists them
-(92 so far). Such a variety takes its standard's value, where higher, for the
-writing dimension, written data (web text, parallel text, treebanks, Wikipedia)
-and the text technologies (keyboard, translation, LLMs, interface language,
-text recognition, proofing), as set in `[written_standard]` in
-`config/methodology.toml`. Speech technologies, speech data, benchmarks and
-language identification stay the variety's own, so its gaps show where they
-really are. The language page says which language it's written in, and each
-inherited value is noted.
+(92 so far). Such a variety is scored, ranked and tiered on what exists for it
+alone. A second, effective score takes the standard's value, where higher, for
+written data (web text, parallel text, treebanks, Wikipedia), locale data and the
+text technologies (keyboard, translation, LLMs, interface language, text
+recognition, proofing), as set in `[written_standard]` in
+`config/methodology.toml`, since most of the variety's speakers can use them.
+The language page shows the effective score beside its own, and marks each
+value counted "through" the standard. Opportunities for technologies take the
+effective values (no one needs a Kölsch keyboard to type German), but data
+opportunities and starter kits use the variety's own, so its gaps show where
+they really are.
 
 ## Map
 
@@ -160,8 +185,8 @@ doesn't yet cover the language, and names the service on each card.
 
 The Map tab shows where each language is spoken (Glottography's language areas) or a dot for each
 of LinguaMeta's ~6,450 individual languages with a location, placed in the country with most speakers
-(or the origin country given in `config/language_overrides.csv`). Scored languages are coloured by tier
-from dark blue (very high) to dark orange (low); the rest are white. It has the region, country and tier
+(or the origin country given in `config/language_overrides.csv`). Scored languages are coloured by tier;
+the rest are white. It has the region, country and tier
 filters but not the provider filter. Each language's page has a small map of its area, or its dot.
 Areas are Glottography's digitisation of Asher & Moseley's *Atlas of the World's Languages* (2007,
 contemporary version), except where Glottography's digitisation of Wikipedia's list of official languages
@@ -299,7 +324,7 @@ the coalition workstream it fits.
 - LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's
   infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
   scripts for about 690 more; another 71 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a
-  rare one): remove a row once checked, and put any correction in `config/language_overrides.csv` (scripts column). Without a script the writing dimension sits at its floor; without speakers, opportunities can't be ranked by reach.
+  rare one): remove a row once checked, and put any correction in `config/language_overrides.csv` (scripts column). Without speakers, opportunities can't be ranked by reach.
 - Published quality discounts a service where it's poor: Google Translate by FLORES-200 chrF++ from English
   (Robinson et al., WMT 2023: 25 or less counts it at half, 50 or more in full), the open NLLB-200 model by Meta's
   published FLORES-200 scores for the Dense 3.3B model (`data/sources/`), and Whisper by FLEURS word error rate.
@@ -333,3 +358,10 @@ the coalition workstream it fits.
   census names, or counted as Mandarin where it names none, although in some countries many are Cantonese speakers.
   Tables that don't count speakers are left out: the Philippines (households), Rwanda (literacy), Sri Lanka,
   Russia and Ireland (ability to speak), Ghana (ethnic groups).
+
+## Licence
+
+The code is under the [MIT licence](LICENSE). The data the Index publishes (`data/`, the site's data
+files and the scores) is under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/),
+which QQ's licence requires of data derived from it. Each upstream source keeps its own terms;
+[NOTICE](NOTICE) lists them.

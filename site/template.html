@@ -29,7 +29,9 @@
   --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
   /* share-online text, blue (most online) to red (few): the tier hues, darkened to read as text */
   --pct-4: #1c5cab; --pct-3: #3f7fc6; --pct-2: #b8661c; --pct-1: #b3421a;
-  --t-vh: #1c5cab; --t-h: #6da7ec; --t-m: #ea9447; --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
+  /* tiers: blues for the three score tiers; below them, oranges darkening as less is recorded, grey for nothing */
+  --t-vh: #1c5cab; --t-h: #4b8fd9; --t-m: #9cc4f0; --t-lc: #f2b27a; --t-lo: #e07b36; --t-ld: #b4481a; --t-ln: #b9c1bd;
+  --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
   --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
@@ -46,7 +48,8 @@
     --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
     --pct-4: #7fb0ee; --pct-3: #a6c8f2; --pct-2: #e9a061; --pct-1: #f27f52;
     --pct-4: #7fb0ee; --pct-3: #a6c8f2; --pct-2: #e9a061; --pct-1: #f27f52;
-  --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
+  --t-vh: #2a6cc0; --t-h: #4b94e8; --t-m: #8db8ea; --t-lc: #e9a061; --t-lo: #cf7b36; --t-ld: #a9410f; --t-ln: #4f5a57;
+  --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
     --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
   }
 }
@@ -57,7 +60,8 @@
   --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
   --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
   --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
-  --t-vh: #1f62b5; --t-h: #4b94e8; --t-m: #cf7b36; --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
+  --t-vh: #2a6cc0; --t-h: #4b94e8; --t-m: #8db8ea; --t-lc: #e9a061; --t-lo: #cf7b36; --t-ld: #a9410f; --t-ln: #4f5a57;
+  --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
     --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
@@ -200,10 +204,14 @@ table.ranktab { table-layout: fixed; }
 .num { text-align: right; white-space: nowrap; }
 .score { font: 700 20px var(--font-display); font-stretch: 85%; }
 .tier { font: 600 11px/1 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; border-radius: 3px; padding: 4px 6px; white-space: nowrap; }
-/* the same blue-to-red tier colours as the map, totals and tier filter */
+/* the same tier colours as the map, totals and tier filter */
 .tier.vh { background: var(--t-vh); color: #fff; }
 .tier.h  { background: var(--t-h); color: #0d1f33; }
-.tier.m  { background: var(--t-m); color: #2a1606; }
+.tier.m  { background: var(--t-m); color: #0d1f33; }
+.tier.lc { background: var(--t-lc); color: #2a1606; }
+.tier.lo { background: var(--t-lo); color: #2a1606; }
+.tier.ld { background: var(--t-ld); color: #fff; }
+.tier.ln { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--muted); }
 .tier.l  { background: var(--t-l); color: #fff; }
 .bars { display: grid; gap: 3px; min-width: 150px; }
 .bar { height: 6px; background: var(--track); border-radius: 3px; overflow: hidden; }
@@ -278,6 +286,13 @@ table.ranktab { table-layout: fixed; }
 .minimap .mring { fill: none; stroke: var(--ink); stroke-width: 2px; vector-effect: non-scaling-stroke; }
 .lhead h2 { font: 800 clamp(28px, 4.5vw, 42px)/1.05 var(--font-display); font-stretch: 80%; margin: 0; }
 .big { font: 800 52px/1 var(--font-display); font-stretch: 80%; }
+.snote { margin-top: 6px; font-size: 13px; color: var(--muted); }
+.snote b { color: var(--ink); font-weight: 700; }
+.tier.sm { font-size: 10px; padding: 2px 5px; vertical-align: 1px; }
+.thru-dim { margin: -4px 0 10px; font-size: 13px; color: var(--muted); }
+.thru-line { font-size: 12px; color: var(--muted); margin-top: -2px; }
+.thru-v { font-size: 12px; color: var(--muted); font-weight: 400; margin-inline-start: 4px; }
+.tile.thru .mark { border: 1.5px solid var(--c); color: var(--c); }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
 /* a note about a fact, behind a small "i" */
 details.info { display: inline-block; position: relative; margin-inline-start: 6px; vertical-align: 1px; }
@@ -460,8 +475,8 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
   <header class="mast">
     <div class="eyebrow" id="edition">Slice edition</div>
     <h1><a class="home" href="#ranking">Language Technology Development Index</a></h1>
-    <p class="lede">How well technology supports each language, and how much data exists to build more. Three dimensions, each scored 0 to 1, combined with a geometric mean so a gap anywhere pulls the score down.</p>
-    <div class="formula">LTDI = (<b class="w">writing</b> × <b class="d">data</b> × <b class="t">technology</b>)<sup>1/3</sup></div>
+    <p class="lede">How well technology supports each language, and how much data exists to build more. Two dimensions, each scored 0 to 1, combined with a geometric mean so a gap in either pulls the score down.</p>
+    <div class="formula">LTDI = √(<b class="d">data</b> × <b class="t">technology</b>)</div>
   </header>
   <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities for builders</a><a href="#about" id="tab-about">About</a>
     <span class="pickwrap navsearch" role="search"><input class="pick" id="go" autocomplete="off" role="combobox" aria-autocomplete="list"
@@ -525,10 +540,13 @@ async function need(...codes) {
     const l = BY[c];
     const facts = { ...DATA.fact_defaults };
     for (const i of d.lacks || []) delete facts[i];
-    DATA.facts[c] = Object.fromEntries(Object.entries({ ...facts, ...d.facts }).map(([i, [value, s, note]]) => {
+    const decode = fs => Object.fromEntries(Object.entries(fs).map(([i, [value, s, note]]) => {
       const [source, u, retrieved, method] = DATA.sources[s], url = u.replaceAll('{lang}', c);
       return [i, { value, unit: DATA.units[i], source, url, retrieved, method, note: note || '' }];
     }));
+    DATA.facts[c] = decode({ ...facts, ...d.facts });
+    // a spoken variety: the values counted from the standard it writes, beside its own
+    if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in,
                        script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear });
@@ -632,7 +650,7 @@ document.getElementById('go').addEventListener('change', e => {
     const y = scrollY; mapPage(); scrollTo(0, y);  // the page stays put, so the box stays in reach
   } else location.hash = 'lang-' + c;
 });
-const DIMS = [['writing', 'w', '--writing'], ['data', 'd', '--data'], ['tech', 't', '--tech']];
+const DIMS = [['data', 'd', '--data'], ['tech', 't', '--tech']];
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const OT = DATA.opportunity_types;
@@ -645,16 +663,14 @@ const OBLURB = {
   collect: 'The data really is scarce and has to be created.',
 };
 const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs',
-  interface: 'Interface language', ocr: 'Text recognition', proofing: 'Spelling and grammar', assistant: 'Voice assistant', langid: 'Language identification', writing: 'Writing system', data: 'Data' };
+  interface: 'Interface language', ocr: 'Text recognition', proofing: 'Spelling and grammar', assistant: 'Voice assistant', langid: 'Language identification', locale: 'Locale data', writing: 'Writing system', data: 'Data' };
+// Where the floor lifts a dimension, its unfloored score: what the rank goes by among languages the floor puts level
+const rawText = l => l.raw ? `Before the floor of ${DATA.config.meta.floor}: ${DIMS.filter(([k]) => k in l.raw).map(([k]) => `${CFG[k].label.toLowerCase()} ${l.raw[k].toFixed(3)}`).join(', ')}` : '';
 document.getElementById('edition').textContent = `Edition ${DATA.edition} · ${LANGS.length.toLocaleString()} languages`;
 
-function tierOf(v) {
-  if (v >= 0.9) return ['vh', 'Very high'];
-  if (v >= 0.75) return ['h', 'High'];
-  if (v >= 0.6) return ['m', 'Medium'];
-  return ['l', 'Low'];
-}
-const tierChip = v => { const [c, t] = tierOf(v); return `<span class="tier ${c}">${t}</span>`; };
+// A language's tier [key, label]; or of a tier key ("through German": the standard's tier)
+const tierOf = l => { const k = typeof l === 'string' ? l : l.tier; return [k, TIER_LABEL[k] || k]; };
+const tierChip = l => { const [c, t] = tierOf(l); return `<span class="tier ${c}">${esc(t)}</span>`; };
 function people(n) {
   if (!n) return '—';
   if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B';
@@ -712,7 +728,7 @@ const countrySel = new Set();
 let countryQuery = '';  // what's typed in the country drop-down's search box
 const inCountry = l => !countrySel.size || [...countrySel].some(c => l._cc.has(c));
 // region, country and tier together (the tier set is shared by every page)
-const inView = l => inRegion(l) && inCountry(l) && (!tierSel.size || tierSel.has(tierOf(l.ltdi)[0]));
+const inView = l => inRegion(l) && inCountry(l) && (!tierSel.size || tierSel.has(tierOf(l)[0]));
 const COUNTRY_NAMES = DATA.country_names || {};
 // A rank, with "=" where languages share a score (and so a rank): "=1,914"
 const rankLabel = l => l.rank ? `${l.tied ? '=' : ''}${l.rank.toLocaleString()}` : '–';
@@ -904,7 +920,7 @@ async function opportunities(lang) {
     if (lang) location.hash = 'opportunities'; else opportunities(); };
   if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { showAll = false; await opportunities(lang); reopen('orwrap'); });
   if ($('#octrywrap')) wireCountries('octrywrap', async () => { showAll = false; await opportunities(lang); reopenCountries('octrywrap'); });
-  if ($('#otierwrap')) wireMsel('otierwrap', tierPicker, tierSel, 4, async () => { showAll = false; await opportunities(lang); reopen('otierwrap'); });
+  if ($('#otierwrap')) wireMsel('otierwrap', tierPicker, tierSel, TIER_KEYS.length, async () => { showAll = false; await opportunities(lang); reopen('otierwrap'); });
   $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; otype = 'all'; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
   navBox('opps', 'Find a language name or code', focus ? `${focus.name} (${focus.code})` : '');
@@ -978,7 +994,9 @@ const END_SOURCE = { linguameta: 'from LinguaMeta', glottolog: 'from Glottolog 5
   member: 'from its most-spoken member language', review: 'reviewed by the LTDI team' };
 const endKey = l => l.extinct ? 'extinct' : l.endangerment || 'none';
 const endPicker = () => msel('endsel', endSel, END_LEVELS.map(([k, t]) => [k, t, '']), 'Any endangerment', null, '', 'Clear');
-const TIER_KEYS = [['vh', 'Very high'], ['h', 'High'], ['m', 'Medium'], ['l', 'Low']];
+// Tiers ([tiers] in the methodology): score cut-offs for the top three, then stages by what's recorded
+const TIER_KEYS = [...DATA.config.tiers.cutoffs.map(([k, t]) => [k, t]), ...DATA.config.tiers.stages];
+const TIER_LABEL = Object.fromEntries(TIER_KEYS);
 // A drop-down of tick boxes, so several values can be chosen at once (Medium and Low, say)
 function msel(id, sel, opts, none, all, prefix, clear) {
   const label = !sel.size ? none : sel.size === opts.length && all ? all
@@ -1040,15 +1058,15 @@ const GAP_GROUPS = [['Text', ['keyboard', 'mt']], ['Speech', ['speech_input', 't
 function rankSummary(ls) {
   const sum = f => ls.reduce((n, l) => n + (f(l) || 0), 0);
   const sp = sum(vSpk), on = sum(vOn);
-  const tiers = ['vh', 'h', 'm', 'l'], label = { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
+  const tiers = TIER_KEYS.map(([k]) => k), label = TIER_LABEL, low = DATA.config.tiers.stages.map(([k]) => k);
   const by = Object.fromEntries(tiers.map(t => [t, { n: 0, sp: 0 }]));
-  for (const l of ls) { const t = tierOf(l.ltdi)[0]; by[t].n++; by[t].sp += vSpk(l) || 0; }
+  for (const l of ls) { const t = tierOf(l)[0]; by[t].n++; by[t].sp += vSpk(l) || 0; }
   const pct = (x, of) => of ? x / of * 100 : 0;
   const fmtPct = v => v > 0 && v < 1 ? '<1%' : Math.round(v) + '%';
   const row = (name, key, total) => `<div class="tbar-row"><span class="tbar-k">${name}</span><div class="tbar">${tiers.map(t => {
       const v = pct(by[t][key], total);
       return v ? `<i style="width:${v}%;background:var(${TIERC[t]})" title="${label[t]}: ${fmtPct(v)} of ${key === 'n' ? 'languages' : 'speakers'}\n${by[t].n.toLocaleString()} ${by[t].n === 1 ? 'language' : 'languages'} with ${people(by[t].sp)} speakers"></i>` : '';
-    }).join('')}</div><span class="tbar-v">${fmtPct(pct(by.l[key], total))} low</span></div>`;
+    }).join('')}</div><span class="tbar-v" title="Below Medium: the four stages by what's recorded">${fmtPct(pct(low.reduce((n, t) => n + by[t][key], 0), total))} below Medium</span></div>`;
   // Grouped by kind, two technologies each: no commercial service at all
   const none = (l, k) => l.gaps[k] === 'none';  // as in the Gaps column
   const gapItem = k => {
@@ -1096,7 +1114,6 @@ function ranking() {
     </div>
     <div class="rsum-wrap"><div id="rsum" class="rsum" aria-live="polite"></div></div>
     <div class="legend">
-      <span><i class="sw" style="background:var(--writing)"></i>Writing system</span>
       <span><i class="sw" style="background:var(--data)"></i>Data</span>
       <span><i class="sw" style="background:var(--tech)"></i>Technology</span>
       <span class="hide-sm">Gaps:</span>
@@ -1130,10 +1147,10 @@ function ranking() {
         <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">[${l.code}]</span></div></td>
         <td class="num hide-sm hide-nar">${people(vSpk(l))}</td>
         <td class="num hide-sm">${people(vOn(l))}${vOn(l) && vSpk(l) ? ` <span class="pct p${pctBand(vOn(l) / vSpk(l))}">(${Math.round(vOn(l) / vSpk(l) * 100)}%)</span>` : ''}</td>
-        <td><div class="bars" aria-label="Writing ${l.dimensions.writing.score}, data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
+        <td><div class="bars" aria-label="Data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
           ${DIMS.map(([k, , c]) => bar(l.dimensions[k].score, c)).join('')}</div></td>
-        <td class="num score">${l.ltdi.toFixed(3)}</td>
-        <td class="hide-sm hide-tab">${tierChip(l.ltdi)}</td>
+        <td class="num score"${l.raw ? ` title="${esc(rawText(l))}"` : ''}>${l.ltdi.toFixed(3)}</td>
+        <td class="hide-sm hide-tab">${tierChip(l)}</td>
         <td class="hide-sm">${gapsCell(l)}</td>
       </tr>`).join('') || `<tr><td colspan="8">No language matches “${esc(query)}”.</td></tr>`;
   };
@@ -1142,7 +1159,7 @@ function ranking() {
   navBox('filter', 'Find a language name or code', query);
   navFilter = v => { query = v; draw(); };
   $('#resetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); endSel.clear(); showGaps = false; query = ''; rankAll = false; sortChosen = false; ranking(); };
-  wireMsel('tierwrap', tierPicker, tierSel, 4, draw);
+  wireMsel('tierwrap', tierPicker, tierSel, TIER_KEYS.length, draw);
   wireCountries('ctrywrap', draw);
   wireMsel('endwrap', endPicker, endSel, 0, draw);
   $('#gapsw').onchange = e => { showGaps = e.target.checked; draw(); };
@@ -1202,6 +1219,7 @@ const TICON = {
   proofing: ICON('<path d="M4 15l3.5-9L11 15M5.3 12h4.4"/><path d="M13 14.5l2.5 2.5 5-6"/>'),
   assistant: ICON('<path d="M12 3.5l1.6 3.9 3.9 1.6-3.9 1.6L12 14.5l-1.6-3.9L6.5 9l3.9-1.6z"/><path d="M5 17.5c1.5 1.8 4 3 7 3s5.5-1.2 7-3"/>'),
   langid: ICON('<circle cx="11" cy="11" r="6.5"/><path d="M15.8 15.8L20 20M8 11h6M11 8v6"/>'),
+  locale: ICON('<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M8.5 3v4M15.5 3v4M7.5 13.5h2M11 13.5h2M14.5 13.5h2M7.5 16.5h2M11 16.5h2"/>'),
 };
 function depthText(f, ind) {
   if (!f) return '';
@@ -1223,7 +1241,11 @@ function depthText(f, ind) {
 const ONLY_IF_MEASURED = new Set(['llm_afrobench_gpt4o', 'llm_afrobench_gemini']);
 // Regional providers appear only where they offer the language: a row of 'not yet' tiles for every language would be noise
 const regionalOn = (t, facts) => (t.regional || []).filter(id => facts[id] && facts[id].value);
-function svcTile(id, facts, open) {
+function svcTile(id, own, open, via, wname) {
+  // a spoken variety: where it isn't offered itself but its written standard is, the tile shows that
+  const ownOn = own[id] && (own[id].unit === 'bool' ? !!own[id].value : true);
+  const thru = !ownOn && via && via[id] && (via[id].unit === 'bool' ? !!via[id].value : true);
+  const facts = thru ? { ...own, ...via } : own;
   const f = facts[id], [name, kind, prov] = SVC[id] || [id, '', ''];
   const reg = prov in REGIONAL;
   const pv = prov ? ` data-prov="${prov}"${reg ? ' data-regional' : ''} style="--p:var(--prov-${reg ? 'regional' : prov})"` : '';
@@ -1241,13 +1263,28 @@ function svcTile(id, facts, open) {
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : qf;
   const qline = qf && qf.unit !== '% WER' ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
   const hover = [f.source, qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note].filter(Boolean).join('\n');
-  return `<a class="tile ${on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
-    <span class="mark" aria-hidden="true">${on ? '✓' : '–'}</span>
+  if (thru) detail = [`Through ${wname}`, detail].filter(Boolean).join(' · ');
+  return `<a class="tile ${thru ? 'thru' : on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
+    <span class="mark" aria-hidden="true">${thru ? '↳' : on ? '✓' : '–'}</span>
     <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
+// Locale data: CLDR's coverage level, a tile of its own since no service offers it
+const CLDR_LEVEL = ['Not in CLDR', 'Basic coverage', 'Moderate coverage', 'Modern coverage'];
+function localeTile(f, vf, wname) {
+  const thru = vf && (!f || vf.value > f.value);
+  const g = thru ? vf : f;
+  if (!g) return `<div class="tile off"><span class="mark" aria-hidden="true">–</span><div><span class="by">Unicode CLDR</span><b>Locale data</b><small>Dates, numbers, names · <span class="vis">Not in CLDR</span></small></div></div>`;
+  const lv = Math.round(g.value), det = [thru ? `Through ${wname}` : '', CLDR_LEVEL[lv]].filter(Boolean).join(' · ');
+  const below = !lv && /below basic/.test(g.note);
+  return `<a class="tile ${thru ? 'thru' : lv ? 'on' : 'off'}" href="${esc(g.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc([g.source, g.note].filter(Boolean).join('\n'))}">
+    <span class="mark" aria-hidden="true">${thru ? '↳' : lv ? '✓' : '–'}</span>
+    <div><span class="by">Unicode CLDR</span><b>Locale data</b><small>Dates, numbers, names${lv ? '' : ` · <span class="vis">${below ? 'Below basic' : 'Not in CLDR'}</span>`}</small>${lv ? `<span class="det">${esc(det)}</span>` : ''}</div></a>`;
+}
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
+  const vfacts = (DATA.via || {})[l.code], vd = l.via_dims && l.via_dims[key], w = BY[l.written_in], wname = w ? w.name : '';
+  const thru = v => `<span class="thru-v" title="Counted from ${esc(wname)}">through ${esc(wname)} ${v}</span>`;
   let body = '';
   if (key === 'tech') {
     body += `<div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries({ ...PROV, ...(Object.values(cfg.technologies).some(t => regionalOn(t, facts).length) ? { regional: 'Regional providers' } : {}) }).map(([k, n]) =>
@@ -1255,12 +1292,14 @@ function dimPanel(l, key, color) {
     const main = [], more = [], peek = [];
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
+      const vs = vd && vd.indicators[tk] != null && vd.indicators[tk] !== s ? vd.indicators[tk] : null;
       const ids = [...(t.consumer || []), ...regionalOn(t, facts), ...(t.open || []),
         ...Object.keys(t.measured || {}).filter(id => facts[id] || !ONLY_IF_MEASURED.has(id))];
       const order = PROV_ORDER, rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
-      const tiles = [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id))).join('');
+      const tiles = t.indicator ? localeTile(facts[t.indicator], vfacts && vfacts[t.indicator], wname)
+        : [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname)).join('');
       const row = `<div class="techrow">
-        <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}</span></div>
+        <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
         ${s == null ? '' : bar(s)}
         <div class="tiles">${tiles}</div></div>`;
       if (t.group === 'more') { more.push(row); peek.push(`<span title="${esc(t.label)}">${TICON[tk] || ''}<span class="sr">${esc(t.label)}</span>${sv}</span>`); }
@@ -1277,11 +1316,13 @@ function dimPanel(l, key, color) {
       const nb = spec.narrowed_by && facts[spec.narrowed_by];  // e.g. how much of the web text is from Bible sites
       const narrow = nb && nb.value >= 0.1 && f && f.value
         ? `<div class="missing" title="${esc(nb.note)}">${Math.round(nb.value * 100)}% from Bible sites, so it counts for less</div>` : '';
-      body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>
+      const vf = vfacts && vfacts[ik], vn = vd && vd.indicators[ik];
+      const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="#lang-${w.code}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
+      body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
     }
   }
-  return `<section class="dim${key === 'tech' ? ' wide' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${body}</section>`;
+  return `<section class="dim${key === 'tech' ? ' wide' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</section>`;
 }
 
 function reachLine(l) {
@@ -1348,7 +1389,20 @@ function censusInfo(l) {
 function writtenInfo(l) {
   if (!l.written_in || !BY[l.written_in]) return '';
   const w = BY[l.written_in];
-  return infoTip('How writing is counted', `Writing, written data and text technologies are counted from <a href="#lang-${w.code}">${esc(w.name)}</a>, since ${esc(l.name)} speakers typically use the standard written form of ${esc(w.name)}. Speech data and technologies are counted separately.`);
+  return infoTip('How the standard is counted', `${esc(l.name)} speakers typically write the standard form of <a href="#lang-${w.code}">${esc(w.name)}</a>. The score and rank count only what exists for ${esc(l.name)} itself; a second score counts ${esc(w.name)}’s written data and text technologies too, as most speakers can use them. On this page, values marked “through ${esc(w.name)}” are ${esc(w.name)}’s.`);
+}
+// Under the score: a spoken variety's score through its written standard; the score before the floor
+function scoreNotes(l) {
+  const w = BY[l.written_in], out = [];
+  if (l.via && w) {
+    const [c, t] = tierOf(l.via[1]);
+    out.push(`<div class="snote" title="Counting ${esc(w.name)}’s written data and text technologies, which ${esc(l.name)} speakers can typically use. The rank is on ${esc(l.name)}’s own score.">Through <a href="#lang-${w.code}">${esc(w.name)}</a> <b>${l.via[0].toFixed(3)}</b> <span class="tier ${c} sm">${esc(t)}</span></div>`);
+  }
+  if (l.raw && Object.values(l.raw).some(v => v > 0)) {
+    const un = Math.sqrt(DIMS.reduce((p, [k]) => p * (k in l.raw ? l.raw[k] : l.scores[k]), 1));
+    out.push(`<div class="snote" title="${esc(rawText(l))}. Ranks use the unfloored scores, so any recorded resource counts.">${un.toFixed(3)} before the floor</div>`);
+  }
+  return out.join('');
 }
 // Countries, by number of speakers: the top three, or all of them with a link back
 function whereLine(l, all) {
@@ -1372,10 +1426,10 @@ async function language(code) {
         ${sampleBlock(l)}
         ${hearBlock(l)}
       </div>
-      <div class="lscore"><div class="eyebrow">${!l.rank ? 'Extinct · not ranked' : l.tied ? `Joint rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()} · tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other' : 'others'}` : `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l.ltdi)}${miniMap(l)}</div>
+      <div class="lscore"><div class="eyebrow">${!l.rank ? 'Extinct · not ranked' : l.tied ? `Joint rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()} · tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other' : 'others'}` : `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l)}${scoreNotes(l)}${miniMap(l)}</div>
     </div>
     <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}</div>
-    <div class="dims">${['tech', 'data', 'writing'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
+    <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}.</p>`;
@@ -1485,7 +1539,7 @@ function providerSelect(id) {
 }
 
 const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
-const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', l: '--t-l' };
+const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', lc: '--t-lc', lo: '--t-lo', ld: '--t-ld', ln: '--t-ln', l: '--t-l' };
 const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
 let mapR = null;  // base radii for the current render
 let mapFocus = null, mapFocusFresh = false;  // a language found with the search box while the map is showing
@@ -1508,7 +1562,7 @@ function loadBorders() {
 }
 // Share of the land drawn where the best-covered language is in each tier: paint the areas, lowest
 // tier first, on a small canvas and count pixels (Equal Earth keeps areas true)
-function tierLandShares(ls, tierKey, frame) {
+function tierLandShares(ls, tierKey, frame, keys) {
   const { width: W0, height: H0, path } = GEO.basemap, c = document.createElement('canvas');
   const S = 3, W = W0 * S, H = H0 * S;  // drawn at three times the map's size, so edges are a small share
   c.width = W; c.height = H;
@@ -1516,24 +1570,25 @@ function tierLandShares(ls, tierKey, frame) {
   if (!g || typeof Path2D === 'undefined') return null;
   g.scale(S, S);
   if (frame) g.clip(new Path2D(frame));  // a region: only the land inside its frame counts
-  // Each tier in its own colour, none of them a blend of two others, so the anti-aliased edges
-  // between areas (blends) match no tier and are left out rather than miscounted
-  const COL = { none: [255, 0, 0], l: [0, 255, 0], m: [0, 0, 255], h: [255, 255, 0], vh: [0, 255, 255] };
+  // Each tier in its own colour, a corner of the colour cube, so none is a blend of two others and the
+  // anti-aliased edges between areas (blends) match no tier and are left out rather than miscounted
+  const CORNERS = [[0, 255, 0], [0, 0, 255], [255, 255, 0], [0, 255, 255], [255, 0, 255], [255, 255, 255], [0, 0, 0]];
+  const COL = { none: [255, 0, 0], ...Object.fromEntries(keys.map((k, i) => [k, CORNERS[i]])) };
   const rgb = t => `rgb(${COL[t].join(',')})`;
   g.fillStyle = rgb('none'); g.fill(new Path2D(path));
-  for (const t of ['l', 'm', 'h', 'vh']) {
+  for (const t of [...keys].reverse()) {  // least-covered first, so the best-covered language in each place is on top
     g.fillStyle = rgb(t);
     for (const l of ls) if (tierKey(l) === t && AREAS.paths[l.code]) g.fill(new Path2D(AREAS.paths[l.code]));
   }
   const key = Object.fromEntries(Object.entries(COL).map(([t, c]) => [c.join(','), t]));
-  const px = g.getImageData(0, 0, W, H).data, n = { none: 0, l: 0, m: 0, h: 0, vh: 0 };
+  const px = g.getImageData(0, 0, W, H).data, n = Object.fromEntries(Object.keys(COL).map(k => [k, 0]));
   for (let i = 0; i < px.length; i += 4) {
     if (px[i + 3] < 255) continue;
     const t = key[`${px[i]},${px[i + 1]},${px[i + 2]}`];
     if (t) n[t]++;
   }
   const land = Object.values(n).reduce((a, b) => a + b, 0) || 1;
-  return { vh: n.vh / land, h: n.h / land, m: n.m / land, l: n.l / land, none: n.none / land };
+  return Object.fromEntries(Object.entries(n).map(([k, v]) => [k, v / land]));
 }
 function mapSection() {
   if (!GEO) return '';
@@ -1550,43 +1605,44 @@ function mapSection() {
   const bgPath = bgDots(bg, r0);
   const P = provider !== 'All', pn = P ? PROV_ALL[provider] : '';
   const val = l => P ? provCoverage(l, provider).share : l.ltdi;
-  const tierKey = l => P ? covTier(val(l)) : tierOf(l.ltdi)[0];
-  const tip = l => { if (!P) return `LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l.ltdi)[1]} · rank ${rankLabel(l)}`;
+  const tierKey = l => P ? covTier(val(l)) : tierOf(l)[0];
+  const tip = l => { if (!P) return `LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l)[1]} · rank ${rankLabel(l)}`;
     const c = provCoverage(l, provider); return `${esc(pn)}: ${c.n} of ${c.of} ${provWhat(provider)}`; };
   const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || val(a) - val(b)).map(l => {
     const c = tierKey(l), p = pt[l.code];
     return `<a href="#lang-${l.code}"><circle class="sdot${l.code === mapFocus ? ' hit' : ''}" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
       opacity="${inView(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`;
   }).join('');
-  const counts = { vh: 0, h: 0, m: 0, l: 0 };
+  const keys = P ? ['vh', 'h', 'm', 'l'] : TIER_KEYS.map(([k]) => k);
+  const counts = Object.fromEntries(keys.map(k => [k, 0]));
   LANGS.filter(inView).forEach(l => counts[tierKey(l)]++);
-  const legendLabels = P ? { vh: '90%+ of its services', h: '60–90%', m: '30–60%', l: 'Under 30%' } : { vh: 'Very high', h: 'High', m: 'Medium', l: 'Low' };
+  const legendLabels = P ? { vh: '90%+ of its services', h: '60–90%', m: '30–60%', l: 'Under 30%' } : TIER_LABEL;
   const areasOn = mapMode === 'areas' && AREAS;
   const toggle = AREAS ? `<div class="chips mapmode" role="group" aria-label="Map view">
       <button class="chip" data-mode="areas" aria-pressed="${!!areasOn}">Areas</button>
       <button class="chip" data-mode="dots" aria-pressed="${!areasOn}">Languages</button></div>` : '';
   let layer = dots, legend, sub;
   const colour = P ? `the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? ' (a benchmark counts where it publishes a result)' : ''}`
-    : 'LTDI tier (very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75, low below 0.60)';
+    : `LTDI tier (very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75; below that, by what's recorded: some commercial support, open tools only, data only, or nothing)`;
   if (areasOn) {
     // a region is a place here: its frame, with every area in it at full strength (English and Spanish
     // in the Americas, though their region group is Europe)
     const frame = regionFrame();
-    const inTiers = l => !tierSel.size || tierSel.has(tierOf(l.ltdi)[0]) || l.code === mapFocus;
+    const inTiers = l => !tierSel.size || tierSel.has(tierOf(l)[0]) || l.code === mapFocus;
     const withArea = LANGS.filter(l => AREAS.paths[l.code] && inTiers(l));
-    const order = { l: 0, m: 1, h: 2, vh: 3 };
+    const order = Object.fromEntries([...keys].reverse().map((k, i) => [k, i]));  // best-covered drawn on top
     // One area the atlas draws for several LTDI languages (Serbian, Croatian, Bosnian, Montenegrin) is
     // drawn once, for the one on top, so the shared area isn't darkened by stacking
     const drawn = withArea.sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0));
     const top = new Map(drawn.map(l => [AREAS.paths[l.code], l.code]));
     layer = `<g class="areas${mapFocus ? ' focusing' : ''}"${countrySel.size ? ' filter="url(#soft)"' : ''}>${drawn.filter(l => top.get(AREAS.paths[l.code]) === l.code).map(l =>
       `<path d="${AREAS.paths[l.code]}" data-code="${l.code}"${l.code === mapFocus ? ' class="hit" filter="url(#soft)"' : ''} fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
-    const sh = tierLandShares(withArea, tierKey, frame && frame.outline), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
-    legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
+    const sh = tierLandShares(withArea, tierKey, frame && frame.outline, keys), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
+    legend = `${keys.map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
       ${sh ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
     sub = `Where each language is spoken today: the ${withArea.length.toLocaleString()} languages with an area in the atlas, shaded by ${colour}. Areas overlap; each tier’s share of ${frame ? `the land in this view of ${esc(regionNames())}` : 'the world’s land'} counts the best-covered language in each place. ${countrySel.size ? `The main languages are named; to see every language spoken in ${countrySel.size > 1 ? 'these countries' : 'this country'}, switch to Languages.` : 'Hover for names.'} Areas from Glottography’s digitisations of Asher &amp; Moseley’s <i>Atlas of the World’s Languages</i> (2007), contemporary version, and, for ${officialNames()}, where they fit the countries their speakers live in better, of Wikipedia’s list of official languages by country (2024) (both CC BY 4.0); map from Natural Earth.`;
   } else {
-    legend = `${['vh', 'h', 'm', 'l'].map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c]}</span>`).join('')}
+    legend = `${keys.map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]} · ${counts[c].toLocaleString()}</span>`).join('')}
       <span><i class="dot" style="background:var(--t-none);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>Not scored · ${bg.length.toLocaleString()}</span>`;
     sub = `Each dot represents a language, placed in its traditional home. The ${LANGS.length.toLocaleString()} languages in the Index are coloured by ${colour}${bg.length ? `, with ${bg.length.toLocaleString()} other languages, not yet scored, in white` : ''}. Hover for names; select a dot for its profile. Locations from LinguaMeta; map from Natural Earth.`;
   }
@@ -1595,7 +1651,7 @@ function mapSection() {
   if (C && !BORDERS) loadBorders();
   const land = C && BORDERS ? BORDERS.all : path;  // detailed coasts when zoomed to countries
   const focusBox = F ? `<div class="mapfocus" role="status"><span><b>${esc(F.name)}</b> · ${F.extinct ? 'extinct, so not on the map'
-      : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F.ltdi)[1]} · rank ${rankLabel(F)}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
+      : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F)[1]} · rank ${rankLabel(F)}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
       <a href="#lang-${F.code}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
   return `<section class="chart">
     <div class="maphead"><h3>The world's languages</h3>${toggle}</div>
@@ -1777,7 +1833,7 @@ function miniMap(l) {
   if (!GEO || l.extinct) return '';
   const area = AREAS && AREAS.paths[l.code], p = GEO.points.find(q => q[0] === l.code);
   if (!area && !p) return '';
-  const col = `var(${TIERC[tierOf(l.ltdi)[0]]})`, land = GEO.basemap.path;
+  const col = `var(${TIERC[tierOf(l)[0]]})`, land = GEO.basemap.path;
   const src = area ? (OFFICIAL_AREA.has(l.code) ? 'Countries where it’s an official language (Wikipedia, via Glottography)' : 'Where it’s spoken (Asher & Moseley’s atlas, via Glottography)') : 'Its location (LinguaMeta)';
   return `<a class="minimap" id="minimap" href="#map" title="${esc(src)}. Select to open on the map" aria-label="${esc(l.name)} on the map">
     <svg viewBox="0 0 ${GEO.basemap.width} ${GEO.basemap.width * MINI_ASPECT}" aria-hidden="true">
@@ -1999,7 +2055,7 @@ function charts() {
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
   wireMsel('cregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; charts(); reopen('cregwrap'); scrollTo(0, y); });
   wireCountries('cctrywrap', () => { const y = scrollY; charts(); reopenCountries('cctrywrap'); scrollTo(0, y); });
-  wireMsel('ctierwrap', tierPicker, tierSel, 4, () => { const y = scrollY; charts(); reopen('ctierwrap'); scrollTo(0, y); });
+  wireMsel('ctierwrap', tierPicker, tierSel, TIER_KEYS.length, () => { const y = scrollY; charts(); reopen('ctierwrap'); scrollTo(0, y); });
   $('#cpsel').onchange = keep(v => { provider = v; });
   $('#cresetf').onclick = () => { const y = scrollY; regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; charts(); scrollTo(0, y); };
   pinBar($('.controls.sticky'));
@@ -2018,7 +2074,7 @@ function mapPage() {
   bindMap();
   wireMsel('mregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; mapView = null; mapPage(); reopen('mregwrap'); scrollTo(0, y); });
   wireCountries('mctrywrap', () => { const y = scrollY; mapView = null; mapPage(); reopenCountries('mctrywrap'); scrollTo(0, y); });
-  wireMsel('mtierwrap', tierPicker, tierSel, 4, () => { const y = scrollY; mapPage(); reopen('mtierwrap'); scrollTo(0, y); });
+  wireMsel('mtierwrap', tierPicker, tierSel, TIER_KEYS.length, () => { const y = scrollY; mapPage(); reopen('mtierwrap'); scrollTo(0, y); });
   $('#mresetf').onclick = () => { const y = scrollY; regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); mapView = null; mapPage(); scrollTo(0, y); };
   navBox('map', 'Find a language name or code');
   pinBar($('.controls.sticky'));
@@ -2028,7 +2084,7 @@ function mapPage() {
 // What the Index is for, how far each source reaches, and the limits of the data, sources and views
 const REPO_URL = 'https://github.com/sandyfritchie/ltdi';
 function about() {
-  const C = DATA.coverage || { n: LANGS.length, meta: [], writing: [], data: [], tech: [] }, N = C.n;
+  const C = DATA.coverage || { n: LANGS.length, meta: [], data: [], tech: [] }, N = C.n;
   const pct = n => { const p = n / N * 100; return p > 0 && p < 1 ? '<1%' : Math.round(p) + '%'; };
   const row = (label, n, extra = '') => `<tr><td>${label}</td><td class="num">${n.toLocaleString()}</td>
     <td class="covbar"><span style="width:${Math.max(n ? 0.6 : 0, n / N * 100).toFixed(2)}%"></span></td><td class="num pct">${pct(n)}</td>${extra}</tr>`;
@@ -2041,7 +2097,7 @@ function about() {
   const nArea = (C.meta.find(m => /Area on the map/.test(m[0])) || [0, 0])[1];
   $('#view').innerHTML = `<article class="about">
     <h2>About the Index</h2>
-    <p class="lede">The Language Technology Development Index tracks how well technology supports each of the world's languages, and how much data exists to build more. It covers ${LANGS.length.toLocaleString()} living languages, each scored from 0 to 1 on three dimensions: writing system, data and technology.</p>
+    <p class="lede">The Language Technology Development Index tracks how well technology supports each of the world's languages, and how much data exists to build more. It covers ${LANGS.length.toLocaleString()} living languages, each scored from 0 to 1 on two dimensions, data and technology, and placed in a tier.</p>
     <h3>What it's for</h3>
     <ul class="aims">
       <li><b>The whole picture.</b> Every language with a record, not only the hundred or so that technology companies and benchmarks usually report on, so the gap between the best- and least-served languages is visible.</li>
@@ -2051,13 +2107,14 @@ function about() {
       <li><b>Change over time.</b> Where a source keeps a record, the Charts show how support has grown since 2019.</li>
     </ul>
     <h3>How a language is scored</h3>
-    <p>Each dimension averages a few indicators, each scaled from 0 to 1 between a floor and a goal (most on a logarithmic scale, so the first thousand sentences count for more than the millionth). The three are combined with a geometric mean, as in the UN's Human Development Index, so a gap anywhere pulls the score down: a language with excellent data but no keyboard can't score highly. A technology scores by the share of the services checked that offer the language, weighted by how fully each does (features, voice types, published error rates), with open models counting for less than commercial services.</p>
+    <p>Each dimension averages a few indicators, each scaled from 0 to 1 between a floor and a goal (most on a logarithmic scale, so the first thousand sentences count for more than the millionth). The two are combined with a geometric mean, LTDI = √(data × technology), as in the UN's Human Development Index, so a gap in either pulls the score down: a language with excellent data but no keyboard can't score highly. A technology scores by the share of the services checked that offer the language, weighted by how fully each does (features, voice types, published error rates), with open models counting for less than commercial services. Locale data (CLDR's dates, numbers and names, which software needs before it can support a language) counts as a technology; voice assistants count half as much as other technologies, since few languages have one. Whether a language's script is encoded in Unicode is reported but not scored, as nearly every recorded script is.</p>
+    <p>Each dimension has a floor of ${DATA.config.meta.floor}, so a language with nothing recorded in one still has a score, but ranks use the unfloored values: any language with something recorded ranks above every language with nothing, and a language's page shows its score before the floor where the floor lifts it.</p>
+    <p>The top three tiers are set by score: ${DATA.config.tiers.cutoffs.map(([, t, c]) => `${t} from ${c}`).join(', ')}. Below Medium, where scores are close together and small differences mean little, a language's tier says what's recorded for it: some support from a commercial or regional service; open tools only; data only; or nothing recorded.</p>
+    <p>A spoken variety whose speakers typically write a standard language (Swiss German, Kölsch and Egyptian Arabic, say) is scored and ranked on what exists for it alone. Its page also gives a second score counting the standard's written data and text technologies, which most of its speakers can use, and marks those values “through” the standard.</p>
     <h3>Why something is missing for a language</h3>
     <p>Most sources cover only a small share of the world's languages, so most values on most pages are missing. A missing value nearly always means a source doesn't list or measure the language, not that the language has nothing: a language may have speech data in an archive no source here counts, or a keyboard that isn't in any app store. These are the ${N.toLocaleString()} ranked languages each source covers.</p>
     <h4>Language information</h4>
     ${table(C.meta.map(([l, n]) => row(esc(l), n)).join(''), 'What the page shows')}
-    <h4>Writing system</h4>
-    ${table(C.writing.map(([l, n]) => row(esc(l), n)).join(''), 'Indicator')}
     <h4>Data</h4>
     ${table(C.data.map(([l, n]) => row(esc(l), n)).join(''), 'Indicator')}
     <h4>Technology</h4>
@@ -2068,8 +2125,8 @@ function about() {
     <h4>Languages and speakers</h4>
     <ul>
       <li>The list of languages, their codes, names, countries, speaker counts, scripts and endangerment levels come from <a href="https://github.com/google-research/url-nlp/tree/main/linguameta" target="_blank" rel="noopener">LinguaMeta</a>, which brings together several sources of different dates. Speaker counts for widely used languages often include second-language speakers (English's 1.27 billion), and for others only first-language speakers, so they aren't strictly comparable.</li>
-      <li>What counts as a language follows LinguaMeta, by ISO 639-3 code. Some macrolanguages are scored as one language (Arabic, Swahili, Persian), with a note on the language's page; spoken varieties whose speakers write a standard language (Yue Chinese and Mandarin, say) are counted from that standard for writing and text.</li>
-      <li>Without a recorded script, a language's writing score sits at its floor; without a speaker count, its opportunities can't be ranked by reach.</li>
+      <li>What counts as a language follows LinguaMeta, by ISO 639-3 code. Some macrolanguages are scored as one language (Arabic, Swahili, Persian), with a note on the language's page; spoken varieties whose speakers write a standard language (Yue Chinese and Mandarin, say) are ranked on their own resources, with a second score counting the standard's.</li>
+      <li>Without a speaker count, a language's opportunities can't be ranked by reach.</li>
       <li>Endangerment levels sometimes belong to a minority variety rather than the whole language; clear cases are corrected. A language listed as extinct with no speakers recorded keeps its page but is left out of the ranking, totals and charts.</li>
     </ul>
     <h4>Countries</h4>
@@ -2087,7 +2144,8 @@ function about() {
     <h4>Technology</h4>
     <ul>
       <li>Coverage is read from each company's published language lists, which can lag behind or run ahead of what a product actually does, and "supported" means different things to different vendors. A few lists are read by hand where no page could be read automatically.</li>
-      <li>Quality is published for few languages. Where a benchmark result exists (translation, speech recognition, LLMs) a weak result counts for less; elsewhere a listed service counts in full, however well it works.</li>
+      <li>Quality is published for few languages. Where a benchmark result exists (translation, speech recognition, LLMs) a weak result counts for less, down to half; elsewhere a listed service counts in full, however well it works, so being measured never lowers a language's score below what it would have been unmeasured.</li>
+      <li>LLM availability is read from the official app language lists for ChatGPT, Gemini and Copilot, the languages each company says its app supports; a model may also work, unevenly, in languages its list doesn't name.</li>
       <li>Regional providers count together as one extra service, and only for the languages they offer.</li>
       <li>Speech services name varieties by country (ar-EG for Egyptian Arabic), so speech locales are matched to the variety spoken there; text services count as the standard language.</li>
     </ul>

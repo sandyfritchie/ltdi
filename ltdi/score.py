@@ -125,10 +125,20 @@ def depth(facts: dict[str, Record], tech: dict) -> float | None:
 
 
 def tech_score(facts: dict[str, Record], tech: dict) -> float | None:
+    if "indicator" in tech:  # one measure stands for the technology (locale data: CLDR's coverage level)
+        f = facts.get(tech["indicator"])
+        return None if f is None else round(normalise(f.value, {"scale": "linear", **tech}), 3)
     t = tier(facts, tech) if tech.get("consumer") or tech.get("open") else None
-    if "measured" in tech:  # LLMs: mean of product availability and benchmark quality, whichever exist
-        parts = [v for v in (t, measured(facts, tech)) if v is not None]
-        return round(sum(parts) / len(parts), 3) if parts else None
+    if "measured" in tech:
+        # LLMs: availability in the official app language lists, discounted by measured benchmark quality
+        # like any other service (down to QUALITY_FLOOR); unmeasured counts in full, so being measured
+        # never lowers a language below its unmeasured peers. A language the apps don't list but a
+        # benchmark has measured counts as offered at the base level: the models do handle it.
+        m = measured(facts, tech)
+        if m is None:
+            return t
+        avail = t if t else ANY
+        return round(avail * (QUALITY_FLOOR + (1 - QUALITY_FLOOR) * m), 3)
     if t is None or t == 0:
         return t
     d = depth(facts, tech)
@@ -153,6 +163,10 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
     offers  ids of the services and benchmarks that cover the language"""
     levels, gaps = {}, {}
     for name, t in cfg["dimensions"]["tech"]["technologies"].items():
+        if "indicator" in t:  # locale data: modern coverage is full, basic or moderate part
+            v = facts[t["indicator"]].value if t["indicator"] in facts else 0
+            levels[name] = "full" if v >= t["max"] else "part" if v > t["min"] else "none"
+            continue
         cons, opn, meas = t.get("consumer", []), t.get("open", []), list(t.get("measured", {}))
         reg = t.get("regional", [])
         src = cons or opn
@@ -170,7 +184,7 @@ def score_language(facts: dict[str, Record], cfg: dict) -> dict:
     floor = cfg["meta"]["floor"]
     dims, missing = {}, []
 
-    for key in ("writing", "data"):
+    for key in (k for k, d in cfg["dimensions"].items() if "indicators" in d):
         d = cfg["dimensions"][key]
         parts, detail = [], {}
         for ind, spec in d["indicators"].items():
@@ -213,12 +227,13 @@ def inherited(cfg: dict) -> set[str]:
     """Indicators a spoken variety takes from its written standard: writing, written data, and every
     service and measure of the written-language technologies."""
     spec = cfg.get("written_standard", {})
-    inds = set(cfg["dimensions"]["writing"]["indicators"]) | set(spec.get("data", []))
+    inds = set(spec.get("data", []))
     for t in spec.get("technologies", []):
         tech = cfg["dimensions"]["tech"]["technologies"][t]
         inds |= set(tech.get("consumer", [])) | set(tech.get("regional", [])) | set(tech.get("open", [])) \
             | set(tech.get("measured", {})) \
-            | set(tech.get("depth", {})) | {q["indicator"] for q in tech.get("quality", {}).values()}
+            | set(tech.get("depth", {})) | {q["indicator"] for q in tech.get("quality", {}).values()} \
+            | ({tech["indicator"]} if "indicator" in tech else set())
     return inds
 
 
@@ -245,15 +260,41 @@ def inherit_written(by_lang: dict[str, dict[str, Record]], names: dict[str, str]
                             own.pop(narrow, None)
 
 
+def tier_of(ltdi: float, facts: dict[str, Record], dims: dict, cfg: dict) -> str:
+    """Tier key ([tiers] in the methodology): score cut-offs for the top tiers; below them, stages by
+    what's recorded for the language: a commercial or regional service, open tools only, data only,
+    or nothing."""
+    t = cfg["tiers"]
+    for key, _, cut in t["cutoffs"]:
+        if ltdi >= cut:
+            return key
+    techs = cfg["dimensions"]["tech"]["technologies"].values()
+    if any(_on(facts.get(i)) and facts[i].unit == "bool" for x in techs for i in x.get("consumer", []) + x.get("regional", [])):
+        return "lc"
+    if any(_on(facts.get(i)) and facts[i].unit == "bool" for x in techs for i in x.get("open", [])):
+        return "lo"
+    if dims["data"].get("raw", dims["data"]["score"]) > 0:
+        return "ld"
+    return "ln"
+
+
+def rank_key(r: dict) -> tuple[float, float]:
+    """What a language is ranked by: its LTDI, then, among languages the floor puts level, the mean of
+    its unfloored dimension scores, so any language with something recorded ranks above every language
+    with nothing."""
+    raw = [d.get("raw", d["score"]) for d in r.get("dimensions", {}).values()]
+    return round(r["ltdi"], 9), round(sum(raw) / len(raw), 9) if raw else 0.0
+
+
 def assign_ranks(results: list[dict]) -> None:
-    """Competition ranks over living languages: equal scores share a rank (1, 2, 2, 4), and "tied" is how
-    many others share it. Within a tie the order is by name, since the scores can't tell them apart.
-    Extinct languages are outside the ranking (rank None). Sorts results in place."""
-    results.sort(key=lambda r: (-round(r["ltdi"], 9), r["name"].lower(), r["code"]))
+    """Competition ranks over living languages: equal keys (rank_key) share a rank (1, 2, 2, 4), and
+    "tied" is how many others share it; within a tie the order is by name. Extinct languages are outside
+    the ranking (rank None). Sorts results in place."""
+    results.sort(key=lambda r: (*(-v for v in rank_key(r)), r["name"].lower(), r["code"]))
     ranked = [r for r in results if not r.get("extinct")]
-    groups: dict[float, list[dict]] = defaultdict(list)
+    groups: dict[tuple, list[dict]] = defaultdict(list)
     for r in ranked:
-        groups[round(r["ltdi"], 9)].append(r)
+        groups[rank_key(r)].append(r)
     position = 1
     for key in sorted(groups, reverse=True):
         for r in groups[key]:
@@ -272,7 +313,12 @@ def main() -> None:
     by_lang: dict[str, dict[str, Record]] = defaultdict(dict)
     for r in records:
         by_lang[r.language][r.indicator] = r
-    inherit_written(by_lang, {l["code"]: l["name"] for l in langs}, cfg)
+    # A spoken variety is scored and ranked on its own records; "via" is what its speakers can use through
+    # the standard they write (Kölsch through German), shown beside it on its page
+    effective = defaultdict(dict, {c: dict(f) for c, f in by_lang.items()})
+    inherit_written(effective, {l["code"]: l["name"] for l in langs}, cfg)
+    data_inds = set(cfg["dimensions"]["data"]["indicators"]) | {
+        s["narrowed_by"] for s in cfg["dimensions"]["data"]["indicators"].values() if s.get("narrowed_by")}
 
     countries: dict[str, dict[str, float]] = defaultdict(dict)
     if (DATA / "countries.csv").exists():
@@ -281,31 +327,45 @@ def main() -> None:
                 countries[row["country"]][row["indicator"]] = float(row["value"])
     results = []
     written = written_standards()
+    via_facts: dict[str, dict[str, Record]] = {}
     for lang in langs:
-        facts_l = by_lang.get(lang["code"], {})
+        code = lang["code"]
+        facts_l = by_lang.get(code, {})
         s = score_language(facts_l, cfg)
+        eff = effective.get(code, {})
+        inherited_here = {i: f for i, f in eff.items() if facts_l.get(i) is not f}
+        via = None
+        if inherited_here:
+            via_facts[code] = inherited_here
+            sv = score_language(eff, cfg)
+            via = {"ltdi": sv["ltdi"], "dimensions": sv["dimensions"], "tier": tier_of(sv["ltdi"], eff, sv["dimensions"], cfg)}
+        # Opportunities: technology gaps as speakers meet them (through the standard where they write one),
+        # data gaps and starter kits from the language's own records only
+        opp_facts = {i: f for i, f in eff.items() if i not in data_inds} | {i: f for i, f in facts_l.items() if i in data_inds}
         # An extinct language keeps its page and scores but has no speakers to reach, so no opportunities
-        opps = [] if lang.get("extinct") else rank(lang, find(facts_l), s, facts_l)
+        opps = [] if lang.get("extinct") else rank(lang, find(opp_facts), s, opp_facts)
         for o in opps:
-            o["id"] = f"{lang['code']}-{o['key']}"
+            o["id"] = f"{code}-{o['key']}"
             o["kit"] = starter_kit(o, facts_l)
-            o["why"] = explain(lang, o, facts_l)
-        results.append({**lang, **s, **coverage(facts_l, cfg), "opportunities": opps,
-                        "written_in": written.get(lang["code"]),
+            o["why"] = explain(lang, o, opp_facts)
+        results.append({**lang, **s, "tier": tier_of(s["ltdi"], facts_l, s["dimensions"], cfg),
+                        **({"via": via} if via else {}), **coverage(facts_l, cfg), "opportunities": opps,
+                        "written_in": written.get(code),
                         "reach_by_country": reach_by_country(lang, countries)})
     assign_ranks(results)
-    ties = max((r["tied"] + 1 for r in results if r["rank"]), default=0)
-    print(f"largest tie: {ties} languages share one score")
+    big = max((r for r in results if r["rank"]), key=lambda r: r["tied"], default=None)
+    if big:
+        print(f"largest tie: {big['tied'] + 1} languages share rank {big['rank']} (LTDI {big['ltdi']}, tier {big['tier']})")
 
-    facts = {
-        code: {i: {k: getattr(r, k) for k in ("value", "unit", "source", "url", "retrieved", "method", "note")}
-               for i, r in inds.items()}
-        for code, inds in by_lang.items()
-    }
+    def dump(inds: dict[str, Record]) -> dict:
+        return {i: {k: getattr(r, k) for k in ("value", "unit", "source", "url", "retrieved", "method", "note")}
+                for i, r in inds.items()}
+    facts = {code: dump(inds) for code, inds in by_lang.items()}
+    via = {code: dump(inds) for code, inds in via_facts.items()}  # a variety's values through its standard
     labels = {
-        **{i: s["label"] for d in ("writing", "data") for i, s in cfg["dimensions"][d]["indicators"].items()},
+        **{i: s["label"] for d in cfg["dimensions"].values() for i, s in d.get("indicators", {}).items()},
         **{k: v["label"] for k, v in cfg["dimensions"]["tech"]["technologies"].items()},
-        **{k: cfg["dimensions"][k]["label"] for k in ("writing", "data", "tech")},
+        **{k: d["label"] for k, d in cfg["dimensions"].items()},
     }
     history = None
     if (DATA / "history.csv").exists():
@@ -323,12 +383,12 @@ def main() -> None:
     rules = {k: {"teams": r["teams"], "missing": r["missing"], "cost": r.get("cost")} for k, r in RULES.items()}
     out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "services": svc, "rules": rules,
            "resources": resources(), "opportunity_types": TYPES, "teams": TEAMS, "history": history,
-           "languages": results, "facts": facts}
+           "languages": results, "facts": facts, "via_facts": via}
     (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     for r in results:
         d = r["dimensions"]
         print(f"{r['rank'] or '-':>4} {r['code']:<4} {r['name']:<18} LTDI {r['ltdi']:.3f}  "
-              f"W {d['writing']['score']:.2f}  D {d['data']['score']:.2f}  T {d['tech']['score']:.2f}")
+              f"D {d['data']['score']:.2f}  T {d['tech']['score']:.2f}  {r['tier']}")
 
 
 if __name__ == "__main__":

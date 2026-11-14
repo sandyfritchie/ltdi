@@ -57,13 +57,21 @@ class LlmTests(unittest.TestCase):
     def test_nothing_known_is_none(self):
         self.assertIsNone(tech_score({}, self.spec))
 
-    def test_benchmarks_only_are_linear_and_averaged(self):
-        self.assertAlmostEqual(tech_score({"m": fact("m", 85)}, self.spec), 0.5)
-        self.assertAlmostEqual(tech_score({"m": fact("m", 100), "n": fact("n", 0.5)}, self.spec), 0.5)
+    def test_benchmarks_only_count_as_the_base_level_discounted_by_quality(self):
+        # no app lists it, but a benchmark has measured it: offered at 0.25, times the quality factor
+        self.assertAlmostEqual(tech_score({"m": fact("m", 85)}, self.spec), 0.188)  # 0.25 x (0.5 + 0.5 x 0.5)
+        self.assertAlmostEqual(tech_score({"m": fact("m", 100), "n": fact("n", 0.5)}, self.spec), 0.188)
 
-    def test_products_and_benchmarks_are_averaged(self):
+    def test_benchmark_quality_discounts_availability(self):
         fs = {"app1": fact("app1", 1), "app2": fact("app2", 1), "m": fact("m", 85)}
-        self.assertAlmostEqual(tech_score(fs, self.spec), 0.75)
+        self.assertAlmostEqual(tech_score(fs, self.spec), 0.75)  # 1.0 x (0.5 + 0.5 x 0.5)
+
+    def test_being_measured_never_lowers_a_language_below_its_unmeasured_peers(self):
+        for apps in ({"app1": 1, "app2": 1}, {"app1": 1, "app2": 0}, {"app1": 0, "app2": 0}):
+            base = {k: fact(k, v) for k, v in apps.items()}
+            unmeasured = tech_score(base, self.spec)
+            good = tech_score(base | {"m": fact("m", 100), "n": fact("n", 1.0)}, self.spec)
+            self.assertGreaterEqual(good, unmeasured)
 
     def test_listed_by_no_product_and_unmeasured_is_zero(self):
         self.assertEqual(tech_score({"app1": fact("app1", 0), "app2": fact("app2", 0)}, self.spec), 0.0)
@@ -146,3 +154,42 @@ class RankTests(unittest.TestCase):
         self.assertEqual(got, {"b": (1, 0), "c": (2, 1), "a": (2, 1), "d": (4, 0), "x": (None, 0)})
         # within a tie, by name
         self.assertEqual([r["code"] for r in rs if r["rank"] == 2], ["c", "a"])
+
+    def test_anything_recorded_ranks_above_nothing(self):
+        from ltdi.score import assign_ranks
+        # both floored to the same LTDI; one has a little data before the floor
+        dims = lambda d: {"data": {"score": 0.05, "raw": d}, "tech": {"score": 0.05, "raw": 0.0}}
+        rs = [{"code": "n", "name": "Aaa", "ltdi": 0.05, "dimensions": dims(0.0)},
+              {"code": "s", "name": "Zzz", "ltdi": 0.05, "dimensions": dims(0.01)}]
+        assign_ranks(rs)
+        got = {r["code"]: r["rank"] for r in rs}
+        self.assertEqual(got, {"s": 1, "n": 2})
+
+
+class TierOfTests(unittest.TestCase):
+    CFG = {"tiers": {"cutoffs": [["vh", "Very high", 0.9], ["h", "High", 0.75], ["m", "Medium", 0.6]],
+                     "stages": []},
+           "dimensions": {"tech": {"technologies": {"mt": {"consumer": ["c"], "open": ["o"], "regional": ["r"]}}}}}
+
+    def tier_of(self, ltdi, data=0.0, **on):
+        from ltdi.score import tier_of
+        facts = {k: fact(k, v) for k, v in on.items()}
+        return tier_of(ltdi, facts, {"data": {"score": max(0.05, data), "raw": data}}, self.CFG)
+
+    def test_cutoffs_for_the_top_three(self):
+        self.assertEqual([self.tier_of(v) for v in (0.95, 0.9, 0.8, 0.6)], ["vh", "vh", "h", "m"])
+
+    def test_stages_below_medium(self):
+        self.assertEqual(self.tier_of(0.5, c=1), "lc")
+        self.assertEqual(self.tier_of(0.5, r=1), "lc")  # a regional provider is commercial support
+        self.assertEqual(self.tier_of(0.5, o=1, c=0), "lo")
+        self.assertEqual(self.tier_of(0.2, data=0.1), "ld")
+        self.assertEqual(self.tier_of(0.05), "ln")
+
+
+class LocaleTests(unittest.TestCase):
+    def test_cldr_level_scales_linearly(self):
+        spec = {"indicator": "cldr_coverage", "min": 0, "max": 3}
+        f = Record("xx", "cldr_coverage", 2, "level", "test", "http://example.org")
+        self.assertAlmostEqual(tech_score({"cldr_coverage": f}, spec), 0.667)
+        self.assertIsNone(tech_score({}, spec))

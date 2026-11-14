@@ -19,9 +19,9 @@ mt_google,mt,consumer,Google Cloud,Translation,google,,,,,"FLORES-200 chrF++ fro
 mt_azure,mt,consumer,Azure,Translator,microsoft,mt_azure_features,,6,service,,,,
 mt_deepl,mt,consumer,DeepL,Translator,deepl,mt_deepl_features,,4,service,"Glossaries, translation memory, style rules, DeepL Write",,,
 mt_open_nllb,mt,open,NLLB-200,Open model,meta,,,,,"FLORES-200 chrF++ from English (Meta, Dense 3.3B): 25 or less counts the model at half, 50 or more in full",mt_nllb_flores_chrf,25,50
-llm_app_gemini,llm,consumer,Gemini,App languages,google,,,,,,,,
-llm_app_copilot,llm,consumer,Copilot,App languages,microsoft,,,,,,,,
-llm_app_chatgpt,llm,consumer,ChatGPT,App languages,openai,,,,,,,,
+llm_app_gemini,llm,consumer,Gemini,Official app language list,google,,,,,,,,
+llm_app_copilot,llm,consumer,Copilot,Official app language list,microsoft,,,,,,,,
+llm_app_chatgpt,llm,consumer,ChatGPT,Official app language list,openai,,,,,,,,
 llm_global_mmlu_rel,llm,measured,Claude,Global-MMLU,anthropic,,70,100,,Share of the English score,,,
 llm_mmmlu_openai,llm,measured,OpenAI o3,MMMLU,openai,,0.6,0.92,,Accuracy,,,
 llm_afrobench_gpt4o,llm,measured,GPT-4o,AfroBench translation,openai,,25,50,,chrF from English,,,
