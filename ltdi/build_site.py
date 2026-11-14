@@ -83,8 +83,8 @@ def add_census(scores: dict) -> None:
         c = next((c for c in l["countries"] if c["code"] == r["country"]), None)
         if c and c.get("speakers"):
             continue
-        if not c:
-            c = {"code": r["country"], "name": names.get(r["country"]) or _country_name(r["country"])}
+        if not c:  # a country LinguaMeta doesn't list it in: spoken there by immigrant or diaspora communities
+            c = {"code": r["country"], "name": names.get(r["country"]) or _country_name(r["country"]), "census_only": True}
             l["countries"].append(c)
         c["speakers"] = n
         l.setdefault("census", []).append([c["name"], r["source"], r["url"], n])
@@ -329,6 +329,9 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             # for the country and region filters and the speakers counted in them
             "cc": " ".join(c["code"] + (f":{c['speakers']}" if c.get("speakers") else "")
                            for c in l["countries"] if c["code"] not in NOT_PLACES),
+            # of those, the ones only a census adds (immigrant and diaspora communities), which the planner's
+            # country codes leave out
+            **({"im": im} if (im := " ".join(c["code"] for c in l["countries"] if c.get("census_only"))) else {}),
             # every region it's spoken in (its home region and its countries'), for the region filter
             "rg": "".join(sorted({REGION_CODE[r] for r in [l.get("region"), *(country_region.get(c["code"]) for c in l["countries"])]
                                   if r in REGION_CODE})),
