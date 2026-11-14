@@ -87,7 +87,17 @@ def main() -> None:
                   "spearman_level": round(spearman([l["ltdi"] for l, _, _ in pairs], [level[lab] for _, _, lab in pairs]), 3),
                   "source": DLS_REPO, "paper": "https://aclanthology.org/2022.coling-1.379/",
                   "as_of": "May 2021", "sample": f"{len(rows)} languages, a 10% systematic sample"}
+    # The two studies against each other, and LTDI against each, on the languages all three cover: how
+    # far two careful measures of the same thing differ is the yardstick for LTDI's differences
+    common = [(l, v) for l, v, _ in pairs if l.get("joshi") is not None]
+    j = [l["joshi"] for l, _ in common]
+    d = [v for _, v in common]
+    t = [l["ltdi"] for l, _ in common]
+    out["between"] = {"n": len(common), "joshi_dls": round(spearman(j, d), 3),
+                      "ltdi_joshi": round(spearman(t, j), 3), "ltdi_dls": round(spearman(t, d), 3)}
     (DATA / "validation.json").write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    b = out["between"]
+    print(f"on the {b['n']} languages all three cover: Joshi-DLS {b['joshi_dls']}, LTDI-Joshi {b['ltdi_joshi']}, LTDI-DLS {b['ltdi_dls']}")
     for k in ("joshi", "dls"):
         v = out[k]
         print(f"{k}: n {v['n']:,}, Spearman {v['spearman']}")

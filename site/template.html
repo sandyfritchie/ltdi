@@ -480,6 +480,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .why { font-size: 18px; margin: 0; max-width: 64ch; }
 .needed { font-size: 17px; margin: 0 0 6px; max-width: 64ch; }
 .vdis li { max-width: 44em; }
+.vpair { max-width: 34em; }
 .vtab .vbar { display: flex; height: 10px; min-width: 120px; border-radius: 3px; overflow: hidden; background: var(--rule); }
 .vtab .vbar i { display: block; height: 100%; }
 .about .cite { font: 14px/1.5 var(--font-mono); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; overflow-wrap: anywhere; }
@@ -2147,9 +2148,14 @@ function validationSection() {
     <tbody>${v.groups.map(g => `<tr><td>${esc(g.label)}</td><td class="num">${g.n.toLocaleString()}</td><td class="num">${g.median_ltdi == null ? '–' : g.median_ltdi.toFixed(3)}</td><td>${tierBar(g.tiers)}</td></tr>`).join('')}</tbody></table></div>`;
   const dis = (v, what) => `<details class="covsvc vdis"><summary>Where they disagree most <span class="muted">· ${v.disagreements.length} languages</span></summary>
     <ul>${v.disagreements.map(x => `<li><span><a href="#lang-${x.code}">${esc(x.name)}</a> <span class="muted">${x.gap > 0 ? 'higher in LTDI' : 'lower in LTDI'}</span></span><b>${x.ltdi.toFixed(3)} · ${esc(TIER_LABEL[x.tier] || x.tier)} <span class="muted">vs ${esc(what(x.other))}</span></b></li>`).join('')}</ul></details>`;
-  const J = V.joshi, D = V.dls;
+  const J = V.joshi, D = V.dls, B = V.between;
+  const pair = (a, b, r) => `<tr><td>${a}</td><td>${b}</td><td class="num">${r.toFixed(2)}</td></tr>`;
   return `<h3>How it compares with other classifications</h3>
-    <p>Two earlier studies classify languages by their digital resources. LTDI broadly agrees with both: its median score never falls from one of their groups to the next. They are older than LTDI's sources, so some disagreement is progress since; the rest is where LTDI's method or data, or theirs, may be wrong, and is worth checking language by language.</p>
+    <p>Two earlier studies classify languages by their digital resources. LTDI broadly agrees with both: its median score never falls from one of their groups to the next. No two such measures agree exactly, since each draws on different, incomplete sources from a different year, so the useful question is whether LTDI differs from them more than they differ from each other.</p>
+    ${B ? `<p>It doesn't. On the ${B.n} languages all three cover, LTDI agrees with each study more closely than the two studies agree with each other (rank correlations; 1 would be the same order):</p>
+    <div class="tablebox vpair"><table class="covtab"><thead><tr><th>Measure</th><th>Compared with</th><th class="num">Correlation</th></tr></thead>
+    <tbody>${pair('Joshi et al.', 'Digital Language Support', B.joshi_dls)}${pair('LTDI', 'Joshi et al.', B.ltdi_joshi)}${pair('LTDI', 'Digital Language Support', B.ltdi_dls)}</tbody></table></div>` : ''}
+    <p class="note">The languages where they disagree most are listed below each table. Some differences are progress since the studies, some are imperfect data on either side.</p>
     <h4>Joshi et al. (2020), resource classes</h4>
     <p class="note"><a href="${J.source}" target="_blank" rel="noopener">The State and Fate of Linguistic Diversity and Inclusion in the NLP World</a>: six classes by labelled and unlabelled data. ${J.n.toLocaleString()} ranked languages have a class; rank correlation with LTDI ${J.spearman.toFixed(2)}.</p>
     ${table(J, 'Class')}${dis(J, o => `class ${o}`)}

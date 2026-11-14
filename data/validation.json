@@ -685,5 +685,11 @@
   "paper": "https://aclanthology.org/2022.coling-1.379/",
   "as_of": "May 2021",
   "sample": "783 languages, a 10% systematic sample"
+ },
+ "between": {
+  "n": 188,
+  "joshi_dls": 0.555,
+  "ltdi_joshi": 0.62,
+  "ltdi_dls": 0.743
  }
 }

@@ -410,8 +410,11 @@ each disagrees most (by the gap between a language's percentile in LTDI and in t
   it's fetched when the tool runs, not stored here. 671 of its languages match ranked ones: rank
   correlation 0.68 with the DLS score, 0.63 with the level.
 
-Both are older than LTDI's sources, so some disagreement is progress since; the lists are for
-checking LTDI's method and data language by language. Re-run the tool after scoring changes (it needs
+On the 188 languages all three cover, LTDI agrees with each study more closely than the two studies
+agree with each other: Joshi et al. against DLS 0.56, LTDI against Joshi et al. 0.62, LTDI against
+DLS 0.74. No two such measures agree exactly, since each draws on different, incomplete sources from
+a different year. Both studies are older than LTDI's sources, so some disagreement is progress
+since; the lists are for checking LTDI's method and data language by language. Re-run the tool after scoring changes (it needs
 network for the DLS sample); the About page shows the result.
 
 ## Editions and citation
