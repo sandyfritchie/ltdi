@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 
 from . import CONFIG, DATA
 from .http import fetch_json
@@ -104,29 +105,46 @@ def script_names() -> dict[str, str]:
     return {e["script"]["name"]: e["script"]["full_name"].replace(" variant)", ")") for e in data}
 
 
+# LinguaMeta's English names capitalise the letter after an apostrophe (Q'Anjob'Al, Mi'Kmaq, Brooke'S
+# Point Palawano), as automatic title-casing does; these names have it right
+APOSTROPHE_CAPITAL_OK = {"N'Ko"}
+
+
+def fix_apostrophes(name: str) -> str:
+    if name in APOSTROPHE_CAPITAL_OK:
+        return name
+    return re.sub(r"(?<=[A-Za-z]['’])[A-Z]", lambda m: m.group().lower(), name)
+
+
 def load_language(code: str, locales: dict[str, dict], d: dict) -> dict:
 
     def name_in(lang: str) -> str | None:
+        fix = fix_apostrophes if lang == "en" else (lambda x: x)
         for n in d.get("name_data", []):
             if n.get("bcp_47_code") == lang and n.get("is_canonical"):
-                return n["name"]
+                return fix(n["name"])
         for n in d.get("name_data", []):
             if n.get("bcp_47_code") == lang:
-                return n["name"]
+                return fix(n["name"])
         return None
 
     scripts: dict[str, bool] = {}
     countries: dict[str, int | None] = {}
+    in_country: dict[str, set[str]] = {}  # the scripts it's written in in each country, for locale codes
     for lsl in d.get("language_script_locale", []):
         s = lsl.get("script", {})
         sc = s.get("iso_15924_code")
-        if sc and sc != "xxxx" and (s.get("is_canonical") or s.get("is_in_widespread_use")):
+        used = sc and sc != "xxxx" and (s.get("is_canonical") or s.get("is_in_widespread_use"))
+        if used:
             scripts[sc] = scripts.get(sc, False) or bool(s.get("is_canonical"))
         loc = lsl.get("locale", {}).get("iso_3166_code")
         if loc and loc != "xxxx" and len(loc) == 2:
             n = lsl.get("speaker_data", {}).get("number_of_speakers")
             countries[loc] = max(countries.get(loc) or 0, n or 0) or None
+            if used:
+                in_country.setdefault(loc, set()).add(sc)
 
+    order = sorted(scripts, key=lambda s: (not scripts[s], s))
     top = sorted(countries.items(), key=lambda kv: -(kv[1] or 0))
     return {
         "code": code,
@@ -140,7 +158,8 @@ def load_language(code: str, locales: dict[str, dict], d: dict) -> dict:
         "scripts": sorted(scripts, key=lambda s: (not scripts[s], s)),
         "script_names": [SCRIPT.get(sc, sc.title()) for sc in sorted(scripts, key=lambda s: (not scripts[s], s))],
         "countries": [
-            {"code": c, "name": COUNTRY.get(c) or locales.get(c, {}).get("name", c), "speakers": n}
+            {"code": c, "name": COUNTRY.get(c) or locales.get(c, {}).get("name", c), "speakers": n,
+             **({"scripts": [sc for sc in order if sc in in_country[c]]} if in_country.get(c) else {})}
             for c, n in top
         ],
         "region": next(
@@ -270,7 +289,7 @@ def alt_names(code: str, name: str, recs: dict[str, dict], absorbed: list[str]) 
     for c in sources:
         for n in recs.get(c, {}).get("name_data", []):
             if n.get("bcp_47_code") == "en" and n["name"].lower() != name.lower():
-                out.setdefault(n["name"].lower(), n["name"])
+                out.setdefault(n["name"].lower(), fix_apostrophes(n["name"]))
     return list(out.values())
 
 

@@ -525,8 +525,8 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .plan-tablehead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 /* fixed column widths, so switching a control never reflows the table */
 .plantab { table-layout: fixed; width: 100%; min-width: 1040px; }
-.plantab .pc-n { width: 3em; } .plantab .pc-lang { width: 12%; } .plantab .pc-code { width: 4.5em; } .plantab .pc-num { width: 6.5em; } .plantab .pc-pct { width: 5em; }
-.plantab .pc-oth { width: 7em; } .plantab .pc-mod { width: auto; } .plantab .pc-data { width: 8em; } .plantab .pc-cty { width: 7.5em; }
+.plantab .pc-n { width: 3em; } .plantab .pc-lang { width: 12%; } .plantab .pc-code { width: 4em; } .plantab .pc-num { width: 6em; } .plantab .pc-pct { width: 5em; }
+.plantab .pc-oth { width: 7em; } .plantab .pc-mod { width: auto; } .plantab .pc-data { width: 7.5em; } .plantab .pc-cty { width: 7.5em; }
 .plantab .pc-m { font: 12.5px/1.9 var(--font-mono); color: var(--ink); }
 .plantab td { vertical-align: top; overflow-wrap: anywhere; }
 .plantab th { white-space: normal; vertical-align: bottom; line-height: 1.3; } .plantab .small, .muted.small { font-size: 12.5px; } .plantab .muted { color: var(--muted); }
@@ -574,6 +574,8 @@ for (const l of ALL) {
   l._cs = Object.fromEntries((l.cc || '').split(' ').filter(Boolean).map(t => { const [c, n] = t.split(':'); return [c, n ? +n : null]; }));
   l._cc = new Set(Object.keys(l._cs));
   l._im = new Set((l.im || '').split(' ').filter(Boolean));  // countries where only immigrant communities speak it
+  l._sc = (l.sc || '').split(' ').filter(Boolean);  // its scripts, main one first
+  l._csc = Object.fromEntries((l.csc || '').split(' ').filter(Boolean).map(t => { const [c, v] = t.split('='); return [c, v.split(',')]; }));
   // every region it's spoken in, not just its home: English counts in the Americas and Oceania too
   l._rg = new Set([...(l.rg || '')].map(c => REGION_OF[c]).concat(l.region ? [l.region] : []));
   l._offers = new Set(l.offers.map(i => DATA.services[i].id));
@@ -2461,7 +2463,11 @@ function planCells(r, T) {
   const here = Object.entries(l._cs).filter(([c]) => countryIn(c)).sort((a, b) => (b[1] || 0) - (a[1] || 0)).map(([c]) => c);
   const home = here.filter(c => !l._im.has(c));
   const cs = home.length ? home : here;
-  return { others: `${nOn} of ${others.length}${reg ? ' + regional' : ''}`, models: models.join('; ') || '—', data, countries: cs };
+  const scriptsIn = c => l._csc[c] || l._sc.slice(0, 1);
+  const scripts = [...new Set(cs.flatMap(scriptsIn))].sort((a, b) => l._sc.indexOf(a) - l._sc.indexOf(b));
+  const locales = cs.flatMap(c => scriptsIn(c).map(sc => `${l.code}-${sc}-${c.toUpperCase()}`));
+  if (!cs.length) scripts.push(...l._sc.slice(0, 1));
+  return { scripts, locales, others: `${nOn} of ${others.length}${reg ? ' + regional' : ''}`, models: models.join('; ') || '—', data, countries: cs };
 }
 function planCurve(rows, base, total) {
   if (!rows.length || !total) return '';
@@ -2491,10 +2497,10 @@ function planCodes(cs) {
   return up.slice(0, 4).join(' ') + (up.length > 4 ? ` <span class="muted">+${up.length - 4}</span>` : '');
 }
 function planCSV(P) {
-  const head = ['rank', 'code', 'name', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'other_services_offering', 'open_models', 'data'];
+  const head = ['rank', 'code', 'name', 'scripts', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'other_services_offering', 'open_models', 'data'];
   const q = v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v;
   const lines = [head.join(',')].concat(P.rows.map((r, i) => { const c = planCells(r, P.T);
-    return [i + 1, r.l.code, r.l.name, c.countries.map(x => x.toUpperCase()).join(' '), c.countries.map(x => `${r.l.code}-${x.toUpperCase()}`).join(' '),
+    return [i + 1, r.l.code, r.l.name, c.scripts.join(' '), c.countries.map(x => x.toUpperCase()).join(' '), c.locales.join(' '),
       Math.round(r.r5), Math.round(r.r0), r.share.toFixed(4), c.others, c.models, c.data].map(q).join(','); }));
   return lines.join('\n') + '\n';
 }
@@ -2531,10 +2537,10 @@ function planPage() {
     </div>
     <section class="chart">
       <div class="plan-tablehead"><h3>Languages to add, by reach</h3><span><button type="button" class="chip" id="pl-csv">Download CSV</button> <button type="button" class="chip" id="pl-link">Copy link</button></span></div>
-      <div class="tablebox"><table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang">Language</th><th class="pc-code" title="The code the Index uses: ISO 639-1 where there is one, otherwise ISO 639-3">Code</th><th class="pc-cty" title="Where it's spoken, most speakers first, as ISO 3166 country codes; countries where only immigrant communities speak it are left out">Countries</th><th class="num pc-num" title="Estimated ${who} in five years, in ${esc(scopeName)}">Online in 5 years</th><th class="num pc-num">Today</th><th class="num pc-pct" title="Share of the total reached once this language is added">Reached</th><th class="pc-oth" title="Comparable commercial services already offering it${P.baseName && plan.from.startsWith('svc:') ? ` (other than ${esc(P.baseName)})` : ''}">Others offering</th><th class="pc-mod">Open models</th><th class="pc-data">Open data</th></tr></thead>
-      <tbody>${shown.map((r, i) => { const c = planCells(r, T); return `<tr><td class="num">${i + 1}</td><td><a href="#lang-${r.l.code}">${esc(r.l.name)}</a>${r.l.wi && BY[r.l.wi] ? `<div class="muted small">speakers write ${esc(BY[r.l.wi].name)}</div>` : ''}</td><td class="pc-m">${r.l.code}</td><td class="pc-m" title="${esc(c.countries.map(x => COUNTRY_NAMES[x] || x.toUpperCase()).join(', '))}">${planCodes(c.countries)}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td></tr>`; }).join('')}</tbody></table></div>
+      <div class="tablebox"><table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang">Language</th><th class="pc-code" title="The code the Index uses: ISO 639-1 where there is one, otherwise ISO 639-3">Code</th><th class="pc-code" title="Its script in the countries listed, as ISO 15924 codes">Script</th><th class="pc-cty" title="Where it's spoken, most speakers first, as ISO 3166 country codes; countries where only immigrant communities speak it are left out">Countries</th><th class="num pc-num" title="Estimated ${who} in five years, in ${esc(scopeName)}">Online in 5 years</th><th class="num pc-num">Today</th><th class="num pc-pct" title="Share of the total reached once this language is added">Reached</th><th class="pc-oth" title="Comparable commercial services already offering it${P.baseName && plan.from.startsWith('svc:') ? ` (other than ${esc(P.baseName)})` : ''}">Others offering</th><th class="pc-mod">Open models</th><th class="pc-data">Open data</th></tr></thead>
+      <tbody>${shown.map((r, i) => { const c = planCells(r, T); return `<tr><td class="num">${i + 1}</td><td><a href="#lang-${r.l.code}">${esc(r.l.name)}</a></td><td class="pc-m">${r.l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries)}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td></tr>`; }).join('')}</tbody></table></div>
       ${P.rows.length > shown.length ? `<button type="button" class="chip" id="pl-more">Show ${Math.min(50, P.rows.length - shown.length)} more of ${(P.rows.length - shown.length).toLocaleString()}</button>` : ''}
-      <p class="note">Reach is an estimate from LinguaMeta's speaker counts and the World Bank's connectivity; spoken varieties and second-language speakers are counted as those sources count them. Countries are where it's spoken, as ISO 3166 codes with the most speakers first, leaving out countries where only immigrant communities speak it, so the code and a country give a locale (pcm-NG); the CSV lists them all, with the locales. Others offering counts the commercial services tracked for ${esc(T.label.toLowerCase())}${P.baseName && plan.from.startsWith('svc:') ? ', other than the one you started from' : ''}; "+ regional" means a regional provider offers it too. Open models are those listed for the language, with published quality where there is a figure (the makers' own measurement unless marked otherwise) and their licence where it doesn't permit commercial use. Open data is ${P.voice ? 'transcribed speech from the open datasets tracked' : plan.t === 'mt' ? 'sentence pairs with English in OPUS' : 'web text in FineWeb-2'}${plan.com && P.voice ? ', counting only datasets whose licence permits commercial use' : plan.com && plan.t === 'mt' ? '; OPUS corpora carry their own licences, which aren\'t checked here' : ''}. Licences are as each project publishes them; this isn't legal advice.</p>
+      <p class="note">Reach is an estimate from LinguaMeta's speaker counts and the World Bank's connectivity; spoken varieties and second-language speakers are counted as those sources count them. Countries are where it's spoken, as ISO 3166 codes with the most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK). Scripts are those LinguaMeta records in use in each country; where a language uses different scripts in different countries, hover the countries for the pairs. The CSV lists every country, with the locales. Others offering counts the commercial services tracked for ${esc(T.label.toLowerCase())}${P.baseName && plan.from.startsWith('svc:') ? ', other than the one you started from' : ''}; "+ regional" means a regional provider offers it too. Open models are those listed for the language, with published quality where there is a figure (the makers' own measurement unless marked otherwise) and their licence where it doesn't permit commercial use. Open data is ${P.voice ? 'transcribed speech from the open datasets tracked' : plan.t === 'mt' ? 'sentence pairs with English in OPUS' : 'web text in FineWeb-2'}${plan.com && P.voice ? ', counting only datasets whose licence permits commercial use' : plan.com && plan.t === 'mt' ? '; OPUS corpora carry their own licences, which aren\'t checked here' : ''}. Licences are as each project publishes them; this isn't legal advice.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', planHash()); const y = scrollY; planPage(); scrollTo(0, y); };
   $('#pl-t').onchange = e => { plan.t = e.target.value; if (plan.from.startsWith('svc:')) plan.from = 'none'; plan.n = 50; redraw(); };

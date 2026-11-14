@@ -332,6 +332,11 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             # of those, the ones only a census adds (immigrant and diaspora communities), which the planner's
             # country codes leave out
             **({"im": im} if (im := " ".join(c["code"] for c in l["countries"] if c.get("census_only"))) else {}),
+            # its scripts (ISO 15924), main one first, and the countries that use others ("tw=Hant rs=Cyrl,Latn"),
+            # for locale codes in the planner
+            **({"sc": " ".join(x.title() for x in l["scripts"])} if l.get("scripts") else {}),
+            **({"csc": cs} if (cs := " ".join(f"{c['code']}={','.join(x.title() for x in c['scripts'])}" for c in l["countries"]
+                                              if c.get("scripts") and c["scripts"] != l["scripts"][:1] and c["code"] not in NOT_PLACES)) else {}),
             # every region it's spoken in (its home region and its countries'), for the region filter
             "rg": "".join(sorted({REGION_CODE[r] for r in [l.get("region"), *(country_region.get(c["code"]) for c in l["countries"])]
                                   if r in REGION_CODE})),
