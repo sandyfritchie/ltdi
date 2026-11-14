@@ -477,6 +477,16 @@ the review baseline, `python tools/edition_diff.py 5d79055`, shows the 2.0 metho
 To cite: Ritchie, Sandy (2026). Language Technology Development Index (LTDI), edition 2026-11
 (methodology 2.0). https://langtechindex.org
 
+## Maintainer, corrections and what's included
+
+The Index is made and maintained by Sandy Ritchie, a linguist and technologist; it isn't affiliated
+with any organisation or company. Corrections and feedback: langtechindex@gmail.com, or a GitHub issue
+using the correction or new-source form (`.github/ISSUE_TEMPLATE/`). A service is included when it's
+a product or open tool used across many languages and its maker publishes an official language list
+(or, for a benchmark, per-language results) that can be read, cited and re-checked; the About page
+says what's tracked and what's known to be missing. `data/checks/vendor_spotcheck.csv` records hand
+checks of the most visible lists against their official pages.
+
 ## Licence
 
 The code is under the [MIT licence](LICENSE). The data the Index publishes (`data/`, the site's data

@@ -1533,7 +1533,7 @@ async function language(code) {
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
-    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}.</p>`;
+    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">langtechindex@gmail.com</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>`;
   $('#back').onclick = () => { location.hash = 'ranking'; };
   bindMiniMap(l);
   bindHear();
@@ -2185,6 +2185,17 @@ function mapPage() {
 }
 
 // ---------------------------------------------------------------- about
+// What's tracked, the rule for including a service, and what's known to be missing
+function inclusionSection() {
+  const S = DATA.services;
+  const by = role => S.filter(s => s.role === role);
+  const companies = new Set(by('consumer').map(s => s.provider));
+  const regional = new Set(by('regional').map(s => s.provider));
+  return `<h3>What's included and why</h3>
+    <p>The Index tracks ${by('consumer').length} commercial services from ${companies.size} companies (${[...companies].map(p => esc(PROV_ALL[p] || p)).join(', ')}), ${regional.size} regional providers that focus on languages the large platforms serve less (${[...regional].map(p => esc(PROV_ALL[p] || p)).join(', ')}), ${by('open').length} open models and tools, and ${by('measured').length} published LLM benchmark results. Every service, with what it counts for, is in <a href="${REPO_URL}/blob/main/config/services.csv" target="_blank" rel="noopener">config/services.csv</a>.</p>
+    <p>A service is included when it's a product or open tool people and developers use across many languages, and its maker publishes an official list of the languages it supports (or, for a benchmark, results per language) that can be read, cited and re-checked. Lists are read from those official pages, not from testing the products, so a service that works in a language it doesn't list isn't counted for it. Regional providers are included for the languages they list, and count together as one extra service.</p>
+    <p>Services known to be missing include Meta AI, Apple Intelligence, Samsung's keyboard and Bixby, and speech specialists such as ElevenLabs. They'll be added where an official language list can be read reliably; to propose one, send a link to its official language list (see below).</p>`;
+}
 // How much ranks depend on the method's working choices (ltdi.sensitivity)
 function stabilitySection() {
   const S = DATA.sensitivity;
@@ -2313,9 +2324,11 @@ function about() {
 
     ${stabilitySection()}
     ${validationSection()}
+    ${inclusionSection()}
     <h3>Independence and accuracy</h3>
-    <p>The Index isn't affiliated with any organisation or company. It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
-    <p>If you spot a mistake or know of a source we've missed, please <a href="${REPO_URL}/issues" target="_blank" rel="noopener">open an issue on GitHub</a>.</p>
+    <p>The Index is made and maintained by Sandy Ritchie, a linguist and technologist. It isn't affiliated with any organisation or company. It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
+    <h3>Corrections and feedback</h3>
+    <p>If you spot a mistake, work on a product whose row is out of date, or know of a source we've missed, please email <span class="email">langtechindex@gmail.com</span>, or, if you'd rather it be public, <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">open an issue on GitHub</a> using the correction or new-source form. A link to the page that documents the change is the quickest way to get it fixed; corrections go into the next build with the source cited.</p>
 
     <h3>Download and cite</h3>
     <p>The scores for this edition are a <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">CSV file</a>: one row per language, with its rank, tier, both dimensions before and after the floor, each technology's score, and, for spoken varieties, the score through their written standard (<a href="data/ltdi-${DATA.edition}.json" target="_blank" rel="noopener">column descriptions and the method's hashes</a>). A second <a href="data/ltdi-${DATA.edition}-services.csv" target="_blank" rel="noopener">services table</a> gives, for every language, what each service and benchmark tracked records: 1 where it's offered, 0 where it isn't, or the measured result. Every value with its source, date and note is in the repository's <a href="${REPO_URL}/tree/main/data/records" target="_blank" rel="noopener">data/records</a> folder, and every edition in <a href="${REPO_URL}/tree/main/data/editions" target="_blank" rel="noopener">data/editions</a>, so editions can be compared. The data is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> and the code MIT.</p>
