@@ -383,7 +383,10 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     return index, details
 
 
-PLAN_QUALITY = ("asr_whisper_fleurs_wer", "asr_omnilingual_cer", "mt_nllb_flores_chrf")
+PLAN_QUALITY = ("asr_whisper_fleurs_wer", "asr_omnilingual_cer", "mt_nllb_flores_chrf", "mt_google_flores_chrf")
+# Ingredients the readiness checklists need that aren't services (services come from "offers"), one letter each
+READY_FLAGS = {"f": ("speech_fleurs", 0), "c": ("cv_validated_hours", 0), "F": ("flores200", 0), "b": ("eval_benchmarks", 0),
+               "u": ("script_encoded", 0), "l": ("cldr_coverage", 0), "n": ("font_noto", 0), "d": ("ud_treebank_words", 0)}
 
 
 def usable_hours(facts: dict, resources: dict) -> float:
@@ -418,6 +421,9 @@ def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
         out["qv"] = q
     if l.get("written_in") and not l.get("shares_written"):
         out["wi"] = l["written_in"]
+    rk = "".join(k for k, (i, above) in READY_FLAGS.items() if (v(i) or 0) > above)
+    if rk:
+        out["rk"] = rk
     return out
 
 

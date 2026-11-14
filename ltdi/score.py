@@ -417,7 +417,7 @@ def main() -> None:
         history = {"periods": sorted(periods), "series": json.loads((DATA / "history_series.json").read_text()),
                    "values": hist}
     svc = [{k: sv[k] for k in ("id", "technology", "role", "name", "kind", "provider", "depth", "quality", "quality_poor",
-                               "quality_good", "quality_by")} for sv in services()]
+                               "quality_good", "quality_by", "test_set", "test_size", "test_public")} for sv in services()]
     rules = {k: {"teams": r["teams"], "missing": r["missing"], "cost": r.get("cost")} for k, r in RULES.items()}
     out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "services": svc, "rules": rules,
            "resources": resources(), "opportunity_types": TYPES, "teams": TEAMS, "history": history,
