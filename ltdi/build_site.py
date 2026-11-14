@@ -399,6 +399,9 @@ def main() -> None:
     index, details = split(scores)
     index["census_countries"] = census_countries()
     index["coverage"] = coverage(scores)
+    # comparison with Joshi et al.'s classes and SIL's DLS levels (tools/validate.py)
+    if (DATA / "validation.json").exists():
+        index["validation"] = json.loads((DATA / "validation.json").read_text(encoding="utf-8"))
     for code, sample in udhr_samples().items():
         if code in details:
             details[code]["sample"] = sample

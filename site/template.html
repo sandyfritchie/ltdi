@@ -479,6 +479,9 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .opp-hero h2 { font: 800 clamp(24px, 4vw, 34px)/1.1 var(--font-display); font-stretch: 82%; margin: 0; text-wrap: balance; }
 .why { font-size: 18px; margin: 0; max-width: 64ch; }
 .needed { font-size: 17px; margin: 0 0 6px; max-width: 64ch; }
+.vdis li { max-width: 44em; }
+.vtab .vbar { display: flex; height: 10px; min-width: 120px; border-radius: 3px; overflow: hidden; background: var(--rule); }
+.vtab .vbar i { display: block; height: 100%; }
 .about .cite { font: 14px/1.5 var(--font-mono); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; overflow-wrap: anywhere; }
 .static { padding-block: 16px; max-width: 70ch; } .static table { margin-top: 12px; }
 .panel-h { font: 700 20px var(--font-display); font-stretch: 85%; margin: 28px 0 10px; }
@@ -2106,6 +2109,31 @@ function mapPage() {
 }
 
 // ---------------------------------------------------------------- about
+// How LTDI compares with Joshi et al.'s resource classes and SIL's Digital Language Support levels
+// (tools/validate.py): a table per classification, with LTDI's median and tiers in each group, and
+// the languages where the two disagree most
+function validationSection() {
+  const V = DATA.validation;
+  if (!V) return '';
+  const order = TIER_KEYS.map(([k]) => k);
+  const tierBar = t => {
+    const n = Object.values(t).reduce((a, b) => a + b, 0) || 1;
+    return `<span class="vbar">${order.filter(k => t[k]).map(k => `<i style="width:${(t[k] / n * 100).toFixed(1)}%;background:var(${TIERC[k]})" title="${esc(TIER_LABEL[k])}: ${t[k]}"></i>`).join('')}</span>`;
+  };
+  const table = (v, head) => `<div class="tablebox"><table class="covtab vtab"><thead><tr><th>${head}</th><th class="num">Languages</th><th class="num">Median LTDI</th><th>LTDI tiers</th></tr></thead>
+    <tbody>${v.groups.map(g => `<tr><td>${esc(g.label)}</td><td class="num">${g.n.toLocaleString()}</td><td class="num">${g.median_ltdi == null ? '–' : g.median_ltdi.toFixed(3)}</td><td>${tierBar(g.tiers)}</td></tr>`).join('')}</tbody></table></div>`;
+  const dis = (v, what) => `<details class="covsvc vdis"><summary>Where they disagree most <span class="muted">· ${v.disagreements.length} languages</span></summary>
+    <ul>${v.disagreements.map(x => `<li><span><a href="#lang-${x.code}">${esc(x.name)}</a> <span class="muted">${x.gap > 0 ? 'higher in LTDI' : 'lower in LTDI'}</span></span><b>${x.ltdi.toFixed(3)} · ${esc(TIER_LABEL[x.tier] || x.tier)} <span class="muted">vs ${esc(what(x.other))}</span></b></li>`).join('')}</ul></details>`;
+  const J = V.joshi, D = V.dls;
+  return `<h3>How it compares with other classifications</h3>
+    <p>Two earlier studies classify languages by their digital resources. LTDI broadly agrees with both: its median score never falls from one of their groups to the next. They are older than LTDI's sources, so some disagreement is progress since; the rest is where LTDI's method or data, or theirs, may be wrong, and is worth checking language by language.</p>
+    <h4>Joshi et al. (2020), resource classes</h4>
+    <p class="note"><a href="${J.source}" target="_blank" rel="noopener">The State and Fate of Linguistic Diversity and Inclusion in the NLP World</a>: six classes by labelled and unlabelled data. ${J.n.toLocaleString()} ranked languages have a class; rank correlation with LTDI ${J.spearman.toFixed(2)}.</p>
+    ${table(J, 'Class')}${dis(J, o => `class ${o}`)}
+    <h4>Simons, Thomas and White (2022), Digital Language Support</h4>
+    <p class="note"><a href="${D.paper}" target="_blank" rel="noopener">Assessing Digital Language Support on a Global Scale</a>: five levels from 143 tools' language lists, ${esc(D.as_of)}. Only a 10% sample is public (<a href="${D.source}" target="_blank" rel="noopener">sil-ai/dls-results</a>), of which ${D.n.toLocaleString()} languages match ranked ones; rank correlation with their score ${D.spearman.toFixed(2)}, with their level ${D.spearman_level.toFixed(2)}.</p>
+    ${table(D, 'Level')}${dis(D, o => o)}`;
+}
 // What the Index is for, how far each source reaches, and the limits of the data, sources and views
 const REPO_URL = 'https://github.com/sandyfritchie/ltdi';
 const citeText = () => `Ritchie, Sandy (${DATA.edition.slice(0, 4)}). Language Technology Development Index (LTDI), edition ${DATA.edition} (methodology ${DATA.config.meta.methodology_version}). https://langtechindex.org`;
@@ -2189,6 +2217,7 @@ function about() {
     <ul><li>Opportunities are gaps in the sources tracked here, ranked by how many people could use the technology, how big the gap is and the rough cost of acting. The costs are rough guides, not estimates, and a gap may already be filled by something no source here records.</li>
       <li>Each kind of opportunity is suggested only where its first step is possible: text technologies and benchmarks need some written text, a Wikipedia card needs a Wikipedia. A language with nothing recorded gets a single card about documentation and first recordings with its speakers. Before a language is chosen, the list shows at most two cards per language.</li></ul>
 
+    ${validationSection()}
     <h3>Independence and accuracy</h3>
     <p>The Index isn't affiliated with any organisation or company. It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
     <p>If you spot a mistake or know of a source we've missed, please <a href="${REPO_URL}/issues" target="_blank" rel="noopener">open an issue on GitHub</a>.</p>

@@ -1,0 +1,689 @@
+{
+ "edition": "2026-11",
+ "methodology_version": "2.0",
+ "joshi": {
+  "n": 2032,
+  "spearman": 0.605,
+  "groups": [
+   {
+    "group": 0,
+    "label": "0 · The Left-Behinds",
+    "n": 1769,
+    "median_ltdi": 0.05,
+    "tiers": {
+     "lc": 368,
+     "lo": 744,
+     "ld": 266,
+     "ln": 391
+    }
+   },
+   {
+    "group": 1,
+    "label": "1 · The Scraping-Bys",
+    "n": 194,
+    "median_ltdi": 0.228,
+    "tiers": {
+     "m": 11,
+     "lc": 172,
+     "lo": 8,
+     "ld": 2,
+     "ln": 1
+    }
+   },
+   {
+    "group": 2,
+    "label": "2 · The Hopefuls",
+    "n": 18,
+    "median_ltdi": 0.578,
+    "tiers": {
+     "m": 6,
+     "lc": 12
+    }
+   },
+   {
+    "group": 3,
+    "label": "3 · The Rising Stars",
+    "n": 26,
+    "median_ltdi": 0.772,
+    "tiers": {
+     "vh": 1,
+     "h": 16,
+     "m": 7,
+     "lc": 2
+    }
+   },
+   {
+    "group": 4,
+    "label": "4 · The Underdogs",
+    "n": 18,
+    "median_ltdi": 0.882,
+    "tiers": {
+     "vh": 8,
+     "h": 9,
+     "m": 1
+    }
+   },
+   {
+    "group": 5,
+    "label": "5 · The Winners",
+    "n": 7,
+    "median_ltdi": 0.983,
+    "tiers": {
+     "vh": 7
+    }
+   }
+  ],
+  "disagreements": [
+   {
+    "code": "pih",
+    "name": "Pitcairn-Norfolk",
+    "ltdi": 0.05,
+    "rank": 3290,
+    "tier": "ld",
+    "other": 1,
+    "gap": -0.658
+   },
+   {
+    "code": "prp",
+    "name": "Parsi",
+    "ltdi": 0.05,
+    "rank": 3999,
+    "tier": "ln",
+    "other": 1,
+    "gap": -0.658
+   },
+   {
+    "code": "prs",
+    "name": "Dari",
+    "ltdi": 0.5947,
+    "rank": 73,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.53
+   },
+   {
+    "code": "pcm",
+    "name": "Nigerian Pidgin",
+    "ltdi": 0.278,
+    "rank": 146,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.496
+   },
+   {
+    "code": "shn",
+    "name": "Shan",
+    "ltdi": 0.2727,
+    "rank": 147,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.495
+   },
+   {
+    "code": "mni",
+    "name": "Meiteilon (Manipuri)",
+    "ltdi": 0.2649,
+    "rank": 151,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.494
+   },
+   {
+    "code": "dag",
+    "name": "Dagbani",
+    "ltdi": 0.2578,
+    "rank": 156,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.491
+   },
+   {
+    "code": "ban",
+    "name": "Balinese",
+    "ltdi": 0.249,
+    "rank": 164,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.488
+   },
+   {
+    "code": "awa",
+    "name": "Awadhi",
+    "ltdi": 0.2424,
+    "rank": 173,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.483
+   },
+   {
+    "code": "dga",
+    "name": "Southern Dagaare",
+    "ltdi": 0.2272,
+    "rank": 182,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.479
+   },
+   {
+    "code": "lus",
+    "name": "Mizo",
+    "ltdi": 0.2203,
+    "rank": 188,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.476
+   },
+   {
+    "code": "mww",
+    "name": "Hmong Daw",
+    "ltdi": 0.2125,
+    "rank": 195,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.472
+   },
+   {
+    "code": "nyn",
+    "name": "Nyankole",
+    "ltdi": 0.2102,
+    "rank": 200,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.471
+   },
+   {
+    "code": "fon",
+    "name": "Fon",
+    "ltdi": 0.2065,
+    "rank": 204,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.469
+   },
+   {
+    "code": "kam",
+    "name": "Kamba",
+    "ltdi": 0.2085,
+    "rank": 203,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.469
+   },
+   {
+    "code": "kac",
+    "name": "Kachin",
+    "ltdi": 0.2049,
+    "rank": 206,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.468
+   },
+   {
+    "code": "mos",
+    "name": "Mossi",
+    "ltdi": 0.2024,
+    "rank": 209,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.467
+   },
+   {
+    "code": "ach",
+    "name": "Acoli",
+    "ltdi": 0.2007,
+    "rank": 211,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.466
+   },
+   {
+    "code": "bew",
+    "name": "Betawi",
+    "ltdi": 0.1955,
+    "rank": 217,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.463
+   },
+   {
+    "code": "cnh",
+    "name": "Hakha Chin",
+    "ltdi": 0.1901,
+    "rank": 223,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.46
+   },
+   {
+    "code": "umb",
+    "name": "Umbundu",
+    "ltdi": 0.1888,
+    "rank": 224,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.46
+   },
+   {
+    "code": "brx",
+    "name": "Bodo",
+    "ltdi": 0.1884,
+    "rank": 226,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.459
+   },
+   {
+    "code": "bem",
+    "name": "Bemba",
+    "ltdi": 0.1875,
+    "rank": 228,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.458
+   },
+   {
+    "code": "mag",
+    "name": "Magahi",
+    "ltdi": 0.1864,
+    "rank": 229,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.458
+   },
+   {
+    "code": "gsw",
+    "name": "Swiss German",
+    "ltdi": 0.1847,
+    "rank": 232,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.456
+   },
+   {
+    "code": "quc",
+    "name": "K'iche'",
+    "ltdi": 0.1829,
+    "rank": 236,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.455
+   },
+   {
+    "code": "hil",
+    "name": "Hiligaynon",
+    "ltdi": 0.1767,
+    "rank": 241,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.452
+   },
+   {
+    "code": "lua",
+    "name": "Luba-Lulua",
+    "ltdi": 0.1739,
+    "rank": 250,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.449
+   },
+   {
+    "code": "sid",
+    "name": "Sidamo",
+    "ltdi": 0.1705,
+    "rank": 253,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.448
+   },
+   {
+    "code": "wal",
+    "name": "Wolaytta",
+    "ltdi": 0.166,
+    "rank": 257,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.446
+   }
+  ],
+  "source": "https://aclanthology.org/2020.acl-main.560/",
+  "as_of": "2020"
+ },
+ "dls": {
+  "n": 671,
+  "spearman": 0.678,
+  "groups": [
+   {
+    "group": "Still",
+    "label": "Still",
+    "n": 312,
+    "median_ltdi": 0.05,
+    "tiers": {
+     "ld": 46,
+     "ln": 244,
+     "lo": 18,
+     "lc": 4
+    }
+   },
+   {
+    "group": "Emerging",
+    "label": "Emerging",
+    "n": 307,
+    "median_ltdi": 0.05,
+    "tiers": {
+     "lo": 208,
+     "lc": 52,
+     "ln": 23,
+     "ld": 24
+    }
+   },
+   {
+    "group": "Ascending",
+    "label": "Ascending",
+    "n": 39,
+    "median_ltdi": 0.093,
+    "tiers": {
+     "lo": 6,
+     "lc": 32,
+     "ln": 1
+    }
+   },
+   {
+    "group": "Vital",
+    "label": "Vital",
+    "n": 10,
+    "median_ltdi": 0.586,
+    "tiers": {
+     "h": 2,
+     "m": 3,
+     "lc": 5
+    }
+   },
+   {
+    "group": "Thriving",
+    "label": "Thriving",
+    "n": 3,
+    "median_ltdi": 0.922,
+    "tiers": {
+     "vh": 3
+    }
+   }
+  ],
+  "disagreements": [
+   {
+    "code": "irk",
+    "name": "Iraqw",
+    "ltdi": 0.0831,
+    "rank": 560,
+    "tier": "lc",
+    "other": "Still",
+    "gap": 0.688
+   },
+   {
+    "code": "sro",
+    "name": "Campidanese Sardinian",
+    "ltdi": 0.05,
+    "rank": 2130,
+    "tier": "lo",
+    "other": "Ascending",
+    "gap": -0.62
+   },
+   {
+    "code": "cqd",
+    "name": "Chuanqiandian Cluster Miao",
+    "ltdi": 0.05,
+    "rank": 3999,
+    "tier": "ln",
+    "other": "Ascending",
+    "gap": -0.615
+   },
+   {
+    "code": "bwr",
+    "name": "Bura-Pabir",
+    "ltdi": 0.05,
+    "rank": 2236,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.56
+   },
+   {
+    "code": "wls",
+    "name": "Wallisian",
+    "ltdi": 0.05,
+    "rank": 1987,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.512
+   },
+   {
+    "code": "cng",
+    "name": "Northern Qiang",
+    "ltdi": 0.0513,
+    "rank": 1724,
+    "tier": "lc",
+    "other": "Still",
+    "gap": 0.501
+   },
+   {
+    "code": "sya",
+    "name": "Siang",
+    "ltdi": 0.0513,
+    "rank": 1796,
+    "tier": "lo",
+    "other": "Still",
+    "gap": 0.501
+   },
+   {
+    "code": "tks",
+    "name": "Takestani",
+    "ltdi": 0.0513,
+    "rank": 1796,
+    "tier": "lc",
+    "other": "Still",
+    "gap": 0.501
+   },
+   {
+    "code": "xte",
+    "name": "Ketengban",
+    "ltdi": 0.0513,
+    "rank": 1742,
+    "tier": "lo",
+    "other": "Still",
+    "gap": 0.501
+   },
+   {
+    "code": "anu",
+    "name": "Anuak",
+    "ltdi": 0.05,
+    "rank": 2440,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "bfm",
+    "name": "Mmen",
+    "ltdi": 0.05,
+    "rank": 2425,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "bqm",
+    "name": "Wumboko",
+    "ltdi": 0.05,
+    "rank": 2440,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "cts",
+    "name": "Northern Catanduanes Bikol",
+    "ltdi": 0.05,
+    "rank": 3999,
+    "tier": "ln",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "kwu",
+    "name": "Kwakum",
+    "ltdi": 0.05,
+    "rank": 2409,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "mls",
+    "name": "Masalit",
+    "ltdi": 0.05,
+    "rank": 2498,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "mrr",
+    "name": "Maria",
+    "ltdi": 0.05,
+    "rank": 2198,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "ria",
+    "name": "Riang",
+    "ltdi": 0.05,
+    "rank": 2150,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "ssc",
+    "name": "Suba-Simbiti",
+    "ltdi": 0.05,
+    "rank": 2644,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "ttr",
+    "name": "Tera",
+    "ltdi": 0.05,
+    "rank": 2219,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.495
+   },
+   {
+    "code": "dmk",
+    "name": "Domaaki",
+    "ltdi": 0.0512,
+    "rank": 1886,
+    "tier": "lo",
+    "other": "Still",
+    "gap": 0.49
+   },
+   {
+    "code": "fuq",
+    "name": "Central-Eastern Niger Fulfulde",
+    "ltdi": 0.05,
+    "rank": 2109,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.476
+   },
+   {
+    "code": "ijs",
+    "name": "Southeast Ijo",
+    "ltdi": 0.05,
+    "rank": 2440,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.476
+   },
+   {
+    "code": "cuh",
+    "name": "Chuka",
+    "ltdi": 0.05,
+    "rank": 3418,
+    "tier": "ld",
+    "other": "Emerging",
+    "gap": -0.461
+   },
+   {
+    "code": "tkr",
+    "name": "Tsakhur",
+    "ltdi": 0.0862,
+    "rank": 496,
+    "tier": "lc",
+    "other": "Emerging",
+    "gap": 0.426
+   },
+   {
+    "code": "ahl",
+    "name": "Igo",
+    "ltdi": 0.05,
+    "rank": 3206,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.412
+   },
+   {
+    "code": "avt",
+    "name": "Au",
+    "ltdi": 0.05,
+    "rank": 2035,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.412
+   },
+   {
+    "code": "big",
+    "name": "Biangai",
+    "ltdi": 0.05,
+    "rank": 2028,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.412
+   },
+   {
+    "code": "bmh",
+    "name": "Kein",
+    "ltdi": 0.05,
+    "rank": 1954,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.412
+   },
+   {
+    "code": "cay",
+    "name": "Cayuga",
+    "ltdi": 0.05,
+    "rank": 2498,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.412
+   },
+   {
+    "code": "ckl",
+    "name": "Cibak",
+    "ltdi": 0.05,
+    "rank": 3232,
+    "tier": "lo",
+    "other": "Emerging",
+    "gap": -0.412
+   }
+  ],
+  "spearman_level": 0.628,
+  "source": "https://github.com/sil-ai/dls-results",
+  "paper": "https://aclanthology.org/2022.coling-1.379/",
+  "as_of": "May 2021",
+  "sample": "783 languages, a 10% systematic sample"
+ }
+}

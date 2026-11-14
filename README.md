@@ -39,6 +39,7 @@ python -m ltdi.collectors.census_languages  # census languages by country -> dat
 python -m ltdi.collectors.udhr # Article 1 of the UDHR for each language's page -> data/udhr_article1.csv
 python -m ltdi.collectors.lingualibre  # a few spoken words per language (GitHub Actions) -> data/lingualibre.csv
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json, data/editions/<edition>.csv
+python tools/validate.py       # compare with Joshi et al. and SIL's DLS levels -> data/validation.json
 python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
 
@@ -73,6 +74,7 @@ only small builds work, because then the detail is embedded.
 | `data/records/` | Automated collector output |
 | `data/manual/` | Lists read by hand where no page can be parsed (`*.lists.csv`: languages, notes, URL, date) |
 | `data/editions/` | Each edition's scores (`<edition>.csv`) and what produced them (`<edition>.json`: method version, config and records hashes, column descriptions) |
+| `tools/validate.py` | Compares LTDI with Joshi et al.'s classes and SIL's Digital Language Support levels (`data/validation.json`, shown on the About page) |
 | `tools/edition_diff.py` | Splits the change in scores since an earlier commit into the method's part and the data's |
 | `site/` | Static site template and build output |
 
@@ -375,6 +377,22 @@ the coalition workstream it fits.
   census names, or counted as Mandarin where it names none, although in some countries many are Cantonese speakers.
   Tables that don't count speakers are left out: the Philippines (households), Rwanda (literacy), Sri Lanka,
   Russia and Ireland (ability to speak), Ghana (ethnic groups).
+
+## Validation
+
+`tools/validate.py` compares LTDI with two earlier classifications and lists the 30 languages where
+each disagrees most (by the gap between a language's percentile in LTDI and in the other measure):
+
+- Joshi et al. (2020)'s resource classes 0–5, which QQ gives for 2,032 ranked languages: rank
+  correlation 0.60, and LTDI's median rises with every class (0.05, 0.23, 0.58, 0.77, 0.88, 0.98).
+- Simons, Thomas and White (2022)'s Digital Language Support levels, from 143 tools' language lists
+  (May 2021). Only a 10% systematic sample is public ([sil-ai/dls-results](https://github.com/sil-ai/dls-results));
+  it's fetched when the tool runs, not stored here. 671 of its languages match ranked ones: rank
+  correlation 0.68 with the DLS score, 0.63 with the level.
+
+Both are older than LTDI's sources, so some disagreement is progress since; the lists are for
+checking LTDI's method and data language by language. Re-run the tool after scoring changes (it needs
+network for the DLS sample); the About page shows the result.
 
 ## Editions and citation
 

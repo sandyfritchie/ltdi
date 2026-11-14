@@ -25,6 +25,8 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+from ltdi.stats import spearman  # noqa: E402
 
 
 def score(cwd: Path, data: Path | None = None) -> dict[str, dict]:
@@ -36,31 +38,6 @@ def score(cwd: Path, data: Path | None = None) -> dict[str, dict]:
     return {"edition": out.get("edition"), "version": out.get("config", {}).get("meta", {}).get("methodology_version", "1.x"),
             "langs": {l["code"]: {"name": l["name"], "ltdi": l["ltdi"], "rank": l.get("rank"), "speakers": l.get("speakers") or 0}
                       for l in out["languages"] if not l.get("extinct")}}
-
-
-def ranks(xs: list[float]) -> list[float]:
-    """Average ranks, for Spearman's correlation with ties."""
-    order = sorted(range(len(xs)), key=lambda i: xs[i])
-    r = [0.0] * len(xs)
-    i = 0
-    while i < len(order):
-        j = i
-        while j + 1 < len(order) and xs[order[j + 1]] == xs[order[i]]:
-            j += 1
-        for k in range(i, j + 1):
-            r[order[k]] = (i + j) / 2 + 1
-        i = j + 1
-    return r
-
-
-def spearman(a: list[float], b: list[float]) -> float:
-    ra, rb = ranks(a), ranks(b)
-    n = len(a)
-    ma, mb = sum(ra) / n, sum(rb) / n
-    cov = sum((x - ma) * (y - mb) for x, y in zip(ra, rb))
-    va = sum((x - ma) ** 2 for x in ra) ** 0.5
-    vb = sum((y - mb) ** 2 for y in rb) ** 0.5
-    return cov / (va * vb) if va and vb else 1.0
 
 
 def main() -> None:
