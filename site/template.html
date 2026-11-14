@@ -566,7 +566,7 @@ async function need(...codes) {
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -748,6 +748,10 @@ const inCountry = l => !countrySel.size || [...countrySel].some(c => l._cc.has(c
 const inView = l => inRegion(l) && inCountry(l) && (!tierSel.size || tierSel.has(tierOf(l)[0]));
 const COUNTRY_NAMES = DATA.country_names || {};
 // A rank, with "=" where languages share a score (and so a rank): "=1,914"
+// Where the rank falls in 90% of re-scorings with other reasonable weights, goalposts and floors (ltdi.sensitivity)
+const rangeText = l => l.rr && l.rr[0] !== l.rr[1] ? `${l.rr[0].toLocaleString()}–${l.rr[1].toLocaleString()}` : '';
+const rankTitle = l => [l.tied ? `Tied with ${l.tied.toLocaleString()} other ${l.tied === 1 ? 'language' : 'languages'}` : '',
+  rangeText(l) ? `Ranks ${rangeText(l)} under other reasonable weightings` : ''].filter(Boolean).join('\n');
 const rankLabel = l => l.rank ? `${l.tied ? '=' : ''}${l.rank.toLocaleString()}` : '–';
 // Countries with census figures on language (immigrant languages counted); for the others a filtered
 // view says their immigrant communities' languages are missing
@@ -1162,7 +1166,7 @@ function ranking() {
     const btn = $('#rankall'); if (btn) btn.onclick = () => { rankAll = true; draw(); };
     $('#rows').innerHTML = rows.map(l => `
       <tr tabindex="0" data-code="${l.code}">
-        <td class="rank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} other ${l.tied === 1 ? 'language' : 'languages'}"` : ''}>${rankLabel(l)}</td>
+        <td class="rank"${rankTitle(l) ? ` title="${esc(rankTitle(l))}"` : ''}>${rankLabel(l)}</td>
         <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">[${l.code}]</span></div></td>
         <td class="num hide-sm hide-nar">${people(vSpk(l))}</td>
         <td class="num hide-sm">${people(vOn(l))}${vOn(l) && vSpk(l) ? ` <span class="pct p${pctBand(vOn(l) / vSpk(l))}">(${Math.round(vOn(l) / vSpk(l) * 100)}%)</span>` : ''}</td>
@@ -1343,7 +1347,7 @@ function dimPanel(l, key, color) {
     }
     body += '</div>';
   }
-  return `<section class="dim wide${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</section>`;
+  return `<section class="dim wide${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${key === 'tech' ? evidenceLine(l) : ''}${body}</section>`;
 }
 
 function reachLine(l) {
@@ -1419,9 +1423,17 @@ function writtenInfo(l) {
   if (l.shares_written) return infoTip('How writing is counted', `${esc(l.name)} is written in the standard form of <a href="#lang-${w.code}">${esc(w.name)}</a>, and sources label that text and its tools as ${esc(w.name)}, so ${esc(w.name)}’s written data and text technologies count as ${esc(l.name)}’s. Speech data and technologies are counted separately.`);
   return infoTip('How the standard is counted', `${esc(l.name)} speakers typically write the standard form of <a href="#lang-${w.code}">${esc(w.name)}</a>. The score and rank count only what exists for ${esc(l.name)} itself; a second score counts ${esc(w.name)}’s written data and text technologies too, as most speakers can use them. On this page, values marked “through ${esc(w.name)}” are ${esc(w.name)}’s.`);
 }
+// What the technology score rests on: language-list entries, and quality measurements with the oldest's year
+function evidenceLine(l) {
+  const e = l.evidence;
+  if (!e || !(e.listed || e.measured)) return '';
+  const n = (k, one, many) => `${k.toLocaleString()} ${k === 1 ? one : many}`;
+  return `<div class="thru-dim" title="List entries say a service supports the language; measurements say how well (benchmarks, error rates, translation scores). Most languages have no measurements, so their scores rest on lists alone.">Based on ${n(e.listed, 'language-list entry', 'language-list entries')}${e.measured ? ` and ${n(e.measured, 'quality measurement', 'quality measurements')}${e.oldest ? ` (oldest ${e.oldest})` : ''}` : ', with no quality measurements'}</div>`;
+}
 // Under the score: a spoken variety's score through its written standard; the score before the floor
 function scoreNotes(l) {
   const w = BY[l.written_in], out = [];
+  if (rangeText(l)) out.push(`<div class="snote" title="Where ${esc(l.name)} ranks in 90% of ${(DATA.sensitivity || {}).draws || 1000} re-scorings that vary the weights, goalposts and floor within reasonable ranges (see About)">Rank range <b>${rangeText(l)}</b></div>`);
   if (l.via && w) {
     const [c, t] = tierOf(l.via[1]);
     out.push(`<div class="snote" title="Counting ${esc(w.name)}’s written data and text technologies, which ${esc(l.name)} speakers can typically use. The rank is on ${esc(l.name)}’s own score.">Through <a href="#lang-${w.code}">${esc(w.name)}</a> <b>${l.via[0].toFixed(3)}</b> <span class="tier ${c} sm">${esc(t)}</span></div>`);
@@ -2109,6 +2121,17 @@ function mapPage() {
 }
 
 // ---------------------------------------------------------------- about
+// How much ranks depend on the method's working choices (ltdi.sensitivity)
+function stabilitySection() {
+  const S = DATA.sensitivity;
+  if (!S) return '';
+  return `<h3>How stable the ranks are</h3>
+    <p>The weights, goalposts and floor are working choices. To see how much the ranking depends on them, every language was re-scored ${S.draws.toLocaleString()} times with different choices drawn at random: each weight from half to one and a half times its value, each data goal up to ten times higher or lower, and the floor from 0.025 to 0.075. A language's page shows the range of ranks it takes in 90% of these re-scorings.</p>
+    <div class="tablebox"><table class="covtab"><thead><tr><th>Ranks</th><th class="num">Languages</th><th class="num">Typical range</th><th class="num">Within ±10% of rank</th></tr></thead>
+    <tbody>${S.bands.map(b => `<tr><td>${esc(b.ranks)}</td><td class="num">${b.languages.toLocaleString()}</td><td class="num">${b.median_range.toLocaleString()} places</td><td class="num">${Math.round(b.within_10pct * 100)}%</td></tr>`).join('')}</tbody></table></div>
+    <p class="note">The ${S.nothing_recorded.toLocaleString()} languages with nothing recorded always rank last together. The top of the ranking barely moves; from about rank 200 down, where scores are close together, ranks shift by hundreds of places, so the tier says more than the exact rank.
+    ${S.scenarios.map(s => `${esc(s.label)}: ${s.moved_10_in_top_300 ? `${s.moved_10_in_top_300} of the top 300 move more than 10 places` : 'no language in the top 300 moves more than 10 places'}.`).join(' ')}</p>`;
+}
 // How LTDI compares with Joshi et al.'s resource classes and SIL's Digital Language Support levels
 // (tools/validate.py): a table per classification, with LTDI's median and tiers in each group, and
 // the languages where the two disagree most
@@ -2217,6 +2240,7 @@ function about() {
     <ul><li>Opportunities are gaps in the sources tracked here, ranked by how many people could use the technology, how big the gap is and the rough cost of acting. The costs are rough guides, not estimates, and a gap may already be filled by something no source here records.</li>
       <li>Each kind of opportunity is suggested only where its first step is possible: text technologies and benchmarks need some written text, a Wikipedia card needs a Wikipedia. A language with nothing recorded gets a single card about documentation and first recordings with its speakers. Before a language is chosen, the list shows at most two cards per language.</li></ul>
 
+    ${stabilitySection()}
     ${validationSection()}
     <h3>Independence and accuracy</h3>
     <p>The Index isn't affiliated with any organisation or company. It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>

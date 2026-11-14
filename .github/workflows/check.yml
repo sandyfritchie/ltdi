@@ -29,15 +29,17 @@ jobs:
         run: python -m pytest tests -q
       - name: Score
         run: python -m ltdi.score > /dev/null
+      - name: Rank ranges (sensitivity)
+        run: python -m ltdi.sensitivity > /dev/null
       - name: Build the site
         run: python -m ltdi.build_site
       - name: The committed site and edition table match the build
         run: |
-          changed=$(git status --porcelain -- site/ data/editions/)
+          changed=$(git status --porcelain -- site/ data/editions/ data/sensitivity.csv data/sensitivity.json)
           if [ -n "$changed" ]; then
-            echo "::error::site/ or data/editions/ doesn't match a fresh build from data/ and config/. Run python -m ltdi.score && python -m ltdi.build_site and commit both."
+            echo "::error::site/ or data/editions/ doesn't match a fresh build from data/ and config/. Run python -m ltdi.score && python -m ltdi.sensitivity && python -m ltdi.build_site and commit what changes."
             echo "$changed" | head -40
-            git diff --stat -- site/ data/editions/ | tail -5
+            git diff --stat -- site/ data/editions/ data/sensitivity.* | tail -5
             exit 1
           fi
           echo "site/ and data/editions/ match the build"

@@ -10,6 +10,7 @@ import csv
 import dataclasses
 import json
 import math
+import re
 from collections import Counter, defaultdict
 
 from . import CONFIG, DATA
@@ -179,6 +180,25 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
             gaps[name] = "open" if any(_on(facts.get(i)) for i in opn + meas) else "none"
     offers = [sv["id"] for sv in services() if _on(facts.get(sv["id"]))]
     return {"levels": levels, "gaps": gaps, "offers": offers}
+
+
+def evidence(facts: dict[str, Record], cfg: dict) -> dict:
+    """What the technology score rests on: how many of its values are measured quality (benchmarks,
+    error rates, translation scores) and how many are entries in a service's language list, with the
+    year of the oldest measurement (from its source's name, where it gives one)."""
+    measured, years, listed = 0, [], 0
+    for t in cfg["dimensions"]["tech"]["technologies"].values():
+        for i in (*t.get("measured", {}), *(q["indicator"] for q in t.get("quality", {}).values())):
+            f = facts.get(i)
+            if f is None or (f.unit == "% WER" and f.value >= 100):  # 100% WER: no published rate
+                continue
+            measured += 1
+            y = re.search(r"((?:19|20)\d\d)\)?$", f.source or "")
+            if y:
+                years.append(int(y.group(1)))
+        listed += sum(1 for i in (*t.get("consumer", []), *t.get("regional", []), *t.get("open", []))
+                      if facts.get(i) is not None and facts[i].unit == "bool" and facts[i].value)
+    return {"measured": measured, "listed": listed, "oldest": min(years) if years else None}
 
 
 def score_language(facts: dict[str, Record], cfg: dict) -> dict:
@@ -362,6 +382,7 @@ def main() -> None:
             o["why"] = explain(lang, o, opp_facts)
         results.append({**lang, **s, "tier": tier_of(s["ltdi"], facts_l, s["dimensions"], cfg),
                         **({"via": via} if via else {}), **coverage(facts_l, cfg), "opportunities": opps,
+                        "evidence": evidence(facts_l, cfg),
                         "written_in": written.get(code), "shares_written": code in shared,
                         "reach_by_country": reach_by_country(lang, countries)})
     assign_ranks(results)

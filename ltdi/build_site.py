@@ -16,6 +16,7 @@ so it works opened straight from disk. Otherwise serve the site folder over HTTP
 
 from __future__ import annotations
 
+import csv
 import json
 import re
 import shutil
@@ -66,7 +67,6 @@ def add_census(scores: dict) -> None:
     in a country, each country's opportunities), so LinguaMeta's figures, world totals and scores stay
     as they are. Each language records the censuses it took figures from ("census": [[country,
     source, url], ...]), for its page."""
-    import csv
     path = DATA / "census_languages.csv"
     if not path.exists():
         return
@@ -97,7 +97,6 @@ def add_census(scores: dict) -> None:
 def udhr_samples() -> dict[str, list[str]]:
     """{language: [text, BCP 47 tag, direction, the text's name, its file, script]}: Article 1 of the Universal
     Declaration of Human Rights (data/udhr_article1.csv, ltdi.collectors.udhr), shown on its page."""
-    import csv
     path = DATA / "udhr_article1.csv"
     if not path.exists():
         return {}
@@ -108,7 +107,6 @@ def udhr_samples() -> dict[str, list[str]]:
 def lingualibre_clips() -> dict[str, dict]:
     """{language: {"speaker", "clips": [[word, English gloss, MP3 URL, Commons file], ...]}}: a few words
     spoken by one speaker, from Lingua Libre (data/lingualibre.csv, ltdi.collectors.lingualibre)."""
-    import csv
     path = DATA / "lingualibre.csv"
     out: dict[str, dict] = {}
     if not path.exists():
@@ -126,7 +124,6 @@ def coverage(scores: dict) -> dict:
 
     {"n": ranked languages, "meta": [[label, count], ...], "data": [[label, count], ...],
      "tech": [[technology label, any service, [[service, provider, role, count], ...]], ...]}"""
-    import csv
     from collections import Counter
     ranked = [l for l in scores["languages"] if not l.get("extinct")]
     codes = {l["code"] for l in ranked}
@@ -183,7 +180,6 @@ def coverage(scores: dict) -> dict:
 
 def census_countries() -> list[str]:
     """Countries with census figures on language (data/census_languages.csv); the page notes the others."""
-    import csv
     path = DATA / "census_languages.csv"
     return sorted({r["country"] for r in csv.DictReader(path.open(encoding="utf-8"))}) if path.exists() else []
 
@@ -248,7 +244,6 @@ def country_online() -> dict[str, float]:
     """{country: latest share of people using the internet} (data/countries.csv, World Bank), so the
     page can count speakers online in the countries a filter chooses, as the connectivity collector
     does for each language."""
-    import csv
     path = DATA / "countries.csv"
     if not path.exists():
         return {}
@@ -274,6 +269,10 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     svc_index = {sv["id"]: i for i, sv in enumerate(scores["services"])}
     techs = list(scores["config"]["dimensions"]["tech"]["technologies"])
     langs, details, top = [], {}, []
+    rr = {}
+    if (DATA / "sensitivity.csv").exists():
+        for r in csv.DictReader((DATA / "sensitivity.csv").open(encoding="utf-8")):
+            rr[r["code"]] = [int(r["rank_p5"]), int(r["rank_p95"])]
     from .backbone import _locales, region_group  # LinguaMeta's country -> region table (cached)
     country_region = {c: region_group(v["region"], v["subregion"]) for c, v in _locales().items() if v.get("region")}
     # Fields that are the same in every opportunity from a rule go to the rule, once
@@ -312,7 +311,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                               **({"via": {"dimensions": via["dimensions"],
                                           "facts": encode(l["code"], scores.get("via_facts", {}).get(l["code"], {}))}}
                                  if via else {}),
-                              "reach_by_country": l["reach_by_country"],
+                              "reach_by_country": l["reach_by_country"], "evidence": l.get("evidence"),
                               "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES],
                               **{k: l.get(k) for k in PROFILE}}
         langs.append({k: l.get(k) for k in SUMMARY} | {
@@ -320,6 +319,8 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             # unfloored dimension scores, shown where the floor lifts a dimension (and used for the rank)
             "raw": {k: d["raw"] for k, d in l["dimensions"].items() if d["raw"] < d["score"]} or None,
             **({"via": [l["via"]["ltdi"], l["via"]["tier"]]} if l.get("via") else {}),
+            # where the rank falls in 90% of re-scorings with other reasonable choices (ltdi.sensitivity)
+            **({"rr": rr[l["code"]]} if l["code"] in rr else {}),
             "levels": "".join(l["levels"][t][0] for t in techs),  # f(ull) p(art) o(pen) n(one), in config order
             "offers": [svc_index[i] for i in l["offers"]],
             "opportunity_count": len(opps),
@@ -400,6 +401,8 @@ def main() -> None:
     index["census_countries"] = census_countries()
     index["coverage"] = coverage(scores)
     # comparison with Joshi et al.'s classes and SIL's DLS levels (tools/validate.py)
+    if (DATA / "sensitivity.json").exists():
+        index["sensitivity"] = json.loads((DATA / "sensitivity.json").read_text(encoding="utf-8"))
     if (DATA / "validation.json").exists():
         index["validation"] = json.loads((DATA / "validation.json").read_text(encoding="utf-8"))
     for code, sample in udhr_samples().items():

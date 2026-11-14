@@ -1,0 +1,131 @@
+{
+ "draws": 1000,
+ "seed": 2026,
+ "edition": "2026-11",
+ "varied": "technology and data weights x0.5-1.5; log-scale data goals up to 10x either way, the benchmark goal x0.5-1.5; floor 0.025-0.075",
+ "nothing_recorded": 2819,
+ "bands": [
+  {
+   "ranks": "1–60",
+   "languages": 60,
+   "median_range": 4,
+   "within_10pct": 0.7
+  },
+  {
+   "ranks": "61–200",
+   "languages": 140,
+   "median_range": 14,
+   "within_10pct": 0.907
+  },
+  {
+   "ranks": "201–1,000",
+   "languages": 800,
+   "median_range": 191,
+   "within_10pct": 0.16
+  },
+  {
+   "ranks": "1,001 and below",
+   "languages": 2998,
+   "median_range": 372,
+   "within_10pct": 0.495
+  }
+ ],
+ "scenarios": [
+  {
+   "label": "Voice assistants at full weight",
+   "spearman": 0.9995,
+   "moved_10_in_top_300": 0,
+   "largest": [
+    {
+     "name": "Ukrainian",
+     "from": 21,
+     "to": 24
+    },
+    {
+     "name": "Norwegian Bokmål",
+     "from": 28,
+     "to": 25
+    },
+    {
+     "name": "Malay",
+     "from": 35,
+     "to": 32
+    },
+    {
+     "name": "Finnish",
+     "from": 23,
+     "to": 21
+    },
+    {
+     "name": "Danish",
+     "from": 24,
+     "to": 22
+    }
+   ]
+  },
+  {
+   "label": "Voice assistants left out",
+   "spearman": 1.0,
+   "moved_10_in_top_300": 0,
+   "largest": [
+    {
+     "name": "Yue Chinese",
+     "from": 82,
+     "to": 87
+    },
+    {
+     "name": "Russian",
+     "from": 8,
+     "to": 5
+    },
+    {
+     "name": "Polish",
+     "from": 16,
+     "to": 13
+    },
+    {
+     "name": "Dutch",
+     "from": 11,
+     "to": 14
+    },
+    {
+     "name": "Danish",
+     "from": 24,
+     "to": 27
+    }
+   ]
+  },
+  {
+   "label": "Every technology weighted equally",
+   "spearman": 0.9978,
+   "moved_10_in_top_300": 13,
+   "largest": [
+    {
+     "name": "Ladin",
+     "from": 316,
+     "to": 292
+    },
+    {
+     "name": "Kusaal",
+     "from": 299,
+     "to": 318
+    },
+    {
+     "name": "Piemontese",
+     "from": 238,
+     "to": 220
+    },
+    {
+     "name": "Western Armenian",
+     "from": 278,
+     "to": 264
+    },
+    {
+     "name": "Swiss German",
+     "from": 232,
+     "to": 218
+    }
+   ]
+  }
+ ]
+}

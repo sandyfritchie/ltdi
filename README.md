@@ -39,6 +39,7 @@ python -m ltdi.collectors.census_languages  # census languages by country -> dat
 python -m ltdi.collectors.udhr # Article 1 of the UDHR for each language's page -> data/udhr_article1.csv
 python -m ltdi.collectors.lingualibre  # a few spoken words per language (GitHub Actions) -> data/lingualibre.csv
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json, data/editions/<edition>.csv
+python -m ltdi.sensitivity     # rank ranges under 1,000 alternative methods -> data/sensitivity.csv
 python tools/validate.py       # compare with Joshi et al. and SIL's DLS levels -> data/validation.json
 python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
 ```
@@ -377,6 +378,25 @@ the coalition workstream it fits.
   census names, or counted as Mandarin where it names none, although in some countries many are Cantonese speakers.
   Tables that don't count speakers are left out: the Philippines (households), Rwanda (literacy), Sri Lanka,
   Russia and Ireland (ability to speak), Ghana (ethnic groups).
+
+## How stable the ranks are
+
+`python -m ltdi.sensitivity` re-scores every language 1,000 times, each time with the method's working
+choices drawn at random within reasonable ranges: every technology and data weight from 0.5 to 1.5
+times its value, each log-scale data goal up to ten times higher or lower (the benchmark goal 0.5 to
+1.5 times), and the floor from 0.025 to 0.075. It writes each language's 5th, 50th and 95th percentile
+rank and LTDI to `data/sensitivity.csv`, and a summary to `data/sensitivity.json`. Seeded, so the
+output is reproducible; CI re-runs it and checks the committed files.
+
+Language pages show the 5th–95th percentile range ("Rank range 69–79"), and the ranking table shows
+it on hovering a rank. The top 60 move by a median of 4 places and ranks 61–200 by 14, but ranks
+201–1,000 by 191: there, the tier says more than the exact rank. Fixed scenarios test the weights the
+review questioned: voice assistants at full weight or left out move no language in the top 300 by
+more than 10 places; weighting every technology equally moves 13.
+
+Each language page also says what its technology score rests on: how many entries in services'
+language lists, and how many quality measurements (benchmarks, error rates, translation scores),
+with the year of the oldest. 5,783 languages have no quality measurement at all.
 
 ## Validation
 
