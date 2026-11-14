@@ -512,8 +512,11 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .plan-toggles .switch, .sl-controls .switch { white-space: normal; align-items: flex-start; line-height: 1.3; }
 .plangraph .plancurve { max-width: none; }
 .plangraph h3 { min-height: 1.3em; }
-.plangraph .sub { min-height: 4.4em; }  /* room for its longest wording, so switching a control doesn't move the curve */
+.plangraph .sub { min-height: 5.8em; }
+@media (max-width: 1200px) and (min-width: 901px) { .plangraph h3 { min-height: 2.6em; } .plangraph .sub { min-height: 7.2em; } }
+@media (max-width: 900px) { .plangraph h3 { min-height: 3.9em; } .plangraph .sub { min-height: 10.2em; } }  /* room for its longest wording, so switching a control doesn't move the curve */
 .plan-l { display: inline-flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--muted); }
+.plan-in { font: 15px var(--font-body); padding: 6px 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); width: 100%; box-sizing: border-box; min-width: 0; }
 .plan-l select { font: 15px var(--font-body); padding: 6px 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); max-width: 100%; }
 .plan-paste textarea { width: 100%; box-sizing: border-box; font: 14px var(--font-mono); padding: 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); color: var(--ink); }
 .plancurve { width: 100%; height: auto; max-width: 760px; display: block; }
@@ -529,6 +532,10 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .plan-l select { min-width: 15em; }
 .plan-paste { margin-top: 12px; }
 .plancurve .grid line { stroke: var(--rule); } .plancurve .grid text, .plancurve .mk { font-size: 11px; fill: var(--muted); }
+.ftags { font: 10.5px/1.3 var(--font-body); color: var(--muted); margin-top: 3px; letter-spacing: 0; }
+.eflags { display: inline-flex; flex-wrap: wrap; gap: 4px; vertical-align: middle; } .eflag { font-size: 12px; padding: 1px 7px; border: 1px solid var(--rule); border-radius: 10px; color: var(--ink); background: var(--surface); cursor: help; }
+.rel-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 6px 18px; }
+.rel-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
 .slbtn { float: right; margin: 1px 0 0 6px; width: 22px; height: 22px; padding: 0; border-radius: 50%; border: 1px solid var(--rule);
   background: var(--surface); color: var(--accent); font: 700 14px/20px var(--font-body); text-align: center; cursor: pointer; }
 .slbtn:hover { border-color: var(--accent); } .slbtn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); }
@@ -594,6 +601,8 @@ for (const l of ALL) {
   l._cc = new Set(Object.keys(l._cs));
   l._im = new Set((l.im || '').split(' ').filter(Boolean));  // countries where only immigrant communities speak it
   l._sc = (l.sc || '').split(' ').filter(Boolean);  // its scripts, main one first
+  l._fx = (l.fx || '').split('');  // engineering flags (DATA.flags)
+  l._gp = l.gp ? l.gp.split(' ').map(x => parseInt(x, 36)) : [];  // Glottolog groups above it, family first (DATA.gnodes)
   l._csc = Object.fromEntries((l.csc || '').split(' ').filter(Boolean).map(t => { const [c, v] = t.split('='); return [c, v.split(',')]; }));
   // every region it's spoken in, not just its home: English counts in the Americas and Oceania too
   l._rg = new Set([...(l.rg || '')].map(c => REGION_OF[c]).concat(l.region ? [l.region] : []));
@@ -634,7 +643,7 @@ async function need(...codes) {
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, lookalikes: d.lookalikes });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -1309,6 +1318,47 @@ const measuredLong = id => { const t = TEST_OF[id]; if (!t) return '';
   const who = t.quality_by === 'own' ? 'Measured by the makers' : 'Measured independently';
   return t.test_public === 'no' ? `${who} on ${t.test_set}, which isn't public, so the figure can't be checked and may read better than on other speech`
     : `${who} on ${t.test_set} (public${t.test_size ? `; ${t.test_size}` : ''})`; };
+// Families (Glottolog): the groups above each language, and the nearest relatives with more support
+const GN = DATA.gnodes, GN_BY = Object.fromEntries(GN.map(([g], i) => [g, i]));
+const famName = l => l._gp.length ? GN[l._gp[0]][1] : l.giso ? 'Isolate' : '';
+const branchName = l => l._gp.length > 1 ? GN[l._gp[l._gp.length - 1]][1] : '';
+function famLine(l) {
+  if (!l._gp.length) return l.giso ? `<span title="Glottolog lists no relatives">Family <b>Isolate</b></span>` : '';
+  const path = l._gp.map(i => GN[i][1]);
+  return `<span title="${esc(path.join(' › '))} (Glottolog)">Family <b>${esc(path[0])}</b></span>`;
+}
+function relatives(l, k = 6) {
+  if (!l._gp.length) return [];
+  const out = [];
+  for (const m of LANGS) {
+    if (m === l || !m._gp.length || m._gp[0] !== l._gp[0] || m.ltdi <= l.ltdi) continue;
+    let d = 0;
+    while (d < l._gp.length && d < m._gp.length && l._gp[d] === m._gp[d]) d++;
+    out.push([d, m]);
+  }
+  return out.sort((a, b) => b[0] - a[0] || b[1].ltdi - a[1].ltdi).slice(0, k).map(([d, m]) => ({ m, group: GN[l._gp[d - 1]][1], same: m._sc[0] && m._sc[0] === l._sc[0] }));
+}
+function relatedPanel(l) {
+  if (!l._gp.length) return '';
+  const rs = relatives(l);
+  return `<h3 class="panel-h">Related languages with more support</h3>
+    ${rs.length ? `<ul class="rel-list">${rs.map(r => `<li><a href="#lang-${r.m.code}">${esc(r.m.name)}</a> <span class="code">${r.m.code}</span> ${tierChip(r.m)} <span class="muted small">${r.m.ltdi.toFixed(3)} · both ${esc(r.group)}${r.same ? ' · same script' : ''}</span></li>`).join('')}</ul>
+    <p class="note">The nearest relatives in Glottolog's classification that score higher, closest first: tools and data for a close relative are the usual starting point for a new language. Closeness here is by family tree, not by how similar the languages are, so check before reusing anything.</p>`
+      : `<p class="note">No relative in ${esc(famName(l))} scores higher.</p>`}`;
+}
+// Engineering flags: what makes building for a language cost more (ltdi.engineering)
+const FLAG_SHORT = { r: 'RTL', s: 'Shaping', w: 'No spaces', i: 'IME', m: 'Scripts', l: 'Look-alikes' };
+const flagLabels = l => l._fx.map(f => (DATA.flags[f] || [, f])[1]);
+const FLAG_CHIP = { r: 'Right to left', s: 'Complex shaping', w: 'No spaces between words', i: 'Input method', m: 'Several scripts', l: 'Look-alike letters' };
+function engLine(l) {
+  if (!l._fx.length) return '';
+  const look = (l.lookalikes || []).map(([a, b]) => `${a} for ${b}`).join(', ');
+  const cp = ch => [...ch].map(c => 'U+' + c.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')).join(' ');
+  const lookLong = (l.lookalikes || []).map(([a, b]) => `${a} ${cp(a)} for ${b} ${cp(b)}`).join('; ');
+  const chips = l._fx.map(f => `<span class="eflag" title="${esc((DATA.flags[f] || [, ''])[1] + (f === 'l' && lookLong ? `: ${lookLong}` : ''))}">${FLAG_CHIP[f]}${f === 'l' && look ? ` <span class="code">${esc(look.length > 24 ? look.slice(0, look.lastIndexOf(',', 24)) + ' …' : look)}</span>` : ''}</span>`).join('');
+  return `<span>Engineering <span class="eflags">${chips}</span>${infoTip('Engineering flags', 'Things about how the language is written that raise the cost of building for it. Direction, shaping, word spacing and input methods are from Unicode CLDR’s data on its main script; several scripts from LinguaMeta; look-alike letters from a sample of its FineWeb-2 web text, where letters of another script stand in for its own, so one word has two spellings. Tone or vowel marks left out in everyday writing, and spelling that varies, also raise cost but aren’t recorded in the sources tracked here.')}</span>`;
+}
+const flagTags = l => l._fx.length ? `<div class="ftags" title="${esc(flagLabels(l).join('\n'))}">${l._fx.map(f => FLAG_SHORT[f]).join(' · ')}</div>` : '';
 // A figure passes the planner's quality filter: all, on public test sets, or independent only
 const qualityOK = (id, q) => { const t = TEST_OF[id]; if (!t) return false;
   return q === 'pub' ? t.test_public !== 'no' : q === 'ind' ? t.quality_by === 'independent' : true; };
@@ -1626,7 +1676,7 @@ async function language(code) {
     <div class="lhead lang">
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span>${l.note ? infoTip('About this language', esc(l.note)) : ''}</h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
-        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${unicodeNote(l)}${writtenInfo(l)}</span>
+        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${unicodeNote(l)}${writtenInfo(l)}</span>${engLine(l)}${famLine(l)}
         <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>${!['none', 'not_endangered'].includes(endKey(l)) ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
         ${sampleBlock(l)}
@@ -1639,6 +1689,7 @@ async function language(code) {
     <h3 class="panel-h">Readiness to build</h3>
     <div class="ready-grid">${PLAN_TECHS.map(t => readyCard(l, t)).join('')}</div>
     <p class="note">What a team would look for before building each technology, and whether it's recorded here for ${esc(l.name)} itself. The Plan tab sorts languages on these and can count only data and models licensed for commercial use.</p>
+    ${relatedPanel(l)}
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">langtechindex@gmail.com</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>`;
@@ -2442,6 +2493,8 @@ function about() {
     <h3>Download and cite</h3>
     <p>The scores for this edition are a <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">CSV file</a>: one row per language, with its rank, tier, both dimensions before and after the floor, each technology's score, and, for spoken varieties, the score through their written standard (<a href="data/ltdi-${DATA.edition}.json" target="_blank" rel="noopener">column descriptions and the method's hashes</a>). A second <a href="data/ltdi-${DATA.edition}-services.csv" target="_blank" rel="noopener">services table</a> gives, for every language, what each service and benchmark tracked records: 1 where it's offered, 0 where it isn't, or the measured result. Every value with its source, date and note is in the repository's <a href="${REPO_URL}/tree/main/data/records" target="_blank" rel="noopener">data/records</a> folder, and every edition in <a href="${REPO_URL}/tree/main/data/editions" target="_blank" rel="noopener">data/editions</a>, so editions can be compared. The data is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> and the code MIT.</p>
     <p class="cite">${esc(citeText())}</p>
+    <h3>Data for your own tools</h3>
+    <p>Each language is also a JSON file at a stable address, such as <span class="code">https://langtechindex.org/api/v1/languages/yo.json</span>, with its scores, the technologies and services that cover it, every recorded value with its source, its countries and locales, family, engineering flags and opportunities. <span class="code">api/v1/index.json</span> lists every language, and <span class="code">api/v1/schema.json</span> describes the files. Within version 1, fields are only added, never renamed or removed; values change with each edition, and a change of method raises the methodology version. Anything that would break a reader goes to version 2, with version 1 kept beside it for at least one edition.</p>
     <h3>Sources and credits</h3>
     <p>Language metadata from LinguaMeta, with scripts from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a> (CC BY-SA 4.0, so data derived from it carries the same licence), endangerment from Glottolog where LinguaMeta gives none, and speaker counts from Wikipedia where neither does. Census figures from the UN Statistics Division and the US Census Bureau; connectivity from the World Bank. Language areas from <a href="https://glottography.github.io" target="_blank" rel="noopener">Glottography</a> (CC BY 4.0); map from Natural Earth. Writing samples from <a href="https://github.com/eric-muller/udhr" target="_blank" rel="noopener">UDHR in XML</a>; spoken words from <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a> (CC BY-SA 4.0). Every other value names its source on the language's page. The method builds on van Esch, Ritchie et al. (2024), <a href="https://aclanthology.org/2024.lrec-main.331/" target="_blank" rel="noopener">Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages</a>.</p>
   </article>`;
@@ -2455,7 +2508,7 @@ function about() {
 // be shared.
 const PLAN_TECHS = ['speech_input', 'tts', 'mt', 'llm', 'keyboard', 'interface', 'ocr', 'proofing', 'assistant'];
 const PLAN_VOICE = new Set(['speech_input', 'tts', 'assistant']);
-let plan = { t: 'speech_input', from: 'none', codes: '', ex: true, com: false, q: 'all', s: 'reach', n: 50 };
+let plan = { t: 'speech_input', from: 'none', codes: '', ex: true, com: false, q: 'all', s: 'reach', fam: -1, n: 50 };
 const PLAN_Q = { asr_open_whisper: ['asr_whisper_fleurs_wer', v => `${Math.round(v)}% WER`], asr_open_omnilingual: ['asr_omnilingual_cer', v => `${v < 1 ? v.toFixed(1) : Math.round(v)}% CER`],
   mt_open_nllb: ['mt_nllb_flores_chrf', v => `chrF ${Math.round(v)}`] };
 function planFromHash(h) {
@@ -2465,6 +2518,7 @@ function planFromHash(h) {
   if (q.has('codes')) plan.codes = q.get('codes');
   if (q.has('ex')) plan.ex = q.get('ex') !== '0';
   if (q.has('com')) plan.com = q.get('com') === '1';
+  plan.fam = q.has('fam') && q.get('fam') in GN_BY ? GN_BY[q.get('fam')] : -1;
   if (q.has('s')) plan.s = q.get('s') === 'ready' ? 'ready' : 'reach';
   if (q.has('q')) plan.q = ['all', 'pub', 'ind'].includes(q.get('q')) ? q.get('q') : 'all';
   if (q.has('r')) { regionSel.clear(); q.get('r').split('|').filter(r => REGIONS.includes(r)).forEach(r => regionSel.add(r)); }
@@ -2477,6 +2531,7 @@ function planHash() {
   if (plan.com) q.set('com', '1');
   if (plan.q !== 'all') q.set('q', plan.q);
   if (plan.s !== 'reach') q.set('s', plan.s);
+  if (plan.fam >= 0) q.set('fam', GN[plan.fam][0]);
   if (regionSel.size) q.set('r', [...regionSel].join('|'));
   if (countrySel.size) q.set('c', [...countrySel].join(','));
   return '#plan?' + q.toString();
@@ -2510,7 +2565,7 @@ function planRows() {
     ({ found: supported, unknown } = planParse(plan.codes));
     baseName = 'your list';
   }
-  const inScope = l => inRegion(l) && inCountry(l) && reach5(l) > 0;
+  const inScope = l => inRegion(l) && inCountry(l) && reach5(l) > 0 && (plan.fam < 0 || l._gp.includes(plan.fam));
   // varieties of major languages (those whose speakers write another language's standard) are left out,
   // from the list and the totals, unless the starting list includes them
   const considered = LANGS.filter(l => inScope(l) && !(plan.ex && l.wi && !supported.has(l.code)));
@@ -2521,7 +2576,14 @@ function planRows() {
     .sort((a, b) => (plan.s === 'ready' ? b.rd.n / (b.rd.of || 1) - a.rd.n / (a.rd.of || 1) : 0) || b.r5 - a.r5);
   let cum = base;
   const rows = cands.map(r => { cum += r.r5; return { ...r, share: total ? cum / total : 0 }; });
-  return { T, voice, rows, total, base, supported, unknown, baseName, nSupported: considered.filter(l => supported.has(l.code)).length };
+  const groups = new Map();
+  for (const l of LANGS) {
+    if (!l._gp.length || !inRegion(l) || !inCountry(l) || supported.has(l.code) || (plan.ex && l.wi)) continue;
+    const r = reach5(l);
+    if (r > 0) for (const g of l._gp) { const x = groups.get(g) || [0, 0]; x[0]++; x[1] += r; groups.set(g, x); }
+  }
+  const famOpts = [...groups].filter(([, [n]]) => n >= 2).sort((a, b) => b[1][1] - a[1][1]).slice(0, 400);
+  return { T, voice, rows, total, base, supported, unknown, baseName, famOpts, nSupported: considered.filter(l => supported.has(l.code)).length };
 }
 function planCells(r, T, sl = false) {
   const l = r.l, cons = [...(T.consumer || [])], baseId = !sl && plan.from.startsWith('svc:') ? plan.from.slice(4) : null;
@@ -2577,10 +2639,10 @@ function planCodes(cs) {
   return up.slice(0, 4).join(' ') + (up.length > 4 ? ` <span class="muted">+${up.length - 4}</span>` : '');
 }
 function planCSV(P, sl = false) {
-  const head = ['rank', 'code', 'name', 'scripts', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'ready', 'missing', 'other_services_offering', 'open_models', 'data'];
+  const head = ['rank', 'code', 'name', 'family', 'branch', 'scripts', 'engineering_flags', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'ready', 'missing', 'other_services_offering', 'open_models', 'data'];
   const q = v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v;
   const lines = [head.join(',')].concat(P.rows.map((r, i) => { const c = planCells(r, P.T, sl);
-    return [i + 1, r.l.code, r.l.name, c.scripts.join(' '), c.countries.map(x => x.toUpperCase()).join(' '), c.locales.join(' '),
+    return [i + 1, r.l.code, r.l.name, famName(r.l), branchName(r.l), c.scripts.join(' '), flagLabels(r.l).join('; '), c.countries.map(x => x.toUpperCase()).join(' '), c.locales.join(' '),
       Math.round(r.r5), Math.round(r.r0), r.share.toFixed(4), `${r.rd.n} of ${r.rd.of}`, r.rd.items.filter(x => !x.ok).map(x => x.label).join('; '), c.others, c.models, c.data].map(q).join(','); }));
   return lines.join('\n') + '\n';
 }
@@ -2690,7 +2752,7 @@ function planHead(T, P, who, scopeName, sl) {
 }
 function planRow(r, i, T, sl) {
   const c = planCells(r, T, sl), pct = v => `${Math.round(v * 100)}%`;
-  return `<tr><td class="num">${i + 1}</td><td>${slButton(r.l)}<a href="#lang-${r.l.code}">${esc(r.l.name)}</a></td><td class="pc-m">${r.l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries)}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td class="num" title="${esc(readyTitle(r.rd))}">${r.rd.of ? `${r.rd.n} of ${r.rd.of}` : '—'}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td></tr>`;
+  return `<tr><td class="num">${i + 1}</td><td>${slButton(r.l)}<a href="#lang-${r.l.code}" title="${esc([famName(r.l), branchName(r.l)].filter(Boolean).join(' › '))}">${esc(r.l.name)}</a></td><td class="pc-m">${r.l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}${flagTags(r.l)}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries)}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td class="num" title="${esc(readyTitle(r.rd))}">${r.rd.of ? `${r.rd.n} of ${r.rd.of}` : '—'}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td></tr>`;
 }
 function planPage() {
   const P = planRows(), T = P.T;
@@ -2699,6 +2761,7 @@ function planPage() {
   const shown = P.rows.slice(0, plan.n);
   const pct = v => `${Math.round(v * 100)}%`;
   const scopeName = countrySel.size ? [...countrySel].map(c => COUNTRY_NAMES[c]).join(', ') : regionSel.size ? [...regionSel].join(', ') : 'the world';
+
   const who = P.voice ? 'people online' : 'people online and able to text';
   $('#view').innerHTML = `
     <div class="plan-top">
@@ -2709,6 +2772,8 @@ function planPage() {
         <label class="plan-l">Technology <select id="pl-t">${PLAN_TECHS.map(k => `<option value="${k}"${plan.t === k ? ' selected' : ''}>${esc(CFG.tech.technologies[k].label)}</option>`).join('')}</select></label>
         <label class="plan-l">Starting from <select id="pl-from"><option value="none"${plan.from === 'none' ? ' selected' : ''}>Nothing yet</option><option value="list"${plan.from === 'list' ? ' selected' : ''}>A list I paste</option><optgroup label="This list">${svcOpts}</optgroup></select></label>
         <label class="plan-l">Quality figures <select id="pl-q" title="Which published quality figures to show for open models"><option value="all"${plan.q === 'all' ? ' selected' : ''}>All published</option><option value="pub"${plan.q === 'pub' ? ' selected' : ''}>On public test sets only</option><option value="ind"${plan.q === 'ind' ? ' selected' : ''}>Independently measured only</option></select></label>
+        <label class="plan-l">Family or branch <input id="pl-fam" class="plan-in" list="pl-fams" autocomplete="off" placeholder="Any, or type one: Bantu, Indo-Aryan …" value="${plan.fam >= 0 ? esc(GN[plan.fam][1]) : ''}"></label>
+        <datalist id="pl-fams">${P.famOpts.map(([g, [n, r]]) => `<option value="${esc(GN[g][1])}">${n.toLocaleString()} languages · ${people(r)}</option>`).join('')}</datalist>
         <div class="plan-scope"><span class="plan-l">Where</span><span id="plregwrap">${regionPicker()}</span><span id="plctrywrap">${countryPicker()}</span></div>
       </div>
       ${plan.from === 'list' ? `<div class="plan-paste"><textarea id="pl-codes" rows="3" placeholder="Language codes or names, separated by commas, spaces or new lines: en, es, yo, Hausa ...">${esc(plan.codes)}</textarea>
@@ -2720,7 +2785,7 @@ function planPage() {
     </section>
     <section class="chart plangraph">
       <h3>${P.rows.length ? `From ${pct(P.base / (P.total || 1))} to 100% of ${who} in ${esc(scopeName)}` : 'Nothing left to add'}</h3>
-      <p class="sub">${P.baseName ? `Starting from ${esc(P.baseName)}: ${P.nSupported.toLocaleString()} ${P.nSupported === 1 ? 'language' : 'languages'} reaching ${people(P.base)} of ${people(P.total)} in five years.` : `Starting from nothing: ${people(P.total)} ${who} in five years across ${P.rows.length.toLocaleString()} languages.`}${plan.ex ? ' Varieties of major languages are left out of the list and the totals.' : ' Varieties of major languages are counted in the list and the totals.'} Each step adds the next language in the table below.</p>
+      <p class="sub">${P.baseName ? `Starting from ${esc(P.baseName)}: ${P.nSupported.toLocaleString()} ${P.nSupported === 1 ? 'language' : 'languages'} reaching ${people(P.base)} of ${people(P.total)} in five years.` : `Starting from nothing: ${people(P.total)} ${who} in five years across ${P.rows.length.toLocaleString()} languages.`}${plan.fam >= 0 ? ` Only ${esc(GN[plan.fam][1])} languages are counted.` : ''}${plan.ex ? ' Varieties of major languages are left out of the list and the totals.' : ' Varieties of major languages are counted in the list and the totals.'} Each step adds the next language in the table below.</p>
       ${planCurve(P.rows, P.base, P.total)}
     </section>
     </div>
@@ -2737,6 +2802,12 @@ function planPage() {
   $('#pl-ex').onchange = e => { plan.ex = !e.target.checked; redraw(); };
   $('#pl-com').onchange = e => { plan.com = e.target.checked; redraw(); };
   $('#pl-q').onchange = e => { plan.q = e.target.value; redraw(); };
+  $('#pl-fam').onchange = e => {
+    const v = e.target.value.trim().toLowerCase();
+    if (!v) plan.fam = -1;
+    else { const hit = P.famOpts.find(([g]) => GN[g][1].toLowerCase() === v) || P.famOpts.find(([g]) => GN[g][1].toLowerCase().includes(v)); if (hit) plan.fam = hit[0]; }
+    plan.n = 50; redraw();
+  };
   $('#view').querySelectorAll('[data-psort]').forEach(b => b.onclick = () => { plan.s = b.dataset.psort; redraw(); });
   const ta = $('#pl-codes');
   if (ta) ta.onchange = e => { plan.codes = e.target.value; plan.n = 50; redraw(); };

@@ -273,6 +273,16 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     if (DATA / "sensitivity.csv").exists():
         for r in csv.DictReader((DATA / "sensitivity.csv").open(encoding="utf-8")):
             rr[r["code"]] = [int(r["rank_p5"]), int(r["rank_p95"])]
+    from .engineering import all_flags
+    eng = all_flags(scores["languages"])  # engineering flags (ltdi.engineering)
+    from .families import paths as family_paths
+    from .glottolog import names as glottolog_names
+    fam, isolates = family_paths(scores["languages"])  # Glottolog groups above each language (ltdi.families)
+    gnames = glottolog_names()
+    node_id: dict[str, int] = {}
+    for p in fam.values():
+        for g in p:
+            node_id.setdefault(g, len(node_id))
     from .backbone import _locales, region_group  # LinguaMeta's country -> region table (cached)
     country_region = {c: region_group(v["region"], v["subregion"]) for c, v in _locales().items() if v.get("region")}
     # Fields that are the same in every opportunity from a rule go to the rule, once
@@ -313,6 +323,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                                  if via else {}),
                               "reach_by_country": l["reach_by_country"], "evidence": l.get("evidence"),
                               "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES],
+                              **({"lookalikes": eng[l["code"]]["lookalikes"]} if "lookalikes" in eng.get(l["code"], {}) else {}),
                               **{k: l.get(k) for k in PROFILE}}
         langs.append({k: l.get(k) for k in SUMMARY} | {
             "scores": {k: d["score"] for k, d in l["dimensions"].items()},
@@ -337,6 +348,11 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
             **({"sc": " ".join(x.title() for x in l["scripts"])} if l.get("scripts") else {}),
             **({"csc": cs} if (cs := " ".join(f"{c['code']}={','.join(x.title() for x in c['scripts'])}" for c in l["countries"]
                                               if c.get("scripts") and c["scripts"] != l["scripts"][:1] and c["code"] not in NOT_PLACES)) else {}),
+            # engineering flags, one letter each (FLAG_LETTER)
+            **({"fx": "".join(FLAG_LETTER[f] for f in eng[l["code"]]["flags"])} if l["code"] in eng else {}),
+            # its family and the groups below it, as indexes into "gnodes" (base 36); "giso" for isolates
+            **({"gp": " ".join(_b36(node_id[g]) for g in fam[l["code"]])} if l["code"] in fam else {}),
+            **({"giso": 1} if l["code"] in isolates else {}),
             # every region it's spoken in (its home region and its countries'), for the region filter
             "rg": "".join(sorted({REGION_CODE[r] for r in [l.get("region"), *(country_region.get(c["code"]) for c in l["countries"])]
                                   if r in REGION_CODE})),
@@ -376,6 +392,9 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     country_names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"] if c["code"] not in NOT_PLACES}
     index |= {"country_regions": {c: REGION_CODE[r] for c, r in country_region.items() if r in REGION_CODE},
               "country_online": country_online()}
+    index["gnodes"] = [[g, gnames.get(g, g)] for g in sorted(node_id, key=node_id.get)]
+    from .engineering import FLAGS
+    index["flags"] = {FLAG_LETTER[k]: [k, v] for k, v in FLAGS.items()}
     index |= {"history": hist, "languages": langs, "top_opportunities": listed, "country_names": country_names,
               "opportunity_total": len(top), "units": units,
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
@@ -383,6 +402,17 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     return index, details
 
 
+def _b36(n: int) -> str:
+    digits = "0123456789abcdefghijklmnopqrstuvwxyz"
+    out = ""
+    while True:
+        n, r = divmod(n, 36)
+        out = digits[r] + out
+        if not n:
+            return out
+
+
+FLAG_LETTER = {"rtl": "r", "shaping": "s", "nospace": "w", "ime": "i", "scripts": "m", "lookalike": "l"}
 PLAN_QUALITY = ("asr_whisper_fleurs_wer", "asr_omnilingual_cer", "mt_nllb_flores_chrf", "mt_google_flores_chrf")
 # Ingredients the readiness checklists need that aren't services (services come from "offers"), one letter each
 READY_FLAGS = {"f": ("speech_fleurs", 0), "c": ("cv_validated_hours", 0), "F": ("flores200", 0), "b": ("eval_benchmarks", 0),
@@ -481,6 +511,13 @@ def main() -> None:
         shutil.copyfile(DATA / "borders.json", SITE / "data" / "borders.json")
     # each country's own top opportunities, fetched when the country filter is first used
     (SITE / "data" / "country_opportunities.json").write_text(_dump(country_opportunities(scores)), encoding="utf-8")
+
+    # one JSON file per language, with a schema, for other people's tools (ltdi.api)
+    from .api import write_api
+    from .engineering import all_flags
+    from .families import paths as family_paths
+    from .glottolog import names as glottolog_names
+    n_api = write_api(SITE, scores, all_flags(scores["languages"]), family_paths(scores["languages"]), glottolog_names())
 
     # the edition's scores, for download (written by ltdi.score: data/editions/)
     edition = scores["edition"]

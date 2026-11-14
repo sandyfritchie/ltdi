@@ -5,7 +5,7 @@ name: Publish site
 on:
   push:
     branches: [main]
-    paths: ["site/**", ".github/workflows/pages.yml"]
+    paths: ["site/**", "data/**", "config/**", "ltdi/**", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 permissions:
@@ -25,6 +25,15 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # The JSON API (site/api/v1: one file per language) comes entirely from the committed data and
+      # config, so it's generated here rather than committed (ltdi/api.py). Rank ranges come from the committed data/sensitivity.csv
+      - name: Score
+        run: python -m ltdi.score > /dev/null
+      - name: Write the JSON API
+        run: python -m ltdi.api
       - name: Leave out the build template
         run: rm -f site/template.html site/artifact.html
       - uses: actions/configure-pages@v5

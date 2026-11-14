@@ -269,20 +269,63 @@ history (`ltdi/collectors/history.py`) comes from sources with a public record:
 
 The Plan tab (`#plan`) answers a product team's question: given what we support today, which languages
 next? Choose a technology and a starting point (nothing, a tracked service's list, or a pasted list of
-codes or names), and optionally a region or countries. The languages not yet supported are ranked by
-the people they'd reach online in five years (voice technologies count everyone online, text
-technologies those also able to text), with a curve of the share reached as each is added (it ends at
-100%). Each row shows how many other commercial services already offer it, the open models listed for
-it with their published quality and licence, the open data for that technology, and its main
-countries. Two switches: **Exclude varieties of major languages** (on by default) leaves out spoken
-varieties whose speakers mostly write a standard language (`config/written_standards.csv`), from the
-list and the totals, unless the starting list includes them; **Commercially usable data and models
-only** counts only open speech data and models whose licence permits commercial use
-(`commercial` in `config/resources.csv`: yes, no or varies, from each published licence). The state is
-kept in the address, so a plan can be shared, and the table downloads as CSV.
+codes or names), and optionally a family or branch (Glottolog's, such as Narrow Bantu or Indo-Aryan),
+a region or countries. The languages not yet supported are ranked by the people they'd reach online in
+five years (voice technologies count everyone online, text technologies those also able to text), with
+a curve of the share reached as each is added (it ends at 100%). Each row shows the language's code,
+its scripts and countries as ISO 15924 and ISO 3166 codes (leaving out countries where only immigrant
+communities speak it, so code, script and country give a locale such as `pnb-Arab-PK`), engineering
+flags, readiness, how many other commercial services already offer it, the open models listed for it
+with their published quality (who measured it and on what test set) and licence, and the open data for
+that technology. The CSV adds every country, the locales, the family and the missing ingredients.
+
+Switches and menus: **Include varieties of major languages** (off by default) counts spoken varieties
+whose speakers mostly write a standard language (`config/written_standards.csv`); **Commercially
+usable data and models only** counts only open data and models whose licence permits commercial use
+(`commercial` in `config/resources.csv`); **Quality figures** shows all published figures, only those
+on public test sets, or only independent ones (`quality_by`, `test_set` and `test_public` in
+`config/services.csv`). **Ready** counts, for the chosen technology, the ingredients a team would look
+for before building (transcribed speech, an open model, a published error rate, a public test set and
+text for a language model, for speech input); its header sorts the table readiest first. Every
+language page shows these checklists for all nine technologies. The state is kept in the address, so
+a plan can be shared.
+
+The **shortlist** (`#shortlist?codes=...`) collects languages from the + in the Plan table or on
+language pages into one table with the same columns and their combined reach. The link carries the
+list, so a colleague opens the same table; it also downloads as CSV.
 
 Language pages say how much open speech is licensed for commercial use (Yoruba: about 20 of 627
 hours, the rest NaijaVoices, CC BY-NC-SA), and starter kits have a commercial-use column.
+
+## Families and engineering flags
+
+`ltdi/families.py` gives each language its groups in Glottolog's classification (pinned release),
+family first; macrolanguages scored as one take the groups their members share, and Glottolog's
+non-genealogical groupings (sign languages, pidgins, artificial languages) aren't families. Language
+pages list the nearest relatives that score higher, the usual starting point for a new language.
+
+`ltdi/engineering.py` flags what raises the cost of building for a language: right-to-left, complex
+shaping, no spaces between words and input methods (CLDR's script metadata for its main script), more
+than one script (LinguaMeta), and look-alike letters from another script in its web text (FineWeb-2's
+character sample: Greek ε for ɛ in Fanti, Cyrillic а е о р for Latin in Baba Malay). Tone or vowel
+marks left out in everyday writing, and spelling that varies, aren't in any source tracked, so have no
+flag.
+
+## JSON API
+
+One file per language at a stable address, for other people's tools:
+
+    https://langtechindex.org/api/v1/index.json             every language, with its score and file
+    https://langtechindex.org/api/v1/languages/yo.json      one language
+    https://langtechindex.org/api/v1/schema.json            JSON Schema for the language files
+    https://langtechindex.org/api/v1/services.json          services and benchmarks, by technology
+    https://langtechindex.org/api/v1/indicators.json        each indicator's unit and usual note
+    https://langtechindex.org/api/v1/sources.json           sources, by the id each value cites
+
+Within v1, fields are only added, never renamed or removed. Values change with each edition (`edition`);
+a change of method raises `methodology_version`; breaking changes go to `/api/v2/`, with v1 kept
+alongside for at least one edition. The files are generated when the site is published
+(`python -m ltdi.api` in `pages.yml`), since they come entirely from the committed data and config.
 
 ## Opportunities
 

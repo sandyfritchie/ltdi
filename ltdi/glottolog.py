@@ -1,4 +1,6 @@
-"""Endangerment levels from Glottolog, for languages LinguaMeta doesn't assess.
+"""Endangerment levels and family trees from Glottolog.
+
+Endangerment, for languages LinguaMeta doesn't assess:
 
 Glottolog's Agglomerated Endangerment Status (AES) is the source LinguaMeta took its levels from, but
 LinguaMeta's copy predates later releases, which assess more languages. Glottolog's six levels map
@@ -20,7 +22,7 @@ from . import CACHE
 
 REPO = "https://github.com/glottolog/glottolog-cldf"
 TAG = "v5.4"
-FILES = ["cldf/values.csv", "cldf/codes.csv"]
+FILES = ["cldf/values.csv", "cldf/codes.csv", "cldf/languages.csv"]
 
 LEVEL = {"not endangered": "not_endangered", "threatened": "vulnerable", "shifting": "definitely_endangered",
          "moribund": "severely_endangered", "nearly extinct": "critically_endangered", "extinct": "extinct"}
@@ -30,9 +32,10 @@ def _root():
     root = CACHE / f"glottolog-cldf-{TAG}"
     if not all((root / f).exists() for f in FILES):
         CACHE.mkdir(parents=True, exist_ok=True)
-        subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", TAG, "--filter=blob:none",
-                        "--no-checkout", REPO, str(root)], check=True)
-        subprocess.run(["git", "-C", str(root), "sparse-checkout", "set", "--no-cone", *FILES], check=True)
+        if not (root / ".git").exists():
+            subprocess.run(["git", "clone", "-q", "--depth", "1", "--branch", TAG, "--filter=blob:none",
+                            "--no-checkout", REPO, str(root)], check=True)
+        subprocess.run(["git", "-C", str(root), "sparse-checkout", "set", "--no-cone", *("/" + f for f in FILES)], check=True)
         subprocess.run(["git", "-C", str(root), "checkout", "-q", TAG], check=True)
     return root
 
@@ -59,3 +62,22 @@ def suspect(comment: str, iso: str | None, name: str) -> bool:
         return False
     words = [w for w in re.findall(r"\w+", name.lower()) if len(w) > 3]
     return not any(w in first.lower() for w in words)
+
+
+@lru_cache(maxsize=1)
+def names() -> dict[str, str]:
+    """{glottocode: name} for every languoid: families, subgroups, languages and dialects."""
+    with (_root() / "cldf/languages.csv").open(encoding="utf-8") as f:
+        return {r["ID"]: r["Name"] for r in csv.DictReader(f)}
+
+
+@lru_cache(maxsize=1)
+def classification() -> dict[str, list[str]]:
+    """{glottocode: its ancestors' glottocodes, family first}; isolates and unclassified languages have none.
+    Glottolog's classification value is the path from the top-level family down to the parent."""
+    out = {}
+    with (_root() / "cldf/values.csv").open(encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            if r["Parameter_ID"] == "classification" and r["Value"]:
+                out[r["Language_ID"]] = r["Value"].split("/")
+    return out
