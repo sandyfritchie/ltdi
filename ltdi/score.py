@@ -10,7 +10,7 @@ import csv
 import dataclasses
 import json
 import math
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 from . import CONFIG, DATA
 from .config import load_config, services
@@ -365,6 +365,9 @@ def main() -> None:
                         "written_in": written.get(code), "shares_written": code in shared,
                         "reach_by_country": reach_by_country(lang, countries)})
     assign_ranks(results)
+    by_rule = Counter(o["key"] for r in results for o in r["opportunities"])
+    print(f"opportunities: {sum(by_rule.values()):,} ("
+          + ", ".join(f"{k} {n:,}" for k, n in by_rule.most_common()) + ")")
     big = max((r for r in results if r["rank"]), key=lambda r: r["tied"], default=None)
     if big:
         print(f"largest tie: {big['tied'] + 1} languages share rank {big['rank']} (LTDI {big['ltdi']}, tier {big['tier']})")

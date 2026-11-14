@@ -30,20 +30,25 @@ SHARD_SIZE = 150  # languages per detail file
 TOP_OPPORTUNITIES = 1000  # opportunities listed on the Opportunities page before choosing a language
 COUNTRY_OPPORTUNITIES = 30  # each country's own top opportunities, ranked by reach there
 PER_TYPE = 50            # of which at least this many of each kind of action, so every kind can be browsed
+PER_LANGUAGE = 2         # and at most this many for any one language, so the list spans many languages
 
 
 def top_listed(top: list[dict]) -> list[dict]:
     """The opportunities listed before a language is chosen: the highest-priority ones of each kind of
-    action, then the highest-priority of the rest, up to TOP_OPPORTUNITIES, in priority order."""
-    picked, per = set(), Counter()
+    action, then the highest-priority of the rest, up to TOP_OPPORTUNITIES, in priority order; at most
+    PER_LANGUAGE for any one language (choosing a language lists all of its own)."""
+    picked, per, lang = set(), Counter(), Counter()
     for i, o in enumerate(top):
-        if per[o["_type"]] < PER_TYPE:
+        if per[o["_type"]] < PER_TYPE and lang[o["lang"]] < PER_LANGUAGE:
             picked.add(i)
             per[o["_type"]] += 1
-    for i in range(len(top)):
+            lang[o["lang"]] += 1
+    for i, o in enumerate(top):
         if len(picked) >= TOP_OPPORTUNITIES:
             break
-        picked.add(i)
+        if i not in picked and lang[o["lang"]] < PER_LANGUAGE:
+            picked.add(i)
+            lang[o["lang"]] += 1
     return [{k: v for k, v in o.items() if k != "_type"} for i, o in enumerate(top) if i in picked]
 SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "tied", "tier", "gaps", "endangerment")
 PROFILE = ("script_names", "script_source", "endangerment_source", "note", "source", "written_in", "shares_written", "joshi", "ud", "census")  # shown only on the language's own page

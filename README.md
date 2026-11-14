@@ -268,6 +268,14 @@ needs, and proposes one of five kinds of action:
 Priority = reach × gap × need / cost, where reach is log10(potential users) − 4
 and need is 1 minus the language's current score for that technology.
 
+Each rule fires only where its prerequisites exist, so the cards are about steps a team could take
+next. Text technologies, locale data, LLM and reading benchmarks need some written text (web text,
+Wikipedia, a treebank or parallel text); the Wikipedia card needs a Wikipedia; measuring speech
+recognition needs an open model or some open speech. A language with nothing recorded in any
+source gets one card instead, about documentation and first recordings with its speakers. The
+Opportunities page lists at most two cards per language before a language is chosen. Scoring prints
+how many cards each rule produced.
+
 Potential users can be counted three ways (the site lets you switch):
 
 - **All speakers**, from LinguaMeta.

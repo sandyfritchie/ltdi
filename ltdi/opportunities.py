@@ -137,6 +137,10 @@ RULES = {
                    "model's training set."},
     "wiki-community": {"teams": ["data", "funding"], "starter": ["wikipedia_articles", "wikipedia_active_editors"],
         "missing": "Editor training and outreach with universities and community groups."},
+    "document": {"teams": ["data", "funding"], "starter": [],
+        "missing": "Work with speakers who want their language recorded: recordings of everyday speech with "
+                   "transcriptions and translations, a word list, and agreement on how to write it where there's "
+                   "no settled spelling, all with consent and an open licence, deposited in a language archive."},
 }
 
 # Coverage rules: one per technology and situation, applied by the same code.
@@ -215,6 +219,7 @@ def _consumer(tech: str, key: str = "consumer") -> list[str]:
 
 
 ASR = _consumer("speech_input")
+ASR_OPEN = _consumer("speech_input", "open")
 TTS = _consumer("tts")
 MT = _consumer("mt")
 LLM = list(_consumer("llm", "measured"))
@@ -263,9 +268,27 @@ def find(f: dict[str, Record]) -> list[dict]:
     n_sets = len(speech_sets) + (1 if _v(f, "cv_validated_hours") else 0)
     sets = f"across {n_sets} open dataset{'s' if n_sets != 1 else ''}"
     words = _v(f, "web_text_words") or 0
+    tech_cfg = load_config()["dimensions"]["tech"]["technologies"]
+
+    # Nothing recorded at all (the "None recorded" tier): one card about documentation and first data,
+    # not a card for every technology the language lacks
+    data_inds = load_config()["dimensions"]["data"]["indicators"]
+    services_on = any(_v(f, i) and f[i].unit == "bool" for t in tech_cfg.values()
+                      for i in (*t.get("consumer", []), *t.get("regional", []), *t.get("open", [])))
+    if not services_on and not any(_v(f, i) for i in data_inds):
+        add("document", "collect", "data", "No data or technology found: start with documentation",
+            "None of the sources tracked records text, speech or any tool for this language. Recordings and "
+            "texts made with its speakers are where every technology starts. Some may already exist in "
+            "archives that no source here counts.", 1.0, [])
+        return out
+
+    # Prerequisites: text technologies and benchmarks need some written text to start from; measuring
+    # speech recognition needs a model or some speech to measure
+    has_text = bool(words or _v(f, "wikipedia_articles") or _v(f, "ud_treebank_words") or _v(f, "parallel_sentences"))
+    has_wiki = bool(_v(f, "wikipedia_articles") or _v(f, "wikipedia_active_editors"))
+    TEXT_RULES = {"ui-none", "ocr-collect", "tts-collect"}
 
     # Coverage across each technology's services (COVERAGE)
-    tech_cfg = load_config()["dimensions"]["tech"]["technologies"]
     offered = {}
     for name, t in tech_cfg.items():
         cons, opn = t.get("consumer", []), t.get("open", [])
@@ -277,7 +300,7 @@ def find(f: dict[str, Record]) -> list[dict]:
         when = ("some" if n < len(cons) else None) if n else \
             "open" if has_open or cv >= OPEN_HOURS.get(name, math.inf) else "none"
         for key, (tech, w, type_, title, detail) in COVERAGE.items():
-            if tech == name and w == when:
+            if tech == name and w == when and (has_text or key not in TEXT_RULES):
                 gap = (len(cons) - n) / len(cons) if when == "some" else 1.0
                 ev = cons + opn + (["open_speech_hours"] if name in OPEN_HOURS else [])
                 add(key, type_, tech, title(c), detail(c), gap, ev)
@@ -293,10 +316,11 @@ def find(f: dict[str, Record]) -> list[dict]:
     # Speech input: error rates and data
     wer = _v(f, "asr_whisper_fleurs_wer")
     if wer is not None and wer >= 100:
-        add("asr-measure", "measure", "speech_input", "No published speech recognition error rate",
-            "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't "
-            "tell how usable open speech recognition is.",
-            1.0, ["asr_whisper_fleurs_wer"])
+        if cv or any(_v(f, i) for i in ASR_OPEN):  # something to measure
+            add("asr-measure", "measure", "speech_input", "No published speech recognition error rate",
+                "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't "
+                "tell how usable open speech recognition is.",
+                1.0, ["asr_whisper_fleurs_wer"])
     elif wer is not None and wer >= 25:
         add("asr-improve", "improve", "speech_input", f"Speech recognition makes about {wer:.0f} errors per 100 words",
             "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
@@ -317,10 +341,10 @@ def find(f: dict[str, Record]) -> list[dict]:
 
     # LLMs
     llm = [i for i in LLM if i in f]
-    if not llm:
+    if not llm and has_text:
         add("llm-measure", "measure", "llm", "No published LLM benchmark results",
-            "Neither of the two multilingual benchmarks we track reports this language. Adding it would give "
-            "builders and buyers a baseline.",
+            f"None of the {len(LLM)} published LLM benchmark results we track covers this language. Adding it "
+            "would give builders and buyers a baseline.",
             1.0, [])
     else:
         rel = _v(f, "llm_global_mmlu_rel")
@@ -338,7 +362,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             + ("Benchmarks show models already work in it, so listing it could be a short step."
                if llm else "Listing it would tell speakers they can rely on it."),
             (len(APPS) - apps_n) / len(APPS), APPS + llm)
-    if not _v(f, "belebele"):
+    if not _v(f, "belebele") and has_text:
         add("llm-reading", "measure", "llm", "No reading-comprehension benchmark",
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
             0.5, ["belebele"])
@@ -367,7 +391,7 @@ def find(f: dict[str, Record]) -> list[dict]:
 
     # Writing system
     cldr = _v(f, "cldr_coverage")
-    if cldr is not None and cldr < 3:
+    if cldr is not None and cldr < 3 and has_text:
         if cldr:
             title = f"Locale data in Unicode CLDR is {['', 'basic', 'moderate'][int(cldr)]}"
         elif "below basic" in (f["cldr_coverage"].note or ""):
@@ -386,7 +410,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             "is often the fastest route.",
             1 - math.log10(max(words, 1e4) / 1e4) / 4, ["web_text_words"])
     editors = _v(f, "wikipedia_active_editors")
-    if editors is not None and editors < 100:
+    if editors is not None and editors < 100 and has_wiki:
         add("wiki-community", "collect", "data", f"Wikipedia has {editors:.0f} active editors",
             "A small editing community limits new open text. Edit-a-thons and translation drives with "
             "universities have grown communities elsewhere.",

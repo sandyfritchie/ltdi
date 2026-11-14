@@ -129,3 +129,50 @@ class ReachTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class GateTests(unittest.TestCase):
+    """Each rule fires only where its prerequisites exist (Fable's review, B4)."""
+
+    def keys(self, **kw):
+        return {o["key"] for o in find(facts(**kw))}
+
+    def test_nothing_recorded_gets_one_documentation_card(self):
+        fs = facts(web_text_words=0, wikipedia_articles=0, wikipedia_active_editors=0, cv_validated_hours=0,
+                   asr_google=0, asr_whisper_fleurs_wer=100, cldr_coverage=0, ui_ios=0, ocr_google=0, belebele=0)
+        self.assertEqual([o["key"] for o in find(fs)], ["document"])
+
+    def test_wikipedia_card_needs_an_edition(self):
+        self.assertNotIn("wiki-community", self.keys(web_text_words=1e5, wikipedia_articles=0, wikipedia_active_editors=0))
+        self.assertIn("wiki-community", self.keys(web_text_words=1e5, wikipedia_articles=900, wikipedia_active_editors=3))
+
+    def test_text_technologies_and_benchmarks_need_some_text(self):
+        speech_only = dict(open_speech_hours=4, web_text_words=0, wikipedia_articles=0, cldr_coverage=0, ui_ios=0,
+                           ocr_google=0, tts_google=0, belebele=0)
+        got = self.keys(**speech_only)
+        for k in ("llm-measure", "llm-reading", "cldr", "ui-none", "ocr-collect", "tts-collect"):
+            self.assertNotIn(k, got)
+        self.assertIn("asr-collect", got)  # speech is still worth collecting
+        with_text = self.keys(**{**speech_only, "web_text_words": 2e5})
+        for k in ("llm-measure", "llm-reading", "cldr", "ui-none", "ocr-collect", "tts-collect"):
+            self.assertIn(k, with_text)
+
+    def test_speech_measurement_needs_a_model_or_speech(self):
+        self.assertNotIn("asr-measure", self.keys(web_text_words=1e5, asr_whisper_fleurs_wer=100, cv_validated_hours=0))
+        self.assertIn("asr-measure", self.keys(web_text_words=1e5, asr_whisper_fleurs_wer=100, asr_open_omnilingual=1))
+        self.assertNotIn("asr-improve", self.keys(web_text_words=1e5, asr_whisper_fleurs_wer=100))
+
+    def test_benchmark_count_follows_the_config(self):
+        from ltdi.opportunities import LLM
+        o = next(o for o in find(facts(web_text_words=1e5)) if o["key"] == "llm-measure")
+        self.assertIn(f"None of the {len(LLM)} ", o["detail"])
+
+
+class TopListTests(unittest.TestCase):
+    def test_at_most_two_per_language(self):
+        from ltdi.build_site import PER_LANGUAGE, top_listed
+        top = [{"lang": l, "key": f"k{i}", "_type": t} for i, (l, t) in
+               enumerate([("a", "share"), ("a", "collect"), ("a", "measure"), ("b", "share"), ("a", "share")])]
+        got = top_listed(top)
+        self.assertLessEqual(max(sum(1 for o in got if o["lang"] == l) for l in "ab"), PER_LANGUAGE)
+        self.assertEqual([o["key"] for o in got], ["k0", "k1", "k3"])
