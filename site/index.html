@@ -266,6 +266,7 @@ table.ranktab { table-layout: fixed; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
 /* a note about a fact, behind a small "i" */
 details.info { display: inline-block; position: relative; margin-inline-start: 6px; vertical-align: 1px; }
+h2 details.info { vertical-align: 6px; font-size: 14px; letter-spacing: 0; font-stretch: normal; }  /* beside a language's name */
 details.info summary { list-style: none; display: grid; place-items: center; width: 15px; height: 15px; border: 1px solid var(--muted); border-radius: 50%;
   font: italic 700 10px/1 Georgia, "Times New Roman", serif; color: var(--muted); cursor: pointer; user-select: none; }
 details.info summary::-webkit-details-marker { display: none; }
@@ -1348,12 +1349,11 @@ async function language(code) {
   $('#view').innerHTML = `
     <button class="back" id="back">← All languages</button>
     <div class="lhead lang">
-      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span></h2>
+      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span>${l.note ? infoTip('About this language', esc(l.note)) : ''}</h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
         <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${writtenInfo(l)}</span>
-        <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>${endKey(l) !== 'none' ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
+        <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>${!['none', 'not_endangered'].includes(endKey(l)) ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
-        ${l.note ? `<div class="facts">${esc(l.note)}</div>` : ''}
         ${sampleBlock(l)}
         ${hearBlock(l)}
       </div>
