@@ -431,10 +431,10 @@ def main() -> None:
 
     # the edition's scores, for download (written by ltdi.score: data/editions/)
     edition = scores["edition"]
-    for ext in ("csv", "json"):
-        src = DATA / "editions" / f"{edition}.{ext}"
+    for name in (f"{edition}.csv", f"{edition}.json", f"{edition}-services.csv"):
+        src = DATA / "editions" / name
         if src.exists():
-            shutil.copyfile(src, SITE / "data" / f"ltdi-{edition}.{ext}")
+            shutil.copyfile(src, SITE / "data" / f"ltdi-{name}")
 
     template = (SITE / "template.html").read_text(encoding="utf-8")
     template = template.replace("<!--__STATIC__-->", static_summary(scores)).replace("__EDITION_LINE__", edition_line(scores))

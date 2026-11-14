@@ -4,8 +4,11 @@
 <meta property="og:description" content="How well technology supports each of the world's languages, and how much data exists to build more. Scores, gaps and opportunities for 6,800 living languages.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://langtechindex.org/">
-<meta property="og:image" content="https://langtechindex.org/apple-touch-icon.png">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://langtechindex.org/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Language Technology Development Index: scores for 6,817 living languages, by tier">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
@@ -156,11 +159,13 @@ input[type=search], input.pick { width: 17em; max-width: 100%; }
 .rsum-totals { display: grid; grid-template-columns: 4.6em 5.6em 5.6em; column-gap: 20px; justify-content: start; }  /* fixed, so typing a search doesn't shift them */
 .rsum-totals > div { white-space: nowrap; }
 .rsum-totals b { font: 700 24px/1.1 var(--font-display); font-variant-numeric: tabular-nums; }
+.rsum-totals .rs-sum { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
 .tbar-row { display: grid; grid-template-columns: 5.6em 1fr; align-items: center; gap: 8px; font-size: 13px; margin: 3px 0; }
 .tbar-k { color: var(--muted); } .tbar-v { color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
 .tbar { display: flex; height: 12px; border-radius: 3px; overflow: hidden; background: var(--rule); }
 .tbar i { display: block; height: 100%; }
 .tbar-key { display: flex; flex-wrap: wrap; gap: 2px 8px; font-size: 11.5px; color: var(--muted); margin-top: 6px; }
+.tbar-key .tk-sep { font-style: italic; }
 .tbar-key i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
 .rgaps { display: grid; grid-template-columns: repeat(3, 6.6em); gap: 0 14px; justify-content: start; }
 .rgcol { display: grid; gap: 6px; align-content: start; }
@@ -301,6 +306,9 @@ table.ranktab { table-layout: fixed; }
 .thru-dim { margin: -4px 0 10px; font-size: 13px; color: var(--muted); }
 .thru-line { font-size: 12px; color: var(--muted); margin-top: -2px; }
 .thru-v { font-size: 12px; color: var(--muted); font-weight: 400; margin-inline-start: 4px; }
+ul.checked { margin: 0; padding-inline-start: 18px; display: grid; gap: 4px; font-size: 14px; max-width: 80ch; }
+ul.checked .muted { color: var(--muted); }
+.email { font-family: var(--font-mono); font-size: .92em; user-select: all; }
 details.prov { margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 10px; font-size: 13px; }
 details.prov summary { cursor: pointer; color: var(--muted); font-weight: 600; }
 details.prov summary:hover, details.prov[open] summary { color: var(--ink); }
@@ -970,7 +978,12 @@ async function oppDetail(id) {
       <thead><tr><th>Country</th><th class="num">Speakers</th><th class="num">Online today</th><th class="num">Online and able to text</th><th class="num">Online in five years</th></tr></thead>
       <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td><td class="num">${pct(c.online)}</td><td class="num">${pct(c.text)}</td><td class="num">${pct(c.online_5y)}</td></tr>`).join('')}</tbody></table></div>
       <p class="note">Speaker counts from LinguaMeta; internet use, mobile texting and literacy from the World Bank. National averages overstate connectivity for rural and minority-language speakers.</p>` : '';
-  const ev = o.evidence.map(i => facts[i] ? `<a href="${esc(facts[i].url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(facts[i].note || '')}">${esc(L[i] || facts[i].source)}: ${esc(showValue(facts[i]))}</a>` : '').join('');
+  // every source this card checked, with what it records for the language (or that it doesn't list it)
+  const checked = (o.checked || o.evidence).map(i => {
+    const f = facts[i], name = (SVC[i] ? `${SVC[i][0]}${SVC[i][1] ? ` (${SVC[i][1]})` : ''}` : '') || L[i] || (f && f.source) || i;
+    if (!f) return `<li>${esc(name)}: <span class="muted">${ROLE_OF[i] === 'measured' ? 'no published result for this language' : 'not listed'}</span></li>`;
+    return `<li><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(name)}</a>: ${esc(showValue(f))}, retrieved ${esc(fmtDay(f.retrieved))}${f.note ? ` <span class="muted">· ${esc(f.note)}</span>` : ''}</li>`;
+  }).join('');
   const u = o.users || {};
   const factors = [
     ['Potential users counted', u.estimated ? `${people(u['5y'])} in five years (${people(u.now)} today) · ${u.kind === 'voice' ? 'voice: everyone online' : 'text: online and able to text'}` : `${people(u.speakers)} speakers`],
@@ -994,7 +1007,8 @@ async function oppDetail(id) {
     <h3 class="panel-h">Still needed</h3><p class="needed">${esc(o.missing)}</p>
     <p class="note">${esc(o.detail)}</p>
     ${countries ? `<h3 class="panel-h">Who it would reach</h3>${countries}` : ''}
-    <h3 class="panel-h">Evidence</h3>${ev ? `<div class="opp-ev">${ev}</div>` : '<p class="note">Based on the absence of published results in the sources tracked.</p>'}
+    <h3 class="panel-h">Sources checked</h3>${checked ? `<ul class="checked">${checked}</ul>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
+    <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">langtechindex@gmail.com</span>.</p>
     <details class="method"><summary>How this ranks</summary>
       <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
       <p class="note">Priority = reach × gap × need × momentum ÷ cost.</p></details>
@@ -1108,14 +1122,14 @@ function rankSummary(ls) {
   return `
     <div class="rsum-totals">
       <div><div class="eyebrow">Languages</div><b>${ls.length.toLocaleString()}</b></div>
-      <div title="Each language's speakers added up, so people who speak several languages are counted once for each"><div class="eyebrow">Speakers*</div><b>${people(sp)}</b></div>
-      <div title="Estimated speakers online today, added up the same way"><div class="eyebrow">Online*</div><b>${people(on)}</b></div>
-      <p class="rsum-note">* Summed per language: people who speak several languages are counted in each.${narrowed() ? ` Each language counts only its speakers in ${countrySel.size ? 'the countries' : 'the regions'} chosen.` : ''}</p>
+      <div title="Each language's speakers added up, so people who speak several languages are counted once for each"><div class="eyebrow">Speakers*</div><b>${people(sp)}</b><small class="rs-sum">summed</small></div>
+      <div title="Estimated speakers online today, added up the same way"><div class="eyebrow">Online*</div><b>${people(on)}</b><small class="rs-sum">summed</small></div>
+      <p class="rsum-note">* Each language's speakers added up, so people who speak several languages are counted in each, and the totals exceed the population.${narrowed() ? ` Each language counts only its speakers in ${countrySel.size ? 'the countries' : 'the regions'} chosen.` : ''}</p>
     </div>
     <div class="rsum-tiers">
       <div class="eyebrow">Share by tier</div>
       ${row('Languages', 'n', ls.length)}${row('Speakers', 'sp', sp)}
-      <div class="tbar-key">${tiers.map(t => `<span${TIER_DESC[t] ? ` title="${esc(TIER_DESC[t])}"` : ''}><i style="background:var(${TIERC[t]})"></i>${label[t]}</span>`).join('')}</div>
+      <div class="tbar-key">${tiers.map(t => `${t === DATA.config.tiers.stages[0][0] ? '<span class="tk-sep">below Medium, by what exists:</span>' : ''}<span${TIER_DESC[t] ? ` title="${esc(TIER_DESC[t])}"` : ''}><i style="background:var(${TIERC[t]})"></i>${label[t]}</span>`).join('')}</div>
     </div>
     <div class="rsum-gaps">
       <div class="eyebrow">Speakers with no commercial service</div>
@@ -1225,6 +1239,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k 
   `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}
   section.focus-regional .tile[data-prov]:not([data-regional]) { opacity: .3; }</style>`);
 let provFocus = null, moreOpen = false;  // remembered while moving between languages
+const ROLE_OF = Object.fromEntries(DATA.services.map(s => [s.id, s.role]));
 const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => [s.id, s.depth]));
 // A published quality measure that discounts a service where it's poor (services.csv: quality)
 const QUALITY_OF = Object.fromEntries(DATA.services.filter(s => s.quality).map(s => [s.id, s]));
@@ -1698,7 +1713,7 @@ function mapSection() {
       <button class="chip" data-mode="dots" aria-pressed="${!areasOn}">Languages</button></div>` : '';
   let layer = dots, legend, sub;
   const colour = P ? `the share of the ${provCoverage(LANGS[0], provider).of} ${esc(pn)} ${provWhat(provider)} tracked here that cover each language${provBench(provider) ? ' (a benchmark counts where it publishes a result)' : ''}`
-    : `LTDI tier (very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75; below that, by what's recorded: low, some commercial support; very low, open tools only; data only; or none recorded)`;
+    : `LTDI tier (very high 0.90 and above, high 0.75–0.90, medium 0.60–0.75; below that, by what's recorded: commercial, some commercial support; open only; data only; or none recorded)`;
   if (areasOn) {
     // a region is a place here: its frame, with every area in it at full strength (English and Spanish
     // in the Americas, though their region group is Europe)
@@ -2078,6 +2093,9 @@ function charts() {
     ${regs.map((r, i) => {
       const ls = LANGS.filter(l => l._rg.has(r)).sort((a, b) => sval(a) - sval(b)), cy = top + i * rowH + rowH / 2;
       const lo = ls[0], hi = ls[ls.length - 1];
+      // where several share the lowest (or highest) value, say how many rather than name one of them
+      const nLo = ls.filter(l => sval(l) === sval(lo)).length, nHi = ls.filter(l => sval(l) === sval(hi)).length;
+      const loName = nLo > 1 ? `${nLo.toLocaleString()} tied lowest` : lo.name, hiName = nHi > 1 ? `${nHi.toLocaleString()} tied highest` : hi.name;
       // nudge dots that would overlap above and below the row line
       // crowded rows (many languages) get small, translucent dots spread vertically instead
       const crowd = ls.length > 60;
@@ -2088,8 +2106,8 @@ function charts() {
         prevX = x; return { l, x, y: cy + dy }; });
       return `<text x="0" y="${cy + 4}" fill="var(--ink)" font-size="13" font-weight="600">${esc(r)}</text>
         ${dots.map(d => `<a href="#lang-${d.l.code}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="${crowd ? 3 : 6.5}" fill="var(--accent)" fill-opacity="${crowd ? 0.45 : 0.85}" stroke="var(--surface)" stroke-width="${crowd ? 0 : 2}" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>${P ? `${esc(pn)}: ${provCoverage(d.l, provider).n} of ${provCoverage(d.l, provider).of} ${provWhat(provider)}` : `LTDI ${d.l.ltdi.toFixed(3)} · rank ${rankLabel(d.l)}`}"/></a>`).join('')}
-        <text x="${sx(sval(lo))}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(lo.name)}</text>
-        ${ls.length > 1 ? `<text x="${Math.min(sx(sval(hi)), SW - 4)}" y="${cy - 14}" text-anchor="${sx(sval(hi)) > SW - 40 ? 'end' : 'middle'}" fill="var(--muted)" font-size="11">${esc(hi.name)}</text>` : ''}`;
+        <text x="${sx(sval(lo))}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(loName)}</text>
+        ${ls.length > 1 ? `<text x="${Math.min(sx(sval(hi)), SW - 4)}" y="${cy - 14}" text-anchor="${sx(sval(hi)) > SW - 40 ? 'end' : 'middle'}" fill="var(--muted)" font-size="11">${esc(hiName)}</text>` : ''}`;
     }).join('')}
   </svg>`;
 
@@ -2226,7 +2244,7 @@ function about() {
     <h3>How a language is scored</h3>
     <p>Each dimension averages a few indicators, each scaled from 0 to 1 between a floor and a goal (most on a logarithmic scale, so the first thousand sentences count for more than the millionth). The two are combined with a geometric mean, LTDI = √(data × technology), as in the UN's Human Development Index, so a gap in either pulls the score down: a language with excellent data but no keyboard can't score highly. A technology scores by the share of the services checked that offer the language, weighted by how fully each does (features, voice types, published error rates), with open models counting for less than commercial services. Locale data (CLDR's dates, numbers and names, which software needs before it can support a language) counts as a technology; voice assistants count half as much as other technologies, since few languages have one. Whether a language's script is encoded in Unicode is reported but not scored, as nearly every recorded script is.</p>
     <p>Each dimension has a floor of ${DATA.config.meta.floor}, so a language with nothing recorded in one still has a score, but ranks use the unfloored values: any language with something recorded ranks above every language with nothing, and a language's page shows its score before the floor where the floor lifts it.</p>
-    <p>The top three tiers are set by score: ${DATA.config.tiers.cutoffs.map(([, t, c]) => `${t} from ${c}`).join(', ')}. Below Medium, where scores are close together and small differences mean little, a language's tier says what's recorded for it: ${DATA.config.tiers.stages.map(([, t, d]) => `<b>${esc(t)}</b>, ${esc(d.charAt(0).toLowerCase() + d.slice(1))}`).join('; ')}.</p>
+    <p>The top three tiers are set by score: ${DATA.config.tiers.cutoffs.map(([, t, c]) => `${t} from ${c}`).join(', ')}. Below Medium, where scores are close together and small differences mean little, a language's tier says what's recorded for it: ${DATA.config.tiers.stages.map(([, t, d]) => `<b>${esc(t)}</b>, ${esc(d.charAt(0).toLowerCase() + d.slice(1))}`).join('; ')}. These stages say what exists, not how much, so they aren't ordered by score: a language with open tools only can outscore one with a single commercial service.</p>
     <p>A spoken variety whose speakers typically write a standard language (Swiss German, Kölsch and Egyptian Arabic, say) is scored and ranked on what exists for it alone. Its page also gives a second score counting the standard's written data and text technologies, which most of its speakers can use, and marks those values “through” the standard. Dari and Southern Pashto are the exceptions: their written form is the standard itself (Persian as written in Afghanistan, standard Pashto), which sources label as Persian and Pashto, so those resources count as their own.</p>
     <h3>Why something is missing for a language</h3>
     <p>Most sources cover only a small share of the world's languages, so most values on most pages are missing. A missing value nearly always means a source doesn't list or measure the language, not that the language has nothing: a language may have speech data in an archive no source here counts, or a keyboard that isn't in any app store. These are the ${N.toLocaleString()} ranked languages each source covers.</p>
@@ -2287,7 +2305,7 @@ function about() {
     <p>If you spot a mistake or know of a source we've missed, please <a href="${REPO_URL}/issues" target="_blank" rel="noopener">open an issue on GitHub</a>.</p>
 
     <h3>Download and cite</h3>
-    <p>The scores for this edition are a <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">CSV file</a>: one row per language, with its rank, tier, both dimensions before and after the floor, each technology's score, and, for spoken varieties, the score through their written standard (<a href="data/ltdi-${DATA.edition}.json" target="_blank" rel="noopener">column descriptions and the method's hashes</a>). Every edition is kept in the repository's <a href="${REPO_URL}/tree/main/data/editions" target="_blank" rel="noopener">data/editions</a> folder, so editions can be compared. The data is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> and the code MIT.</p>
+    <p>The scores for this edition are a <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">CSV file</a>: one row per language, with its rank, tier, both dimensions before and after the floor, each technology's score, and, for spoken varieties, the score through their written standard (<a href="data/ltdi-${DATA.edition}.json" target="_blank" rel="noopener">column descriptions and the method's hashes</a>). A second <a href="data/ltdi-${DATA.edition}-services.csv" target="_blank" rel="noopener">services table</a> gives, for every language, what each service and benchmark tracked records: 1 where it's offered, 0 where it isn't, or the measured result. Every value with its source, date and note is in the repository's <a href="${REPO_URL}/tree/main/data/records" target="_blank" rel="noopener">data/records</a> folder, and every edition in <a href="${REPO_URL}/tree/main/data/editions" target="_blank" rel="noopener">data/editions</a>, so editions can be compared. The data is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> and the code MIT.</p>
     <p class="cite">${esc(citeText())}</p>
     <h3>Sources and credits</h3>
     <p>Language metadata from LinguaMeta, with scripts from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a> (CC BY-SA 4.0, so data derived from it carries the same licence), endangerment from Glottolog where LinguaMeta gives none, and speaker counts from Wikipedia where neither does. Census figures from the UN Statistics Division and the US Census Bureau; connectivity from the World Bank. Language areas from <a href="https://glottography.github.io" target="_blank" rel="noopener">Glottography</a> (CC BY 4.0); map from Natural Earth. Writing samples from <a href="https://github.com/eric-muller/udhr" target="_blank" rel="noopener">UDHR in XML</a>; spoken words from <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a> (CC BY-SA 4.0). Every other value names its source on the language's page. The method builds on van Esch, Ritchie et al. (2024), <a href="https://aclanthology.org/2024.lrec-main.331/" target="_blank" rel="noopener">Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages</a>.</p>

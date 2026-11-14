@@ -163,7 +163,7 @@ COVERAGE = {
         lambda c: f"Some services already recognise this language. Open training data includes {_hours(c['hours'])} "
                   f"of transcribed speech {c['sets']}."),
     "asr-none": ("speech_input", "open", "share",
-        lambda c: "No major speech input service, though open resources exist",
+        lambda c: "No speech input service found among those tracked, though open resources exist",
         lambda c: f"Open datasets hold {_hours(c['hours'])} of transcribed speech"
                   + (", and an open model lists the language" if c["open"] else "") + "."),
     "tts-vendors": ("tts", "some", "share",
@@ -171,13 +171,13 @@ COVERAGE = {
         lambda c: "Some cloud services already have a voice for this language"
                   + (", and an open model can speak it." if c["open"] else ".")),
     "tts-share": ("tts", "open", "share",
-        lambda c: "No cloud text-to-speech voice found, though open resources exist",
+        lambda c: "No cloud text-to-speech voice found among those tracked, though open resources exist",
         lambda c: "None of the cloud services checked has a voice for this language. "
                   + ("An open text-to-speech model already speaks it. " if c["open"] else "")
                   + f"Open datasets hold {_hours(c['hours'])} of transcribed speech."),
     "tts-collect": ("tts", "none", "collect",
         lambda c: "Record a single-speaker voice for text-to-speech",
-        lambda c: "No cloud or open voice was found and open speech data is thin. A few hours of clean single-speaker "
+        lambda c: "No cloud or open voice was found in the sources tracked, and open speech data is thin. A few hours of clean single-speaker "
                   "recordings would unlock a usable voice."),
     "ui-platforms": ("interface", "some", "share",
         lambda c: f"The interface is translated on {c['n']} of {c['of']} major platforms",
@@ -188,8 +188,8 @@ COVERAGE = {
         lambda c: "A volunteer community already maintains a full browser translation, with terminology a platform "
                   "could build on."),
     "ui-none": ("interface", "none", "standardise",
-        lambda c: "No major platform or open project offers this interface language",
-        lambda c: "Phones and computers can't be set to this language, so every app is used in a second language."),
+        lambda c: "Not found as an interface language on the platforms and open projects tracked",
+        lambda c: "None of the phone and computer platforms tracked can be set to this language, so their apps are used in a second language."),
     "ocr-vendors": ("ocr", "some", "share",
         lambda c: f"Text recognition is offered by {c['n']} of {c['of']} major services",
         lambda c: "Some services already read printed text in this language"
@@ -199,8 +199,8 @@ COVERAGE = {
         lambda c: "An open OCR model reads printed text in this language. Text recognition also turns printed books "
                   "into training data for every other technology."),
     "ocr-collect": ("ocr", "none", "collect",
-        lambda c: "No text recognition, open or commercial",
-        lambda c: "Printed books, signs and forms can't be read by phone cameras or digitised at scale."),
+        lambda c: "No text recognition found, open or commercial, in the services tracked",
+        lambda c: "Without text recognition, printed books, signs and forms can't be read by phone cameras or digitised at scale."),
     "proof-share": ("proofing", "open", "share",
         lambda c: "An open spell-checker exists that more word processors could adopt",
         lambda c: "An open dictionary or grammar checker covers this language, but the most widely used word "
@@ -254,6 +254,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             rule = RULES[key]
             out.append({"key": key, "type": type_, "technology": tech, "title": title, "detail": detail,
                         "gap": round(min(1.0, gap), 3), "evidence": [e for e in evidence if e in f],
+                        "checked": list(dict.fromkeys(evidence)),  # every source checked, found or not
                         "teams": rule["teams"], "missing": rule["missing"], "cost": rule.get("cost"),
                         "starter": [i for i in _expand(rule["starter"]) if _v(f, i)]})
 
@@ -317,7 +318,7 @@ def find(f: dict[str, Record]) -> list[dict]:
     wer = _v(f, "asr_whisper_fleurs_wer")
     if wer is not None and wer >= 100:
         if cv or any(_v(f, i) for i in ASR_OPEN):  # something to measure
-            add("asr-measure", "measure", "speech_input", "No published speech recognition error rate",
+            add("asr-measure", "measure", "speech_input", "Not in the speech recognition error rates tracked here",
                 "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't "
                 "tell how usable open speech recognition is.",
                 1.0, ["asr_whisper_fleurs_wer"])
@@ -326,7 +327,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
             (wer - 10) / 40, ["asr_whisper_fleurs_wer"])
     if cv < 20:
-        add("asr-collect", "collect", "speech_input", f"Only {_hours(cv)} of open transcribed speech" if cv else "No open transcribed speech found",
+        add("asr-collect", "collect", "speech_input", f"Only {_hours(cv)} of open transcribed speech found" if cv else "No open transcribed speech found in the datasets tracked",
             "Counted across the open speech datasets we track. Image-prompted field collection has worked at "
             "scale for Indian and African languages.",
             1 - cv / 20, ["open_speech_hours"])
@@ -342,10 +343,10 @@ def find(f: dict[str, Record]) -> list[dict]:
     # LLMs
     llm = [i for i in LLM if i in f]
     if not llm and has_text:
-        add("llm-measure", "measure", "llm", "No published LLM benchmark results",
+        add("llm-measure", "measure", "llm", "Not in the LLM benchmark results tracked here",
             f"None of the {len(LLM)} published LLM benchmark results we track covers this language. Adding it "
             "would give builders and buyers a baseline.",
-            1.0, [])
+            1.0, LLM)
     else:
         rel = _v(f, "llm_global_mmlu_rel")
         acc = _v(f, "llm_mmmlu_openai")
@@ -357,13 +358,13 @@ def find(f: dict[str, Record]) -> list[dict]:
     apps_n = offered["llm"]
     if any(i in f for i in APPS) and apps_n < len(APPS) and (apps_n or llm):
         add("llm-apps", "share", "llm", (f"{apps_n} of {len(APPS)} major AI assistant apps list this language" if apps_n
-                                    else "No major AI assistant app lists this language yet"),
+                                    else "Not in the AI assistant app language lists tracked"),
             ("Some assistant apps already offer it. " if apps_n else "")
             + ("Benchmarks show models already work in it, so listing it could be a short step."
                if llm else "Listing it would tell speakers they can rely on it."),
             (len(APPS) - apps_n) / len(APPS), APPS + llm)
     if not _v(f, "belebele") and has_text:
-        add("llm-reading", "measure", "llm", "No reading-comprehension benchmark",
+        add("llm-reading", "measure", "llm", "Not in Belebele, the reading-comprehension benchmark tracked here",
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
             0.5, ["belebele"])
 
@@ -371,7 +372,7 @@ def find(f: dict[str, Record]) -> list[dict]:
     if "proof_office" in f and not _v(f, "proof_office") and not (_v(f, "proof_hunspell") or _v(f, "proof_languagetool")) \
             and words >= 1e7:
         add("proof-build", "share", "proofing", "A spell-checker could be built from open text",
-            f"No spell-checker was found. FineWeb-2 holds about {_words(words)} words of open web text, "
+            f"No spell-checker was found in the sources tracked. FineWeb-2 holds about {_words(words)} words of open web text, "
             "enough for a first word list.",
             1.0, ["proof_office", "proof_hunspell", "web_text_words"])
 
@@ -384,7 +385,7 @@ def find(f: dict[str, Record]) -> list[dict]:
 
     # Language identification (open tools only)
     if any(i in f for i in LID) and not any(_v(f, i) for i in LID) and words:
-        add("lid-none", "share", "langid", "Open language identifiers don't recognise this language",
+        add("lid-none", "share", "langid", "Not recognised by the open language identifiers tracked",
             "Web-scale data collection starts by identifying each page's language, so text in this language "
             "is lost from open datasets.",
             1.0, LID + ["web_text_words"])
@@ -405,7 +406,7 @@ def find(f: dict[str, Record]) -> list[dict]:
 
     # Text data
     if words and words < 1e8:
-        add("text-collect", "collect", "data", f"Only about {_words(words)} words of open web text",
+        add("text-collect", "collect", "data", f"Only about {_words(words)} words of open web text found",
             "Little text online limits language models and word prediction. Digitising books and news archives "
             "is often the fastest route.",
             1 - math.log10(max(words, 1e4) / 1e4) / 4, ["web_text_words"])

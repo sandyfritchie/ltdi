@@ -47,7 +47,7 @@ class FindTests(unittest.TestCase):
         fs = facts(**{**FULL, "ocr_google": 0, "ocr_azure": 0, "ocr_apple": 0, "ocr_open_tesseract": 1})
         self.assertIn("An open text recognition model exists, but no major service", titles(fs, "share"))
         fs = facts(**{**FULL, "ocr_google": 0, "ocr_azure": 0, "ocr_apple": 0, "ocr_open_tesseract": 0})
-        self.assertIn("No text recognition, open or commercial", titles(fs, "collect"))
+        self.assertIn("No text recognition found, open or commercial, in the services tracked", titles(fs, "collect"))
 
     def test_proofing_shares_open_dictionary_or_builds_from_text(self):
         fs = facts(**{**FULL, "proof_office": 0, "proof_hunspell": 1})
@@ -76,7 +76,7 @@ class FindTests(unittest.TestCase):
 
     def test_unmeasured_llm_is_measure(self):
         fs = facts(**{k: v for k, v in FULL.items() if k != "llm_global_mmlu_rel"})
-        self.assertIn("No published LLM benchmark results", titles(fs, "measure"))
+        self.assertIn("Not in the LLM benchmark results tracked here", titles(fs, "measure"))
 
     def test_wording_never_names_companies(self):
         sparse = facts(kb_gboard=1, kb_apple=1, kb_apple_features=0, asr_google=1, cv_validated_hours=30,
@@ -176,3 +176,17 @@ class TopListTests(unittest.TestCase):
         got = top_listed(top)
         self.assertLessEqual(max(sum(1 for o in got if o["lang"] == l) for l in "ab"), PER_LANGUAGE)
         self.assertEqual([o["key"] for o in got], ["k0", "k1", "k3"])
+
+
+class WordingTests(unittest.TestCase):
+    def test_no_title_asserts_that_something_does_not_exist(self):
+        """Titles say what wasn't found in the sources tracked, not that it doesn't exist (re-review R3)."""
+        import re
+        sparse = facts(web_text_words=5e4, wikipedia_articles=10, wikipedia_active_editors=2, open_speech_hours=1,
+                       asr_whisper_fleurs_wer=100, asr_open_omnilingual=1, cldr_coverage=0, ui_ios=0, ui_windows=0,
+                       ui_office=0, ocr_google=0, ocr_azure=0, ocr_apple=0, tts_google=0, belebele=0, lid_glotlid=0,
+                       lid_cld3=0, llm_app_gemini=0, llm_app_copilot=0, llm_app_chatgpt=0, proof_office=0)
+        for o in find(sparse):
+            t = o["title"]
+            if re.match(r"(No|Not|None)\b", t) or "don't" in t or "doesn't" in t:
+                self.assertRegex(t, r"found|tracked|in Unicode CLDR", t)

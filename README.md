@@ -20,7 +20,7 @@ LTDI data derived from it carries the same licence (see [Licence](#licence)).
 
 ## Status
 
-Every language in LinguaMeta (7,453 after macrolanguage rules), ten technologies and about 80 indicators
+Every language in LinguaMeta (7,450 after macrolanguage rules), ten technologies and about 80 indicators
 from some 40 sources, scored end to end with a static site. Commercial coverage is read from each
 company's published language lists; data from FineWeb-2, OPUS, Universal Dependencies, Wikipedia,
 open speech datasets, the Hugging Face Hub and public benchmarks.
@@ -75,6 +75,7 @@ only small builds work, because then the detail is embedded.
 | `data/records/` | Automated collector output |
 | `data/manual/` | Lists read by hand where no page can be parsed (`*.lists.csv`: languages, notes, URL, date) |
 | `data/editions/` | Each edition's scores (`<edition>.csv`) and what produced them (`<edition>.json`: method version, config and records hashes, column descriptions) |
+| `tools/og_image.py` | The link-preview image, `site/og.png`, with the edition's headline figures (re-run each edition) |
 | `tools/validate.py` | Compares LTDI with Joshi et al.'s classes and SIL's Digital Language Support levels (`data/validation.json`, shown on the About page) |
 | `tools/edition_diff.py` | Splits the change in scores since an earlier commit into the method's part and the data's |
 | `site/` | Static site template and build output |
@@ -106,8 +107,10 @@ where the floor lifts it.
 
 Tiers are in `[tiers]` in `config/methodology.toml`. The top three are set by score (Very high from
 0.9, High from 0.75, Medium from 0.6). Below Medium, where scores are close and small differences
-mean little, the tier is a stage, by what's recorded for the language: Low (some support from a
-commercial or regional service), Very low (open tools only), Data only, and None recorded.
+mean little, the tier is a stage, by what's recorded for the language: Commercial (some support from
+a commercial or regional service), Open only (open tools only), Data only, and None recorded. Stages
+say what exists, not how much: they aren't ordered by score, so a language in Open only can outscore
+one in Commercial.
 
 Regional providers (Yandex, Baidu, Alibaba Cloud's Qwen-MT, Naver Papago, Sarvam AI, Lelapa AI,
 GhanaNLP's Khaya, Sunbird AI) count together as one extra commercial service, and only for the
@@ -134,7 +137,7 @@ any name it can't resolve.
 | Tech | Speech input | Google Cloud STT, Azure AI Speech, iOS dictation, Amazon Transcribe; Whisper, MMS and Omnilingual ASR (open); depth: Whisper large-v3 FLEURS WER, Omnilingual ASR's published character error rate per language, Azure speech-to-text features | automated |
 | Tech | Text-to-speech | Google Cloud TTS, Azure AI Speech, Amazon Polly, OpenAI API text-to-speech; MMS-TTS (open); depth: number of Google voice types | automated |
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | automated |
-| Tech | LLMs | Availability: Gemini, Copilot and ChatGPT app language lists (ChatGPT's transcribed by hand from OpenAI's help page, `ltdi/collectors/openai_docs.py`). Quality: Anthropic's Global-MMLU (relative to English), OpenAI's MMMLU (absolute accuracy), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50) | automated; Anthropic's scores read by hand |
+| Tech | LLMs | Availability: Gemini, Copilot and ChatGPT app language lists (ChatGPT's transcribed by hand from OpenAI's help page, `ltdi/collectors/openai_docs.py`). Quality: Anthropic's Global-MMLU (relative to English, scaled from 70% to 95%), OpenAI's MMMLU (o3's accuracy, scaled from 0.60 to 0.88), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50); at or above the top of each scale a result counts in full, as strong translation results do | automated; Anthropic's scores read by hand |
 | Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
@@ -189,7 +192,7 @@ provider's services (and published benchmarks) covering each language, the
 coverage bars show its services one technology at a time, and history appears
 where a source has one (DeepL; Meta's NLLB-200 and Belebele; OpenAI's Whisper).
 Shares aren't comparable across providers, since the number of services tracked
-differs (one for DeepL, fifteen for Google).
+differs (one for DeepL; nine for Google: seven commercial services, an open model and a benchmark).
 
 The opportunities list can be filtered by provider too: it then shows only
 opportunities whose technology includes a service from that provider that
@@ -340,7 +343,7 @@ the coalition workstream it fits.
   Greek ε for ɛ (Bambara, Mossi, Fon, Fanti, Kabyle), Greek ͻ and Cyrillic Ԑ for ɔ and Ɛ (Twi), Cyrillic
   ӡ for ʒ (Aja), Cyrillic ә for ə (Tatar). About 5,100 languages remain with only their script checked.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
-- LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand, for the original 25.
+- LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand (12 languages recorded).
 - LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's
   infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
   scripts for about 690 more; another 71 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a

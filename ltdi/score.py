@@ -421,7 +421,7 @@ def main() -> None:
            "resources": resources(), "opportunity_types": TYPES, "teams": TEAMS, "history": history,
            "languages": results, "facts": facts, "via_facts": via}
     (DATA / "scores.json").write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    write_edition(results, cfg)
+    write_edition(results, cfg, by_lang)
     for r in results:
         d = r["dimensions"]
         print(f"{r['rank'] or '-':>4} {r['code']:<4} {r['name']:<18} LTDI {r['ltdi']:.3f}  "

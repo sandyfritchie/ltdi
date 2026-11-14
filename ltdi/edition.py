@@ -45,7 +45,26 @@ def _sha(paths) -> str:
     return h.hexdigest()
 
 
-def write_edition(results: list[dict], cfg: dict) -> None:
+def write_services(results: list[dict], facts: dict, out) -> None:
+    """<edition>-services.csv: for every language, what each service and benchmark tracked records
+    (1 offered, 0 not, a number for a measured result, empty where nothing is recorded)."""
+    from .config import services
+    cols = []
+    for s in services():
+        cols.append(s["id"])
+        if s.get("quality") and s["quality"] not in cols:
+            cols.append(s["quality"])
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\n")
+    w.writerow(["code", "name", *cols])
+    num = lambda v: "" if v is None else (str(int(v)) if float(v).is_integer() else f"{v:.4g}")
+    for r in results:
+        f = facts.get(r["code"], {})
+        w.writerow([r["code"], r["name"], *(num(f[c].value) if c in f else "" for c in cols)])
+    out.write_text(buf.getvalue(), encoding="utf-8")
+
+
+def write_edition(results: list[dict], cfg: dict, facts: dict | None = None) -> None:
     edition = cfg["meta"]["edition"]
     techs = list(cfg["dimensions"]["tech"]["technologies"])
     labels = {t: cfg["dimensions"]["tech"]["technologies"][t]["label"] for t in techs}
@@ -67,6 +86,8 @@ def write_edition(results: list[dict], cfg: dict) -> None:
     out = DATA / "editions"
     out.mkdir(exist_ok=True)
     (out / f"{edition}.csv").write_text(buf.getvalue(), encoding="utf-8")
+    if facts is not None:
+        write_services(results, facts, out / f"{edition}-services.csv")
     meta = {
         "edition": edition,
         "methodology_version": cfg["meta"]["methodology_version"],
