@@ -1129,8 +1129,7 @@ function ranking() {
     </div>
     <div class="rsum-wrap"><div id="rsum" class="rsum" aria-live="polite"></div></div>
     <div class="legend">
-      <span><i class="sw" style="background:var(--data)"></i>Data</span>
-      <span><i class="sw" style="background:var(--tech)"></i>Technology</span>
+      ${DIMS.map(([k, , c]) => `<span><i class="sw" style="background:var(${c})"></i>${k === 'tech' ? 'Technology' : 'Data'}</span>`).join('\n      ')}
       <span class="hide-sm">Gaps:</span>
       <span class="hide-sm"><span class="gap-i none">${TICON.tts}</span>No service found</span>
       <span class="hide-sm"><span class="gap-i open">${TICON.tts}</span>Open model or benchmark only</span>
