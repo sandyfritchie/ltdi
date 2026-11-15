@@ -413,6 +413,34 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     return index, details
 
 
+def compact(index: dict) -> None:
+    """Shorter forms for the per-language fields every language carries, decoded once when the page
+    loads (the loop that prepares ALL in template.html), so the page's code sees the usual fields:
+
+      gaps {"llm": "open", ...}           -> "gx": one character per technology in GAP_ORDER:
+                                             n (nothing), o (open tools only), - (no gap)
+      scores {"data": .61, "tech": .56}   -> "s": [.61, .56] in DIM_ORDER
+      raw {"data": 0.0}                   -> "rw": [0.0, null] in DIM_ORDER
+      endangerment "not_endangered"       -> "en": index into ENDANGERMENT
+      opportunity_count 11                -> "oc": 11"""
+    techs = list(index["config"]["dimensions"]["tech"]["technologies"])
+    dims = list(index["config"]["dimensions"])
+    levels = sorted({l.get("endangerment") for l in index["languages"] if l.get("endangerment")})
+    index |= {"gap_order": techs, "dim_order": dims, "endangerment_levels": levels}
+    code = {"none": "n", "open": "o"}
+    for l in index["languages"]:
+        gaps = l.pop("gaps", None) or {}
+        if gaps:
+            l["gx"] = "".join(code.get(gaps.get(t), "-") for t in techs)
+        sc = l.pop("scores")
+        l["s"] = [sc.get(k) for k in dims]
+        if (raw := l.pop("raw", None)):
+            l["rw"] = [raw.get(k) for k in dims]
+        if (e := l.pop("endangerment", None)):
+            l["en"] = levels.index(e)
+        l["oc"] = l.pop("opportunity_count", 0)
+
+
 def what_label(scores: dict):
     """Names what each organisations.csv id stands for, as a language page lists it."""
     svc = {s["id"]: s for s in scores["services"]}
@@ -568,6 +596,11 @@ def main() -> None:
 
     template = (SITE / "template.html").read_text(encoding="utf-8")
     template = template.replace("<!--__STATIC__-->", static_summary(scores)).replace("__EDITION_LINE__", edition_line(scores))
+    # the over-time history is only for the Charts page, so it's fetched when that opens
+    (SITE / "data" / "history.json").write_text(_dump(index.pop("history", None)), encoding="utf-8")
+    # likewise the top opportunities, for the Opportunities tab
+    (SITE / "data" / "top_opportunities.json").write_text(_dump(index.pop("top_opportunities", [])), encoding="utf-8")
+    compact(index)
     page = template.replace("/*__DATA__*/", _dump(index).replace("</", "<\\/"))
     page = page.replace("/*__LANGS__*/", embed.replace("</", "<\\/"))
     if (DATA / "basemap.json").exists() and (DATA / "world_languages.json").exists():
