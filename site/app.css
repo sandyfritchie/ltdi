@@ -8,7 +8,7 @@
   --rule: #d9e0dd;
   --accent: #1f5f8b;
   --writing: #b07a1c;
-  --data: #12806f;
+  --data: #117a6a;
   --tech: #4a4fb8;
   --tier-vh: #1f5f8b;
   --tier-h: #4f87ad;
@@ -17,10 +17,10 @@
   --tier-ink-light: #16201d;
   --tier-ink-dark: #ffffff;
   --track: #e6ebe9;
-  --ord-full: #184f95; --ord-part: #3987e5; --ord-open: #86b6ef; --ord-none: #e3e8e6;
+  --ord-full: #184f95; --ord-part: #2d74cf; --ord-open: #86b6ef; --ord-none: #e3e8e6;
   --on-full: #ffffff; --on-part: #ffffff; --on-open: #0d2a4d;
   /* share-online text, blue (most online) to red (few): the tier hues, darkened to read as text */
-  --pct-4: #1c5cab; --pct-3: #3f7fc6; --pct-2: #b8661c; --pct-1: #b3421a;
+  --pct-4: #1c5cab; --pct-3: #3570b3; --pct-2: #a65a15; --pct-1: #b3421a;
   /* tiers: blues for the three score tiers; below them, oranges darkening as less is recorded, grey for nothing */
   --t-vh: #1c5cab; --t-h: #4b8fd9; --t-m: #9cc4f0; --t-lc: #f2b27a; --t-lo: #e07b36; --t-ld: #b4481a; --t-ln: #b9c1bd;
   --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
@@ -394,7 +394,7 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .opp .prio { grid-row: span 5; font: 800 22px/1 var(--font-display); font-stretch: 80%; text-align: right; font-variant-numeric: tabular-nums; }
 .opp .prio small { display: block; font: 500 10px var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 .opp-head { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: 13px; color: var(--muted); }
-.otype { font: 600 11px/1 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: var(--c); border: 1px solid var(--c); border-radius: 3px; padding: 3px 6px; }
+.otype { font: 600 11px/1 var(--font-mono); letter-spacing: .04em; text-transform: uppercase; color: color-mix(in srgb, var(--c), var(--ink) 38%); border: 1px solid var(--c); border-radius: 3px; padding: 3px 6px; }
 .opp-head a { font-weight: 600; }
 .opp-title { font-weight: 600; }
 .opp-prov { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink); }
@@ -511,7 +511,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .dh { font: 600 11px/1.2 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .dv { font-size: 24px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; } .dn { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
 .chg-lang { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
-.org-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 4px 18px; }
+.org-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 4px 18px; }
 .org-list li { padding: 7px 0; border-bottom: 1px solid var(--rule); min-width: 0; } .org-list .small { color: var(--muted); margin-top: 2px; }
 .ready-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
 .rcard { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; min-width: 0; }
@@ -519,6 +519,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .rn { margin-left: auto; font: 600 13px var(--font-mono); white-space: nowrap; }
 .rcard ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; font-size: 13px; line-height: 1.35; }
 .rcard li { display: flex; gap: 6px; } .rcard li.no { color: var(--muted); } .rcard .rm { flex: none; width: 1em; color: var(--accent); } .rcard li.no .rm { color: var(--muted); }
+#view .code { overflow-wrap: anywhere; }  /* long addresses (the API's) wrap on phones */
 .sronly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .plan-steps { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 6px; }
 .plan-steps b { color: var(--ink); font-weight: 700; margin-inline-start: 4px; }
@@ -527,7 +528,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .plancurve .grid line { stroke: var(--rule); } .plancurve .grid text, .plancurve .mk { font-size: 11px; fill: var(--muted); }
 .ftags { font: 10.5px/1.3 var(--font-body); color: var(--muted); margin-top: 3px; letter-spacing: 0; }
 .eflags { display: inline-flex; flex-wrap: wrap; gap: 4px; vertical-align: middle; } .eflag { font-size: 12px; padding: 1px 7px; border: 1px solid var(--rule); border-radius: 10px; color: var(--ink); background: var(--surface); cursor: help; }
-.rel-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 6px 18px; }
+.rel-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 6px 18px; }
 .rel-list li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
 .slbtn { float: right; margin: 1px 0 0 6px; width: 22px; height: 22px; padding: 0; border-radius: 50%; border: 1px solid var(--rule);
   background: var(--surface); color: var(--accent); font: 700 14px/20px var(--font-body); text-align: center; cursor: pointer; }

@@ -1,0 +1,9 @@
+{
+  "name": "ltdi-browser-tests",
+  "private": true,
+  "description": "Browser checks for the built site (tests/browser/smoke.js)",
+  "devDependencies": {
+    "axe-core": "4.10.2",
+    "playwright": "1.63.0"
+  }
+}

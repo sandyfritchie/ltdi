@@ -43,3 +43,16 @@ jobs:
             exit 1
           fi
           echo "site/ and data/editions/ match the build"
+      # Every view in a real browser: no script errors or missing files, nothing wider than the
+      # screen at 1280, 400 and 320px, the /language/<code> addresses, and an accessibility audit
+      # (axe-core) in light and dark (tests/browser/smoke.js)
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install the browser test tools
+        run: npm ci && npx playwright install --with-deps chromium
+      - name: Browser checks
+        run: |
+          python tools/serve.py 8765 &
+          sleep 2
+          node tests/browser/smoke.js

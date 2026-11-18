@@ -339,6 +339,17 @@ and Belebele. Language pages list their own additions, and `/changes.xml` is an 
 a renamed entry look like a dropped language; from the second edition, each edition's services table
 is compared with the last, for every service and benchmark, both ways.
 
+## Checks
+
+`python -m pytest tests` covers the pipeline. `tests/browser/smoke.js` opens every view of the built site
+in a browser and fails on a script error, a missing file, a page wider than the screen (at 1280, 400
+and 320px), a wrong address, or an accessibility problem found by axe-core, in light and dark. Both run
+on every push (`.github/workflows/check.yml`). To run the browser checks locally:
+
+    python tools/serve.py &          # serves site/ the way GitHub Pages does
+    npm ci && npx playwright install chromium
+    node tests/browser/smoke.js
+
 ## Addresses
 
 Each language has its own address, `https://langtechindex.org/language/<code>` (`/language/yo`), with its

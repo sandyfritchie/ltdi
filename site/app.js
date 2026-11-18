@@ -177,7 +177,10 @@ function navBox(mode, placeholder, value = '') {
   inp.placeholder = placeholder; inp.setAttribute('aria-label', placeholder);
   inp.setAttribute('role', mode === 'filter' ? 'searchbox' : 'combobox');
   inp.value = value;
-  const ul = document.getElementById('go-list'); ul.hidden = true; inp.setAttribute('aria-expanded', 'false');
+  const ul = document.getElementById('go-list'); ul.hidden = true;
+  // a combobox says whether its list is open; a plain search box has no list
+  if (mode === 'filter') { inp.removeAttribute('aria-expanded'); inp.removeAttribute('aria-controls'); }
+  else { inp.setAttribute('aria-expanded', 'false'); inp.setAttribute('aria-controls', 'go-list'); }
 }
 document.getElementById('go').addEventListener('input', e => {
   if (navMode === 'filter' && navFilter) navFilter(e.target.value);
@@ -712,7 +715,7 @@ function ranking() {
         <td class="c-name" title="${esc(l.name)}${l.autonym && l.autonym !== l.name ? ' · ' + esc(l.autonym) : ''}"><div class="lname">${esc(l.name)}</div><div class="auto">${altHit(l, q) ? `also ${esc(altHit(l, q))}` : esc(l.autonym !== l.name ? l.autonym : '')} <span class="code">[${l.code}]</span></div></td>
         <td class="num hide-sm hide-nar">${people(vSpk(l))}</td>
         <td class="num hide-sm">${people(vOn(l))}${vOn(l) && vSpk(l) ? ` <span class="pct p${pctBand(vOn(l) / vSpk(l))}">(${Math.round(vOn(l) / vSpk(l) * 100)}%)</span>` : ''}</td>
-        <td><div class="bars" aria-label="Data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
+        <td><div class="bars" role="img" aria-label="Data ${l.dimensions.data.score}, technology ${l.dimensions.tech.score}">
           ${DIMS.map(([k, , c]) => bar(l.dimensions[k].score, c)).join('')}</div></td>
         <td class="num score"${l.raw ? ` title="${esc(rawText(l))}"` : ''}>${l.ltdi.toFixed(3)}</td>
         <td class="hide-sm hide-tab">${tierChip(l)}</td>
@@ -1246,6 +1249,27 @@ const tipEl = () => document.getElementById('tip');
 function tipShow(e, html) { const t = tipEl(); if (!t) return; t.innerHTML = html; t.hidden = false;
   const x = Math.min(e.clientX + 14, window.innerWidth - 300), y = e.clientY + 14; t.style.left = x + 'px'; t.style.top = y + 'px'; }
 function tipHide() { const t = tipEl(); if (t) t.hidden = true; }
+// The region chart: the nearest dot to the pointer within its radius shows its tip; selecting it opens the language
+function bindStrip() {
+  const svg = document.getElementById('strip'), hit = document.getElementById('strip-hit');
+  if (!svg) return;
+  const at = e => {
+    const m = svg.getScreenCTM(); if (!m) return null;
+    const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(m.inverse());
+    let best = null, bd = Infinity;
+    for (const d of STRIP) { const dd = (d.x - p.x) ** 2 + (d.y - p.y) ** 2; if (dd < bd && dd <= (d.r + 2) ** 2) { bd = dd; best = d; } }
+    return best;
+  };
+  svg.addEventListener('mousemove', e => {
+    const d = at(e);
+    svg.style.cursor = d ? 'pointer' : '';
+    if (!d) { hit.setAttribute('visibility', 'hidden'); tipHide(); return; }
+    hit.setAttribute('cx', d.x); hit.setAttribute('cy', d.y); hit.setAttribute('r', d.r + 1.5); hit.setAttribute('visibility', 'visible');
+    tipShow(e, d.tip());
+  });
+  svg.addEventListener('mouseleave', () => { hit.setAttribute('visibility', 'hidden'); tipHide(); });
+  svg.addEventListener('click', e => { const d = at(e); if (d) { tipHide(); go('lang-' + d.l.code); } });
+}
 function bindTips(root) {
   root.querySelectorAll('[data-tip]').forEach(el => {
     el.addEventListener('mousemove', e => tipShow(e, el.getAttribute('data-tip')));
@@ -1263,7 +1287,8 @@ const levelOf = (l, key) => l.levels[key];  // worked out when scoring: full, pa
 let provider = 'All';
 const SERIES_PROV = { deepl: 'deepl', open_mt: 'meta', reading_bench: 'meta', open_asr: 'openai' };
 let histMode = 'langs';
-let stripMode = 'all';  // the region chart: every language spoken in a region, or only those from it  // the growth charts count languages, or their speakers
+let stripMode = 'all';
+let STRIP = [];  // the region chart's dots: {x, y, r, l, tip}  // the region chart: every language spoken in a region, or only those from it  // the growth charts count languages, or their speakers
 const offers = (l, id) => l._offers.has(id);
 const provIds = (t, prov) => [...(t.consumer || []), ...(t.regional || []), ...(t.open || []), ...Object.keys(t.measured || {})].filter(id => (SVC[id] || [])[2] === prov);
 const PLEVELS = [['full', 'Offered'], ['part', 'In some of its services'], ['none', 'Not found']];
@@ -1666,7 +1691,10 @@ function charts() {
   const langs = LANGS.filter(inView), N = langs.length;
   const techs = Object.entries(CFG.tech.technologies);
   // tooltips name languages by speakers, up to 12, so they stay readable with thousands of languages
-  const names = ls => { const top = ls.length > 12 ? [...ls].sort((a, b) => (b.speakers || 0) - (a.speakers || 0)).slice(0, 12) : ls;
+  const names = ls => {  // the 12 most spoken, picked in one pass rather than sorting the whole list
+    let top = ls;
+    if (ls.length > 12) { top = []; for (const l of ls) { const s = l.speakers || 0;
+      if (top.length < 12 || s > (top[11].speakers || 0)) { let k = top.length; while (k && (top[k - 1].speakers || 0) < s) k--; top.splice(k, 0, l); if (top.length > 12) top.pop(); } } }
     return (top.map(l => esc(l.name)).join(', ') || '—') + (ls.length > 12 ? ` and ${(ls.length - 12).toLocaleString()} more` : ''); };
 
   // 1. Coverage now (for one provider: its own services only)
@@ -1711,8 +1739,19 @@ function charts() {
     const axisN = v => !v ? '0' : v >= 1e9 ? `${+(v / 1e9).toFixed(1)}B` : v >= 1e6 ? `${+(v / 1e6).toFixed(1)}M` : v >= 1e3 ? `${+(v / 1e3).toFixed(1)}K` : `${v}`;
     const series = Object.entries(H.series).filter(([key]) => provider === 'All' || SERIES_PROV[key] === provider);  // P is the periods here
     const wt = histMode === 'speakers' ? (l => vSpk(l) || 0) : (() => 1), fmtH = histMode === 'speakers' ? people : (v => v.toLocaleString());
-    const VALS = Object.fromEntries(series.map(([key]) => [key, P.map((p, pi) => {
-      const vs = langs.map(l => [l, hv(key, l.code, pi)]); return vs.every(([, v]) => v == null) ? null : vs.reduce((n, [l, v]) => n + (v === 1 ? wt(l) : 0), 0); })]));
+    // each language's history string per series, read once: '1' supported, '0' not, '.' no record
+    const HS = Object.fromEntries(series.map(([key]) => { const vs = H.values[key] || {}; return [key, langs.map(l => vs[l.code] || '')]; }));
+    const VALS = Object.fromEntries(series.map(([key]) => {
+      const tot = P.map(() => 0), seen = P.map(() => false);
+      HS[key].forEach((str, j) => { for (let i = 0; i < str.length; i++) { const c = str[i]; if (c === '1') { tot[i] += wt(langs[j]); seen[i] = true; } else if (c === '0') seen[i] = true; } });
+      return [key, tot.map((v, i) => seen[i] ? v : null)];
+    }));
+    // the languages each series gained at each period, against its previous recorded period
+    const GAINED = Object.fromEntries(series.map(([key]) => {
+      const avail = P.map((p, i) => i).filter(i => VALS[key][i] != null), out = {};
+      avail.slice(1).forEach((i, k) => { const prev = avail[k]; out[i] = HS[key].flatMap((str, j) => str[i] === '1' && str[prev] !== '1' ? [langs[j]] : []); });
+      return [key, out];
+    }));
     // one scale for all panels, up to a round number just above the largest count, so they compare
     const top = Math.max(1, ...Object.values(VALS).flat().filter(v => v != null));
     const mag = 10 ** Math.floor(Math.log10(top)), YMAX0 = [1, 2, 2.5, 5, 10].map(m => m * mag).find(v => v >= top), YMAX = histMode === 'speakers' ? YMAX0 : Math.min(N, YMAX0);
@@ -1727,7 +1766,7 @@ function charts() {
       const last = pts[pts.length - 1];
       const hits = pts.map(([px, , v, i], j) => {
         const prev = j ? vals[pts[j - 1][3]] : null;
-        const gained = j ? langs.filter(l => hv(key, l.code, i) === 1 && hv(key, l.code, pts[j - 1][3]) !== 1) : [];
+        const gained = j ? GAINED[key][i] || [] : [];
         const when = (P[i].endsWith('-06') ? 'Mid ' : 'End ') + P[i].slice(0, 4);
         const tip = `<b>${when}</b><br>${histMode === 'speakers' ? `${people(v)} speakers` : `${v} of ${N} languages`}${gained.length ? `<br>New: ${names(gained)}` : ''}`;
         const w = (W - L - R) / (P.length - 1);
@@ -1747,8 +1786,7 @@ function charts() {
     // When languages were added: one row of bars per source, a bar for each half-year's additions
     const gains = series.map(([key, label]) => {
       const avail = P.map((p, i) => i).filter(i => VALS[key][i] != null);
-      return [key, label, avail.slice(1).map((i, j) => { const prev = avail[j];
-        const g = langs.filter(l => hv(key, l.code, i) === 1 && hv(key, l.code, prev) !== 1);
+      return [key, label, avail.slice(1).map(i => { const g = GAINED[key][i] || [];
         return [i, g, g.reduce((n, l) => n + wt(l), 0)]; })];
     }).filter(([, , gs]) => gs.some(g => g[1].length));  // sources that launched in one release add nothing later
     const gTop = Math.max(1, ...gains.flatMap(([, , gs]) => gs.map(g => g[2])));
@@ -1766,7 +1804,9 @@ function charts() {
       : `<p class="note">No history collected yet for ${esc(pn)}'s services. History so far comes from DeepL's docs, Meta's NLLB-200 and Belebele, OpenAI's Whisper, Common Voice and CLDR.</p>`;
   }
   const table2 = H ? `<div class="tablebox"><table><thead><tr><th>Kind of support</th>${H.periods.filter(p => p.endsWith('-12')).map(p => `<th class="num">${p.slice(0, 4)}</th>`).join('')}</tr></thead>
-    <tbody>${Object.entries(H.series).filter(([k]) => provider === 'All' || SERIES_PROV[k] === provider).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.map((p, pi) => [p, pi]).filter(([p]) => p.endsWith('-12')).map(([, pi]) => { const vs = langs.map(l => hv(k, l.code, pi)); return `<td class="num">${vs.every(v => v == null) ? '—' : vs.filter(v => v === 1).length}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
+    <tbody>${Object.entries(H.series).filter(([k]) => provider === 'All' || SERIES_PROV[k] === provider).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.map((p, pi) => [p, pi]).filter(([p]) => p.endsWith('-12')).map(([, pi]) => { const col = H.values[k] || {}; let n = 0, any = false;
+      for (const l of langs) { const c = (col[l.code] || '')[pi]; if (c === '1') { n++; any = true; } else if (c === '0') any = true; }
+      return `<td class="num">${any ? n : '—'}</td>`; }).join('')}</tr>`).join('')}</tbody></table></div>` : '';
 
   // 3. LTDI by region: dot strip
   const regs = REGIONS.filter(r => !regionSel.size || regionSel.has(r));
@@ -1775,7 +1815,13 @@ function charts() {
   const x0 = P || LANGS.some(l => l.ltdi < 0.3) ? 0 : 0.3;  // start at 0 once any language scores that low
   const sx = v => lab + (Math.max(x0, v) - x0) / (x1 - x0) * (SW - lab - 30);
   const SH = top + regs.length * rowH + 24;
-  const strip = `<svg viewBox="0 0 ${SW} ${SH}" role="img" aria-label="LTDI by region" style="width:100%;height:auto">
+  // Each row's dots are a few shapes (crowded rows split in eight, so overlaps still darken where
+  // languages cluster), and the dot under the pointer is found from STRIP (not one link per
+  // dot, which would be thousands of elements, slow on phones and thousands of keyboard stops)
+  STRIP = [];
+  const stripRows = [];
+  const tipOf = l => `<b>${esc(l.name)}</b><br>${P ? `${esc(pn)}: ${provCoverage(l, provider).n} of ${provCoverage(l, provider).of} ${provWhat(provider)}` : `LTDI ${l.ltdi.toFixed(3)} · rank ${rankLabel(l)}`}`;
+  const strip = `<svg id="strip" viewBox="0 0 ${SW} ${SH}" role="img" aria-label="${esc(P ? `Share of ${pn}'s services covering each language, by region` : 'LTDI of each language, by region')}: one dot per language; the table below lists each region's figures" style="width:100%;height:auto">
     <g class="grid">${(P ? [0, 0.25, 0.5, 0.75, 1.0] : x0 ? [0.4, 0.6, 0.8, 1.0] : [0, 0.2, 0.4, 0.6, 0.8, 1.0]).map(v => `<line x1="${sx(v)}" x2="${sx(v)}" y1="${top - 6}" y2="${SH - 22}"/><text x="${sx(v)}" y="${SH - 6}" text-anchor="middle">${P ? Math.round(v * 100) + '%' : v.toFixed(1)}</text>`).join('')}</g>
     ${regs.map((r, i) => {
       const ls = LANGS.filter(l => stripMode === 'home' ? l.region === r : l._rg.has(r)).sort((a, b) => sval(a) - sval(b)), cy = top + i * rowH + rowH / 2;
@@ -1792,14 +1838,21 @@ function charts() {
         if (crowd) dy = ((k * 7919) % 17 - 8) * 1.2;
         else if (x - prevX < 13) { dy = 6 * flip; flip = -flip; } else flip = 1;
         prevX = x; return { l, x, y: cy + dy }; });
+      const rad = crowd ? 3 : 6.5;
+      dots.forEach(d => STRIP.push({ x: d.x, y: d.y, r: rad, l: d.l, tip: () => tipOf(d.l) }));
+      const vals = ls.map(sval).sort((a, b) => a - b), med = vals[Math.floor(vals.length / 2)];
+      stripRows.push([r, ls.length, med, hiName, loName]);
       return `<text x="0" y="${cy + 4}" fill="var(--ink)" font-size="13" font-weight="600">${esc(r)}</text>
-        ${dots.map(d => `<a href="${LH(d.l.code)}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="${crowd ? 3 : 6.5}" fill="var(--accent)" fill-opacity="${crowd ? 0.45 : 0.85}" stroke="var(--surface)" stroke-width="${crowd ? 0 : 2}" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>${P ? `${esc(pn)}: ${provCoverage(d.l, provider).n} of ${provCoverage(d.l, provider).of} ${provWhat(provider)}` : `LTDI ${d.l.ltdi.toFixed(3)} · rank ${rankLabel(d.l)}`}"/></a>`).join('')}
+        ${[...Array(crowd ? 8 : 1).keys()].map(g => `<path d="${dots.filter((d, k) => !crowd || k % 8 === g).map(d => `M${(d.x - rad).toFixed(1)},${d.y}a${rad},${rad} 0 1,0 ${2 * rad},0a${rad},${rad} 0 1,0 ${-2 * rad},0`).join('')}" fill="var(--accent)" fill-opacity="${crowd ? 0.45 : 0.85}" stroke="var(--surface)" stroke-width="${crowd ? 0 : 2}"/>`).join('')}
         <text x="${sx(sval(lo))}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(loName)}</text>
         ${ls.length > 1 ? `<text x="${Math.min(sx(sval(hi)), SW - 4)}" y="${cy - 14}" text-anchor="${sx(sval(hi)) > SW - 40 ? 'end' : 'middle'}" fill="var(--muted)" font-size="11">${esc(hiName)}</text>` : ''}`;
     }).join('')}
+    <circle id="strip-hit" r="7" fill="none" stroke="var(--ink)" stroke-width="2" visibility="hidden" pointer-events="none"/>
   </svg>`;
+  const stripTable = `<div class="tablebox"><table><thead><tr><th>Region</th><th class="num">Languages</th><th class="num">Median ${P ? 'share' : 'LTDI'}</th><th>Highest</th><th>Lowest</th></tr></thead><tbody>${stripRows.map(([r, n, med, hi, lo]) =>
+    `<tr><td>${esc(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${P ? Math.round(med * 100) + '%' : med.toFixed(3)}</td><td>${esc(hi)}</td><td>${esc(lo)}</td></tr>`).join('')}</tbody></table></div>`;
 
-  $('#view').innerHTML = `
+  $('#view').innerHTML = `<h2 class="sronly">Charts</h2>
     <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span><span id="cctrywrap">${countryPicker()}</span><span id="ctierwrap">${tierPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
       <button type="button" class="reset" id="cresetf"${!regionSel.size && !countrySel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
     <section class="chart">
@@ -1835,9 +1888,11 @@ function charts() {
       <div class="plan-tablehead"><h3>Where each language stands</h3><span class="chips" role="group" aria-label="Which languages">${[['all', 'All languages spoken there'], ['home', 'Languages from the region']].map(([k, lab]) => `<button type="button" class="chip" data-sm="${k}" aria-pressed="${stripMode === k}">${lab}</button>`).join('')}</span></div>
       <p class="sub">${P ? `Share of ${esc(pn)}'s ${provWhat(provider)} tracked here that cover each language, by region.` : 'Language Technology Development Index by region.'} Each dot is a language, with the lowest named below its row and the highest above; select one to open its profile. <b>All languages spoken there</b> puts a language in every region where it's spoken, so English, French and Spanish appear in several; <b>Languages from the region</b> puts each in its home region only (the region of the country it's from, or where most of its speakers live).</p>
       ${strip}
+      <details class="tbl"><summary>Show as a table</summary>${stripTable}</details>
     </section>
     ${censusCaveat()}`;
   bindTips($('#view'));
+  bindStrip();
   // keep the page where it is when a filter redraws the charts below
   const keep = f => e => { const y = scrollY; f(e.target.value); charts(); scrollTo(0, y); };
   wireMsel('cregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; charts(); reopen('cregwrap'); scrollTo(0, y); });
@@ -1854,7 +1909,7 @@ function charts() {
 // The map has the region, country and tier filters; the search box finds a language on it
 function mapPage() {
   const N = LANGS.filter(inView).length;
-  $('#view').innerHTML = `
+  $('#view').innerHTML = `<h2 class="sronly">Map</h2>
     <div class="controls sticky"><span id="mregwrap">${regionPicker()}</span><span id="mctrywrap">${countryPicker()}</span><span id="mtierwrap">${tierPicker()}</span><span class="note" style="margin:0">${N.toLocaleString()} languages</span>
       <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button></div>
     ${mapSection()}
@@ -1930,7 +1985,7 @@ function about() {
   const pct = n => { const p = n / N * 100; return p > 0 && p < 1 ? '<1%' : Math.round(p) + '%'; };
   const row = (label, n, extra = '') => `<tr><td>${label}</td><td class="num">${n.toLocaleString()}</td>
     <td class="covbar"><span style="width:${Math.max(n ? 0.6 : 0, n / N * 100).toFixed(2)}%"></span></td><td class="num pct">${pct(n)}</td>${extra}</tr>`;
-  const table = (rows, head = 'Source') => `<div class="tablebox"><table class="covtab"><thead><tr><th>${head}</th><th class="num">Languages</th><th class="covbar" aria-label="Share of languages"></th><th class="num">Share</th></tr></thead>
+  const table = (rows, head = 'Source') => `<div class="tablebox"><table class="covtab"><thead><tr><th>${head}</th><th class="num">Languages</th><th class="covbar"><span class="sronly">Share of languages</span></th><th class="num">Share</th></tr></thead>
     <tbody>${rows}</tbody></table></div>`;
   const ROLE = { consumer: '', open: 'open', regional: 'regional', quality: 'quality measured' };
   const techRows = C.tech.map(([label, any, svcs]) => `<tr class="grp"><td><details class="covsvc"><summary>${esc(label)} <span class="muted">· any service</span></summary>

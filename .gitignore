@@ -6,3 +6,4 @@ data/scores.json
 site/api/
 site/language/
 site/sitemap.xml
+node_modules/
