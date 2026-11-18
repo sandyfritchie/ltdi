@@ -1,20 +1,34 @@
-# Probe: what PanLex's database download looks like (temporary; replaced by the collector's workflow)
+# PanLex's lexical translations (ltdi/collectors/panlex.py): about 4 GB from the Hugging Face copy of
+# PanLex's last database dump, counted per language. PanLex no longer updates, so this is run by hand
+# (Actions -> PanLex -> Run workflow); it commits data/records/panlex.csv.
 name: PanLex
 
 on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
-  probe:
+  count:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
-      - name: Hosts
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Corpus Crawler's word lists are where the records point
+        run: curl -sSf -o /dev/null -w "%{http_code} %{size_download} bytes\n" https://www.gstatic.com/i18n/corpora/wordcounts/ace.txt
+        continue-on-error: true
+      - name: Count
+        run: python -m ltdi.collectors panlex
+      - name: Commit
         run: |
-          for u in https://panlex.org/ https://www.panlex.org/ https://api.panlex.org/v2/langvar https://dev.panlex.org/ https://old.panlex.org/ https://vocab.panlex.org/ https://panlex.org/snapshot/ https://sourceforge.net/projects/panlex/files/; do
-            echo "$u -> $(curl -sS -o /dev/null -m 30 -w '%{http_code} %{redirect_url}' -A 'ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)' "$u" 2>&1)"
-          done
-          curl -sS -m 30 -A 'ltdi-collector/0.1' https://panlex.org/snapshot/ | grep -oE 'href="[^"]+"' | sort -u | head -60
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/records/panlex.csv data/sources_manifest.csv
+          git diff --cached --quiet && exit 0
+          git commit -m "PanLex: expressions per language from run ${{ github.run_id }}"
+          git pull --rebase
+          git push
