@@ -28,7 +28,7 @@ from .build_site import SITE, add_census
 SITE_URL = "https://langtechindex.org"
 # The GoatCounter site code (https://<code>.goatcounter.com) that counts visits on the public site, or ""
 # for none. Only the public pages get it, not the preview.
-GOATCOUNTER = ""
+GOATCOUNTER = "langtechindex"
 
 
 def _counter() -> str:
