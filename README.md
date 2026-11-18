@@ -41,7 +41,8 @@ python -m ltdi.collectors.lingualibre  # a few spoken words per language (GitHub
 python -m ltdi.score           # records + config/methodology.toml -> data/scores.json, data/editions/<edition>.csv
 python -m ltdi.sensitivity     # rank ranges under 1,000 alternative methods -> data/sensitivity.csv
 python tools/validate.py       # compare with Joshi et al. and SIL's DLS levels -> data/validation.json
-python -m ltdi.build_site      # data/scores.json -> site/index.html + site/data/lang/*.json
+python -m ltdi.build_site      # data/scores.json -> site/ (home page, app.js, app.css, data/index.js, data/lang/*.json,
+                               #   and a page per language: site/language/<code>.html)
 ```
 
 No dependencies beyond the Python 3.11+ standard library (pytest for the tests).
@@ -337,6 +338,18 @@ and Belebele. Language pages list their own additions, and `/changes.xml` is an 
 (`ltdi/changes.py`). The rebuilt history reports additions only, since matching old documents can make
 a renamed entry look like a dropped language; from the second edition, each edition's services table
 is compared with the last, for every service and benchmark, both ways.
+
+## Addresses
+
+Each language has its own address, `https://langtechindex.org/language/<code>` (`/language/yo`), with its
+own title, description and link preview, so search engines can find it and a shared link shows the
+language. The other views keep `#` addresses on the home page (`/#plan?t=mt`, `/#charts`); old
+`/#lang-yo` links move to `/language/yo`. The site is one app: `app.js`, `app.css` and `data/index.js`
+are cached files (linked with their content hash, so a new edition loads at once), and every page,
+including the 7,450 language pages, `404.html` and the home page, is a small file that loads them
+(`ltdi/pages.py`). The language pages and `sitemap.xml` are generated when the site is published, like
+the JSON API, rather than committed. The preview (`site/artifact.html`) keeps everything inline and uses
+`#lang-<code>`.
 
 ## JSON API
 

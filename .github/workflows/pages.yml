@@ -34,6 +34,9 @@ jobs:
         run: python -m ltdi.score > /dev/null
       - name: Write the JSON API
         run: python -m ltdi.api
+      # A page for every language at /language/<code>, and the sitemap (ltdi/pages.py)
+      - name: Write the language pages
+        run: python -m ltdi.pages
       - name: Leave out the build template
         run: rm -f site/template.html site/artifact.html
       - uses: actions/configure-pages@v5

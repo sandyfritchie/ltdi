@@ -4,3 +4,5 @@ __pycache__/
 site/artifact.html
 data/scores.json
 site/api/
+site/language/
+site/sitemap.xml

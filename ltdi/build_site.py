@@ -608,18 +608,19 @@ def main() -> None:
         geo = '{"basemap":' + (DATA / "basemap.json").read_text(encoding="utf-8") + ',"points":' + \
               (DATA / "world_languages.json").read_text(encoding="utf-8") + ',"areas":' + areas + '}'
         page = page.replace("/*__MAP__*/", geo.replace("</", "<\\/"))
+        geo_text = geo
     else:
         page = page.replace("/*__MAP__*/", "null")
-    # The template is written as an artifact body; wrap it as a full document for standalone use.
-    head, _, body = page.partition('<div class="wrap">')
-    html = (
-        '<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
-        '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-        + head + '</head>\n<body>\n<div class="wrap">' + body + "\n</body>\n</html>\n"
-    )
-    (SITE / "index.html").write_text(html, encoding="utf-8")
+        geo_text = "null"
+    # The preview keeps everything inline. The public site splits it into cached files (app.css, app.js,
+    # data/index.js) and small pages that load them: the home page here, a page per language at publish
+    # time (ltdi.pages)
     (SITE / "artifact.html").write_text(page, encoding="utf-8")
-    print(f"wrote site/index.html ({len(html.encode()) / 1e6:.2f} MB; index {len(_dump(index).encode()) / 1e6:.2f} MB, "
+    from .pages import write_app, write_language_pages
+    data_js = ("window.LTDI_DATA=" + _dump(index) + ";\nwindow.LTDI_MAP=" + geo_text + ";\nwindow.LTDI_LANGS=" + embed + ";\n")
+    html = write_app(page, data_js)
+    write_language_pages()
+    print(f"wrote site/index.html ({len(html.encode()) / 1e3:.0f} KB, data/index.js {len(data_js.encode()) / 1e6:.2f} MB; index {len(_dump(index).encode()) / 1e6:.2f} MB, "
           f"{len(details)} languages in {len(shards)} files, {total / 1e6:.2f} MB, {'embedded' if embed != 'null' else 'loaded on demand'})")
 
 

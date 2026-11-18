@@ -5,6 +5,7 @@
 <meta property="og:description" content="How well technology supports each of the world's languages, and how much data exists to build more. Scores, gaps and opportunities for 6,800 living languages.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://langtechindex.org/">
+<link rel="canonical" href="https://langtechindex.org/">
 <meta property="og:image" content="https://langtechindex.org/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -590,7 +591,23 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 <script id="ltdi-map" type="application/json">/*__MAP__*/</script>
 <script id="ltdi-langs" type="application/json">/*__LANGS__*/</script>
 <script>
-const DATA = JSON.parse(document.getElementById('ltdi-data').textContent);
+// The public site loads its data as data/index.js (window.LTDI_DATA, LTDI_MAP, LTDI_LANGS) and gives each
+// language its own address, /language/<code>; the preview inlines the data and uses #lang-<code>.
+const DATA = window.LTDI_DATA || JSON.parse(document.getElementById('ltdi-data').textContent);
+const PATHS = !!window.LTDI_DATA;
+const LH = code => PATHS ? `/language/${code}` : `#lang-${code}`;  // a language page's address
+// The current view: lang-yo for /language/yo, otherwise what follows the #
+function curRoute() {
+  const m = PATHS && location.pathname.match(/^\/language\/([a-z0-9]+)\/?$/);
+  return m && (!location.hash || location.hash.startsWith('#lang-')) ? 'lang-' + m[1] : location.hash.slice(1);
+}
+// Go to a view: languages by their path, everything else by its # on the home page
+function go(h) {
+  if (!PATHS) { location.hash = h; return; }
+  const m = h.match(/^lang-([a-z0-9]+)$/);
+  history.pushState(null, '', m ? `/language/${m[1]}` : '/#' + h);
+  route();
+}
 const REGION_OF = { A: 'Africa', S: 'South Asia', R: 'Rest of Asia', E: 'Europe', M: 'Americas', O: 'Oceania' };
 // Extinct languages keep their pages and turn up in search, but are left out of the ranking, totals,
 // charts and map (LANGS) unless chosen in the ranking's endangerment drop-down
@@ -601,7 +618,7 @@ const CFG = DATA.config.dimensions, L = DATA.labels;
 // Each language's own detail (facts, opportunities, reach by country) is embedded when small,
 // otherwise fetched the first time one of its pages opens, from data/lang/<shard>.json, which holds
 // the detail of the languages in that shard (so the site is a few dozen files, not thousands).
-const EMBED = JSON.parse(document.getElementById('ltdi-langs').textContent || 'null');
+const EMBED = window.LTDI_DATA ? window.LTDI_LANGS || null : JSON.parse(document.getElementById('ltdi-langs').textContent || 'null');
 const SHARDS = {};
 const shard = n => SHARDS[n] ??= fetch(`data/lang/${n}.json`).then(r => r.json());
 const RULES = DATA.rules, RES = DATA.resources;
@@ -756,14 +773,14 @@ function navBox(mode, placeholder, value = '') {
 }
 document.getElementById('go').addEventListener('input', e => {
   if (navMode === 'filter' && navFilter) navFilter(e.target.value);
-  if (navMode === 'opps' && !e.target.value && /^#opportunities-/.test(location.hash)) location.hash = 'opportunities';  // cleared: all again
+  if (navMode === 'opps' && !e.target.value && /^opportunities-/.test(curRoute())) go('opportunities');  // cleared: all again
 });
 document.getElementById('go').addEventListener('change', e => {
   if (navMode === 'filter') return;
   const c = pickedCode(e.target.value);
   if (navMode === 'opps') {  // a language filters the opportunities; an empty box shows them all
-    if (c) location.hash = 'opportunities-' + c;
-    else if (!e.target.value.trim()) location.hash = 'opportunities';
+    if (c) go('opportunities-' + c);
+    else if (!e.target.value.trim()) go('opportunities');
     return;
   }
   if (!c) return;
@@ -771,7 +788,7 @@ document.getElementById('go').addEventListener('change', e => {
   if (navMode === 'map' && GEO && document.getElementById('worldmap')) {
     mapFocus = c; mapFocusFresh = true;
     const y = scrollY; mapPage(); scrollTo(0, y);  // the page stays put, so the box stays in reach
-  } else location.hash = 'lang-' + c;
+  } else go('lang-' + c);
 });
 const DIMS = [['tech', 't', '--tech'], ['data', 'd', '--data']];  // the order on a language's page
 const $ = (s, el = document) => el.querySelector(s);
@@ -989,7 +1006,7 @@ function oppItem(o, l, showLang) {
   return `<li class="opp" style="--c:var(${OCOLOR[o.type]})">
     <div class="prio">${prio(o).toFixed(2)}<small>priority</small></div>
     <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span>
-      ${showLang ? `<a href="#lang-${l.code}">${esc(l.name)}</a>` : ''}</div>
+      ${showLang ? `<a href="${LH(l.code)}">${esc(l.name)}</a>` : ''}</div>
     <a class="opp-title" href="#opp-${o.id}">${esc(o.title)}</a>
     <div class="opp-detail">${esc(o.why)}</div>
     ${provider !== 'All' ? `<div class="opp-prov" style="--p:var(--prov-${provider})"><i></i>Not yet in ${esc(provMissing(o, l, provider).join(', '))}</div>` : ''}
@@ -1020,7 +1037,7 @@ async function opportunities(lang) {
       <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
       <button type="button" class="reset" id="oresetf"${filtered ? '' : ' hidden'}>Reset filters</button>
     </div>
-    ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="#lang-${focus.code}">Language profile</a></div>`
+    ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="${LH(focus.code)}">Language profile</a></div>`
             : `<p class="lede ws-lede">Where a team can make the biggest difference next. Each opportunity says why it matters, which open resources are ready to start from, and what's still missing.</p>`}
     <div class="teampick"><span class="eyebrow">What does your team work on?</span>
       <div class="chips" role="group" aria-label="Team">
@@ -1045,7 +1062,7 @@ async function opportunities(lang) {
   $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
   $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
   $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
-    if (lang) location.hash = 'opportunities'; else opportunities(); };
+    if (lang) go('opportunities'); else opportunities(); };
   if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { showAll = false; await opportunities(lang); reopen('orwrap'); });
   if ($('#octrywrap')) wireCountries('octrywrap', async () => { showAll = false; await opportunities(lang); reopenCountries('octrywrap'); });
   if ($('#otierwrap')) wireMsel('otierwrap', tierPicker, tierSel, TIER_KEYS.length, async () => { showAll = false; await opportunities(lang); reopen('otierwrap'); });
@@ -1091,7 +1108,7 @@ async function oppDetail(id) {
   $('#view').innerHTML = `
     <button class="back" id="back">← ${esc(l.name)} opportunities</button>
     <div class="opp-hero" style="--c:var(${OCOLOR[o.type]})">
-      <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span><a href="#lang-${l.code}">${esc(l.name)}</a><span>${esc(o.workstream)}</span></div>
+      <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span><a href="${LH(l.code)}">${esc(l.name)}</a><span>${esc(o.workstream)}</span></div>
       <h2>${esc(o.title)}</h2>
       <p class="why">${esc(o.why.split(' Ready to use:')[0])}</p>
       <div class="opp-foot"><span>For teams working on ${o.teams.map(t => esc(/^[A-Z]{2}/.test(TEAMS[t]) ? TEAMS[t] : TEAMS[t][0].toLowerCase() + TEAMS[t].slice(1))).join(', ')}</span><button class="chip" id="copylink">Copy link</button></div>
@@ -1106,7 +1123,7 @@ async function oppDetail(id) {
       <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
       <p class="note">Priority = reach × gap × need × momentum ÷ cost.</p></details>
     ${others.length ? `<h3 class="panel-h">Other opportunities for ${esc(l.name)}</h3><ol class="opps">${others.map(x => oppItem(x, l, false)).join('')}</ol>` : ''}`;
-  $('#back').onclick = () => { location.hash = 'opportunities-' + l.code; };
+  $('#back').onclick = () => { go('opportunities-' + l.code); };
   $('#copylink').onclick = async e => {
     const url = location.href.split('#')[0] + '#opp-' + o.id;
     try { await navigator.clipboard.writeText(url); e.target.textContent = 'Link copied'; }
@@ -1307,7 +1324,7 @@ function ranking() {
     ranking.closer = e => document.querySelectorAll('details.msel[open]').forEach(d => { if (!d.contains(e.target)) d.open = false; });
     document.addEventListener('click', ranking.closer);
   }
-  $('#rows').onclick = e => { const tr = e.target.closest('tr[data-code]'); if (tr) location.hash = 'lang-' + tr.dataset.code; };
+  $('#rows').onclick = e => { const tr = e.target.closest('tr[data-code]'); if (tr) go('lang-' + tr.dataset.code); };
   $('#rankhead').onclick = e => {
     const b = e.target.closest('[data-sort]'); if (!b) return;
     const k = b.dataset.sort;
@@ -1316,7 +1333,7 @@ function ranking() {
     draw();
     $(`#rankhead [data-sort="${k}"]`)?.focus();
   };
-  $('#rows').onkeydown = e => { if (e.key === 'Enter') { const tr = e.target.closest('tr[data-code]'); if (tr) location.hash = 'lang-' + tr.dataset.code; } };
+  $('#rows').onkeydown = e => { if (e.key === 'Enter') { const tr = e.target.closest('tr[data-code]'); if (tr) go('lang-' + tr.dataset.code); } };
 }
 
 // --------------------------------------------------------------- language
@@ -1372,7 +1389,7 @@ function relatedPanel(l) {
   if (!l._gp.length) return '';
   const rs = relatives(l);
   return `<h3 class="panel-h">Related languages with more support</h3>
-    ${rs.length ? `<ul class="rel-list">${rs.map(r => `<li><a href="#lang-${r.m.code}">${esc(r.m.name)}</a> <span class="code">${r.m.code}</span> ${tierChip(r.m)} <span class="muted small">${r.m.ltdi.toFixed(3)} · both ${esc(r.group)}${r.same ? ' · same script' : ''}</span></li>`).join('')}</ul>
+    ${rs.length ? `<ul class="rel-list">${rs.map(r => `<li><a href="${LH(r.m.code)}">${esc(r.m.name)}</a> <span class="code">${r.m.code}</span> ${tierChip(r.m)} <span class="muted small">${r.m.ltdi.toFixed(3)} · both ${esc(r.group)}${r.same ? ' · same script' : ''}</span></li>`).join('')}</ul>
     <p class="note">The nearest relatives in Glottolog's classification that score higher, closest first: tools and data for a close relative are the usual starting point for a new language. Closeness here is by family tree, not by how similar the languages are, so check before reusing anything.</p>`
       : `<p class="note">No relative in ${esc(famName(l))} scores higher.</p>`}`;
 }
@@ -1581,7 +1598,7 @@ function dimPanel(l, key, color) {
       // open speech: how much of it is licensed for commercial use (resources.csv)
       const usable = ik === 'open_speech_hours' && l.sh && l.shc < l.sh
         ? `<div class="thru-line">${fmtHours(l.shc)} licensed for commercial use; the rest is for research only (${esc(nonCommercialSets(facts))})</div>` : '';
-      const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="#lang-${w.code}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
+      const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
       body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
     }
@@ -1661,8 +1678,8 @@ function unicodeNote(l) {
 function writtenInfo(l) {
   if (!l.written_in || !BY[l.written_in]) return '';
   const w = BY[l.written_in];
-  if (l.shares_written) return infoTip('How writing is counted', `${esc(l.name)} is written in the standard form of <a href="#lang-${w.code}">${esc(w.name)}</a>, and sources label that text and its tools as ${esc(w.name)}, so ${esc(w.name)}’s written data and text technologies count as ${esc(l.name)}’s. Speech data and technologies are counted separately.`);
-  return infoTip('How the standard is counted', `${esc(l.name)} speakers typically write the standard form of <a href="#lang-${w.code}">${esc(w.name)}</a>. The score and rank count only what exists for ${esc(l.name)} itself; a second score counts ${esc(w.name)}’s written data and text technologies too, as most speakers can use them. On this page, values marked “through ${esc(w.name)}” are ${esc(w.name)}’s.`);
+  if (l.shares_written) return infoTip('How writing is counted', `${esc(l.name)} is written in the standard form of <a href="${LH(w.code)}">${esc(w.name)}</a>, and sources label that text and its tools as ${esc(w.name)}, so ${esc(w.name)}’s written data and text technologies count as ${esc(l.name)}’s. Speech data and technologies are counted separately.`);
+  return infoTip('How the standard is counted', `${esc(l.name)} speakers typically write the standard form of <a href="${LH(w.code)}">${esc(w.name)}</a>. The score and rank count only what exists for ${esc(l.name)} itself; a second score counts ${esc(w.name)}’s written data and text technologies too, as most speakers can use them. On this page, values marked “through ${esc(w.name)}” are ${esc(w.name)}’s.`);
 }
 // What the technology score rests on: language-list entries, and quality measurements with the oldest's year
 function evidenceLine(l) {
@@ -1677,7 +1694,7 @@ function scoreNotes(l) {
   if (rangeText(l)) out.push(`<div class="snote" title="Where ${esc(l.name)} ranks in 90% of ${(DATA.sensitivity || {}).draws || 1000} re-scorings that vary the weights, goalposts and floor within reasonable ranges (see About)">Rank range <b>${rangeText(l)}</b></div>`);
   if (l.via && w) {
     const [c, t] = tierOf(l.via[1]);
-    out.push(`<div class="snote" title="Counting ${esc(w.name)}’s written data and text technologies, which ${esc(l.name)} speakers can typically use. The rank is on ${esc(l.name)}’s own score.">Through <a href="#lang-${w.code}">${esc(w.name)}</a> <b>${l.via[0].toFixed(3)}</b> <span class="tier ${c} sm">${esc(t)}</span></div>`);
+    out.push(`<div class="snote" title="Counting ${esc(w.name)}’s written data and text technologies, which ${esc(l.name)} speakers can typically use. The rank is on ${esc(l.name)}’s own score.">Through <a href="${LH(w.code)}">${esc(w.name)}</a> <b>${l.via[0].toFixed(3)}</b> <span class="tier ${c} sm">${esc(t)}</span></div>`);
   }
   if (l.raw && Object.values(l.raw).some(v => v > 0)) {
     const un = Math.sqrt(DIMS.reduce((p, [k]) => p * (k in l.raw ? l.raw[k] : l.scores[k]), 1));
@@ -1761,9 +1778,9 @@ async function language(code) {
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">langtechindex@gmail.com</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>
     <div id="lchg"></div>`;
-  $('#back').onclick = () => { location.hash = 'ranking'; };
+  $('#back').onclick = () => { go('ranking'); };
   bindMiniMap(l);
-  changesData().then(C => { const el = document.getElementById('lchg'); if (el && location.hash === '#lang-' + code) el.innerHTML = changesLine(code, C); });
+  changesData().then(C => { const el = document.getElementById('lchg'); if (el && curRoute() === 'lang-' + code) el.innerHTML = changesLine(code, C); });
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
   const mt = $('#view').querySelector('details.more-tech');
@@ -1774,7 +1791,7 @@ async function language(code) {
     sec.className = sec.className.replace(/ focus-\w+/g, '') + (provFocus ? ' focus-' + provFocus : '');
     $('#view').querySelectorAll('[data-pv]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.pv === provFocus)));
   });
-  $('#cmpsel').onchange = e => { const c = pickedCode(e.target.value); if (c && c !== code) location.hash = `compare-${code}-${c}`; };
+  $('#cmpsel').onchange = e => { const c = pickedCode(e.target.value); if (c && c !== code) go(`compare-${code}-${c}`); };
   navBox('go', 'Find another language name or code');
 }
 
@@ -1811,7 +1828,7 @@ async function compare(a, b) {
     <div class="tablebox"><table class="cmp">
       <thead><tr><th></th><th class="lang num">${esc(A.name)}</th><th class="lang num">${esc(B.name)}</th><th class="num">Gap</th></tr></thead>
       <tbody>${rows}</tbody></table></div>`;
-  $('#back').onclick = () => { location.hash = 'lang-' + a; };
+  $('#back').onclick = () => { go('lang-' + a); };
   navBox('go', 'Find another language name or code');
 }
 
@@ -1869,7 +1886,7 @@ function providerSelect(id) {
     <optgroup label="Regional providers">${Object.entries(REGIONAL).map(opt).join('')}</optgroup></select>`;
 }
 
-const GEO = JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
+const GEO = window.LTDI_DATA ? window.LTDI_MAP || null : JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
 const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', lc: '--t-lc', lo: '--t-lo', ld: '--t-ld', ln: '--t-ln', l: '--t-l' };
 const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
 let mapR = null;  // base radii for the current render
@@ -1884,7 +1901,7 @@ let BORDERS = null, bordersLoading = null;
 function loadBorders() {
   bordersLoading ??= fetch('data/borders.json').then(r => r.json()).then(d => {
     BORDERS = { ...d, all: Object.values(d.countries).join('') + d.other };
-    if (countrySel.size && document.getElementById('worldmap') && location.hash.slice(1) === 'map') {
+    if (countrySel.size && document.getElementById('worldmap') && curRoute() === 'map') {
       const y = scrollY, open = document.querySelector('#mctrywrap details')?.open;  // a drop-down left open stays open
       mapPage(); if (open) reopenCountries('mctrywrap'); scrollTo(0, y);
     }
@@ -1941,7 +1958,7 @@ function mapSection() {
     const c = provCoverage(l, provider); return `${esc(pn)}: ${c.n} of ${c.of} ${provWhat(provider)}`; };
   const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || val(a) - val(b)).map(l => {
     const c = tierKey(l), p = pt[l.code];
-    return `<a href="#lang-${l.code}"><circle class="sdot${l.code === mapFocus ? ' hit' : ''}" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
+    return `<a href="${LH(l.code)}"><circle class="sdot${l.code === mapFocus ? ' hit' : ''}" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
       opacity="${inView(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`;
   }).join('');
   const keys = P ? ['vh', 'h', 'm', 'l'] : TIER_KEYS.map(([k]) => k);
@@ -1983,7 +2000,7 @@ function mapSection() {
   const land = C && BORDERS ? BORDERS.all : path;  // detailed coasts when zoomed to countries
   const focusBox = F ? `<div class="mapfocus" role="status"><span><b>${esc(F.name)}</b> · ${F.extinct ? 'extinct, so not on the map'
       : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F)[1]} · rank ${rankLabel(F)}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
-      <a href="#lang-${F.code}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
+      <a href="${LH(F.code)}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
   return `<section class="chart">
     <div class="maphead"><h3>The world's languages</h3>${toggle}</div>
     <div class="legend map">${legend}</div>
@@ -2139,7 +2156,7 @@ function bindMap() {
   svg.addEventListener('pointerup', end); svg.addEventListener('pointercancel', end);
   svg.addEventListener('click', e => { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
   // an area opens its language (areas are plain paths, not links, so dragging doesn't leave a focus box)
-  svg.addEventListener('click', e => { const a = e.target.closest('.areas path[data-code]'); if (a) location.hash = 'lang-' + a.dataset.code; });
+  svg.addEventListener('click', e => { const a = e.target.closest('.areas path[data-code]'); if (a) go('lang-' + a.dataset.code); });
   // hover names for the unscored languages
   svg.addEventListener('mousemove', e => {
     if (svg.classList.contains('dragging') || e.target.closest('[data-tip]') || mapMode === 'areas') return;  // those have their own tips
@@ -2214,7 +2231,7 @@ function bindMiniMap(l) {
   if (w < W / 3) loadBorders().then(() => {
     if (BORDERS && svg.isConnected) svg.querySelectorAll('.land, .mborders').forEach(e => e.setAttribute('d', BORDERS.all));
   });
-  a.onclick = e => { e.preventDefault(); mapFocus = l.code; mapFocusFresh = true; location.hash = 'map'; };
+  a.onclick = e => { e.preventDefault(); mapFocus = l.code; mapFocusFresh = true; go('map'); };
 }
 
 // Keep a bar of filters at the top of the window once it scrolls up there. Done in script rather than
@@ -2368,7 +2385,7 @@ function charts() {
         else if (x - prevX < 13) { dy = 6 * flip; flip = -flip; } else flip = 1;
         prevX = x; return { l, x, y: cy + dy }; });
       return `<text x="0" y="${cy + 4}" fill="var(--ink)" font-size="13" font-weight="600">${esc(r)}</text>
-        ${dots.map(d => `<a href="#lang-${d.l.code}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="${crowd ? 3 : 6.5}" fill="var(--accent)" fill-opacity="${crowd ? 0.45 : 0.85}" stroke="var(--surface)" stroke-width="${crowd ? 0 : 2}" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>${P ? `${esc(pn)}: ${provCoverage(d.l, provider).n} of ${provCoverage(d.l, provider).of} ${provWhat(provider)}` : `LTDI ${d.l.ltdi.toFixed(3)} · rank ${rankLabel(d.l)}`}"/></a>`).join('')}
+        ${dots.map(d => `<a href="${LH(d.l.code)}"><circle cx="${d.x.toFixed(1)}" cy="${d.y}" r="${crowd ? 3 : 6.5}" fill="var(--accent)" fill-opacity="${crowd ? 0.45 : 0.85}" stroke="var(--surface)" stroke-width="${crowd ? 0 : 2}" tabindex="0" data-tip="<b>${esc(d.l.name)}</b><br>${P ? `${esc(pn)}: ${provCoverage(d.l, provider).n} of ${provCoverage(d.l, provider).of} ${provWhat(provider)}` : `LTDI ${d.l.ltdi.toFixed(3)} · rank ${rankLabel(d.l)}`}"/></a>`).join('')}
         <text x="${sx(sval(lo))}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(loName)}</text>
         ${ls.length > 1 ? `<text x="${Math.min(sx(sval(hi)), SW - 4)}" y="${cy - 14}" text-anchor="${sx(sval(hi)) > SW - 40 ? 'end' : 'middle'}" fill="var(--muted)" font-size="11">${esc(hiName)}</text>` : ''}`;
     }).join('')}
@@ -2481,7 +2498,7 @@ function validationSection() {
   const table = (v, head) => `<div class="tablebox"><table class="covtab vtab"><thead><tr><th>${head}</th><th class="num">Languages</th><th class="num">Median LTDI</th><th>LTDI tiers</th></tr></thead>
     <tbody>${v.groups.map(g => `<tr><td>${esc(g.label)}</td><td class="num">${g.n.toLocaleString()}</td><td class="num">${g.median_ltdi == null ? '–' : g.median_ltdi.toFixed(3)}</td><td>${tierBar(g.tiers)}</td></tr>`).join('')}</tbody></table></div>`;
   const dis = (v, what) => `<details class="covsvc vdis"><summary>Where they disagree most <span class="muted">· ${v.disagreements.length} languages</span></summary>
-    <ul>${v.disagreements.map(x => `<li><span><a href="#lang-${x.code}">${esc(x.name)}</a> <span class="muted">${x.gap > 0 ? 'higher in LTDI' : 'lower in LTDI'}</span></span><b>${x.ltdi.toFixed(3)} · ${esc(TIER_LABEL[x.tier] || x.tier)} <span class="muted">vs ${esc(what(x.other))}</span></b></li>`).join('')}</ul></details>`;
+    <ul>${v.disagreements.map(x => `<li><span><a href="${LH(x.code)}">${esc(x.name)}</a> <span class="muted">${x.gap > 0 ? 'higher in LTDI' : 'lower in LTDI'}</span></span><b>${x.ltdi.toFixed(3)} · ${esc(TIER_LABEL[x.tier] || x.tier)} <span class="muted">vs ${esc(what(x.other))}</span></b></li>`).join('')}</ul></details>`;
   const J = V.joshi, D = V.dls, B = V.between;
   const pair = (a, b, r) => `<tr><td>${a}</td><td>${b}</td><td class="num">${r.toFixed(2)}</td></tr>`;
   return `<h3>How it compares with other classifications</h3>
@@ -2785,7 +2802,7 @@ document.addEventListener('click', e => {
   if (!b) return;
   e.preventDefault();
   toggleShortlist(b.dataset.sl);
-  if (location.hash.startsWith('#shortlist')) { history.replaceState(null, '', slHash()); const y = scrollY; shortlistPage(); scrollTo(0, y); }
+  if (curRoute().startsWith('shortlist')) { history.replaceState(null, '', slHash()); const y = scrollY; shortlistPage(); scrollTo(0, y); }
 });
 function slFromHash(h) {
   const q = new URLSearchParams((h.split('?')[1]) || '');
@@ -2857,7 +2874,7 @@ function planHead(T, P, who, scopeName, sl) {
 }
 function planRow(r, i, T, sl) {
   const c = planCells(r, T, sl), pct = v => `${Math.round(v * 100)}%`;
-  return `<tr><td class="num">${i + 1}</td><td>${slButton(r.l)}<a href="#lang-${r.l.code}" title="${esc([famName(r.l), branchName(r.l)].filter(Boolean).join(' › '))}">${esc(r.l.name)}</a></td><td class="pc-m">${r.l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}${flagTags(r.l)}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, r.l)}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td class="num" title="${esc(readyTitle(r.rd))}">${r.rd.of ? `${r.rd.n} of ${r.rd.of}` : '—'}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td></tr>`;
+  return `<tr><td class="num">${i + 1}</td><td>${slButton(r.l)}<a href="${LH(r.l.code)}" title="${esc([famName(r.l), branchName(r.l)].filter(Boolean).join(' › '))}">${esc(r.l.name)}</a></td><td class="pc-m">${r.l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}${flagTags(r.l)}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, r.l)}</td><td class="num">${people(r.r5)}</td><td class="num">${people(r.r0)}</td><td class="num">${pct(r.share)}</td><td class="num" title="${esc(readyTitle(r.rd))}">${r.rd.of ? `${r.rd.n} of ${r.rd.of}` : '—'}</td><td>${esc(c.others)}</td><td class="small">${esc(c.models)}</td><td class="small">${esc(c.data)}</td></tr>`;
 }
 function planPage() {
   const P = planRows(), T = P.T;
@@ -2930,13 +2947,18 @@ function planPage() {
 }
 
 function route() {
-  const h = location.hash.slice(1);
+  if (PATHS) {  // old /#lang-yo links move to /language/yo; a # view on a language's path moves home
+    if (location.hash.startsWith('#lang-')) history.replaceState(null, '', `/language/${location.hash.slice(6)}`);
+    else if (location.hash && location.pathname !== '/') history.replaceState(null, '', '/' + location.hash);
+    else if (!location.hash && location.pathname !== '/' && !curRoute().startsWith('lang-')) history.replaceState(null, '', '/');
+  }
+  const h = curRoute();
   let m;
   if (h !== 'map') { mapFocus = null; mapView = null; }
   navBox('go', 'Find a language name or code');  // each view may give the box another job
   if ((m = h.match(/^lang-([a-z]+)$/))) language(m[1]);
   else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
-  else if (h === 'charts') { if (!HIST) $('#view').innerHTML = ''; histData().then(() => location.hash.slice(1) === 'charts' && charts()); }
+  else if (h === 'charts') { if (!HIST) $('#view').innerHTML = ''; histData().then(() => curRoute() === 'charts' && charts()); }
   else if (h === 'map') mapPage();
   else if (h === 'about') about();
   else if (h === 'opportunities') opportunities();
@@ -2951,6 +2973,9 @@ function route() {
   if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
   const tab = h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about'].includes(h) ? h : (h === '' || h === 'ranking') ? 'ranking' : '';
   tipHide();
+  const lm = h.match(/^lang-([a-z0-9]+)$/), TT = { map: 'Map', charts: 'Charts', opportunities: 'Opportunities', plan: 'Plan', about: 'About' };
+  document.title = lm && BY[lm[1]] ? `${BY[lm[1]].name}: language technology support · LTDI`
+    : TT[tab] ? `${TT[tab]} · Language Technology Development Index` : 'Language Technology Development Index';
   for (const t of ['ranking', 'map', 'charts', 'opportunities', 'plan', 'about']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
@@ -2958,5 +2983,16 @@ function route() {
   window.scrollTo(0, 0);
 }
 addEventListener('hashchange', route);
+addEventListener('popstate', route);
+// On the public site, links to the site's own views move between them without reloading the page
+if (PATHS) document.addEventListener('click', e => {
+  const a = e.target.closest('a[href]');
+  if (!a || e.defaultPrevented || e.button || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.getAttribute('target')) return;
+  const u = new URL(a.getAttribute('href'), document.baseURI);  // getAttribute: an SVG link's href isn't a string
+  if (u.origin !== location.origin || !(u.pathname === '/' && u.hash || /^\/language\/[a-z0-9]+\/?$/.test(u.pathname))) return;
+  e.preventDefault();
+  if (u.href !== location.href) history.pushState(null, '', u.pathname + u.search + u.hash);
+  route();
+});
 route();
 </script>

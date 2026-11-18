@@ -110,7 +110,7 @@ def write_api(site, scores: dict, flags: dict, families: tuple[dict, set], gname
             "opportunities": [{"key": o["key"], "type": o["type"], "technology": o["technology"], "title": o["title"],
                                "why": o.get("why") or o.get("detail"), "priority_now": o.get("priority_now"),
                                "priority_5y": o.get("priority_5y")} for o in l["opportunities"]],
-            "links": {"page": f"{SITE_URL}/#lang-{code}", "linguameta": l.get("source")},
+            "links": {"page": f"{SITE_URL}/language/{code}", "linguameta": l.get("source")},
         }
         (out / "languages" / f"{code}.json").write_text(_dump(doc), encoding="utf-8")
         index.append({"code": code, "name": l["name"], "iso_639_3": l.get("iso_639_3"), "ltdi": l["ltdi"],
