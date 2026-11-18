@@ -1,0 +1,30 @@
+# Probe: what PanLex's database download looks like (temporary; replaced by the collector's workflow)
+name: PanLex
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Listing
+        run: |
+          curl -sS -A "ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)" https://db.panlex.org/ | sed -e 's/<[^>]*>/ /g' | grep -v '^\s*$' | head -80
+          curl -sSI https://db.panlex.org/panlex_lite.zip | head -12
+      - name: Download and inspect
+        run: |
+          curl -sSL -A "ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)" -o lite.zip https://db.panlex.org/panlex_lite.zip
+          ls -la lite.zip
+          unzip -l lite.zip | head -20
+          unzip -q lite.zip -d lite
+          find lite -type f | head
+          db=$(find lite -name '*.db' -o -name '*.sqlite' | head -1)
+          echo "db: $db"
+          sqlite3 "$db" '.schema'
+          sqlite3 "$db" 'select * from langvar limit 5;'
+          sqlite3 "$db" 'select count(*) from langvar; select count(*) from expr;'
