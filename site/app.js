@@ -1840,8 +1840,10 @@ function charts() {
         prevX = x; return { l, x, y: cy + dy }; });
       const rad = crowd ? 3 : 6.5;
       dots.forEach(d => STRIP.push({ x: d.x, y: d.y, r: rad, l: d.l, tip: () => tipOf(d.l) }));
-      const vals = ls.map(sval).sort((a, b) => a - b), med = vals[Math.floor(vals.length / 2)];
-      stripRows.push([r, ls.length, med, hiName, loName]);
+      // the mean, and the mean weighted by speakers: the score of the average speaker's language
+      const mean = ls.reduce((n, l) => n + sval(l), 0) / ls.length, spk = ls.reduce((n, l) => n + (l.speakers || 0), 0);
+      const wmean = spk ? ls.reduce((n, l) => n + (l.speakers || 0) * sval(l), 0) / spk : null;
+      stripRows.push([r, ls.length, mean, wmean, hiName, loName]);
       return `<text x="0" y="${cy + 4}" fill="var(--ink)" font-size="13" font-weight="600">${esc(r)}</text>
         ${[...Array(crowd ? 8 : 1).keys()].map(g => `<path d="${dots.filter((d, k) => !crowd || k % 8 === g).map(d => `M${(d.x - rad).toFixed(1)},${d.y}a${rad},${rad} 0 1,0 ${2 * rad},0a${rad},${rad} 0 1,0 ${-2 * rad},0`).join('')}" fill="var(--accent)" fill-opacity="${crowd ? 0.45 : 0.85}" stroke="var(--surface)" stroke-width="${crowd ? 0 : 2}"/>`).join('')}
         <text x="${sx(sval(lo))}" y="${cy + 24}" text-anchor="middle" fill="var(--muted)" font-size="11">${esc(loName)}</text>
@@ -1849,8 +1851,10 @@ function charts() {
     }).join('')}
     <circle id="strip-hit" r="7" fill="none" stroke="var(--ink)" stroke-width="2" visibility="hidden" pointer-events="none"/>
   </svg>`;
-  const stripTable = `<div class="tablebox"><table><thead><tr><th>Region</th><th class="num">Languages</th><th class="num">Median ${P ? 'share' : 'LTDI'}</th><th>Highest</th><th>Lowest</th></tr></thead><tbody>${stripRows.map(([r, n, med, hi, lo]) =>
-    `<tr><td>${esc(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${P ? Math.round(med * 100) + '%' : med.toFixed(3)}</td><td>${esc(hi)}</td><td>${esc(lo)}</td></tr>`).join('')}</tbody></table></div>`;
+  const fmtS = v => v == null ? '—' : P ? Math.round(v * 100) + '%' : v.toFixed(3);
+  const stripTable = `<div class="tablebox"><table><thead><tr><th>Region</th><th class="num">Languages</th><th class="num">Mean ${P ? 'share' : 'LTDI'}</th><th class="num" title="Each language counted by its speakers: the score of the average speaker's language">Mean, by speakers</th><th>Highest</th><th>Lowest</th></tr></thead><tbody>${stripRows.map(([r, n, mean, wmean, hi, lo]) =>
+    `<tr><td>${esc(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${fmtS(mean)}</td><td class="num">${fmtS(wmean)}</td><td>${esc(hi)}</td><td>${esc(lo)}</td></tr>`).join('')}</tbody></table>
+    <p class="note">Mean by speakers counts each language by its speakers, so it's the score of the average speaker's language; with all languages spoken in a region, the large international languages lift it.</p></div>`;
 
   $('#view').innerHTML = `<h2 class="sronly">Charts</h2>
     <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span><span id="cctrywrap">${countryPicker()}</span><span id="ctierwrap">${tierPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
