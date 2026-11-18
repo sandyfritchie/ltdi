@@ -262,7 +262,11 @@ def _dump(obj) -> str:
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
 
 
-def split(scores: dict) -> tuple[dict, dict[str, dict]]:
+def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str, str],
+          changes: dict) -> tuple[dict, dict[str, dict]]:
+    """eng: engineering flags (ltdi.engineering), families: Glottolog groups above each language
+    (ltdi.families), gnames: Glottolog's names, changes: what changed (ltdi.changes), all computed once
+    in main and shared with the API."""
     """Index for the whole site, and detail per language. Facts keep their source as an index into
     a shared table; opportunities drop what their rule or the resource catalogue already says."""
     sources: dict[tuple, int] = {}
@@ -274,15 +278,13 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     if (DATA / "sensitivity.csv").exists():
         for r in csv.DictReader((DATA / "sensitivity.csv").open(encoding="utf-8")):
             rr[r["code"]] = [int(r["rank_p5"]), int(r["rank_p95"])]
-    from .engineering import all_flags
-    eng = all_flags(scores["languages"])  # engineering flags (ltdi.engineering)
-    from .families import paths as family_paths
-    from .glottolog import names as glottolog_names
-    fam, isolates = family_paths(scores["languages"])  # Glottolog groups above each language (ltdi.families)
+    fam, isolates = families
+    chg: dict[str, list] = {}  # each language's changes: [from, to, series, +1 or -1], newest first
+    for a, b, series, code, d in changes["events"]:
+        chg.setdefault(code, []).append([a, b, series, d])
     from .demand import language_literacy, official
     off, lit = official(), language_literacy()  # CLDR: official status and literacy by country (ltdi.demand)
     org_label = what_label(scores)
-    gnames = glottolog_names()
     node_id: dict[str, int] = {}
     for p in fam.values():
         for g in p:
@@ -329,6 +331,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
                               "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES],
                               **({"lookalikes": eng[l["code"]]["lookalikes"]} if "lookalikes" in eng.get(l["code"], {}) else {}),
                               **({"literacy": lit[l["code"]]} if l["code"] in lit else {}),
+                              **({"changes": chg[l["code"]]} if l["code"] in chg else {}),
                               **({"orgs": orgs} if (orgs := for_language(set(l["offers"]), scores["facts"].get(l["code"], {}), org_label)) else {}),
                               **{k: l.get(k) for k in PROFILE}}
         langs.append({k: l.get(k) for k in SUMMARY} | {
@@ -406,6 +409,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
     index["gnodes"] = [[g, gnames.get(g, g)] for g in sorted(node_id, key=node_id.get)]
     from .engineering import FLAGS
     index["flags"] = {FLAG_LETTER[k]: [k, v] for k, v in FLAGS.items()}
+    index["change_series"] = changes["series"]
     index |= {"history": hist, "languages": langs, "top_opportunities": listed, "country_names": country_names,
               "opportunity_total": len(top), "units": units,
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
@@ -415,7 +419,7 @@ def split(scores: dict) -> tuple[dict, dict[str, dict]]:
 
 def compact(index: dict) -> None:
     """Shorter forms for the per-language fields every language carries, decoded once when the page
-    loads (the loop that prepares ALL in template.html), so the page's code sees the usual fields:
+    loads (the loop that prepares ALL in site/src/js/core.js), so the page's code sees the usual fields:
 
       gaps {"llm": "open", ...}           -> "gx": one character per technology in GAP_ORDER:
                                              n (nothing), o (open tools only), - (no gap)
@@ -541,10 +545,27 @@ def static_summary(scores: dict) -> str:
             f"<table><thead><tr><th>Rank</th><th>Language</th><th>LTDI</th><th>Tier</th></tr></thead><tbody>{rows}</tbody></table></div></noscript>")
 
 
+def template() -> str:
+    """The page's source, site/src/page.html, with each <!--#include path--> line replaced by that file
+    from site/src (styles.css, and the app's script in sections under js/)."""
+    src = SITE / "src"
+    out = []
+    for line in (src / "page.html").read_text(encoding="utf-8").split("\n"):
+        m = re.fullmatch(r"<!--#include (\S+)-->", line)
+        out.append((src / m.group(1)).read_text(encoding="utf-8").removesuffix("\n") if m else line)
+    return "\n".join(out)
+
+
 def main() -> None:
     scores = json.loads((DATA / "scores.json").read_text(encoding="utf-8"))
     add_census(scores)
-    index, details = split(scores)
+    from .changes import all_events
+    from .engineering import all_flags
+    from .families import paths as family_paths
+    from .glottolog import names as glottolog_names
+    eng, families, gnames = all_flags(scores["languages"]), family_paths(scores["languages"]), glottolog_names()
+    changes = all_events(scores["edition"], scores.get("history"))
+    index, details = split(scores, eng, families, gnames, changes)
     index["census_countries"] = census_countries()
     index["coverage"] = coverage(scores)
     # comparison with Joshi et al.'s classes and SIL's DLS levels (tools/validate.py)
@@ -576,16 +597,14 @@ def main() -> None:
     # each country's own top opportunities, fetched when the country filter is first used
     (SITE / "data" / "country_opportunities.json").write_text(_dump(country_opportunities(scores)), encoding="utf-8")
 
-    # what changed, and when: the Changes page's data and its Atom feed (ltdi.changes)
-    from .changes import write as write_changes
-    write_changes(SITE, {l["code"]: l["name"] for l in scores["languages"]}, scores["edition"])
+    # what changed, and when, as an Atom feed (ltdi.changes); language pages have their own in details
+    from .changes import write_feed
+    write_feed(SITE, changes, {l["code"]: l["name"] for l in scores["languages"]})
+    (SITE / "data" / "changes.json").unlink(missing_ok=True)
 
     # one JSON file per language, with a schema, for other people's tools (ltdi.api)
     from .api import write_api
-    from .engineering import all_flags
-    from .families import paths as family_paths
-    from .glottolog import names as glottolog_names
-    n_api = write_api(SITE, scores, all_flags(scores["languages"]), family_paths(scores["languages"]), glottolog_names())
+    n_api = write_api(SITE, scores, eng, families, gnames)
 
     # the edition's scores, for download (written by ltdi.score: data/editions/)
     edition = scores["edition"]
@@ -594,14 +613,13 @@ def main() -> None:
         if src.exists():
             shutil.copyfile(src, SITE / "data" / f"ltdi-{name}")
 
-    template = (SITE / "template.html").read_text(encoding="utf-8")
-    template = template.replace("<!--__STATIC__-->", static_summary(scores)).replace("__EDITION_LINE__", edition_line(scores))
+    src = template().replace("<!--__STATIC__-->", static_summary(scores)).replace("__EDITION_LINE__", edition_line(scores))
     # the over-time history is only for the Charts page, so it's fetched when that opens
     (SITE / "data" / "history.json").write_text(_dump(index.pop("history", None)), encoding="utf-8")
     # likewise the top opportunities, for the Opportunities tab
     (SITE / "data" / "top_opportunities.json").write_text(_dump(index.pop("top_opportunities", [])), encoding="utf-8")
     compact(index)
-    page = template.replace("/*__DATA__*/", _dump(index).replace("</", "<\\/"))
+    page = src.replace("/*__DATA__*/", _dump(index).replace("</", "<\\/"))
     page = page.replace("/*__LANGS__*/", embed.replace("</", "<\\/"))
     if (DATA / "basemap.json").exists() and (DATA / "world_languages.json").exists():
         areas = (DATA / "areas.json").read_text(encoding="utf-8") if (DATA / "areas.json").exists() else "null"

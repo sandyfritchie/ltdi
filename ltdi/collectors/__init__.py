@@ -15,7 +15,10 @@ from .. import DATA
 from ..crosswalk import to_ltdi
 from ..records import Record, write_records
 
-AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "openai_docs", "mt_quality", "regional", "afrobench", "omnilingual", "open_tools", "ud", "speech", "benchmarks", "opus", "hf_hub", "wikipedia", "connectivity", "mms", "vendors", "hf_models", "wikipedia_views"]
+AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "openai_docs", "mt_quality", "regional", "afrobench", "omnilingual", "open_tools", "ud", "speech", "benchmarks", "opus", "connectivity", "mms", "vendors"]
+# Slow ones (thousands of requests, the best part of an hour), run on the 3rd of each month by
+# .github/workflows/monthly-collectors.yml, or here with --monthly
+MONTHLY = ["hf_hub", "wikipedia", "hf_models", "wikipedia_views"]
 
 
 def sum_by_language(pairs) -> dict[str, float]:
@@ -105,11 +108,13 @@ def run(name: str, accept: bool = False) -> int:
 
 
 def main(argv=None) -> None:
-    """python -m ltdi.collectors [names] [--accept] [--refresh] [--max-age DAYS]"""
+    """python -m ltdi.collectors [names | --monthly | --all] [--accept] [--refresh] [--max-age DAYS]"""
     import argparse
     import os
-    ap = argparse.ArgumentParser(description="Run collectors (all automated ones by default)")
+    ap = argparse.ArgumentParser(description="Run collectors (the automated ones but the monthly ones, by default)")
     ap.add_argument("names", nargs="*")
+    ap.add_argument("--monthly", action="store_true", help="the slow collectors run monthly on GitHub Actions")
+    ap.add_argument("--all", action="store_true", help="every automated collector, monthly ones included")
     ap.add_argument("--accept", action="store_true", help="write records even if a list lost many languages")
     ap.add_argument("--refresh", action="store_true", help="download every source again")
     ap.add_argument("--max-age", type=int, help="download again anything cached more than this many days ago")
@@ -118,7 +123,7 @@ def main(argv=None) -> None:
         os.environ["LTDI_REFRESH"] = "1"
     if a.max_age is not None:
         os.environ["LTDI_MAX_CACHE_DAYS"] = str(a.max_age)
-    for name in a.names or AUTOMATED:
+    for name in a.names or (MONTHLY if a.monthly else AUTOMATED + MONTHLY if a.all else AUTOMATED):
         run(name, a.accept)
 
 

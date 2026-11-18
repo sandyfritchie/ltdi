@@ -31,7 +31,8 @@ open speech datasets, the Hugging Face Hub and public benchmarks.
 python -m ltdi.wikipedia_speakers   # speaker counts from Wikipedia infoboxes where LinguaMeta has none
 python -m ltdi.qq              # scripts from QQ where LinguaMeta has none -> data/qq.csv (pip install qwanqwa)
 python -m ltdi.backbone        # every LinguaMeta language (macrolanguage rules in config/macrolanguages.csv)
-python -m ltdi.collectors      # every collector -> data/records/*.csv (git, plus the sites each one names)
+python -m ltdi.collectors      # the collectors -> data/records/*.csv (git, plus the sites each one names)
+python -m ltdi.collectors --monthly   # the slow Hugging Face and Wikipedia ones (GitHub Actions, monthly)
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
 python -m ltdi.geo             # map: a point for every LinguaMeta language + Natural Earth basemap
 python -m ltdi.areas           # map's tier view: Glottography language areas, projected and simplified
@@ -79,7 +80,8 @@ only small builds work, because then the detail is embedded.
 | `tools/og_image.py` | The link-preview image, `site/og.png`, with the edition's headline figures (re-run each edition) |
 | `tools/validate.py` | Compares LTDI with Joshi et al.'s classes and SIL's Digital Language Support levels (`data/validation.json`, shown on the About page) |
 | `tools/edition_diff.py` | Splits the change in scores since an earlier commit into the method's part and the data's |
-| `site/` | Static site template and build output |
+| `site/src/` | The page's source: HTML, styles and script in sections (see its README) |
+| `site/` | Build output |
 
 ## Technology scores
 

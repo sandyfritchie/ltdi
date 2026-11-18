@@ -405,17 +405,10 @@ def main() -> None:
         **{k: v["label"] for k, v in cfg["dimensions"]["tech"]["technologies"].items()},
         **{k: d["label"] for k, d in cfg["dimensions"].items()},
     }
-    history = None
-    if (DATA / "history.csv").exists():
-        periods: list[str] = []
-        hist: dict[str, dict[str, dict[str, int]]] = defaultdict(lambda: defaultdict(dict))
-        with (DATA / "history.csv").open(encoding="utf-8") as f:
-            for row in csv.DictReader(f):
-                hist[row["series"]][row["language"]][row["period"]] = int(row["value"])
-                if row["period"] not in periods:
-                    periods.append(row["period"])
-        history = {"periods": sorted(periods), "series": json.loads((DATA / "history_series.json").read_text()),
-                   "values": hist}
+    from .history_data import read as read_history
+    history = read_history()
+    if history:
+        history.pop("sources")
     svc = [{k: sv[k] for k in ("id", "technology", "role", "name", "kind", "provider", "depth", "quality", "quality_poor",
                                "quality_good", "quality_by", "test_set", "test_size", "test_public")} for sv in services()]
     rules = {k: {"teams": r["teams"], "missing": r["missing"], "cost": r.get("cost")} for k, r in RULES.items()}

@@ -44,7 +44,7 @@ def _v(text: str) -> str:
 
 
 def write_app(page: str, data_js: str) -> str:
-    """Split the assembled page (the template with its data) into app.css, app.js and data/index.js plus
+    """Split the assembled page (site/src assembled, with its data) into app.css, app.js and data/index.js plus
     the home page's HTML; write them and return the home page."""
     head, _, body = page.partition('<div class="wrap">')
     css = re.search(r"<style>(.*?)</style>", head, re.S)

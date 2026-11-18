@@ -1,0 +1,51 @@
+<title>Language Technology Development Index</title>
+<link rel="alternate" type="application/atom+xml" title="LTDI: what changed" href="changes.xml">
+<meta name="description" content="How well technology supports each of the world's languages, and how much data exists to build more: scores, gaps and opportunities for 6,800 living languages, every value linked to its source.">
+<meta property="og:title" content="Language Technology Development Index">
+<meta property="og:description" content="How well technology supports each of the world's languages, and how much data exists to build more. Scores, gaps and opportunities for 6,800 living languages.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://langtechindex.org/">
+<link rel="canonical" href="https://langtechindex.org/">
+<meta property="og:image" content="https://langtechindex.org/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Language Technology Development Index: scores for 6,817 living languages, by tier">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="favicon.ico?v=2" sizes="16x16 32x32 48x48">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+<!--#include styles.css-->
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="eyebrow" id="edition">__EDITION_LINE__</div>
+    <h1><a class="home" href="#ranking">Language Technology Development Index</a></h1>
+    <p class="lede">How well technology supports each language, and how much data exists to build more. Two dimensions, each scored 0 to 1, combined with a geometric mean so a gap in either pulls the score down.</p>
+    <div class="formula">LTDI = √(<b class="d">data</b> × <b class="t">technology</b>)</div>
+  </header>
+  <nav class="tabs" aria-label="Views"><a href="#ranking" id="tab-ranking">Ranking</a><a href="#map" id="tab-map">Map</a><a href="#charts" id="tab-charts">Charts</a><a href="#opportunities" id="tab-opportunities">Opportunities</a><a href="#plan" id="tab-plan">Plan</a><a href="#about" id="tab-about">About</a>
+    <span class="pickwrap navsearch" role="search"><input class="pick" id="go" autocomplete="off" role="combobox" aria-autocomplete="list"
+      aria-expanded="false" aria-controls="go-list" aria-label="Find a language name or code" placeholder="Find a language name or code" onfocus="this.select()"><ul class="picklist" id="go-list" role="listbox" hidden></ul></span></nav>
+  <main id="view"><!--__STATIC__--></main>
+  <div id="tip" hidden></div>
+</div>
+
+<script id="ltdi-data" type="application/json">/*__DATA__*/</script>
+<script id="ltdi-map" type="application/json">/*__MAP__*/</script>
+<script id="ltdi-langs" type="application/json">/*__LANGS__*/</script>
+<script>
+<!--#include js/core.js-->
+<!--#include js/opportunities.js-->
+<!--#include js/ranking.js-->
+<!--#include js/language.js-->
+<!--#include js/charts-map.js-->
+<!--#include js/about.js-->
+<!--#include js/plan-shortlist.js-->
+<!--#include js/routing.js-->
+</script>

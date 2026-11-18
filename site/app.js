@@ -69,8 +69,6 @@ let COPP = null;
 // The over-time history, for the Charts page only (data/history.json), fetched when that first opens
 let HIST = null, HISTP;
 const histData = () => HISTP ??= fetch('data/history.json').then(r => r.json()).catch(() => null).then(h => (HIST = h));
-let CHG;
-const changesData = () => CHG ??= fetch('data/changes.json').then(r => r.json()).catch(() => ({ series: {}, events: [] }));
 const countryOpps = () => COPP ??= fetch('data/country_opportunities.json').then(r => r.json())
   .then(d => ({ ...d, items: d.items.map(o => withRule(o, o.lang)) }));
 async function countryPool() {
@@ -97,7 +95,7 @@ async function need(...codes) {
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, lookalikes: d.lookalikes, literacy: d.literacy, orgs: d.orgs });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, lookalikes: d.lookalikes, literacy: d.literacy, orgs: d.orgs, changes: d.changes });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -1142,11 +1140,11 @@ function whenLabel(a, b) {
   const mo = d => d.toLocaleDateString('en-GB', { month: 'short' });
   return fa.getFullYear() === fb.getFullYear() ? `${mo(fa)} to ${mo(fb)} ${fb.getFullYear()}` : `${mo(fa)} ${fa.getFullYear()} to ${mo(fb)} ${fb.getFullYear()}`;
 }
-function changesLine(code, C) {
-  const ev = C.events.filter(e => e[3] === code);
+function changesLine(l) {
+  const ev = l.changes || [], S = DATA.change_series || {};
   if (!ev.length) return '';
   return `<h3 class="panel-h">What changed <a href="#charts" style="font-size:14px;font-weight:600">Growth over time</a></h3>
-    <ul class="chg-lang">${ev.map(([a, b, s, , d]) => `<li><span class="muted">${esc(whenLabel(a, b))}</span> ${esc(C.series[s] || s)}: ${d > 0 ? 'added' : 'no longer listed'}</li>`).join('')}</ul>`;
+    <ul class="chg-lang">${ev.map(([a, b, s, d]) => `<li><span class="muted">${esc(whenLabel(a, b))}</span> ${esc(S[s] || s)}: ${d > 0 ? 'added' : 'no longer listed'}</li>`).join('')}</ul>`;
 }
 // Who is already working on it: the organisations behind its datasets, models, benchmarks and regional services
 function orgPanel(l) {
@@ -1188,10 +1186,9 @@ async function language(code) {
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">langtechindex@gmail.com</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>
-    <div id="lchg"></div>`;
+    ${changesLine(l)}`;
   $('#back').onclick = () => { go('ranking'); };
   bindMiniMap(l);
-  changesData().then(C => { const el = document.getElementById('lchg'); if (el && curRoute() === 'lang-' + code) el.innerHTML = changesLine(code, C); });
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
   const mt = $('#view').querySelector('details.more-tech');

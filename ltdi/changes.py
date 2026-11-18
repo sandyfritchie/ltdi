@@ -1,7 +1,7 @@
 """What changed, and when: languages a service added or dropped, for language pages and the feed.
 
 Two sources:
-  history      data/history.csv: half-yearly snapshots of a few series reconstructed from their own
+  history      data/history.csv (read by ltdi.history_data): half-yearly snapshots of a few series reconstructed from their own
                records (DeepL's documentation history, Common Voice releases, CLDR releases)
   editions     each edition's services table (data/editions/<edition>-services.csv): every service and
                benchmark tracked, so from the second edition on, every one has a change record
@@ -11,12 +11,12 @@ The reconstructed history reports additions only: it matches names in old docume
 entry ("Norwegian (bokmål)" for Norwegian Bokmål) would look like a language dropped. Drops come only
 from comparing two editions' own records, which the collectors' drop guard already checks.
 The latest half-year runs to the edition, not to its calendar end, so nothing is dated in the future.
-Writes site/data/changes.json and the Atom feed site/changes.xml."""
+build_site puts each language's events in its page data (lang/<n>.json) and writes the Atom feed,
+site/changes.xml."""
 
 from __future__ import annotations
 
 import csv
-import json
 from collections import defaultdict
 from html import escape
 from pathlib import Path
@@ -27,27 +27,22 @@ SITE_URL = "https://langtechindex.org"
 FEED_GROUPS = 60  # entries in the feed: one per service, direction and period
 
 
-def history_events() -> tuple[list[list], dict[str, str]]:
-    path = DATA / "history.csv"
-    if not path.exists():
+def history_events(h: dict | None = None) -> tuple[list[list], dict[str, str]]:
+    """From the history (ltdi.history_data.read, or scores.json's copy)."""
+    if h is None:
+        from .history_data import read
+        h = read()
+    if not h:
         return [], {}
-    labels = json.loads((DATA / "history_series.json").read_text(encoding="utf-8"))
-    by: dict[tuple[str, str], dict[str, int]] = defaultdict(dict)
-    periods: set[str] = set()
-    for r in csv.DictReader(path.open(encoding="utf-8")):
-        by[(r["series"], r["language"])][r["period"]] = int(r["value"])
-        periods.add(r["period"])
-    order = sorted(periods)
     out = []
-    for (series, lang), v in by.items():
-        prev = None
-        for p in order:
-            if p not in v:
-                continue
-            if prev is not None and v[p] > prev:
-                out.append([prev_p, p, series, lang, 1])
-            prev, prev_p = v[p], p
-    return out, labels
+    for series, col in h["values"].items():
+        for lang, v in col.items():
+            prev = None
+            for p in sorted(v):
+                if prev is not None and v[p] > prev:
+                    out.append([prev_p, p, series, lang, 1])
+                prev, prev_p = v[p], p
+    return out, h["series"]
 
 
 def edition_events(editions: Path | None = None) -> tuple[list[list], dict[str, str]]:
@@ -71,8 +66,8 @@ def edition_events(editions: Path | None = None) -> tuple[list[list], dict[str, 
     return out, labels
 
 
-def all_events(edition: str) -> dict:
-    h, hl = history_events()
+def all_events(edition: str, history: dict | None = None) -> dict:
+    h, hl = history_events(history)
     h = [[a, min(b, edition), s, lang, d] for a, b, s, lang, d in h]
     e, el = edition_events()
     events = sorted(h + e, key=lambda x: (x[1], x[2], -x[4], x[3]), reverse=True)
@@ -125,8 +120,7 @@ def feed(data: dict, names: dict[str, str]) -> str:
 """
 
 
-def write(site: Path, names: dict[str, str], edition: str) -> int:
-    data = all_events(edition)
-    (site / "data" / "changes.json").write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+def write_feed(site: Path, data: dict, names: dict[str, str]) -> int:
+    """site/changes.xml from all_events(); build_site puts each language's events in its own data."""
     (site / "changes.xml").write_text(feed(data, names), encoding="utf-8")
     return len(data["events"])

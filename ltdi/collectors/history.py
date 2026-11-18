@@ -9,7 +9,10 @@ Sources with a public history:
                    languages counted from the release year, using today's lists
 
 Run:  python -m ltdi.collectors history     (clones two repos into .cache; needs git)
-Writes data/history.csv: language, series, period (YYYY-06 or YYYY-12), value (1 or 0), source.
+Writes data/history.csv: language, series, period (YYYY-06 or YYYY-12), value (1 or 0), source, with
+only the changes: a row where a language's value differs from the half-year before (0 before the
+first), plus a row for language * at each half-year a series has a snapshot. Every other language is
+as it was the half-year before. ltdi.history_data reads it back into one value per language and half-year.
 """
 
 from __future__ import annotations
@@ -139,6 +142,19 @@ def _end(period: str) -> str:
     return period + ("-30" if period.endswith("-06") else "-31")
 
 
+def changes_only(rows: list[tuple]) -> list[tuple]:
+    """Every series' snapshots (a * row each), then only the values that differ from the half-year before."""
+    out, last = [], {}
+    for c, series, period, v, source in sorted(rows, key=lambda r: (r[1], r[2], r[0])):
+        if (series, period) not in last:
+            last[(series, period)] = True
+            out.append(("*", series, period, "", source))
+        if v != last.get((series, c), 0):
+            out.append((c, series, period, v, source))
+        last[(series, c)] = v
+    return sorted(out, key=lambda r: (r[1], r[2], r[0] != "*", r[0]))
+
+
 def main() -> None:
     codes = ltdi_codes()
     rows = []
@@ -159,12 +175,13 @@ def main() -> None:
         for period in PERIODS:
             if _end(period) >= since:
                 rows += [(c, series, period, int(bool(current.get((c, ind)))), f"Released {since}") for c in codes]
+    rows = changes_only(rows)
     with (DATA / "history.csv").open("w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["language", "series", "period", "value", "source"])
-        w.writerows(sorted(rows))
+        w.writerows(rows)
     (DATA / "history_series.json").write_text(json.dumps(SERIES, indent=1), encoding="utf-8")
-    print(f"history: {len(rows)} rows")
+    print(f"history: {len(rows)} rows (changes only)")
 
 
 if __name__ == "__main__":

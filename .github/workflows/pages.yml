@@ -38,7 +38,7 @@ jobs:
       - name: Write the language pages
         run: python -m ltdi.pages
       - name: Leave out the build template
-        run: rm -f site/template.html site/artifact.html
+        run: rm -rf site/src site/artifact.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
