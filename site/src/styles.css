@@ -327,8 +327,9 @@ details.more-tech { border-top: 1px solid var(--rule); padding-top: 12px; }
 details.more-tech > summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; }
 details.more-tech > summary::-webkit-details-marker { display: none; }
 .mt-title { font-weight: 600; color: var(--accent); }
-.mt-title::before { content: '▸'; display: inline-block; width: 1.1em; }
-details.more-tech[open] .mt-title::before { content: '▾'; }
+.mt-title { display: list-item; list-style: disclosure-closed inside; }  /* the same triangle as other drop-downs */
+.mt-title::marker { font-size: 13px; }
+details.more-tech[open] .mt-title { list-style-type: disclosure-open; }
 .mt-peek { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; }
 .mt-peek > span { display: inline-flex; align-items: center; gap: 4px; }
 details.more-tech[open] .mt-peek { display: none; }
