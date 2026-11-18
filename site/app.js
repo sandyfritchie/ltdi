@@ -1129,7 +1129,7 @@ function demandPanel(l) {
   const card = (h, big, note, title) => `<div class="dcard"${title ? ` title="${esc(title)}"` : ''}><div class="dh">${h}</div><div class="dv">${big}</div><div class="dn">${note}</div></div>`;
   return `<h3 class="panel-h">Demand signals</h3>
     <div class="demand-grid">
-      ${card('Official status', off.length ? `${off.length} ${off.length === 1 ? 'country' : 'countries'}` : 'None recorded', off.length ? esc(off.slice(0, 6).join(', ') + (off.length > 6 ? ` and ${off.length - 6} more` : '')) : 'Not official in any country in CLDR’s territory data', 'Unicode CLDR territory data: official, official in practice, or official in a region')}
+      ${card('Official status', off.length ? `${off.length} ${off.length === 1 ? 'country' : 'countries'}` : 'None recorded', off.length ? esc(off.slice(0, 6).join(', ') + (off.length > 6 ? ` and ${off.length - 6} more` : '')) : 'Not official in any country in CLDR’s territory data', 'Unicode CLDR territory data: official, official in practice, or official in a region. Where a country’s constitution names a language CLDR doesn’t mark, the constitution: Hausa and Igbo in Nigeria (section 55 of the 1999 Constitution)')}
       ${card('Adult literacy', lit.length ? `${Math.round(DATA.country_literacy[top.find(c => DATA.country_literacy[c] != null)])}%` : '—', lit.length ? esc(lit.join('; ')) : 'Not recorded for its countries', 'Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it')}
       ${card('Wikipedia readers', v('wikipedia_pageviews') ? big(v('wikipedia_pageviews')) : '—', v('wikipedia_pageviews') ? `page views in 12 months${v('wikipedia_active_editors') ? `; ${v('wikipedia_active_editors').toLocaleString()} active editors` : ''}` : 'No Wikipedia edition with page views', f.wikipedia_pageviews ? `${f.wikipedia_pageviews.source}: ${f.wikipedia_pageviews.note}` : '')}
       ${card('Builders on Hugging Face', v('hf_models') ? v('hf_models').toLocaleString() + (v('hf_models') === 1 ? ' model' : ' models') : '—', v('hf_models') ? `made for it, ${big(v('hf_model_downloads'))} downloads in 30 days${v('hf_datasets') ? `; ${Math.round(v('hf_datasets')).toLocaleString()} datasets` : ''}` : `No models made for it with recent downloads${v('hf_datasets') ? `; ${Math.round(v('hf_datasets')).toLocaleString()} datasets` : ''}`, f.hf_models ? `Models tagged with it and at most five languages, downloaded at least 10 times in 30 days. ${f.hf_models.note}` : '')}
@@ -2048,7 +2048,7 @@ function about() {
       <li>Quality is published for few languages. Where a benchmark result exists (translation, speech recognition, LLMs) a weak result counts for less, down to half; elsewhere a listed service counts in full, however well it works, so being measured never lowers a language's score below what it would have been unmeasured.</li>
       <li>LLM availability is read from the official app language lists for ChatGPT, Gemini and Copilot, the languages each company says its app supports; a model may also work, unevenly, in languages its list doesn't name.</li>
       <li>Regional providers count together as one extra service, and only for the languages they offer.</li>
-      <li>Voice assistants are tracked from the outgoing generation's lists: Google Assistant on speakers and displays, Siri, and Alexa's skills languages. Their successors don't publish comparable language lists yet: Google's Gemini for Home was in early access in 10 of Assistant's 16 languages, and Amazon lists Alexa+ by country rather than language (12 countries as of 28 October 2026). The row counts half as much as other technologies.</li>
+      <li>Voice assistants count each company's assistant across its old and new generations: Google Assistant or Gemini for Home on speakers and displays, Siri, and Alexa or Alexa+. Gemini for Home and Alexa+ are in early access and so far cover only languages the older assistants already had. Amazon publishes no language list for Alexa+, so its languages are the ones Amazon's launch announcements name, or a country's main language where they name only the country. The row counts half as much as other technologies.</li>
       <li>LLM quality comes from a few published benchmark results, each for one model at one time: Claude Fable 5.2 on Global-MMLU (2026), OpenAI o3 on MMMLU (2025), and GPT-4o and Gemini 1.5 Pro on AfroBench translation (2025). Newer models may do better.</li>
       <li>Speech services name varieties by country (ar-EG for Egyptian Arabic), so speech locales are matched to the variety spoken there; text services count as the standard language.</li>
     </ul>
@@ -2074,6 +2074,8 @@ function about() {
     <p>The Index is made and maintained by Sandy Ritchie, a linguist and technologist. It isn't affiliated with any organisation or company. It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
     <h3>Corrections and feedback</h3>
     <p>If you spot a mistake, work on a product whose row is out of date, or know of a source we've missed, please email <span class="email">langtechindex@gmail.com</span>, or, if you'd rather it be public, <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">open an issue on GitHub</a> using the correction or new-source form. A link to the page that documents the change is the quickest way to get it fixed; corrections go into the next build with the source cited.</p>
+    ${PATHS && window.goatcounter ? `<h3>Privacy</h3>
+    <p>The site counts visits with <a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>, which sets no cookies and records no personal information: only which page was opened, the referring site, and the browser, screen size and country in general terms. Nothing else is collected.</p>` : ''}
 
     <h3>Download and cite</h3>
     <p>The scores for this edition are a <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">CSV file</a>: one row per language, with its rank, tier, both dimensions before and after the floor, each technology's score, and, for spoken varieties, the score through their written standard (<a href="data/ltdi-${DATA.edition}.json" target="_blank" rel="noopener">column descriptions and the method's hashes</a>). A second <a href="data/ltdi-${DATA.edition}-services.csv" target="_blank" rel="noopener">services table</a> gives, for every language, what each service and benchmark tracked records: 1 where it's offered, 0 where it isn't, or the measured result. Every value with its source, date and note is in the repository's <a href="${REPO_URL}/tree/main/data/records" target="_blank" rel="noopener">data/records</a> folder, and every edition in <a href="${REPO_URL}/tree/main/data/editions" target="_blank" rel="noopener">data/editions</a>, so editions can be compared. The data is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> and the code MIT.</p>
@@ -2449,6 +2451,18 @@ function notFound(raw) {
     ${near.length ? `<h3 class="panel-h">Did you mean</h3><ul class="rel-list">${near.map(l => `<li><a href="${LH(l.code)}">${esc(l.name)}</a> <span class="code">${l.code}</span> ${tierChip(l)}</li>`).join('')}</ul>` : ''}
     <p class="note"><a href="/#ranking">See all languages</a></p></section>`;
 }
+// Visits are counted on the public site with GoatCounter, when pages.py sets it up: no cookies and nothing
+// personal, just the view's address (without a shortlist's codes or a plan's settings)
+let lastCounted;
+function countView() {
+  const gc = window.goatcounter;
+  if (!PATHS || !gc) return;
+  const path = (location.pathname + location.hash).replace(/\?.*$/, '');
+  if (path === lastCounted) return;
+  lastCounted = path;
+  const send = () => window.goatcounter.count && window.goatcounter.count({ path });
+  gc.count ? send() : addEventListener('load', send, { once: true });
+}
 function route() {
   let missing;  // set when the address names nothing: the language asked for, or null for any other path
   if (PATHS) {  // old /#lang-yo links move to /language/yo; a # view on a language's path moves home
@@ -2461,6 +2475,7 @@ function route() {
     } else if (location.pathname !== '/' && !lp) missing = null;
   }
   const h = missing !== undefined ? '' : curRoute();
+  countView();
   let m;
   if (h !== 'map') { mapFocus = null; mapView = null; }
   navBox('go', 'Find a language name or code');  // each view may give the box another job

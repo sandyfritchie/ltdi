@@ -23,6 +23,16 @@ TERRITORY_INFO = ("https://raw.githubusercontent.com/unicode-org/cldr-json/7d2b9
 STATUS = {"official": "o", "de_facto_official": "d", "official_regional": "r"}
 STATUS_LABEL = {"o": "official", "d": "official in practice", "r": "official in a region"}
 
+# Where a country's own law gives a status CLDR doesn't record: (language, country) -> (status, source).
+# Each one cites the law; CLDR's data is used everywhere else.
+OVERRIDES = {
+    # "The business of the National Assembly shall be conducted in English, and in Hausa, Ibo and Yoruba
+    # when adequate arrangements have been made therefor." CLDR marks Yoruba official, not Hausa or Igbo.
+    ("ha", "ng"): ("o", "Constitution of the Federal Republic of Nigeria 1999, section 55"),
+    ("ig", "ng"): ("o", "Constitution of the Federal Republic of Nigeria 1999, section 55"),
+}
+OVERRIDE_URL = "https://nigeriareposit.nln.gov.ng/handle/20.500.14186/466"  # National Library of Nigeria's copy
+
 
 @lru_cache(maxsize=1)
 def _territories() -> dict:
@@ -49,6 +59,8 @@ def official() -> dict[str, dict[str, str]]:
                 cur = out.setdefault(code, {}).get(cc.lower())
                 if not cur or rank[s] > rank[cur]:
                     out[code][cc.lower()] = s
+    for (code, cc), (s, _) in OVERRIDES.items():
+        out.setdefault(code, {})[cc] = s
     return out
 
 

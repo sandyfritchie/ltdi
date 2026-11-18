@@ -130,6 +130,9 @@ GOOGLE_OCR = "https://cloud.google.com/vision/docs/languages"
 GBOARD = "https://support.google.com/gboard/answer/6380730"
 GEMINI = "https://support.google.com/gemini/answer/13575153?hl=en"
 ASSISTANT = "https://support.google.com/googlenest/answer/7550584"
+# Gemini for Home is replacing Google Assistant on speakers and displays, in early access; a language counts
+# if either product has it.
+GEMINI_HOME = "https://support.google.com/googlenest/answer/16618650?hl=en"
 AZURE_SPEECH = "https://learn.microsoft.com/azure/ai-services/speech-service/language-support"
 AZURE_MT = "https://learn.microsoft.com/azure/ai-services/Translator/language-support"
 AZURE_OCR = "https://learn.microsoft.com/azure/ai-services/computer-vision/language-support"
@@ -140,6 +143,18 @@ WINDOWS = "https://learn.microsoft.com/en-us/windows-hardware/manufacture/deskto
 TRANSCRIBE = "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
 POLLY = "https://docs.aws.amazon.com/polly/latest/dg/supported-languages.html"
 ALEXA = "https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html"
+# Alexa+ is replacing Alexa, in early access in most countries. Amazon has no language list for it, so these
+# are the languages its own announcements name, or a country's main language where they name only the
+# country (as for Siri). Checked November 2026; a language counts if either Alexa or Alexa+ has it.
+ALEXA_PLUS_SOURCES = {
+    "https://aboutamazon.com/news/devices/alexa-plus-international-launch":
+        # US, UK, Australia and Canada (English and French); Mexico and Spain; Italy; Germany and Austria;
+        # France; Brazil; Japan (updated 28 October 2026)
+        ["en", "fr", "es", "it", "de", "pt", "ja"],
+    "https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus":
+        ["en", "hi"],  # "English, Hindi, and Hinglish" (16 September 2026)
+}
+ALEXA_PLUS = sorted({c for cs in ALEXA_PLUS_SOURCES.values() for c in cs})
 
 # indicator: (unit, source, url)
 META = {
@@ -172,9 +187,10 @@ META = {
     "ocr_azure": ("bool", "Azure AI Vision OCR (printed text)", AZURE_OCR),
     "ocr_azure_handwriting": ("bool", "Azure AI Vision OCR (handwriting)", AZURE_OCR),
     "ocr_apple": ("bool", "Apple iOS Live Text", APPLE + "#live-text-live-text"),
-    "va_google_assistant": ("bool", "Google Assistant (speakers and displays)", ASSISTANT),
+    "va_google_assistant": ("bool", "Google Assistant or Gemini for Home (speakers and displays)",
+                            f"{ASSISTANT} {GEMINI_HOME}"),
     "va_siri": ("bool", "Apple Siri", APPLE + "#siri"),
-    "va_alexa": ("bool", "Amazon Alexa", ALEXA),
+    "va_alexa": ("bool", "Amazon Alexa or Alexa+", " ".join([ALEXA, *ALEXA_PLUS_SOURCES])),
 }
 DEPTH = {"asr_azure_features", "tts_google_voice_types", "mt_azure_features", "kb_apple_features",
          "ui_windows_level", "ui_office_level", "ocr_google_level"}
@@ -240,6 +256,12 @@ def collect() -> list[Record]:
     for r in table(ASSISTANT, heading="Google Assistant"):
         va |= named(re.split(r",|\n", r.get("Supported Languages", "")), "va_google_assistant", speech=True)
     mark("va_google_assistant", va)
+    home = set()
+    for r in table(GEMINI_HOME, heading="Countries and languages with early access"):
+        home |= named(re.split(r",|\n", r.get("Language", "")), "va_google_assistant", speech=True)
+    if not home:
+        raise RuntimeError(f"va_google_assistant: no Gemini for Home languages read from {GEMINI_HOME}")
+    mark("va_google_assistant", home, "Also Gemini for Home (early access)")
 
     # Microsoft
     stt = defaultdict(set)
@@ -351,6 +373,7 @@ def collect() -> list[Record]:
     mark("asr_amazon", _codes(table(TRANSCRIBE, heading="Supported languages"), "Language code", speech=True))
     mark("tts_amazon", _codes(table(POLLY, first="Language"), "Language code", speech=True))
     mark("va_alexa", _codes(table(ALEXA, first="Locale code"), "Locale code", speech=True))
+    mark("va_alexa", ALEXA_PLUS, "Also Alexa+ (early access in most countries)")
 
     for ind, names in sorted(UNRESOLVED.items()):
         print(f"  {ind}: {len(names)} names not resolved, e.g. {', '.join(sorted(names)[:12])}")

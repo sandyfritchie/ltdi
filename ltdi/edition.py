@@ -38,10 +38,12 @@ def cite(cfg: dict) -> str:
             f"(methodology {m['methodology_version']}). https://langtechindex.org")
 
 
-def _sha(paths) -> str:
+def _sha(paths, root=None) -> str:
+    """One hash of the files' names (relative to root, if given) and contents."""
     h = hashlib.sha256()
     for p in sorted(paths):
-        h.update(p.name.encode() + b"\0" + p.read_bytes())
+        name = p.relative_to(root).as_posix() if root else p.name
+        h.update(name.encode() + b"\0" + p.read_bytes())
     return h.hexdigest()
 
 
@@ -95,7 +97,7 @@ def write_edition(results: list[dict], cfg: dict, facts: dict | None = None) -> 
         "ranked": sum(1 for r in results if r["rank"]),
         "licence": LICENCE,
         "cite": cite(cfg),
-        "config_sha256": _sha(CONFIG.glob("*")),
+        "config_sha256": _sha([p for p in CONFIG.rglob("*") if p.is_file()], CONFIG),
         "records_sha256": _sha([*(DATA / "records").glob("*.csv"), *(DATA / "manual").glob("*.csv"), DATA / "languages.json"]),
         "columns": {**{c: COLUMNS[c] for c in [*COLUMNS][:12]},
                     **{f"tech_{t}": f"{labels[t]}, 0 to 1" for t in techs},

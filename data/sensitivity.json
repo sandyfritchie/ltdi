@@ -14,18 +14,18 @@
   {
    "ranks": "61–200",
    "languages": 140,
-   "median_range": 14,
-   "within_10pct": 0.914
+   "median_range": 15,
+   "within_10pct": 0.921
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 193,
-   "within_10pct": 0.158
+   "median_range": 192,
+   "within_10pct": 0.159
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3005,
+   "languages": 3006,
    "median_range": 375,
    "within_10pct": 0.494
   }
@@ -102,28 +102,28 @@
    "largest": [
     {
      "name": "Ladin",
-     "from": 316,
-     "to": 293
+     "from": 317,
+     "to": 294
     },
     {
      "name": "Kusaal",
-     "from": 299,
-     "to": 318
+     "from": 300,
+     "to": 319
     },
     {
      "name": "Piemontese",
-     "from": 238,
-     "to": 220
+     "from": 239,
+     "to": 221
     },
     {
      "name": "Western Armenian",
-     "from": 280,
-     "to": 264
+     "from": 281,
+     "to": 265
     },
     {
      "name": "Swiss German",
-     "from": 232,
-     "to": 218
+     "from": 233,
+     "to": 219
     }
    ]
   }

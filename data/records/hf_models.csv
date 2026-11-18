@@ -637,6 +637,7 @@ kxd,hf_model_downloads,10,downloads in 30 days,Hugging Face Hub,https://huggingf
 kxm,hf_model_downloads,139,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=kxm&sort=downloads,2026-11-14,download,Tags: kxm
 ky,hf_model_downloads,72386,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=kir&sort=downloads,2026-11-14,download,"Tags: kir, ky"
 kyc,hf_model_downloads,202,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=kyc&sort=downloads,2026-11-14,download,Tags: kyc
+la,hf_model_downloads,95202,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=la&sort=downloads,2026-11-18,download,"Tags: la, lat"
 lad,hf_model_downloads,21,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=lad&sort=downloads,2026-11-14,download,Tags: lad
 lam,hf_model_downloads,530,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=lam&sort=downloads,2026-11-14,download,Tags: lam
 lap,hf_model_downloads,108,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=lap&sort=downloads,2026-11-14,download,Tags: lap
@@ -1035,6 +1036,7 @@ rue,hf_model_downloads,106,downloads in 30 days,Hugging Face Hub,https://hugging
 rw,hf_model_downloads,8917,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=kin&sort=downloads,2026-11-14,download,"Tags: kin, rw"
 rwm,hf_model_downloads,25,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=rwm&sort=downloads,2026-11-14,download,Tags: rwm
 rys,hf_model_downloads,4031,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=rys&sort=downloads,2026-11-14,download,Tags: rys
+sa,hf_model_downloads,16803,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=sa&sort=downloads,2026-11-18,download,"Tags: sa, san"
 sac,hf_model_downloads,409,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=sac&sort=downloads,2026-11-14,download,Tags: sac
 sad,hf_model_downloads,2079,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=sad&sort=downloads,2026-11-14,download,Tags: sad
 sae,hf_model_downloads,8192,downloads in 30 days,Hugging Face Hub,https://huggingface.co/models?language=sae&sort=downloads,2026-11-14,download,Tags: sae
@@ -2009,6 +2011,7 @@ kxd,hf_models,1,models,Hugging Face Hub,https://huggingface.co/models?language=k
 kxm,hf_models,1,models,Hugging Face Hub,https://huggingface.co/models?language=kxm&sort=downloads,2026-11-14,download,Tags: kxm
 ky,hf_models,85,models,Hugging Face Hub,https://huggingface.co/models?language=kir&sort=downloads,2026-11-14,download,"Tags: kir, ky"
 kyc,hf_models,7,models,Hugging Face Hub,https://huggingface.co/models?language=kyc&sort=downloads,2026-11-14,download,Tags: kyc
+la,hf_models,223,models,Hugging Face Hub,https://huggingface.co/models?language=la&sort=downloads,2026-11-18,download,"Tags: la, lat"
 lad,hf_models,1,models,Hugging Face Hub,https://huggingface.co/models?language=lad&sort=downloads,2026-11-14,download,Tags: lad
 lam,hf_models,17,models,Hugging Face Hub,https://huggingface.co/models?language=lam&sort=downloads,2026-11-14,download,Tags: lam
 lap,hf_models,2,models,Hugging Face Hub,https://huggingface.co/models?language=lap&sort=downloads,2026-11-14,download,Tags: lap
@@ -2407,6 +2410,7 @@ rue,hf_models,2,models,Hugging Face Hub,https://huggingface.co/models?language=r
 rw,hf_models,117,models,Hugging Face Hub,https://huggingface.co/models?language=kin&sort=downloads,2026-11-14,download,"Tags: kin, rw"
 rwm,hf_models,2,models,Hugging Face Hub,https://huggingface.co/models?language=rwm&sort=downloads,2026-11-14,download,Tags: rwm
 rys,hf_models,45,models,Hugging Face Hub,https://huggingface.co/models?language=rys&sort=downloads,2026-11-14,download,Tags: rys
+sa,hf_models,168,models,Hugging Face Hub,https://huggingface.co/models?language=sa&sort=downloads,2026-11-18,download,"Tags: sa, san"
 sac,hf_models,11,models,Hugging Face Hub,https://huggingface.co/models?language=sac&sort=downloads,2026-11-14,download,Tags: sac
 sad,hf_models,6,models,Hugging Face Hub,https://huggingface.co/models?language=sad&sort=downloads,2026-11-14,download,Tags: sad
 sae,hf_models,74,models,Hugging Face Hub,https://huggingface.co/models?language=sae&sort=downloads,2026-11-14,download,Tags: sae

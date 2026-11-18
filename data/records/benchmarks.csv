@@ -363,6 +363,7 @@ rn,bench_flores200,1,bool,FLORES-200,,2026-11-12,download,
 ro,bench_flores200,1,bool,FLORES-200,,2026-11-12,download,
 ru,bench_flores200,1,bool,FLORES-200,,2026-11-12,download,
 rw,bench_flores200,1,bool,FLORES-200,,2026-11-12,download,
+sa,bench_flores200,1,bool,FLORES-200,,2026-11-08,download,
 sat,bench_flores200,1,bool,FLORES-200,,2026-11-12,download,
 sc,bench_flores200,1,bool,FLORES-200,,2026-11-12,download,
 scn,bench_flores200,1,bool,FLORES-200,,2026-11-12,download,
@@ -711,6 +712,7 @@ rn,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyf
 ro,eval_benchmarks,4,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,"Global-MMLU, FLORES-200, Belebele, FLEURS"
 ru,eval_benchmarks,7,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,"Global-MMLU, INCLUDE, XNLI, MGSM, FLORES-200, Belebele, FLEURS"
 rw,eval_benchmarks,3,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,"IrokoBench, FLORES-200, Belebele"
+sa,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-08,download,FLORES-200
 sat,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,FLORES-200
 sc,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,FLORES-200
 scn,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,FLORES-200

@@ -159,6 +159,7 @@ kvx,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfr
 kw,open_speech_hours,12.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
 kxp,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 ky,open_speech_hours,91.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 40, Common Voice 39, FLEURS 12"
+la,open_speech_hours,12.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,YODAS 12
 lb,open_speech_hours,12.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
 lg,open_speech_hours,495.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 437, WAXAL 46, FLEURS 12"
 lij,open_speech_hours,5.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 5
@@ -259,6 +260,7 @@ rof,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfr
 ru,open_speech_hours,8275.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 8,007, Common Voice 257, FLEURS 12"
 rup,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 rw,open_speech_hours,2016.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 2,002, YODAS 14"
+sa,open_speech_hours,2.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,YODAS 3
 sah,open_speech_hours,16.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 16
 sat,open_speech_hours,0.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 1
 sbn,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
@@ -556,6 +558,7 @@ ko,speech_yodas,3902.3,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas
 ks,speech_yodas,3.5,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 ku,speech_yodas,7.0,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 ky,speech_yodas,40.0,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
+la,speech_yodas,12.1,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 lb,speech_yodas,0.1,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 lg,speech_yodas,0.1,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 ln,speech_yodas,13.8,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
@@ -589,6 +592,7 @@ rn,speech_yodas,0.2,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2
 ro,speech_yodas,183.6,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 ru,speech_yodas,8007.0,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 rw,speech_yodas,14.4,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
+sa,speech_yodas,2.7,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 sc,speech_yodas,0.5,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 sd,speech_yodas,0.7,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0
 sg,speech_yodas,0.0,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,Video hours with manually uploaded subtitles; CC BY 3.0

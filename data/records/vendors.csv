@@ -2399,6 +2399,7 @@ kri,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/tran
 ktu,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 ku,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 ky,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
+la,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 lb,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 lg,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 li,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
@@ -2451,6 +2452,7 @@ rn,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/trans
 ro,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 ru,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 rw,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
+sa,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 scn,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 sd,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
 sg,mt_google,1,bool,Google Cloud Translation,https://docs.cloud.google.com/translate/docs/languages,2026-11-13,scrape,
@@ -2607,6 +2609,7 @@ ku,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.c
 kum,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 kw,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 ky,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
+la,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 lb,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 lkt,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 lt,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
@@ -2635,6 +2638,7 @@ rab,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.
 rm,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 ro,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 ru,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
+sa,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 sat,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 sck,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 sco,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
@@ -2730,6 +2734,7 @@ km,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/doc
 kn,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 ko,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 ky,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,Experimental
+la,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,Experimental
 lo,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 lt,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 lv,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
@@ -2750,6 +2755,7 @@ ps,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/doc
 pt,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 ro,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 ru,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
+sa,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,Experimental
 si,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,Experimental
 sk,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 sl,ocr_google,1,bool,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
@@ -2819,6 +2825,7 @@ km,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.c
 kn,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 ko,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 ky,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,Experimental
+la,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,Experimental
 lo,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 lt,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 lv,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
@@ -2839,6 +2846,7 @@ ps,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.c
 pt,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 ro,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 ru,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
+sa,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,Experimental
 si,ocr_google_level,1,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,Experimental
 sk,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
 sl,ocr_google_level,2,levels of 2,Google Cloud Vision OCR,https://cloud.google.com/vision/docs/languages,2026-11-13,scrape,
@@ -3104,6 +3112,7 @@ jv,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/t
 ka,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 kn,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 ko,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
+la,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 lb,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 lo,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 lt,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
@@ -3183,6 +3192,7 @@ jv,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs
 ka,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,Has: Gemini-TTS
 kn,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard, WaveNet"
 ko,tts_google_voice_types,5,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,"Has: Chirp3-HD, Gemini-TTS, Neural2, Standard, WaveNet"
+la,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,Has: Gemini-TTS
 lb,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,Has: Gemini-TTS
 lo,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,Has: Gemini-TTS
 lt,tts_google_voice_types,3,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard"
@@ -3629,34 +3639,34 @@ wo,ui_windows_level,1,levels of 2,Windows display language,https://learn.microso
 xh,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,"Language interface pack: partly translated, over a base language"
 yo,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,"Language interface pack: partly translated, over a base language"
 zu,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,"Language interface pack: partly translated, over a base language"
-*,va_alexa,0,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-ar,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-de,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-en,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-es,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-fr,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-hi,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-it,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-ja,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-nl,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-pt,va_alexa,1,bool,Amazon Alexa,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html,2026-11-13,scrape,
-*,va_google_assistant,0,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-cmn,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-da,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-de,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-en,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-es,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-fr,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-hi,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-id,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-it,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-ja,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-ko,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-nb,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-nl,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-pt,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-sv,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
-th,va_google_assistant,1,bool,Google Assistant (speakers and displays),https://support.google.com/googlenest/answer/7550584,2026-11-13,scrape,
+*,va_alexa,0,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,
+ar,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,
+de,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,Also Alexa+ (early access in most countries)
+en,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,Also Alexa+ (early access in most countries)
+es,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,Also Alexa+ (early access in most countries)
+fr,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,Also Alexa+ (early access in most countries)
+hi,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,Also Alexa+ (early access in most countries)
+it,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,Also Alexa+ (early access in most countries)
+ja,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,Also Alexa+ (early access in most countries)
+nl,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,
+pt,va_alexa,1,bool,Amazon Alexa or Alexa+,https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html https://aboutamazon.com/news/devices/alexa-plus-international-launch https://www.aboutamazon.in/news/device-and-alexa/things-to-try-new-alexa-plus,2026-11-13,scrape,Also Alexa+ (early access in most countries)
+*,va_google_assistant,0,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,
+cmn,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,
+da,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+de,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+en,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+es,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+fr,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+hi,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,
+id,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,
+it,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+ja,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+ko,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,
+nb,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+nl,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+pt,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,
+sv,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
+th,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,
 *,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-13,scrape,
 afb,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-13,scrape,
 ar,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-13,scrape,

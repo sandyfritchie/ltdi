@@ -324,6 +324,7 @@ kus,parallel_sentences,4742,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&
 kv,parallel_sentences,3893,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kpv/corpus-result-table,2026-11-12,download,"4 corpora; OPUS codes kpv, kv"
 kw,parallel_sentences,10304,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kw/corpus-result-table,2026-11-12,download,4 corpora
 ky,parallel_sentences,21608483,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ky/corpus-result-table,2026-11-12,download,"9 corpora; 100% web-mined; 21,656,374 pairs listed; checked web-mined corpora count at the share of lines in the language (CCAligned 80%)"
+la,parallel_sentences,1444902,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&la/corpus-result-table,2026-11-12,download,10 corpora; 79% web-mined
 laa,parallel_sentences,9,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&laa/corpus-result-table,2026-11-12,download,1 corpora
 lad,parallel_sentences,2592,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lad/corpus-result-table,2026-11-12,download,"3 corpora; OPUS codes lad, lad_hebr"
 lag,parallel_sentences,574,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&lag/corpus-result-table,2026-11-12,download,1 corpora
@@ -512,6 +513,7 @@ ruq,parallel_sentences,223,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&r
 rut,parallel_sentences,591,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&rut/corpus-result-table,2026-11-12,download,1 corpora
 rw,parallel_sentences,9135839,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&kin/corpus-result-table,2026-11-12,download,"8 corpora; 97% web-mined; 10,395,923 pairs listed; checked web-mined corpora count at the share of lines in the language (NLLB 88%); OPUS codes kin, rw"
 ryu,parallel_sentences,1104,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&ryu/corpus-result-table,2026-11-12,download,1 corpora
+sa,parallel_sentences,3104495,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sa/corpus-result-table,2026-11-12,download,5 corpora; 100% web-mined
 sah,parallel_sentences,10113,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sah/corpus-result-table,2026-11-12,download,3 corpora
 sas,parallel_sentences,835,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sas/corpus-result-table,2026-11-12,download,1 corpora
 sat,parallel_sentences,73996,sentence pairs,OPUS,https://opus.nlpl.eu/results/en&sat/corpus-result-table,2026-11-12,download,"4 corpora; 79% web-mined; 99,077 pairs listed; checked web-mined corpora count at the share of lines in the language (NLLB 68%)"

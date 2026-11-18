@@ -26,6 +26,17 @@ from . import DATA
 from .build_site import SITE, add_census
 
 SITE_URL = "https://langtechindex.org"
+# The GoatCounter site code (https://<code>.goatcounter.com) that counts visits on the public site, or ""
+# for none. Only the public pages get it, not the preview.
+GOATCOUNTER = ""
+
+
+def _counter() -> str:
+    if not GOATCOUNTER:
+        return ""
+    return ('<script>window.goatcounter = {no_onload: true}</script>\n'  # the app counts each view itself
+            f'<script data-goatcounter="https://{GOATCOUNTER}.goatcounter.com/count" async '
+            'src="https://gc.zgo.at/count.js"></script>\n')
 
 
 def _v(text: str) -> str:
@@ -48,6 +59,7 @@ def write_app(page: str, data_js: str) -> str:
     html = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             '<base href="/">\n' + head + '</head>\n<body>\n<div class="wrap">' + skeleton
+            + _counter()
             + f'<script src="/data/index.js?v={v["data/index.js"]}"></script>\n'
             + f'<script src="/app.js?v={v["app.js"]}"></script>\n</body>\n</html>\n')
     (SITE / "index.html").write_text(html, encoding="utf-8")

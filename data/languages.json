@@ -123589,6 +123589,39 @@
   ]
  },
  {
+  "code": "la",
+  "name": "Latin",
+  "autonym": "Latina",
+  "iso_639_3": "lat",
+  "glottocode": "lati1261",
+  "scope": "LANGUAGE",
+  "speakers": null,
+  "members": [],
+  "scripts": [
+   "latn"
+  ],
+  "script_names": [
+   "Latin"
+  ],
+  "countries": [
+   {
+    "code": "va",
+    "name": "Vatican City",
+    "speakers": null,
+    "scripts": [
+     "latn"
+    ]
+   }
+  ],
+  "region": "Europe",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/la.json",
+  "note": "",
+  "extinct": true,
+  "endangerment": "extinct",
+  "endangerment_source": "glottolog",
+  "alt_names": []
+ },
+ {
   "code": "laa",
   "name": "Southern Subanen",
   "autonym": null,
@@ -199760,6 +199793,39 @@
    "Jabal Razih",
    "Razihi"
   ]
+ },
+ {
+  "code": "sa",
+  "name": "Sanskrit",
+  "autonym": "संस्कृतम्",
+  "iso_639_3": "san",
+  "glottocode": "sans1269",
+  "scope": "LANGUAGE",
+  "speakers": 24821,
+  "members": [],
+  "scripts": [
+   "deva"
+  ],
+  "script_names": [
+   "Devanagari"
+  ],
+  "countries": [
+   {
+    "code": "in",
+    "name": "India",
+    "speakers": 24821,
+    "scripts": [
+     "deva"
+    ]
+   }
+  ],
+  "region": "South Asia",
+  "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/sa.json",
+  "note": "",
+  "extinct": false,
+  "endangerment": "revitalizing",
+  "endangerment_source": "glottolog",
+  "alt_names": []
  },
  {
   "code": "saa",

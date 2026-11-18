@@ -975,6 +975,7 @@ kyw,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboard
 kzc,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 kzr,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,5 keyboard packages
 kzy,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
+la,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
 laa,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
 lad,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
 lae,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
@@ -1533,6 +1534,7 @@ rw,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards
 rwk,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
 rwm,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
 rwr,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
+sa,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,27 keyboard packages
 saa,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,3 keyboard packages
 sah,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,2 keyboard packages
 saj,kb_open_keyman,1,bool,Keyman keyboards,https://github.com/keymanapp/keyboards,2026-11-08,download,1 keyboard packages
@@ -2041,6 +2043,7 @@ kn,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/b48dc46512
 ko,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md,2026-11-08,download,
 ku,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md,2026-11-08,download,
 ky,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md,2026-11-08,download,
+la,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md,2026-11-08,download,
 lb,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md,2026-11-08,download,
 lo,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md,2026-11-08,download,
 lt,lid_cld3,1,bool,CLD3,https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md,2026-11-08,download,
@@ -2940,6 +2943,7 @@ kyz,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotL
 kze,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 kzf,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 kzn,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
+la,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 lac,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 lad,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 lai,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
@@ -3505,6 +3509,7 @@ rug,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotL
 rup,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 rw,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 rwo,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
+sa,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 sab,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 sah,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
 saj,lid_glotlid,1,bool,GlotLID v3,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,2026-11-08,download,
@@ -3988,6 +3993,7 @@ kn,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/te
 ko,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 ku,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 ky,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
+la,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 lb,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 lo,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 lt,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
@@ -4012,6 +4018,7 @@ pt,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/te
 qu,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 ro,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 ru,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
+sa,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 sd,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 si,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
 sk,ocr_open_tesseract,1,bool,Tesseract OCR (tessdata_best),https://github.com/tesseract-ocr/tessdata_best,2026-11-08,download,
@@ -4089,6 +4096,7 @@ pl,proof_hunspell,1,bool,LibreOffice spelling dictionaries (Hunspell),https://gi
 pt,proof_hunspell,1,bool,LibreOffice spelling dictionaries (Hunspell),https://github.com/LibreOffice/dictionaries,2026-11-08,download,
 ro,proof_hunspell,1,bool,LibreOffice spelling dictionaries (Hunspell),https://github.com/LibreOffice/dictionaries,2026-11-08,download,
 ru,proof_hunspell,1,bool,LibreOffice spelling dictionaries (Hunspell),https://github.com/LibreOffice/dictionaries,2026-11-08,download,
+sa,proof_hunspell,1,bool,LibreOffice spelling dictionaries (Hunspell),https://github.com/LibreOffice/dictionaries,2026-11-08,download,
 si,proof_hunspell,1,bool,LibreOffice spelling dictionaries (Hunspell),https://github.com/LibreOffice/dictionaries,2026-11-08,download,
 sk,proof_hunspell,1,bool,LibreOffice spelling dictionaries (Hunspell),https://github.com/LibreOffice/dictionaries,2026-11-08,download,
 sl,proof_hunspell,1,bool,LibreOffice spelling dictionaries (Hunspell),https://github.com/LibreOffice/dictionaries,2026-11-08,download,

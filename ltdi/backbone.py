@@ -301,6 +301,10 @@ def records() -> dict[str, dict]:
             continue
         d = json.loads(path.read_text(encoding="utf-8"))
         out[d.get("bcp_47_code") or path.stem] = d
+    # a few languages LinguaMeta leaves out (classical: Latin, Sanskrit), in its format; its own wins
+    for path in sorted((CONFIG / "linguameta_extra").glob("*.json")):
+        d = json.loads(path.read_text(encoding="utf-8"))
+        out.setdefault(d["bcp_47_code"], d)
     return out
 
 
