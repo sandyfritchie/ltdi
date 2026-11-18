@@ -102,5 +102,6 @@ def collect() -> list[Record]:
         if code and n and n > best.get(code, (0,))[0]:  # a macrolanguage and a member can share a code: the larger
             best[code] = (n, rows, uids, iso)
     return [Record(code, "lexicon_panlex", n, "expressions", SOURCE, PAGE.format(uid=uids[0] if uids else iso + "-000"),
-                   note=f"{n:,} expressions with {rows:,} meanings, in {len(uids)} {'variety' if len(uids) == 1 else 'varieties'}")
+                   note=f"{n:,} expressions in {rows:,} entries (an expression with one of its meanings), "
+                        f"in {len(uids)} {'variety' if len(uids) == 1 else 'varieties'}")
             for code, (n, rows, uids, iso) in sorted(best.items())]

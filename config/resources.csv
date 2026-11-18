@@ -28,3 +28,5 @@ speech_yodas,YODAS2,YouTube videos with manually uploaded subtitles,CC BY 3.0,ye
 speech_fleurs,FLEURS,Read Wikipedia sentences; also a speech benchmark,CC BY 4.0,yes,https://huggingface.co/datasets/google/fleurs
 speech_multilingual_librispeech,Multilingual LibriSpeech,Audiobooks,CC BY 4.0,yes,https://www.openslr.org/94/
 asr_open_omnilingual,Omnilingual ASR,"Open speech recognition for 1,600+ languages (Meta)",Apache 2.0,yes,https://github.com/facebookresearch/omnilingual-asr
+lexicon_panlex,PanLex,"Words and their translations, from about 2,500 dictionaries and word lists",CC0 1.0,yes,https://panlex.org/
+wordlist_corpuscrawler,Corpus Crawler word lists,"Word-frequency lists from crawled web text, for keyboards and spelling checkers",Not stated,,https://github.com/google/corpuscrawler

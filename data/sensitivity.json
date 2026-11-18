@@ -9,25 +9,25 @@
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.683
+   "within_10pct": 0.717
   },
   {
    "ranks": "61–200",
    "languages": 140,
-   "median_range": 15,
+   "median_range": 14,
    "within_10pct": 0.921
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 192,
-   "within_10pct": 0.159
+   "median_range": 209,
+   "within_10pct": 0.16
   },
   {
    "ranks": "1,001 and below",
    "languages": 3006,
-   "median_range": 375,
-   "within_10pct": 0.494
+   "median_range": 403,
+   "within_10pct": 0.485
   }
  ],
  "scenarios": [
@@ -37,29 +37,29 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Norwegian Bokmål",
-     "from": 28,
-     "to": 25
-    },
-    {
      "name": "Malay",
      "from": 35,
      "to": 32
     },
     {
      "name": "Ukrainian",
-     "from": 21,
-     "to": 23
+     "from": 22,
+     "to": 24
     },
     {
      "name": "Romanian",
-     "from": 22,
-     "to": 24
+     "from": 21,
+     "to": 23
     },
     {
      "name": "Finnish",
      "from": 23,
      "to": 21
+    },
+    {
+     "name": "Danish",
+     "from": 24,
+     "to": 22
     }
    ]
   },
@@ -69,9 +69,14 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
+     "name": "Polish",
+     "from": 16,
+     "to": 12
+    },
+    {
      "name": "Yue Chinese",
      "from": 82,
-     "to": 87
+     "to": 85
     },
     {
      "name": "Russian",
@@ -79,51 +84,46 @@
      "to": 5
     },
     {
-     "name": "Polish",
-     "from": 16,
-     "to": 13
+     "name": "Norwegian Bokmål",
+     "from": 25,
+     "to": 28
     },
     {
      "name": "Dutch",
      "from": 11,
      "to": 14
-    },
-    {
-     "name": "Danish",
-     "from": 24,
-     "to": 27
     }
    ]
   },
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9978,
-   "moved_10_in_top_300": 14,
+   "moved_10_in_top_300": 13,
    "largest": [
-    {
-     "name": "Ladin",
-     "from": 317,
-     "to": 294
-    },
     {
      "name": "Kusaal",
      "from": 300,
-     "to": 319
+     "to": 318
     },
     {
      "name": "Piemontese",
-     "from": 239,
-     "to": 221
+     "from": 232,
+     "to": 216
     },
     {
-     "name": "Western Armenian",
-     "from": 281,
-     "to": 265
+     "name": "Ladin",
+     "from": 305,
+     "to": 289
     },
     {
      "name": "Swiss German",
      "from": 233,
      "to": 219
+    },
+    {
+     "name": "Kölsch",
+     "from": 276,
+     "to": 262
     }
    ]
   }

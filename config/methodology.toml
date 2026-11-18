@@ -5,9 +5,10 @@
 edition = "2026-11"
 # The method's version: raise the major number when the formula, dimensions or tiers change, the
 # minor number when weights, goalposts or the services counted change. 1.x had three dimensions
-# (writing, data, technology); 2.0 is the two-dimension method from edition 2026-11. Each edition's
-# scores are archived in data/editions/ with this version and a hash of the config.
-methodology_version = "2.0"
+# (writing, data, technology); 2.0 is the two-dimension method from edition 2026-11, and 2.1 adds
+# PanLex's dictionary entries to the data dimension. Each edition's scores are archived in
+# data/editions/ with this version and a hash of the config.
+methodology_version = "2.1"
 # Lowest value a dimension index can take, so one empty dimension doesn't zero the LTDI
 floor = 0.05
 
@@ -85,6 +86,15 @@ scale = "log"
 min = 0
 max = 10000
 weight = 0.2
+
+# Dictionaries: words with translations in PanLex's last dump (2024-03-01). Below 1,000 a list is
+# mostly a short wordlist (a Swadesh list is about 200 words) and counts nothing.
+[dimensions.data.indicators.lexicon_panlex]
+label = "Dictionary entries (PanLex expressions)"
+scale = "log"
+min = 1000
+max = 1e6
+weight = 0.05
 
 # Everything else
 # Datasets tagged with many languages (Bible corpora, crawls, machine-translated sets

@@ -94,10 +94,12 @@ function readiness(l, t, o = { com: false, q: 'all' }) {
       ['An open translation model' + (o.com ? ' licensed for commercial use' : ''), has('mt_open_nllb')],
       ['A published quality score', (qv.mt_nllb_flores_chrf != null && qualityOK('mt_open_nllb', o.q)) || (qv.mt_google_flores_chrf != null && qualityOK('mt_google', o.q))]],
     llm: [['100 million words of web text', ww >= 1e8], ['Covered by a public benchmark', fl('b')], ['A published LLM result', llmResult]],
-    keyboard: [unicode, ['An open keyboard layout (Keyman)', has('kb_open_keyman')], ['A spell-check dictionary or a million words of text', has('proof_hunspell') || ww >= 1e6], cldr],
+    keyboard: [unicode, ['An open keyboard layout (Keyman)', has('kb_open_keyman')], ['A spell-check dictionary or a million words of text', has('proof_hunspell') || ww >= 1e6],
+      ['A word-frequency list, for predictions (Corpus Crawler)', fl('w')], cldr],
     interface: [unicode, cldr, ['Volunteer localisers (Firefox is translated)', l._offers.has('ui_firefox')]],
     ocr: [unicode, ['A Noto font', fl('n')], ['An open OCR model (Tesseract)', has('ocr_open_tesseract')], text1m(', for training')],
-    proofing: [['An open spell checker (Hunspell or LanguageTool)', has('proof_hunspell') || has('proof_languagetool')], text1m(''), ['A Universal Dependencies treebank', fl('d')]],
+    proofing: [['An open spell checker (Hunspell or LanguageTool)', has('proof_hunspell') || has('proof_languagetool')], text1m(''),
+      ['A word-frequency list (Corpus Crawler)', fl('w')], ['A Universal Dependencies treebank', fl('d')]],
     assistant: [['An open speech recognition model' + (o.com ? ' licensed for commercial use' : ''), asrModel], ['An open voice' + (o.com ? ' licensed for commercial use' : ''), voice],
       ['An LLM benchmark result or AI app listing', llmResult || ['llm_app_gemini', 'llm_app_copilot', 'llm_app_chatgpt'].some(id => l._offers.has(id))]],
   }[t] || [];
@@ -216,6 +218,7 @@ function provList(l, key, facts, vfacts, wname) {
       add(spec.label, ik);
       if (spec.narrowed_by) add(spec.label + ' · Bible-site share', spec.narrowed_by);
     }
+    if (key === 'data') add('Word-frequency list (not scored; in the keyboard and spelling checklists)', 'wordlist_corpuscrawler');
   }
   if (!items.length) return '';
   return `<details class="prov"><summary>Sources, dates and notes <span class="muted">· ${items.length}</span></summary><ul>${items.join('')}</ul></details>`;

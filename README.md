@@ -135,6 +135,7 @@ any name it can't resolve.
 | Data | Wikipedia articles and active editors | Meta-Wiki's List of Wikipedias (refreshed from each edition's statistics); articles count up to 1,000 per active editor (at least 10,000), since editions far beyond that are mostly bot-generated | automated |
 | Data | Open transcribed speech (hours) | Summed across Common Voice 27.0, FLEURS, YODAS2, WAXAL (automated) and Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech (`config/speech_datasets.csv`, from each paper or card) | automated and curated |
 | Data | Datasets on the Hugging Face Hub | Hub API: the whole dataset listing, read once, by language tag; a dataset tagged with more than 20 languages counts 20 ÷ its languages for each | automated |
+| Data | Dictionary entries (expressions with a meaning; 1,000 to 1 million, log scale) | PanLex's last database dump (2024-03-01), read from its Hugging Face copy (`cointegrated/panlex-meanings`, pinned), since PanLex's own download is offline; expressions counted across the language's varieties (`ltdi/collectors/panlex.py`, run on GitHub Actions) | automated |
 | Data | Public benchmarks covering the language (nine tracked; six or more is full marks) | FLORES-200, Belebele, FLEURS, Global-MMLU, MMMLU, INCLUDE, XNLI, MGSM, IrokoBench | automated |
 | Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | automated |
 | Tech | Speech input | Google Cloud STT, Azure AI Speech, iOS dictation, Amazon Transcribe; Whisper, MMS and Omnilingual ASR (open); depth: Whisper large-v3 FLEURS WER, Omnilingual ASR's published character error rate per language, Azure speech-to-text features | automated |
@@ -144,6 +145,7 @@ any name it can't resolve.
 | Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
+| Checklists only | Word-frequency lists (not scored: the web text behind them is mostly what FineWeb-2 measures) | Corpus Crawler's language table (pinned), linking each language's list; shown in the keyboard and spelling readiness checklists and on language pages (`ltdi/collectors/corpuscrawler.py`) | automated |
 | Tech | Voice assistant (half weight) | Each company's assistant, old and new generations together: Google Assistant / Gemini for Home (speakers and displays; Gemini for Home's early-access languages are read from Google's help page), Siri, and Alexa / Alexa+ (Alexa's skills languages; Amazon publishes no language list for Alexa+, so Alexa+'s are those named in Amazon's launch announcements, or a country's main language where only the country is named; checked November 2026) | automated |
 | Tech | Regional providers | Translation: Yandex, Baidu, Alibaba Cloud (Qwen-MT), Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP Khaya, Sunbird AI. Speech recognition: Yandex SpeechKit, Sarvam, Lelapa, Khaya, Sunbird. Text-to-speech: Yandex SpeechKit, Sarvam, Khaya, Sunbird | read by hand from each provider's language list (`ltdi/collectors/regional.py`) |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
@@ -592,7 +594,7 @@ rank correlation and largest moves (`--csv` writes every language's three scores
 the review baseline, `python tools/edition_diff.py 5d79055`, shows the 2.0 method change on its own.
 
 To cite: Ritchie, Sandy (2026). Language Technology Development Index (LTDI), edition 2026-11
-(methodology 2.0). https://langtechindex.org
+(methodology 2.1). https://langtechindex.org
 
 ## Maintainer, corrections and what's included
 

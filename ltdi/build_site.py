@@ -306,7 +306,7 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
     def encode(code: str, inds: dict) -> dict:
         out = {}
         for ind, f in inds.items():
-            url = re.sub(rf"(?<=[=:&/#]){re.escape(code)}(?=$|[/&#?])", "{lang}", f["url"])
+            url = re.sub(rf"(?<=[=:&/#]){re.escape(code)}(?=$|[/&#?.])", "{lang}", f["url"])
             key = (f["source"], url, f["retrieved"], f["method"])
             out[ind] = [f["value"], sources.setdefault(key, len(sources))] + ([f["note"]] if f["note"] else [])
             units[ind] = f["unit"]
@@ -481,7 +481,8 @@ FLAG_LETTER = {"rtl": "r", "shaping": "s", "nospace": "w", "ime": "i", "scripts"
 PLAN_QUALITY = ("asr_whisper_fleurs_wer", "asr_omnilingual_cer", "mt_nllb_flores_chrf", "mt_google_flores_chrf")
 # Ingredients the readiness checklists need that aren't services (services come from "offers"), one letter each
 READY_FLAGS = {"f": ("speech_fleurs", 0), "c": ("cv_validated_hours", 0), "F": ("flores200", 0), "b": ("eval_benchmarks", 0),
-               "u": ("script_encoded", 0), "l": ("cldr_coverage", 0), "n": ("font_noto", 0), "d": ("ud_treebank_words", 0)}
+               "u": ("script_encoded", 0), "l": ("cldr_coverage", 0), "n": ("font_noto", 0), "d": ("ud_treebank_words", 0),
+               "w": ("wordlist_corpuscrawler", 0)}
 
 
 def usable_hours(facts: dict, resources: dict) -> float:
