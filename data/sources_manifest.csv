@@ -1006,6 +1006,7 @@ opus,https://opus.nlpl.eu/opusapi/?source=en&target=zsm&preprocessing=moses&vers
 opus,https://opus.nlpl.eu/opusapi/?source=en&target=zu&preprocessing=moses&version=latest,ce1f5632782536b34daf31d90f9ce04eb7e16bcabf707b2287c4b0c950fa5263,2026-11-12
 opus,https://opus.nlpl.eu/opusapi/?source=en&target=zul&preprocessing=moses&version=latest,c60b29f91d7c1872fadd34fb2bf31b457a00a596fa5607ff6bccb5f7e7380215,2026-11-12
 opus,https://opus.nlpl.eu/opusapi/?source=en&target=zza&preprocessing=moses&version=latest,fd07994a3f7113b942b2bf7788a86a2f98596621b1020883f21abad5d26f095f,2026-11-12
+panlex,https://huggingface.co/datasets/cointegrated/panlex-meanings@0422f0e60f39a5ed9306ee637555789fdc5b5837,0422f0e60f39a5ed9306ee637555789fdc5b5837,2026-11-18
 scripts,https://raw.githubusercontent.com/unicode-org/cldr-json/7d2b9cb11cec08f4d333ad73209deb3df0711c3b/cldr-json/cldr-core/scriptMetadata.json,d53106123bffd1063e202da195b1bc084371a744cdc4cf1bdca297127ad84acb,2026-11-08
 speech,https://huggingface.co/datasets/espnet/yodas2/raw/main/meta.py,aee22a4121d66a8fe344b3a74f778248c16c7ac89c7c4314d520e7c5f3afa0b3,2026-11-08
 speech,https://huggingface.co/datasets/espnet/yodas2/resolve/main/data/aa000/duration/00000000.txt,588ebb1f7d6b1aba1f0b7593bd5a18a53629a432fb34bd8a230369bdd82e963b,2026-11-08
