@@ -285,7 +285,7 @@ communities speak it, so code, script and country give a locale such as `pnb-Ara
 online in five years with their share of its speakers, the open models listed for it with their
 published quality and licence (a note under the table says who measured each), and the open data for
 that technology: for speech, hours by kind (read, spontaneous, media, and test sets such
-as FLEURS, kept apart since a test set should stay out of training; the kinds are in `SPEECH_KIND` in
+as FLEURS (shown as a tick), kept apart since a test set should stay out of training; the kinds are in `SPEECH_KIND` in
 `ltdi/build_site.py`). A data target, in orders of magnitude of the technology's unit (10 to a million
 hours, for speech), adds how far each language is short of it. The CSV adds every country, the
 locales, the family, engineering flags, readiness and its missing ingredients, the commercial services
@@ -294,10 +294,11 @@ already offering it, the hours by kind and the shortfall.
 Switches and menus: **Include varieties of major languages** (off by default) counts spoken varieties
 whose speakers mostly write a standard language (`config/written_standards.csv`); **Commercially
 usable data and models only** counts only open data and models whose licence permits commercial use
-(`commercial` in `config/resources.csv`). Where a technology has one published quality figure
-across many languages, it has its own column: Omnilingual ASR's character error rate (OASR CER) for
-speech recognition, NLLB-200's chrF++ on FLORES-200 for translation; a note under the table says who
-measured it and on what. The CSV adds **readiness**, the ingredients a team would look for before
+(`commercial` in `config/resources.csv`). For translation, NLLB-200's chrF++ on FLORES-200 (one
+public test set for every language) has its own column. Omnilingual ASR's published error rates aren't
+shown: each is measured on held-out data from that language's own training sources, for most small
+languages a few readers of Bible recordings, so they read far better than the model does on everyday
+speech. For speech, a tick marks the languages with a FLEURS test set. The CSV adds **readiness**, the ingredients a team would look for before
 building (transcribed speech, an open model, a published error rate, a public test set and text for a
 language model, for speech input); every language page shows these checklists for all nine
 technologies. The state is kept in the address, so
