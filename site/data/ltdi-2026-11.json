@@ -5,7 +5,7 @@
  "ranked": 6818,
  "licence": "CC BY-SA 4.0",
  "cite": "Ritchie, Sandy (2026). Language Technology Development Index (LTDI), edition 2026-11 (methodology 2.1). https://langtechindex.org",
- "config_sha256": "97a8cc41632ffc110a25cebab5293aad78ce5726882a2bdf6d54d82244eff790",
+ "config_sha256": "802934fbbe7565154a2fb84962f9ac93616cad88e14913ca466882062129e878",
  "records_sha256": "a3bc321b52d54b3f3ae96380b29ee839b93bec3c525ea682ff032e2e31a0bcae",
  "columns": {
   "rank": "Rank among living languages; languages with the same score share a rank. Empty for extinct languages",
