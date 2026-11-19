@@ -43,7 +43,8 @@ function countView() {
   const path = (location.pathname + location.hash).replace(/\?.*$/, '');
   if (path === lastCounted) return;
   lastCounted = path;
-  const send = () => window.goatcounter.count && window.goatcounter.count({ path });
+  const title = document.title;  // route() calls this once the view's title is set
+  const send = () => window.goatcounter.count && window.goatcounter.count({ path, title });
   gc.count ? send() : addEventListener('load', send, { once: true });
 }
 function route() {
@@ -58,7 +59,6 @@ function route() {
     } else if (location.pathname !== '/' && !lp) missing = null;
   }
   const h = missing !== undefined ? '' : curRoute();
-  countView();
   let m;
   if (h !== 'map') { mapFocus = null; mapView = null; }
   navBox('go', 'Find a language name or code');  // each view may give the box another job
@@ -85,6 +85,7 @@ function route() {
   document.title = missing !== undefined || (lm && !BY[lm[1]]) ? 'Not found · Language Technology Development Index'
     : lm && BY[lm[1]] ? `${BY[lm[1]].name}: language technology support · LTDI`
     : TT[tab] ? `${TT[tab]} · Language Technology Development Index` : 'Language Technology Development Index';
+  countView();
   for (const t of ['ranking', 'map', 'charts', 'opportunities', 'plan', 'about']) {
     const a = document.getElementById('tab-' + t);
     if (a) t === tab ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current');
