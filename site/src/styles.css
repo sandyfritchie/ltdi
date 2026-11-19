@@ -180,8 +180,8 @@ tbody tr:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); 
 /* Ranking columns keep their widths whatever the sort, so headers don't jump */
 table.ranktab { table-layout: fixed; }
 .ranktab .c-rank { width: 4.5em; } .ranktab .c-spk { width: 7.5em; } .ranktab .c-onl { width: 8.6em; }
-.ranktab .pct, .tbl .pct { color: var(--muted); font-size: 13px; }
-.ranktab .pct.p4 { color: var(--pct-4); } .ranktab .pct.p3 { color: var(--pct-3); } .ranktab .pct.p2 { color: var(--pct-2); } .ranktab .pct.p1 { color: var(--pct-1); } .ranktab .c-reg { width: 9em; }
+.ranktab .pct, .tbl .pct, .plantab .pct { color: var(--muted); font-size: 13px; }
+:is(.ranktab, .plantab) .pct.p4 { color: var(--pct-4); } :is(.ranktab, .plantab) .pct.p3 { color: var(--pct-3); } :is(.ranktab, .plantab) .pct.p2 { color: var(--pct-2); } :is(.ranktab, .plantab) .pct.p1 { color: var(--pct-1); } .ranktab .c-reg { width: 9em; }
 .ranktab .c-name { width: 15em; } .ranktab .c-ltdi { width: 5.5em; } .ranktab .c-tier { width: 10em; } .ranktab .c-gaps { width: 10.2em; }  /* room for six icons */
 .ranktab .gaps { gap: 3px; } .ranktab .gaps .ticon { width: 16px; height: 16px; }
 .ranktab .c-name .lname, .ranktab .c-name .auto { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -545,7 +545,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 /* fixed column widths, so switching a control never reflows the table */
 .plantab { table-layout: fixed; width: 100%; min-width: 1000px; }
 .plantab .pc-n { width: 3em; } .plantab .pc-lang { width: 12%; } .plantab .pc-code { width: 3.7em; } .plantab .pc-num { width: 6em; }
-.plantab .pc-now { width: 9.2em; } .plantab .pc-mod { width: auto; } .plantab .pc-h { width: 5.4em; } .plantab .pc-need { width: 6em; } .plantab .pc-cty { width: 6.5em; }
+.plantab .pc-now { width: 8.4em; } .plantab .pc-q { width: 4.8em; } .plantab .pc-mod { width: auto; } .plantab .pc-h { width: 5.4em; } .plantab .pc-need { width: 6em; } .plantab .pc-cty { width: 6.5em; }
 .plantab .pc-m { font: 12.5px/1.9 var(--font-mono); color: var(--ink); }
 .plantab td { vertical-align: top; overflow-wrap: anywhere; }
 .plantab th, .plantab td { padding-left: 7px; padding-right: 7px; } .plantab th:first-child, .plantab td:first-child { padding-left: 12px; }

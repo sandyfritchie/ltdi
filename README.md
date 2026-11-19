@@ -294,12 +294,13 @@ already offering it, the hours by kind and the shortfall.
 Switches and menus: **Include varieties of major languages** (off by default) counts spoken varieties
 whose speakers mostly write a standard language (`config/written_standards.csv`); **Commercially
 usable data and models only** counts only open data and models whose licence permits commercial use
-(`commercial` in `config/resources.csv`); **Quality figures** shows all published figures, only those
-on public test sets, or only independent ones (`quality_by`, `test_set` and `test_public` in
-`config/services.csv`). **Ready** counts, for the chosen technology, the ingredients a team would look
-for before building (transcribed speech, an open model, a published error rate, a public test set and
-text for a language model, for speech input); its header sorts the table readiest first. Every
-language page shows these checklists for all nine technologies. The state is kept in the address, so
+(`commercial` in `config/resources.csv`). Where a technology has one published quality figure
+across many languages, it has its own column: Omnilingual ASR's character error rate (OASR CER) for
+speech recognition, NLLB-200's chrF++ on FLORES-200 for translation; a note under the table says who
+measured it and on what. The CSV adds **readiness**, the ingredients a team would look for before
+building (transcribed speech, an open model, a published error rate, a public test set and text for a
+language model, for speech input); every language page shows these checklists for all nine
+technologies. The state is kept in the address, so
 a plan can be shared.
 
 The **shortlist** (`#shortlist?codes=...`) collects languages from the + in the Plan table or on

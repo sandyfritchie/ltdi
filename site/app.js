@@ -2112,6 +2112,12 @@ const hShort = h => h >= 10 ? Math.round(h).toLocaleString() : (+h).toFixed(1).r
 // commercial-use switch; training hours leave out benchmarks, which should stay out of training
 const speechKinds = l => (plan.com ? l.skc || l.sk : l.sk) || (l.sh ? [l.sh, 0, 0, 0] : [0, 0, 0, 0]);
 const trainHours = k => k[0] + k[1] + k[2];
+// The one published quality figure per technology the table has a column for: Omnilingual ASR's character
+// error rate for speech recognition, NLLB-200's chrF++ on FLORES-200 for translation
+const PLAN_QCOL = { speech_input: ['asr_omnilingual_cer', 'OASR CER', v => v < 1 ? v.toFixed(1) : String(Math.round(v))],
+  mt: ['mt_nllb_flores_chrf', 'NLLB chrF++', v => String(Math.round(v))] };
+const PLAN_SHORT = { asr_open_omnilingual: 'OASR' };  // short names in the narrow models column
+const planQual = l => { const Q = PLAN_QCOL[plan.t], v = Q && l.qv && l.qv[Q[0]]; return v != null ? Q[2](v) : '—'; };
 const PLAN_Q = { asr_open_whisper: ['asr_whisper_fleurs_wer', v => `${Math.round(v)}% WER`], asr_open_omnilingual: ['asr_omnilingual_cer', v => `${v < 1 ? v.toFixed(1) : Math.round(v)}% CER`],
   mt_open_nllb: ['mt_nllb_flores_chrf', v => `chrF ${Math.round(v)}`] };
 function planFromHash(h) {
@@ -2125,7 +2131,7 @@ function planFromHash(h) {
   if (q.has('com') || full) plan.com = q.get('com') === '1';
   plan.fam = q.has('fam') && q.get('fam') in GN_BY ? GN_BY[q.get('fam')] : -1;
   plan.s = 'reach';
-  if (q.has('q') || full) plan.q = ['all', 'pub', 'ind'].includes(q.get('q')) ? q.get('q') : 'all';
+  plan.q = 'all';
   if (q.has('tg') || full) plan.tg = +q.get('tg') || 0;
   if (q.has('r') || full) { regionSel.clear(); (q.get('r') || '').split('|').filter(r => REGIONS.includes(r)).forEach(r => regionSel.add(r)); }
   if (q.has('c') || full) { countrySel.clear(); (q.get('c') || '').split(',').filter(c => COUNTRY_NAMES[c]).forEach(c => countrySel.add(c)); }
@@ -2202,10 +2208,8 @@ function planCells(r, T, sl = false) {
   const others = cons.filter(id => id !== baseId), nOn = others.filter(id => l._offers.has(id)).length;
   const reg = (T.regional || []).filter(id => id !== baseId && l._offers.has(id)).length;
   const models = (T.open || []).filter(id => id !== baseId && l._offers.has(id) && !(plan.com && RES[id] && RES[id].commercial === 'no')).map(id => {
-    const [name] = SVC[id] || [id], q = PLAN_Q[id], v = q && l.qv && l.qv[q[0]];
-    const shown = v != null && qualityShown(id);
-    const lic = RES[id] && RES[id].commercial === 'no' ? ', research licence' : '';
-    return `${name}${shown ? ` (${q[1](v)}${lic})` : lic ? ` (${lic.slice(2)})` : ''}`;
+    const name = PLAN_SHORT[id] || (SVC[id] || [id])[0];
+    return name + (RES[id] && RES[id].commercial === 'no' ? '†' : '');
   });
   let data = '—', have, kinds = null;
   if (PLAN_VOICE.has(plan.t)) {
@@ -2216,7 +2220,7 @@ function planCells(r, T, sl = false) {
   } else if (plan.t === 'mt') { have = l.ps || 0; data = l.ps ? big(l.ps) + ' sentence pairs' : '—'; }
   else { have = l.ww || 0; data = l.ww ? big(l.ww) + ' words of web text' : '—'; }
   const target = planTarget(), short = Math.max(0, target - have);
-  const need = short ? (PLAN_VOICE.has(plan.t) ? `${hShort(short)} h` : big(short)) : 'Met';
+  const need = short ? (PLAN_VOICE.has(plan.t) ? hShort(short) : big(short)) : 'Met';
   // its countries in scope, most speakers first, leaving out those where only immigrant communities speak it
   // (unless those are all there is in scope: Tagalog with the United States chosen, say)
   const here = Object.entries(l._cs).filter(([c]) => sl || countryIn(c)).sort((a, b) => (b[1] || 0) - (a[1] || 0)).map(([c]) => c);
@@ -2226,7 +2230,7 @@ function planCells(r, T, sl = false) {
   const scripts = [...new Set(cs.flatMap(scriptsIn))].sort((a, b) => l._sc.indexOf(a) - l._sc.indexOf(b));
   const locales = cs.flatMap(c => scriptsIn(c).map(sc => `${l.code}-${sc}-${c.toUpperCase()}`));
   if (!cs.length) scripts.push(...l._sc.slice(0, 1));
-  return { scripts, locales, others: `${nOn} of ${others.length}${reg ? ' + regional' : ''}`, models: models.join('; ') || '—', data, kinds, short, need, countries: cs };
+  return { scripts, locales, others: `${nOn} of ${others.length}${reg ? ' + regional' : ''}`, models: models.join(', ') || '—', data, kinds, short, need, countries: cs, qual: planQual(l) };
 }
 function planCurve(rows, base, total) {
   if (!rows.length || !total) return '';
@@ -2308,7 +2312,7 @@ function slFromHash(h) {
   if (q.has('codes')) { shortlist = [...new Set(q.get('codes').split(',').map(c => c.trim().toLowerCase()).filter(c => BY[c]))]; saveShortlist(); }
   if (q.get('t') && PLAN_TECHS.includes(q.get('t'))) plan.t = q.get('t');
   plan.com = q.get('com') === '1';
-  plan.q = ['pub', 'ind'].includes(q.get('q')) ? q.get('q') : 'all';
+  plan.q = 'all';
   plan.s = 'reach';
 }
 function shortlistRows() {
@@ -2331,7 +2335,6 @@ function shortlistPage() {
       <p class="sub">The languages you're weighing for a wave, side by side with the Plan tab's columns. Add them with the + beside a language in the Plan table or on its page, or type codes or names below. The link keeps the list, so a colleague who opens it sees the same table.</p>
       <div class="sl-controls">
         <label class="plan-l">Technology <select id="sl-t">${PLAN_TECHS.map(k => `<option value="${k}"${plan.t === k ? ' selected' : ''}>${esc(CFG.tech.technologies[k].label)}</option>`).join('')}</select></label>
-        <label class="plan-l">Quality figures <select id="sl-q"><option value="all"${plan.q === 'all' ? ' selected' : ''}>All published</option><option value="pub"${plan.q === 'pub' ? ' selected' : ''}>On public test sets only</option><option value="ind"${plan.q === 'ind' ? ' selected' : ''}>Independently measured only</option></select></label>
         <label class="switch" title="Count only open data and models whose licence permits commercial use"><input type="checkbox" role="switch" id="sl-com"${plan.com ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Commercially usable data and models only</label>
       </div>
       <form class="sl-add" id="sl-form"><input id="sl-in" type="text" autocomplete="off" aria-label="Languages to add" placeholder="Add languages: codes or names, such as yo, ha, Igbo"><button type="submit" class="chip">Add</button></form>
@@ -2345,7 +2348,6 @@ function shortlistPage() {
     </section>`;
   const redraw = () => { history.replaceState(null, '', slHash()); const y = scrollY; shortlistPage(); scrollTo(0, y); };
   $('#sl-t').onchange = e => { plan.t = e.target.value; redraw(); };
-  $('#sl-q').onchange = e => { plan.q = e.target.value; redraw(); };
   $('#sl-com').onchange = e => { plan.com = e.target.checked; redraw(); };
   $('#view').querySelectorAll('[data-psort]').forEach(b => b.onclick = () => { plan.s = b.dataset.psort; redraw(); });
   $('#sl-form').onsubmit = e => {
@@ -2371,9 +2373,9 @@ function shortlistPage() {
 function planHead(T, P, who, scopeName, sl) {
   const voice = PLAN_VOICE.has(plan.t), U = PLAN_TARGETS[planUnit(plan.t)];
   const data = voice
-    ? `<th class="num pc-h" title="Open transcribed speech read aloud">Read (h)</th><th class="num pc-h" title="Open transcribed speech of people talking in their own words: answers, descriptions, conversation">Spontaneous (h)</th><th class="num pc-h" title="Radio news with transcripts, and videos with their uploaders' subtitles">Radio and video (h)</th><th class="num pc-h" title="Small sets built for measuring models (FLEURS); not counted towards the target">Test set (h)</th>`
+    ? `<th class="num pc-h">Read</th><th class="num pc-h">Spontaneous</th><th class="num pc-h">Radio and video</th><th class="num pc-h">Test set</th>`
     : `<th class="num pc-h">${plan.t === 'mt' ? 'Sentence pairs with English' : 'Words of web text'}</th>`;
-  return `<table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang">Language</th><th class="pc-code" title="The code the Index uses: ISO 639-1 where there is one, otherwise ISO 639-3">Code</th><th class="pc-code" title="Its script in the countries listed, as ISO 15924 codes">Script</th><th class="pc-cty" title="Where it's spoken, most speakers first, as ISO 3166 country codes; countries where only immigrant communities speak it are left out">Countries</th><th class="num pc-now" title="Estimated ${who} in five years, in ${esc(scopeName)}, and their share of its speakers">Online in 5 years</th><th class="pc-mod" title="Open models listed for it, with their published quality where there is a figure">Open models</th>${data}<th class="num pc-need" title="How much more open data it needs to reach the target, ${esc(magn(planTarget()))} ${esc(U.label)}${voice ? ', not counting test sets' : ''}">Short of ${esc(magn(planTarget()))} ${{ hours: 'h', pairs: 'pairs', words: 'words' }[planUnit(plan.t)]}</th></tr></thead>`;
+  return `<table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang">Language</th><th class="pc-code" title="The code the Index uses: ISO 639-1 where there is one, otherwise ISO 639-3">Code</th><th class="pc-code" title="Its script in the countries listed, as ISO 15924 codes">Script</th><th class="pc-cty" title="Where it's spoken, most speakers first, as ISO 3166 country codes; countries where only immigrant communities speak it are left out">Countries</th><th class="num pc-now" title="Estimated ${who} in five years, in ${esc(scopeName)}, and their share of its speakers">Online in 5 years</th><th class="pc-mod" title="Open models listed for it">Open models</th>${PLAN_QCOL[plan.t] ? `<th class="num pc-q">${PLAN_QCOL[plan.t][1]}</th>` : ''}${data}<th class="num pc-need" title="How much more open data it needs to reach the target, ${esc(magn(planTarget()))} ${esc(U.label)}${voice ? ', not counting test sets' : ''}">Short of ${esc(magn(planTarget()))}</th></tr></thead>`;
 }
 function planRow(r, i, T, sl) {
   const c = planCells(r, T, sl), l = r.l, voice = PLAN_VOICE.has(plan.t);
@@ -2382,7 +2384,7 @@ function planRow(r, i, T, sl) {
   const h = v => v >= 0.05 ? hShort(v) : '—';
   const data = voice ? c.kinds.map(v => `<td class="num">${h(v)}</td>`).join('')
     : `<td class="num">${(plan.t === 'mt' ? l.ps : l.ww) ? big(plan.t === 'mt' ? l.ps : l.ww) : '—'}</td>`;
-  return `<tr><td class="num">${i + 1}</td><td>${slButton(l)}<a href="${LH(l.code)}" title="${esc([famName(l), branchName(l)].filter(Boolean).join(' › '))}">${esc(l.name)}</a></td><td class="pc-m">${l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, l)}</td><td class="num">${onCell}</td><td class="small">${esc(c.models)}</td>${data}<td class="num${c.short ? '' : ' muted'}">${esc(c.need)}</td></tr>`;
+  return `<tr><td class="num">${i + 1}</td><td>${slButton(l)}<a href="${LH(l.code)}" title="${esc([famName(l), branchName(l)].filter(Boolean).join(' › '))}">${esc(l.name)}</a></td><td class="pc-m">${l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, l)}</td><td class="num">${onCell}</td><td class="small">${esc(c.models)}</td>${PLAN_QCOL[plan.t] ? `<td class="num">${c.qual}</td>` : ''}${data}<td class="num${c.short ? '' : ' muted'}">${esc(c.need)}</td></tr>`;
 }
 function planPage() {
   const P = planRows(), T = P.T;
@@ -2402,7 +2404,6 @@ function planPage() {
         <label class="plan-l">Technology <select id="pl-t">${PLAN_TECHS.map(k => `<option value="${k}"${plan.t === k ? ' selected' : ''}>${esc(CFG.tech.technologies[k].label)}</option>`).join('')}</select></label>
         <label class="plan-l">Starting from <select id="pl-from"><option value="none"${plan.from === 'none' ? ' selected' : ''}>Nothing yet</option><option value="under"${plan.from === 'under' ? ' selected' : ''} title="Leaves out languages that at least half the major services tracked for this technology already offer">Under-served languages</option><option value="list"${plan.from === 'list' ? ' selected' : ''}>A list I paste</option><optgroup label="This list">${svcOpts}</optgroup></select></label>
         <label class="plan-l">Data target, in ${esc(PLAN_TARGETS[planUnit(plan.t)].label)} <select id="pl-tg" title="The table shows how far each language is short of this much open data">${PLAN_TARGETS[planUnit(plan.t)].opts.map(n => `<option value="${n}"${planTarget() === n ? ' selected' : ''}>${magn(n)}</option>`).join('')}</select></label>
-        <label class="plan-l">Quality figures <select id="pl-q" title="Which published quality figures to show for open models"><option value="all"${plan.q === 'all' ? ' selected' : ''}>All published</option><option value="pub"${plan.q === 'pub' ? ' selected' : ''}>On public test sets only</option><option value="ind"${plan.q === 'ind' ? ' selected' : ''}>Independently measured only</option></select></label>
         <label class="plan-l">Family or branch <input id="pl-fam" class="plan-in" list="pl-fams" autocomplete="off" placeholder="Any, or type one: Bantu, Indo-Aryan …" value="${plan.fam >= 0 ? esc(GN[plan.fam][1]) : ''}"></label>
         <datalist id="pl-fams">${P.famOpts.map(([g, [n, r]]) => `<option value="${esc(GN[g][1])}">${n.toLocaleString()} languages · ${people(r)}</option>`).join('')}</datalist>
         <div class="plan-scope"><span class="plan-l">Where</span><span id="plregwrap">${regionPicker()}</span><span id="plctrywrap">${countryPicker()}</span></div>
@@ -2425,16 +2426,15 @@ function planPage() {
       <div class="tablebox">${planHead(T, P, who, scopeName, false)}
       <tbody>${shown.map((r, i) => planRow(r, i, T, false)).join('')}</tbody></table></div>
       ${P.rows.length > shown.length ? `<button type="button" class="chip" id="pl-more">Show ${Math.min(50, P.rows.length - shown.length)} more of ${(P.rows.length - shown.length).toLocaleString()}</button>` : ''}
-      <p class="note">People online in five years are estimates from LinguaMeta's speaker counts and the World Bank's connectivity data, with the share of the language's speakers beside them. Countries are ISO 3166 codes, most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK); hover the countries for the locales.</p>
-      <p class="note">Open models show their published quality where there is a figure${plan.t === 'speech_input' ? ': character error rate (CER) for Omnilingual ASR, and word error rate (WER) on FLEURS for Whisper' : plan.t === 'mt' ? ': chrF on FLORES-200 for NLLB-200' : ''}. ${plan.t === 'speech_input' ? "Omnilingual ASR's figures are its makers' own, on test data that isn't public, so treat them with more caution than figures measured on FLEURS. " : ''}None of the open models' figures is independently measured yet; the Quality figures menu chooses which to show.</p>
-      <p class="note">${P.voice ? `Open data is transcribed speech in the open datasets tracked. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech. Spontaneous: Common Voice Spontaneous Speech, WAXAL, IndicVoices (its first release; the full dataset is larger), Vaani. Radio and video: Shrutilipi's radio news, and YouTube videos with their uploaders' subtitles in YODAS2, which nobody has checked. Test set: FLEURS, about 12 hours a language, built for measuring models, so it doesn't count towards the target.` : plan.t === 'mt' ? 'Open data is sentence pairs with English in OPUS.' : 'Open data is web text in FineWeb-2.'}${plan.com ? (P.voice ? ' Only datasets whose licence permits commercial use are counted.' : plan.t === 'mt' ? " OPUS corpora carry their own licences, which aren't checked here." : '') : ''} Licences are as each project publishes them; this isn't legal advice.${plan.from === 'under' ? ` Under-served means fewer than half of the major services tracked for ${esc(T.label.toLowerCase())} offer it (a regional provider counts as one more), the line the rest of the site uses for "most services".` : ''} The CSV adds each language's readiness and the commercial services that offer it.</p>
+      <p class="note">Online in 5 years: ${who} in five years, estimated from LinguaMeta's speaker counts and the World Bank's connectivity data, with their share of the language's speakers. Countries are ISO 3166 codes, most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK); hover the countries for the locales.</p>
+      <p class="note">Open models are those listed for the language; † marks a licence that doesn't permit commercial use (the commercial-use switch leaves them out).${plan.t === 'speech_input' ? " OASR is Meta's Omnilingual ASR, and OASR CER its character error rate, in percent, lower being better. It's the figure its makers publish, on test data that isn't public, and nobody has measured it independently yet." : plan.t === 'mt' ? " NLLB chrF++ is NLLB-200's score translating from English on the FLORES-200 test set, 0 to 100, higher being better, as its makers published it." : ''}</p>
+      <p class="note">${P.voice ? `Read, Spontaneous, Radio and video, and Test set are hours of transcribed speech in the open datasets tracked. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech. Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, IndicVoices (its first release; the full dataset is larger), Vaani. Radio and video: Shrutilipi's radio news, and YouTube videos with their uploaders' subtitles in YODAS2, which nobody has checked. Test set: FLEURS, about 12 hours a language, built for measuring models. Short of ${esc(magn(planTarget()))} is the hours still needed to reach the data target, not counting the test set, which should stay out of training.` : `${plan.t === 'mt' ? 'Sentence pairs with English are those in OPUS' : 'Words of web text are those in FineWeb-2'}; Short of ${esc(magn(planTarget()))} is how many more are needed to reach the data target.`}${plan.com ? (P.voice ? ' Only datasets whose licence permits commercial use are counted.' : plan.t === 'mt' ? " OPUS corpora carry their own licences, which aren't checked here." : '') : ''} Licences are as each project publishes them; this isn't legal advice.${plan.from === 'under' ? ` Under-served means fewer than half of the major services tracked for ${esc(T.label.toLowerCase())} offer it (a regional provider counts as one more), the line the rest of the site uses for "most services".` : ''} The CSV adds each language's readiness and the commercial services that offer it.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', planHash()); const y = scrollY; planPage(); scrollTo(0, y); };
   $('#pl-t').onchange = e => { plan.t = e.target.value; if (plan.from.startsWith('svc:')) plan.from = 'none'; plan.n = 50; plan.tg = 0; redraw(); };  // the target's unit changes too
   $('#pl-from').onchange = e => { plan.from = e.target.value; plan.n = 50; redraw(); };
   $('#pl-ex').onchange = e => { plan.ex = !e.target.checked; redraw(); };
   $('#pl-com').onchange = e => { plan.com = e.target.checked; redraw(); };
-  $('#pl-q').onchange = e => { plan.q = e.target.value; redraw(); };
   $('#pl-tg').onchange = e => { plan.tg = +e.target.value; redraw(); };
   $('#pl-fam').onchange = e => {
     const v = e.target.value.trim().toLowerCase();
