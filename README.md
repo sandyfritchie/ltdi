@@ -281,14 +281,15 @@ a region or countries. The languages not yet supported are ranked by the people 
 five years (voice technologies count everyone online, text technologies those also able to text), with
 a curve of the share reached as each is added (it ends at 100%). Each row shows the language's code,
 its scripts and countries as ISO 15924 and ISO 3166 codes (leaving out countries where only immigrant
-communities speak it, so code, script and country give a locale such as `pnb-Arab-PK`), engineering
-flags, readiness, how many other commercial services already offer it, the open models listed for it
-with their published quality (who measured it and on what test set) and licence, and the open data for
-that technology: for speech, hours by kind (read, spontaneous, broadcast and video, and benchmarks such
+communities speak it, so code, script and country give a locale such as `pnb-Arab-PK`), the people
+online in five years with their share of its speakers, the open models listed for it with their
+published quality and licence (a note under the table says who measured each), and the open data for
+that technology: for speech, hours by kind (read, spontaneous, radio and video, and test sets such
 as FLEURS, kept apart since a test set should stay out of training; the kinds are in `SPEECH_KIND` in
 `ltdi/build_site.py`). A data target, in orders of magnitude of the technology's unit (10 to a million
 hours, for speech), adds how far each language is short of it. The CSV adds every country, the
-locales, the family, the missing ingredients, the hours by kind and the shortfall.
+locales, the family, engineering flags, readiness and its missing ingredients, the commercial services
+already offering it, the hours by kind and the shortfall.
 
 Switches and menus: **Include varieties of major languages** (off by default) counts spoken varieties
 whose speakers mostly write a standard language (`config/written_standards.csv`); **Commercially

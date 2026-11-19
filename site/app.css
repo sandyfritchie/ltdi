@@ -544,9 +544,9 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .sl-msg { min-height: 1.4em; margin: 6px 0 0; }
 .plan-tablehead { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 /* fixed column widths, so switching a control never reflows the table */
-.plantab { table-layout: fixed; width: 100%; min-width: 1040px; }
-.plantab .pc-n { width: 3em; } .plantab .pc-lang { width: 12%; } .plantab .pc-code { width: 4em; } .plantab .pc-num { width: 6em; } .plantab .pc-pct { width: 5em; }
-.plantab .pc-oth { width: 6.5em; } .plantab .pc-rdy { width: 5em; } .plantab .pc-mod { width: auto; } .plantab .pc-data { width: 7.5em; } .plantab .pc-cty { width: 7.5em; }
+.plantab { table-layout: fixed; width: 100%; min-width: 1000px; }
+.plantab .pc-n { width: 3em; } .plantab .pc-lang { width: 12%; } .plantab .pc-code { width: 3.7em; } .plantab .pc-num { width: 6em; }
+.plantab .pc-now { width: 9.2em; } .plantab .pc-mod { width: auto; } .plantab .pc-h { width: 5.4em; } .plantab .pc-need { width: 6em; } .plantab .pc-cty { width: 6.5em; }
 .plantab .pc-m { font: 12.5px/1.9 var(--font-mono); color: var(--ink); }
 .plantab td { vertical-align: top; overflow-wrap: anywhere; }
 .plantab th, .plantab td { padding-left: 7px; padding-right: 7px; } .plantab th:first-child, .plantab td:first-child { padding-left: 12px; }

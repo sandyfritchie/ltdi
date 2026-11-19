@@ -530,6 +530,10 @@ def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
     out = {}
     if sp and v("reach_voice_share_5y") is not None:
         out["o5"] = round(sp * g * v("reach_voice_share_5y"))
+    if v("reach_voice_share_5y") is not None:
+        out["o5s"] = round(v("reach_voice_share_5y"), 3)  # the share of its speakers that is, for the Plan table
+    if v("reach_text_share_5y") is not None:
+        out["ot5s"] = round(v("reach_text_share_5y"), 3)
     if sp and v("reach_text_share") is not None:
         out["ot"] = round(sp * v("reach_text_share"))
     if sp and v("reach_text_share_5y") is not None:
