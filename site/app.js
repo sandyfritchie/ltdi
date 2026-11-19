@@ -833,7 +833,7 @@ function readiness(l, t, o = { com: false, q: 'all' }) {
   const unicode = ['Its script is in Unicode', fl('u')], cldr = ['Locale data in CLDR', fl('l')], text1m = ok => ['A million words of web text' + ok, ww >= 1e6];
   const list = {
     speech_input: [[`10 hours or more of ${use}transcribed speech`, hours], ['An open speech recognition model' + (o.com ? ' licensed for commercial use' : ''), asrModel],
-      ['A published error rate', (qv.asr_whisper_fleurs_wer != null && qualityOK('asr_open_whisper', o.q)) || (qv.asr_omnilingual_cer != null && qualityOK('asr_open_omnilingual', o.q))],
+      ['A published error rate on FLEURS', qv.asr_whisper_fleurs_wer != null && qualityOK('asr_open_whisper', o.q)],
       ['A public test set (FLEURS or Common Voice)', fl('f') || fl('c')], text1m(', for a language model')],
     tts: [[`10 hours or more of ${use}transcribed speech`, hours], ['An open voice' + (o.com ? ' licensed for commercial use' : ''), voice],
       ['A keyboard to type text with', KB_ALL.some(id => l._offers.has(id))], text1m(', for text normalisation')],
@@ -2112,11 +2112,9 @@ const hShort = h => h >= 10 ? Math.round(h).toLocaleString() : (+h).toFixed(1).r
 // commercial-use switch; training hours leave out benchmarks, which should stay out of training
 const speechKinds = l => (plan.com ? l.skc || l.sk : l.sk) || (l.sh ? [l.sh, 0, 0, 0] : [0, 0, 0, 0]);
 const trainHours = k => k[0] + k[1] + k[2];
-// A published quality figure the table has a column for: NLLB-200's chrF++ on the FLORES-200 test set, the
-// same public test set in every language. (Omnilingual ASR's error rates aren't shown: each is measured on
-// held-out data from that language's own training sources, mostly a few readers of Bible recordings for
-// small languages, so they read far better than the model does on everyday speech.)
-const PLAN_QCOL = { mt: ['mt_nllb_flores_chrf', 'NLLB chrF++', v => String(Math.round(v))] };
+// No quality figures in the table: those published are each the makers' own, on their own test data, and
+// say too little to compare languages by (a column per technology could go here: [indicator, label, format])
+const PLAN_QCOL = {};
 const PLAN_SHORT = { asr_open_omnilingual: 'OASR' };  // short names in the narrow models column
 const planQual = l => { const Q = PLAN_QCOL[plan.t], v = Q && l.qv && l.qv[Q[0]]; return v != null ? Q[2](v) : '—'; };
 const PLAN_Q = { asr_open_whisper: ['asr_whisper_fleurs_wer', v => `${Math.round(v)}% WER`], asr_open_omnilingual: ['asr_omnilingual_cer', v => `${v < 1 ? v.toFixed(1) : Math.round(v)}% CER`],
@@ -2403,7 +2401,7 @@ function planSortClick(key) {
 function planHead(T, P, who, scopeName, sl) {
   const voice = PLAN_VOICE.has(plan.t), U = PLAN_TARGETS[planUnit(plan.t)];
   const data = voice
-    ? `<th class="num pc-h"${psAria('read')}>${psBtn('read', 'Read')}</th><th class="num pc-h"${psAria('spont')}>${psBtn('spont', 'Spontaneous')}</th><th class="num pc-h"${psAria('media')}>${psBtn('media', 'Media')}</th><th class="pc-fl"${psAria('test')}>${psBtn('test', 'FLEURS test set')}</th>`
+    ? `<th class="num pc-h"${psAria('read')}>${psBtn('read', 'Read')}</th><th class="num pc-h"${psAria('spont')}>${psBtn('spont', 'Spont&shy;aneous')}</th><th class="num pc-h"${psAria('media')}>${psBtn('media', 'Media')}</th><th class="pc-fl"${psAria('test')}>${psBtn('test', 'FLEURS test set')}</th>`
     : `<th class="num pc-h"${psAria('data')}>${psBtn('data', plan.t === 'mt' ? 'Sentence pairs with English' : 'Words of web text')}</th>`;
   return `<table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang"${psAria('name')}>${psBtn('name', 'Language')}</th><th class="pc-code"${psAria('code')}>${psBtn('code', 'Code')}</th><th class="pc-code"${psAria('script')}>${psBtn('script', 'Script')}</th><th class="pc-cty"${psAria('countries')}>${psBtn('countries', 'Countries')}</th><th class="num pc-now"${psAria('reach')}>${psBtn('reach', 'Online in 5 years')}</th><th class="pc-mod"${psAria('models')}>${psBtn('models', 'Open models')}</th>${PLAN_QCOL[plan.t] ? `<th class="num pc-q"${psAria('qual')}>${psBtn('qual', PLAN_QCOL[plan.t][1])}</th>` : ''}${data}<th class="num pc-need" title="How much more open data it needs to reach the target, ${esc(magn(planTarget()))} ${esc(U.label)}${voice ? ', not counting test sets' : ''}"${psAria('short')}>${psBtn('short', `Short of ${esc(magn(planTarget()))}`)}</th></tr></thead>`;
 }
@@ -2414,7 +2412,7 @@ function planRow(r, i, T, sl) {
   const h = v => v >= 0.05 ? hShort(v) : '—';
   const data = voice ? c.kinds.slice(0, 3).map(v => `<td class="num">${h(v)}</td>`).join('') + `<td class="pc-fl">${c.kinds[3] >= 0.05 ? '<span aria-label="yes">✓</span>' : '<span class="muted" aria-label="no">—</span>'}</td>`
     : `<td class="num">${(plan.t === 'mt' ? l.ps : l.ww) ? big(plan.t === 'mt' ? l.ps : l.ww) : '—'}</td>`;
-  return `<tr><td class="num">${i + 1}</td><td>${slButton(l)}<a href="${LH(l.code)}" title="${esc([famName(l), branchName(l)].filter(Boolean).join(' › '))}">${esc(l.name)}</a></td><td class="pc-m">${l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, l)}</td><td class="num">${onCell}</td><td class="small">${esc(c.models)}</td>${PLAN_QCOL[plan.t] ? `<td class="num">${c.qual}</td>` : ''}${data}<td class="num${c.short ? '' : ' muted'}">${esc(c.need)}</td></tr>`;
+  return `<tr><td class="num">${i + 1}</td><td class="pc-ln">${slButton(l)}<a href="${LH(l.code)}" title="${esc([famName(l), branchName(l)].filter(Boolean).join(' › '))}">${esc(l.name)}</a></td><td class="pc-m">${l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, l)}</td><td class="num">${onCell}</td><td class="small">${esc(c.models)}</td>${PLAN_QCOL[plan.t] ? `<td class="num">${c.qual}</td>` : ''}${data}<td class="num${c.short ? '' : ' muted'}">${esc(c.need)}</td></tr>`;
 }
 function planPage() {
   const P = planRows(), T = P.T;
@@ -2457,7 +2455,7 @@ function planPage() {
       <tbody>${shown.map((r, i) => planRow(r, i, T, false)).join('')}</tbody></table></div>
       ${P.rows.length > shown.length ? `<button type="button" class="chip" id="pl-more">Show ${Math.min(50, P.rows.length - shown.length)} more of ${(P.rows.length - shown.length).toLocaleString()}</button>` : ''}
       <p class="note">Online in 5 years: ${who} in five years, estimated from LinguaMeta's speaker counts and the World Bank's connectivity data, with their share of the language's speakers. Countries are ISO 3166 codes, most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK); hover the countries for the locales.</p>
-      <p class="note">Open models are those listed for the language; † marks a licence that doesn't permit commercial use (the commercial-use switch leaves them out).${plan.t === 'speech_input' ? " OASR is Meta's Omnilingual ASR. Its makers publish an error rate for each language, but each is measured on held-out recordings from that language's own training data, for most small languages a few readers of the Bible, so they read far better than the model would do on everyday speech, and aren't shown here." : plan.t === 'mt' ? " NLLB chrF++ is NLLB-200's score translating from English on the FLORES-200 test set, 0 to 100, higher being better, as its makers published it." : ''}</p>
+      <p class="note">Open models are those listed for the language; † marks a licence that doesn't permit commercial use (the commercial-use switch leaves them out).${plan.t === 'speech_input' ? " OASR is Meta's Omnilingual ASR." : ''} Their makers publish quality figures, each on their own test data, which say too little to compare languages by, so they aren't shown.</p>
       <p class="note">${P.voice ? `Read, Spontaneous and Media are hours of transcribed speech in the open datasets tracked. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech. Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, IndicVoices (its first release; the full dataset is larger), Vaani. Media: Shrutilipi's radio news, and YouTube videos with their uploaders' subtitles in YODAS2, which nobody has checked. A tick under FLEURS test set means the language is one of the 102 in FLEURS, Google's public test set of about 12 hours of read speech a language, the usual way to measure and compare speech recognition; it stays out of training, so it doesn't count towards the target. Short of ${esc(magn(planTarget()))} is the hours still needed to reach the data target.` : `${plan.t === 'mt' ? 'Sentence pairs with English are those in OPUS' : 'Words of web text are those in FineWeb-2'}; Short of ${esc(magn(planTarget()))} is how many more are needed to reach the data target.`}${plan.com ? (P.voice ? ' Only datasets whose licence permits commercial use are counted.' : plan.t === 'mt' ? " OPUS corpora carry their own licences, which aren't checked here." : '') : ''} Licences are as each project publishes them; this isn't legal advice.${plan.from === 'under' ? ` Under-served means fewer than half of the major services tracked for ${esc(T.label.toLowerCase())} offer it (a regional provider counts as one more), the line the rest of the site uses for "most services".` : ''} The CSV adds each language's readiness and the commercial services that offer it.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', planHash()); const y = scrollY; planPage(); scrollTo(0, y); };

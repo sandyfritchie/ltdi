@@ -9,7 +9,7 @@ asr_apple,speech_input,consumer,iOS,Dictation,apple,,,,,,,,,,,,
 asr_amazon,speech_input,consumer,Transcribe,Speech to text,amazon,,,,,,,,,,,,
 asr_open_whisper,speech_input,open,Whisper,Open model,openai,,,,,"FLEURS word error rate: 50% or worse counts the model at half, 10% or better in full",asr_whisper_fleurs_wer,50,10,own,the FLEURS test split,"350 sentences, each read by up to three speakers",yes
 asr_open_mms,speech_input,open,MMS,Open model,meta,,,,,,,,,,,,
-asr_open_omnilingual,speech_input,open,Omnilingual ASR,Open model,meta,,,,,"Character error rate on Meta's evaluation data: 25% or worse counts the model at half, 5% or better in full",asr_omnilingual_cer,25,5,own,Meta's own test data,,no
+asr_open_omnilingual,speech_input,open,Omnilingual ASR,Open model,meta,,,,,"Open model; its makers' per-language error rates are measured on held-out data from each language's own training sources (for most small languages a few readers of Bible recordings), so they aren't used",,,,,,,
 tts_google,tts,consumer,Google Cloud,Text-to-Speech,google,tts_google_voice_types,,9,service,"Standard, WaveNet, Neural2, Studio, Polyglot, News, Chirp HD, Chirp3-HD, Gemini-TTS",,,,,,,
 tts_azure,tts,consumer,Azure AI Speech,Text to speech,microsoft,,,,,,,,,,,,
 tts_amazon,tts,consumer,Polly,Text to speech,amazon,,,,,,,,,,,,

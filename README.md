@@ -601,7 +601,7 @@ rank correlation and largest moves (`--csv` writes every language's three scores
 the review baseline, `python tools/edition_diff.py 5d79055`, shows the 2.0 method change on its own.
 
 To cite: Ritchie, Sandy (2026). Language Technology Development Index (LTDI), edition 2026-11
-(methodology 2.1). https://langtechindex.org
+(methodology 2.2). https://langtechindex.org
 
 ## Maintainer, corrections and what's included
 

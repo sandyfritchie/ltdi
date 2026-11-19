@@ -86,7 +86,7 @@ function readiness(l, t, o = { com: false, q: 'all' }) {
   const unicode = ['Its script is in Unicode', fl('u')], cldr = ['Locale data in CLDR', fl('l')], text1m = ok => ['A million words of web text' + ok, ww >= 1e6];
   const list = {
     speech_input: [[`10 hours or more of ${use}transcribed speech`, hours], ['An open speech recognition model' + (o.com ? ' licensed for commercial use' : ''), asrModel],
-      ['A published error rate', (qv.asr_whisper_fleurs_wer != null && qualityOK('asr_open_whisper', o.q)) || (qv.asr_omnilingual_cer != null && qualityOK('asr_open_omnilingual', o.q))],
+      ['A published error rate on FLEURS', qv.asr_whisper_fleurs_wer != null && qualityOK('asr_open_whisper', o.q)],
       ['A public test set (FLEURS or Common Voice)', fl('f') || fl('c')], text1m(', for a language model')],
     tts: [[`10 hours or more of ${use}transcribed speech`, hours], ['An open voice' + (o.com ? ' licensed for commercial use' : ''), voice],
       ['A keyboard to type text with', KB_ALL.some(id => l._offers.has(id))], text1m(', for text normalisation')],

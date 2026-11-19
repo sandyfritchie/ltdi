@@ -19,27 +19,27 @@
   },
   {
    "ranks": "201–1,000",
-   "languages": 801,
-   "median_range": 211,
-   "within_10pct": 0.157
+   "languages": 800,
+   "median_range": 213,
+   "within_10pct": 0.154
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3005,
-   "median_range": 402,
-   "within_10pct": 0.486
+   "languages": 3006,
+   "median_range": 413,
+   "within_10pct": 0.48
   }
  ],
  "scenarios": [
   {
    "label": "Voice assistants at full weight",
-   "spearman": 0.9995,
+   "spearman": 0.9994,
    "moved_10_in_top_300": 0,
    "largest": [
     {
      "name": "Western Armenian",
-     "from": 287,
-     "to": 285
+     "from": 288,
+     "to": 286
     },
     {
      "name": "Ukrainian",
@@ -97,33 +97,33 @@
   },
   {
    "label": "Every technology weighted equally",
-   "spearman": 0.9978,
-   "moved_10_in_top_300": 13,
+   "spearman": 0.9977,
+   "moved_10_in_top_300": 11,
    "largest": [
     {
      "name": "Ladin",
-     "from": 307,
+     "from": 308,
      "to": 289
     },
     {
-     "name": "Piemontese",
-     "from": 233,
-     "to": 218
-    },
-    {
-     "name": "Kabardian",
-     "from": 206,
-     "to": 191
+     "name": "Picard",
+     "from": 315,
+     "to": 300
     },
     {
      "name": "Western Armenian",
-     "from": 287,
-     "to": 273
+     "from": 288,
+     "to": 274
     },
     {
-     "name": "Picard",
-     "from": 313,
-     "to": 299
+     "name": "Lombard",
+     "from": 174,
+     "to": 160
+    },
+    {
+     "name": "Kölsch",
+     "from": 276,
+     "to": 263
     }
    ]
   }
