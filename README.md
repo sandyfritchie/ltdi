@@ -284,7 +284,7 @@ its scripts and countries as ISO 15924 and ISO 3166 codes (leaving out countries
 communities speak it, so code, script and country give a locale such as `pnb-Arab-PK`), the people
 online in five years with their share of its speakers, the open models listed for it with their
 published quality and licence (a note under the table says who measured each), and the open data for
-that technology: for speech, hours by kind (read, spontaneous, radio and video, and test sets such
+that technology: for speech, hours by kind (read, spontaneous, media, and test sets such
 as FLEURS, kept apart since a test set should stay out of training; the kinds are in `SPEECH_KIND` in
 `ltdi/build_site.py`). A data target, in orders of magnitude of the technology's unit (10 to a million
 hours, for speech), adds how far each language is short of it. The CSV adds every country, the

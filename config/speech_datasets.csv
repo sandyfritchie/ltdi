@@ -31,7 +31,7 @@ IndicVoices,sa,51,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark rel
 IndicVoices,sat,92,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
 IndicVoices,sd,16,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
 IndicVoices,te,108,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
-Vaani,hi,594,CC BY 4.0,https://arxiv.org/abs/2603.28714,At least this many transcribed hours (the subset the paper reports); about 2,067 transcribed hours overall
+Vaani,hi,594,CC BY 4.0,https://arxiv.org/abs/2603.28714,"At least this many transcribed hours (the subset the paper reports); about 2,067 transcribed hours overall"
 Vaani,bn,113,CC BY 4.0,https://arxiv.org/abs/2603.28714,At least this many transcribed hours (the subset the paper reports)
 NaijaVoices,ha,605.27,CC BY-NC-SA 4.0,https://arxiv.org/abs/2505.20564,Read speech; non-commercial licence
 NaijaVoices,ig,626.33,CC BY-NC-SA 4.0,https://arxiv.org/abs/2505.20564,Read speech; non-commercial licence

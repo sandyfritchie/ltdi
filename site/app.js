@@ -2095,7 +2095,7 @@ function about() {
 // be shared.
 const PLAN_TECHS = ['speech_input', 'tts', 'mt', 'llm', 'keyboard', 'interface', 'ocr', 'proofing', 'assistant'];
 const PLAN_VOICE = new Set(['speech_input', 'tts', 'assistant']);
-let plan = { t: 'speech_input', from: 'none', codes: '', ex: true, com: false, q: 'all', s: 'reach', fam: -1, n: 50, tg: 0 };
+let plan = { t: 'speech_input', from: 'none', codes: '', ex: true, com: false, q: 'all', s: 'reach', d: 0, fam: -1, n: 50, tg: 0 };
 // The data target: how much open data each language should have, in orders of magnitude of the unit the
 // Open data column counts for the technology (0 in plan.tg: the technology's default)
 const PLAN_TARGETS = {
@@ -2106,9 +2106,9 @@ const PLAN_TARGETS = {
 const planUnit = t => PLAN_VOICE.has(t) ? 'hours' : t === 'mt' ? 'pairs' : 'words';
 const planTarget = () => { const U = PLAN_TARGETS[planUnit(plan.t)]; return U.opts.includes(plan.tg) ? plan.tg : U.def; };
 const magn = n => n >= 1e9 ? `${n / 1e9} billion` : n >= 1e6 ? `${n / 1e6} million` : n.toLocaleString();
-const SPEECH_KIND_LABELS = ['read', 'spontaneous', 'radio and video', 'test set'];
+const SPEECH_KIND_LABELS = ['read', 'spontaneous', 'media', 'test set'];
 const hShort = h => h >= 10 ? Math.round(h).toLocaleString() : (+h).toFixed(1).replace(/\.0$/, '');
-// Open speech hours by kind ([read, spontaneous, radio and video, test set]), following the
+// Open speech hours by kind ([read, spontaneous, media, test set]), following the
 // commercial-use switch; training hours leave out benchmarks, which should stay out of training
 const speechKinds = l => (plan.com ? l.skc || l.sk : l.sk) || (l.sh ? [l.sh, 0, 0, 0] : [0, 0, 0, 0]);
 const trainHours = k => k[0] + k[1] + k[2];
@@ -2130,7 +2130,7 @@ function planFromHash(h) {
   if (q.has('ex') || full) plan.ex = q.get('ex') !== '0';
   if (q.has('com') || full) plan.com = q.get('com') === '1';
   plan.fam = q.has('fam') && q.get('fam') in GN_BY ? GN_BY[q.get('fam')] : -1;
-  plan.s = 'reach';
+  plan.s = q.get('s') in PLAN_SORTS ? q.get('s') : 'reach'; plan.d = q.get('d') === 'asc' ? 1 : q.get('d') === 'desc' ? -1 : 0;
   plan.q = 'all';
   if (q.has('tg') || full) plan.tg = +q.get('tg') || 0;
   if (q.has('r') || full) { regionSel.clear(); (q.get('r') || '').split('|').filter(r => REGIONS.includes(r)).forEach(r => regionSel.add(r)); }
@@ -2143,6 +2143,7 @@ function planHash() {
   if (plan.com) q.set('com', '1');
   if (plan.q !== 'all') q.set('q', plan.q);
   if (plan.s !== 'reach') q.set('s', plan.s);
+  if (plan.d) q.set('d', plan.d > 0 ? 'asc' : 'desc');
   if (plan.tg && planTarget() === plan.tg && plan.tg !== PLAN_TARGETS[planUnit(plan.t)].def) q.set('tg', plan.tg);
   if (plan.fam >= 0) q.set('fam', GN[plan.fam][0]);
   if (regionSel.size) q.set('r', [...regionSel].join('|'));
@@ -2191,7 +2192,7 @@ function planRows() {
   const base = considered.filter(l => supported.has(l.code)).reduce((n, l) => n + reach5(l), 0);
   const o = { com: plan.com, q: plan.q };
   const cands = considered.filter(l => !supported.has(l.code)).map(l => ({ l, r5: reach5(l), r0: reachNow(l), rd: readiness(l, plan.t, o) }))
-    .sort((a, b) => (plan.s === 'ready' ? b.rd.n / (b.rd.of || 1) - a.rd.n / (a.rd.of || 1) : 0) || b.r5 - a.r5);
+    .sort((a, b) => b.r5 - a.r5);
   let cum = base;
   const rows = cands.map(r => { cum += r.r5; return { ...r, share: total ? cum / total : 0 }; });
   const groups = new Map();
@@ -2246,7 +2247,7 @@ function planCurve(rows, base, total) {
   return `<svg class="plancurve" viewBox="0 0 ${W} ${H}" role="img" aria-label="Share of people online reached as languages are added">
     <g class="grid">${yt.map(v => `<line x1="${L}" x2="${W - R}" y1="${sy(v)}" y2="${sy(v)}"/><text x="${L - 6}" y="${sy(v) + 4}" text-anchor="end">${Math.round(v * 100)}%</text>`).join('')}
       ${[...ticks, N].map(t => `<text x="${sx(t)}" y="${H - 14}" text-anchor="middle">${t === N ? N.toLocaleString() : t}</text>`).join('')}
-      <text x="${(L + W - R) / 2}" y="${H - 1}" text-anchor="middle">languages added, ${plan.s === 'ready' ? 'readiest first, then by reach' : 'most-reaching first'}</text></g>
+      <text x="${(L + W - R) / 2}" y="${H - 1}" text-anchor="middle">languages added, most-reaching first</text></g>
     <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" points="${pts.map(([i, v]) => `${sx(i).toFixed(1)},${sy(v).toFixed(1)}`).join(' ')}"/>
     <circle cx="${sx(0)}" cy="${sy(y0)}" r="4" fill="var(--accent)"/>
     ${marks.map(([k, v]) => `<circle cx="${sx(k)}" cy="${sy(v)}" r="3.5" fill="var(--accent)"/>`).join('')}
@@ -2263,7 +2264,7 @@ function planCodes(cs, l) {
 const OFFICIAL_LABEL = { o: 'Official', d: 'Official in practice', r: 'Official in a region' };
 const officialList = l => Object.entries(l._of).map(([c, st]) => `${(COUNTRY_NAMES[c] || c.toUpperCase())}${st === 'o' ? '' : st === 'd' ? ' (in practice)' : ' (in a region)'}`);
 function planCSV(P, sl = false) {
-  const head = ['rank', 'code', 'name', 'family', 'branch', 'official_in', 'wikipedia_views_12_months', 'hf_models', 'hf_model_downloads_30_days', 'scripts', 'engineering_flags', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'ready', 'missing', 'other_services_offering', 'open_models', 'data', 'hours_read', 'hours_spontaneous', 'hours_radio_video', 'hours_test_set', 'target', 'short_of_target'];
+  const head = ['rank', 'code', 'name', 'family', 'branch', 'official_in', 'wikipedia_views_12_months', 'hf_models', 'hf_model_downloads_30_days', 'scripts', 'engineering_flags', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'ready', 'missing', 'other_services_offering', 'open_models', 'data', 'hours_read', 'hours_spontaneous', 'hours_media', 'hours_test_set', 'target', 'short_of_target'];
   const q = v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v;
   const lines = [head.join(',')].concat(P.rows.map((r, i) => { const c = planCells(r, P.T, sl);
     return [i + 1, r.l.code, r.l.name, famName(r.l), branchName(r.l), Object.entries(r.l._of).map(([cc, st]) => cc.toUpperCase() + (st === 'o' ? '' : ':' + st)).join(' '),
@@ -2285,6 +2286,7 @@ function slHash() {
   if (plan.com) q.set('com', '1');
   if (plan.q !== 'all') q.set('q', plan.q);
   if (plan.s !== 'reach') q.set('s', plan.s);
+  if (plan.d) q.set('d', plan.d > 0 ? 'asc' : 'desc');
   return '#shortlist?' + q.toString().replace(/%2C/g, ',');
 }
 function toggleShortlist(code) {
@@ -2313,7 +2315,7 @@ function slFromHash(h) {
   if (q.get('t') && PLAN_TECHS.includes(q.get('t'))) plan.t = q.get('t');
   plan.com = q.get('com') === '1';
   plan.q = 'all';
-  plan.s = 'reach';
+  plan.s = q.get('s') in PLAN_SORTS ? q.get('s') : 'reach'; plan.d = q.get('d') === 'asc' ? 1 : q.get('d') === 'desc' ? -1 : 0;
 }
 function shortlistRows() {
   const T = CFG.tech.technologies[plan.t], voice = PLAN_VOICE.has(plan.t), o = { com: plan.com, q: plan.q };
@@ -2321,7 +2323,7 @@ function shortlistRows() {
   const total = LANGS.reduce((n, l) => n + r5(l), 0);
   let cum = 0;
   const rows = shortlist.map(c => BY[c]).filter(Boolean).map(l => ({ l, r5: r5(l), r0: r0(l), rd: readiness(l, plan.t, o) }))
-    .sort((a, b) => (plan.s === 'ready' ? b.rd.n / (b.rd.of || 1) - a.rd.n / (a.rd.of || 1) : 0) || b.r5 - a.r5)
+    .sort((a, b) => b.r5 - a.r5)
     .map(r => { cum += r.r5; return { ...r, share: total ? cum / total : 0 }; });
   return { T, voice, rows, total, base: 0 };
 }
@@ -2342,14 +2344,14 @@ function shortlistPage() {
     </section>
     <section class="chart">
       <div class="plan-tablehead"><h3>${n ? `${n} ${n === 1 ? 'language' : 'languages'}: ${people(sum5)} ${who} in five years (${pct(sum5 / (P.total || 1))} of the world's), ${people(sum0)} today` : 'No languages yet'}</h3><span><button type="button" class="chip" id="sl-csv"${n ? '' : ' disabled'}>Download CSV</button> <button type="button" class="chip" id="sl-link"${n ? '' : ' disabled'}>Copy link</button> <button type="button" class="chip" id="sl-clear" style="min-width:8.5em"${n ? '' : ' disabled'}>Clear</button></span></div>
-      ${n ? `<div class="tablebox">${planHead(T, P, who, 'the world', true)}<tbody>${P.rows.map((r, i) => planRow(r, i, T, true)).join('')}</tbody></table></div>`
+      ${n ? `<div class="tablebox">${planHead(T, P, who, 'the world', true)}<tbody>${planSorted(P.rows, T, true).map((r, i) => planRow(r, i, T, true)).join('')}</tbody></table></div>`
           : `<p class="note">Nothing on the shortlist. Open the <a href="#plan">Plan tab</a> and select + beside the languages you want to compare, or add them above.</p>`}
       <p class="note">Reached is the share of ${who} worldwide in five years covered by the languages so far, in the table's order; speakers of several listed languages are counted in each. Ready counts the ingredients for building ${esc(T.label.toLowerCase())} recorded for each language (hover a figure for the list). The other columns are as in the Plan tab, for the whole world.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', slHash()); const y = scrollY; shortlistPage(); scrollTo(0, y); };
   $('#sl-t').onchange = e => { plan.t = e.target.value; redraw(); };
   $('#sl-com').onchange = e => { plan.com = e.target.checked; redraw(); };
-  $('#view').querySelectorAll('[data-psort]').forEach(b => b.onclick = () => { plan.s = b.dataset.psort; redraw(); });
+  $('#view').querySelectorAll('[data-psort]').forEach(b => b.onclick = () => { planSortClick(b.dataset.psort); redraw(); });
   $('#sl-form').onsubmit = e => {
     e.preventDefault();
     const { found, unknown } = planParse($('#sl-in').value), added = [...found].filter(c => !onShortlist(c));
@@ -2370,12 +2372,39 @@ function shortlistPage() {
 }
 
 // The planner's table head and rows, shared by the Plan tab and the shortlist (sl: no starting list or scope)
+// Every column of the table sorts it (the curve keeps the order of reach): [default direction, value];
+// a missing value (null) sorts last either way
+const PLAN_SORTS = {
+  name: [1, r => r.l.name], code: [1, r => r.l.code], script: [1, (r, c) => c.scripts[0] || null],
+  countries: [1, (r, c) => c.countries[0] || null], reach: [-1, r => r.r5],
+  models: [-1, (r, c) => c.models === '—' ? 0 : c.models.split(', ').length],
+  qual: [1, r => { const Q = PLAN_QCOL[plan.t], v = Q && r.l.qv && r.l.qv[Q[0]]; return v ?? null; }],
+  read: [-1, (r, c) => c.kinds ? c.kinds[0] : null], spont: [-1, (r, c) => c.kinds ? c.kinds[1] : null],
+  media: [-1, (r, c) => c.kinds ? c.kinds[2] : null], test: [-1, (r, c) => c.kinds ? c.kinds[3] : null],
+  data: [-1, r => (plan.t === 'mt' ? r.l.ps : r.l.ww) || 0], short: [-1, (r, c) => c.short],
+};
+function planSorted(rows, T, sl) {
+  const S = PLAN_SORTS[plan.s] || PLAN_SORTS.reach, dir = plan.d || S[0];
+  const keyed = rows.map(r => ({ r, v: S[1](r, planCells(r, T, sl)) }));
+  keyed.sort((a, b) => (a.v == null) - (b.v == null) || (a.v == null ? 0 : (typeof a.v === 'string' ? a.v.localeCompare(b.v, 'en', { ignorePunctuation: true, sensitivity: 'base' }) : a.v - b.v) * dir) || b.r.r5 - a.r.r5);
+  return keyed.map(x => x.r);
+}
+function psBtn(key, label) {
+  const on = plan.s === key, S = PLAN_SORTS[key], dir = plan.d || S[0];
+  return `<button class="sort" data-psort="${key}" aria-pressed="${on}" title="Sort by this column${on ? ' (select again to reverse)' : ''}">${label}<span class="arr" aria-hidden="true">${on ? (dir > 0 ? '▲' : '▼') : ''}</span></button>`;
+}
+const psAria = key => plan.s === key ? ` aria-sort="${(plan.d || PLAN_SORTS[key][0]) > 0 ? 'ascending' : 'descending'}"` : '';
+function planSortClick(key) {
+  if (plan.s === key) plan.d = -(plan.d || PLAN_SORTS[key][0]);
+  else { plan.s = key; plan.d = 0; }
+  if (plan.d === PLAN_SORTS[key][0]) plan.d = 0;  // the column's own default direction needs no setting
+}
 function planHead(T, P, who, scopeName, sl) {
   const voice = PLAN_VOICE.has(plan.t), U = PLAN_TARGETS[planUnit(plan.t)];
   const data = voice
-    ? `<th class="num pc-h">Read</th><th class="num pc-h">Spontaneous</th><th class="num pc-h">Radio and video</th><th class="num pc-h">Test set</th>`
-    : `<th class="num pc-h">${plan.t === 'mt' ? 'Sentence pairs with English' : 'Words of web text'}</th>`;
-  return `<table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang">Language</th><th class="pc-code" title="The code the Index uses: ISO 639-1 where there is one, otherwise ISO 639-3">Code</th><th class="pc-code" title="Its script in the countries listed, as ISO 15924 codes">Script</th><th class="pc-cty" title="Where it's spoken, most speakers first, as ISO 3166 country codes; countries where only immigrant communities speak it are left out">Countries</th><th class="num pc-now" title="Estimated ${who} in five years, in ${esc(scopeName)}, and their share of its speakers">Online in 5 years</th><th class="pc-mod" title="Open models listed for it">Open models</th>${PLAN_QCOL[plan.t] ? `<th class="num pc-q">${PLAN_QCOL[plan.t][1]}</th>` : ''}${data}<th class="num pc-need" title="How much more open data it needs to reach the target, ${esc(magn(planTarget()))} ${esc(U.label)}${voice ? ', not counting test sets' : ''}">Short of ${esc(magn(planTarget()))}</th></tr></thead>`;
+    ? `<th class="num pc-h"${psAria('read')}>${psBtn('read', 'Read')}</th><th class="num pc-h"${psAria('spont')}>${psBtn('spont', 'Spontaneous')}</th><th class="num pc-h"${psAria('media')}>${psBtn('media', 'Media')}</th><th class="num pc-h"${psAria('test')}>${psBtn('test', 'Test set')}</th>`
+    : `<th class="num pc-h"${psAria('data')}>${psBtn('data', plan.t === 'mt' ? 'Sentence pairs with English' : 'Words of web text')}</th>`;
+  return `<table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang"${psAria('name')}>${psBtn('name', 'Language')}</th><th class="pc-code"${psAria('code')}>${psBtn('code', 'Code')}</th><th class="pc-code"${psAria('script')}>${psBtn('script', 'Script')}</th><th class="pc-cty"${psAria('countries')}>${psBtn('countries', 'Countries')}</th><th class="num pc-now"${psAria('reach')}>${psBtn('reach', 'Online in 5 years')}</th><th class="pc-mod"${psAria('models')}>${psBtn('models', 'Open models')}</th>${PLAN_QCOL[plan.t] ? `<th class="num pc-q"${psAria('qual')}>${psBtn('qual', PLAN_QCOL[plan.t][1])}</th>` : ''}${data}<th class="num pc-need" title="How much more open data it needs to reach the target, ${esc(magn(planTarget()))} ${esc(U.label)}${voice ? ', not counting test sets' : ''}"${psAria('short')}>${psBtn('short', `Short of ${esc(magn(planTarget()))}`)}</th></tr></thead>`;
 }
 function planRow(r, i, T, sl) {
   const c = planCells(r, T, sl), l = r.l, voice = PLAN_VOICE.has(plan.t);
@@ -2390,7 +2419,7 @@ function planPage() {
   const P = planRows(), T = P.T;
   const svcOpts = [...(T.consumer || []), ...(T.regional || []), ...(T.open || [])].filter(id => SVC[id])
     .map(id => `<option value="svc:${id}"${plan.from === 'svc:' + id ? ' selected' : ''}>${esc(SVC[id][0])}${SVC[id][1] ? ` · ${esc(SVC[id][1])}` : ''}</option>`).join('');
-  const shown = P.rows.slice(0, plan.n);
+  const shown = planSorted(P.rows, T, false).slice(0, plan.n);
   const pct = v => `${Math.round(v * 100)}%`;
   const scopeName = countrySel.size ? [...countrySel].map(c => COUNTRY_NAMES[c]).join(', ') : regionSel.size ? [...regionSel].join(', ') : 'the world';
 
@@ -2428,7 +2457,7 @@ function planPage() {
       ${P.rows.length > shown.length ? `<button type="button" class="chip" id="pl-more">Show ${Math.min(50, P.rows.length - shown.length)} more of ${(P.rows.length - shown.length).toLocaleString()}</button>` : ''}
       <p class="note">Online in 5 years: ${who} in five years, estimated from LinguaMeta's speaker counts and the World Bank's connectivity data, with their share of the language's speakers. Countries are ISO 3166 codes, most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK); hover the countries for the locales.</p>
       <p class="note">Open models are those listed for the language; † marks a licence that doesn't permit commercial use (the commercial-use switch leaves them out).${plan.t === 'speech_input' ? " OASR is Meta's Omnilingual ASR, and OASR CER its character error rate, in percent, lower being better. It's the figure its makers publish, on test data that isn't public, and nobody has measured it independently yet." : plan.t === 'mt' ? " NLLB chrF++ is NLLB-200's score translating from English on the FLORES-200 test set, 0 to 100, higher being better, as its makers published it." : ''}</p>
-      <p class="note">${P.voice ? `Read, Spontaneous, Radio and video, and Test set are hours of transcribed speech in the open datasets tracked. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech. Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, IndicVoices (its first release; the full dataset is larger), Vaani. Radio and video: Shrutilipi's radio news, and YouTube videos with their uploaders' subtitles in YODAS2, which nobody has checked. Test set: FLEURS, about 12 hours a language, built for measuring models. Short of ${esc(magn(planTarget()))} is the hours still needed to reach the data target, not counting the test set, which should stay out of training.` : `${plan.t === 'mt' ? 'Sentence pairs with English are those in OPUS' : 'Words of web text are those in FineWeb-2'}; Short of ${esc(magn(planTarget()))} is how many more are needed to reach the data target.`}${plan.com ? (P.voice ? ' Only datasets whose licence permits commercial use are counted.' : plan.t === 'mt' ? " OPUS corpora carry their own licences, which aren't checked here." : '') : ''} Licences are as each project publishes them; this isn't legal advice.${plan.from === 'under' ? ` Under-served means fewer than half of the major services tracked for ${esc(T.label.toLowerCase())} offer it (a regional provider counts as one more), the line the rest of the site uses for "most services".` : ''} The CSV adds each language's readiness and the commercial services that offer it.</p>
+      <p class="note">${P.voice ? `Read, Spontaneous, Media and Test set are hours of transcribed speech in the open datasets tracked. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech. Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, IndicVoices (its first release; the full dataset is larger), Vaani. Media: Shrutilipi's radio news, and YouTube videos with their uploaders' subtitles in YODAS2, which nobody has checked. Test set: FLEURS, about 12 hours a language, built for measuring models. Short of ${esc(magn(planTarget()))} is the hours still needed to reach the data target, not counting the test set, which should stay out of training.` : `${plan.t === 'mt' ? 'Sentence pairs with English are those in OPUS' : 'Words of web text are those in FineWeb-2'}; Short of ${esc(magn(planTarget()))} is how many more are needed to reach the data target.`}${plan.com ? (P.voice ? ' Only datasets whose licence permits commercial use are counted.' : plan.t === 'mt' ? " OPUS corpora carry their own licences, which aren't checked here." : '') : ''} Licences are as each project publishes them; this isn't legal advice.${plan.from === 'under' ? ` Under-served means fewer than half of the major services tracked for ${esc(T.label.toLowerCase())} offer it (a regional provider counts as one more), the line the rest of the site uses for "most services".` : ''} The CSV adds each language's readiness and the commercial services that offer it.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', planHash()); const y = scrollY; planPage(); scrollTo(0, y); };
   $('#pl-t').onchange = e => { plan.t = e.target.value; if (plan.from.startsWith('svc:')) plan.from = 'none'; plan.n = 50; plan.tg = 0; redraw(); };  // the target's unit changes too
@@ -2442,7 +2471,7 @@ function planPage() {
     else { const hit = P.famOpts.find(([g]) => GN[g][1].toLowerCase() === v) || P.famOpts.find(([g]) => GN[g][1].toLowerCase().includes(v)); if (hit) plan.fam = hit[0]; }
     plan.n = 50; redraw();
   };
-  $('#view').querySelectorAll('[data-psort]').forEach(b => b.onclick = () => { plan.s = b.dataset.psort; redraw(); });
+  $('#view').querySelectorAll('[data-psort]').forEach(b => b.onclick = () => { planSortClick(b.dataset.psort); redraw(); });
   const ta = $('#pl-codes');
   if (ta) ta.onchange = e => { plan.codes = e.target.value; plan.n = 50; redraw(); };
   if ($('#pl-more')) $('#pl-more').onclick = () => { plan.n += 50; redraw(); };
