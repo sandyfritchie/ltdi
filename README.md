@@ -133,7 +133,7 @@ any name it can't resolve.
 | Data | Parallel text with English (sentence pairs) | OPUS, all corpora for the pair; web-mined corpora up to 20M pairs count at the share of distinct lines in a random sample that GlotLID identifies as the language (or a member, macrolanguage or indistinguishable neighbour) (`ltdi/collectors/opus_lid.py`, run on GitHub Actions) | automated |
 | Data | Annotated text (treebank words) | Universal Dependencies, latest release (each treebank at its release tag) | automated |
 | Data | Wikipedia articles and active editors | Meta-Wiki's List of Wikipedias (refreshed from each edition's statistics); articles count up to 1,000 per active editor (at least 10,000), since editions far beyond that are mostly bot-generated | automated |
-| Data | Open transcribed speech (hours) | Summed across Common Voice 27.0, FLEURS, YODAS2, WAXAL (automated) and Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech (`config/speech_datasets.csv`, from each paper or card) | automated and curated |
+| Data | Open transcribed speech (hours) | Summed across Common Voice 27.0 (Scripted Speech) and Spontaneous Speech 5.0, FLEURS, YODAS2, WAXAL (automated) and Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech (`config/speech_datasets.csv`, from each paper or card) | automated and curated |
 | Data | Datasets on the Hugging Face Hub | Hub API: the whole dataset listing, read once, by language tag; a dataset tagged with more than 20 languages counts 20 ÷ its languages for each | automated |
 | Data | Dictionary entries (expressions with a meaning; 1,000 to 1 million, log scale) | PanLex's last database dump (2024-03-01), read from its Hugging Face copy (`cointegrated/panlex-meanings`, pinned), since PanLex's own download is offline; expressions counted across the language's varieties (`ltdi/collectors/panlex.py`, run on GitHub Actions) | automated |
 | Data | Public benchmarks covering the language (nine tracked; six or more is full marks) | FLORES-200, Belebele, FLEURS, Global-MMLU, MMMLU, INCLUDE, XNLI, MGSM, IrokoBench | automated |
@@ -284,7 +284,11 @@ its scripts and countries as ISO 15924 and ISO 3166 codes (leaving out countries
 communities speak it, so code, script and country give a locale such as `pnb-Arab-PK`), engineering
 flags, readiness, how many other commercial services already offer it, the open models listed for it
 with their published quality (who measured it and on what test set) and licence, and the open data for
-that technology. The CSV adds every country, the locales, the family and the missing ingredients.
+that technology: for speech, hours by kind (read, spontaneous, broadcast and video, and benchmarks such
+as FLEURS, kept apart since a test set should stay out of training; the kinds are in `SPEECH_KIND` in
+`ltdi/build_site.py`). A data target, in orders of magnitude of the technology's unit (10 to a million
+hours, for speech), adds how far each language is short of it. The CSV adds every country, the
+locales, the family, the missing ingredients, the hours by kind and the shortfall.
 
 Switches and menus: **Include varieties of major languages** (off by default) counts spoken varieties
 whose speakers mostly write a standard language (`config/written_standards.csv`); **Commercially

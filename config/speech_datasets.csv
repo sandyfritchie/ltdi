@@ -9,11 +9,28 @@ Kathbath,bn,115.8,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
 Kathbath,ta,185.1,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
 Kathbath,ur,86.7,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
 Kathbath,pa,136.9,CC BY 4.0,https://github.com/AI4Bharat/IndicSUPERB,Read speech
-IndicVoices,hi,71,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
-IndicVoices,bn,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
-IndicVoices,ta,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
-IndicVoices,ur,71,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
-IndicVoices,pa,76.4,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid); later releases are larger
+IndicVoices,hi,71,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,bn,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,ta,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,ur,71,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,pa,76.4,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,as,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,brx,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,dgo,71,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,gu,21,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,kn,56,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,ks,56,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,gom,61,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,mai,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,ml,66,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,mni,20,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,mr,91,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,ne,106,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,or,81,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,sa,51,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,sat,92,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,sd,16,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
+IndicVoices,te,108,CC BY 4.0,https://arxiv.org/abs/2403.01926,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far
 Vaani,hi,594,CC BY 4.0,https://arxiv.org/abs/2603.28714,At least this many transcribed hours (the subset the paper reports); about 2,067 transcribed hours overall
 Vaani,bn,113,CC BY 4.0,https://arxiv.org/abs/2603.28714,At least this many transcribed hours (the subset the paper reports)
 NaijaVoices,ha,605.27,CC BY-NC-SA 4.0,https://arxiv.org/abs/2505.20564,Read speech; non-commercial licence

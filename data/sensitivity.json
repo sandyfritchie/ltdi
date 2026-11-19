@@ -9,7 +9,7 @@
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.717
+   "within_10pct": 0.7
   },
   {
    "ranks": "61–200",
@@ -19,15 +19,15 @@
   },
   {
    "ranks": "201–1,000",
-   "languages": 800,
-   "median_range": 209,
-   "within_10pct": 0.16
+   "languages": 801,
+   "median_range": 211,
+   "within_10pct": 0.157
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3006,
-   "median_range": 403,
-   "within_10pct": 0.485
+   "languages": 3005,
+   "median_range": 402,
+   "within_10pct": 0.486
   }
  ],
  "scenarios": [
@@ -37,9 +37,9 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Malay",
-     "from": 35,
-     "to": 32
+     "name": "Western Armenian",
+     "from": 287,
+     "to": 285
     },
     {
      "name": "Ukrainian",
@@ -52,14 +52,14 @@
      "to": 23
     },
     {
+     "name": "Malay",
+     "from": 34,
+     "to": 32
+    },
+    {
      "name": "Finnish",
      "from": 23,
      "to": 21
-    },
-    {
-     "name": "Danish",
-     "from": 24,
-     "to": 22
     }
    ]
   },
@@ -101,29 +101,29 @@
    "moved_10_in_top_300": 13,
    "largest": [
     {
-     "name": "Kusaal",
-     "from": 300,
-     "to": 318
-    },
-    {
-     "name": "Piemontese",
-     "from": 232,
-     "to": 216
-    },
-    {
      "name": "Ladin",
-     "from": 305,
+     "from": 307,
      "to": 289
     },
     {
-     "name": "Swiss German",
+     "name": "Piemontese",
      "from": 233,
-     "to": 219
+     "to": 218
     },
     {
-     "name": "Kölsch",
-     "from": 276,
-     "to": 262
+     "name": "Kabardian",
+     "from": 206,
+     "to": 191
+    },
+    {
+     "name": "Western Armenian",
+     "from": 287,
+     "to": 273
+    },
+    {
+     "name": "Picard",
+     "from": 313,
+     "to": 299
     }
    ]
   }

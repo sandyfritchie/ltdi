@@ -9,7 +9,7 @@ Curated (config/speech_datasets.csv, from each dataset's paper or card):
   Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech
 
 Writes one record per dataset (speech_<dataset>) and open_speech_hours, the total
-including Common Voice (data/records/common_voice.csv; run common_voice first).
+including Common Voice's Scripted and Spontaneous Speech (data/records/common_voice.csv; run common_voice first).
 
 Run:  python -m ltdi.collectors speech   (needs huggingface.co)
 """
@@ -92,8 +92,9 @@ def collect() -> list[Record]:
         for r in csv.DictReader(f):
             if r["language"] in codes:
                 per[r["language"]][r["dataset"]] = (float(r["hours"]), r["dataset"], r["url"], f"{r['note']}; {r['licence']}")
-    cv = {r.language: r.value for r in read_records(DATA / "records" / "common_voice.csv")
-          if r.indicator == "cv_validated_hours"} if (DATA / "records" / "common_voice.csv").exists() else {}
+    cvr = read_records(DATA / "records" / "common_voice.csv") if (DATA / "records" / "common_voice.csv").exists() else []
+    cv = {r.language: r.value for r in cvr if r.indicator == "cv_validated_hours"}
+    cvs = {r.language: r.value for r in cvr if r.indicator == "cv_spontaneous_hours"}
 
     out = []
     datasets = sorted({d for p in per.values() for d in p})
@@ -101,7 +102,8 @@ def collect() -> list[Record]:
         for d in datasets:
             h, src, url, note = per[code].get(d, (0, d, "", ""))
             out.append(Record(code, f"speech_{_slug(d)}", round(h, 1), "hours", src, url, note=note))
-        parts = {**{d: v[0] for d, v in per[code].items()}, "Common Voice": cv.get(code, 0)}
+        parts = {**{d: v[0] for d, v in per[code].items()}, "Common Voice": cv.get(code, 0),
+                 "Common Voice Spontaneous": cvs.get(code, 0)}
         total = sum(parts.values())
         breakdown = ", ".join(f"{d} {h:,.0f}" for d, h in sorted(parts.items(), key=lambda x: -x[1]) if h >= 0.5)
         out.append(Record(code, "open_speech_hours", round(total, 1), "hours", "Open speech datasets",

@@ -485,10 +485,39 @@ READY_FLAGS = {"f": ("speech_fleurs", 0), "c": ("cv_validated_hours", 0), "F": (
                "w": ("wordlist_corpuscrawler", 0)}
 
 
+# What kind of speech each open dataset holds, for the Plan tab: read aloud; spontaneous (people speaking in
+# their own words: answers, descriptions, conversation); broadcast and video (radio, YouTube with its
+# uploaders' subtitles); and benchmarks, small sets built for measuring models, kept apart since a test set
+# should stay out of training.
+SPEECH_KINDS = ("read", "spontaneous", "broadcast", "benchmark")
+SPEECH_KIND = {
+    "cv_validated_hours": "read", "speech_kathbath": "read", "speech_naijavoices": "read",
+    "speech_multilingual_librispeech": "read",
+    "cv_spontaneous_hours": "spontaneous", "speech_waxal": "spontaneous", "speech_indicvoices": "spontaneous",
+    "speech_vaani": "spontaneous",
+    "speech_shrutilipi": "broadcast", "speech_yodas": "broadcast",
+    "speech_fleurs": "benchmark",
+}
+
+
+def speech_by_kind(facts: dict, resources: dict, commercial: bool = False) -> list[float]:
+    """Open transcribed hours by kind (SPEECH_KINDS order); commercial: only datasets whose licence
+    permits commercial use."""
+    out = [0.0] * len(SPEECH_KINDS)
+    for i, f in facts.items():
+        if i.startswith("speech_") or i in ("cv_validated_hours", "cv_spontaneous_hours"):
+            if i not in SPEECH_KIND:
+                raise KeyError(f"{i}: add its kind of speech to SPEECH_KIND in build_site.py")
+            if not commercial or resources.get(i, {}).get("commercial") == "yes":
+                out[SPEECH_KINDS.index(SPEECH_KIND[i])] += f["value"] or 0
+    return [round(h, 1) for h in out]
+
+
 def usable_hours(facts: dict, resources: dict) -> float:
     """Open transcribed speech whose licence permits commercial use (resources.csv: commercial = yes)."""
     return sum(f["value"] for i, f in facts.items()
-               if (i.startswith("speech_") or i == "cv_validated_hours") and resources.get(i, {}).get("commercial") == "yes")
+               if (i.startswith("speech_") or i in ("cv_validated_hours", "cv_spontaneous_hours"))
+               and resources.get(i, {}).get("commercial") == "yes")
 
 
 def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
@@ -508,6 +537,9 @@ def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
     if v("open_speech_hours"):
         out["sh"] = round(v("open_speech_hours"), 1)
         out["shc"] = round(usable_hours(facts, resources), 1)
+        out["sk"] = speech_by_kind(facts, resources)  # [read, spontaneous, broadcast, benchmark]
+        if out["shc"] < out["sh"]:
+            out["skc"] = speech_by_kind(facts, resources, commercial=True)
     if v("web_text_words"):
         out["ww"] = round(v("web_text_words"))
     if v("parallel_sentences"):
