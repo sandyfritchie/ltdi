@@ -410,6 +410,7 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
     from .engineering import FLAGS
     index["flags"] = {FLAG_LETTER[k]: [k, v] for k, v in FLAGS.items()}
     index["change_series"] = changes["series"]
+    index["speech_kind"] = {i: SPEECH_KINDS.index(k) for i, k in SPEECH_KIND.items()}
     index |= {"history": hist, "languages": langs, "top_opportunities": listed, "country_names": country_names,
               "opportunity_total": len(top), "units": units,
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
@@ -544,6 +545,8 @@ def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
         out["sk"] = speech_by_kind(facts, resources)  # [read, spontaneous, broadcast, benchmark]
         if out["shc"] < out["sh"]:
             out["skc"] = speech_by_kind(facts, resources, commercial=True)
+        # each dataset's hours, for the Plan table's hover text
+        out["sd"] = {i: round(f["value"], 1) for i, f in facts.items() if i in SPEECH_KIND and (f["value"] or 0) >= 0.05}
     if v("web_text_words"):
         out["ww"] = round(v("web_text_words"))
     if v("parallel_sentences"):
