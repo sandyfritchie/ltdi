@@ -13,9 +13,11 @@ from __future__ import annotations
 
 from functools import lru_cache
 
+import json
 import re
 from collections import defaultdict
 
+from .. import DATA
 from ..crosswalk import _speech, to_ltdi
 from ..htmltables import tables, text
 from ..http import fetch
@@ -67,8 +69,16 @@ def spoken(n: str) -> str | None:
     return to_ltdi(f"{lang}-{cc}", speech=True) if lang and cc and f"{lang}-{cc}" in _speech() else None
 
 
+# How many entries each company's list has (a language often has several: English (India), English (UK);
+# Sindhi in two scripts), so a page can show "916 entries, 633 languages". named() and _codes() count the
+# entries they read, and mark() credits them to the indicator it marks.
+ENTRIES: dict[str, int] = defaultdict(int)
+_read: set[str] = set()
+
+
 def named(names, indicator: str, speech: bool = False) -> set[str]:
     out = set()
+    _read.update(n.strip() for n in names if n.strip())
     for n in names:
         n = n.strip()
         if not n:
@@ -200,10 +210,12 @@ VOICE_TYPE = {"Standard": "Standard", "Wavenet": "WaveNet", "Neural2": "Neural2"
 
 
 def _codes(rows, col, speech: bool = False) -> set[str]:
+    _read.update(r.get(col, "").strip() for r in rows if r.get(col, "").strip())
     return {c for c in (code(r.get(col, ""), speech) for r in rows) if c}
 
 
 def _features(found, notes, indicator, by_lang: dict[str, set[str]], weights: dict | None = None):
+    _read.clear()  # names read for features aren't a list's entries
     for c, feats in by_lang.items():
         found[indicator][c] = sum((weights or {}).get(f, 1) for f in feats)
         notes[indicator][c] = "Has: " + ", ".join(sorted(feats)) if feats else "None counted"
@@ -214,6 +226,8 @@ def collect() -> list[Record]:
     notes: dict[str, dict[str, str]] = defaultdict(dict)
 
     def mark(indicator, codes, note=None):
+        ENTRIES[indicator] += len(_read)
+        _read.clear()
         for c in codes:
             found[indicator][c] = 1
             if note:
@@ -377,6 +391,8 @@ def collect() -> list[Record]:
 
     for ind, names in sorted(UNRESOLVED.items()):
         print(f"  {ind}: {len(names)} names not resolved, e.g. {', '.join(sorted(names)[:12])}")
+    entries = {ind: n for ind, n in sorted(ENTRIES.items()) if n and ind in META}
+    (DATA / "list_entries.json").write_text(json.dumps(entries, indent=1) + "\n", encoding="utf-8")
     out = []
     for ind, (unit, source, url) in META.items():
         if not found.get(ind):

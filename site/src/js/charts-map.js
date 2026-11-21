@@ -619,6 +619,7 @@ function charts() {
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
       ${absent.length ? `<p class="note">No ${esc(pn)} service tracked for: ${esc(absent.join(', '))}.</p>` : ''}
+      ${P ? `<p class="note">${COUNTING_NOTE} <a href="#providers">How companies' languages are counted, and how to correct them</a>.</p>` : ''}
 
       <details class="tbl"><summary>Show as a table</summary>${table1}</details>
     </section>

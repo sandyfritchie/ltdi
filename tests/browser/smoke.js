@@ -7,7 +7,7 @@ const fs = require('fs');
 const BASE = process.env.SITE || 'http://localhost:8765';
 const axe = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
 const VIEWS = ['/', '/#map', '/#charts', '/#opportunities', '/#plan', '/#plan?t=mt&from=none&s=ready', '/#shortlist?codes=yo,ha',
-  '/#about', '/language/yo', '/language/en', '/language/cop', '/#compare-yo-ha', '/#opportunities-yo', '/language/xx'];
+  '/#about', '/#providers', '/language/yo', '/language/en', '/language/cop', '/#compare-yo-ha', '/#opportunities-yo', '/language/xx'];
 const fail = [];
 
 (async () => {
@@ -40,7 +40,7 @@ const fail = [];
   if (!(await p.evaluate(() => window.__same === 1 && location.pathname.startsWith('/language/')))) fail.push('a language link reloaded the page or went elsewhere');
   await p.close();
   // accessibility, both themes
-  for (const scheme of ['light', 'dark']) for (const v of ['/', '/#map', '/#charts', '/#opportunities', '/#plan', '/#about', '/language/yo', '/language/xx']) {
+  for (const scheme of ['light', 'dark']) for (const v of ['/', '/#map', '/#charts', '/#opportunities', '/#plan', '/#about', '/#providers', '/language/yo', '/language/xx']) {
     const q = await b.newPage({ viewport: { width: 1280, height: 900 }, colorScheme: scheme });
     await q.goto(BASE + v); await q.waitForTimeout(1200); await q.addScriptTag({ content: axe });
     const vs = await q.evaluate(async () => (await axe.run(document, { resultTypes: ['violations'] })).violations.map(x => `${x.id} (${x.impact}) x${x.nodes.length}: ${x.nodes[0].target.join(' ')}`));

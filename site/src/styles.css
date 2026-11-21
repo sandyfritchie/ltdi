@@ -233,6 +233,7 @@ table.ranktab { table-layout: fixed; }
 .covtab { width: 100%; }
 .covtab td.covbar, .covtab th.covbar { width: 34%; }
 .covtab tr.grp td { vertical-align: top; }
+.provtab td[rowspan] { vertical-align: top; font-weight: 600; }
 .covtab .covbar span { display: block; height: 8px; border-radius: 4px; background: var(--accent); min-width: 0; }
 .covtab .pct { color: var(--muted); }
 .covtab .muted, .covsvc .muted { color: var(--muted); font-weight: 400; }

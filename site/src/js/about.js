@@ -51,6 +51,42 @@ function validationSection() {
     <p class="note"><a href="${D.paper}" target="_blank" rel="noopener">Assessing Digital Language Support on a Global Scale</a>: five levels from 143 tools' language lists, ${esc(D.as_of)}. Only a 10% sample is public (<a href="${D.source}" target="_blank" rel="noopener">sil-ai/dls-results</a>), of which ${D.n.toLocaleString()} languages match ranked ones; rank correlation with their score ${D.spearman.toFixed(2)}, with their level ${D.spearman_level.toFixed(2)}.</p>
     ${table(D, 'Level')}${dis(D, o => o)}`;
 }
+// How a service's languages are counted, said wherever a count appears (About, Charts, For providers)
+const COUNTING_NOTE = "Each count is the number of distinct languages in the company's own published list, read from the page linked on every language's profile. A list often has several entries for one language: English for each country, a language in two scripts, or both a language and its varieties. Those count once here, so a count is usually lower than the company's own figure, which may count them separately.";
+const CORRECTIONS_EMAIL = 'langtechindex@gmail.com';
+const INDEPENDENCE = "The Index is made and maintained by Sandy Ritchie, a linguist and technologist who worked on language technology at Google and Google DeepMind from 2018 to 2025. It's independent: it has no funding from, and no affiliation with, any company or organisation whose products or data it tracks, and every company is counted by the same rules.";
+// How the method has changed, and the rule that it changes only with an edition
+function methodHistory() {
+  const H = DATA.config.meta.history || [];
+  return `<h3>How the method changes</h3>
+    <p>The method is versioned, and from the 2026-12 edition it changes only with a new monthly edition, never within one, so ranks within an edition are comparable. Each edition's scores are archived with the method's version and a hash of its configuration, and every change is in the repository's history.</p>
+    <div class="tablebox"><table class="covtab"><thead><tr><th>Version</th><th>From</th><th>What changed</th></tr></thead>
+    <tbody>${H.slice().reverse().map(([v, d, w]) => `<tr><td>${esc(v)}</td><td>${esc(d)}</td><td>${esc(w)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+// For providers: how a company's numbers are made, which companies count, and how to correct them
+function providersPage() {
+  const C = DATA.coverage || { tech: [] }, T = DATA.config.dimensions.tech.technologies;
+  const role = r => ({ consumer: 'Major', regional: 'Regional', open: 'Open model', quality: 'Benchmark' })[r] || r;
+  const rows = C.tech.filter(([, , svcs]) => svcs.some(x => x[2] !== 'quality')).map(([label, , svcs]) => svcs.filter(x => x[2] !== 'quality')
+    .map(([name, prov, r, n, ent], i) => `<tr>${i ? '' : `<td rowspan="${svcs.filter(x => x[2] !== 'quality').length}">${esc(label)}</td>`}<td>${esc(name)}${prov && PROV_ALL[prov] && !name.includes(PROV_ALL[prov]) && prov !== 'open' ? ` <span class="muted">${esc(PROV_ALL[prov])}</span>` : ''}</td><td>${role(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${ent > n ? ent.toLocaleString() : ''}</td></tr>`).join('')).join('');
+  $('#view').innerHTML = `<article class="about">
+    <h2>For providers</h2>
+    <p class="lede">If your company makes a product the Index tracks, this page explains how its numbers are made and how to correct them.</p>
+    <h3>How a product's languages are counted</h3>
+    <p>${COUNTING_NOTE}</p>
+    <p>Lists are read from the company's own public pages: most automatically, when the site is rebuilt, and a few by hand where no page can be read automatically. Each language's profile links the exact page each value comes from, with the date it was read. A product counts for a language when its list names the language, whatever it calls it; a list that names only a country (Siri's, say) counts the country's main language.</p>
+    <p>For LLMs, the count is the languages each company documents for its chat app. A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company.</p>
+    <h3>Which companies count, and how</h3>
+    <p>For each technology, a language is offered fully when at least half of the major services tracked offer it, and is underrepresented when fewer do. Regional providers, which serve one country or region, count together as one extra service where any of them offers a language. Open models count for less than commercial services, and never as a major service.</p>
+    <div class="tablebox"><table class="covtab provtab"><thead><tr><th>Technology</th><th>Service</th><th>Counted as</th><th class="num">Languages</th><th class="num">Entries in its list</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <p class="note">Languages are counted among the ${(DATA.coverage || {}).n?.toLocaleString() || ''} ranked languages. Entries in a list are shown where they're known.</p>
+    <h3>Correcting a count</h3>
+    <p>If a product's row is wrong or out of date, email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">open a correction on GitHub</a>, with a link to the public page that documents the language. A correction backed by a public page goes into the site as soon as it's checked, and into the next edition's archive. If your company's list isn't public, the Index can't count it, so publishing the list is the way to be counted.</p>
+    <p>Every change to the data, including each correction, is in the repository's public history, with its source.</p>
+    <h3>Who makes the Index</h3>
+    <p>${INDEPENDENCE} The method is open: the code, every value with its source, and every past edition are on <a href="${REPO_URL}" target="_blank" rel="noopener">GitHub</a>, so any count can be checked or reproduced.</p>
+  </article>`;
+}
 // What the Index is for, how far each source reaches, and the limits of the data, sources and views
 const REPO_URL = 'https://github.com/sandyfritchie/ltdi';
 const citeText = () => `Ritchie, Sandy (${DATA.edition.slice(0, 4)}). Language Technology Development Index (LTDI), edition ${DATA.edition} (methodology ${DATA.config.meta.methodology_version}). https://langtechindex.org`;
@@ -63,7 +99,7 @@ function about() {
     <tbody>${rows}</tbody></table></div>`;
   const ROLE = { consumer: '', open: 'open', regional: 'regional', quality: 'quality measured' };
   const techRows = C.tech.map(([label, any, svcs]) => `<tr class="grp"><td><details class="covsvc"><summary>${esc(label)} <span class="muted">· any service</span></summary>
-      <ul>${svcs.map(([name, prov, role, n]) => `<li><span>${esc(name)}${prov && PROV_ALL[prov] && !name.includes(PROV_ALL[prov]) && prov !== 'open' ? ` <span class="muted">${esc(PROV_ALL[prov])}</span>` : ''}${ROLE[role] ? ` <span class="tag">${ROLE[role]}</span>` : ''}</span><b>${n.toLocaleString()}</b></li>`).join('')}</ul></details></td>
+      <ul>${svcs.map(([name, prov, role, n, ent]) => `<li><span>${esc(name)}${prov && PROV_ALL[prov] && !name.includes(PROV_ALL[prov]) && prov !== 'open' ? ` <span class="muted">${esc(PROV_ALL[prov])}</span>` : ''}${ROLE[role] ? ` <span class="tag">${ROLE[role]}</span>` : ''}</span><b>${n.toLocaleString()}${ent > n ? ` <span class="muted" title="Entries in the company's own list, where several can be one language">of ${ent.toLocaleString()} entries</span>` : ''}</b></li>`).join('')}</ul></details></td>
     <td class="num">${any.toLocaleString()}</td><td class="covbar"><span style="width:${(any / N * 100).toFixed(2)}%"></span></td><td class="num pct">${pct(any)}</td></tr>`).join('');
   const nArea = (C.meta.find(m => /Area on the map/.test(m[0])) || [0, 0])[1];
   $('#view').innerHTML = `<article class="about">
@@ -90,6 +126,7 @@ function about() {
     ${table(C.data.map(([l, n]) => row(esc(l), n)).join(''), 'Indicator')}
     <h4>Technology</h4>
     <p class="note">Languages offered by at least one service of each kind; open a technology for each service. Quality is measured, by benchmarks, for far fewer languages than services offer.</p>
+    <p class="note" id="counting">${COUNTING_NOTE} Where the number of entries in a list is known, it's shown beside the count. <a href="#providers">For providers: how to correct a count</a>.</p>
     ${table(techRows, 'Technology')}
 
     <h3>Caveats and shortcomings</h3>
@@ -116,7 +153,7 @@ function about() {
     <ul>
       <li>Coverage is read from each company's published language lists, which can lag behind or run ahead of what a product actually does, and "supported" means different things to different vendors. A few lists are read by hand where no page could be read automatically.</li>
       <li>Quality is published for few languages. Where a benchmark result exists (translation, speech recognition, LLMs) a weak result counts for less, down to half; elsewhere a listed service counts in full, however well it works, so being measured never lowers a language's score below what it would have been unmeasured.</li>
-      <li>LLM availability is read from the official app language lists for ChatGPT, Gemini and Copilot, the languages each company says its app supports; a model may also work, unevenly, in languages its list doesn't name.</li>
+      <li>LLM support means the languages each company documents for its chat app (ChatGPT, Gemini, Copilot), from its official list. A model may also work, unevenly, in languages its list doesn't name; the Index counts what each company commits to, which it can check the same way for every company.</li>
       <li>Regional providers count together as one extra service, and only for the languages they offer.</li>
       <li>Voice assistants count each company's assistant across its old and new generations: Google Assistant or Gemini for Home on speakers and displays, Siri, and Alexa or Alexa+. Gemini for Home and Alexa+ are in early access and so far cover only languages the older assistants already had. Amazon publishes no language list for Alexa+, so its languages are the ones Amazon's launch announcements name, or a country's main language where they name only the country. The row counts half as much as other technologies.</li>
       <li>LLM quality comes from a few published benchmark results, each for one model at one time: Claude Fable 5.2 on Global-MMLU (2026), OpenAI o3 on MMMLU (2025), and GPT-4o and Gemini 1.5 Pro on AfroBench translation (2025). Newer models may do better.</li>
@@ -141,9 +178,10 @@ function about() {
     ${validationSection()}
     ${inclusionSection()}
     <h3>Independence and accuracy</h3>
-    <p>The Index is made and maintained by Sandy Ritchie, a linguist and technologist. It isn't affiliated with any organisation or company. It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
+    <p>${INDEPENDENCE} It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
+    ${methodHistory()}
     <h3>Corrections and feedback</h3>
-    <p>If you spot a mistake, work on a product whose row is out of date, or know of a source we've missed, please email <span class="email">langtechindex@gmail.com</span>, or, if you'd rather it be public, <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">open an issue on GitHub</a> using the correction or new-source form. A link to the page that documents the change is the quickest way to get it fixed; corrections go into the next build with the source cited.</p>
+    <p>If you spot a mistake, work on a product whose row is out of date, or know of a source we've missed, please email <span class="email">${CORRECTIONS_EMAIL}</span>, or, if you'd rather it be public, <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">open an issue on GitHub</a> using the correction or new-source form. A link to the page that documents the change is the quickest way to get it fixed; corrections go into the next build with the source cited. Companies whose products are tracked will find how their numbers are made on the <a href="#providers">For providers</a> page.</p>
     ${PATHS && window.goatcounter ? `<h3>Privacy</h3>
     <p>The site counts visits with <a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>, which sets no cookies and records no personal information: only which page was opened, the referring site, and the browser, screen size and country in general terms. Nothing else is collected.</p>` : ''}
 

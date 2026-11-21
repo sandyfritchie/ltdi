@@ -1,0 +1,18 @@
+{
+ "asr_amazon": 113,
+ "asr_apple": 63,
+ "asr_google": 170,
+ "kb_apple": 245,
+ "kb_gboard": 916,
+ "kb_swiftkey": 743,
+ "llm_app_copilot": 49,
+ "llm_app_gemini": 71,
+ "mt_google": 238,
+ "ocr_apple": 46,
+ "tts_amazon": 41,
+ "tts_azure": 154,
+ "ui_ios": 55,
+ "va_alexa": 17,
+ "va_google_assistant": 26,
+ "va_siri": 23
+}

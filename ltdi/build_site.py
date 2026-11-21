@@ -124,7 +124,9 @@ def coverage(scores: dict) -> dict:
     a language's page usually means its source doesn't cover the language.
 
     {"n": ranked languages, "meta": [[label, count], ...], "data": [[label, count], ...],
-     "tech": [[technology label, any service, [[service, provider, role, count], ...]], ...]}"""
+     "tech": [[technology label, any service, [[service, provider, role, count, entries], ...]], ...]}
+    entries: how many entries the service's own list has, where known (data/list_entries.json), since a
+    list often has several for one language (English (India), English (UK)), so it's 0 where unknown"""
     from collections import Counter
     ranked = [l for l in scores["languages"] if not l.get("extinct")]
     codes = {l["code"] for l in ranked}
@@ -140,14 +142,15 @@ def coverage(scores: dict) -> dict:
     dims = scores["config"]["dimensions"]
     svc = {x["id"]: x for x in scores["services"]}
     tech = []
+    entries = json.loads((DATA / "list_entries.json").read_text(encoding="utf-8")) if (DATA / "list_entries.json").exists() else {}
     for t in dims["tech"]["technologies"].values():
         if "indicator" in t:  # locale data: CLDR's coverage, no services
-            tech.append([t["label"], count[t["indicator"]], [["Unicode CLDR", "", "quality", count[t["indicator"]]]]])
+            tech.append([t["label"], count[t["indicator"]], [["Unicode CLDR", "", "quality", count[t["indicator"]], 0]]])
             continue
         ids = [*t.get("consumer", []), *t.get("open", []), *(t.get("regional") or [])]
-        rows = [[svc[i]["name"], svc[i]["provider"], "regional" if i in (t.get("regional") or []) else svc[i]["role"], count[i]]
-                for i in ids if i in svc]
-        rows += [[svc[i]["name"] if i in svc else i, svc.get(i, {}).get("provider", ""), "quality", count[i]]
+        rows = [[svc[i]["name"], svc[i]["provider"], "regional" if i in (t.get("regional") or []) else svc[i]["role"], count[i],
+                 entries.get(i, 0)] for i in ids if i in svc]
+        rows += [[svc[i]["name"] if i in svc else i, svc.get(i, {}).get("provider", ""), "quality", count[i], 0]
                  for i in (t.get("measured") or {})]
         anyc = sum(1 for c in codes if any(has(facts.get(c, {}).get(i, {})) for i in ids))
         tech.append([t["label"], anyc, sorted(rows, key=lambda r: -r[3])])

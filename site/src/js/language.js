@@ -241,7 +241,7 @@ function dimPanel(l, key, color) {
       const tiles = t.indicator ? localeTile(facts[t.indicator], vfacts && vfacts[t.indicator], wname)
         : [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname)).join('');
       const row = `<div class="techrow">
-        <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
+        <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b>${t.help ? infoTip(t.label, esc(t.help)) : ''}<span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
         ${s == null ? '' : bar(s)}
         <div class="tiles">${tiles}</div></div>`;
       if (t.group === 'more') { more.push(row); peek.push(`<span title="${esc(t.label)}">${TICON[tk] || ''}<span class="sr">${esc(t.label)}</span>${sv}</span>`); }
