@@ -12,7 +12,7 @@ translation needs parallel text) and proposes one of five kinds of action:
   collect   Collect: the data really is scarce
 
 Priority = reach x gap x need / cost (see rank), so cheap actions for large,
-under-served languages rise to the top. Wording is neutral about vendors: it names platforms and
+underrepresented languages rise to the top. Wording is neutral about vendors: it names platforms and
 open resources, never companies.
 """
 

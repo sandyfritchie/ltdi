@@ -9,7 +9,7 @@ several labels share a corpus, the corpus counts once, at its largest. Languages
 have no parallel text there and are recorded as 0.
 
 Web-mined corpora (CCMatrix, CCAligned, NLLB, WikiMatrix, ...) are often largely in another language,
-or in none, for low-resource languages (Kreutzer et al. 2022). Where opus_lid.py has checked a
+or in none, for underrepresented languages (Kreutzer et al. 2022). Where opus_lid.py has checked a
 web-mined corpus (data/opus_lid.csv: GlotLID on a random sample of its lines), it counts at the share
 of distinct lines in the language (counting macrolanguage members, and languages GlotLID can't tell
 apart, such as Bosnian, Croatian and Serbian); unchecked corpora (over 20M pairs) count in full. English itself is

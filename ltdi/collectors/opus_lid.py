@@ -1,7 +1,7 @@
 """Language check of OPUS's web-mined parallel corpora (Kreutzer et al. 2022).
 
 Kreutzer et al., "Quality at a Glance: An Audit of Web-Crawled Multilingual Datasets" (TACL 2022),
-found that web-mined corpora for low-resource languages are often largely in another language or in
+found that web-mined corpora for underrepresented languages are often largely in another language or in
 no language at all. This repeats the cheapest part of their audit automatically: for each web-mined
 corpus OPUS holds for a language paired with English, take a random sample of lines from the
 non-English side and identify their language with GlotLID (an open language identifier).

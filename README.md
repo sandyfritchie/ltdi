@@ -274,7 +274,7 @@ history (`ltdi/collectors/history.py`) comes from sources with a public record:
 
 The Plan tab (`#plan`) answers a product team's question: given what we support today, which languages
 next? Choose a technology and a starting point (nothing, a tracked service's list, a pasted list of
-codes or names, or "under-served languages", which counts as covered every language that at least half
+codes or names, or "underrepresented languages", which counts as covered every language that at least half
 the major services tracked for the technology offer, the line behind the site's "full" coverage, and
 lists the rest), and optionally a family or branch (Glottolog's, such as Narrow Bantu or Indo-Aryan),
 a region or countries. The languages not yet supported are ranked by the people they'd reach online in
@@ -459,7 +459,7 @@ the coalition workstream it fits.
   transcriptions; IndicVoices is its first release and Vaani a lower bound (later releases are larger);
   FLEURS is counted at a nominal 12 hours. NaijaVoices is non-commercial.
 - OPUS counts overlap between corpora, and most sentence pairs are web-mined (the share is in each note).
-- Web-crawled data for low-resource languages is often not in the language at all (Kreutzer et al. 2022,
+- Web-crawled data for underrepresented languages is often not in the language at all (Kreutzer et al. 2022,
   "Quality at a Glance", TACL). FineWeb-2 filters with GlotLID per language; Wikipedia articles are capped per
   active editor and mass-tagged Hugging Face datasets counted in part (above). OPUS's web-mined corpora are
   checked by language identification on a random sample of lines, which catches wrong-language and
