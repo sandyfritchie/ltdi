@@ -19,7 +19,8 @@ FULL = dict(kb_gboard=1, kb_apple=1, kb_apple_features=4, asr_google=1, asr_azur
             ui_ios=1, ui_windows=1, ui_office=1, ocr_google=1, ocr_azure=1, ocr_apple=1, proof_office=1,
             va_google_assistant=1, va_siri=1, lid_glotlid=1, lid_cld3=1, kb_swiftkey=1, asr_amazon=1,
             tts_azure=1, tts_amazon=1, va_alexa=1, llm_app_gemini=1, llm_app_copilot=1,
-            tts_openai=1, llm_app_chatgpt=1)
+            tts_openai=1, llm_app_chatgpt=1, mt_amazon=1, mt_alibaba=1, llm_app_claude=1, llm_app_meta=1,
+            llm_app_mistral=1, llm_app_qwen=1)
 
 
 class FindTests(unittest.TestCase):
@@ -68,7 +69,7 @@ class FindTests(unittest.TestCase):
 
     def test_benchmarked_language_missing_from_apps_is_share(self):
         fs = facts(**{**FULL, "llm_app_copilot": 0})
-        self.assertIn("2 of 3 major AI assistant apps list this language", titles(fs, "share"))
+        self.assertIn("6 of 7 major AI assistants list this language", titles(fs, "share"))
 
     def test_interface_from_volunteer_translation(self):
         fs = facts(**{**FULL, "ui_ios": 0, "ui_windows": 0, "ui_office": 0, "ui_firefox": 1})
@@ -88,7 +89,7 @@ class FindTests(unittest.TestCase):
                        llm_app_copilot=0, llm_global_mmlu_rel=80)
         text = " ".join(o["title"] + " " + o["detail"] for o in find(sparse))
         for name in ("Apple", "Google", "Microsoft", "Azure", "DeepL", "OpenAI", "Anthropic", "Meta", "Gboard",
-                     "Siri", "Windows", "Firefox", "Mozilla", "Tesseract", "Hunspell", "LanguageTool", "Office",
+                     "Siri", "Windows", "Claude", "Mistral", "Qwen", "Alibaba", "Llama", "Firefox", "Mozilla", "Tesseract", "Hunspell", "LanguageTool", "Office",
                      "Amazon", "Alexa", "Polly", "SwiftKey", "Keyman", "Gemini", "Copilot", "MMS", "Whisper"):
             self.assertNotIn(name, text)
 

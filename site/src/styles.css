@@ -24,7 +24,7 @@
   --t-vh: #1c5cab; --t-h: #4b8fd9; --t-m: #9cc4f0; --t-lc: #f2b27a; --t-lo: #e07b36; --t-ld: #b4481a; --t-ln: #b9c1bd;
   --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
-  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
+  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-mistral: #3d6fd1; --prov-alibaba: #a8663a; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -41,7 +41,7 @@
     --pct-4: #7fb0ee; --pct-3: #a6c8f2; --pct-2: #e9a061; --pct-1: #f27f52;
   --t-vh: #2a6cc0; --t-h: #4b94e8; --t-m: #8db8ea; --t-lc: #e9a061; --t-lo: #cf7b36; --t-ld: #a9410f; --t-ln: #4f5a57;
   --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
-    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-mistral: #3d6fd1; --prov-alibaba: #a8663a; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
   }
 }
 :root[data-theme="dark"] {
@@ -53,7 +53,7 @@
   --on-full: #0d2a4d; --on-part: #0d2a4d; --on-open: #ffffff;
   --t-vh: #2a6cc0; --t-h: #4b94e8; --t-m: #8db8ea; --t-lc: #e9a061; --t-lo: #cf7b36; --t-ld: #a9410f; --t-ln: #4f5a57;
   --t-l: #a9410f; --t-none: #f4f6f5; --t-none-edge: #f4f6f5; --t-none-op: 0.45; --land: #26302d;
-    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
+    --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #6e7b88; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-mistral: #3d6fd1; --prov-alibaba: #a8663a; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
 }
 body { background: var(--bg); color: var(--ink); font: 16px/1.5 var(--font-body); }
 .wrap { max-width: 1080px; margin: 0 auto; padding-block: 28px 64px;

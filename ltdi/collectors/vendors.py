@@ -152,6 +152,7 @@ OFFICE = "https://support.microsoft.com/en-us/office/language-accessory-pack-for
 WINDOWS = "https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows"
 TRANSCRIBE = "https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html"
 POLLY = "https://docs.aws.amazon.com/polly/latest/dg/supported-languages.html"
+AMAZON_MT = "https://docs.aws.amazon.com/translate/latest/dg/what-is-languages.html"
 ALEXA = "https://developer.amazon.com/en-US/docs/alexa/custom-skills/develop-skills-in-multiple-languages.html"
 # Alexa+ is replacing Alexa, in early access in most countries. Amazon has no language list for it, so these
 # are the languages its own announcements name, or a country's main language where they name only the
@@ -177,6 +178,7 @@ META = {
     "tts_google_voice_types": ("types of 9", "Google Cloud TTS voice types", " ".join(GOOGLE_TTS)),
     "tts_azure": ("bool", "Azure AI Speech (text to speech)", AZURE_SPEECH + "?tabs=tts"),
     "tts_amazon": ("bool", "Amazon Polly", POLLY),
+    "mt_amazon": ("bool", "Amazon Translate", AMAZON_MT),
     "mt_google": ("bool", "Google Cloud Translation", GOOGLE_MT),
     "mt_azure": ("bool", "Azure AI Translator", AZURE_MT),
     "mt_azure_features": ("features of 6", "Azure Translator language features", AZURE_MT),
@@ -386,6 +388,7 @@ def collect() -> list[Record]:
     # Amazon
     mark("asr_amazon", _codes(table(TRANSCRIBE, heading="Supported languages"), "Language code", speech=True))
     mark("tts_amazon", _codes(table(POLLY, first="Language"), "Language code", speech=True))
+    mark("mt_amazon", _codes(table(AMAZON_MT, heading="Supported languages"), "Language code"))
     mark("va_alexa", _codes(table(ALEXA, first="Locale code"), "Locale code", speech=True))
     mark("va_alexa", ALEXA_PLUS, "Also Alexa+ (early access in most countries)")
 

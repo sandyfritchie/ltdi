@@ -9,19 +9,19 @@
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.7
+   "within_10pct": 0.733
   },
   {
    "ranks": "61–200",
    "languages": 140,
-   "median_range": 14,
+   "median_range": 15,
    "within_10pct": 0.921
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 213,
-   "within_10pct": 0.154
+   "median_range": 214,
+   "within_10pct": 0.16
   },
   {
    "ranks": "1,001 and below",
@@ -37,14 +37,9 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Western Armenian",
-     "from": 288,
-     "to": 286
-    },
-    {
-     "name": "Ukrainian",
-     "from": 22,
-     "to": 24
+     "name": "Hebrew",
+     "from": 29,
+     "to": 26
     },
     {
      "name": "Romanian",
@@ -53,13 +48,18 @@
     },
     {
      "name": "Malay",
-     "from": 34,
-     "to": 32
+     "from": 33,
+     "to": 31
     },
     {
-     "name": "Finnish",
-     "from": 23,
-     "to": 21
+     "name": "Danish",
+     "from": 24,
+     "to": 22
+    },
+    {
+     "name": "Yue Chinese",
+     "from": 81,
+     "to": 80
     }
    ]
   },
@@ -69,61 +69,61 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Polish",
-     "from": 16,
-     "to": 12
-    },
-    {
-     "name": "Yue Chinese",
-     "from": 82,
-     "to": 85
-    },
-    {
-     "name": "Russian",
-     "from": 8,
-     "to": 5
-    },
-    {
-     "name": "Norwegian Bokmål",
-     "from": 25,
-     "to": 28
+     "name": "Malay",
+     "from": 33,
+     "to": 37
     },
     {
      "name": "Dutch",
-     "from": 11,
-     "to": 14
+     "from": 12,
+     "to": 16
+    },
+    {
+     "name": "Yue Chinese",
+     "from": 81,
+     "to": 84
+    },
+    {
+     "name": "Thai",
+     "from": 19,
+     "to": 22
+    },
+    {
+     "name": "Polish",
+     "from": 16,
+     "to": 13
     }
    ]
   },
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9977,
-   "moved_10_in_top_300": 11,
+   "moved_10_in_top_300": 8,
    "largest": [
     {
      "name": "Ladin",
      "from": 308,
-     "to": 289
-    },
-    {
-     "name": "Picard",
-     "from": 315,
-     "to": 300
+     "to": 287
     },
     {
      "name": "Western Armenian",
-     "from": 288,
-     "to": 274
+     "from": 284,
+     "to": 269
     },
     {
-     "name": "Lombard",
-     "from": 174,
-     "to": 160
+     "name": "Picard",
+     "from": 314,
+     "to": 300
     },
     {
      "name": "Kölsch",
      "from": 276,
-     "to": 263
+     "to": 262
+    },
+    {
+     "name": "Adyghe",
+     "from": 222,
+     "to": 209
     }
    ]
   }

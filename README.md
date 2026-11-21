@@ -115,8 +115,10 @@ a commercial or regional service), Open only (open tools only), Data only, and N
 say what exists, not how much: they aren't ordered by score, so a language in Open only can outscore
 one in Commercial.
 
-Regional providers (Yandex, Baidu, Alibaba Cloud's Qwen-MT, Naver Papago, Sarvam AI, Lelapa AI,
-GhanaNLP's Khaya, Sunbird AI) count together as one extra commercial service, and only for the
+A service counts as major when its company sells it worldwide, rather than mainly in one country
+or region, and publishes a list of the languages it supports (from method 2.3; before, which
+services counted was a judgement). Regional providers, which serve mainly one country or region
+(Yandex, Baidu, Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP's Khaya, Sunbird AI), count together as one extra commercial service, and only for the
 languages one of them offers, at the best credit among them. So a regional provider can raise a
 language's score and close a gap, but never lowers the score of a language it doesn't serve.
 
@@ -140,14 +142,14 @@ any name it can't resolve.
 | Tech | Keyboard | Gboard, Apple iOS, SwiftKey; Keyman (open); depth: Apple's four keyboard feature lists | automated |
 | Tech | Speech input | Google Cloud STT, Azure AI Speech, iOS dictation, Amazon Transcribe; Whisper, MMS and Omnilingual ASR (open); depth: Whisper large-v3 FLEURS WER, Omnilingual ASR's published character error rate per language, Azure speech-to-text features | automated |
 | Tech | Text-to-speech | Google Cloud TTS, Azure AI Speech, Amazon Polly, OpenAI API text-to-speech; MMS-TTS (open); depth: number of Google voice types | automated |
-| Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | automated |
-| Tech | LLMs | Availability: Gemini, Copilot and ChatGPT app language lists (ChatGPT's transcribed by hand from OpenAI's help page, `ltdi/collectors/openai_docs.py`). Quality: Anthropic's Global-MMLU for Claude Fable 5.2 (relative to English, scaled from 70% to 95%), OpenAI's MMMLU (o3's accuracy, scaled from 0.60 to 0.88), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50); at or above the top of each scale a result counts in full, as strong translation results do | automated; Anthropic's scores read by hand |
+| Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL, Amazon Translate, Alibaba Cloud Qwen-MT; NLLB-200 (open); depth: DeepL and Azure Translator per-language features | automated |
+| Tech | LLMs | Availability: the Gemini, Copilot, ChatGPT and Claude app language lists (ChatGPT's and Claude's are the languages of the app's language setting), and the model language lists of Meta AI (Llama 4), Mistral and Qwen (Qwen3); ChatGPT's transcribed by hand from OpenAI's help page (`ltdi/collectors/openai_docs.py`), the other four from each company's page (`ltdi/collectors/llm_lists.py`). Quality: Anthropic's Global-MMLU for Claude Fable 5.2 (relative to English, scaled from 70% to 95%), OpenAI's MMMLU (o3's accuracy, scaled from 0.60 to 0.88), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50); at or above the top of each scale a result counts in full, as strong translation results do | automated; Anthropic's scores read by hand |
 | Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text; Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
 | Checklists only | Word-frequency lists (not scored: the web text behind them is mostly what FineWeb-2 measures) | Corpus Crawler's language table (pinned), linking each language's list; shown in the keyboard and spelling readiness checklists and on language pages (`ltdi/collectors/corpuscrawler.py`) | automated |
 | Tech | Voice assistant (half weight) | Each company's assistant, old and new generations together: Google Assistant / Gemini for Home (speakers and displays; Gemini for Home's early-access languages are read from Google's help page), Siri, and Alexa / Alexa+ (Alexa's skills languages; Amazon publishes no language list for Alexa+, so Alexa+'s are those named in Amazon's launch announcements, or a country's main language where only the country is named; checked November 2026) | automated |
-| Tech | Regional providers | Translation: Yandex, Baidu, Alibaba Cloud (Qwen-MT), Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP Khaya, Sunbird AI. Speech recognition: Yandex SpeechKit, Sarvam, Lelapa, Khaya, Sunbird. Text-to-speech: Yandex SpeechKit, Sarvam, Khaya, Sunbird | read by hand from each provider's language list (`ltdi/collectors/regional.py`) |
+| Tech | Regional providers | Translation: Yandex, Baidu, Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP Khaya, Sunbird AI. Speech recognition: Yandex SpeechKit, Sarvam, Lelapa, Khaya, Sunbird. Text-to-speech: Yandex SpeechKit, Sarvam, Khaya, Sunbird | read by hand from each provider's language list (`ltdi/collectors/regional.py`) |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
 | Tech | Locale data (half weight) | Unicode CLDR coverage level: basic, moderate or modern | automated |
 

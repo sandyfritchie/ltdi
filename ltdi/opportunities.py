@@ -357,9 +357,9 @@ def find(f: dict[str, Record]) -> list[dict]:
                 "Benchmark results: " + "; ".join(weak) + ".", 0.5, llm)
     apps_n = offered["llm"]
     if any(i in f for i in APPS) and apps_n < len(APPS) and (apps_n or llm):
-        add("llm-apps", "share", "llm", (f"{apps_n} of {len(APPS)} major AI assistant apps list this language" if apps_n
-                                    else "Not in the AI assistant app language lists tracked"),
-            ("Some assistant apps already offer it. " if apps_n else "")
+        add("llm-apps", "share", "llm", (f"{apps_n} of {len(APPS)} major AI assistants list this language" if apps_n
+                                    else "Not in the AI assistants' language lists tracked"),
+            ("Some assistants already list it. " if apps_n else "")
             + ("Benchmarks show models already work in it, so listing it could be a short step."
                if llm else "Listing it would tell speakers they can rely on it."),
             (len(APPS) - apps_n) / len(APPS), APPS + llm)

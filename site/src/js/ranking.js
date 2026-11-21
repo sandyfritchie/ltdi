@@ -75,7 +75,7 @@ function gapsCell(l) {
 // speakers whose language has no commercial service for each main technology
 const pctBand = r => r >= 0.75 ? 4 : r >= 0.5 ? 3 : r >= 0.25 ? 2 : 1;  // share online, for colour
 const GAP_SHORT = { speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLM app lists', keyboard: 'Keyboard', assistant: 'Voice assistant' };
-const GAP_TITLE = { llm: "Speakers whose language is in no official AI assistant app's language list (models may still answer in it)" };
+const GAP_TITLE = { llm: "Speakers whose language is in no major AI assistant's official language list (models may still answer in it)" };
 // technologies counted through a spoken variety's written standard ([written_standard] in the methodology)
 const WRITTEN_TECH = new Set(DATA.config.written_standard ? DATA.config.written_standard.technologies : []);
 const GAP_GROUPS = [['Text', ['keyboard', 'mt']], ['Speech', ['speech_input', 'tts']], ['AI', ['llm', 'assistant']]];

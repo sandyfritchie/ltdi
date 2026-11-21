@@ -7,15 +7,18 @@ edition = "2026-11"
 # minor number when weights, goalposts or the services counted change. 1.x had three dimensions
 # (writing, data, technology); 2.0 is the two-dimension method from edition 2026-11, and 2.1 adds
 # PanLex's dictionary entries to the data dimension; 2.2 stops discounting Omnilingual ASR by its
-# makers' error rates, which are measured on held-out data from each language's own training sources.
+# makers' error rates, which are measured on held-out data from each language's own training sources;
+# 2.3 counts every global provider with a published list as a major service (Amazon Translate; Alibaba
+# Cloud's Qwen-MT, formerly regional; Claude, Meta AI, Mistral and Qwen for LLMs).
 # Each edition's scores are archived in data/editions/ with this version and a hash of the config.
-methodology_version = "2.2"
+methodology_version = "2.3"
 # What changed in each version, shown on the About page. From the 2026-12 edition the method changes
 # only with a new edition, never within one.
 history = [
   ["2.0", "2026-11-13", "Two dimensions, data and technology, combined by a geometric mean; tiers by score, and by what exists below Medium; spoken varieties scored on their own resources."],
   ["2.1", "2026-11-18", "PanLex dictionary entries added to the data dimension (weight 0.05, log scale from 1,000 to 1 million expressions)."],
   ["2.2", "2026-11-19", "Omnilingual ASR's published error rates no longer discount the model, since each is measured on held-out data from the language's own training sources."],
+  ["2.3", "2026-12-01", "Every service sold worldwide with a published language list counts as a major service: added Amazon Translate for translation and Claude, Meta AI, Mistral and Qwen for LLMs; Alibaba Cloud's Qwen-MT counts as major rather than regional."],
 ]
 # Lowest value a dimension index can take, so one empty dimension doesn't zero the LTDI
 floor = 0.05
@@ -147,8 +150,9 @@ weight = 0.1
 # Whisper's published breakdown as poor).
 # Omnilingual ASR (Meta, 2025) by its published character error rate: 25% or
 # worse counts it at half, 5% or better in full.
-# Regional providers (services.csv role "regional": Yandex, Baidu, Alibaba
-# Cloud, Naver, Sarvam AI, Lelapa AI, GhanaNLP, Sunbird AI) count together as
+# Major services (services.csv role "consumer") are those sold worldwide with a
+# published language list. Regional providers (role "regional": Yandex, Baidu,
+# Naver, Sarvam AI, Lelapa AI, GhanaNLP, Sunbird AI) count together as
 # one extra commercial service, only for the languages one of them offers, at
 # the best credit among them; so they raise a score or close a gap but never
 # dilute the share for languages they don't serve.
@@ -176,9 +180,10 @@ weight = 1
 
 [dimensions.tech.technologies.llm]
 label = "LLMs"
-help = "The languages each company documents for its chat app, from its official list. A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company."
-# Availability in the official app language lists (Gemini, Copilot, ChatGPT; a
-# presence score over the apps), times a quality factor from the measured
+help = "The languages each company documents for its chat app or model, from its official list. A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company."
+# Availability in the official language lists (the Gemini, Copilot, ChatGPT and
+# Claude apps; Meta AI's Llama 4, Mistral's and Qwen3's model lists; a presence
+# score over them), times a quality factor from the measured
 # benchmarks: their mean, each scaled linearly between its min and max, counts
 # from half (poor) to full (good), as published quality does for translation
 # and speech. Unmeasured languages count in full, so being benchmarked never

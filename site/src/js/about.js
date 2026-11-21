@@ -67,17 +67,22 @@ function methodHistory() {
 function providersPage() {
   const C = DATA.coverage || { tech: [] }, T = DATA.config.dimensions.tech.technologies;
   const role = r => ({ consumer: 'Major', regional: 'Regional', open: 'Open model', quality: 'Benchmark' })[r] || r;
+  // LLM lists differ in kind (an app's interface languages, or a model's), so say which each is
+  const kindOf = (label, name, prov) => { if (label !== T.llm.label) return '';
+    const s = DATA.services.find(x => x.technology === 'llm' && x.role === 'consumer' && x.name === name && x.provider === prov);
+    return s ? `<br><span class="muted small">${esc(s.kind)}</span>` : ''; };
   const rows = C.tech.filter(([, , svcs]) => svcs.some(x => x[2] !== 'quality')).map(([label, , svcs]) => svcs.filter(x => x[2] !== 'quality')
-    .map(([name, prov, r, n, ent], i) => `<tr>${i ? '' : `<td rowspan="${svcs.filter(x => x[2] !== 'quality').length}">${esc(label)}</td>`}<td>${esc(name)}${prov && PROV_ALL[prov] && !name.includes(PROV_ALL[prov]) && prov !== 'open' ? ` <span class="muted">${esc(PROV_ALL[prov])}</span>` : ''}</td><td>${role(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${ent > n ? ent.toLocaleString() : ''}</td></tr>`).join('')).join('');
+    .map(([name, prov, r, n, ent], i) => `<tr>${i ? '' : `<td rowspan="${svcs.filter(x => x[2] !== 'quality').length}">${esc(label)}</td>`}<td>${esc(name)}${prov && PROV_ALL[prov] && !name.includes(PROV_ALL[prov]) && prov !== 'open' ? ` <span class="muted">${esc(PROV_ALL[prov])}</span>` : ''}${kindOf(label, name, prov)}</td><td>${role(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${ent > n ? ent.toLocaleString() : ''}</td></tr>`).join('')).join('');
   $('#view').innerHTML = `<article class="about">
     <h2>For providers</h2>
     <p class="lede">If your company makes a product the Index tracks, this page explains how its numbers are made and how to correct them.</p>
     <h3>How a product's languages are counted</h3>
     <p>${COUNTING_NOTE}</p>
     <p>Lists are read from the company's own public pages: most automatically, when the site is rebuilt, and a few by hand where no page can be read automatically. Each language's profile links the exact page each value comes from, with the date it was read. A product counts for a language when its list names the language, whatever it calls it; a list that names only a country (Siri's, say) counts the country's main language.</p>
-    <p>For LLMs, the count is the languages each company documents for its chat app. A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company.</p>
+    <p>For LLMs, the count is the languages each company documents, from its official list: for some companies the languages of its chat app's interface, for others the languages its model supports, as each publishes them (the table below says which). A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company.</p>
     <h3>Which companies count, and how</h3>
-    <p>For each technology, a language is offered fully when at least half of the major services tracked offer it, and is underrepresented when fewer do. Regional providers, which serve one country or region, count together as one extra service where any of them offers a language. Open models count for less than commercial services, and never as a major service.</p>
+    <p>A service counts as major when its company sells it worldwide, rather than mainly in one country or region, and publishes a list of the languages it supports. Every such service the Index has found is tracked; if one is missing, say so (below) and it will be added from the next edition.</p>
+    <p>For each technology, a language is offered fully when at least half of the major services tracked offer it, and is underrepresented when fewer do. Regional providers, which serve mainly one country or region, count together as one extra service where any of them offers a language. Open models count for less than commercial services, and never as a major service.</p>
     <div class="tablebox"><table class="covtab provtab"><thead><tr><th>Technology</th><th>Service</th><th>Counted as</th><th class="num">Languages</th><th class="num">Entries in its list</th></tr></thead><tbody>${rows}</tbody></table></div>
     <p class="note">Languages are counted among the ${(DATA.coverage || {}).n?.toLocaleString() || ''} ranked languages. Entries in a list are shown where they're known.</p>
     <h3>Correcting a count</h3>

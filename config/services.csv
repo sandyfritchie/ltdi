@@ -18,10 +18,15 @@ tts_open_mms,tts,open,MMS-TTS,Open model,meta,,,,,,,,,,,,
 mt_google,mt,consumer,Google Cloud,Translation,google,,,,,"FLORES-200 chrF++ from English (Robinson et al. 2023): 25 or less counts the service at half, 50 or more in full",mt_google_flores_chrf,25,50,independent,the FLORES-200 devtest,"1,012 sentences",yes
 mt_azure,mt,consumer,Azure,Translator,microsoft,mt_azure_features,,6,service,,,,,,,,
 mt_deepl,mt,consumer,DeepL,Translator,deepl,mt_deepl_features,,4,service,"Glossaries, translation memory, style rules, DeepL Write",,,,,,,
+mt_amazon,mt,consumer,Amazon Translate,Translation,amazon,,,,,,,,,,,,
 mt_open_nllb,mt,open,NLLB-200,Open model,meta,,,,,"FLORES-200 chrF++ from English (Meta, Dense 3.3B): 25 or less counts the model at half, 50 or more in full",mt_nllb_flores_chrf,25,50,own,the FLORES-200 devtest,"1,012 sentences",yes
 llm_app_gemini,llm,consumer,Gemini,Official app language list,google,,,,,,,,,,,,
 llm_app_copilot,llm,consumer,Copilot,Official app language list,microsoft,,,,,,,,,,,,
-llm_app_chatgpt,llm,consumer,ChatGPT,Official app language list,openai,,,,,,,,,,,,
+llm_app_chatgpt,llm,consumer,ChatGPT,App language setting,openai,,,,,,,,,,,,
+llm_app_claude,llm,consumer,Claude,App language setting,anthropic,,,,,,,,,,,,
+llm_app_meta,llm,consumer,Meta AI,Llama 4 supported languages,meta,,,,,,,,,,,,
+llm_app_mistral,llm,consumer,Mistral AI,Official model language list,mistral,,,,,,,,,,,,
+llm_app_qwen,llm,consumer,Qwen,Qwen3 language list,alibaba,,,,,,,,,,,,
 llm_global_mmlu_rel,llm,measured,Claude Fable 5.2,"Global-MMLU, 2026",anthropic,,70,95,,Share of the English score,,,,own,Global-MMLU,,yes
 llm_mmmlu_openai,llm,measured,OpenAI o3,"MMMLU, 2025",openai,,0.6,0.88,,Accuracy,,,,own,MMMLU,"MMLU's 14,042 test questions, professionally translated",yes
 llm_afrobench_gpt4o,llm,measured,GPT-4o,"AfroBench translation, 2025",openai,,25,50,,chrF from English,,,,independent,FLORES-200 in AfroBench,,yes
@@ -46,7 +51,7 @@ mt_yandex,mt,regional,Yandex,Translate,yandex,,,,,,,,,,,,
 asr_yandex,speech_input,regional,Yandex,SpeechKit,yandex,,,,,,,,,,,,
 tts_yandex,tts,regional,Yandex,SpeechKit,yandex,,,,,,,,,,,,
 mt_baidu,mt,regional,Baidu,Translate,baidu,,,,,,,,,,,,
-mt_alibaba,mt,regional,Alibaba Cloud,Qwen-MT,alibaba,,,,,,,,,,,,
+mt_alibaba,mt,consumer,Alibaba Cloud,Qwen-MT,alibaba,,,,,,,,,,,,
 mt_papago,mt,regional,Naver,Papago,naver,,,,,,,,,,,,
 asr_sarvam,speech_input,regional,Sarvam AI,Saaras,sarvam,,,,,,,,,,,,
 tts_sarvam,tts,regional,Sarvam AI,Bulbul,sarvam,,,,,,,,,,,,

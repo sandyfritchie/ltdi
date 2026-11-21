@@ -4,9 +4,9 @@
 // Service names, kinds and providers come from config/services.csv
 const SVC = Object.fromEntries(DATA.services.map(s => [s.id, [s.name, s.kind, s.provider]]));
 // Commitment signatories first (Gates Foundation, Sept 2026), then other large companies, smaller ones, open source; tiles follow this order
-const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', meta: 'Meta', deepl: 'DeepL', open: 'Open source' };
+const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', meta: 'Meta', deepl: 'DeepL', mistral: 'Mistral AI', alibaba: 'Alibaba', open: 'Open source' };
 // Regional providers: one highlight chip for them all on language pages (most readers know the global ones)
-const REGIONAL = { yandex: 'Yandex', baidu: 'Baidu', alibaba: 'Alibaba Cloud', naver: 'Naver', sarvam: 'Sarvam AI', lelapa: 'Lelapa AI', ghananlp: 'GhanaNLP', sunbird: 'Sunbird AI' };
+const REGIONAL = { yandex: 'Yandex', baidu: 'Baidu', naver: 'Naver', sarvam: 'Sarvam AI', lelapa: 'Lelapa AI', ghananlp: 'GhanaNLP', sunbird: 'Sunbird AI' };
 const PROV_ALL = { ...PROV, ...REGIONAL };
 // Tile order: the global providers, then regional ones, then open source
 const PROV_ORDER = [...Object.keys(PROV).filter(k => k !== 'open'), ...Object.keys(REGIONAL), 'open'];

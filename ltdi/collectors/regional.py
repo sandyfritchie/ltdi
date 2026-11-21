@@ -12,7 +12,8 @@ Russia and Central Asia
                        aistudio.yandex.ru/en/docs/speechkit/tts/voices (synthesis)
 East Asia
   Baidu Translate      ai.baidu.com/ai-doc/MT/4kqryjku9 (Baidu's own codes, mapped to ISO below)
-  Alibaba Qwen-MT      alibabacloud.com/help/en/model-studio/machine-translation (qwen-mt-plus)
+  Alibaba Qwen-MT      alibabacloud.com/help/en/model-studio/machine-translation (qwen-mt-plus); from
+                       method 2.3 a major service (Alibaba Cloud sells worldwide), read here with the rest
   Naver Papago         api.ncloud-docs.com/docs/en/ai-naver-papagonmt-translation
 India
   Sarvam AI            docs.sarvam.ai/api-reference-docs/getting-started/models (Saaras speech
