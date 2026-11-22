@@ -55,14 +55,6 @@ function validationSection() {
 const COUNTING_NOTE = "Each count is the number of distinct languages in the company's own published list, read from the page linked on every language's profile. A list often has several entries for one language: English for each country, a language in two scripts, or both a language and its varieties. Those count once here, so a count is usually lower than the company's own figure, which may count them separately.";
 const CORRECTIONS_EMAIL = 'langtechindex@gmail.com';
 const INDEPENDENCE = "The Index is made and maintained by Sandy Ritchie, a linguist and technologist who worked on language technology at Google and Google DeepMind from 2018 to 2025. It's independent: it has no funding from, and no affiliation with, any company or organisation whose products or data it tracks, and every company is counted by the same rules.";
-// How the method has changed, and the rule that it changes only with an edition
-function methodHistory() {
-  const H = DATA.config.meta.history || [];
-  return `<h3>How the method changes</h3>
-    <p>The method is versioned, and from the 2026-12 edition it changes only with a new monthly edition, never within one, so ranks within an edition are comparable. Each edition's scores are archived with the method's version and a hash of its configuration, and every change is in the repository's history.</p>
-    <div class="tablebox"><table class="covtab"><thead><tr><th>Version</th><th>From</th><th>What changed</th></tr></thead>
-    <tbody>${H.slice().reverse().map(([v, d, w]) => `<tr><td>${esc(v)}</td><td>${esc(d)}</td><td>${esc(w)}</td></tr>`).join('')}</tbody></table></div>`;
-}
 // For providers: how a company's numbers are made, which companies count, and how to correct them
 function providersPage() {
   const C = DATA.coverage || { tech: [] }, T = DATA.config.dimensions.tech.technologies;
@@ -184,7 +176,6 @@ function about() {
     ${inclusionSection()}
     <h3>Independence and accuracy</h3>
     <p>${INDEPENDENCE} It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
-    ${methodHistory()}
     <h3>Corrections and feedback</h3>
     <p>If you spot a mistake, work on a product whose row is out of date, or know of a source we've missed, please email <span class="email">${CORRECTIONS_EMAIL}</span>, or, if you'd rather it be public, <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">open an issue on GitHub</a> using the correction or new-source form. A link to the page that documents the change is the quickest way to get it fixed; corrections go into the next build with the source cited. Companies whose products are tracked will find how their numbers are made on the <a href="#providers">For providers</a> page.</p>
     ${PATHS && window.goatcounter ? `<h3>Privacy</h3>
