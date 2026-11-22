@@ -20,6 +20,8 @@ jobs:
         with:
           python-version: "3.11"
       - name: Check
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python tools/link_check.py --out link_check.csv
       - uses: actions/upload-artifact@v4
         with:

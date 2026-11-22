@@ -15,6 +15,7 @@ from __future__ import annotations
 import argparse
 import concurrent.futures as cf
 import csv
+import os
 import random
 import re
 import ssl
@@ -65,7 +66,7 @@ def collect() -> dict[str, tuple[int, str]]:
     return {u: (uses[u], where[u]) for u in uses}
 
 
-_locks: dict[str, threading.Semaphore] = defaultdict(lambda: threading.Semaphore(3))
+_locks: dict[str, threading.Semaphore] = defaultdict(lambda: threading.Semaphore(2))
 
 
 def check(url: str) -> tuple[int, str, str]:
@@ -73,7 +74,10 @@ def check(url: str) -> tuple[int, str, str]:
     ctx = ssl.create_default_context()
     for attempt in range(3):
         with _locks[host]:
-            req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "*/*"},
+            headers = {"User-Agent": UA, "Accept": "*/*"}
+            if host == "huggingface.co" and os.environ.get("HF_TOKEN"):
+                headers["Authorization"] = f"Bearer {os.environ['HF_TOKEN']}"
+            req = urllib.request.Request(url, headers=headers,
                                          method="HEAD" if DOWNLOADS.search(url) else "GET")
             try:
                 with urllib.request.urlopen(req, timeout=40, context=ctx) as r:
@@ -84,7 +88,7 @@ def check(url: str) -> tuple[int, str, str]:
                 if e.code == 405 and req.get_method() == "HEAD":
                     continue
                 if e.code in (429, 502, 503, 504) and attempt < 2:
-                    time.sleep(10 * (attempt + 1))
+                    time.sleep(30 * (attempt + 1))
                     continue
                 return e.code, e.geturl() or url, e.reason if isinstance(e.reason, str) else ""
             except Exception as e:  # noqa: BLE001 (network errors of every kind are a result here)
@@ -125,6 +129,9 @@ def main() -> None:
     by = Counter((re.sub(r"^https?://", "", r["url"]).split("/")[0], r["status"]) for r in bad)
     for (host, status), n in by.most_common():
         print(f"  {n:5d}  {status}  {host}")
+    print("Failed:")
+    for r in bad[:150]:
+        print(f"  {r['status']}  {r['url']}  ({r['where']}, {r['uses']} uses) {r['error']}")
     sys.exit(0)
 
 
