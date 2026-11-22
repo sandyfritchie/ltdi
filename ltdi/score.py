@@ -79,13 +79,22 @@ def quality_factor(facts: dict[str, Record], tech: dict, service: str) -> float:
     return QUALITY_FLOOR + (1 - QUALITY_FLOOR) * q
 
 
+def stated(facts: dict[str, Record], tech: dict, ids: list[str]) -> list[str]:
+    """The services whose lists say whether they offer the language. A list that only says what a service
+    offers (listed_only in methodology.toml: an app's language setting, the languages its interface is
+    translated into) counts where it names the language and is left out where it doesn't, since a
+    language missing from it may still be supported."""
+    lo = tech.get("listed_only", ())
+    return [i for i in ids if i not in lo or (i in facts and facts[i].value)]
+
+
 def presence(facts: dict[str, Record], tech: dict, ids: list[str], regional: list[str] | None = None) -> float:
     """0.25 for being offered at all, plus 0.75 x the services' mean credit.
 
     Regional providers (Yandex, Baidu, Sarvam, Sunbird...) count together as one more service, and only
     for a language one of them offers, with the best of their credits: so they can raise a score but
     never dilute the share for languages they don't serve."""
-    credits = [credit(facts, tech, i) for i in ids]
+    credits = [credit(facts, tech, i) for i in stated(facts, tech, ids)]
     best = max((credit(facts, tech, i) for i in regional or []), default=0.0)
     if best:
         credits.append(best)
@@ -171,7 +180,7 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
             continue
         cons, opn, meas = t.get("consumer", []), t.get("open", []), list(t.get("measured", {}))
         reg = t.get("regional", [])
-        src = cons or opn
+        src = stated(facts, t, cons or opn)
         r = int(any(facts.get(i) and facts[i].value for i in reg))  # regional providers: one more service, when present
         n = sum(1 for i in src if facts.get(i) and facts[i].value) + r
         levels[name] = "full" if n and n / (len(src) + r) >= 0.5 else "part" if n else \

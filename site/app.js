@@ -894,6 +894,7 @@ function depthText(f, ind) {
 // Benchmarks of a few languages (AfroBench: African languages) show a tile only where they have a result
 const ONLY_IF_MEASURED = new Set(['llm_afrobench_gpt4o', 'llm_afrobench_gemini']);
 // Regional providers appear only where they offer the language: a row of 'not yet' tiles for every language would be noise
+const LISTED_ONLY = new Set(Object.values(DATA.config.dimensions.tech.technologies).flatMap(t => t.listed_only || []));
 const regionalOn = (t, facts) => (t.regional || []).filter(id => facts[id] && facts[id].value);
 function svcTile(id, own, open, via, wname) {
   // a spoken variety: where it isn't offered itself but its written standard is, the tile shows that
@@ -906,6 +907,7 @@ function svcTile(id, own, open, via, wname) {
   const by = prov ? `<span class="by">${esc(PROV_ALL[prov] || prov)}</span>` : '';
   if (!f) return `<div class="tile off"${pv}><span class="mark" aria-hidden="true">–</span><div>${by}<b>${esc(name)}</b><small>${esc(kind)} · not benchmarked</small></div></div>`;
   const on = f.unit === 'bool' ? !!f.value : true;
+  const lo = !on && LISTED_ONLY.has(id);  // an app's language setting: absence isn't a gap
   let detail = '';
   if (f.unit === '% of English') detail = `${Math.round(f.value)}% of English`;
   else if (f.unit === 'accuracy') detail = `${Math.round(f.value * 100)}% accuracy`;
@@ -918,11 +920,11 @@ function svcTile(id, own, open, via, wname) {
   if (figure && TEST_OF[id]) detail = [detail, measuredShort(id)].filter(Boolean).join(' · ');
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : qf;
   const qline = qf && qf.unit !== '% WER' ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
-  const hover = [f.source, qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note, figure ? measuredLong(id) : ''].filter(Boolean).join('\n');
+  const hover = [f.source, lo ? 'Not in the app\u2019s language setting. The company says the assistant can be used in other languages too, so the Index leaves this out rather than counting it as missing.' : '', qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note, figure ? measuredLong(id) : ''].filter(Boolean).join('\n');
   if (thru) detail = [`Through ${wname}`, detail].filter(Boolean).join(' · ');
   return `<a class="tile ${thru ? 'thru' : on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${thru ? '↳' : on ? '✓' : '–'}</span>
-    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : lo ? ' · not in the setting' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
 // Locale data: CLDR's coverage level, a tile of its own since no service offers it
@@ -1311,7 +1313,8 @@ function provMissing(o, l, prov) {  // the provider's services for this opportun
   const label = id => { const [name, kind] = SVC[id];
     if (t.measured && id in t.measured) return `${kind} results`;
     return /^(iOS|Google Cloud|Azure|Microsoft 365)$/.test(name) ? `${name} ${/[A-Z]/.test(kind.slice(1)) ? kind : kind.toLowerCase()}` : name; };
-  return t ? provIds(t, prov).filter(id => !offers(l, id)).map(label) : [];
+  // a list of an app's language setting doesn't say a language is missing, only that the setting lacks it
+  return t ? provIds(t, prov).filter(id => !offers(l, id) && !(t.listed_only || []).includes(id)).map(label) : [];
 }
 function providerSelect(id) {
   const opt = ([k, n]) => `<option value="${k}"${k === provider ? ' selected' : ''}>${esc(n)}</option>`;
@@ -2002,7 +2005,7 @@ function providersPage() {
     <h3>How a product's languages are counted</h3>
     <p>${COUNTING_NOTE}</p>
     <p>Lists are read from the company's own public pages: most automatically, when the site is rebuilt, and a few by hand where no page can be read automatically. Each language's profile links the exact page each value comes from, with the date it was read. A product counts for a language when its list names the language, whatever it calls it; a list that names only a country (Siri's, say) counts the country's main language.</p>
-    <p>For LLMs, the count is the languages each company documents, from its official list: for some companies the languages of its chat app's interface, for others the languages its model supports, as each publishes them (the table below says which). A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company.</p>
+    <p>For LLMs, the count is the languages each company documents, from its official list: for some companies the languages of its chat app's interface, for others the languages its model supports, as each publishes them (the table below says which). A language-setting list names the languages an app's interface is translated into, and both companies that publish one say their assistants can be used in others too, so a language missing from it isn't counted against the app: it counts where it names a language and is left out where it doesn't. A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company.</p>
     <h3>Which companies count, and how</h3>
     <p>A service counts as major when its company sells it worldwide, rather than mainly in one country or region, and publishes a list of the languages it supports. Every such service the Index has found is tracked; if one is missing, say so (below) and it will be added from the next edition.</p>
     <p>For each technology, a language is offered fully when at least half of the major services tracked offer it, and is underrepresented when fewer do. Regional providers, which serve mainly one country or region, count together as one extra service where any of them offers a language. Open models count for less than commercial services, and never as a major service.</p>

@@ -65,7 +65,8 @@ function provMissing(o, l, prov) {  // the provider's services for this opportun
   const label = id => { const [name, kind] = SVC[id];
     if (t.measured && id in t.measured) return `${kind} results`;
     return /^(iOS|Google Cloud|Azure|Microsoft 365)$/.test(name) ? `${name} ${/[A-Z]/.test(kind.slice(1)) ? kind : kind.toLowerCase()}` : name; };
-  return t ? provIds(t, prov).filter(id => !offers(l, id)).map(label) : [];
+  // a list of an app's language setting doesn't say a language is missing, only that the setting lacks it
+  return t ? provIds(t, prov).filter(id => !offers(l, id) && !(t.listed_only || []).includes(id)).map(label) : [];
 }
 function providerSelect(id) {
   const opt = ([k, n]) => `<option value="${k}"${k === provider ? ' selected' : ''}>${esc(n)}</option>`;

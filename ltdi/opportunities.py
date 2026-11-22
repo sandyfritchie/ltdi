@@ -224,6 +224,7 @@ TTS = _consumer("tts")
 MT = _consumer("mt")
 LLM = list(_consumer("llm", "measured"))
 APPS = _consumer("llm")
+APPS_LISTED_ONLY = _consumer("llm", "listed_only")
 VA = _consumer("assistant")
 LID = _consumer("langid", "open")
 
@@ -292,7 +293,9 @@ def find(f: dict[str, Record]) -> list[dict]:
     # Coverage across each technology's services (COVERAGE)
     offered = {}
     for name, t in tech_cfg.items():
-        cons, opn = t.get("consumer", []), t.get("open", [])
+        # a list of an app's language setting counts only where it names the language (score.stated)
+        cons = [i for i in t.get("consumer", []) if i not in t.get("listed_only", ()) or _v(f, i)]
+        opn = t.get("open", [])
         n = offered[name] = sum(1 for i in cons if _v(f, i))
         if not cons or not any(i in f for i in cons):
             continue
@@ -356,13 +359,14 @@ def find(f: dict[str, Record]) -> list[dict]:
             add("llm-improve", "improve", "llm", "LLMs lag behind their English performance",
                 "Benchmark results: " + "; ".join(weak) + ".", 0.5, llm)
     apps_n = offered["llm"]
-    if any(i in f for i in APPS) and apps_n < len(APPS) and (apps_n or llm):
-        add("llm-apps", "share", "llm", (f"{apps_n} of {len(APPS)} major AI assistants list this language" if apps_n
+    apps = [i for i in APPS if i not in APPS_LISTED_ONLY or _v(f, i)]
+    if any(i in f for i in apps) and apps_n < len(apps) and (apps_n or llm):
+        add("llm-apps", "share", "llm", (f"{apps_n} of {len(apps)} major AI assistants list this language" if apps_n
                                     else "Not in the AI assistants' language lists tracked"),
             ("Some assistants already list it. " if apps_n else "")
             + ("Benchmarks show models already work in it, so listing it could be a short step."
                if llm else "Listing it would tell speakers they can rely on it."),
-            (len(APPS) - apps_n) / len(APPS), APPS + llm)
+            (len(apps) - apps_n) / len(apps), apps + llm)
     if not _v(f, "belebele") and has_text:
         add("llm-reading", "measure", "llm", "Not in Belebele, the reading-comprehension benchmark tracked here",
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",

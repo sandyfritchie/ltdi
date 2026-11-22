@@ -182,6 +182,10 @@ help = "The languages each company documents for its chat app or model, from its
 # lowers a language below its unmeasured peers. A language no app lists but a
 # benchmark has measured counts as offered at the base level (0.25).
 weight = 1
+# Lists of an app's language setting (the languages its interface is translated
+# into) count where they name a language and are left out where they don't: both
+# companies say their assistants can be used in languages beyond the setting.
+listed_only = ["llm_app_chatgpt", "llm_app_claude"]
 
 [dimensions.tech.technologies.assistant]
 label = "Voice assistant"

@@ -147,6 +147,7 @@ function depthText(f, ind) {
 // Benchmarks of a few languages (AfroBench: African languages) show a tile only where they have a result
 const ONLY_IF_MEASURED = new Set(['llm_afrobench_gpt4o', 'llm_afrobench_gemini']);
 // Regional providers appear only where they offer the language: a row of 'not yet' tiles for every language would be noise
+const LISTED_ONLY = new Set(Object.values(DATA.config.dimensions.tech.technologies).flatMap(t => t.listed_only || []));
 const regionalOn = (t, facts) => (t.regional || []).filter(id => facts[id] && facts[id].value);
 function svcTile(id, own, open, via, wname) {
   // a spoken variety: where it isn't offered itself but its written standard is, the tile shows that
@@ -159,6 +160,7 @@ function svcTile(id, own, open, via, wname) {
   const by = prov ? `<span class="by">${esc(PROV_ALL[prov] || prov)}</span>` : '';
   if (!f) return `<div class="tile off"${pv}><span class="mark" aria-hidden="true">–</span><div>${by}<b>${esc(name)}</b><small>${esc(kind)} · not benchmarked</small></div></div>`;
   const on = f.unit === 'bool' ? !!f.value : true;
+  const lo = !on && LISTED_ONLY.has(id);  // an app's language setting: absence isn't a gap
   let detail = '';
   if (f.unit === '% of English') detail = `${Math.round(f.value)}% of English`;
   else if (f.unit === 'accuracy') detail = `${Math.round(f.value * 100)}% accuracy`;
@@ -171,11 +173,11 @@ function svcTile(id, own, open, via, wname) {
   if (figure && TEST_OF[id]) detail = [detail, measuredShort(id)].filter(Boolean).join(' · ');
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : qf;
   const qline = qf && qf.unit !== '% WER' ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
-  const hover = [f.source, qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note, figure ? measuredLong(id) : ''].filter(Boolean).join('\n');
+  const hover = [f.source, lo ? 'Not in the app\u2019s language setting. The company says the assistant can be used in other languages too, so the Index leaves this out rather than counting it as missing.' : '', qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note, figure ? measuredLong(id) : ''].filter(Boolean).join('\n');
   if (thru) detail = [`Through ${wname}`, detail].filter(Boolean).join(' · ');
   return `<a class="tile ${thru ? 'thru' : on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${thru ? '↳' : on ? '✓' : '–'}</span>
-    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : lo ? ' · not in the setting' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
 // Locale data: CLDR's coverage level, a tile of its own since no service offers it
