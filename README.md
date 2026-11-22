@@ -397,6 +397,21 @@ a change of method raises `methodology_version`; breaking changes go to `/api/v2
 alongside for at least one edition. The files are generated when the site is published
 (`python -m ltdi.api` in `pages.yml`), since they come entirely from the committed data and config.
 
+## Database download
+
+The site's `#download` page offers every recorded value as tables, without the Index's scores:
+`site/data/ltdi-database-<edition>.zip` (one CSV per table, a README describing every column, and a
+Data Package `datapackage.json`) and `ltdi-database-<edition>-sqlite.zip` (the same tables in one
+indexed SQLite file). Tables: `languages`, `technologies`, `services`, `service_languages` (with each
+listing's source, and `listed_as_standard` rows for unnamed country locales), `datasets` (licence,
+commercial use, open or licensed), `dataset_languages` (amount, `how_counted`, and where to get it:
+`repository`, `subset`, `access_url`), `language_facts`, `not_collected` and `indicators`. Where to get
+each dataset comes from `data/dataset_access.csv` (`tools/access_ids.py`, monthly) and the Mozilla Data
+Collective's datasets one by one from `data/mdc_datasets.csv` (written by its collector). The files and
+`site/data/database.json` (sizes, row counts and columns, for the page) are written when the site is
+published (`python -m ltdi.export` in `pages.yml`) and aren't committed. Licensed CC BY-SA 4.0, like the
+rest of the data; the datasets listed keep their own licences.
+
 ## Opportunities
 
 `ltdi/opportunities.py` compares what each language has with what each technology

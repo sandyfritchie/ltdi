@@ -37,6 +37,7 @@ from ._common import ltdi_codes
 API = "https://mozilladatacollective.com/api/datasets?limit=100&page={page}"
 SITE = "https://mozilladatacollective.com/datasets"
 LICENSED = DATA / "licensed_speech.csv"
+COUNTED = DATA / "mdc_datasets.csv"  # each counted dataset, for the database download
 
 OPEN = {"CC0-1.0", "CC-BY-4.0", "CC-BY-3.0", "CC-BY-SA-4.0", "CC-BY-SA-3.0", "Apache-2.0", "MIT", "GPL-3.0",
         "ODbL-1.0", "Unlicense", "PDDL-1.0"}
@@ -98,6 +99,7 @@ def collect() -> list[Record]:
     codes = set(ltdi_codes())
     counted: dict[tuple[str, str], dict[str, tuple[float, str]]] = defaultdict(dict)  # (code, indicator) -> key -> (hours, label)
     licensed = []
+    detail: dict[tuple, dict] = {}
     items = catalog()
     # of a dataset shared in versions, only the latest counts: (name without its version) -> latest version
     latest: dict[str, int] = {}
@@ -141,6 +143,8 @@ def collect() -> list[Record]:
         label = f"{name}{f' ({org})' if org else ''} {h:,.1f} h, {d.get('licenseAbbreviation')}"
         if h > counted[(code, ind)].get(key, (0, ""))[0]:
             counted[(code, ind)][key] = (h, label)
+            detail[(code, ind, key)] = {"language": code, "indicator": ind, "name": name, "steward": org, "hours": round(h, 1),
+                                        "licence": d.get("licenseAbbreviation") or "", "url": url}
 
     with LICENSED.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["language", "name", "steward", "task", "hours", "licence", "paid", "url"], lineterminator="\n")
@@ -156,6 +160,10 @@ def collect() -> list[Record]:
             if any(k != key and hh > h and " ".join(ll.split()[:2]).lower() == stem
                    for cc_ind in [i for (c, i) in counted if c == code] for k, (hh, ll) in counted[(code, cc_ind)].items()):
                 del ds[key]
+    with COUNTED.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["language", "indicator", "name", "steward", "hours", "licence", "url"], lineterminator="\n")
+        w.writeheader()
+        w.writerows(sorted((detail[(c, i, k)] for (c, i), ds in counted.items() for k in ds), key=lambda r: (r["language"], r["indicator"], r["name"])))
     out = []
     for (code, ind), ds in sorted(counted.items()):
         if not ds:

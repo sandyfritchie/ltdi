@@ -55,7 +55,7 @@ def collect() -> list[Record]:
     names = by_name()
     for key, (_, repo) in HF.items():
         cfg = configs(repo)
-        labels = {re.split(r"[_.]", c)[0].lower() for c in cfg}
+        labels = {re.split(r"[_.]", c)[0].lower() for c in cfg} - {"all", "default"}  # "all_languages" configs, not Allar
         found = present(labels) | {names[c] for c in cfg if c in names}
         covered[key] = found | ({"en"} if key in ORIGINAL_ENGLISH else set())
     current = {}

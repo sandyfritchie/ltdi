@@ -7,3 +7,5 @@ site/api/
 site/language/
 site/sitemap.xml
 node_modules/
+site/data/ltdi-database-*
+site/data/database.json

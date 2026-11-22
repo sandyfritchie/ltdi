@@ -547,7 +547,6 @@ pt,bench_mmmlu,1,bool,MMMLU,https://huggingface.co/datasets/openai/MMMLU,2026-11
 sw,bench_mmmlu,1,bool,MMMLU,https://huggingface.co/datasets/openai/MMMLU,2026-11-12,download,
 yo,bench_mmmlu,1,bool,MMMLU,https://huggingface.co/datasets/openai/MMMLU,2026-11-12,download,
 *,bench_xnli,0,bool,XNLI,https://huggingface.co/datasets/facebook/xnli,2026-11-12,download,
-all,bench_xnli,1,bool,XNLI,https://huggingface.co/datasets/facebook/xnli,2026-11-12,download,
 ar,bench_xnli,1,bool,XNLI,https://huggingface.co/datasets/facebook/xnli,2026-11-12,download,
 bg,bench_xnli,1,bool,XNLI,https://huggingface.co/datasets/facebook/xnli,2026-11-12,download,
 cmn,bench_xnli,1,bool,XNLI,https://huggingface.co/datasets/facebook/xnli,2026-11-12,download,
@@ -570,7 +569,6 @@ acq,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandy
 aeb,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,FLORES-200
 af,eval_benchmarks,3,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,"FLORES-200, Belebele, FLEURS"
 ak,eval_benchmarks,2,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,"IrokoBench, FLORES-200"
-all,eval_benchmarks,1,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,XNLI
 am,eval_benchmarks,5,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,"Global-MMLU, IrokoBench, FLORES-200, Belebele, FLEURS"
 apc,eval_benchmarks,2,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,"FLORES-200, Belebele"
 ar,eval_benchmarks,7,benchmarks of 9,Public benchmarks,https://github.com/sandyfritchie/ltdi/blob/main/ltdi/collectors/benchmarks.py,2026-11-12,download,"Global-MMLU, MMMLU, INCLUDE, XNLI, FLORES-200, Belebele, FLEURS"

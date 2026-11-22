@@ -37,6 +37,9 @@ jobs:
       # A page for every language at /language/<code>, and the sitemap (ltdi/pages.py)
       - name: Write the language pages
         run: python -m ltdi.pages
+      # The database download: every recorded value as CSV files and one SQLite file (ltdi/export.py)
+      - name: Write the database download
+        run: python -m ltdi.export
       - name: Leave out the build template
         run: rm -rf site/src site/artifact.html
       - uses: actions/configure-pages@v5

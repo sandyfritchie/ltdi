@@ -35,6 +35,8 @@ jobs:
         run: python -m ltdi.collectors --monthly
       - name: Speech locales listed without naming their variety (for varieties' pages)
         run: python tools/unnamed_locales.py
+      - name: Where to get each dataset, language by language (for the database download)
+        run: python tools/access_ids.py
       - name: Score and build
         run: |
           python -m ltdi.score > /dev/null

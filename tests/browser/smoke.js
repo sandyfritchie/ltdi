@@ -7,7 +7,7 @@ const fs = require('fs');
 const BASE = process.env.SITE || 'http://localhost:8765';
 const axe = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
 const VIEWS = ['/', '/#map', '/#charts', '/#opportunities', '/#plan', '/#plan?t=mt&from=none&s=ready', '/#shortlist?codes=yo,ha',
-  '/#about', '/#providers', '/language/yo', '/language/en', '/language/cop', '/#compare-yo-ha', '/#opportunities-yo', '/language/xx'];
+  '/#about', '/#providers', '/#download', '/language/yo', '/language/en', '/language/cop', '/#compare-yo-ha', '/#opportunities-yo', '/language/xx'];
 const fail = [];
 
 (async () => {

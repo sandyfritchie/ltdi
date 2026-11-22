@@ -70,6 +70,7 @@ function route() {
   else if (h === 'map') mapPage();
   else if (h === 'about') about();
   else if (h === 'providers') providersPage();
+  else if (h === 'download') downloadPage();
   else if (h === 'opportunities') opportunities();
   else if ((m = h.match(/^opportunities-([a-z]+)$/))) opportunities(m[1]);
   else if ((m = h.match(/^opp-([a-z0-9-]+)$/))) oppDetail(m[1]);
@@ -80,12 +81,12 @@ function route() {
   const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
   const otab = document.getElementById('tab-opportunities');
   if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
-  const tab = missing !== undefined ? '' : h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about'].includes(h) ? h : h === 'providers' ? 'about' : (h === '' || h === 'ranking') ? 'ranking' : '';
+  const tab = missing !== undefined ? '' : h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about'].includes(h) ? h : h === 'providers' || h === 'download' ? 'about' : (h === '' || h === 'ranking') ? 'ranking' : '';
   tipHide();
-  const lm = h.match(/^lang-([a-z0-9]+)$/), TT = { map: 'Map', charts: 'Charts', opportunities: 'Opportunities', plan: 'Plan', about: 'About', providers: 'For providers' };
+  const lm = h.match(/^lang-([a-z0-9]+)$/), TT = { map: 'Map', charts: 'Charts', opportunities: 'Opportunities', plan: 'Plan', about: 'About', providers: 'For providers', download: 'Download the database' };
   document.title = missing !== undefined || (lm && !BY[lm[1]]) ? 'Not found · Language Technology Development Index'
     : lm && BY[lm[1]] ? `${BY[lm[1]].name}: language technology support · LTDI`
-    : TT[h === 'providers' ? h : tab] ? `${TT[h === 'providers' ? h : tab]} · Language Technology Development Index` : 'Language Technology Development Index';
+    : TT[['providers', 'download'].includes(h) ? h : tab] ? `${TT[['providers', 'download'].includes(h) ? h : tab]} · Language Technology Development Index` : 'Language Technology Development Index';
   countView();
   for (const t of ['ranking', 'map', 'charts', 'opportunities', 'plan', 'about']) {
     const a = document.getElementById('tab-' + t);

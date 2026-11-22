@@ -78,7 +78,7 @@
     "code": "pih",
     "name": "Pitcairn-Norfolk",
     "ltdi": 0.05,
-    "rank": 3326,
+    "rank": 3325,
     "tier": "ld",
     "other": 1,
     "gap": -0.671
@@ -440,7 +440,7 @@
     "code": "anu",
     "name": "Anuak",
     "ltdi": 0.05,
-    "rank": 2646,
+    "rank": 2645,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -458,7 +458,7 @@
     "code": "bqm",
     "name": "Wumboko",
     "ltdi": 0.05,
-    "rank": 2646,
+    "rank": 2645,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -485,7 +485,7 @@
     "code": "mls",
     "name": "Masalit",
     "ltdi": 0.05,
-    "rank": 2695,
+    "rank": 2694,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -503,7 +503,7 @@
     "code": "ssc",
     "name": "Suba-Simbiti",
     "ltdi": 0.05,
-    "rank": 2793,
+    "rank": 2792,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -512,7 +512,7 @@
     "code": "ijs",
     "name": "Southeast Ijo",
     "ltdi": 0.05,
-    "rank": 2646,
+    "rank": 2645,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.496
@@ -674,7 +674,7 @@
     "code": "cay",
     "name": "Cayuga",
     "ltdi": 0.05,
-    "rank": 2695,
+    "rank": 2694,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.431

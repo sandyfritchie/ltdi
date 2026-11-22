@@ -98,6 +98,77 @@ function providersPage() {
 }
 // What the Index is for, how far each source reaches, and the limits of the data, sources and views
 const REPO_URL = 'https://github.com/sandyfritchie/ltdi';
+// The database download (ltdi/export.py writes the files and data/database.json when the site is published)
+const DB_TABLES = [
+  ['languages', 'One row per language or variety: codes, names, speakers, countries, scripts, endangerment'],
+  ['technologies', 'The technologies tracked'],
+  ['services', 'Each product, open model and benchmark result checked, with its maker and where its list is read'],
+  ['service_languages', 'Which service offers which language, with the page it was read from, the date, and any published quality figure'],
+  ['datasets', 'Each dataset: what it holds, who shares it, its licence, whether it allows commercial use'],
+  ['dataset_languages', 'How much of each dataset each language has, how that was counted, and where to get it'],
+  ['language_facts', 'Every other recorded value: Wikipedia, Hugging Face, fonts, Unicode, service features, connectivity'],
+  ['not_collected', "Values the Index didn't collect for a language, so their absence means nothing"],
+  ['indicators', 'What each value means, its unit, and the table it is in'],
+];
+let DB_INFO = null;
+const dbCite = () => `Ritchie, Sandy (${DATA.edition.slice(0, 4)}). Language Technology Development Index (LTDI) database, edition ${DATA.edition}. https://langtechindex.org/#download`;
+function downloadPage() {
+  const ed = DATA.edition, csvFile = `data/ltdi-database-${ed}.zip`, sqlFile = `data/ltdi-database-${ed}-sqlite.zip`;
+  const mb = b => b ? `${(b / 1e6).toFixed(1)} MB` : '';
+  const fill = () => {
+    if (!DB_INFO || curRoute() !== 'download') return;
+    const rows = Object.fromEntries(DB_INFO.tables.map(t => [t.name, t]));
+    for (const el of document.querySelectorAll('[data-db-rows]')) el.textContent = (rows[el.dataset.dbRows]?.rows ?? '').toLocaleString();
+    for (const el of document.querySelectorAll('[data-db-size]')) el.textContent = mb(DB_INFO[el.dataset.dbSize]?.bytes);
+    for (const el of document.querySelectorAll('[data-db-cols]')) {
+      const t = rows[el.dataset.dbCols];
+      el.innerHTML = t ? `<div class="tablebox"><table class="covtab dbcols"><thead><tr><th>Column</th><th>Type</th><th>Meaning</th></tr></thead><tbody>${t.columns.map(c => `<tr><td><span class="code">${esc(c.name)}</span></td><td class="muted">${esc(c.type)}</td><td>${esc(c.description)}</td></tr>`).join('')}</tbody></table></div>` : '';
+    }
+  };
+  $('#view').innerHTML = `<article class="about dbpage">
+    <h2>Download the database</h2>
+    <p class="lede">Every data point the Index records, as plain tables for your own analysis or for finding data to build with: which products and open models support each language, what open data exists for it and where to get it, and the other facts on each language's page, each with its source and date.</p>
+    <div class="dbfiles">
+      <a class="dbfile" href="${csvFile}" download><span class="dbfmt">CSV</span><span><b>Tables as CSV files</b><br><span class="muted small">One file per table, with a README describing every column and a Data Package description · zip, <span data-db-size="csv"></span></span></span></a>
+      <a class="dbfile" href="${sqlFile}" download><span class="dbfmt">SQL</span><span><b>One SQLite database</b><br><span class="muted small">The same tables, indexed, for SQL or any SQLite tool · zip, <span data-db-size="sqlite"></span></span></span></a>
+    </div>
+    <p class="muted small">Edition ${esc(ed)}, rebuilt with every edition. Licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, like the rest of the site's data. The Index's own scores aren't in it: they're in the <a href="#about">scores table on the About page</a>.</p>
+    <h3>What's in it</h3>
+    <div class="tablebox"><table class="covtab dbcols"><thead><tr><th>Table</th><th class="num">Rows</th><th>Each row</th></tr></thead><tbody>
+      ${DB_TABLES.map(([t, d]) => `<tr><td><span class="code">${t}</span></td><td class="num" data-db-rows="${t}"></td><td>${d}</td></tr>`).join('')}
+    </tbody></table></div>
+    <p>Every table joins to <span class="code">languages</span> on the language's code, the same one in each language page's address. The columns of each table:</p>
+    ${DB_TABLES.map(([t]) => `<details class="prov"><summary><span class="code">${t}</span></summary><div data-db-cols="${t}"></div></details>`).join('')}
+    <h3>Getting the data itself</h3>
+    <p>For each dataset and language, <span class="code">dataset_languages</span> says where to get it: <span class="code">repository</span> names where it's hosted (<span class="code">huggingface:google/fleurs</span>, <span class="code">commonvoice</span>, <span class="code">openslr</span>, <span class="code">mozilladatacollective</span>, or a website), <span class="code">subset</span> is what that repository calls the language (a Hugging Face config such as <span class="code">ha_ng</span>, a folder, a locale, or a download address), and <span class="code">access_url</span> is a page to start from. With the Hugging Face <span class="code">datasets</span> library, a repository and subset load as <span class="code">load_dataset("google/fleurs", "ha_ng")</span>. Some datasets ask you to accept their terms on their page first, and each keeps its own licence: check <span class="code">datasets.licence</span> and the dataset's own page before you use it. Datasets sold or shared under a data licence agreement are listed with <span class="code">access</span> set to <span class="code">licence</span> and aren't counted in the Index.</p>
+    <p>For example, every openly licensed speech dataset for Hausa that permits commercial use, largest first:</p>
+    <pre class="dbcode">SELECT d.name, dl.amount, dl.unit, d.licence, dl.repository, dl.subset
+FROM dataset_languages dl JOIN datasets d ON d.id = dl.dataset
+WHERE dl.language = 'ha' AND d.category = 'speech'
+  AND d.counted AND d.commercial_use = 'yes'
+ORDER BY dl.amount DESC;</pre>
+    <p>Or, in Python with pandas, the languages with more than 100 hours of open speech and no speech recognition from a major company:</p>
+    <pre class="dbcode">import pandas as pd
+t = lambda n: pd.read_csv(f"ltdi-database-${esc(ed)}/{n}.csv")
+langs, facts, svc, offers = t("languages"), t("language_facts"), t("services"), t("service_languages")
+hours = facts[facts.indicator == "open_speech_hours"].set_index("language").value
+major_asr = svc[(svc.technology == "speech_input") &amp; (svc.role == "consumer")].id
+served = set(offers[offers.service.isin(major_asr) &amp; (offers.listing == "listed")].language)
+print(langs[langs.code.map(hours).gt(100) &amp; ~langs.code.isin(served)][["code", "name", "speakers"]])</pre>
+    <h3>Reading it carefully</h3>
+    <ul>
+      <li>A language with no row in <span class="code">service_languages</span> for a service isn't in that service's list. A language with no row in <span class="code">dataset_languages</span> for a dataset has none of it, or none the Index could find. Where a value wasn't collected for a language at all, <span class="code">not_collected</span> says so.</li>
+      <li>Amounts are as each source states them or as the Index measured them, and <span class="code">how_counted</span> says which: <span class="code">measured</span> from every clip or document, <span class="code">sampled</span> from a sample and scaled up, <span class="code">published</span> by the dataset's makers, <span class="code">listing</span> read from a catalogue's text, or <span class="code">counted</span> from the source's own files.</li>
+      <li>Datasets overlap: some are collections of others, and the same recordings can appear in more than one. The <span class="code">open_speech_hours</span> value in <span class="code">language_facts</span> is the Index's own total with known overlaps removed, so use it rather than summing a language's rows.</li>
+      <li>A service's list counts what the company documents, not how well the service works. Where a list names only a country locale, the row is marked <span class="code">listed_as_standard</span> and counts for the standard language, not for the variety. Published quality figures are in <span class="code">result</span>, with who measured them and when.</li>
+      <li>Values come from the sources named in each row, read on the date in <span class="code">retrieved</span>. Corrections are welcome: see <a href="#about">About</a>.</li>
+    </ul>
+    <h3>Cite</h3>
+    <p class="cite">${esc(dbCite())}</p>
+  </article>`;
+  if (DB_INFO) fill();
+  else fetch('data/database.json').then(r => r.ok ? r.json() : null).then(j => { if (j) { DB_INFO = j; fill(); } }).catch(() => {});
+}
 const citeText = () => `Ritchie, Sandy (${DATA.edition.slice(0, 4)}). Language Technology Development Index (LTDI), edition ${DATA.edition} (methodology ${DATA.config.meta.methodology_version}). https://langtechindex.org`;
 function about() {
   const C = DATA.coverage || { n: LANGS.length, meta: [], data: [], tech: [] }, N = C.n;
@@ -194,6 +265,7 @@ function about() {
     <p>The site counts visits with <a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>, which sets no cookies and records no personal information: only which page was opened, the referring site, and the browser, screen size and country in general terms. Nothing else is collected.</p>` : ''}
 
     <h3>Download and cite</h3>
+    <p><b><a href="#download">Download the whole database</a></b>: every recorded value, with its source, and where to get each dataset, as CSV files or one SQLite file.</p>
     <p>The scores for this edition are a <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">CSV file</a>: one row per language, with its rank, tier, both dimensions before and after the floor, each technology's score, and, for spoken varieties, the score through their written standard (<a href="data/ltdi-${DATA.edition}.json" target="_blank" rel="noopener">column descriptions and the method's hashes</a>). A second <a href="data/ltdi-${DATA.edition}-services.csv" target="_blank" rel="noopener">services table</a> gives, for every language, what each service and benchmark tracked records: 1 where it's offered, 0 where it isn't, or the measured result. Every value with its source, date and note is in the repository's <a href="${REPO_URL}/tree/main/data/records" target="_blank" rel="noopener">data/records</a> folder, and every edition in <a href="${REPO_URL}/tree/main/data/editions" target="_blank" rel="noopener">data/editions</a>, so editions can be compared. The data is licensed <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> and the code MIT.</p>
     <p class="cite">${esc(citeText())}</p>
     <h3>Data for your own tools</h3>

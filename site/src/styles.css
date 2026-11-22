@@ -230,6 +230,20 @@ table.ranktab { table-layout: fixed; }
 .about li + li { margin-top: 6px; }
 .about .lede { font-size: 17px; }
 .about .tablebox { margin-top: 6px; }
+.dbfiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 18px 0 10px; max-width: 760px; }
+.dbfile { display: flex; gap: 14px; align-items: center; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 8px; background: var(--surface); color: var(--ink); text-decoration: none; min-width: 0; }
+.dbfile:hover, .dbfile:focus-visible { border-color: var(--accent); }
+.dbfile b { font-size: 15px; }
+.dbfmt { flex: none; width: 46px; height: 46px; display: grid; place-items: center; border-radius: 6px; background: var(--accent); color: var(--surface); font: 700 13px var(--font-mono); letter-spacing: 0.04em; }
+.dbfile [data-db-size] { display: inline-block; min-width: 5ch; }
+.dbcode { font: 12.5px/1.5 var(--font-mono); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; overflow-x: auto; max-width: 100%; }
+.dbpage details.prov { margin: 4px 0; }
+.dbpage details.prov summary { cursor: pointer; }
+.dbcols td:first-child { white-space: nowrap; }
+.dbcols td { font-size: 14px; }
+.dbcols .num { width: 1%; white-space: nowrap; }
+.dbcols td:first-child { width: 1%; }
+@media (max-width: 560px) { .dbcols td, .dbcols th { padding-inline: 6px; } }
 .covtab { width: 100%; }
 .covtab td.covbar, .covtab th.covbar { width: 34%; }
 .covtab tr.grp td { vertical-align: top; }

@@ -1,0 +1,132 @@
+language,indicator,name,steward,hours,licence,url
+ak,speech_mdc,BibleTTS Akuapem Twi - Aligned Bible Speech,CLEAR Global,60.6,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmw25u6df001a07nxqy4ziejx
+ak,speech_mdc,BibleTTS Asante Twi - Aligned Bible Speech,CLEAR Global,57.7,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmw25uaxy001j08mqjbdovi98
+bax,speech_mdc_nc,Bamun-TTS-Dataset (female voice),Institute of African Digital Humanities,5.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmrw1urb2001nnu07i6vv0vea
+bax,speech_mdc_nc,Bamun-TTS-Dataset (male voice),Institute of African Digital Humanities,4.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmnhjbnjp0115mh07kiha0rei
+beq,speech_mdc_nc,Beembe-TTS-Dataset,Institute of African Digital Humanities,4.6,NOODL-1.0,https://mozilladatacollective.com/datasets/cmj1gd6j400uvnw07ylungxjz
+bg,speech_mdc,Dimitar 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmhpahaib00d8mk07ely2m8wh
+bg,speech_mdc,VoxForge - Bulgarian,MDC Community Concierge,1.0,GPL-3.0,https://mozilladatacollective.com/datasets/cmovv4qrj00hcmk07yuaxyvzv
+btc,speech_mdc_nc,Bati-MultiDialectalASR-Dataset,Institute of African Digital Humanities,6.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmj8fdiyv02egmb07m2wfdltm
+bum,speech_mdc_nc,Bulu-TTS-Dataset 1.0,Institute of African Digital Humanities,3.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cml9iik7d01efmn07miuf8yof
+bxk,speech_mdc,"DDD Luhya ASR Speech Dataset (70 hours), Research",Digital Divide Data,70.0,CC-BY-4.0,https://mozilladatacollective.com/datasets/cmkh2stj6004mmj0751rn8vq6
+ca,speech_mdc,VoxForge - Catalan,MDC Community Concierge,0.7,GPL-3.0,https://mozilladatacollective.com/datasets/cmowvzwts011lnn078f3719jg
+ca,speech_mdc_nc,RAPNIC - Catalan Impaired Speech (Example Set),iSocial,1.3,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmqt5v7bp0886mm07qd5mdxta
+ckb,speech_mdc,Central Kurdish TTS dataset 1.0,The University of Melbourne,2.0,CC-BY-4.0,https://mozilladatacollective.com/datasets/cmj77njd701ljmb07m97pw1p3
+cmn,speech_mdc_spontaneous_nc,Mandarin Stuttered Speech (StammerTalk),AImpower.org,43.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cms4tcf7s01luo207u7bzbqul
+cs,speech_mdc,LibriVox Czech TTS Female Voice,MDC Curators,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmo0jfvnw00p1nx070preklt5
+cv,speech_mdc,Chuvash TTS,Taruen,4.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmnhhi0by00zknn07edrnd82e
+dag,speech_mdc_nc,Sample Dagbani-TTS-Dataset,Institute of African Digital Humanities,2.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmq83m9h00145mk07g2kanq2s
+de,speech_mdc,Kerstin 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmi7mgbam000bnx074097g2yg
+de,speech_mdc,Thorsten-Voice-44kHz-Full,,40.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmm4de9w500ntmh073nx14k7p
+de,speech_mdc,VoxForge - German,MDC Community Concierge,32.0,GPL-3.0,https://mozilladatacollective.com/datasets/cmoxa7ndg01e1ny07zpwgtu22
+dlg,speech_mdc_nc,INEL Dolgan Speech Corpus,"Institute of Finno-Ugric/Uralic Studies, University of Hamburg",13.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmn4kqzzt0013nu07caxllg3t
+dua,speech_mdc_nc,Duala-TTS-Dataset,Institute of African Digital Humanities,4.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmpmpf0jw021bnu0743hu7763
+ee,speech_mdc,BibleTTS Ewe - Aligned Bible Speech,CLEAR Global,77.6,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmw25u1er001807nx7rygx81z
+efi,speech_mdc_nc,Efik-TTS-Dataset,Institute of African Digital Humanities,5.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmp1ma8ty007eo607klisho1a
+el,speech_mdc,VoxForge - Greek,MDC Community Concierge,4.0,GPL-3.0,https://mozilladatacollective.com/datasets/cmowwx2gq012hnn073izoljfz
+en,speech_mdc,Joe 1.0,Open Home Foundation,1.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmid3cyuy00gnnv07mo54373n
+en,speech_mdc,Kathleen 1.0,Open Home Foundation,1.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmid4ekjn00b8nu07xonhj0x8
+en,speech_mdc,Speech Corpus of English Learners from Mexico,MDC Community Concierge,8.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmo29suhm00gjo2078rhmqn3p
+en,speech_mdc,The LJSpeech Dataset,MDC Community Concierge,24.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmonjhxee01ako007kohpbg34
+en,speech_mdc_nc,Sermon-Malaysian-English,Mozilla Data Collective,0.1,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmkq08sqg005gmg07hshr5o5n
+en,speech_mdc_spontaneous,AImpower.org English Stuttered Speech,AImpower.org,39.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cms4tcqvl01lyo207p6j1ykng
+es,speech_mdc,Dave 1.0,Open Home Foundation,1.5,CC0-1.0,https://mozilladatacollective.com/datasets/cmid4ir9100bgnu07du03svuc
+es,speech_mdc,VoxForge - Spanish,MDC Community Concierge,53.0,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2ggvbx00lvmp07i0xqlntr
+eto,speech_mdc_nc,Eton-ASR-Dataset,Institute of African Digital Humanities,0.6,NOODL-1.0,https://mozilladatacollective.com/datasets/cmq9hxttl02jll207dw9krgw7
+evn,speech_mdc_nc,INEL Evenki Speech Corpus,"Institute of Finno-Ugric/Uralic Studies, University of Hamburg",2.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmn4kxexu001pnz07kn6wr985
+ewo,speech_mdc_nc,Ewondo-ASR-Dataset,Institute of African Digital Humanities,0.2,NOODL-1.0,https://mozilladatacollective.com/datasets/cmq9hxeod02gjmk07d9pq7jau
+fa,speech_mdc,VoxForge - Persian,MDC Community Concierge,0.3,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2h1iop00krno07itbxve77
+fr,speech_mdc,VoxForge - French,MDC Community Concierge,39.0,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2h0vtl00mwmp07ra6g2pre
+fub,speech_mdc_nc,Adamawa Fulfulde-TTS-Dataset,Institute of African Digital Humanities,3.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmp0f3tib02a4mp07ch5tr808
+fur,speech_mdc,Friulian TTS - female voice,,10.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmp3rmip800ozo30799h7wp6g
+gax,speech_mdc_nc,Afaan Oromoo-TTS-Dataset,Institute of African Digital Humanities,4.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmq82rl5i012ymk07yii2lzya
+ha,speech_mdc,BibleTTS Hausa - Aligned Bible Speech,CLEAR Global,101.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmw5a9y2y00zs06moeni1lt98
+ha,speech_mdc_nc,Hausa Multispeaker Read Speech (6.7h),CLEAR Global,6.7,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmv5enx99004707ntkne42vaq
+ha,speech_mdc_nc,Hausa-TTS-Dataset,Institute of African Digital Humanities,5.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmnopto3q00t0mf07v2dtc0ej
+ha,speech_mdc_nc,TWB Voice 1.0 - Hausa,CLEAR Global,58.0,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmp74k47s02u2mp07zr9zwhpt
+hac,speech_mdc,Hawrami Kurdish TTS dataset 1.0,The University of Melbourne,5.0,CC-BY-4.0,https://mozilladatacollective.com/datasets/cml0wtouz026wno075aq7v201
+he,speech_mdc,VoxForge - Hebrew,MDC Community Concierge,0.5,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2h1qmo00kvno072hav0upy
+hr,speech_mdc,LibriVox Croatian TTS Male Voice,MDC Curators,4.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmnyx788r00d3nr07u04smvap
+hr,speech_mdc,VoxForge - Croatian,MDC Community Concierge,0.2,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2h0m5p00msmp07okqm2fzz
+hu,speech_mdc,Anna 1.0,Open Home Foundation,1.5,CC0-1.0,https://mozilladatacollective.com/datasets/cmid4jner00hnnv072tkwlbps
+hu,speech_mdc,Berta 1.0,Open Home Foundation,1.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmid4vszk00hrnv07ljzu2xsa
+hu,speech_mdc,Imre 1.0,Open Home Foundation,1.5,CC0-1.0,https://mozilladatacollective.com/datasets/cmid4wbrc00hvnv07e448rwv3
+id,speech_mdc,"LibriVox-Indonesia read audiobooks, seven languages of Indonesia (training subset used by UHM, Lost In Transcription IN-JV)",University of Hawaii at Manoa,8.7,CC0-1.0,https://mozilladatacollective.com/datasets/cmwcnachv003007o1frm0lclz
+id,speech_mdc_spontaneous,Podcast Hari Minggoean (Indonesia),,10.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmhlvswz200fio007c7szypw8
+it,speech_mdc,Italian TTS - female voice,,10.0,Apache-2.0,https://mozilladatacollective.com/datasets/cmoiuyem401j5mr07s0jx8rqr
+it,speech_mdc,Italian female voice reading Italian Penal Code,,13.2,Apache-2.0,https://mozilladatacollective.com/datasets/cmuqxko7s007cnu06hmyin16s
+it,speech_mdc,LibriVox Italian TTS Female Voice,MDC Curators,4.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmo0qtw7v003knt07u6yupncc
+it,speech_mdc,VoxForge - Italian,MDC Community Concierge,20.0,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2ghayo00lzmp07eh8fssxm
+iyx,speech_mdc_nc,Yaka-TTS-Dataset,Institute of African Digital Humanities,5.7,NOODL-1.0,https://mozilladatacollective.com/datasets/cmj0c3cpe003enw07zxujgdt1
+jv,speech_mdc,"Suroboyoan (Surabaya Javanese) prompted speech — Jaal047 (training subset used by UHM, Lost In Transcription IN-JV)",University of Hawaii at Manoa,0.7,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmwc5skdt002f07npcxd81y63
+jv,speech_mdc_nc,ASR Javanese-Lumajang Dialect,,10.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmumq51mj0aacny078eindv36
+jv,speech_mdc_spontaneous_nc,Jember Javanese Spontaneous Speech Corpus,Universitas Gadjah Mada,10.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmlgm5a94008kny07nz2intus
+km,speech_mdc,Khmer ASR Cultural Dataset (Version 3 - Part 1),DDD-Cambodia,134.6,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmpdy0si400ldnu07rs6zwql4
+km,speech_mdc,Khmer ASR Cultural Dataset (Version 3 - Part 2),DDD-Cambodia,92.5,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmpdy14ka00lhnu07yzk3ixyn
+km,speech_mdc,Khmer ASR Cultural Dataset (Version 3 - Part 3),DDD-Cambodia,81.2,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmpdy0a9h00l5nu078u4y91x1
+km,speech_mdc,Khmer ASR Cultural Dataset (Version 3 - Part 4),DDD-Cambodia,64.5,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmpdy07op00l1nu07lucrntkj
+km,speech_mdc,Khmer ASR Cultural Dataset (Version 3 - Part 5),DDD-Cambodia,87.1,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmpdy19nn00llnu07y94pzeu4
+km,speech_mdc,Khmer ASR Cultural Dataset (Version 3 - Part 6),DDD-Cambodia,45.2,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmpdy0e2c00lxnv071292ocxf
+km,speech_mdc,Khmer ASR Cultural Dataset (Version 3 - Part 7),DDD-Cambodia,81.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmpdy0icy00l9nu07zo5hl1m3
+kr,speech_mdc_nc,Central Kanuri Speech Dataset,,12.0,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmuo1rfsj01runn073id66vg7
+kr,speech_mdc_nc,TWB Voice 1.0 - Kanuri,CLEAR Global,52.0,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmp77rkiv02wao007n5ut2oxr
+lad,speech_mdc_nc,Ladino TTS Corpus,Alp Öktem,2.0,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmqz8qad200hzmp070fvxru9n
+ldi,speech_mdc_nc,Laari-TTS-Dataset,Institute of African Digital Humanities,4.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmj324gbx00p4ny078pi26kfz
+lij,speech_mdc_nc,Ligurian TTS - female voice,,6.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmr0mhm4l01agns077lq6a5hf
+ln,speech_mdc,BibleTTS Lingala - Aligned Bible Speech,CLEAR Global,55.3,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmw25ufxe001l08mqkbd727zp
+ln,speech_mdc_spontaneous_nc,Lingala-TTS-Dataset,Institute of African Digital Humanities,4.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmm23jslb003znq07vdska54l
+luo,speech_mdc,BibleTTS Luo - Aligned Bible Speech,CLEAR Global,77.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmvi269po002607mi7oaodk1z
+mdw,speech_mdc_nc,Mbosi-TTS-Dataset,Institute of African Digital Humanities,4.6,NOODL-1.0,https://mozilladatacollective.com/datasets/cmj1gdg1s00vrnu07nmlrax7g
+mhr,speech_mdc,AIRI AI4TALK Meadow Mari ASR,Field Matters,1.3,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmq9hfevy02j3l207h80wyon8
+mkw,speech_mdc_nc,Kituba-TTS-Dataset,Institute of African Digital Humanities,5.8,NOODL-1.0,https://mozilladatacollective.com/datasets/cmj0az3yz002enw07okqee8jr
+ml,speech_mdc_nc,Malayalam Time-Aligned Speech Corpus,,0.1,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmmno795h009hml07dh7uefvp
+nap,speech_mdc_nc,Neapolitan TTS - male voice,,13.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmr0mlgjp01bimk07xkdw256s
+ne,speech_mdc,Chitwan 1.0,Open Home Foundation,1.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiugmupp01etmf07h89hfpir
+nhi,speech_mdc_nc,Zacatlán Tepetzintla Nahuatl ASR Dataset,Kaltepetlahtol,14.0,CC-BY-ND-4.0,https://mozilladatacollective.com/datasets/cmls27zfd0043ma07mxvsz8zg
+nio,speech_mdc_nc,INEL Nganasan Speech Corpus,"Institute of Finno-Ugric/Uralic Studies, University of Hamburg",38.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmn4kxhp8001tnz07jyfvf2qt
+nl,speech_mdc,Flemishguy 1.0,Open Home Foundation,1.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiupbboq01i4mf071clmd43n
+nl,speech_mdc,Nathalie 1.0,Open Home Foundation,1.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiugnlxi01c5nv07yt3kxwhx
+nl,speech_mdc,Pim 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiugo0h501exmf073drr56rr
+nl,speech_mdc,Ronnie 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiujt8r401d2nv07avt6446s
+nl,speech_mdc,VoxForge - Dutch,MDC Community Concierge,10.5,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2goc8g00m5mp07dst6o64k
+nlv,speech_mdc_nc,Tequila Zongolica Nahuatl ASR Dataset,Kaltepetlahtol,16.0,CC-BY-ND-4.0,https://mozilladatacollective.com/datasets/cmqzs3yig00eens07hehnewvf
+ny,speech_mdc,BibleTTS Chichewa - Aligned Bible speech,CLEAR Global,116.0,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmvgmgp23000307o493m81s8i
+pl,speech_mdc,Darkman 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiuparkl01fpnv077wvg3hhm
+pl,speech_mdc,Gosia 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiugoh1u01c9nv07x7i2t25c
+pnb,speech_mdc_nc,Punjabi 10 Hours TTS,MirasAI,10.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmnypcx5p004jnr07k6ptxwcq
+ps,speech_mdc,Pashto Audio-Visual Speech Corpus,Pashto AI,12.7,CC0-1.0,https://mozilladatacollective.com/datasets/cmuzrhfbd006l07nxoe3inrzq
+ps,speech_mdc,Pashto Book Summaries and Reviews TTS Corpus,Pashto AI,5.5,CC0-1.0,https://mozilladatacollective.com/datasets/cmvgn8l8u000t08nwtq4u9tr6
+ps,speech_mdc,Pashto Hekmat Aryan Poetry Recitation Corpus,Pashto AI,0.6,CC0-1.0,https://mozilladatacollective.com/datasets/cmw24dnk8000q08mqbqk2x6kz
+ps,speech_mdc,Pashto Multi-Speaker Informational Speech Corpus,Pashto AI,8.9,CC0-1.0,https://mozilladatacollective.com/datasets/cmvgn9zo7000x07o4w7lexs8z
+ps,speech_mdc_spontaneous,Pashto Single-Speaker Spontaneous Vlog Speech Corpus,Pashto AI,1.9,CC0-1.0,https://mozilladatacollective.com/datasets/cmw55bnm300vs07nukjj2iykd
+pt,speech_mdc,Cadu 1.0,Open Home Foundation,1.5,CC0-1.0,https://mozilladatacollective.com/datasets/cmiuimd7e01fimf072njn3mbb
+pt,speech_mdc,Faber 1.0,Open Home Foundation,1.5,CC0-1.0,https://mozilladatacollective.com/datasets/cmiupazq801ftnv079bo1zu4h
+pt,speech_mdc,Jeff 1.0,Open Home Foundation,1.5,CC0-1.0,https://mozilladatacollective.com/datasets/cmiupaf3e01i0mf07qkqxbzzx
+pt,speech_mdc,Tugão 1.0,Open Home Foundation,1.5,CC0-1.0,https://mozilladatacollective.com/datasets/cmiui8v3101cpnv074qwggdsj
+pt,speech_mdc,VoxForge - Portuguese,MDC Community Concierge,4.5,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2gp36800m9mp072hodigy6
+rmz,speech_mdc_nc,MarmaSpeak TTS,CLEAR Global,5.0,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmwc5rvfm002d07np4jfdmwhb
+ro,speech_mdc,Mihai 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiupa1t801hwmf07xcawi3ve
+ru,speech_mdc,Denis 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiup9seu01flnv076fexaqp9
+ru,speech_mdc,Dmitri 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiup9hrx01hsmf074vi5iqgz
+ru,speech_mdc,VoxForge - Russian,MDC Community Concierge,15.5,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2h1zvg00n0mp07wrjxow3l
+sdj,speech_mdc_nc,Suundi-TTS-Dataset,Institute of African Digital Humanities,3.1,NOODL-1.0,https://mozilladatacollective.com/datasets/cmj1qhr5n001wnv07hqcatq25
+sel,speech_mdc_nc,INEL Selkup Speech Corpus,"Institute of Finno-Ugric/Uralic Studies, University of Hamburg",1.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmn4kpt540019nz07sapke78o
+sk,speech_mdc,Lili 1.0,Open Home Foundation,2.0,CC0-1.0,https://mozilladatacollective.com/datasets/cmiup5wqw01hlmf074qy07b80
+skr,speech_mdc_nc,Saraiki 10 Hours  TTS Dataset,MirasAI,10.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmnggqr8z0082mh07vbsbm6t5
+so,speech_mdc,"DDD Somali ASR Speech Dataset (68 hours), Part 1 of 3, Research",Digital Divide Data,22.7,CC-BY-4.0,https://mozilladatacollective.com/datasets/cmmng8btl000yl807k8qtx891
+so,speech_mdc,"DDD Somali ASR Speech Dataset (68 hours), Part 2 of 3, Research",Digital Divide Data,22.7,CC-BY-4.0,https://mozilladatacollective.com/datasets/cmmnixx2d0043ml07zbq1i7oi
+so,speech_mdc,"DDD Somali ASR Speech Dataset (68 hours), Part 3 of 3, Research",Digital Divide Data,22.7,CC-BY-4.0,https://mozilladatacollective.com/datasets/cmmniydvi0047ml07nt6z5xud
+sq,speech_mdc,VoxForge - Albanian,MDC Community Concierge,0.5,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2h2jnt00n8mp07lkr11xru
+sw,speech_mdc_nc,Read Speech in Kenyan Swahili (6h),CLEAR Global,6.0,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmocxuhkn00y4md07d8bllj2x
+swc,speech_mdc_nc,Read Speech in Congolese Swahili (11h),CLEAR Global,11.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmur9duso00hanu062i17f9j6
+tr,speech_mdc,VoxForge - Turkish,MDC Community Concierge,3.0,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2h2som00kzno07n8lwesrr
+tui,speech_mdc_nc,Sample Tupuri-Bango_TTS-Dataset (male voice),Institute of African Digital Humanities,1.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmqf6bpns06gal20726pxld9z
+tui,speech_mdc_nc,Tupuri-ASR-Dataset,Institute of African Digital Humanities,0.8,NOODL-1.0,https://mozilladatacollective.com/datasets/cmq9hy15t02jpl207wlcqfpxh
+tui,speech_mdc_nc,Tupuri-Bango_TTS-Dataset (female voice),Institute of African Digital Humanities,3.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmrbacjej00lfmm07miqrz23s
+uk,speech_mdc,VoxForge - Ukrainian,MDC Community Concierge,1.0,GPL-3.0,https://mozilladatacollective.com/datasets/cmp2h28f400n4mp07aeka38ca
+ur,speech_mdc_nc,Urdu Multi-Speaker TTS Dataset,,10.0,CC-BY-NC-4.0,https://mozilladatacollective.com/datasets/cmmvykcrs0050ny07vkwww5gi
+xal,speech_mdc_nc,INEL Kalmyk Speech Corpus,"Institute of Finno-Ugric/Uralic Studies, University of Hamburg",3.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmn4kxlaj001xnz07a5yugnew
+xas,speech_mdc_nc,INEL Kamas Speech Corpus,"Institute of Finno-Ugric/Uralic Studies, University of Hamburg",13.0,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmn4kq2fl001dnz078d6n7r9a
+yo,speech_mdc,BibleTTS Yoruba - Aligned Bible Speech,CLEAR Global,25.1,CC-BY-SA-4.0,https://mozilladatacollective.com/datasets/cmw25upe9001p08mqq4z5duxa
+yrk,speech_mdc_nc,INEL Nenets Speech Corpus,"Institute of Finno-Ugric/Uralic Studies, University of Hamburg",0.6,CC-BY-NC-SA-4.0,https://mozilladatacollective.com/datasets/cmn4kmw70000nnu07vwcwfdi5
+zmx,speech_mdc_nc,Bomitaba-TTS-Dataset,Institute of African Digital Humanities,3.0,NOODL-1.0,https://mozilladatacollective.com/datasets/cmj2rze7r00j5ny07uhs85go2
