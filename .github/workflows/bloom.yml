@@ -1,0 +1,24 @@
+# Counts SIL's Bloom Library datasets on Hugging Face per language and licence (tools/bloom_counts.py).
+# The datasets are gated, so this needs the HF_TOKEN secret. Results are in the job log (lines starting BLOOM).
+name: Bloom counts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install soundfile
+      - name: Count
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python tools/bloom_counts.py
