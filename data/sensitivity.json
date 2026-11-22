@@ -9,7 +9,7 @@
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.75
+   "within_10pct": 0.767
   },
   {
    "ranks": "61–200",
@@ -112,8 +112,8 @@
     },
     {
      "name": "Venetian",
-     "from": 178,
-     "to": 164
+     "from": 177,
+     "to": 163
     },
     {
      "name": "Kölsch",

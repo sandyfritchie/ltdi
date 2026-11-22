@@ -457,7 +457,9 @@ the coalition workstream it fits.
   speakers and displays; Gemini Live on phones has no full public language list yet. Siri's list is by country,
   so Portuguese, Russian and Japanese are inferred from Brazil, Russia and Japan.
 - Open speech hours are a sum: YODAS2 counts hours of video with manually uploaded subtitles, not checked
-  transcriptions; IndicVoices is its first release and Vaani a lower bound (later releases are larger);
+  transcriptions, and many subtitles are in another language (English on Georgian, Tamil or Yoruba videos), so
+  each language's hours are multiplied by the share of a sample of its subtitle text that is in the language
+  (`tools/yodas_check.py` writes `config/yodas_language_share.csv`); IndicVoices is its first release and Vaani a lower bound (later releases are larger);
   FLEURS is counted at a nominal 12 hours. NaijaVoices is non-commercial.
 - OPUS counts overlap between corpora, and most sentence pairs are web-mined (the share is in each note).
 - Web-crawled data for underrepresented languages is often not in the language at all (Kreutzer et al. 2022,

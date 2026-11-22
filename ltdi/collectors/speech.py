@@ -3,7 +3,9 @@
 Automated:
   WAXAL      Google's African speech corpus: hours per language from its split metadata
   YODAS2     YouTube videos with manually uploaded subtitles (CC licences): hours from
-             its per-shard duration files (large languages are sampled)
+             its per-shard duration files (large languages are sampled), times the share of the
+             language's subtitle text that is in the language (config/yodas_language_share.csv, from
+             tools/yodas_check.py: many subtitles are English, Russian or French)
   FLEURS     about 12 hours for each of its 102 languages (language list from its card)
 Curated (config/speech_datasets.csv, from each dataset's paper or card):
   Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech
@@ -73,6 +75,15 @@ def yodas(codes: set[str]) -> dict[str, float]:
     return hours
 
 
+def yodas_share() -> dict[str, tuple[float, str]]:
+    """LTDI code -> (share of YODAS2 subtitle text in the language, the other languages found)."""
+    path = CONFIG / "yodas_language_share.csv"
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as f:
+        return {r["language"]: (float(r["share"]), r["other"]) for r in csv.DictReader(l for l in f if not l.startswith("#"))}
+
+
 def fleurs() -> set[str]:
     card = fetch_text(FLEURS)
     return present(set(re.findall(r"\b([a-z]{2,3})_(?:[a-z]{4}_)?(?:[a-z]{2}|\d{3})\b", card)))
@@ -84,8 +95,14 @@ def collect() -> list[Record]:
     for code, h in waxal().items():
         if code in codes:
             per[code]["WAXAL"] = (h, "WAXAL (Google and African universities)", f"{HF}/google/WaxalNLP", "Natural speech, CC BY / CC BY-SA")
+    shares = yodas_share()
     for code, h in yodas(codes).items():
-        per[code]["YODAS"] = (h, "YODAS2", f"{HF}/espnet/yodas2", "Video hours with manually uploaded subtitles; CC BY 3.0")
+        share, other = shares.get(code, (1.0, ""))
+        note = "Video hours with manually uploaded subtitles; CC BY 3.0"
+        if share < 1:
+            note += (f". {share:.0%} of a sample of its subtitle text is in the language ({other} in other languages), "
+                     f"so {h * share:,.0f} of {h:,.0f} hours are counted")
+        per[code]["YODAS"] = (h * share, "YODAS2", f"{HF}/espnet/yodas2", note)
     for code in fleurs() & codes:
         per[code]["FLEURS"] = (FLEURS_HOURS, "FLEURS", f"{HF}/google/fleurs", "About 12 hours per language; CC BY 4.0")
     with (CONFIG / "speech_datasets.csv").open(encoding="utf-8") as f:

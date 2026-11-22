@@ -1,0 +1,142 @@
+# Share of each YODAS2 language's sampled subtitle text in that language (tools/yodas_check.py, 2026-11-21); 1 where 95% or more
+yodas,language,videos_sampled,share,other
+aa,aa,26,0.05,"en 41%, es 22%"
+ab,ab,91,0.19,"es 32%, en 25%"
+af,af,67,0.58,"es 26%, en 8%"
+ak,ak,12,0.34,"en 63%, id 3%"
+am,am,36,0.91,"en 9%, es 1%"
+ar,ar,136,0.91,"en 9%, tr 0%"
+as,as,78,0.57,"en 38%, ar 3%"
+ay,ay,15,0.86,"es 9%, en 3%"
+az,az,157,1,"ru 0%, en 0%"
+ba,ba,11,0.17,"ru 49%, en 34%"
+be,be,375,0.00,en 100%
+bg,bg,147,1,en 1%
+bi,bi,4,0.21,en 79%
+bn,bn,105,0.58,en 42%
+bo,bo,7,1,"en 3%, pt 0%"
+br,br,12,0.41,"fr 55%, en 4%"
+bs,bs,122,1,en 1%
+ca,ca,390,1,en 1%
+co,co,4,1,en 2%
+cr,cr,1,0.00,en 100%
+cs,cs,283,1,"en 1%, fr 0%"
+cy,cy,130,1,"en 1%, ru 0%"
+da,da,346,1,"en 3%, pt 0%"
+de,de,108,1,en 0%
+dz,dz,4,0.01,"de 65%, en 34%"
+ee,ee,5,0.00,"en 89%, fr 11%"
+el,el,243,0.92,"en 8%, ru 0%"
+en,en,392,1,"zh 0%, es 0%"
+eo,eo,171,0.93,"zh 6%, en 1%"
+es,es,143,1,en 0%
+et,et,139,1,"en 2%, pt 0%"
+eu,eu,413,1,es 1%
+fa,fa,78,1,"en 1%, de 0%"
+ff,ff,1,0.00,de 100%
+fi,fi,115,1,en 1%
+fj,fj,3,0.92,en 8%
+fo,fo,13,0.94,"es 3%, en 3%"
+fr,fr,158,1,en 0%
+fy,fy,6,0.01,"en 95%, ru 4%"
+ga,ga,50,0.85,en 15%
+gd,gd,7,0.01,en 99%
+gl,gl,213,1,"en 3%, ru 0%"
+gn,gn,19,0.67,"ar 32%, ru 1%"
+gu,gu,205,0.88,"en 12%, id 0%"
+ha,ha,82,0.95,"en 4%, de 1%"
+hi,hi,205,1,"en 3%, id 0%"
+ho,ho,3,0.31,en 69%
+hr,hr,207,1,"en 2%, de 0%"
+ht,ht,73,0.90,"en 10%, es 0%"
+hu,hu,71,1,
+hy,hy,125,0.64,"ru 27%, en 9%"
+id,id,131,1,en 0%
+ig,ig,6,0.00,"en 97%, tr 3%"
+ik,ik,2,0.00,"en 76%, tr 24%"
+is,is,153,1,en 2%
+it,it,193,1,en 1%
+iu,iu,3,0.89,id 11%
+iw,he,179,1,en 0%
+ja,ja,140,1,"en 2%, zh 0%"
+jv,jv,47,1,tr 0%
+ka,ka,284,0.16,en 84%
+kk,kk,132,0.77,ru 23%
+kl,kl,3,0.55,en 45%
+km,km,74,0.73,en 27%
+kn,kn,94,0.15,en 85%
+ko,ko,198,1,en 1%
+ks,ks,4,0.63,en 37%
+ku,ku,46,1,en 1%
+ky,ky,847,1,ar 0%
+la,la,72,1,en 0%
+lb,lb,6,0.89,"fr 7%, ru 4%"
+lg,lg,1,1,
+ln,ln,25,0.64,"fr 35%, en 0%"
+lo,lo,12,1,en 0%
+lt,lt,201,1,"en 1%, ru 1%"
+lv,lv,52,0.93,ru 7%
+mg,mg,14,0.81,fr 19%
+mi,mi,64,0.88,en 12%
+mk,mk,93,1,"en 2%, es 0%"
+ml,ml,151,0.73,"en 27%, id 0%"
+mn,mn,55,1,"ru 3%, en 1%"
+mr,mr,157,0.76,en 24%
+ms,ms,221,0.93,"en 6%, zh 0%"
+my,my,72,0.91,"en 9%, id 0%"
+na,na,5,0.72,ru 28%
+nd,nd,1,1,
+ne,ne,98,0.64,en 36%
+nl,nl,209,1,"en 2%, fr 0%"
+no,nb,77,1,en 0%
+nv,nv,3,0.52,en 48%
+oc,oc,6,1,en 3%
+om,om,70,0.88,en 12%
+or,or,149,0.66,"en 31%, id 2%"
+pa,pa,65,0.85,"en 14%, id 0%"
+pl,pl,163,1,en 1%
+ps,ps,55,0.95,en 5%
+pt,pt,155,1,en 2%
+qu,qu,3,1,es 1%
+rm,rm,9,1,"tr 1%, en 0%"
+rn,rn,2,0.00,"en 72%, ru 28%"
+ro,ro,232,1,en 1%
+ru,ru,335,1,en 0%
+rw,rw,29,0.40,"en 59%, fr 0%"
+sa,sa,17,0.71,"pt 29%, en 0%"
+sc,sc,3,1,
+sd,sd,13,0.90,en 10%
+si,si,67,0.33,"en 67%, de 0%"
+sk,sk,369,0.94,"it 4%, en 2%"
+sl,sl,279,1,en 0%
+sm,sm,2,0.00,"fr 78%, it 22%"
+sn,sn,2,1,
+so,so,167,1,"en 2%, es 0%"
+sq,sq,122,1,"en 3%, ru 0%"
+sr,sr,217,1,en 2%
+st,st,2,0.92,en 8%
+su,su,17,0.82,en 18%
+sv,sv,217,1,"en 4%, fr 0%"
+sw,sw,121,0.84,"en 14%, fr 2%"
+ta,ta,130,0.26,en 74%
+te,te,160,0.72,en 28%
+tg,tg,39,0.91,"ru 8%, en 1%"
+th,th,105,1,en 2%
+ti,ti,9,1,en 1%
+tk,tk,5,0.80,en 20%
+tn,tn,5,0.83,en 17%
+tr,tr,188,1,en 1%
+ts,ts,2,1,
+tt,tt,4,1,en 3%
+ug,ug,11,1,
+uk,uk,243,1,en 0%
+ur,ur,136,0.76,en 24%
+uz,uz,130,1,"ru 1%, en 0%"
+ve,ve,2,0.57,tr 43%
+vi,vi,118,1,en 2%
+wo,wo,18,0.56,"en 26%, fr 18%"
+xh,xh,5,0.67,en 33%
+yi,yi,5,0.81,en 19%
+yo,yo,12,0.10,"en 89%, id 1%"
+zh,cmn,105,1,en 3%
+zu,zu,60,0.43,"en 36%, fr 18%"
