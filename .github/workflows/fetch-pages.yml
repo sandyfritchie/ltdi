@@ -1,0 +1,37 @@
+# Downloads a few documentation pages and keeps them as a workflow artifact, for writing or checking a
+# collector's parser against pages that can't be reached from where the code is being written.
+# Actions -> Fetch pages -> Run workflow, with one URL per line; or: gh workflow run fetch-pages.yml -f urls="..."
+name: Fetch pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: "URLs, one per line or separated by spaces"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Download
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          mkdir pages
+          i=0
+          for u in $URLS; do
+            i=$((i+1))
+            name=$(printf '%02d' "$i")-$(echo "$u" | sed -E 's#^https?://##; s#[^A-Za-z0-9.]+#_#g' | cut -c1-120)
+            curl -sSL --max-time 60 -A "ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)" -o "pages/$name" "$u" \
+              -w "%{http_code} %{size_download} $u\n" || echo "failed $u"
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pages
+          path: pages/
+          retention-days: 7
