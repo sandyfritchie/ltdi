@@ -9,18 +9,18 @@
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.683
+   "within_10pct": 0.7
   },
   {
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.921
+   "within_10pct": 0.914
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 292,
+   "median_range": 291,
    "within_10pct": 0.14
   },
   {
@@ -42,6 +42,11 @@
      "to": 27
     },
     {
+     "name": "Yue Chinese",
+     "from": 85,
+     "to": 83
+    },
+    {
      "name": "Slovak",
      "from": 33,
      "to": 35
@@ -55,11 +60,6 @@
      "name": "Kipsigis",
      "from": 230,
      "to": 228
-    },
-    {
-     "name": "Hebrew",
-     "from": 27,
-     "to": 25
     }
    ]
   },
@@ -75,8 +75,8 @@
     },
     {
      "name": "Yue Chinese",
-     "from": 84,
-     "to": 87
+     "from": 85,
+     "to": 88
     },
     {
      "name": "Swedish",
@@ -85,8 +85,8 @@
     },
     {
      "name": "Yucateco",
-     "from": 272,
-     "to": 270
+     "from": 273,
+     "to": 271
     },
     {
      "name": "Turkish",
@@ -117,8 +117,8 @@
     },
     {
      "name": "Kölsch",
-     "from": 290,
-     "to": 275
+     "from": 291,
+     "to": 276
     },
     {
      "name": "Kabardian",
