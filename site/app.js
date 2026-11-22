@@ -247,6 +247,7 @@ function showValue(f) {
   if (f.unit === 'accuracy') return (v * 100).toFixed(1) + '% accuracy';
   if (/^types of/.test(f.unit)) return `${v} of ${f.unit.split(' ').pop()} voice types`;
   if (f.unit === '% WER') return v >= 100 ? 'No published WER under 50%' : v + '% WER';
+  if (f.unit === 'WER band') return f.note.replace(/, as .*/, '');
   if (f.unit === 'editors') return big(v) + ' active editors';
   if (f.unit === 'sentence pairs') return big(v) + ' sentence pairs';
   if (f.unit === 'datasets') return big(v) + ' datasets';
@@ -856,6 +857,7 @@ const readyTitle = r => r.items.map(x => `${x.ok ? '✓' : '–'} ${x.label}`).j
 function qualityText(f, q) {
   if (!f) return '';
   if (f.unit === '% WER') return depthText(f, q.quality);
+  if (f.unit === 'WER band') return f.note.replace(/, as .*/, '');  // 'Word error rate 25-50%'
   const v = f.value, poor = +q.quality_poor, good = +q.quality_good;
   const band = (v - poor) / (good - poor) >= 1 ? 'good' : (v - poor) / (good - poor) > 0.4 ? 'fair' : 'low';
   const year = ((f.source || '').match(/(\d{4})\)?$/) || [])[1];  // when it was measured, from the source
@@ -919,7 +921,7 @@ function svcTile(id, own, open, via, wname) {
   const figure = measured || (qf && !(qf.unit === '% WER' && qf.value >= 100));  // a published figure, not 'none published'
   if (figure && TEST_OF[id]) detail = [detail, measuredShort(id)].filter(Boolean).join(' · ');
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : qf;
-  const qline = qf && qf.unit !== '% WER' ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
+  const qline = qf && !['% WER', 'WER band'].includes(qf.unit) ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
   const hover = [f.source, lo ? 'Not in the app\u2019s language setting. The company says the assistant can be used in other languages too, so the Index leaves this out rather than counting it as missing.' : '', qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note, figure ? measuredLong(id) : ''].filter(Boolean).join('\n');
   if (thru) detail = [`Through ${wname}`, detail].filter(Boolean).join(' · ');
   return `<a class="tile ${thru ? 'thru' : on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">

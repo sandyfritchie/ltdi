@@ -246,6 +246,7 @@ function showValue(f) {
   if (f.unit === 'accuracy') return (v * 100).toFixed(1) + '% accuracy';
   if (/^types of/.test(f.unit)) return `${v} of ${f.unit.split(' ').pop()} voice types`;
   if (f.unit === '% WER') return v >= 100 ? 'No published WER under 50%' : v + '% WER';
+  if (f.unit === 'WER band') return f.note.replace(/, as .*/, '');
   if (f.unit === 'editors') return big(v) + ' active editors';
   if (f.unit === 'sentence pairs') return big(v) + ' sentence pairs';
   if (f.unit === 'datasets') return big(v) + ' datasets';

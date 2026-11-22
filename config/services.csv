@@ -7,9 +7,9 @@ asr_google,speech_input,consumer,Google Cloud,Speech-to-Text,google,,,,,,,,,,,,
 asr_azure,speech_input,consumer,Azure AI Speech,Speech to text,microsoft,asr_azure_features,,10,service,,,,,,,,
 asr_apple,speech_input,consumer,iOS,Dictation,apple,,,,,,,,,,,,
 asr_amazon,speech_input,consumer,Transcribe,Speech to text,amazon,,,,,,,,,,,,
-asr_elevenlabs,speech_input,consumer,Scribe,Speech to text,elevenlabs,,,,,,,,,,,,
+asr_elevenlabs,speech_input,consumer,Scribe,Speech to text,elevenlabs,,,,,"ElevenLabs's published word error rate band per language (its midpoint): 50% or worse counts the service at half, 10% or better in full",asr_elevenlabs_wer,50,10,own,test data it doesn't name,,no
 asr_deepgram,speech_input,consumer,Nova,Speech to text,deepgram,,,,,,,,,,,,
-asr_assemblyai,speech_input,consumer,Universal-2,Speech to text,assemblyai,,,,,,,,,,,,
+asr_assemblyai,speech_input,consumer,Universal-2,Speech to text,assemblyai,,,,,"AssemblyAI's published word error rate band per language (its midpoint): 50% or worse counts the service at half, 10% or better in full",asr_assemblyai_wer,50,10,own,test data it doesn't name,,no
 asr_speechmatics,speech_input,consumer,Speechmatics,Speech to text,speechmatics,,,,,,,,,,,,
 asr_xai,speech_input,consumer,Grok,Speech to text,xai,,,,,,,,,,,,
 asr_open_whisper,speech_input,open,Whisper,Open model,openai,,,,,"FLEURS word error rate: 50% or worse counts the model at half, 10% or better in full",asr_whisper_fleurs_wer,50,10,own,the FLEURS test split,"350 sentences, each read by up to three speakers",yes

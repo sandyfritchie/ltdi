@@ -34,17 +34,17 @@
     "group": 2,
     "label": "2 · The Hopefuls",
     "n": 18,
-    "median_ltdi": 0.558,
+    "median_ltdi": 0.556,
     "tiers": {
-     "m": 7,
-     "lc": 11
+     "m": 6,
+     "lc": 12
     }
    },
    {
     "group": 3,
     "label": "3 · The Rising Stars",
     "n": 26,
-    "median_ltdi": 0.763,
+    "median_ltdi": 0.761,
     "tiers": {
      "vh": 1,
      "h": 14,
@@ -59,8 +59,8 @@
     "median_ltdi": 0.869,
     "tiers": {
      "vh": 8,
-     "h": 9,
-     "m": 1
+     "h": 8,
+     "m": 2
     }
    },
    {
@@ -194,7 +194,7 @@
    {
     "code": "gsw",
     "name": "Swiss German",
-    "ltdi": 0.215,
+    "ltdi": 0.2145,
     "rank": 202,
     "tier": "lc",
     "other": 0,

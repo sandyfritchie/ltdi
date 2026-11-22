@@ -14,6 +14,11 @@ documentation site publishes (the page's URL with .md added):
   Speechmatics speech to text: the transcription languages (not the bilingual packs, whose languages are
                listed singly). Its text to speech, in preview with English voices only, isn't counted
 
+ElevenLabs and AssemblyAI also publish each language's word error rate as a band ("Moderate (>25% to ≤50%
+WER)"). Each band is recorded at its midpoint (37.5 for 25-50%; 60 for "over 50%"), as asr_elevenlabs_wer
+and asr_assemblyai_wer, and scales the service's credit as Whisper's FLEURS error rate does (services.csv).
+Neither page says what the rates were measured on.
+
 These hosts aren't reachable from every machine; the monthly collectors (GitHub Actions) refresh them.
 """
 
@@ -71,10 +76,31 @@ def by_codes(pairs: list[tuple[str, str]], speech: bool = True) -> set[str]:
     return out
 
 
+def band(heading: str) -> tuple[float, str] | None:
+    """A WER band heading -> (midpoint, label): 'Moderate (>25% to ≤50% WER)' -> (37.5, '25-50%')."""
+    nums = [float(x) for x in re.findall(r"(\d+(?:\.\d+)?)\s*%", heading)]
+    if re.search(r"[≤<]\s*\d", heading) and len(nums) == 1 and not re.search(r">\s*\d", heading):
+        return nums[0], f"{nums[0]:g}% or less"
+    if len(nums) == 2:
+        return (nums[0] + nums[1]) / 2, f"{nums[0]:g}\u2011{nums[1]:g}%"  # a non-breaking hyphen
+    if len(nums) == 1:  # '>50% WER'
+        return nums[0] + 10, f"over {nums[0]:g}%"
+    return None
+
+
+WER: dict[str, dict[str, tuple[float, str]]] = {}  # indicator: {code: (midpoint, band)}
+
+
 def elevenlabs() -> tuple[set[str], set[str], int, int]:
     stt = md(ELEVEN_STT)
     listed = name_code(section(stt, "## Supported languages", "### Breakdown"))
     tiers = name_code(section(stt, "### Breakdown", "## FAQ"))
+    wer = WER.setdefault("asr_elevenlabs_wer", {})
+    for head, body in re.findall(r"#### ([^\n]+)\n+(.+?)(?=\n#### |\n## )", section(stt, "### Breakdown", "## FAQ") + "\n## ", flags=re.S):
+        b = band(head)
+        for c in (by_codes([p]) for p in name_code(body)) if b else ():
+            for x in c:
+                wer[x] = b
     seen = {c for _, c in listed}
     asr_pairs = listed + [(n, c) for n, c in tiers if c not in seen and c != "cmn"]  # cmn: Mandarin, listed as zho
     tts_pairs = name_code(section(md(ELEVEN_TTS_V4), "Which languages does Eleven v4 support", "> **Note**"))
@@ -105,6 +131,12 @@ def assemblyai() -> tuple[set[str], int]:
     for block in re.findall(r"> \[accordion\][^\n]*\n>\s*\n((?:>[^\n]*\n?)+)", text):
         names += [n.strip() for n in re.sub(r"^>\s?", "", block, flags=re.M).replace("\n", " ").split(",")]
     names = [re.sub(r"\s*\(Farsi\)$", "", n) for n in names if n]
+    wer = WER.setdefault("asr_assemblyai_wer", {})
+    for head, block in re.findall(r"> \[accordion\]([^\n]*)\n>\s*\n((?:>[^\n]*\n?)+)", text):
+        b = band(head)
+        for n in re.sub(r"^>\s?", "", block, flags=re.M).replace("\n", " ").split(","):
+            for c in named([re.sub(r"\s*\(Farsi\)$", "", n.strip())], "", speech=True) if b and n.strip() else ():
+                wer[c] = b
     return named(names, "asr_assemblyai", speech=True), len(names)
 
 
@@ -132,6 +164,11 @@ def collect() -> list[Record]:
         if len(found[ind]) < (5 if ind == "tts_deepgram" else 20):
             raise RuntimeError(f"{ind}: only {len(found[ind])} languages read from {url}; has the page changed?")
         out += [Record(c, ind, int(c in found[ind]), "bool", source, url, method="scrape") for c in ltdi_codes()]
+    for ind, by in WER.items():
+        who = "ElevenLabs" if "eleven" in ind else "AssemblyAI"
+        url = ELEVEN_STT if "eleven" in ind else ASSEMBLY
+        out += [Record(c, ind, mid, "WER band", f"{who}'s published word error rate band", url, method="scrape",
+                       note=f"Word error rate {label}, as {who} publishes it") for c, (mid, label) in sorted(by.items())]
     for ind, names in UNRESOLVED.items():
         print(f"  unresolved for {ind or 'speech'}: {sorted(names)}")
     return out
