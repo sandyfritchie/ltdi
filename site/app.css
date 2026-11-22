@@ -25,7 +25,7 @@
   --t-vh: #1c5cab; --t-h: #4b8fd9; --t-m: #9cc4f0; --t-lc: #f2b27a; --t-lo: #e07b36; --t-ld: #b4481a; --t-ln: #b9c1bd;
   --t-l: #c4501d; --t-none: #ffffff; --t-none-edge: #9aa5a0; --t-none-op: 0.95; --land: #e2e7e5;
   /* provider stripes: pastels chosen to stay apart from each other and the indigo accent; not brand colours */
-  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-mistral: #3d6fd1; --prov-alibaba: #a8663a; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
+  --prov-anthropic: #8fd3f5; --prov-apple: #3fb59a; --prov-openai: #5f6b77; --prov-microsoft: #f5d86a; --prov-meta: #f08c45; --prov-google: #d9505e; --prov-deepl: #f1a3c8; --prov-mistral: #3d6fd1; --prov-elevenlabs: #b03a7a; --prov-deepgram: #13a6b8; --prov-assemblyai: #5c8f2e; --prov-speechmatics: #2e4a7d; --prov-alibaba: #a8663a; --prov-amazon: #8fcf5a; --prov-open: #c3b28f; --prov-regional: #9b7fd1;
   --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Source Sans 3", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;

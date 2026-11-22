@@ -11,8 +11,8 @@
     "n": 1769,
     "median_ltdi": 0.05,
     "tiers": {
-     "lc": 368,
-     "lo": 744,
+     "lc": 369,
+     "lo": 743,
      "ld": 273,
      "ln": 384
     }
@@ -23,8 +23,7 @@
     "n": 194,
     "median_ltdi": 0.236,
     "tiers": {
-     "h": 1,
-     "m": 11,
+     "m": 12,
      "lc": 171,
      "lo": 8,
      "ld": 2,
@@ -35,7 +34,7 @@
     "group": 2,
     "label": "2 · The Hopefuls",
     "n": 18,
-    "median_ltdi": 0.567,
+    "median_ltdi": 0.568,
     "tiers": {
      "m": 7,
      "lc": 11
@@ -45,7 +44,7 @@
     "group": 3,
     "label": "3 · The Rising Stars",
     "n": 26,
-    "median_ltdi": 0.769,
+    "median_ltdi": 0.772,
     "tiers": {
      "vh": 1,
      "h": 15,
@@ -57,7 +56,7 @@
     "group": 4,
     "label": "4 · The Underdogs",
     "n": 18,
-    "median_ltdi": 0.88,
+    "median_ltdi": 0.875,
     "tiers": {
      "vh": 7,
      "h": 10,
@@ -96,8 +95,8 @@
    {
     "code": "prs",
     "name": "Dari",
-    "ltdi": 0.5839,
-    "rank": 75,
+    "ltdi": 0.5791,
+    "rank": 76,
     "tier": "lc",
     "other": 0,
     "gap": 0.529
@@ -105,17 +104,17 @@
    {
     "code": "mni",
     "name": "Meiteilon (Manipuri)",
-    "ltdi": 0.286,
-    "rank": 142,
+    "ltdi": 0.2818,
+    "rank": 146,
     "tier": "lc",
     "other": 0,
-    "gap": 0.498
+    "gap": 0.496
    },
    {
     "code": "pcm",
     "name": "Nigerian Pidgin",
-    "ltdi": 0.2749,
-    "rank": 150,
+    "ltdi": 0.2693,
+    "rank": 151,
     "tier": "lc",
     "other": 0,
     "gap": 0.494
@@ -148,27 +147,27 @@
     "gap": 0.49
    },
    {
-    "code": "dag",
-    "name": "Dagbani",
-    "ltdi": 0.2542,
-    "rank": 163,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.489
-   },
-   {
     "code": "brx",
     "name": "Bodo",
-    "ltdi": 0.2503,
-    "rank": 168,
+    "ltdi": 0.2511,
+    "rank": 165,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.488
+   },
+   {
+    "code": "dag",
+    "name": "Dagbani",
+    "ltdi": 0.2479,
+    "rank": 169,
     "tier": "lc",
     "other": 0,
     "gap": 0.486
    },
    {
-    "code": "dga",
-    "name": "Southern Dagaare",
-    "ltdi": 0.2241,
+    "code": "kam",
+    "name": "Kamba",
+    "ltdi": 0.2223,
     "rank": 194,
     "tier": "lc",
     "other": 0,
@@ -178,43 +177,52 @@
     "code": "lus",
     "name": "Mizo",
     "ltdi": 0.2246,
-    "rank": 193,
+    "rank": 192,
     "tier": "lc",
     "other": 0,
     "gap": 0.475
    },
    {
-    "code": "bew",
-    "name": "Betawi",
-    "ltdi": 0.2129,
-    "rank": 200,
+    "code": "dga",
+    "name": "Southern Dagaare",
+    "ltdi": 0.2185,
+    "rank": 196,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.474
+   },
+   {
+    "code": "gsw",
+    "name": "Swiss German",
+    "ltdi": 0.2159,
+    "rank": 198,
     "tier": "lc",
     "other": 0,
     "gap": 0.472
    },
    {
-    "code": "fon",
-    "name": "Fon",
-    "ltdi": 0.2065,
+    "code": "bew",
+    "name": "Betawi",
+    "ltdi": 0.2129,
+    "rank": 202,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.471
+   },
+   {
+    "code": "mag",
+    "name": "Magahi",
+    "ltdi": 0.2089,
     "rank": 207,
     "tier": "lc",
     "other": 0,
     "gap": 0.469
    },
    {
-    "code": "mag",
-    "name": "Magahi",
-    "ltdi": 0.2089,
-    "rank": 205,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.469
-   },
-   {
-    "code": "kam",
-    "name": "Kamba",
-    "ltdi": 0.2064,
-    "rank": 208,
+    "code": "fon",
+    "name": "Fon",
+    "ltdi": 0.2065,
+    "rank": 209,
     "tier": "lc",
     "other": 0,
     "gap": 0.468
@@ -223,16 +231,16 @@
     "code": "kac",
     "name": "Kachin",
     "ltdi": 0.2049,
-    "rank": 211,
+    "rank": 212,
     "tier": "lc",
     "other": 0,
-    "gap": 0.467
+    "gap": 0.466
    },
    {
-    "code": "nyn",
-    "name": "Nyankole",
-    "ltdi": 0.2047,
-    "rank": 212,
+    "code": "mww",
+    "name": "Hmong Daw",
+    "ltdi": 0.2032,
+    "rank": 213,
     "tier": "lc",
     "other": 0,
     "gap": 0.466
@@ -241,28 +249,28 @@
     "code": "mos",
     "name": "Mossi",
     "ltdi": 0.2024,
-    "rank": 216,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.465
-   },
-   {
-    "code": "mww",
-    "name": "Hmong Daw",
-    "ltdi": 0.2032,
     "rank": 214,
     "tier": "lc",
     "other": 0,
     "gap": 0.465
    },
    {
-    "code": "ach",
-    "name": "Acoli",
-    "ltdi": 0.1956,
-    "rank": 220,
+    "code": "nyn",
+    "name": "Nyankole",
+    "ltdi": 0.1996,
+    "rank": 217,
     "tier": "lc",
     "other": 0,
-    "gap": 0.463
+    "gap": 0.464
+   },
+   {
+    "code": "ach",
+    "name": "Acoli",
+    "ltdi": 0.191,
+    "rank": 223,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.462
    },
    {
     "code": "umb",
@@ -271,25 +279,16 @@
     "rank": 226,
     "tier": "lc",
     "other": 0,
-    "gap": 0.461
+    "gap": 0.46
    },
    {
     "code": "bem",
     "name": "Bemba",
-    "ltdi": 0.1876,
-    "rank": 229,
+    "ltdi": 0.1849,
+    "rank": 234,
     "tier": "lc",
     "other": 0,
-    "gap": 0.459
-   },
-   {
-    "code": "gsw",
-    "name": "Swiss German",
-    "ltdi": 0.1876,
-    "rank": 228,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.459
+    "gap": 0.457
    },
    {
     "code": "cnh",
@@ -392,10 +391,10 @@
     "group": "Vital",
     "label": "Vital",
     "n": 10,
-    "median_ltdi": 0.579,
+    "median_ltdi": 0.578,
     "tiers": {
-     "h": 2,
-     "m": 3,
+     "h": 1,
+     "m": 4,
      "lc": 5
     }
    },
@@ -403,7 +402,7 @@
     "group": "Thriving",
     "label": "Thriving",
     "n": 3,
-    "median_ltdi": 0.915,
+    "median_ltdi": 0.916,
     "tiers": {
      "vh": 3
     }
@@ -414,7 +413,7 @@
     "code": "irk",
     "name": "Iraqw",
     "ltdi": 0.0831,
-    "rank": 562,
+    "rank": 560,
     "tier": "lc",
     "other": "Still",
     "gap": 0.689
@@ -513,7 +512,7 @@
     "code": "cng",
     "name": "Northern Qiang",
     "ltdi": 0.0513,
-    "rank": 1703,
+    "rank": 1704,
     "tier": "lc",
     "other": "Still",
     "gap": 0.488
@@ -576,7 +575,7 @@
     "code": "tkr",
     "name": "Tsakhur",
     "ltdi": 0.087,
-    "rank": 497,
+    "rank": 496,
     "tier": "lc",
     "other": "Emerging",
     "gap": 0.426

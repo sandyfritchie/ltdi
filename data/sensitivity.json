@@ -9,24 +9,24 @@
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.733
+   "within_10pct": 0.75
   },
   {
    "ranks": "61–200",
    "languages": 140,
    "median_range": 15,
-   "within_10pct": 0.921
+   "within_10pct": 0.9
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
    "median_range": 214,
-   "within_10pct": 0.16
+   "within_10pct": 0.166
   },
   {
    "ranks": "1,001 and below",
    "languages": 3006,
-   "median_range": 413,
+   "median_range": 414,
    "within_10pct": 0.48
   }
  ],
@@ -37,29 +37,29 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Romanian",
+     "name": "Yue Chinese",
+     "from": 82,
+     "to": 80
+    },
+    {
+     "name": "Ukrainian",
      "from": 21,
      "to": 23
     },
     {
-     "name": "Malay",
-     "from": 33,
-     "to": 31
+     "name": "Swiss German",
+     "from": 198,
+     "to": 200
     },
     {
-     "name": "Indonesian",
-     "from": 11,
-     "to": 13
+     "name": "Romanian",
+     "from": 22,
+     "to": 24
     },
     {
-     "name": "Hebrew",
-     "from": 28,
-     "to": 26
-    },
-    {
-     "name": "Danish",
-     "from": 24,
-     "to": 22
+     "name": "Kabardian",
+     "from": 200,
+     "to": 198
     }
    ]
   },
@@ -69,19 +69,19 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
+     "name": "Norwegian Bokmål",
+     "from": 25,
+     "to": 30
+    },
+    {
      "name": "Malay",
      "from": 33,
      "to": 37
     },
     {
      "name": "Dutch",
-     "from": 12,
-     "to": 16
-    },
-    {
-     "name": "Yue Chinese",
-     "from": 81,
-     "to": 84
+     "from": 11,
+     "to": 15
     },
     {
      "name": "Thai",
@@ -89,31 +89,31 @@
      "to": 22
     },
     {
-     "name": "Polish",
-     "from": 16,
-     "to": 13
+     "name": "Hungarian",
+     "from": 29,
+     "to": 26
     }
    ]
   },
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9977,
-   "moved_10_in_top_300": 8,
+   "moved_10_in_top_300": 9,
    "largest": [
     {
      "name": "Ladin",
-     "from": 308,
-     "to": 287
+     "from": 306,
+     "to": 288
     },
     {
      "name": "Western Armenian",
-     "from": 284,
-     "to": 269
+     "from": 285,
+     "to": 268
     },
     {
-     "name": "Picard",
-     "from": 314,
-     "to": 300
+     "name": "Venetian",
+     "from": 178,
+     "to": 164
     },
     {
      "name": "Kölsch",
@@ -121,9 +121,9 @@
      "to": 262
     },
     {
-     "name": "Venetian",
-     "from": 178,
-     "to": 165
+     "name": "Picard",
+     "from": 312,
+     "to": 299
     }
    ]
   }

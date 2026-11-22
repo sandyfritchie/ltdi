@@ -2458,6 +2458,13 @@ speech,https://huggingface.co/datasets/espnet/yodas2/resolve/main/data/zh000/dur
 speech,https://huggingface.co/datasets/espnet/yodas2/resolve/main/data/zu000/duration/00000000.txt,013590b3cb9d8ef112d0e108f48456a1cf253f39388e4ca12b5b649ec1b86cfd,2026-11-08
 speech,https://huggingface.co/datasets/google/WaxalNLP/resolve/main/data/ASR_v2/metadata/split_comparison.csv,c278c0a24d35c2f085e6f4d15c59b6af583379cadea08403b7ebf6b5da4ad7e2,2026-11-08
 speech,https://huggingface.co/datasets/google/fleurs/raw/main/README.md,688f79f2a5c731af3796e9f683eb02f9b3f09d040decd8c5625d0f37098e71c6,2026-11-08
+speech_vendors,https://developers.deepgram.com/docs/models-languages-overview.md,5168cac9c65b91838bb1d99e73e1c9358c80d241d446e11459eee6f10965edb9,2026-11-22
+speech_vendors,https://developers.deepgram.com/docs/tts-models.md,44ad027303fb022b8988bd3c1a8289a74d1dfc148f5ce9642c5bfc5cf1bf7b69,2026-11-22
+speech_vendors,https://docs.speechmatics.com/speech-to-text/languages.md,9670f373a130c3d5aa0d23165f0cef3aa9f6dd5138f95e5e3c93d6871b771439,2026-11-22
+speech_vendors,https://elevenlabs.io/docs/help-center/other/what-languages-do-you-support.md,206f7f4dd9fb8a16352d974dc141673dcafdbb6cff72f5015e06fb6ab508951e,2026-11-22
+speech_vendors,https://elevenlabs.io/docs/overview/capabilities/speech-to-text.md,a8c92dd1fa8e6f8c2ef7a3a8fd986bf7b579761f181cafc8bca6df1b3db04c22,2026-11-22
+speech_vendors,https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4.md,7401698a1930e824ccb71ee408016e5b459ff5cfaadb6060156c657a456489d3,2026-11-22
+speech_vendors,https://www.assemblyai.com/docs/pre-recorded-audio/supported-languages.md,d433d2200aa8a33831ee9282b111c7fb71c7f8fa2fc5e79a01689fb1b58b3a3f,2026-11-22
 ud,https://raw.githubusercontent.com/UniversalDependencies/UD_Abaza-ATB/r2.19/stats.xml,67d6ea43b4de1cfba922c00ab513355222a9b3995a22df5d2d94de0d60c51065,2026-11-13
 ud,https://raw.githubusercontent.com/UniversalDependencies/UD_Abkhaz-AbNC/r2.19/stats.xml,d390f140d2b4eed093e77f65d8c942126b73403e1c70a328b5d17e3337115735,2026-11-13
 ud,https://raw.githubusercontent.com/UniversalDependencies/UD_Afrikaans-AfriBooms/r2.19/stats.xml,cb392d1c0d32abb0eac29e887b280c269723e07ca74d25efd3528f5d23d2ec06,2026-11-13
