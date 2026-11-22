@@ -1,0 +1,24 @@
+# Checks access to gated Hugging Face datasets (tools/hf_probe.py) with the HF_TOKEN secret.
+name: HF probe
+
+on:
+  workflow_dispatch:
+    inputs:
+      paths:
+        description: "DATASET:PATH or DATASET: entries, separated by spaces"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          PATHS: ${{ inputs.paths }}
+        run: python3 tools/hf_probe.py $PATHS
