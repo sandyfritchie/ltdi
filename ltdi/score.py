@@ -60,7 +60,7 @@ def credit(facts: dict[str, Record], tech: dict, service: str) -> float:
         return 0.0
     vals = [_depth_value(facts[i].value, spec) for i, spec in tech.get("depth", {}).items()
             if i in facts and owner(i, tech) == service]
-    base = 0.5 + 0.5 * sum(vals) / len(vals) if vals else 1.0
+    base = 0.5 + 0.5 * math.fsum(vals) / len(vals) if vals else 1.0
     return base * quality_factor(facts, tech, service)
 
 
@@ -89,7 +89,7 @@ def presence(facts: dict[str, Record], tech: dict, ids: list[str], regional: lis
     best = max((credit(facts, tech, i) for i in regional or []), default=0.0)
     if best:
         credits.append(best)
-    return round(ANY + (1 - ANY) * sum(credits) / len(credits), 3) if any(credits) else 0.0
+    return round(ANY + (1 - ANY) * math.fsum(credits) / len(credits), 3) if any(credits) else 0.0
 
 
 def tier(facts: dict[str, Record], tech: dict) -> float | None:
@@ -115,7 +115,7 @@ def tier(facts: dict[str, Record], tech: dict) -> float | None:
 def measured(facts: dict[str, Record], tech: dict) -> float | None:
     vals = [normalise(facts[i].value, {"scale": "linear", **spec})
             for i, spec in tech.get("measured", {}).items() if i in facts]
-    return round(sum(vals) / len(vals), 3) if vals else None
+    return round(math.fsum(vals) / len(vals), 3) if vals else None
 
 
 def depth(facts: dict[str, Record], tech: dict) -> float | None:
@@ -123,7 +123,7 @@ def depth(facts: dict[str, Record], tech: dict) -> float | None:
     (e.g. a published error rate); None if there are none."""
     vals = [_depth_value(facts[i].value, spec) for i, spec in tech.get("depth", {}).items()
             if i in facts and owner(i, tech) is None]
-    return sum(vals) / len(vals) if vals else None
+    return math.fsum(vals) / len(vals) if vals else None
 
 
 def tech_score(facts: dict[str, Record], tech: dict) -> float | None:
@@ -148,8 +148,8 @@ def tech_score(facts: dict[str, Record], tech: dict) -> float | None:
 
 
 def weighted_mean(parts: list[tuple[float, float]]) -> float:
-    total = sum(w for _, w in parts)
-    return sum(v * w for v, w in parts) / total if total else 0.0
+    total = math.fsum(w for _, w in parts)
+    return math.fsum(v * w for v, w in parts) / total if total else 0.0
 
 
 def _on(f: Record | None) -> bool:
@@ -312,7 +312,7 @@ def rank_key(r: dict) -> tuple[float, float]:
     its unfloored dimension scores, so any language with something recorded ranks above every language
     with nothing."""
     raw = [d.get("raw", d["score"]) for d in r.get("dimensions", {}).values()]
-    return round(r["ltdi"], 9), round(sum(raw) / len(raw), 9) if raw else 0.0
+    return round(r["ltdi"], 9), round(math.fsum(raw) / len(raw), 9) if raw else 0.0
 
 
 def assign_ranks(results: list[dict]) -> None:
