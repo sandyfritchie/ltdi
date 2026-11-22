@@ -30,6 +30,8 @@ jobs:
             curl -sSL --max-time 60 -A "ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)" -o "pages/$name" "$u" \
               -w "%{http_code} %{size_download} $u\n" || echo "failed $u"
           done
+      - name: Print (the log can be read where the artifact can't be downloaded)
+        run: for f in pages/*; do echo "===== $f"; cat "$f"; echo; done
       - uses: actions/upload-artifact@v4
         with:
           name: pages
