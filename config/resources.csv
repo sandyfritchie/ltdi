@@ -1,7 +1,7 @@
 indicator,name,what,licence,commercial,link
 cv_validated_hours,Mozilla Common Voice,Transcribed read speech from many volunteers,CC0 1.0,yes,https://commonvoice.mozilla.org/en/datasets
 cv_spontaneous_hours,Common Voice Spontaneous Speech,"Answers to questions in volunteers' own words, transcribed and checked by others",CC0 1.0,yes,https://commonvoice.mozilla.org/
-web_text_words,FineWeb-2,Filtered web text,ODC-By 1.0,yes,https://huggingface.co/datasets/HuggingFaceFW/fineweb-2
+web_text_words,FineWeb-2 and MADLAD-400,"Filtered web text (FineWeb-2, or MADLAD-400 where it holds more)",ODC-By 1.0 / CC BY 4.0,yes,https://huggingface.co/datasets/HuggingFaceFW/fineweb-2
 wikipedia_articles,Wikipedia,Encyclopedia articles,CC BY-SA 4.0,yes,https://dumps.wikimedia.org/
 wikipedia_active_editors,Wikipedia editing community,Editors active in the last 30 days,,,https://stats.wikimedia.org/
 flores200,FLORES-200,Professionally translated evaluation sentences,CC BY-SA 4.0,yes,https://github.com/facebookresearch/flores

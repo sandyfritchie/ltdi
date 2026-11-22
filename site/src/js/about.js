@@ -153,7 +153,7 @@ function about() {
     </ul>
     <h4>Data</h4>
     <ul>
-      <li>Web-crawled text for underrepresented languages is often not in the language at all (Kreutzer et al., 2022). FineWeb-2 filters by language identification; text mostly from Bible sites counts for less; OPUS's web-mined corpora are checked by language identification on a random sample, which catches the wrong language but not poor translations, so OPUS counts are an upper bound.</li>
+      <li>Web-crawled text for underrepresented languages is often not in the language at all (Kreutzer et al., 2022). FineWeb-2 filters by language identification, and MADLAD-400's authors checked a sample of every language by hand (the Index counts whichever of the two holds more for a language, never both); text mostly from Bible sites counts for less; OPUS's web-mined corpora are checked by language identification on a random sample, which catches the wrong language but not poor translations, so OPUS counts are an upper bound.</li>
       <li>Wikipedia article counts include bot-generated stubs, so articles count only up to a limit per active editor. Hugging Face datasets are counted by their language tags, and datasets tagged with dozens of languages count in part.</li>
       <li>Open speech hours add up datasets of very different kinds: read speech, crowd-sourced recordings and video with uploaded subtitles. Datasets shared on the Mozilla Data Collective count with the hours each states, and only where they're free to download under an open or non-commercial licence; those sold for a fee or under a data licence agreement are listed on each language's page but not counted.</li>
       <li>Font support is checked but not scored: Noto displays nearly every language whose letters are known.</li>

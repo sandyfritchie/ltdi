@@ -315,7 +315,7 @@ def find(f: dict[str, Record]) -> list[dict]:
     feats = _v(f, "kb_apple_features")
     if _v(f, "kb_apple") and feats is not None and feats < 2 and words >= 1e7:
         add("kb-features", "share", "keyboard", "Predictive text and autocorrect could be built from open text",
-            f"The iOS keyboard has {feats:.0f} of 4 typing features. FineWeb-2 holds about {_words(words)} words "
+            f"The iOS keyboard has {feats:.0f} of 4 typing features. The open web corpora tracked hold about {_words(words)} words "
             "of openly licensed web text, enough to train word prediction.",
             (4 - feats) / 4, ["kb_apple_features", "web_text_words"])
 
@@ -378,7 +378,7 @@ def find(f: dict[str, Record]) -> list[dict]:
     if "proof_office" in f and not _v(f, "proof_office") and not (_v(f, "proof_hunspell") or _v(f, "proof_languagetool")) \
             and words >= 1e7:
         add("proof-build", "share", "proofing", "A spell-checker could be built from open text",
-            f"No spell-checker was found in the sources tracked. FineWeb-2 holds about {_words(words)} words of open web text, "
+            f"No spell-checker was found in the sources tracked. The open web corpora tracked hold about {_words(words)} words, "
             "enough for a first word list.",
             1.0, ["proof_office", "proof_hunspell", "web_text_words"])
 

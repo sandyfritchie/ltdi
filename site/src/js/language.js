@@ -262,10 +262,12 @@ function dimPanel(l, key, color) {
     for (const [ik, spec] of Object.entries(cfg.indicators)) {
       const f = facts[ik], n = d.indicators[ik];
       const hover = f ? [f.source, 'Retrieved ' + f.retrieved, f.note].filter(Boolean).join('\n') : '';
-      const lab = f ? `<a class="indlink" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">${esc(spec.label)}</a>` : esc(spec.label);
+      // web text comes from FineWeb-2 or MADLAD-400, whichever holds more: the label names the one counted
+      const name = ik === 'web_text_words' && f && f.source && ik in facts && f.source !== 'FineWeb' ? `Web text (${f.source.replace(' (clean)', '')} words)` : spec.label;
+      const lab = f ? `<a class="indlink" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">${esc(name)}</a>` : esc(name);
       const nb = spec.narrowed_by && facts[spec.narrowed_by];  // e.g. how much of the web text is from Bible sites
       const narrow = nb && nb.value >= 0.1 && f && f.value
-        ? `<div class="missing" title="${esc(nb.note)}">${Math.round(nb.value * 100)}% from Bible sites, so it counts for less</div>` : '';
+        ? `<div class="missing" title="${esc(nb.note)}">${/MADLAD/.test(nb.source) ? `${nb.value >= 1 ? 'Only' : 'Partly'} Bible or jw.org text in its auditors\u2019 sample, so it counts for less` : `${Math.round(nb.value * 100)}% from Bible sites, so it counts for less`}</div>` : '';
       const vf = vfacts && vfacts[ik], vn = vd && vd.indicators[ik];
       // open speech: how much of it is licensed for commercial use (resources.csv)
       const usable = ik === 'open_speech_hours' && l.sh && l.shc < l.sh
