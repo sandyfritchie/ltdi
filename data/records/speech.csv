@@ -26,6 +26,7 @@ ahl,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfr
 ahs,open_speech_hours,10.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 ajg,open_speech_hours,12.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 13
 aju,open_speech_hours,7.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 7
+ajz,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 ak,open_speech_hours,200.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Mozilla Data Collective 118, WAXAL 70, WAXAL TTS 11, YODAS 2"
 ala,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 aln,open_speech_hours,14.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice Spontaneous 10, Omnilingual ASR Corpus 4"
@@ -82,14 +83,15 @@ bhh,open_speech_hours,11.8,hours,Open speech datasets,https://github.com/sandyfr
 bho,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 bhp,open_speech_hours,10.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 bhr,open_speech_hours,12.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
+bi,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 bjj,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 bjk,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
-bjn,open_speech_hours,11.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
+bjn,open_speech_hours,12.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Omnilingual ASR Corpus 12, Bloom Library (non-commercial) 1"
 bjt,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 bkh,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 bkm,open_speech_hours,11.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 bky,open_speech_hours,9.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
-bm,open_speech_hours,159.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"African Next Voices Bambara 159, YODAS 1"
+bm,open_speech_hours,160.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"African Next Voices Bambara 159, YODAS 1, Bloom Library (non-commercial) 0"
 bmm,open_speech_hours,19.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 19
 bmq,open_speech_hours,10.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 bn,open_speech_hours,1378.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 538, Shrutilipi 440, Kathbath 116, Vaani 113, IndicVoices 106, Common Voice 54, FLEURS 12"
@@ -98,6 +100,7 @@ bnn,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfr
 bns,open_speech_hours,10.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 bo,open_speech_hours,36.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"OpenSLR read speech 34, YODAS 3"
 bou,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+boz,open_speech_hours,0.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 0
 bqg,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 br,open_speech_hours,38.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 35, YODAS 3"
 bra,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
@@ -123,24 +126,31 @@ bys,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfr
 byv,open_speech_hours,13.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 13
 byx,open_speech_hours,9.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 bzc,open_speech_hours,17.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 18
+bze,open_speech_hours,0.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 0
+bzi,open_speech_hours,2.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 2
 bzw,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 ca,open_speech_hours,3507.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 3,392, YODAS 100, FLEURS 12, Mozilla Data Collective 2, Common Voice Spontaneous 1"
+cak,open_speech_hours,2.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 2
 ccg,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 cdo,open_speech_hours,0.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 1
-ceb,open_speech_hours,12,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
+ceb,open_speech_hours,13.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"FLEURS 12, Bloom Library (non-commercial) 1"
 cen,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 cfa,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 cgg,open_speech_hours,21.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Omnilingual ASR Corpus 11, Common Voice Spontaneous 10"
+chd,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
+chp,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 chq,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 cjk,open_speech_hours,12.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
 ckb,open_speech_hours,153.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 139, FLEURS 12, Mozilla Data Collective 2"
 ckl,open_speech_hours,10.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 ckr,open_speech_hours,10.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 cky,open_speech_hours,9.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 9
+clo,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 cmn,open_speech_hours,10792.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WenetSpeech 10,000, YODAS 417, Common Voice 320, Mozilla Data Collective 43, FLEURS 12"
 cnh,open_speech_hours,2.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 2
 cpy,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 cs,open_speech_hours,400.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 243, Common Voice 82, VoxPopuli 62, FLEURS 12, Mozilla Data Collective 2"
+csw,open_speech_hours,0.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 cte,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 ctl,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 cut,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
@@ -179,9 +189,9 @@ eko,open_speech_hours,8.3,hours,Open speech datasets,https://github.com/sandyfri
 ekr,open_speech_hours,10.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 el,open_speech_hours,215.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 169, Common Voice 20, FLEURS 12, Common Voice Spontaneous 10, Mozilla Data Collective 4"
 elm,open_speech_hours,11.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
-en,open_speech_hours,89523.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Multilingual LibriSpeech 44,660, YODAS 41,400, Common Voice 2,827, VoxPopuli 543, Mozilla Data Collective 73, FLEURS 12, Common Voice Spontaneous 8"
+en,open_speech_hours,89536.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Multilingual LibriSpeech 44,660, YODAS 41,400, Common Voice 2,827, VoxPopuli 543, Mozilla Data Collective 73, FLEURS 12, Bloom Library (non-commercial) 12, Common Voice Spontaneous 8, Bloom Library 1"
 eo,open_speech_hours,1483.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 1,446, YODAS 38"
-es,open_speech_hours,6548.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 4,800, Multilingual LibriSpeech 918, Common Voice 598, VoxPopuli 166, Mozilla Data Collective 54, FLEURS 12"
+es,open_speech_hours,6550.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 4,800, Multilingual LibriSpeech 918, Common Voice 598, VoxPopuli 166, Mozilla Data Collective 54, FLEURS 12, Bloom Library (non-commercial) 2"
 esu,open_speech_hours,7.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 8
 et,open_speech_hours,84.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 53, YODAS 17, FLEURS 12, VoxPopuli 3"
 eto,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 9, Mozilla Data Collective 1"
@@ -199,12 +209,13 @@ ff,open_speech_hours,155.4,hours,Open speech datasets,https://github.com/sandyfr
 ffm,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 fi,open_speech_hours,328.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 274, VoxPopuli 27, Common Voice 16, FLEURS 12"
 fia,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
-fil,open_speech_hours,12,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
+fil,open_speech_hours,12.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"FLEURS 12, Bloom Library (non-commercial) 1"
 fip,open_speech_hours,11.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 fkk,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+fli,open_speech_hours,0.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 fmp,open_speech_hours,11.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 fo,open_speech_hours,1.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,YODAS 1
-fr,open_speech_hours,5606.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,158, Common Voice 1,108, Multilingual LibriSpeech 1,077, VoxPopuli 211, Mozilla Data Collective 39, FLEURS 12, Common Voice Spontaneous 1"
+fr,open_speech_hours,5607.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,158, Common Voice 1,108, Multilingual LibriSpeech 1,077, VoxPopuli 211, Mozilla Data Collective 39, FLEURS 12, Bloom Library (non-commercial) 1, Common Voice Spontaneous 1"
 fub,open_speech_hours,15.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 13, Mozilla Data Collective 3"
 fuc,open_speech_hours,14.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 15
 fue,open_speech_hours,20.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 11, Omnilingual ASR Corpus 10"
@@ -237,7 +248,7 @@ gol,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfr
 gom,open_speech_hours,71.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 61, Omnilingual ASR Corpus 10"
 gsl,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 gsw,open_speech_hours,1.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 1, Common Voice Spontaneous 1"
-gu,open_speech_hours,103.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 71, IndicVoices 21, FLEURS 12"
+gu,open_speech_hours,104.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 71, IndicVoices 21, FLEURS 12"
 gui,open_speech_hours,23.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 23
 gur,open_speech_hours,10.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 guz,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -253,11 +264,11 @@ hah,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfr
 hao,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 haw,open_speech_hours,11.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
 haz,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
-hbb,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
+hbb,open_speech_hours,12.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Omnilingual ASR Corpus 11, Bloom Library 2"
 hch,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 10
 he,open_speech_hours,225.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 207, FLEURS 12, Common Voice 5, Mozilla Data Collective 0"
 hem,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
-hi,open_speech_hours,4302.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,840, Shrutilipi 1,620, Vaani 594, Kathbath 150, IndicVoices 71, Common Voice 16, FLEURS 12"
+hi,open_speech_hours,4303.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,840, Shrutilipi 1,620, Vaani 594, Kathbath 150, IndicVoices 71, Common Voice 16, FLEURS 12, Bloom Library (non-commercial) 0"
 hia,open_speech_hours,11.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 hkk,open_speech_hours,8.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 9
 hla,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -295,9 +306,10 @@ ja,open_speech_hours,2486.6,hours,Open speech datasets,https://github.com/sandyf
 jal,open_speech_hours,11.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 jax,open_speech_hours,11.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 jgo,open_speech_hours,11.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
-jmx,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+jmx,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 jns,open_speech_hours,11.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 jqr,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
+jra,open_speech_hours,0.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 juk,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 juo,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 jv,open_speech_hours,52.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Mozilla Data Collective 27, YODAS 13, FLEURS 12"
@@ -308,11 +320,13 @@ kaj,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfr
 kam,open_speech_hours,12,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
 kbd,open_speech_hours,281.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 276, Common Voice Spontaneous 5"
 kbl,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+kbq,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 kbt,open_speech_hours,9.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 kcn,open_speech_hours,9.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 10
 kcq,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 kdh,open_speech_hours,9.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 9
 kea,open_speech_hours,12,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
+kek,open_speech_hours,2.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 3
 keu,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 kfe,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 kfk,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -320,6 +334,7 @@ kfp,open_speech_hours,11.9,hours,Open speech datasets,https://github.com/sandyfr
 khw,open_speech_hours,16.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 16
 ki,open_speech_hours,767.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"AfriVoices-KE (African Next Voices) 571, AfriVoices-KE scripted 183, WAXAL TTS 13"
 kj,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+kjb,open_speech_hours,1.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 1
 kjc,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 kjh,open_speech_hours,1.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 1
 kjk,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -328,7 +343,7 @@ kl,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfrit
 kls,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 km,open_speech_hours,674.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Mozilla Data Collective 586, YODAS 76, FLEURS 12"
 kmy,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
-kn,open_speech_hours,78.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 56, FLEURS 12, YODAS 11"
+kn,open_speech_hours,81.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 56, FLEURS 12, YODAS 11, Bloom Library (non-commercial) 2"
 kna,open_speech_hours,11.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
 knn,open_speech_hours,12.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
 ko,open_speech_hours,3916.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,902, FLEURS 12, Common Voice 3"
@@ -346,6 +361,7 @@ kuh,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfr
 kvx,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 kw,open_speech_hours,12.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
 kwm,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+kwu,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 kxp,open_speech_hours,20.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 11, Omnilingual ASR Corpus 10"
 ky,open_speech_hours,91.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 40, Common Voice 39, FLEURS 12"
 kyx,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -382,7 +398,8 @@ lwg,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfr
 lzz,open_speech_hours,69.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 70
 mab,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 maf,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
-mai,open_speech_hours,106.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,IndicVoices 106
+mai,open_speech_hours,106.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,IndicVoices 106
+mam,open_speech_hours,2.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 2
 mas,open_speech_hours,554.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"AfriVoices-KE (African Next Voices) 454, AfriVoices-KE scripted 51, WAXAL 49"
 mau,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 max,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -415,14 +432,14 @@ mk,open_speech_hours,48.8,hours,Open speech datasets,https://github.com/sandyfri
 mkf,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 mki,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 mkw,open_speech_hours,5.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Mozilla Data Collective 6
-ml,open_speech_hours,170.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 89, IndicVoices 66, FLEURS 12, Common Voice 4"
+ml,open_speech_hours,171.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 89, IndicVoices 66, FLEURS 12, Common Voice 4, Bloom Library (non-commercial) 1"
 mlq,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 mmc,open_speech_hours,11.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 11
 mn,open_speech_hours,62.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 46, FLEURS 12, YODAS 4"
 mne,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 mni,open_speech_hours,20.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,IndicVoices 20
 mqy,open_speech_hours,11.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
-mr,open_speech_hours,259.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 137, IndicVoices 91, Common Voice 19, FLEURS 12"
+mr,open_speech_hours,259.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 137, IndicVoices 91, Common Voice 19, FLEURS 12"
 mrj,open_speech_hours,33.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 34
 mrr,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 mrt,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -442,13 +459,15 @@ mvy,open_speech_hours,22.1,hours,Open speech datasets,https://github.com/sandyfr
 mxs,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 mxu,open_speech_hours,12.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
 mxy,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
-my,open_speech_hours,28.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 16, FLEURS 12"
+my,open_speech_hours,29.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 16, FLEURS 12, Bloom Library (non-commercial) 1"
+myk,open_speech_hours,2.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 2
 myv,open_speech_hours,3.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 3
 mzl,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 na,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 nal,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 nan,open_speech_hours,21.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 22
 nap,open_speech_hours,23.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Mozilla Data Collective 13, Omnilingual ASR Corpus 10"
+nas,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 nb,open_speech_hours,188.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 174, FLEURS 12, Common Voice 2"
 nbh,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 ncf,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -474,6 +493,8 @@ nn,open_speech_hours,1.6,hours,Open speech datasets,https://github.com/sandyfrit
 nnh,open_speech_hours,18.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 19
 noe,open_speech_hours,11.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 nr,open_speech_hours,251.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Swivuriso (African Next Voices) 252
+nsk,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
+nsn,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 nso,open_speech_hours,12.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
 nv,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 ny,open_speech_hours,128.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Mozilla Data Collective 116, FLEURS 12"
@@ -483,7 +504,9 @@ oc,open_speech_hours,15.0,hours,Open speech datasets,https://github.com/sandyfri
 odk,open_speech_hours,20.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 11, Omnilingual ASR Corpus 9"
 odu,open_speech_hours,10.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 ogo,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+oj,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 om,open_speech_hours,274.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 223, Common Voice 26, YODAS 14, FLEURS 12"
+omw,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 or,open_speech_hours,119.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 81, YODAS 20, FLEURS 12, Common Voice 6"
 orc,open_speech_hours,22.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 22
 oru,open_speech_hours,21.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 21
@@ -515,6 +538,7 @@ pt,open_speech_hours,2384.4,hours,Open speech datasets,https://github.com/sandyf
 pua,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 pwn,open_speech_hours,14.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 15
 qu,open_speech_hours,1.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,YODAS 2
+quc,open_speech_hours,2.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 3
 qug,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 qum,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 qup,open_speech_hours,11.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
@@ -559,6 +583,7 @@ scn,open_speech_hours,13.4,hours,Open speech datasets,https://github.com/sandyfr
 sco,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 11
 sd,open_speech_hours,29.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 16, FLEURS 12, YODAS 1"
 sdj,open_speech_hours,3.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Mozilla Data Collective 3
+sdk,open_speech_hours,0.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library 1
 sdo,open_speech_hours,1.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 1
 sei,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 sel,open_speech_hours,1.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Mozilla Data Collective 1
@@ -575,7 +600,7 @@ skr,open_speech_hours,14.3,hours,Open speech datasets,https://github.com/sandyfr
 sl,open_speech_hours,79.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 40, Common Voice 17, FLEURS 12, VoxPopuli 10"
 sn,open_speech_hours,111.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 99, FLEURS 12"
 snc,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
-snk,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+snk,open_speech_hours,11.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Omnilingual ASR Corpus 10, Bloom Library (non-commercial) 1"
 so,open_speech_hours,622.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"AfriVoices-KE (African Next Voices) 384, AfriVoices-KE scripted 118, Mozilla Data Collective 68, YODAS 40, FLEURS 12"
 sol,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 sps,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -586,6 +611,7 @@ sro,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfr
 ssi,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 st,open_speech_hours,504.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Swivuriso (African Next Voices) 504, YODAS 1"
 ste,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
+stk,open_speech_hours,0.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 1
 su,open_speech_hours,0.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 sua,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 sv,open_speech_hours,231.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 172, Common Voice 48, FLEURS 12"
@@ -593,11 +619,12 @@ sva,open_speech_hours,15.7,hours,Open speech datasets,https://github.com/sandyfr
 sw,open_speech_hours,467.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 392, YODAS 34, WAXAL TTS 24, FLEURS 12, Mozilla Data Collective 6"
 swc,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Mozilla Data Collective 11
 szy,open_speech_hours,13.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 14
-ta,open_speech_hours,1433.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Shrutilipi 790, Common Voice 235, Kathbath 185, IndicVoices 106, YODAS 105, FLEURS 12"
+ta,open_speech_hours,1435.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Shrutilipi 790, Common Voice 235, Kathbath 185, IndicVoices 106, YODAS 105, FLEURS 12, Bloom Library (non-commercial) 2"
 tan,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 tar,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 tay,open_speech_hours,11.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 tbf,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+tbj,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 tcf,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 tcy,open_speech_hours,11.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
 tdn,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -622,6 +649,7 @@ tn,open_speech_hours,507.3,hours,Open speech datasets,https://github.com/sandyfr
 to,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 tob,open_speech_hours,9.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 10
 top,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 10
+tpi,open_speech_hours,3.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Bloom Library (non-commercial) 3
 tpl,open_speech_hours,10.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 tpz,open_speech_hours,9.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 tqp,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -640,11 +668,13 @@ tul,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfr
 tuq,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 tuv,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 tuy,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
+tuz,open_speech_hours,0.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 tvo,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 tvu,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 twu,open_speech_hours,11.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
 txs,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 txy,open_speech_hours,12.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
+tzj,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 udl,open_speech_hours,9.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 ug,open_speech_hours,465.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 462, YODAS 3"
 uk,open_speech_hours,745.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 623, Common Voice 109, FLEURS 12, Mozilla Data Collective 1"
@@ -727,6 +757,66 @@ mas,speech_afrivoices_ke_scripted,51.0,hours,AfriVoices-KE scripted,https://arxi
 niq,speech_afrivoices_ke_scripted,61.0,hours,AfriVoices-KE scripted,https://arxiv.org/abs/2604.08448,2026-11-08,download,"Kenyan Next Voices scripted Kalenjin (122 hours of Nandi and Kipsigis, half counted for each); access by request form; CC BY 4.0"
 sgc,speech_afrivoices_ke_scripted,61.0,hours,AfriVoices-KE scripted,https://arxiv.org/abs/2604.08448,2026-11-08,download,"Kenyan Next Voices scripted Kalenjin (122 hours of Nandi and Kipsigis, half counted for each); access by request form; CC BY 4.0"
 so,speech_afrivoices_ke_scripted,118.0,hours,AfriVoices-KE scripted,https://arxiv.org/abs/2604.08448,2026-11-08,download,Kenyan Next Voices scripted recordings (Kenya Somali); access by request form; CC BY 4.0
+*,speech_bloom_library,0,hours,Bloom Library,,2026-11-08,download,
+bm,speech_bloom_library,0.4,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+boz,speech_bloom_library,0.4,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+bze,speech_bloom_library,0.4,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+en,speech_bloom_library,0.9,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+fli,speech_bloom_library,0.3,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+fr,speech_bloom_library,0.4,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+hbb,speech_bloom_library,1.7,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+jmx,speech_bloom_library,0.1,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+jra,speech_bloom_library,0.2,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+kwu,speech_bloom_library,0.2,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+sdk,speech_bloom_library,0.8,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+snk,speech_bloom_library,0.3,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+tuz,speech_bloom_library,0.2,hours,Bloom Library,https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-SA 4.0 or CC0
+*,speech_bloom_library_non_commercial,0,hours,Bloom Library (non-commercial),,2026-11-08,download,
+ajz,speech_bloom_library_non_commercial,0.2,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+bi,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+bjn,speech_bloom_library_non_commercial,0.6,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+bm,speech_bloom_library_non_commercial,0.5,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+boz,speech_bloom_library_non_commercial,0.5,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+bze,speech_bloom_library_non_commercial,0.5,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+bzi,speech_bloom_library_non_commercial,2.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+cak,speech_bloom_library_non_commercial,2.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+ceb,speech_bloom_library_non_commercial,1.0,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+chd,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+chp,speech_bloom_library_non_commercial,0.2,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+clo,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+csw,speech_bloom_library_non_commercial,0.4,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+en,speech_bloom_library_non_commercial,11.6,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+es,speech_bloom_library_non_commercial,2.5,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+fil,speech_bloom_library_non_commercial,0.6,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+fr,speech_bloom_library_non_commercial,1.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+gu,speech_bloom_library_non_commercial,0.4,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+hbb,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+hi,speech_bloom_library_non_commercial,0.5,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+jmx,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+jra,speech_bloom_library_non_commercial,0.3,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+kbq,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+kek,speech_bloom_library_non_commercial,2.8,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+kjb,speech_bloom_library_non_commercial,1.0,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+kn,speech_bloom_library_non_commercial,2.5,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+mai,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+mam,speech_bloom_library_non_commercial,2.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+ml,speech_bloom_library_non_commercial,1.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+mr,speech_bloom_library_non_commercial,0.3,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+my,speech_bloom_library_non_commercial,1.0,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+myk,speech_bloom_library_non_commercial,2.0,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+nas,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+nsk,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+nsn,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+oj,speech_bloom_library_non_commercial,0.2,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+omw,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+quc,speech_bloom_library_non_commercial,2.6,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+snk,speech_bloom_library_non_commercial,1.3,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+stk,speech_bloom_library_non_commercial,0.8,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+ta,speech_bloom_library_non_commercial,1.9,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+tbj,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+tpi,speech_bloom_library_non_commercial,3.0,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+tuz,speech_bloom_library_non_commercial,0.3,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
+tzj,speech_bloom_library_non_commercial,0.1,hours,Bloom Library (non-commercial),https://huggingface.co/datasets/sil-ai/bloom-speech,2026-11-08,download,Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio; CC BY-NC and similar
 *,speech_fleurs,0,hours,FLEURS,,2026-11-08,download,
 af,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 am,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0

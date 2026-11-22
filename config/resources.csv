@@ -48,3 +48,5 @@ speech_openslr_read_speech,OpenSLR,"Crowdsourced and studio read speech for smal
 speech_openslr_read_speech_non_commercial,OpenSLR (non-commercial),"Read speech on OpenSLR whose licence doesn't permit commercial use",CC BY-NC-SA 4.0,no,https://www.openslr.org/resources.php
 speech_openslr_broadcast,OpenSLR broadcast news,"Broadcast news with transcripts (ALFFA Swahili)",MIT,yes,https://www.openslr.org/25/
 speech_openslr_spontaneous,OpenSLR spontaneous speech,"Unscripted speech (Kallaama: Wolof, Pulaar and Sereer)",CC BY 4.0,yes,https://www.openslr.org/151/
+speech_bloom_library,Bloom Library (SIL),"Read speech aligned with the text of illustrated books from bloomlibrary.org",CC BY-SA 4.0 / CC0,yes,https://huggingface.co/datasets/sil-ai/bloom-speech
+speech_bloom_library_non_commercial,Bloom Library (SIL; non-commercial),"Read speech aligned with the text of illustrated books from bloomlibrary.org, under non-commercial licences",CC BY-NC and similar,no,https://huggingface.co/datasets/sil-ai/bloom-speech

@@ -68,3 +68,5 @@ speech_openslr_read_speech,OpenSLR (many contributors; hosted by Daniel Povey's 
 speech_openslr_read_speech_non_commercial,OpenSLR (many contributors),Open-source research project,https://www.openslr.org/,https://www.openslr.org/resources.php
 speech_openslr_broadcast,ALFFA project (via OpenSLR),University research project,http://alffa.imag.fr,https://www.openslr.org/25/
 speech_openslr_spontaneous,Kallaama project (via OpenSLR),University research project,https://www.openslr.org/151/,https://www.openslr.org/151/
+speech_bloom_library,SIL International (Bloom Library),Nonprofit,https://bloomlibrary.org/,https://huggingface.co/datasets/sil-ai/bloom-speech
+speech_bloom_library_non_commercial,SIL International (Bloom Library),Nonprofit,https://bloomlibrary.org/,https://huggingface.co/datasets/sil-ai/bloom-speech

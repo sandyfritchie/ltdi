@@ -15,18 +15,18 @@
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.914
+   "within_10pct": 0.921
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 290,
-   "within_10pct": 0.141
+   "median_range": 292,
+   "within_10pct": 0.14
   },
   {
    "ranks": "1,001 and below",
    "languages": 3009,
-   "median_range": 448,
+   "median_range": 450,
    "within_10pct": 0.5
   }
  ],
@@ -123,7 +123,7 @@
     {
      "name": "Kabardian",
      "from": 184,
-     "to": 171
+     "to": 172
     }
    ]
   }
