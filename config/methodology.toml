@@ -161,6 +161,12 @@ quality_min = 0.75
 # independently of the service's maker, and within this many years of the edition; services.csv
 # quality_by and quality_year. Older figures aren't shown either.
 quality_max_age = 2
+# A language most major services offer counts as well served from this LTDI up, even where it's short
+# of open data: languages at Medium (0.6) and above get attention already. The bar sits a little above
+# 0.6 so languages just over the line stay underrepresented. Below it a language also needs the open
+# data below.
+served_min = 0.63
+
 [dimensions.tech.well_served]
 speech_input = { indicator = "open_speech_hours", min = 1000 }
 tts = { indicator = "open_speech_hours", min = 1000 }

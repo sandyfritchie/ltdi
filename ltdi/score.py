@@ -166,7 +166,7 @@ def _on(f: Record | None) -> bool:
     return bool(f) and (f.unit != "bool" or bool(f.value))
 
 
-def coverage(facts: dict[str, Record], cfg: dict) -> dict:
+def coverage(facts: dict[str, Record], cfg: dict, ltdi: float | None = None) -> dict:
     """Summaries the site needs for every language without loading its facts:
     levels  per technology: full (at least half the services, or at least [dimensions.tech] full_min of them),
             part, open (open model only), none
@@ -174,8 +174,10 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
             or benchmark only) or none
     offers  ids of the services and benchmarks that cover the language
     under   per technology, why it's underrepresented: a (not widely available), d (its open data is scarce),
-            q (the best accuracy a commercial service publishes for it is poor), or w (well served);
-            [dimensions.tech] well_served and quality_min"""
+            q (the best accuracy measured for a commercial service is poor), or w (well served): widely
+            available and either with an LTDI of at least [dimensions.tech] served_min (a little above where
+            Medium starts), whatever its open data, or with enough open data and no poor accuracy
+            (well_served, quality_min)"""
     levels, gaps, under = {}, {}, {}
     tech_cfg = cfg["dimensions"]["tech"]
     for name, t in cfg["dimensions"]["tech"]["technologies"].items():
@@ -197,6 +199,7 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
         published = [quality_factor(facts, t, i) for i in cons
                      if _on(facts.get(i)) and i in t.get("quality", {}) and t["quality"][i]["indicator"] in facts]
         under[name] = ("a" if levels[name] != "full"
+                       else "w" if ltdi is not None and ltdi >= tech_cfg.get("served_min", math.inf)
                        else "d" if need and (facts[need["indicator"]].value if need["indicator"] in facts else 0) < need["min"]
                        else "q" if published and max(published) < tech_cfg.get("quality_min", 0)
                        else "w")
@@ -423,7 +426,7 @@ def main() -> None:
         results.append({**lang, **s, "tier": tier_of(s["ltdi"], facts_l, s["dimensions"], cfg),
                         # coverage as speakers meet it: text technologies through the standard they write,
                         # as for opportunities, so a Kölsch speaker isn't counted as lacking a keyboard
-                        **({"via": via} if via else {}), **coverage(opp_facts, cfg), "opportunities": opps,
+                        **({"via": via} if via else {}), **coverage(opp_facts, cfg, s["ltdi"]), "opportunities": opps,
                         "evidence": evidence(facts_l, cfg),
                         "written_in": written.get(code), "shares_written": code in shared,
                         "reach_by_country": reach_by_country(lang, countries)})
