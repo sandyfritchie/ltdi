@@ -20,7 +20,7 @@ import csv
 import json
 import re
 import shutil
-from collections import Counter
+from collections import Counter, defaultdict
 from html import escape as html_escape
 
 from . import CONFIG, DATA, ROOT
@@ -315,6 +315,12 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
             units[ind] = f["unit"]
         return out
 
+    # speech services that list a country locale for a variety without naming it (tools/unnamed_locales.py)
+    unnamed: dict[str, dict[str, str]] = defaultdict(dict)
+    if (DATA / "unnamed_locales.csv").exists():
+        with (DATA / "unnamed_locales.csv").open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                unnamed[r["language"]][r["indicator"]] = r["counted_as"]
     for l in scores["languages"]:
         facts = encode(l["code"], scores["facts"].get(l["code"], {}))
         opps = []
@@ -330,6 +336,7 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
                               **({"via": {"dimensions": via["dimensions"],
                                           "facts": encode(l["code"], scores.get("via_facts", {}).get(l["code"], {}))}}
                                  if via else {}),
+                              **({"unnamed": unnamed[l["code"]]} if l["code"] in unnamed else {}),
                               "reach_by_country": l["reach_by_country"], "evidence": l.get("evidence"),
                               "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES],
                               **({"lookalikes": eng[l["code"]]["lookalikes"]} if "lookalikes" in eng.get(l["code"], {}) else {}),

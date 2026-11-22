@@ -75,9 +75,15 @@ def _variety_names() -> dict[str, str]:
         return {r["ltdi"]: r["names"] for r in csv.DictReader(f) if r.get("names")}
 
 
+# Set by tools/unnamed_locales.py to find the country locales a source lists without naming the variety
+ANY_LOCALE = False
+
+
 def names_variety(text: str, code: str) -> bool:
     """Whether a source's own wording names the variety (Egyptian Arabic, Arabic (Levantine)), rather than
     only a country (Arabic (Egypt)) or a bare locale code."""
+    if ANY_LOCALE:
+        return True
     pat = _variety_names().get(code)
     return bool(pat and text and re.search(rf"\b({pat})\b", text, flags=re.I))
 

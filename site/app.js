@@ -97,7 +97,7 @@ async function need(...codes) {
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, lookalikes: d.lookalikes, literacy: d.literacy, orgs: d.orgs, changes: d.changes });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, unnamed: d.unnamed, lookalikes: d.lookalikes, literacy: d.literacy, orgs: d.orgs, changes: d.changes });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -900,7 +900,7 @@ const ONLY_IF_MEASURED = new Set(['llm_afrobench_gpt4o', 'llm_afrobench_gemini']
 // Regional providers appear only where they offer the language: a row of 'not yet' tiles for every language would be noise
 const LISTED_ONLY = new Set(Object.values(DATA.config.dimensions.tech.technologies).flatMap(t => t.listed_only || []));
 const regionalOn = (t, facts) => (t.regional || []).filter(id => facts[id] && facts[id].value);
-function svcTile(id, own, open, via, wname) {
+function svcTile(id, own, open, via, wname, unnamed, lname) {
   // a spoken variety: where it isn't offered itself but its written standard is, the tile shows that
   const ownOn = own[id] && (own[id].unit === 'bool' ? !!own[id].value : true);
   const thru = !ownOn && via && via[id] && (via[id].unit === 'bool' ? !!via[id].value : true);
@@ -912,6 +912,8 @@ function svcTile(id, own, open, via, wname) {
   if (!f) return `<div class="tile off"${pv}><span class="mark" aria-hidden="true">–</span><div>${by}<b>${esc(name)}</b><small>${esc(kind)} · not benchmarked</small></div></div>`;
   const on = f.unit === 'bool' ? !!f.value : true;
   const lo = !on && LISTED_ONLY.has(id);  // an app's language setting: absence isn't a gap
+  // a country locale for this variety that the company doesn't name as the variety: it counts for the standard
+  const asStd = !on && unnamed && unnamed[id] ? (BY[unnamed[id]] || {}).name || unnamed[id] : '';
   let detail = '';
   if (f.unit === '% of English') detail = `${Math.round(f.value)}% of English`;
   else if (f.unit === 'accuracy') detail = `${Math.round(f.value * 100)}% accuracy`;
@@ -924,11 +926,11 @@ function svcTile(id, own, open, via, wname) {
   if (figure && TEST_OF[id]) detail = [detail, measuredShort(id)].filter(Boolean).join(' · ');
   const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : qf;
   const qline = qf && !['% WER', 'WER band'].includes(qf.unit) ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
-  const hover = [f.source, lo ? 'Not in the app\u2019s language setting. The company says the assistant can be used in other languages too, so the Index leaves this out rather than counting it as missing.' : '', qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note, figure ? measuredLong(id) : ''].filter(Boolean).join('\n');
+  const hover = [f.source, asStd ? `The company lists ${asStd} for a country where ${lname} is spoken, but doesn\u2019t say it\u2019s ${lname}, so the Index counts it for ${asStd}. It may well handle ${lname} speech; the company doesn\u2019t say.` : '', lo ? 'Not in the app\u2019s language setting. The company says the assistant can be used in other languages too, so the Index leaves this out rather than counting it as missing.' : '', qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note, figure ? measuredLong(id) : ''].filter(Boolean).join('\n');
   if (thru) detail = [`Through ${wname}`, detail].filter(Boolean).join(' · ');
   return `<a class="tile ${thru ? 'thru' : on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${thru ? '↳' : on ? '✓' : '–'}</span>
-    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : lo ? ' · not in the setting' : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : lo ? ' · not in the setting' : asStd ? ` · listed as ${esc(asStd)}` : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
 // Locale data: CLDR's coverage level, a tile of its own since no service offers it
@@ -994,7 +996,7 @@ function dimPanel(l, key, color) {
         ...DATA.services.filter(s => s.technology === tk && s.role === 'measured' && !(s.id in (t.measured || {})) && facts[s.id]).map(s => s.id)];
       const order = PROV_ORDER, rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
       const tiles = t.indicator ? localeTile(facts[t.indicator], vfacts && vfacts[t.indicator], wname)
-        : [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname)).join('');
+        : [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname, l.unnamed, l.name)).join('');
       const row = `<div class="techrow">
         <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b>${t.help ? infoTip(t.label, esc(t.help)) : ''}<span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
         ${s == null ? '' : bar(s)}
@@ -2109,7 +2111,7 @@ function about() {
       <li>Regional providers count together as one extra service, and only for the languages they offer.</li>
       <li>Voice assistants count each company's assistant across its old and new generations: Google Assistant or Gemini for Home on speakers and displays, Siri, and Alexa or Alexa+. Gemini for Home and Alexa+ are in early access and so far cover only languages the older assistants already had. Amazon publishes no language list for Alexa+, so its languages are the ones Amazon's launch announcements name, or a country's main language where they name only the country. The row counts half as much as other technologies.</li>
       <li>LLM quality that changes scores comes from AfroBench's independent translation results for GPT-4o and Gemini 1.5 Pro (2025), each for one model at one time, so newer models may do better. Companies' own results, such as Claude Fable 5.2 on Global-MMLU (2026) and OpenAI o3 on MMMLU (2025), are shown but not scored.</li>
-      <li>Speech services name varieties by country (ar-EG), so a speech locale counts for a spoken variety only where the service names the variety too ("Egyptian Arabic"); otherwise it counts for the standard language, as text services do.</li>
+      <li>Speech services name varieties by country (ar-EG), so a speech locale counts for a spoken variety only where the service names the variety too ("Egyptian Arabic"); otherwise it counts for the standard language, as text services do, and the variety's page marks the service "listed as" the standard language.</li>
     </ul>
     <h4>Reach</h4>
     <ul><li>People online and able to text are estimated from the World Bank's national averages for each country a language is spoken in, which overstate connectivity for rural and minority-language speakers.</li></ul>

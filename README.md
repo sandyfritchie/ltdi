@@ -495,7 +495,8 @@ the coalition workstream it fits.
 - Speech locales such as `ar-EG` count for a spoken variety only where the source names the variety as well as
   the code ("Egyptian Arabic", not "Arabic (Egypt)"); the names each variety is matched by are in the `names`
   column of `config/crosswalk_speech.csv`. Otherwise the locale counts for the standard language, as text
-  services' locales do.
+  services' locales do, and the variety's page marks the service "listed as" the standard language
+  (`tools/unnamed_locales.py` finds them, into `data/unnamed_locales.csv`; run it after the vendor collectors).
 - LinguaMeta's endangerment levels sometimes belong to a minority variety rather than the whole language (Latvian's
   is Latgalian's); `config/endangerment_overrides.csv` corrects the clear cases (Slovenian, Armenian, Latvian, Swati),
   and gives a level for some widely used languages LinguaMeta doesn't assess (reviewed by the project lead).
