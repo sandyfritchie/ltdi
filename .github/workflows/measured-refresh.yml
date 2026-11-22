@@ -1,0 +1,106 @@
+# Quarterly: re-measures the datasets whose size the Index measures itself (tools/measured.py): the hours
+# in Meta's Omnilingual ASR Corpus, WAXAL's TTS recordings, OpenSLR's downloads and Bloom Library's read
+# books, and the words in MADLAD-400's smaller languages. Their makers don't publish these per language,
+# and new releases change them. The measuring jobs run in parallel; the last job writes the results into
+# config/, rebuilds, tests, commits and publishes. If a dataset shrank a lot (usually a failed download),
+# it writes nothing and opens an issue instead. Bloom is gated and needs the HF_TOKEN secret.
+name: Measured datasets refresh
+
+on:
+  schedule:
+    - cron: "23 9 5 1,4,7,10 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+concurrency:
+  group: measured-refresh
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.jobs.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: jobs
+        run: echo "matrix=$(python3 tools/measured.py jobs)" >> "$GITHUB_OUTPUT"
+
+  measure:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.plan.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyarrow soundfile
+      - name: Measure
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          mkdir -p out
+          python tools/measured.py run "${{ matrix.job }}" "${{ matrix.shard }}/${{ matrix.of }}" > "out/${{ matrix.job }}-${{ matrix.shard }}.tsv"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: measured-${{ matrix.job }}-${{ matrix.shard }}
+          path: out/
+          retention-days: 30
+
+  ingest:
+    needs: measure
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pytest
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: measured-*
+          path: measured
+      - name: Write the results into config/
+        id: ingest
+        run: python tools/measured.py ingest measured
+      - name: Collect, score and build
+        run: |
+          python -m ltdi.collectors speech fineweb2 --accept
+          python -m ltdi.score > /dev/null
+          python -m ltdi.sensitivity > /dev/null
+          python tools/validate.py > /dev/null
+          python -m ltdi.build_site
+      - name: Tests (the top 50's reference scores are refreshed)
+        run: |
+          python -m pytest tests -q --deselect tests/test_golden.py::test_top_50_and_sentinels_unchanged
+          UPDATE_GOLDEN=1 python -m pytest tests/test_golden.py -q
+      - name: Commit and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add config/ data/ site/ tests/fixtures/golden.csv
+          git diff --cached --quiet && { echo "nothing changed"; exit 0; }
+          git commit -m "Measured datasets refresh ($(date -u +%Y-%m-%d))"
+          git pull --rebase
+          git push
+          gh workflow run pages.yml --ref main
+      - name: Open an issue if the results weren't written
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --title "Measured datasets refresh didn't finish ($(date -u +%Y-%m-%d))" \
+            --body "The quarterly re-measurement stopped: see ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. If a dataset shrank because a download failed, rerun the failed jobs; if the change is real, run \`python tools/measured.py ingest DIR --force\` with the run's artifacts."

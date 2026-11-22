@@ -23,7 +23,7 @@ ape,ape,814,881448,1.0,good; bible
 arn,arn,593,541839,1.0,good; bible
 as,as,33825,27928971,0.0,good
 av,av,6331,3422271,0.0,good
-awa,awa,126,98738,0.0,OK; should be used with caution and suspicion
+awa,awa,126,98738,1.0,all bible in awadhi (awa). Renamed from bjj
 ay,ay,2505,1379804,0.5,good; mix of bible and other news sources
 ba,ba,90318,42091748,0.0,ok
 ban,ban,637,499644,1.0,ok bible
