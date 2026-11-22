@@ -28,17 +28,24 @@ def load_config() -> dict:
     for t in techs.values():
         t.update(consumer=[], regional=[], open=[], depth={}, depth_owner={}, quality={})
     num = lambda x: float(x) if "." in x else int(x)
+    # Published quality changes scores only where it was measured independently, and in the last
+    # quality_max_age years ([dimensions.tech]); the site shows only those, too (score.counted_quality)
+    max_age = cfg["dimensions"]["tech"].get("quality_max_age")
+    year = int(cfg["meta"]["edition"][:4])
+    counted = lambda sv: sv.get("quality_by") == "independent" and (
+        not max_age or not sv.get("quality_year") or int(sv["quality_year"]) >= year - max_age)
     for sv in services():
         t = techs[sv["technology"]]
         if sv["role"] == "measured":
-            t.setdefault("measured", {})[sv["id"]] = {"min": num(sv["depth_min"]), "max": num(sv["depth_max"])}
+            if counted(sv):
+                t.setdefault("measured", {})[sv["id"]] = {"min": num(sv["depth_min"]), "max": num(sv["depth_max"])}
         else:
             t[sv["role"]].append(sv["id"])
         if sv["depth"]:
             spec = num(sv["depth_max"]) if not sv["depth_min"] else {"min": num(sv["depth_min"]), "max": num(sv["depth_max"])}
             t["depth"][sv["depth"]] = spec
             t["depth_owner"][sv["depth"]] = sv["id"] if sv["depth_scope"] == "service" else None
-        if sv.get("quality"):
+        if sv.get("quality") and counted(sv):
             t["quality"][sv["id"]] = {"indicator": sv["quality"], "poor": num(sv["quality_poor"]), "good": num(sv["quality_good"])}
     for t in techs.values():
         if not t["regional"]:

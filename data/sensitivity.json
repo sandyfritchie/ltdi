@@ -3,30 +3,30 @@
  "seed": 2026,
  "edition": "2026-11",
  "varied": "technology and data weights x0.5-1.5; log-scale data goals up to 10x either way, the benchmark goal x0.5-1.5; floor 0.025-0.075",
- "nothing_recorded": 2812,
+ "nothing_recorded": 2813,
  "bands": [
   {
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.65
+   "within_10pct": 0.683
   },
   {
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.9
+   "within_10pct": 0.907
   },
   {
    "ranks": "201–1,000",
-   "languages": 804,
-   "median_range": 215,
-   "within_10pct": 0.172
+   "languages": 802,
+   "median_range": 216,
+   "within_10pct": 0.168
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3002,
-   "median_range": 414,
+   "languages": 3003,
+   "median_range": 413,
    "within_10pct": 0.48
   }
  ],
@@ -37,13 +37,8 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Yue Chinese",
-     "from": 83,
-     "to": 81
-    },
-    {
      "name": "Norwegian Bokmål",
-     "from": 29,
+     "from": 30,
      "to": 27
     },
     {
@@ -60,6 +55,11 @@
      "name": "Greek",
      "from": 24,
      "to": 26
+    },
+    {
+     "name": "Finnish",
+     "from": 23,
+     "to": 21
     }
    ]
   },
@@ -79,14 +79,14 @@
      "to": 22
     },
     {
-     "name": "Persian",
-     "from": 30,
-     "to": 27
+     "name": "Yue Chinese",
+     "from": 83,
+     "to": 85
     },
     {
      "name": "Yucateco",
-     "from": 264,
-     "to": 262
+     "from": 262,
+     "to": 260
     },
     {
      "name": "Turkish",
@@ -98,12 +98,12 @@
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9977,
-   "moved_10_in_top_300": 8,
+   "moved_10_in_top_300": 9,
    "largest": [
     {
      "name": "Kölsch",
      "from": 285,
-     "to": 266
+     "to": 265
     },
     {
      "name": "Ladin",
@@ -111,19 +111,19 @@
      "to": 290
     },
     {
-     "name": "Bavarian",
-     "from": 251,
-     "to": 237
+     "name": "Venetian",
+     "from": 181,
+     "to": 168
     },
     {
-     "name": "Venetian",
-     "from": 182,
-     "to": 169
+     "name": "Lower Sorbian",
+     "from": 204,
+     "to": 191
     },
     {
      "name": "Kabardian",
-     "from": 181,
-     "to": 168
+     "from": 180,
+     "to": 167
     }
    ]
   }

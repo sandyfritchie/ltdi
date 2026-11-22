@@ -70,7 +70,7 @@ def by_codes(pairs: list[tuple[str, str]], speech: bool = True) -> set[str]:
     out = set()
     for n, c in pairs:
         _read.add(n)
-        got = code(c, speech) or next(iter(named([n], "", speech)), None)
+        got = code(c, speech, n) or next(iter(named([n], "", speech)), None)
         if got:
             out.add(got)
     return out

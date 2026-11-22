@@ -66,7 +66,6 @@ nl,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/la
 or,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 pa,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 pl,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
-prs,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 ps,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 pt,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 ro,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
@@ -93,7 +92,6 @@ vi,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/la
 wo,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 zu,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 *,asr_apple,0,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
-afb,asr_apple,1,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
 ar,asr_apple,1,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
 ca,asr_apple,1,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
 cmn,asr_apple,1,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
@@ -129,19 +127,10 @@ vi,asr_apple,1,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availa
 wuu,asr_apple,1,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
 yue,asr_apple,1,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
 *,asr_azure,0,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-acm,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-acx,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-aeb,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 af,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-afb,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 am,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-apc,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 ar,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-arq,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-ary,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-arz,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 as,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-ayl,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 az,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 bg,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 bho,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
@@ -219,19 +208,10 @@ vi,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com
 wuu,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 yue,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
 zu,asr_azure,1,bool,Azure AI Speech (speech to text),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,
-acm,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, custom speech with labeled audio, fast transcription, monolingual refinement, real-time"
-acx,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, custom speech with labeled audio, fast transcription, monolingual refinement, real-time"
-aeb,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, custom speech with labeled audio, fast transcription, monolingual refinement, real-time"
 af,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: MAI-Transcribe, batch, fast transcription, monolingual refinement, real-time"
-afb,asr_azure_features,7,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: LLM speech, batch, custom speech with labeled audio, fast transcription, monolingual refinement, multilingual refinement, real-time"
 am,asr_azure_features,4,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, fast transcription, monolingual refinement, real-time"
-apc,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, custom speech with labeled audio, fast transcription, monolingual refinement, real-time"
 ar,asr_azure_features,9,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom speech with labeled audio, display format, fast transcription, monolingual refinement, multilingual refinement, real-time"
-arq,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, custom speech with labeled audio, fast transcription, monolingual refinement, real-time"
-ary,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, custom speech with labeled audio, fast transcription, monolingual refinement, real-time"
-arz,asr_azure_features,7,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: LLM speech, batch, custom speech with labeled audio, fast transcription, monolingual refinement, multilingual refinement, real-time"
 as,asr_azure_features,8,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: LLM speech, MAI-Transcribe, batch, custom speech with labeled audio, fast transcription, monolingual refinement, multilingual refinement, real-time"
-ayl,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, custom speech with labeled audio, fast transcription, monolingual refinement, real-time"
 az,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: MAI-Transcribe, batch, fast transcription, monolingual refinement, real-time"
 bg,asr_azure_features,7,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: LLM speech, MAI-Transcribe, batch, fast transcription, monolingual refinement, multilingual refinement, real-time"
 bho,asr_azure_features,5,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, custom speech with labeled audio, fast transcription, monolingual refinement, real-time"
@@ -310,17 +290,9 @@ wuu,asr_azure_features,4,features of 10,Azure speech to text features,https://le
 yue,asr_azure_features,7,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: MAI-Transcribe, batch, custom speech with labeled audio, display format, fast transcription, monolingual refinement, real-time"
 zu,asr_azure_features,4,features of 10,Azure speech to text features,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,2026-11-13,scrape,"Has: batch, fast transcription, monolingual refinement, real-time"
 *,asr_google,0,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-acm,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-acx,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-aeb,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 af,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-afb,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 am,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-apc,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 ar,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-arq,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-ary,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-arz,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 as,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 ast,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 az,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
@@ -376,7 +348,6 @@ lo,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/s
 lt,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 luo,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 lv,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
-mey,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 mi,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 mk,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
 ml,asr_google,1,bool,Google Cloud Speech-to-Text,https://docs.cloud.google.com/speech-to-text/docs/languages,2026-11-13,scrape,
@@ -3056,19 +3027,10 @@ sv,tts_amazon,1,bool,Amazon Polly,https://docs.aws.amazon.com/polly/latest/dg/su
 tr,tts_amazon,1,bool,Amazon Polly,https://docs.aws.amazon.com/polly/latest/dg/supported-languages.html,2026-11-13,scrape,
 yue,tts_amazon,1,bool,Amazon Polly,https://docs.aws.amazon.com/polly/latest/dg/supported-languages.html,2026-11-13,scrape,
 *,tts_azure,0,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-acm,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-acx,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-aeb,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
 af,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-afb,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
 am,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-apc,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
 ar,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-arq,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-ary,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-arz,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
 as,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
-ayl,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
 az,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
 bg,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
 bn,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,2026-11-13,scrape,
@@ -3151,7 +3113,6 @@ zu,tts_azure,1,bool,Azure AI Speech (text to speech),https://learn.microsoft.com
 af,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 am,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 ar,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
-arz,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 az,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 be,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
 bg,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,
@@ -3231,7 +3192,6 @@ yue,tts_google,1,bool,Google Cloud Text-to-Speech,https://docs.cloud.google.com/
 af,tts_google_voice_types,2,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,"Has: Gemini-TTS, Standard"
 am,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,Has: Gemini-TTS
 ar,tts_google_voice_types,4,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard, WaveNet"
-arz,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,Has: Gemini-TTS
 az,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,Has: Gemini-TTS
 be,tts_google_voice_types,1,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,Has: Gemini-TTS
 bg,tts_google_voice_types,3,types of 9,Google Cloud TTS voice types,https://docs.cloud.google.com/text-to-speech/docs/voices https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd https://docs.cloud.google.com/text-to-speech/docs/gemini-tts,2026-11-13,scrape,"Has: Chirp3-HD, Gemini-TTS, Standard"
@@ -3744,7 +3704,6 @@ pt,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and 
 sv,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,Also Gemini for Home (early access)
 th,va_google_assistant,1,bool,Google Assistant or Gemini for Home (speakers and displays),https://support.google.com/googlenest/answer/7550584 https://support.google.com/googlenest/answer/16618650?hl=en,2026-11-13,scrape,
 *,va_siri,0,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-13,scrape,
-afb,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-13,scrape,
 ar,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-13,scrape,
 cmn,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-13,scrape,
 da,va_siri,1,bool,Apple Siri,https://www.apple.com/ios/feature-availability/#siri,2026-11-13,scrape,

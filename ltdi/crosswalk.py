@@ -68,6 +68,20 @@ def _speech() -> dict[str, str]:
         return {r["label"].lower(): r["ltdi"] for r in csv.DictReader(f)}
 
 
+@lru_cache(maxsize=1)
+def _variety_names() -> dict[str, str]:
+    """LTDI code of a variety a speech locale can name -> the words a source uses for it (a regex)."""
+    with (CONFIG / "crosswalk_speech.csv").open(encoding="utf-8") as f:
+        return {r["ltdi"]: r["names"] for r in csv.DictReader(f) if r.get("names")}
+
+
+def names_variety(text: str, code: str) -> bool:
+    """Whether a source's own wording names the variety (Egyptian Arabic, Arabic (Levantine)), rather than
+    only a country (Arabic (Egypt)) or a bare locale code."""
+    pat = _variety_names().get(code)
+    return bool(pat and text and re.search(rf"\b({pat})\b", text, flags=re.I))
+
+
 def to_ltdi(label: str, speech: bool = False) -> str | None:
     """speech=True for speech recognition, text-to-speech and voice assistant locales, where a
     country locale names the variety spoken there (ar-EG: Egyptian Arabic; config/crosswalk_speech.csv).

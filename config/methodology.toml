@@ -157,6 +157,10 @@ full_min = 3
 # quality_min, as quality_factor scales it: for word error rates, 30% or better). Anything else is
 # underrepresented, so a language several companies list but with little open data still counts.
 quality_min = 0.75
+# Published quality (error rates, translation scores, benchmarks) changes scores only where it was measured
+# independently of the service's maker, and within this many years of the edition; services.csv
+# quality_by and quality_year. Older figures aren't shown either.
+quality_max_age = 2
 [dimensions.tech.well_served]
 speech_input = { indicator = "open_speech_hours", min = 1000 }
 tts = { indicator = "open_speech_hours", min = 1000 }
@@ -247,7 +251,7 @@ weight = 0.5
 [tiers]
 cutoffs = [["vh", "Very high", 0.9], ["h", "High", 0.75], ["m", "Medium", 0.6]]
 # Each stage: key, label, what it means (shown on hover and on the About page)
-stages = [["lc", "Commercial", "Some support from a commercial or regional service"],
+stages = [["lc", "Commercial", "A commercial or regional service in a main technology, or two in any"],
           ["lo", "Open only", "Open tools only, no commercial service"],
           ["ld", "Data only", "Data, but no technology recorded"],
           ["ln", "None recorded", "No data or technology recorded in the sources tracked"]]

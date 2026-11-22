@@ -22,7 +22,7 @@ FULL = dict(kb_gboard=1, kb_apple=1, kb_apple_features=4, asr_google=1, asr_azur
             tts_openai=1, llm_app_chatgpt=1, mt_amazon=1, mt_alibaba=1, llm_app_claude=1, llm_app_meta=1,
             llm_app_mistral=1, llm_app_qwen=1, asr_elevenlabs=1, asr_deepgram=1, asr_assemblyai=1,
             asr_speechmatics=1, tts_elevenlabs=1, tts_deepgram=1, asr_xai=1, tts_xai=1, mt_cohere=1,
-            llm_app_cohere=1, ocr_abbyy=1, ocr_mistral=1, va_bixby=1)
+            llm_app_cohere=1, ocr_abbyy=1, ocr_mistral=1, va_bixby=1, ui_android=1)
 
 
 class FindTests(unittest.TestCase):
@@ -75,7 +75,7 @@ class FindTests(unittest.TestCase):
         self.assertIn("7 of 8 major AI assistants list this language", titles(fs, "share"))
 
     def test_interface_from_volunteer_translation(self):
-        fs = facts(**{**FULL, "ui_ios": 0, "ui_windows": 0, "ui_office": 0, "ui_firefox": 1})
+        fs = facts(**{**FULL, "ui_ios": 0, "ui_windows": 0, "ui_office": 0, "ui_android": 0, "ui_firefox": 1})
         self.assertIn("Volunteers translate an open browser, but no major platform", titles(fs, "share"))
 
     def test_unmeasured_llm_is_measure(self):

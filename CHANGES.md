@@ -16,9 +16,13 @@ The first version. README.md describes the method in full; in brief:
   service; regional providers count together as one more, where one of them offers a language. Lists
   of an app's language setting (ChatGPT, Claude) count where they name a language and are left out
   where they don't.
-- **Published quality.** Measured error rates and translation scores scale a service's credit from
-  half (poor) to full (good); being measured never lowers a language below its unmeasured peers.
+- **Published quality.** Error rates and benchmark scores measured independently of the service's
+  maker, in the last two years, scale a service's credit from half (poor) to full (good); being
+  measured never lowers a language below its unmeasured peers. Companies' own figures are shown but
+  not scored.
+- **Speech locales** count for a spoken variety (ar-EG for Egyptian Arabic) only where the source
+  names the variety as well as the code.
 - **Spoken varieties** are scored on their own resources, with a second score through their written
   standard beside it.
-- **Tiers.** Very high, High and Medium by score; below Medium, stages by what exists: Commercial,
-  Open only, Data only, None recorded.
+- **Tiers.** Very high, High and Medium by score; below Medium, stages by what exists: Commercial
+  (a commercial service in a main technology, or two in any), Open only, Data only, None recorded.

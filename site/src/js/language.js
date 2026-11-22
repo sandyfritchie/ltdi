@@ -24,7 +24,7 @@ const TEST_OF = Object.fromEntries(DATA.services.filter(s => s.test_set).map(s =
 const measuredShort = id => { const t = TEST_OF[id]; if (!t) return '';
   return `measured ${t.quality_by === 'own' ? 'by its makers' : 'independently'} on ${t.test_public === 'no' ? 'test data that isn\u2019t public' : t.test_set}`; };
 const measuredLong = id => { const t = TEST_OF[id]; if (!t) return '';
-  const who = t.quality_by === 'own' ? 'Measured by the makers' : 'Measured independently';
+  const who = t.quality_by === 'own' ? 'Measured by the makers, so shown but not scored' : 'Measured independently';
   return t.test_public === 'no' ? `${who} on ${t.test_set}, which isn't public, so the figure can't be checked and may read better than on other speech`
     : `${who} on ${t.test_set} (public${t.test_size ? `; ${t.test_size}` : ''})`; };
 // Families (Glottolog): the groups above each language, and the nearest relatives with more support
@@ -239,7 +239,9 @@ function dimPanel(l, key, color) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
       const vs = vd && vd.indicators[tk] != null && vd.indicators[tk] !== s ? vd.indicators[tk] : null;
       const ids = [...(t.consumer || []), ...regionalOn(t, facts), ...(t.open || []),
-        ...Object.keys(t.measured || {}).filter(id => facts[id] || !ONLY_IF_MEASURED.has(id))];
+        ...Object.keys(t.measured || {}).filter(id => facts[id] || !ONLY_IF_MEASURED.has(id)),
+        // benchmarks that are shown but not scored (measured by the makers): only where they cover the language
+        ...DATA.services.filter(s => s.technology === tk && s.role === 'measured' && !(s.id in (t.measured || {})) && facts[s.id]).map(s => s.id)];
       const order = PROV_ORDER, rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
       const tiles = t.indicator ? localeTile(facts[t.indicator], vfacts && vfacts[t.indicator], wname)
         : [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname)).join('');

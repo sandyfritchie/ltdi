@@ -322,7 +322,11 @@ def tier_of(ltdi: float, facts: dict[str, Record], dims: dict, cfg: dict) -> str
         if ltdi >= cut:
             return key
     techs = cfg["dimensions"]["tech"]["technologies"].values()
-    if any(_on(facts.get(i)) and facts[i].unit == "bool" for x in techs for i in x.get("consumer", []) + x.get("regional", [])):
+    # Commercial: one commercial or regional service in a main technology (keyboards, speech, translation,
+    # LLMs...), or two anywhere, so one OCR engine or interface list alone doesn't make a language commercial
+    listed = [(x.get("group") != "more", i) for x in techs for i in x.get("consumer", []) + x.get("regional", [])
+              if _on(facts.get(i)) and facts[i].unit == "bool"]
+    if any(main for main, _ in listed) or len(listed) >= 2:
         return "lc"
     if any(_on(facts.get(i)) and facts[i].unit == "bool" for x in techs for i in x.get("open", [])):
         return "lo"
@@ -358,14 +362,26 @@ def assign_ranks(results: list[dict]) -> None:
         r.setdefault("tied", 0)
 
 
+def stale_quality(cfg: dict) -> set[str]:
+    """Published quality figures older than [dimensions.tech] quality_max_age years (services.csv
+    quality_year): left out of the scores and the site."""
+    max_age = cfg["dimensions"]["tech"].get("quality_max_age")
+    year = int(cfg["meta"]["edition"][:4])
+    return {sv["quality"] or sv["id"] for sv in services()
+            if max_age and sv.get("quality_year") and int(sv["quality_year"]) < year - max_age
+            and (sv.get("quality") or sv["role"] == "measured")}
+
+
 def main() -> None:
     cfg = load_config()
     langs = json.loads((DATA / "languages.json").read_text(encoding="utf-8"))
     codes = [l["code"] for l in langs]
     records = read_dir(DATA / "records", codes) + read_dir(DATA / "manual", codes)
+    stale = stale_quality(cfg)
     by_lang: dict[str, dict[str, Record]] = defaultdict(dict)
     for r in records:
-        by_lang[r.language][r.indicator] = r
+        if r.indicator not in stale:
+            by_lang[r.language][r.indicator] = r
     # A spoken variety is scored and ranked on its own records; "via" is what its speakers can use through
     # the standard they write (Kölsch through German), shown beside it on its page
     effective = defaultdict(dict, {c: dict(f) for c, f in by_lang.items()})
@@ -434,7 +450,7 @@ def main() -> None:
     if history:
         history.pop("sources")
     svc = [{k: sv[k] for k in ("id", "technology", "role", "name", "kind", "provider", "depth", "quality", "quality_poor",
-                               "quality_good", "quality_by", "test_set", "test_size", "test_public")} for sv in services()]
+                               "quality_good", "quality_year", "quality_by", "test_set", "test_size", "test_public")} for sv in services()]
     rules = {k: {"teams": r["teams"], "missing": r["missing"], "cost": r.get("cost")} for k, r in RULES.items()}
     out = {"edition": cfg["meta"]["edition"], "labels": labels, "config": cfg, "services": svc, "rules": rules,
            "resources": resources(), "opportunity_types": TYPES, "teams": TEAMS, "history": history,

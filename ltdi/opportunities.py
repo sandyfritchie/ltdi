@@ -23,7 +23,7 @@ import math
 from functools import lru_cache
 
 from . import CONFIG
-from .config import load_config
+from .config import load_config, services
 from .records import Record
 
 TYPES = {
@@ -222,7 +222,9 @@ ASR = _consumer("speech_input")
 ASR_OPEN = _consumer("speech_input", "open")
 TTS = _consumer("tts")
 MT = _consumer("mt")
-LLM = list(_consumer("llm", "measured"))
+# Every LLM benchmark tracked, scored or not: the makers' own results still show a language has been measured
+# (figures older than quality_max_age are dropped before the rules see them)
+LLM = [sv["id"] for sv in services() if sv["technology"] == "llm" and sv["role"] == "measured"]
 APPS = _consumer("llm")
 APPS_LISTED_ONLY = _consumer("llm", "listed_only")
 VA = _consumer("assistant")

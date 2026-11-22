@@ -91,9 +91,10 @@ plus 0.75 times the share of the commercial services checked that offer it
 Counting by share keeps scores comparable as more services are added. A service
 with depth indicators (features, voice types, partial translation) earns half its
 share for offering the language and half for the depth it offers, so adding a
-service never lowers a score. Published error rates and benchmark scores work as quality factors
-on the service they measure (below). LLMs score availability in the official app language lists
-for Gemini, Copilot and ChatGPT, times a quality factor from published benchmarks: 0.5 + 0.5 × the
+service never lowers a score. Error rates and benchmark scores measured independently of the service's
+maker, in the last two years (`quality_max_age`), work as quality factors on the service they measure
+(below); companies' own figures and older results are shown on language pages but not scored. LLMs score
+availability in the official app language lists, times a quality factor from those benchmarks: 0.5 + 0.5 × the
 measured quality, so a poor result halves the score and an unmeasured language counts in full (being
 measured never lowers a score). A language measured by a benchmark but in no app list counts at the
 0.25 base for availability. Language identification counts open models, and voice assistants and
@@ -110,8 +111,10 @@ where the floor lifts it.
 
 Tiers are in `[tiers]` in `config/methodology.toml`. The top three are set by score (Very high from
 0.9, High from 0.75, Medium from 0.6). Below Medium, where scores are close and small differences
-mean little, the tier is a stage, by what's recorded for the language: Commercial (some support from
-a commercial or regional service), Open only (open tools only), Data only, and None recorded. Stages
+mean little, the tier is a stage, by what's recorded for the language: Commercial (a commercial or
+regional service in a main technology — keyboards, speech recognition, text-to-speech, translation, LLMs
+or voice assistants — or two in any technology, so OCR, an interface or proofing tools alone aren't
+enough), Open only (open tools only), Data only, and None recorded. Stages
 say what exists, not how much: they aren't ordered by score, so a language in Open only can outscore
 one in Commercial.
 
@@ -143,7 +146,7 @@ any name it can't resolve.
 | Tech | Text-to-speech | Google Cloud TTS, Azure AI Speech, Amazon Polly, OpenAI API text-to-speech, ElevenLabs (Eleven v4 and v3), Deepgram Aura, xAI Grok (Speechmatics' text to speech, in preview with English voices only, isn't counted); MMS-TTS (open); depth: number of Google voice types | automated |
 | Tech | Machine translation | Google Cloud Translation, Azure Translator, DeepL, Amazon Translate, Alibaba Cloud Qwen-MT, Cohere Command A Translate (`ltdi/collectors/docs_vendors.py`); NLLB-200 (open); depth: DeepL and Azure Translator per-language features | automated |
 | Tech | LLMs | Availability: the Gemini, Copilot, ChatGPT and Claude app language lists (ChatGPT's and Claude's are the languages of the app's language setting, so they count where they name a language and are left out where they don't: `listed_only` in methodology.toml), and the model language lists of Meta AI (Llama 4), Mistral AI, Qwen (Qwen3) and Cohere (Command A+, `ltdi/collectors/docs_vendors.py`); ChatGPT's transcribed by hand from OpenAI's help page (`ltdi/collectors/openai_docs.py`), the other four from each company's page (`ltdi/collectors/llm_lists.py`). Quality: Anthropic's Global-MMLU for Claude Fable 5.2 (relative to English, scaled from 70% to 95%), OpenAI's MMMLU (o3's accuracy, scaled from 0.60 to 0.88), and AfroBench's GPT-4o and Gemini 1.5 Pro translation from English into 56 African languages (FLORES-200 chrF, scaled from 25 to 50); at or above the top of each scale a result counts in full, as strong translation results do | automated; Anthropic's scores read by hand |
-| Tech | Interface language | iOS system languages, Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
+| Tech | Interface language | iOS system languages, Android system translations (the Android Open Source Project's framework resources, since Google publishes no list; `ltdi/collectors/docs_vendors.py`), Windows display languages, Microsoft 365 display languages; Firefox (open, volunteer-translated); depth: full or partial translation on Windows and Microsoft 365 | automated |
 | Tech | Text recognition (OCR) | Google Cloud Vision, Azure AI Vision, iOS Live Text, ABBYY FineReader, Mistral OCR (`ltdi/collectors/docs_vendors.py`); Tesseract (open); depth: Google's supported vs experimental, Azure handwriting | automated |
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
 | Checklists only | Word-frequency lists (not scored: the web text behind them is mostly what FineWeb-2 measures) | Corpus Crawler's language table (pinned), linking each language's list; shown in the keyboard and spelling readiness checklists and on language pages (`ltdi/collectors/corpuscrawler.py`) | automated |
@@ -479,20 +482,20 @@ the coalition workstream it fits.
   Greek ε for ɛ (Bambara, Mossi, Fon, Fanti, Kabyle), Greek ͻ and Cyrillic Ԑ for ɔ and Ɛ (Twi), Cyrillic
   ӡ for ʒ (Aja), Cyrillic ә for ə (Tatar). About 5,100 languages remain with only their script checked.
 - English isn't in FineWeb-2 and is recorded at a nominal value above the goalpost.
-- LLM quality is measured for few languages: Anthropic's Global-MMLU list is still read by hand (15 languages, for its most capable model).
+- LLM quality is measured independently for few languages: only AfroBench (2025) counts; Anthropic's Global-MMLU and OpenAI's MMMLU results are the companies' own and are shown but not scored.
 - LinguaMeta records no script for about 1,000 languages and no speaker count for about 1,900; Wikipedia's
   infoboxes fill 834 of those counts (most of the rest are extinct, or their article covers several languages). QQ gives
   scripts for about 690 more; another 71 are held in `config/qq_scripts_held.csv` until checked (several scripts, or a
   rare one): remove a row once checked, and put any correction in `config/language_overrides.csv` (scripts column). Without speakers, opportunities can't be ranked by reach.
-- Published quality discounts a service where it's poor: Google Translate by FLORES-200 chrF++ from English
-  (Robinson et al., WMT 2023: 25 or less counts it at half, 50 or more in full), the open NLLB-200 model by Meta's
-  published FLORES-200 scores for the Dense 3.3B model (`data/sources/`), and Whisper by FLEURS word error rate.
-  chrF++ isn't comparable across writing systems, so Chinese, Japanese and Korean results, and results in a script
-  other than the language's own, are left out. Unmeasured services count in full.
-- Speech locales name the variety spoken in a country, so for speech recognition, text-to-speech and voice
-  assistants `ar-EG` counts for Egyptian Arabic, `ar-AE` for Gulf Arabic and `fa-AF` for Dari
-  (`config/crosswalk_speech.csv`); text services keep `ar-XX` as Arabic. Saudi and Yemeni locales, which cover
-  several varieties, stay Arabic.
+- Published quality discounts a service where it's poor, but only where it was measured independently in the
+  last two years (`quality_year` and `quality_by` in `config/services.csv`). Older results, such as Google
+  Translate's FLORES-200 chrF++ (Robinson et al., WMT 2023), Meta's NLLB-200 scores (2022) and Whisper's FLEURS
+  word error rates (2023), and vendors' own figures (ElevenLabs' and AssemblyAI's WER bands) are shown but not
+  scored. Unmeasured services count in full.
+- Speech locales such as `ar-EG` count for a spoken variety only where the source names the variety as well as
+  the code ("Egyptian Arabic", not "Arabic (Egypt)"); the names each variety is matched by are in the `names`
+  column of `config/crosswalk_speech.csv`. Otherwise the locale counts for the standard language, as text
+  services' locales do.
 - LinguaMeta's endangerment levels sometimes belong to a minority variety rather than the whole language (Latvian's
   is Latgalian's); `config/endangerment_overrides.csv` corrects the clear cases (Slovenian, Armenian, Latvian, Swati),
   and gives a level for some widely used languages LinguaMeta doesn't assess (reviewed by the project lead).
