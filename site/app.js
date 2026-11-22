@@ -2233,6 +2233,7 @@ function planParse(text) {
   }
   return { found, unknown };
 }
+const planGrouped = () => plan.from === 'under' && (plan.s === 'reach' || !PLAN_SORTS[plan.s]);
 function planRows() {
   const T = CFG.tech.technologies[plan.t], voice = PLAN_VOICE.has(plan.t);
   const scale = l => !narrowed() ? 1 : l.speakers ? (vSpk(l) || 0) / l.speakers : 0;
@@ -2259,8 +2260,11 @@ function planRows() {
   const total = considered.reduce((n, l) => n + reach5(l), 0);
   const base = considered.filter(l => supported.has(l.code)).reduce((n, l) => n + reach5(l), 0);
   const o = { com: plan.com, q: plan.q };
-  const cands = considered.filter(l => !supported.has(l.code)).map(l => ({ l, r5: reach5(l), r0: reachNow(l), rd: readiness(l, plan.t, o) }))
-    .sort((a, b) => b.r5 - a.r5);
+  // Starting from the underrepresented: languages most major services don't offer come first, and those
+  // most services offer but that are short of open data or have poor published accuracy after them
+  const grp = l => plan.from === 'under' && l.under && 'dq'.includes(l.under[plan.t]) ? 1 : 0;
+  const cands = considered.filter(l => !supported.has(l.code)).map(l => ({ l, r5: reach5(l), r0: reachNow(l), rd: readiness(l, plan.t, o), g: grp(l) }))
+    .sort((a, b) => a.g - b.g || b.r5 - a.r5);
   let cum = base;
   const rows = cands.map(r => { cum += r.r5; return { ...r, share: total ? cum / total : 0 }; });
   const groups = new Map();
@@ -2271,7 +2275,7 @@ function planRows() {
   }
   const famOpts = [...groups].filter(([, [n]]) => n >= 2).sort((a, b) => b[1][1] - a[1][1]).slice(0, 400);
   // underrepresented though widely available: short of open data or with poor published accuracy
-  const nAttention = plan.from === 'under' ? rows.filter(r => r.l.under && 'dq'.includes(r.l.under[plan.t])).length : 0;
+  const nAttention = rows.filter(r => r.g).length;
   return { T, voice, rows, total, base, supported, unknown, baseName, famOpts, nAttention, nSupported: considered.filter(l => supported.has(l.code)).length };
 }
 function planCells(r, T, sl = false) {
@@ -2317,7 +2321,7 @@ function planCurve(rows, base, total) {
   return `<svg class="plancurve" viewBox="0 0 ${W} ${H}" role="img" aria-label="Share of people online reached as languages are added">
     <g class="grid">${yt.map(v => `<line x1="${L}" x2="${W - R}" y1="${sy(v)}" y2="${sy(v)}"/><text x="${L - 6}" y="${sy(v) + 4}" text-anchor="end">${Math.round(v * 100)}%</text>`).join('')}
       ${[...ticks, N].map(t => `<text x="${sx(t)}" y="${H - 14}" text-anchor="middle">${t === N ? N.toLocaleString() : t}</text>`).join('')}
-      <text x="${(L + W - R) / 2}" y="${H - 1}" text-anchor="middle">languages added, most-reaching first</text></g>
+      <text x="${(L + W - R) / 2}" y="${H - 1}" text-anchor="middle">languages added, ${plan.from === 'under' ? 'those most services don\u2019t offer first, then by reach' : 'most-reaching first'}</text></g>
     <polyline fill="none" stroke="var(--accent)" stroke-width="2.5" points="${pts.map(([i, v]) => `${sx(i).toFixed(1)},${sy(v).toFixed(1)}`).join(' ')}"/>
     <circle cx="${sx(0)}" cy="${sy(y0)}" r="4" fill="var(--accent)"/>
     ${marks.map(([k, v]) => `<circle cx="${sx(k)}" cy="${sy(v)}" r="3.5" fill="var(--accent)"/>`).join('')}
@@ -2452,11 +2456,14 @@ const PLAN_SORTS = {
   read: [-1, (r, c) => c.kinds ? c.kinds[0] : null], spont: [-1, (r, c) => c.kinds ? c.kinds[1] : null],
   media: [-1, (r, c) => c.kinds ? c.kinds[2] : null], test: [-1, (r, c) => c.kinds ? +(c.kinds[3] >= 0.05) : null],
   data: [-1, r => (plan.t === 'mt' ? r.l.ps : r.l.ww) || 0], short: [-1, (r, c) => c.short],
+  total: [-1, (r, c) => c.kinds ? trainHours(c.kinds) : null],
 };
 function planSorted(rows, T, sl) {
   const S = PLAN_SORTS[plan.s] || PLAN_SORTS.reach, dir = plan.d || S[0];
   const keyed = rows.map(r => ({ r, v: S[1](r, planCells(r, T, sl)) }));
-  keyed.sort((a, b) => (a.v == null) - (b.v == null) || (a.v == null ? 0 : (typeof a.v === 'string' ? a.v.localeCompare(b.v, 'en', { ignorePunctuation: true, sensitivity: 'base' }) : a.v - b.v) * dir) || b.r.r5 - a.r.r5);
+  // sorted by reach, the underrepresented list keeps its two groups (planRows)
+  const byGroup = (plan.s === 'reach' || !PLAN_SORTS[plan.s]) && !sl;
+  keyed.sort((a, b) => (byGroup ? (a.r.g || 0) - (b.r.g || 0) : 0) || (a.v == null) - (b.v == null) || (a.v == null ? 0 : (typeof a.v === 'string' ? a.v.localeCompare(b.v, 'en', { ignorePunctuation: true, sensitivity: 'base' }) : a.v - b.v) * dir) || b.r.r5 - a.r.r5);
   return keyed.map(x => x.r);
 }
 function psBtn(key, label) {
@@ -2474,7 +2481,8 @@ function planHead(T, P, who, scopeName, sl) {
   const data = voice
     ? `<th class="num pc-h"${psAria('read')}>${psBtn('read', 'Read')}</th><th class="num pc-h"${psAria('spont')}>${psBtn('spont', 'Spont&shy;aneous')}</th><th class="num pc-h"${psAria('media')}>${psBtn('media', 'Media')}</th><th class="pc-fl"${psAria('test')}>${psBtn('test', 'FLEURS test set')}</th>`
     : `<th class="num pc-h"${psAria('data')}>${psBtn('data', plan.t === 'mt' ? 'Sentence pairs with English' : 'Words of web text')}</th>`;
-  return `<table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang"${psAria('name')}>${psBtn('name', 'Language')}</th><th class="pc-code"${psAria('code')}>${psBtn('code', 'Code')}</th><th class="pc-code"${psAria('script')}>${psBtn('script', 'Script')}</th><th class="pc-cty"${psAria('countries')}>${psBtn('countries', 'Countries')}</th><th class="num pc-now"${psAria('reach')}>${psBtn('reach', 'Online in 5 years')}</th><th class="pc-mod"${psAria('models')}>${psBtn('models', 'Open models')}</th>${PLAN_QCOL[plan.t] ? `<th class="num pc-q"${psAria('qual')}>${psBtn('qual', PLAN_QCOL[plan.t][1])}</th>` : ''}${data}<th class="num pc-need" title="How much more open data it needs to reach the target, ${esc(magn(planTarget()))} ${esc(U.label)}${voice ? ', not counting test sets' : ''}"${psAria('short')}>${psBtn('short', `Short of ${esc(magn(planTarget()))}`)}</th></tr></thead>`;
+  return `<table class="plantab"><thead><tr><th class="num pc-n">#</th><th class="pc-lang"${psAria('name')}>${psBtn('name', 'Language')}</th><th class="pc-code"${psAria('code')}>${psBtn('code', 'Code')}</th><th class="pc-code"${psAria('script')}>${psBtn('script', 'Script')}</th><th class="pc-cty"${psAria('countries')}>${psBtn('countries', 'Countries')}</th><th class="num pc-now"${psAria('reach')}>${psBtn('reach', 'Online in 5 years')}</th><th class="pc-mod"${psAria('models')}>${psBtn('models', 'Open models')}</th>${PLAN_QCOL[plan.t] ? `<th class="num pc-q"${psAria('qual')}>${psBtn('qual', PLAN_QCOL[plan.t][1])}</th>` : ''}${data}${voice ? `<th class="num pc-need" title="Read, spontaneous and media hours together, not counting test sets"${psAria('total')}>${psBtn('total', 'Total hours')}</th>`
+    : `<th class="num pc-need" title="How much more open data it needs to reach the target, ${esc(magn(planTarget()))} ${esc(U.label)}"${psAria('short')}>${psBtn('short', `Short of ${esc(magn(planTarget()))}`)}</th>`}</tr></thead>`;
 }
 function planRow(r, i, T, sl) {
   const c = planCells(r, T, sl), l = r.l, voice = PLAN_VOICE.has(plan.t);
@@ -2484,7 +2492,8 @@ function planRow(r, i, T, sl) {
   const tip = k => { const t = speechSources(l, k); return t ? ` title="${esc(t)}"` : ''; };
   const data = voice ? c.kinds.slice(0, 3).map((v, k) => `<td class="num${v >= 0.05 ? ' pc-src' : ''}"${tip(k)}>${h(v)}</td>`).join('') + `<td class="pc-fl"${tip(3)}>${c.kinds[3] >= 0.05 ? '<span aria-label="yes">✓</span>' : '<span class="muted" aria-label="no">—</span>'}</td>`
     : `<td class="num">${(plan.t === 'mt' ? l.ps : l.ww) ? big(plan.t === 'mt' ? l.ps : l.ww) : '—'}</td>`;
-  return `<tr><td class="num">${i + 1}</td><td class="pc-ln">${slButton(l)}<a href="${LH(l.code)}" title="${esc([famName(l), branchName(l)].filter(Boolean).join(' › '))}">${esc(l.name)}</a></td><td class="pc-m">${l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, l)}</td><td class="num">${onCell}</td><td class="small">${esc(c.models)}</td>${PLAN_QCOL[plan.t] ? `<td class="num">${c.qual}</td>` : ''}${data}<td class="num${c.short ? '' : ' muted'}">${esc(c.need)}</td></tr>`;
+  return `<tr><td class="num">${i + 1}</td><td class="pc-ln">${slButton(l)}<a href="${LH(l.code)}" title="${esc([famName(l), branchName(l)].filter(Boolean).join(' › '))}">${esc(l.name)}</a></td><td class="pc-m">${l.code}</td><td class="pc-m">${c.scripts.join(' ') || '—'}</td><td class="pc-m" title="${esc(c.locales.join(' '))}">${planCodes(c.countries, l)}</td><td class="num">${onCell}</td><td class="small">${esc(c.models)}</td>${PLAN_QCOL[plan.t] ? `<td class="num">${c.qual}</td>` : ''}${data}${voice ? `<td class="num" title="${esc(c.short ? `${hShort(c.short)} hours short of the target, ${magn(planTarget())}` : `Meets the target, ${magn(planTarget())} hours`)}">${trainHours(c.kinds) >= 0.05 ? hShort(trainHours(c.kinds)) : '—'}</td>`
+    : `<td class="num${c.short ? '' : ' muted'}">${esc(c.need)}</td>`}</tr>`;
 }
 function planPage() {
   const P = planRows(), T = P.T;
@@ -2517,18 +2526,20 @@ function planPage() {
     </section>
     <section class="chart plangraph">
       <h3>${P.rows.length ? `From ${pct(P.base / (P.total || 1))} to 100% of ${who} in ${esc(scopeName)}` : 'Nothing left to add'}</h3>
-      <p class="sub">${P.baseName ? `Starting from ${esc(P.baseName)}: ${P.nSupported.toLocaleString()} ${P.nSupported === 1 ? 'language' : 'languages'} reaching ${people(P.base)} of ${people(P.total)} in five years.` : `Starting from nothing: ${people(P.total)} ${who} in five years across ${P.rows.length.toLocaleString()} languages.`}${P.nAttention ? ` ${P.nAttention.toLocaleString()} of the languages listed are offered by several major services but are short of open data or have poor published accuracy, so they stay on the list.` : ''}${plan.fam >= 0 ? ` Only ${esc(GN[plan.fam][1])} languages are counted.` : ''}${plan.ex ? ' Varieties of major languages are left out of the list and the totals.' : ' Varieties of major languages are counted in the list and the totals.'} Each step adds the next language in the table below.</p>
+      <p class="sub">${P.baseName ? `Starting from ${esc(P.baseName)}: ${P.nSupported.toLocaleString()} ${P.nSupported === 1 ? 'language' : 'languages'} reaching ${people(P.base)} of ${people(P.total)} in five years.` : `Starting from nothing: ${people(P.total)} ${who} in five years across ${P.rows.length.toLocaleString()} languages.`}${P.nAttention ? ` ${P.nAttention.toLocaleString()} of the languages listed are offered by several major services but are short of open data or have poor published accuracy, so they stay on the list, after the ${(P.rows.length - P.nAttention).toLocaleString()} that most services don't offer.` : ''}${plan.fam >= 0 ? ` Only ${esc(GN[plan.fam][1])} languages are counted.` : ''}${plan.ex ? ' Varieties of major languages are left out of the list and the totals.' : ' Varieties of major languages are counted in the list and the totals.'} Each step adds the next language in the table below.</p>
       ${planCurve(P.rows, P.base, P.total)}
     </section>
     </div>
     <section class="chart">
       <div class="plan-tablehead"><h3>${plan.from === 'under' ? 'Underrepresented languages' : 'Languages to add'}, by reach</h3><span><a class="chip slchip" href="${slHash()}" title="The languages you've marked with +">Shortlist (<span class="slcount">${shortlist.length}</span>)</a> <button type="button" class="chip" id="pl-csv">Download CSV</button> <button type="button" class="chip" id="pl-link">Copy link</button></span></div>
       <div class="tablebox">${planHead(T, P, who, scopeName, false)}
-      <tbody>${shown.map((r, i) => planRow(r, i, T, false)).join('')}</tbody></table></div>
+      <tbody>${shown.map((r, i) => (planGrouped() && (i === 0 || r.g !== shown[i - 1].g) && P.nAttention
+        ? `<tr class="plan-split"><td colspan="${8 + (PLAN_QCOL[plan.t] ? 1 : 0) + (P.voice ? 4 : 1)}">${r.g ? `Offered by most major services, but short of open data or with poor published accuracy <span class="muted">· ${P.nAttention.toLocaleString()}</span>` : `Not offered by most major services <span class="muted">· ${(P.rows.length - P.nAttention).toLocaleString()}</span>`}</td></tr>` : '')
+        + planRow(r, i, T, false)).join('')}</tbody></table></div>
       ${P.rows.length > shown.length ? `<button type="button" class="chip" id="pl-more">Show ${Math.min(50, P.rows.length - shown.length)} more of ${(P.rows.length - shown.length).toLocaleString()}</button>` : ''}
       <p class="note">Online in 5 years: ${who} in five years, estimated from LinguaMeta's speaker counts and the World Bank's connectivity data, with their share of the language's speakers. Countries are ISO 3166 codes, most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK); hover the countries for the locales.</p>
       <p class="note">Open models are those listed for the language; † marks a licence that doesn't permit commercial use (the commercial-use switch leaves them out).${plan.t === 'speech_input' ? " OASR is Meta's Omnilingual ASR." : ''} Their makers publish quality figures, each on their own test data, which say too little to compare languages by, so they aren't shown.</p>
-      <p class="note">${P.voice ? `Read, Spontaneous and Media are hours of transcribed speech in the open datasets tracked; hover a figure for the datasets behind it. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech. Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, IndicVoices (its first release; the full dataset is larger), Vaani. Media: Shrutilipi's radio news, VoxPopuli's European Parliament speeches, WenetSpeech's and GigaSpeech 2's machine-labelled YouTube and podcasts, and YouTube videos with their uploaders' subtitles in YODAS2, counted by the share of a sample of subtitles that is in the language. A tick under FLEURS test set means the language is one of the 102 in FLEURS, Google's public test set of about 12 hours of read speech a language, the usual way to measure and compare speech recognition; it stays out of training, so it doesn't count towards the target. Short of ${esc(magn(planTarget()))} is the hours still needed to reach the data target.` : `${plan.t === 'mt' ? 'Sentence pairs with English are those in OPUS' : 'Words of web text are those in FineWeb-2'}; Short of ${esc(magn(planTarget()))} is how many more are needed to reach the data target.`}${plan.com ? (P.voice ? ' Only datasets whose licence permits commercial use are counted.' : plan.t === 'mt' ? " OPUS corpora carry their own licences, which aren't checked here." : '') : ''} Licences are as each project publishes them; this isn't legal advice.${plan.from === 'under' ? ` Underrepresented means fewer than half of the major services tracked for ${esc(T.label.toLowerCase())} offer it (a regional provider counts as one more), the line the rest of the site uses for "most services".` : ''} The CSV adds each language's readiness and the commercial services that offer it.</p>
+      <p class="note">${P.voice ? `Read, Spontaneous and Media are hours of transcribed speech in the open datasets tracked; hover a figure for the datasets behind it. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech. Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, IndicVoices (its first release; the full dataset is larger), Vaani. Media: Shrutilipi's radio news, VoxPopuli's European Parliament speeches, WenetSpeech's and GigaSpeech 2's machine-labelled YouTube and podcasts, and YouTube videos with their uploaders' subtitles in YODAS2, counted by the share of a sample of subtitles that is in the language. A tick under FLEURS test set means the language is one of the 102 in FLEURS, Google's public test set of about 12 hours of read speech a language, the usual way to measure and compare speech recognition; it stays out of training, so it doesn't count towards the target. Total hours adds the three; hover it for how far it is from the data target.` : `${plan.t === 'mt' ? 'Sentence pairs with English are those in OPUS' : 'Words of web text are those in FineWeb-2'}; Short of ${esc(magn(planTarget()))} is how many more are needed to reach the data target.`}${plan.com ? (P.voice ? ' Only datasets whose licence permits commercial use are counted.' : plan.t === 'mt' ? " OPUS corpora carry their own licences, which aren't checked here." : '') : ''} Licences are as each project publishes them; this isn't legal advice.${plan.from === 'under' ? ` Underrepresented means not well served: well served is offered by at least half of the major services tracked for ${esc(T.label.toLowerCase())} (a regional provider counts as one more) or by at least ${numWord(CFG.tech.full_min)} of them, with enough open data for the technology and no poor published accuracy measured independently.` : ''} The CSV adds each language's readiness and the commercial services that offer it.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', planHash()); const y = scrollY; planPage(); scrollTo(0, y); };
   $('#pl-t').onchange = e => { plan.t = e.target.value; if (plan.from.startsWith('svc:')) plan.from = 'none'; plan.n = 50; plan.tg = 0; redraw(); };  // the target's unit changes too

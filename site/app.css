@@ -548,6 +548,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .plantab { table-layout: fixed; width: 100%; min-width: 1000px; }
 .plantab .pc-n { width: 3em; } .plantab .pc-lang { width: auto; } .plantab td.pc-ln { font-size: 14px; line-height: 1.35; } .plantab .pc-code { width: 3.7em; } .plantab .pc-num { width: 6em; }
 .plantab .pc-now { width: 8.4em; } .plantab .pc-q { width: 4.8em; } .plantab .pc-fl { width: 5.4em; text-align: center; } .plantab th.pc-fl button.sort { justify-content: center; } .plantab .pc-mod { width: 12.6em; } .plantab .pc-h { width: 5em; } .plantab .pc-need { width: 6em; } .plantab .pc-cty { width: 6.5em; }
+.plantab tr.plan-split td { font-weight: 600; font-size: 13.5px; padding-top: 14px; border-bottom: 1px solid var(--rule, currentColor); }
 .plantab .pc-m { font: 12.5px/1.9 var(--font-mono); color: var(--ink); }
 .plantab td.pc-src { cursor: help; text-decoration: underline dotted var(--muted); text-underline-offset: 3px; }  /* hover for the datasets */
 .plantab td { vertical-align: top; overflow-wrap: anywhere; }
