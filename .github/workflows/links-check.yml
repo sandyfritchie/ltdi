@@ -1,0 +1,27 @@
+# Checks the source links the site shows (tools/link_check.py). Run by hand before an announcement,
+# and monthly; the full results are kept as the run's artifact.
+name: Check source links
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 14 9 * *"
+
+permissions:
+  contents: read
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check
+        run: python tools/link_check.py --out link_check.csv
+      - uses: actions/upload-artifact@v4
+        with:
+          name: link-check
+          path: link_check.csv
