@@ -7,7 +7,11 @@ Reads each parquet file's audio column and takes each clip's length from its hea
 MP3), or a duration column where the dataset has one. Prints one line per file:
     HOURS<TAB>dataset<TAB>path<TAB>clips<TAB>seconds
 
+Archives (OpenSLR's .zip and .tar.* downloads) are measured member by member:
+    HOURS<TAB>url<TAB><archive><TAB>clips<TAB>seconds
+
 Usage: python tools/audio_hours.py DATASET PATH_PREFIX [--shard I/N]
+       python tools/audio_hours.py --urls URL... [--shard I/N]
 """
 
 from __future__ import annotations
@@ -17,8 +21,10 @@ import io
 import json
 import os
 import sys
+import tarfile
 import tempfile
 import urllib.request
+import zipfile
 
 import pyarrow.parquet as pq
 import soundfile as sf
@@ -59,13 +65,59 @@ def seconds(path: str) -> tuple[int, float]:
     return n, total
 
 
+AUDIO = (".wav", ".flac", ".ogg", ".mp3", ".opus")
+UA = {"User-Agent": "ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)"}
+
+
+def clip_seconds(data: bytes, name: str) -> float:
+    try:
+        info = sf.info(io.BytesIO(data))
+        return info.frames / info.samplerate
+    except Exception as e:  # noqa: BLE001
+        print(f"unreadable clip {name}: {e}", file=sys.stderr)
+        return 0.0
+
+
+def archive_seconds(url: str) -> tuple[int, float]:
+    n, total = 0, 0.0
+    req = urllib.request.Request(url, headers=UA)
+    if url.endswith(".zip"):
+        with tempfile.NamedTemporaryFile(suffix=".zip") as tmp:
+            with urllib.request.urlopen(req, timeout=600) as r:
+                while chunk := r.read(1 << 22):
+                    tmp.write(chunk)
+            tmp.flush()
+            with zipfile.ZipFile(tmp.name) as z:
+                for m in z.infolist():
+                    if m.filename.lower().endswith(AUDIO):
+                        n += 1
+                        total += clip_seconds(z.read(m), m.filename)
+        return n, total
+    with urllib.request.urlopen(req, timeout=600) as r, tarfile.open(fileobj=r, mode="r|*") as t:
+        for m in t:
+            if m.isfile() and m.name.lower().endswith(AUDIO):
+                n += 1
+                total += clip_seconds(t.extractfile(m).read(), m.name)
+    return n, total
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("dataset")
-    ap.add_argument("prefix")
+    ap.add_argument("dataset", nargs="?")
+    ap.add_argument("prefix", nargs="?")
+    ap.add_argument("--urls", nargs="*")
     ap.add_argument("--shard", default="0/1")
     a = ap.parse_args()
     i, n = map(int, a.shard.split("/"))
+    if a.urls:
+        for u in [u for u in a.urls if u][i::n]:
+            try:
+                clips, secs = archive_seconds(u)
+            except Exception as e:  # noqa: BLE001
+                print(f"failed {u}: {e}", file=sys.stderr)
+                continue
+            print(f"HOURS\t{u}\t{u.rsplit('/', 1)[1]}\t{clips}\t{secs:.1f}", flush=True)
+        return
     todo = files(a.dataset, a.prefix)[i::n]
     print(f"{len(todo)} files in shard {a.shard}", file=sys.stderr)
     token = os.environ.get("HF_TOKEN")

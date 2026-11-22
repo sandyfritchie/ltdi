@@ -8,11 +8,14 @@ on:
   workflow_dispatch:
     inputs:
       dataset:
-        description: "Hugging Face dataset id"
-        required: true
+        description: "Hugging Face dataset id (or leave empty and give urls)"
+        default: ""
       prefix:
         description: "Folder in the dataset to measure"
-        required: true
+        default: ""
+      urls:
+        description: "Or: archive URLs to measure (OpenSLR downloads), separated by spaces"
+        default: ""
       shards:
         description: "Parallel jobs (1-8)"
         default: "8"
@@ -36,4 +39,11 @@ jobs:
       - run: pip install pyarrow soundfile
       - name: Measure
         if: matrix.shard < fromJSON(inputs.shards)
-        run: python tools/audio_hours.py "${{ inputs.dataset }}" "${{ inputs.prefix }}" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
+        env:
+          URLS: ${{ inputs.urls }}
+        run: |
+          if [ -n "$URLS" ]; then
+            python tools/audio_hours.py --urls $URLS --shard "${{ matrix.shard }}/${{ inputs.shards }}"
+          else
+            python tools/audio_hours.py "${{ inputs.dataset }}" "${{ inputs.prefix }}" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
+          fi
