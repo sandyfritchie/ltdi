@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import csv
 import json
+import math
 import re
 import shutil
 from collections import Counter, defaultdict
@@ -543,9 +544,9 @@ def speech_by_kind(facts: dict, resources: dict, commercial: bool = False) -> li
 
 def usable_hours(facts: dict, resources: dict) -> float:
     """Open transcribed speech whose licence permits commercial use (resources.csv: commercial = yes)."""
-    return sum(f["value"] for i, f in facts.items()
-               if (i.startswith("speech_") or i in ("cv_validated_hours", "cv_spontaneous_hours"))
-               and resources.get(i, {}).get("commercial") == "yes")
+    return math.fsum(f["value"] for i, f in facts.items()  # fsum: the same result on every Python version
+                     if (i.startswith("speech_") or i in ("cv_validated_hours", "cv_spontaneous_hours"))
+                     and resources.get(i, {}).get("commercial") == "yes")
 
 
 def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
