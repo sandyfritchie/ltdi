@@ -79,6 +79,13 @@ connectivity,https://api.worldbank.org/v2/country/UG;US;UY;UZ;VC;VE;VG;VI;VN;VU;
 connectivity,https://api.worldbank.org/v2/country?format=json&per_page=400,c9acf3932785191a649cbc04c3056af4cf64a236e5c3b49d49be25ddb0440bce,2026-11-07
 corpuscrawler,https://raw.githubusercontent.com/google/corpuscrawler/501495d13d65a6f1b7c46b982486e179826be096/README.md,7857f35b81a73eedfb6569580186fa87544f98b7aeca173797d352e8c49a5e1c,2026-11-18
 deepl,https://raw.githubusercontent.com/DeepLcom/api-docs/4efb269d9fb1b7defc3c16c5163c6ec01851552c/snippets/language-table.jsx,bb1dd0ef91a43b5b8a18c4b4bbedbfa786bbd6ca816e9e75be11e91d8309bd91,2026-11-08
+docs_vendors,https://docs.abbyy.com/fine-reader/engine/specifications/predefined-languages.md,fcf2c317e3bf39eae9c7c068fea1c0d6ef11e6ef58005720c02d8f73b92c138a,2026-11-22
+docs_vendors,https://docs.cohere.com/docs/command-a-translate.md,37b60a657b036808298bd028ae081e1956dd245309f2c4a2762ff5ff2d1b0d9f,2026-11-22
+docs_vendors,https://docs.mistral.ai/resources/languages,a1325b65b34318177944e1085032cc2721038bb51945be1df6ca0c9d0e55de5a,2026-11-22
+docs_vendors,https://docs.x.ai/developers/model-capabilities/audio/speech-to-text.md,855c0227863b74bb69780557763fe817ae88898852516a7e8990b538b69fcc66,2026-11-22
+docs_vendors,https://docs.x.ai/developers/model-capabilities/audio/text-to-speech.md,bc3147bd2002e125d9d3b02e0a6c8895e3d0376843678444e166f1460a097772,2026-11-22
+docs_vendors,https://huggingface.co/CohereLabs/command-a-plus-05-2026/raw/main/README.md,507c57ee705b109f326392c9687d9e14b2697b88790f3048ca86faf91fb58b02,2026-11-22
+docs_vendors,https://news.samsung.com/ca/samsung-expands-language-support-across-ai-experiences-on-galaxy,a9faeb8af748822660ea5e3fe137e6af6e3b3216a59571a07e578da350eb40c0,2026-11-22
 fineweb2,https://raw.githubusercontent.com/huggingface/fineweb-2/d0defb24f193bb9a5a11b8b14524a03c4858e1b6/fineweb2-language-distribution.csv,0c6e6fbcef62cb034aff493187dee8d327c6bb2c08bb14a81a9c7221b091e0a5,2026-11-08
 flores200,https://raw.githubusercontent.com/facebookresearch/flores/a6c830c6e1051fb4ac1a44b32358f00463f332bd/flores200/README.md,74ccbbe29feba9d92cb3ee472387579ab2aa5c0299d47dcec7614b2c06cd49fc,2026-11-08
 hf_models,https://huggingface.co/api/models,7693 language tags,2026-11-18

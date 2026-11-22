@@ -9,24 +9,24 @@
    "ranks": "1–60",
    "languages": 60,
    "median_range": 4,
-   "within_10pct": 0.767
+   "within_10pct": 0.7
   },
   {
    "ranks": "61–200",
    "languages": 140,
-   "median_range": 15,
-   "within_10pct": 0.9
+   "median_range": 14,
+   "within_10pct": 0.893
   },
   {
    "ranks": "201–1,000",
-   "languages": 800,
-   "median_range": 214,
-   "within_10pct": 0.166
+   "languages": 805,
+   "median_range": 215,
+   "within_10pct": 0.17
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3006,
-   "median_range": 414,
+   "languages": 3001,
+   "median_range": 413,
    "within_10pct": 0.48
   }
  ],
@@ -37,29 +37,29 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Yue Chinese",
-     "from": 82,
-     "to": 80
+     "name": "Norwegian Bokmål",
+     "from": 29,
+     "to": 27
     },
     {
-     "name": "Ukrainian",
-     "from": 21,
-     "to": 23
+     "name": "Indonesian",
+     "from": 12,
+     "to": 14
     },
     {
-     "name": "Swiss German",
-     "from": 198,
-     "to": 200
+     "name": "Greek",
+     "from": 24,
+     "to": 26
     },
     {
-     "name": "Romanian",
-     "from": 22,
-     "to": 24
+     "name": "Finnish",
+     "from": 23,
+     "to": 21
     },
     {
-     "name": "Kabardian",
-     "from": 200,
-     "to": 198
+     "name": "Dutch",
+     "from": 15,
+     "to": 13
     }
    ]
   },
@@ -69,61 +69,61 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Norwegian Bokmål",
-     "from": 25,
-     "to": 30
-    },
-    {
-     "name": "Malay",
-     "from": 33,
-     "to": 37
-    },
-    {
-     "name": "Dutch",
-     "from": 11,
-     "to": 15
-    },
-    {
      "name": "Thai",
-     "from": 19,
+     "from": 18,
      "to": 22
     },
     {
-     "name": "Hungarian",
-     "from": 29,
-     "to": 26
+     "name": "Danish",
+     "from": 25,
+     "to": 29
+    },
+    {
+     "name": "Persian",
+     "from": 30,
+     "to": 27
+    },
+    {
+     "name": "Malay",
+     "from": 34,
+     "to": 37
+    },
+    {
+     "name": "Yucateco",
+     "from": 264,
+     "to": 262
     }
    ]
   },
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9977,
-   "moved_10_in_top_300": 9,
+   "moved_10_in_top_300": 8,
    "largest": [
     {
-     "name": "Ladin",
-     "from": 306,
-     "to": 288
+     "name": "Kölsch",
+     "from": 285,
+     "to": 266
     },
     {
-     "name": "Western Armenian",
-     "from": 285,
-     "to": 268
+     "name": "Ladin",
+     "from": 308,
+     "to": 290
+    },
+    {
+     "name": "Bavarian",
+     "from": 251,
+     "to": 237
     },
     {
      "name": "Venetian",
-     "from": 177,
-     "to": 163
+     "from": 182,
+     "to": 169
     },
     {
-     "name": "Kölsch",
-     "from": 276,
-     "to": 262
-    },
-    {
-     "name": "Picard",
-     "from": 312,
-     "to": 299
+     "name": "Kabardian",
+     "from": 181,
+     "to": 168
     }
    ]
   }

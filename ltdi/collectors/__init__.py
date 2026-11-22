@@ -15,10 +15,10 @@ from .. import DATA
 from ..crosswalk import to_ltdi
 from ..records import Record, write_records
 
-AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "openai_docs", "llm_lists", "speech_vendors", "mt_quality", "regional", "afrobench", "omnilingual", "open_tools", "ud", "speech", "benchmarks", "opus", "connectivity", "mms", "vendors", "corpuscrawler"]
+AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "openai_docs", "llm_lists", "speech_vendors", "docs_vendors", "mt_quality", "regional", "afrobench", "omnilingual", "open_tools", "ud", "speech", "benchmarks", "opus", "connectivity", "mms", "vendors", "corpuscrawler"]
 # Slow ones (thousands of requests, the best part of an hour), run on the 3rd of each month by
 # .github/workflows/monthly-collectors.yml, or here with --monthly
-MONTHLY = ["hf_hub", "wikipedia", "hf_models", "wikipedia_views", "speech_vendors"]
+MONTHLY = ["hf_hub", "wikipedia", "hf_models", "wikipedia_views", "speech_vendors", "docs_vendors"]
 
 
 def sum_by_language(pairs) -> dict[str, float]:
