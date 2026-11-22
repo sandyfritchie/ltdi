@@ -53,8 +53,9 @@ function validationSection() {
 }
 // How a service's languages are counted, said wherever a count appears (About, Charts, For providers)
 const COUNTING_NOTE = "Each count is the number of distinct languages in the company's own published list, read from the page linked on every language's profile. A list often has several entries for one language: English for each country, a language in two scripts, or both a language and its varieties. Those count once here, so a count is usually lower than the company's own figure, which may count them separately.";
-const CORRECTIONS_EMAIL = 'langtechindex@gmail.com';
-const INDEPENDENCE = "The Index is made and maintained by Sandy Ritchie, a linguist and technologist who worked on language technology at Google and Google DeepMind from 2018 to 2025. It's independent: it has no funding from, and no affiliation with, any company or organisation whose products or data it tracks, and every company is counted by the same rules.";
+const CORRECTIONS_EMAIL = 'corrections@langtechindex.org';
+const SUPPORT_EMAIL = 'support@langtechindex.org';
+const INDEPENDENCE = "The Index is maintained by Sandy Ritchie, an independent researcher previously at Google and Google DeepMind. The Index has no funding from, and no affiliation with, any company or organisation whose products or data it tracks, and every company is counted by the same rules.";
 // For providers: how a company's numbers are made, which companies count, and how to correct them
 function providersPage() {
   const C = DATA.coverage || { tech: [] }, T = DATA.config.dimensions.tech.technologies;
@@ -177,7 +178,7 @@ function about() {
     <h3>Independence and accuracy</h3>
     <p>${INDEPENDENCE} It's offered as a way to explore the current state of technology and data for the world's languages, not as an authoritative record. There are very likely mistakes and omissions: it brings together only what could be found in open repositories and public documentation, and much work on many languages isn't published in either. For more detail on any language, follow the links to the source material on its page, or do your own research.</p>
     <h3>Corrections and feedback</h3>
-    <p>If you spot a mistake, work on a product whose row is out of date, or know of a source we've missed, please email <span class="email">${CORRECTIONS_EMAIL}</span>, or, if you'd rather it be public, <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">open an issue on GitHub</a> using the correction or new-source form. A link to the page that documents the change is the quickest way to get it fixed; corrections go into the next build with the source cited. Companies whose products are tracked will find how their numbers are made on the <a href="#providers">For providers</a> page.</p>
+    <p>If you spot a mistake, work on a product whose row is out of date, or know of a source we've missed, please email <span class="email">${CORRECTIONS_EMAIL}</span>, or, if you'd rather it be public, <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">open an issue on GitHub</a> using the correction or new-source form. A link to the page that documents the change is the quickest way to get it fixed; corrections go into the next build with the source cited. Companies whose products are tracked will find how their numbers are made on the <a href="#providers">For providers</a> page. For anything else, email <span class="email">${SUPPORT_EMAIL}</span>.</p>
     ${PATHS && window.goatcounter ? `<h3>Privacy</h3>
     <p>The site counts visits with <a href="https://www.goatcounter.com" target="_blank" rel="noopener">GoatCounter</a>, which sets no cookies and records no personal information: only which page was opened, the referring site, and the browser, screen size and country in general terms. Nothing else is collected.</p>` : ''}
 

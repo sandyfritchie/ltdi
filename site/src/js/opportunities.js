@@ -269,7 +269,7 @@ async function oppDetail(id) {
     <p class="note">${esc(o.detail)}</p>
     ${countries ? `<h3 class="panel-h">Who it would reach</h3>${countries}` : ''}
     <h3 class="panel-h">Sources checked</h3>${checked ? `<ul class="checked">${checked}</ul>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
-    <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">langtechindex@gmail.com</span>.</p>
+    <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>
     <details class="method"><summary>How this ranks</summary>
       <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
       <p class="note">Priority = reach × gap × need × momentum ÷ cost.</p></details>

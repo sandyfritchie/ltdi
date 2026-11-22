@@ -603,13 +603,14 @@ rank correlation and largest moves (`--csv` writes every language's three scores
 the review baseline, `python tools/edition_diff.py 5d79055`, shows the 2.0 method change on its own.
 
 To cite: Ritchie, Sandy (2026). Language Technology Development Index (LTDI), edition 2026-11
-(methodology 2.2). https://langtechindex.org
+(methodology 2.3). https://langtechindex.org
 
 ## Maintainer, corrections and what's included
 
-The Index is made and maintained by Sandy Ritchie, a linguist and technologist; it isn't affiliated
-with any organisation or company. Corrections and feedback: langtechindex@gmail.com, or a GitHub issue
-using the correction or new-source form (`.github/ISSUE_TEMPLATE/`). A service is included when it's
+The Index is maintained by Sandy Ritchie, an independent researcher previously at Google and Google
+DeepMind; it isn't affiliated with any organisation or company. Corrections: corrections@langtechindex.org,
+or a GitHub issue
+using the correction or new-source form (`.github/ISSUE_TEMPLATE/`); anything else: support@langtechindex.org. A service is included when it's
 a product or open tool used across many languages and its maker publishes an official language list
 (or, for a benchmark, per-language results) that can be read, cited and re-checked; the About page
 says what's tracked and what's known to be missing. `data/checks/vendor_spotcheck.csv` records hand
