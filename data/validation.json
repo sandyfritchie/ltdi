@@ -3,7 +3,7 @@
  "methodology_version": "1.0",
  "joshi": {
   "n": 2032,
-  "spearman": 0.602,
+  "spearman": 0.601,
   "groups": [
    {
     "group": 0,
@@ -34,7 +34,7 @@
     "group": 2,
     "label": "2 · The Hopefuls",
     "n": 18,
-    "median_ltdi": 0.556,
+    "median_ltdi": 0.553,
     "tiers": {
      "m": 6,
      "lc": 12
@@ -44,7 +44,7 @@
     "group": 3,
     "label": "3 · The Rising Stars",
     "n": 26,
-    "median_ltdi": 0.761,
+    "median_ltdi": 0.759,
     "tiers": {
      "vh": 1,
      "h": 14,
@@ -96,7 +96,7 @@
     "code": "prs",
     "name": "Dari",
     "ltdi": 0.5885,
-    "rank": 71,
+    "rank": 70,
     "tier": "lc",
     "other": 0,
     "gap": 0.531
@@ -168,7 +168,7 @@
     "code": "lus",
     "name": "Mizo",
     "ltdi": 0.2229,
-    "rank": 197,
+    "rank": 196,
     "tier": "lc",
     "other": 0,
     "gap": 0.473
@@ -330,10 +330,10 @@
     "code": "lua",
     "name": "Luba-Lulua",
     "ltdi": 0.1769,
-    "rank": 249,
+    "rank": 248,
     "tier": "lc",
     "other": 0,
-    "gap": 0.45
+    "gap": 0.451
    },
    {
     "code": "hil",
@@ -690,6 +690,6 @@
   "n": 188,
   "joshi_dls": 0.555,
   "ltdi_joshi": 0.618,
-  "ltdi_dls": 0.754
+  "ltdi_dls": 0.752
  }
 }

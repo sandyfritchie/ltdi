@@ -15,18 +15,18 @@
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.893
+   "within_10pct": 0.9
   },
   {
    "ranks": "201–1,000",
-   "languages": 805,
+   "languages": 804,
    "median_range": 215,
-   "within_10pct": 0.17
+   "within_10pct": 0.172
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3001,
-   "median_range": 413,
+   "languages": 3002,
+   "median_range": 414,
    "within_10pct": 0.48
   }
  ],
