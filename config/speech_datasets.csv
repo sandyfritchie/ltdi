@@ -40,3 +40,23 @@ Multilingual LibriSpeech,en,44659.74,CC BY 4.0,https://www.openslr.org/94/,Audio
 Multilingual LibriSpeech,fr,1076.58,CC BY 4.0,https://www.openslr.org/94/,Audiobooks (training hours)
 Multilingual LibriSpeech,es,917.68,CC BY 4.0,https://www.openslr.org/94/,Audiobooks (training hours)
 Multilingual LibriSpeech,pt,160.96,CC BY 4.0,https://www.openslr.org/94/,Audiobooks (training hours)
+WenetSpeech,cmn,10000,CC BY 4.0 (non-commercial),https://www.openslr.org/121,"YouTube and podcasts labelled by OCR and ASR, the high-confidence subset"
+GigaSpeech 2,th,10262,Terms of access (non-commercial),https://huggingface.co/datasets/speechcolab/gigaspeech2,"YouTube, automatically transcribed and refined (the refined set)"
+GigaSpeech 2,id,5714,Terms of access (non-commercial),https://huggingface.co/datasets/speechcolab/gigaspeech2,"YouTube, automatically transcribed and refined (the refined set)"
+GigaSpeech 2,vi,6039,Terms of access (non-commercial),https://huggingface.co/datasets/speechcolab/gigaspeech2,"YouTube, automatically transcribed and refined (the refined set)"
+VoxPopuli,en,543,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,de,282,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,fr,211,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,es,166,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,pl,111,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,it,91,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,ro,89,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,hu,63,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,cs,62,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,nl,53,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,fi,27,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,hr,43,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,sk,35,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,sl,10,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,et,3,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts
+VoxPopuli,lt,2,CC0,https://huggingface.co/datasets/facebook/voxpopuli,European Parliament speeches aligned with their transcripts

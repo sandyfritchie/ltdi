@@ -151,6 +151,18 @@ label = "Technology support"
 # of a technology's major services offer it, or at least this many do, so that tracking more services
 # doesn't keep raising the bar
 full_min = 3
+# Well served, for the Plan tab's "underrepresented languages": widely available (above), and the open
+# data the technology is built from isn't scarce (at least min of indicator), and where a commercial
+# service publishes its accuracy for the language, the best figure isn't poor (credit at least
+# quality_min, as quality_factor scales it: for word error rates, 30% or better). Anything else is
+# underrepresented, so a language several companies list but with little open data still counts.
+quality_min = 0.75
+[dimensions.tech.well_served]
+speech_input = { indicator = "open_speech_hours", min = 1000 }
+tts = { indicator = "open_speech_hours", min = 1000 }
+assistant = { indicator = "open_speech_hours", min = 1000 }
+mt = { indicator = "parallel_sentences", min = 1000000 }
+llm = { indicator = "web_text_words", min = 1000000000 }
 # Which services count for each technology, and their depth indicators, are in
 # config/services.csv: one row per service.
 

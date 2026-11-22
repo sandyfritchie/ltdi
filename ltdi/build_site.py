@@ -345,6 +345,8 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
             # where the rank falls in 90% of re-scorings with other reasonable choices (ltdi.sensitivity)
             **({"rr": rr[l["code"]]} if l["code"] in rr else {}),
             "levels": "".join(l["levels"][t][0] for t in techs),  # f(ull) p(art) o(pen) n(one), in config order
+            # why each technology is underrepresented: a(vailability), d(ata), q(uality), or w(ell served)
+            "under": "".join((l.get("under") or {}).get(t, "a" if l["levels"][t] != "full" else "w") for t in techs),
             "offers": [svc_index[i] for i in l["offers"]],
             "opportunity_count": len(opps),
             "alt": "|".join(l.get("alt_names") or []),  # other names, for search
@@ -499,7 +501,8 @@ SPEECH_KIND = {
     "speech_multilingual_librispeech": "read",
     "cv_spontaneous_hours": "spontaneous", "speech_waxal": "spontaneous", "speech_indicvoices": "spontaneous",
     "speech_vaani": "spontaneous",
-    "speech_shrutilipi": "broadcast", "speech_yodas": "broadcast",
+    "speech_shrutilipi": "broadcast", "speech_yodas": "broadcast", "speech_wenetspeech": "broadcast",
+    "speech_gigaspeech_2": "broadcast", "speech_voxpopuli": "broadcast",
     "speech_fleurs": "benchmark",
 }
 

@@ -172,8 +172,12 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
             part, open (open model only), none
     gaps    main technologies (and any marked gap = true) no commercial service offers: open (open model
             or benchmark only) or none
-    offers  ids of the services and benchmarks that cover the language"""
-    levels, gaps = {}, {}
+    offers  ids of the services and benchmarks that cover the language
+    under   per technology, why it's underrepresented: a (not widely available), d (its open data is scarce),
+            q (the best accuracy a commercial service publishes for it is poor), or w (well served);
+            [dimensions.tech] well_served and quality_min"""
+    levels, gaps, under = {}, {}, {}
+    tech_cfg = cfg["dimensions"]["tech"]
     for name, t in cfg["dimensions"]["tech"]["technologies"].items():
         if "indicator" in t:  # locale data: modern coverage is full, basic or moderate part
             v = facts[t["indicator"]].value if t["indicator"] in facts else 0
@@ -189,8 +193,17 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
             "open" if cons and any(facts.get(i) and facts[i].value for i in opn) else "none"
         if (t.get("group") != "more" or t.get("gap")) and not any(_on(facts.get(i)) for i in cons + reg):
             gaps[name] = "open" if any(_on(facts.get(i)) for i in opn + meas) else "none"
+        need = (tech_cfg.get("well_served") or {}).get(name)
+        published = [quality_factor(facts, t, i) for i in cons
+                     if _on(facts.get(i)) and i in t.get("quality", {}) and t["quality"][i]["indicator"] in facts]
+        under[name] = ("a" if levels[name] != "full"
+                       else "d" if need and (facts[need["indicator"]].value if need["indicator"] in facts else 0) < need["min"]
+                       else "q" if published and max(published) < tech_cfg.get("quality_min", 0)
+                       else "w")
+    for name in cfg["dimensions"]["tech"]["technologies"]:
+        under.setdefault(name, "w" if levels.get(name) == "full" else "a")
     offers = [sv["id"] for sv in services() if _on(facts.get(sv["id"]))]
-    return {"levels": levels, "gaps": gaps, "offers": offers}
+    return {"levels": levels, "gaps": gaps, "offers": offers, "under": under}
 
 
 def evidence(facts: dict[str, Record], cfg: dict) -> dict:

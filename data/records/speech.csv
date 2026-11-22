@@ -57,10 +57,10 @@ ceb,open_speech_hours,12,hours,Open speech datasets,https://github.com/sandyfrit
 cgg,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 10
 cjk,open_speech_hours,12.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
 ckb,open_speech_hours,151.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 139, FLEURS 12"
-cmn,open_speech_hours,749.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 417, Common Voice 320, FLEURS 12"
+cmn,open_speech_hours,10749.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WenetSpeech 10,000, YODAS 417, Common Voice 320, FLEURS 12"
 cnh,open_speech_hours,2.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 2
 cpy,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
-cs,open_speech_hours,336.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 243, Common Voice 82, FLEURS 12"
+cs,open_speech_hours,398.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 243, Common Voice 82, VoxPopuli 62, FLEURS 12"
 cut,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 cux,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 cv,open_speech_hours,24.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 25
@@ -69,7 +69,7 @@ da,open_speech_hours,85.4,hours,Open speech datasets,https://github.com/sandyfri
 dag,open_speech_hours,113.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 97, Common Voice 16"
 dar,open_speech_hours,15.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 16
 dav,open_speech_hours,9.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 9
-de,open_speech_hours,5100.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,693, Common Voice 1,395, FLEURS 12"
+de,open_speech_hours,5382.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,693, Common Voice 1,395, VoxPopuli 282, FLEURS 12"
 dga,open_speech_hours,104.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,WAXAL 105
 dgo,open_speech_hours,71.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,IndicVoices 71
 diq,open_speech_hours,2.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 2
@@ -83,22 +83,22 @@ ebr,open_speech_hours,1.8,hours,Open speech datasets,https://github.com/sandyfri
 ee,open_speech_hours,99.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,WAXAL 100
 eko,open_speech_hours,8.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 8
 el,open_speech_hours,211.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 169, Common Voice 20, FLEURS 12, Common Voice Spontaneous 10"
-en,open_speech_hours,88907.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Multilingual LibriSpeech 44,660, YODAS 41,400, Common Voice 2,827, FLEURS 12, Common Voice Spontaneous 8"
+en,open_speech_hours,89450.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Multilingual LibriSpeech 44,660, YODAS 41,400, Common Voice 2,827, VoxPopuli 543, FLEURS 12, Common Voice Spontaneous 8"
 eo,open_speech_hours,1483.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 1,446, YODAS 38"
-es,open_speech_hours,6327.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 4,800, Multilingual LibriSpeech 918, Common Voice 598, FLEURS 12"
+es,open_speech_hours,6493.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 4,800, Multilingual LibriSpeech 918, Common Voice 598, VoxPopuli 166, FLEURS 12"
 esu,open_speech_hours,7.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 8
-et,open_speech_hours,81.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 53, YODAS 17, FLEURS 12"
+et,open_speech_hours,84.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 53, YODAS 17, FLEURS 12, VoxPopuli 3"
 eto,open_speech_hours,9.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 9
 eu,open_speech_hours,513.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 473, YODAS 41"
 ewo,open_speech_hours,13.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 14
 fa,open_speech_hours,508.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 373, YODAS 123, FLEURS 12"
 fan,open_speech_hours,9.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 9
 ff,open_speech_hours,136.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 124, FLEURS 12"
-fi,open_speech_hours,301.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 274, Common Voice 16, FLEURS 12"
+fi,open_speech_hours,328.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 274, VoxPopuli 27, Common Voice 16, FLEURS 12"
 fil,open_speech_hours,12,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,FLEURS 12
 fmp,open_speech_hours,11.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 fo,open_speech_hours,1.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,YODAS 1
-fr,open_speech_hours,5356.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,158, Common Voice 1,108, Multilingual LibriSpeech 1,077, FLEURS 12, Common Voice Spontaneous 1"
+fr,open_speech_hours,5567.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,158, Common Voice 1,108, Multilingual LibriSpeech 1,077, VoxPopuli 211, FLEURS 12, Common Voice Spontaneous 1"
 fub,open_speech_hours,12.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 13
 fue,open_speech_hours,10.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 fy,open_speech_hours,71.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 72
@@ -127,18 +127,18 @@ he,open_speech_hours,224.8,hours,Open speech datasets,https://github.com/sandyfr
 hem,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 hi,open_speech_hours,4302.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,840, Shrutilipi 1,620, Vaani 594, Kathbath 150, IndicVoices 71, Common Voice 16, FLEURS 12"
 hno,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
-hr,open_speech_hours,62.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 50, FLEURS 12"
+hr,open_speech_hours,105.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 50, VoxPopuli 43, FLEURS 12"
 hsb,open_speech_hours,4.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 4
 ht,open_speech_hours,27.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,YODAS 27
-hu,open_speech_hours,483.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 333, Common Voice 139, FLEURS 12"
+hu,open_speech_hours,546.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 333, Common Voice 139, VoxPopuli 63, FLEURS 12"
 hux,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 hy,open_speech_hours,70.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 40, YODAS 19, FLEURS 12"
 ibb,open_speech_hours,7.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 8
-id,open_speech_hours,5084.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 5,038, Common Voice 34, FLEURS 12"
+id,open_speech_hours,10798.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"GigaSpeech 2 5,714, YODAS 5,038, Common Voice 34, FLEURS 12"
 ig,open_speech_hours,641.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"NaijaVoices 626, FLEURS 12, Common Voice 3"
 ik,open_speech_hours,7.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 7
 is,open_speech_hours,21.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"FLEURS 12, YODAS 9"
-it,open_speech_hours,2237.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,861, Common Voice 364, FLEURS 12"
+it,open_speech_hours,2328.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,861, Common Voice 364, VoxPopuli 91, FLEURS 12"
 iu,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 ja,open_speech_hours,2486.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 2,102, Common Voice 373, FLEURS 12"
 jgo,open_speech_hours,11.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
@@ -179,7 +179,7 @@ ln,open_speech_hours,111.3,hours,Open speech datasets,https://github.com/sandyfr
 lo,open_speech_hours,14.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"FLEURS 12, YODAS 2"
 lrk,open_speech_hours,11.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 lss,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
-lt,open_speech_hours,87.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 41, Common Voice 34, FLEURS 12"
+lt,open_speech_hours,89.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 41, Common Voice 34, FLEURS 12, VoxPopuli 2"
 ltg,open_speech_hours,30.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 30
 lth,open_speech_hours,9.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 9
 lua,open_speech_hours,8.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 9
@@ -226,7 +226,7 @@ nb,open_speech_hours,188.7,hours,Open speech datasets,https://github.com/sandyfr
 ncx,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 ne,open_speech_hours,158.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 106, YODAS 39, FLEURS 12, Common Voice 1"
 nhi,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
-nl,open_speech_hours,656.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 518, Common Voice 127, FLEURS 12"
+nl,open_speech_hours,709.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 518, Common Voice 127, VoxPopuli 53, FLEURS 12"
 nla,open_speech_hours,8.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 9
 nlv,open_speech_hours,11.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
 nmg,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
@@ -248,7 +248,7 @@ pa,open_speech_hours,360.5,hours,Open speech datasets,https://github.com/sandyfr
 pcm,open_speech_hours,12.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
 phl,open_speech_hours,21.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 21
 phr,open_speech_hours,14.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 14
-pl,open_speech_hours,1584.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,396, Common Voice 177, FLEURS 12"
+pl,open_speech_hours,1695.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,396, Common Voice 177, VoxPopuli 111, FLEURS 12"
 plk,open_speech_hours,12.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 13
 pne,open_speech_hours,12.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 12
 prq,open_speech_hours,9.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
@@ -274,7 +274,7 @@ qxu,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfr
 qxw,open_speech_hours,11.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
 rki,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 rm,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
-ro,open_speech_hours,221.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 184, Common Voice 25, FLEURS 12"
+ro,open_speech_hours,310.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 184, VoxPopuli 89, Common Voice 25, FLEURS 12"
 rof,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 ru,open_speech_hours,8278.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 8,007, Common Voice 257, FLEURS 12, Common Voice Spontaneous 2"
 ruc,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 10
@@ -294,9 +294,9 @@ sei,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfr
 sgc,open_speech_hours,40.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 41
 si,open_speech_hours,28.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,YODAS 28
 sid,open_speech_hours,225.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,WAXAL 226
-sk,open_speech_hours,126.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 58, Common Voice 57, FLEURS 12"
+sk,open_speech_hours,161.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 58, Common Voice 57, VoxPopuli 35, FLEURS 12"
 skr,open_speech_hours,4.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 4
-sl,open_speech_hours,69.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 40, Common Voice 17, FLEURS 12"
+sl,open_speech_hours,79.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 40, Common Voice 17, FLEURS 12, VoxPopuli 10"
 sn,open_speech_hours,111.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 99, FLEURS 12"
 so,open_speech_hours,52.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 40, FLEURS 12"
 sq,open_speech_hours,23.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 14, Common Voice 9"
@@ -313,7 +313,7 @@ tar,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfr
 tay,open_speech_hours,11.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 te,open_speech_hours,223.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 108, YODAS 103, FLEURS 12, Common Voice 1"
 tg,open_speech_hours,17.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"FLEURS 12, YODAS 4, Common Voice 1"
-th,open_speech_hours,1317.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,132, Common Voice 173, FLEURS 12"
+th,open_speech_hours,11579.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"GigaSpeech 2 10,262, YODAS 1,132, Common Voice 173, FLEURS 12"
 ti,open_speech_hours,220.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 219, YODAS 2"
 tig,open_speech_hours,10.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
 tk,open_speech_hours,5.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 3, YODAS 3"
@@ -340,7 +340,7 @@ ush,open_speech_hours,11.5,hours,Open speech datasets,https://github.com/sandyfr
 uz,open_speech_hours,195.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 102, YODAS 82, FLEURS 12"
 var,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 ve,open_speech_hours,0.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
-vi,open_speech_hours,4757.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 4,738, FLEURS 12, Common Voice 8"
+vi,open_speech_hours,10796.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"GigaSpeech 2 6,039, YODAS 4,738, FLEURS 12, Common Voice 8"
 vot,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 wal,open_speech_hours,219.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,WAXAL 219
 wbl,open_speech_hours,12.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 12
@@ -463,6 +463,10 @@ xh,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2
 yo,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 yue,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
 zu,speech_fleurs,12,hours,FLEURS,https://huggingface.co/datasets/google/fleurs,2026-11-08,download,About 12 hours per language; CC BY 4.0
+*,speech_gigaspeech_2,0,hours,GigaSpeech 2,,2026-11-08,download,
+id,speech_gigaspeech_2,5714.0,hours,GigaSpeech 2,https://huggingface.co/datasets/speechcolab/gigaspeech2,2026-11-08,download,"YouTube, automatically transcribed and refined (the refined set); Terms of access (non-commercial)"
+th,speech_gigaspeech_2,10262.0,hours,GigaSpeech 2,https://huggingface.co/datasets/speechcolab/gigaspeech2,2026-11-08,download,"YouTube, automatically transcribed and refined (the refined set); Terms of access (non-commercial)"
+vi,speech_gigaspeech_2,6039.0,hours,GigaSpeech 2,https://huggingface.co/datasets/speechcolab/gigaspeech2,2026-11-08,download,"YouTube, automatically transcribed and refined (the refined set); Terms of access (non-commercial)"
 *,speech_indicvoices,0,hours,IndicVoices,,2026-11-08,download,
 as,speech_indicvoices,106.0,hours,IndicVoices,https://arxiv.org/abs/2403.01926,2026-11-08,download,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far; CC BY 4.0
 bn,speech_indicvoices,106.0,hours,IndicVoices,https://arxiv.org/abs/2403.01926,2026-11-08,download,First benchmark release (train + test + valid: the paper's Table 6); the full dataset is 12000 hours of which about 3200 are transcribed so far; CC BY 4.0
@@ -510,6 +514,23 @@ ur,speech_shrutilipi,190.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,202
 *,speech_vaani,0,hours,Vaani,,2026-11-08,download,
 bn,speech_vaani,113.0,hours,Vaani,https://arxiv.org/abs/2603.28714,2026-11-08,download,At least this many transcribed hours (the subset the paper reports); CC BY 4.0
 hi,speech_vaani,594.0,hours,Vaani,https://arxiv.org/abs/2603.28714,2026-11-08,download,"At least this many transcribed hours (the subset the paper reports); about 2,067 transcribed hours overall; CC BY 4.0"
+*,speech_voxpopuli,0,hours,VoxPopuli,,2026-11-08,download,
+cs,speech_voxpopuli,62.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+de,speech_voxpopuli,282.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+en,speech_voxpopuli,543.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+es,speech_voxpopuli,166.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+et,speech_voxpopuli,3.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+fi,speech_voxpopuli,27.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+fr,speech_voxpopuli,211.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+hr,speech_voxpopuli,43.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+hu,speech_voxpopuli,63.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+it,speech_voxpopuli,91.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+lt,speech_voxpopuli,2.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+nl,speech_voxpopuli,53.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+pl,speech_voxpopuli,111.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+ro,speech_voxpopuli,89.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+sk,speech_voxpopuli,35.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
+sl,speech_voxpopuli,10.0,hours,VoxPopuli,https://huggingface.co/datasets/facebook/voxpopuli,2026-11-08,download,European Parliament speeches aligned with their transcripts; CC0
 *,speech_waxal,0,hours,WAXAL,,2026-11-08,download,
 ach,speech_waxal,32.5,hours,WAXAL (Google and African universities),https://huggingface.co/datasets/google/WaxalNLP,2026-11-08,download,"Natural speech, CC BY / CC BY-SA"
 ak,speech_waxal,69.5,hours,WAXAL (Google and African universities),https://huggingface.co/datasets/google/WaxalNLP,2026-11-08,download,"Natural speech, CC BY / CC BY-SA"
@@ -529,6 +550,8 @@ sid,speech_waxal,225.8,hours,WAXAL (Google and African universities),https://hug
 sn,speech_waxal,99.4,hours,WAXAL (Google and African universities),https://huggingface.co/datasets/google/WaxalNLP,2026-11-08,download,"Natural speech, CC BY / CC BY-SA"
 ti,speech_waxal,219.0,hours,WAXAL (Google and African universities),https://huggingface.co/datasets/google/WaxalNLP,2026-11-08,download,"Natural speech, CC BY / CC BY-SA"
 wal,speech_waxal,219.3,hours,WAXAL (Google and African universities),https://huggingface.co/datasets/google/WaxalNLP,2026-11-08,download,"Natural speech, CC BY / CC BY-SA"
+*,speech_wenetspeech,0,hours,WenetSpeech,,2026-11-08,download,
+cmn,speech_wenetspeech,10000.0,hours,WenetSpeech,https://www.openslr.org/121,2026-11-08,download,"YouTube and podcasts labelled by OCR and ASR, the high-confidence subset; CC BY 4.0 (non-commercial)"
 *,speech_yodas,0,hours,YODAS,,2026-11-08,download,
 aa,speech_yodas,0.1,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,"Video hours with manually uploaded subtitles; CC BY 3.0. 5% of a sample of its subtitle text is in the language (en 41%, es 22% in other languages), so 0 of 3 hours are counted"
 ab,speech_yodas,3.3,hours,YODAS2,https://huggingface.co/datasets/espnet/yodas2,2026-11-08,download,"Video hours with manually uploaded subtitles; CC BY 3.0. 19% of a sample of its subtitle text is in the language (es 32%, en 25% in other languages), so 3 of 17 hours are counted"

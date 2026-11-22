@@ -54,6 +54,7 @@ for (const l of ALL) {
   l._rg = new Set([...(l.rg || '')].map(c => REGION_OF[c]).concat(l.region ? [l.region] : []));
   l._offers = new Set(l.offers.map(i => DATA.services[i].id));
   l.levels = Object.fromEntries(Object.keys(CFG.tech.technologies).map((t, i) => [t, LEVEL_CODE[l.levels[i]]]));
+  if (typeof l.under === 'string') l.under = Object.fromEntries(Object.keys(CFG.tech.technologies).map((t, i) => [t, l.under[i] || 'a']));
   l.dimensions = Object.fromEntries(Object.entries(l.scores).map(([k, v]) => [k, { score: v, indicators: {} }]));
 }
 // An opportunity carries only what differs by language; the rest is on its rule
