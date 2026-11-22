@@ -1,0 +1,35 @@
+# Counts words and documents in a Hugging Face text dataset, language by language (tools/text_words.py),
+# for datasets whose cards give only document counts. The results are in the job logs (lines starting WORDS).
+# gh workflow run text-words.yml -f dataset=allenai/MADLAD-400 -f labels="niq tyz ..."
+name: Text words
+
+on:
+  workflow_dispatch:
+    inputs:
+      dataset:
+        description: "Hugging Face dataset id"
+        required: true
+      labels:
+        description: "Language folders to count, separated by spaces"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Count
+        env:
+          LABELS: ${{ inputs.labels }}
+        run: python tools/text_words.py "${{ inputs.dataset }}" $LABELS --shard "${{ matrix.shard }}/8"
