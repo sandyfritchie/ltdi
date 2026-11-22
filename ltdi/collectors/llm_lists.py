@@ -21,7 +21,7 @@ from __future__ import annotations
 
 from ..records import Record
 from ._common import ltdi_codes
-from .vendors import UNRESOLVED, named
+from .vendors import UNRESOLVED, named, save_entries
 
 RETRIEVED = "2026-11-21"
 
@@ -77,6 +77,7 @@ def _names(s: str) -> list[str]:
 
 def collect() -> list[Record]:
     out = []
+    save_entries({ind: len(set(_names(names))) for ind, _, _, names, _ in LISTS})  # the list's own entries, not extras
     for ind, source, url, names, extra in LISTS:
         have = named(_names(names) + extra, ind)
         out += [Record(c, ind, int(c in have), "bool", source, url, RETRIEVED, "manual") for c in ltdi_codes()]

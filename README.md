@@ -116,8 +116,7 @@ say what exists, not how much: they aren't ordered by score, so a language in Op
 one in Commercial.
 
 A service counts as major when its company sells it worldwide, rather than mainly in one country
-or region, and publishes a list of the languages it supports (from method 2.3; before, which
-services counted was a judgement). Regional providers, which serve mainly one country or region
+or region, and publishes a list of the languages it supports. Regional providers, which serve mainly one country or region
 (Yandex, Baidu, Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP's Khaya, Sunbird AI), count together as one extra commercial service, and only for the
 languages one of them offers, at the best credit among them. So a regional provider can raise a
 language's score and close a gap, but never lowers the score of a language it doesn't serve.
@@ -453,7 +452,7 @@ the coalition workstream it fits.
 ## Known limitations
 
 - Keyboard and text-to-speech depth still come from one vendor each (Apple, Google); speech, translation and LLMs have two.
-- AI assistant app lists cover Gemini, Copilot and ChatGPT (ChatGPT's transcribed by hand); Meta AI's official list couldn't be read from here.
+- AI assistant lists cover Gemini, Copilot, ChatGPT, Claude, Meta AI, Mistral AI and Qwen. Meta publishes no list for the Meta AI app, so Llama 4's model card stands in; Qwen3.5 says it supports 201 languages but publishes no list, so Qwen3's stands in. Lists copied by hand (ChatGPT, Claude, Meta AI, Mistral AI, Qwen and the regional providers) can't notice a change to their page, so `tools/stale_lists.py` lists any copied more than three months ago, and the monthly collectors open a GitHub issue for them.
 - Spelling and grammar has one commercial source, so it alone gives full presence. Google's assistant list covers
   speakers and displays; Gemini Live on phones has no full public language list yet. Siri's list is by country,
   so Portuguese, Russian and Japanese are inferred from Brazil, Russia and Japan.
@@ -599,11 +598,10 @@ edition starts by changing `[meta] edition`; earlier editions' files stay as the
 Scores move between editions for two reasons, and `tools/edition_diff.py OLD_REF` separates them. It
 scores the earlier commit's records with the earlier method (what was published), the same records
 with today's method, and today's records with today's method, then reports each part's mean change,
-rank correlation and largest moves (`--csv` writes every language's three scores). Comparing against
-the review baseline, `python tools/edition_diff.py 5d79055`, shows the 2.0 method change on its own.
+rank correlation and largest moves (`--csv` writes every language's three scores).
 
 To cite: Ritchie, Sandy (2026). Language Technology Development Index (LTDI), edition 2026-11
-(methodology 2.3). https://langtechindex.org
+(methodology 1.0). https://langtechindex.org
 
 ## Maintainer, corrections and what's included
 

@@ -2,7 +2,8 @@
 # thousands of requests each), run on the 3rd of each month or by hand (Actions -> Monthly collectors
 # -> Run workflow). If a list lost many languages, the collector stops and nothing is committed.
 # After committing the new records and the rebuilt site, it starts "Publish site", since a push made
-# by a workflow doesn't start other workflows.
+# by a workflow doesn't start other workflows. Last, it opens an issue listing any hand-copied language
+# list more than three months old (tools/stale_lists.py).
 name: Monthly collectors
 
 on:
@@ -13,6 +14,7 @@ on:
 permissions:
   contents: write
   actions: write
+  issues: write
 
 concurrency:
   group: monthly-collectors
@@ -53,3 +55,8 @@ jobs:
           git pull --rebase
           git push
           gh workflow run pages.yml --ref main
+      - name: Remind about hand-copied lists more than three months old (opens or updates an issue)
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/stale_lists.py --issue

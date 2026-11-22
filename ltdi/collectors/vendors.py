@@ -223,6 +223,14 @@ def _features(found, notes, indicator, by_lang: dict[str, set[str]], weights: di
         notes[indicator][c] = "Has: " + ", ".join(sorted(feats)) if feats else "None counted"
 
 
+def save_entries(entries: dict[str, int]) -> None:
+    """Record how many entries each list has, beside the other collectors' counts (data/list_entries.json)."""
+    path = DATA / "list_entries.json"
+    have = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    have.update(entries)
+    path.write_text(json.dumps(dict(sorted(have.items())), indent=1) + "\n", encoding="utf-8")
+
+
 def collect() -> list[Record]:
     found: dict[str, dict[str, float]] = defaultdict(dict)
     notes: dict[str, dict[str, str]] = defaultdict(dict)
@@ -394,8 +402,7 @@ def collect() -> list[Record]:
 
     for ind, names in sorted(UNRESOLVED.items()):
         print(f"  {ind}: {len(names)} names not resolved, e.g. {', '.join(sorted(names)[:12])}")
-    entries = {ind: n for ind, n in sorted(ENTRIES.items()) if n and ind in META}
-    (DATA / "list_entries.json").write_text(json.dumps(entries, indent=1) + "\n", encoding="utf-8")
+    save_entries({ind: n for ind, n in ENTRIES.items() if n and ind in META})
     out = []
     for ind, (unit, source, url) in META.items():
         if not found.get(ind):

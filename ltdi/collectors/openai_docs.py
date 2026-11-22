@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from ..records import Record
 from ._common import ltdi_codes
-from .vendors import UNRESOLVED, named
+from .vendors import UNRESOLVED, named, save_entries
 
 RETRIEVED = "2026-11-09"
 CHATGPT = "https://help.openai.com/en/articles/8357869-how-to-change-your-language-setting-in-chatgpt"
@@ -40,6 +40,7 @@ def _names(s: str) -> list[str]:
 
 def collect() -> list[Record]:
     out = []
+    save_entries({"llm_app_chatgpt": len(set(_names(CHATGPT_LANGS))), "tts_openai": len(set(_names(TTS_LANGS)))})
     for ind, source, url, names in (
             ("llm_app_chatgpt", "ChatGPT supported languages", CHATGPT, _names(CHATGPT_LANGS) + CHATGPT_EXTRA),
             ("tts_openai", "OpenAI API text to speech", TTS, _names(TTS_LANGS))):
