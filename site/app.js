@@ -1330,6 +1330,7 @@ let mapFocus = null, mapFocusFresh = false;  // a language found with the search
 let mapView = null;  // the map's zoom, kept while the map page redraws (switching areas and dots, say)
 // Map view: the areas where languages are spoken, shaded by tier (Glottography), or a dot per language
 let mapMode = 'areas';
+const SOFT_MIN = 2400;  // the least blur of the language areas, as a fraction of the map's width
 const AREAS = GEO && GEO.areas;  // embedded with the basemap
 // Natural Earth 50m outlines (data/borders.json), fetched the first time the map is zoomed to chosen
 // countries; until they arrive the world map's own (110m) are drawn, then the map redraws in place
@@ -1419,7 +1420,7 @@ function mapSection() {
     // drawn once, for the one on top, so the shared area isn't darkened by stacking
     const drawn = withArea.sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0));
     const top = new Map(drawn.map(l => [AREAS.paths[l.code], l.code]));
-    layer = `<g class="areas${mapFocus ? ' focusing' : ''}"${countrySel.size ? ' filter="url(#soft)"' : ''}>${drawn.filter(l => top.get(AREAS.paths[l.code]) === l.code).map(l =>
+    layer = `<g class="areas${mapFocus ? ' focusing' : ''}" filter="url(#soft)">${drawn.filter(l => top.get(AREAS.paths[l.code]) === l.code).map(l =>
       `<path d="${AREAS.paths[l.code]}" data-code="${l.code}"${l.code === mapFocus ? ' class="hit" filter="url(#soft)"' : ''} fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
     const sh = tierLandShares(withArea, tierKey, frame && frame.outline, keys), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${keys.map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
@@ -1444,9 +1445,9 @@ function mapSection() {
     <div class="mapwrap"><div class="mapctl">
         <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
       </div><svg id="worldmap"${F ? ' class="focusing"' : ''} viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
-      ${(F || C) && areasOn ? '<defs><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="softblur" stdDeviation="1"/></filter></defs>' : ''}
+      ${areasOn ? `<defs><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="softblur" stdDeviation="1"/></filter><clipPath id="landclip"><path d="${land}"/></clipPath></defs>` : ''}
       <path d="${land}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
-      ${areasOn ? layer : `<path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
+      ${areasOn ? `<g clip-path="url(#landclip)">${layer}</g>` : `<path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
       ${dots}`}
       ${C ? `<path class="borders" d="${land}"/><path class="cborders" d="${[...countrySel].map(c => (BORDERS && BORDERS.countries[c]) || (GEO.basemap.countries || {})[c]?.outline || '').join('')}"/>` : ''}
       ${C ? [...countrySel].map(c => (GEO.basemap.countries || {})[c]).filter(f => f && Math.max(f.box[2] - f.box[0], f.box[3] - f.box[1]) < W / 150)
@@ -1489,7 +1490,9 @@ function bindMap() {
   const apply = () => {
     svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
     mapView = { ...vb };
-    if (soft) soft.setAttribute('stdDeviation', (vb.w / 450).toFixed(3));  // about 2px on screen at any zoom
+    // about 2px on screen at the whole-world view; zoomed in, never less than a fixed share of the map,
+    // so the atlas's simplified outlines read as soft areas rather than angular polygons
+    if (soft) soft.setAttribute('stdDeviation', Math.max(vb.w / 450, W / SOFT_MIN).toFixed(3));
     placeLabels();
     svg.querySelectorAll('.cring').forEach(c => c.setAttribute('r', (vb.w * 0.025).toFixed(3)));
     cancelAnimationFrame(raf);
