@@ -1,0 +1,39 @@
+# Measures the hours of audio in a Hugging Face dataset, file by file (tools/audio_hours.py), for datasets
+# whose cards don't give hours per language. The results are in the job logs (lines starting HOURS);
+# they're summed by language into config/speech_datasets.csv.
+# gh workflow run audio-hours.yml -f dataset=facebook/omnilingual-asr-corpus -f prefix=data -f shards=8
+name: Audio hours
+
+on:
+  workflow_dispatch:
+    inputs:
+      dataset:
+        description: "Hugging Face dataset id"
+        required: true
+      prefix:
+        description: "Folder in the dataset to measure"
+        required: true
+      shards:
+        description: "Parallel jobs (1-8)"
+        default: "8"
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyarrow soundfile
+      - name: Measure
+        if: matrix.shard < fromJSON(inputs.shards)
+        run: python tools/audio_hours.py "${{ inputs.dataset }}" "${{ inputs.prefix }}" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
