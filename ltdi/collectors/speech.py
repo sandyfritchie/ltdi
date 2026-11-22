@@ -40,6 +40,13 @@ FLEURS_HOURS = 12
 SAMPLE = 40  # duration files read per YODAS language at most; the rest is extrapolated
 
 
+# How each figure was obtained (the record's method; shown on language pages):
+#   measured   added up from the length of every clip (tools/audio_hours.py, tools/bloom_counts.py)
+#   sampled    measured from a sample of its clip lengths and scaled to the whole (YODAS2)
+#   published  as its makers publish it: paper, dataset card, release statistics or download page
+#   listing    read from the dataset's own listing text (the Mozilla Data Collective; mdc.py)
+
+
 def _slug(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", name.lower()).strip("_")
 
@@ -96,9 +103,11 @@ def fleurs() -> set[str]:
 def collect() -> list[Record]:
     codes = set(ltdi_codes())
     per: dict[str, dict[str, tuple[float, str, str, str]]] = {c: {} for c in codes}  # code -> dataset -> (hours, src, url, note)
+    basis: dict[tuple[str, str], str] = {}  # (code, dataset) -> how the hours were obtained
     for code, h in waxal().items():
         if code in codes:
             per[code]["WAXAL"] = (h, "WAXAL (Google and African universities)", f"{HF}/google/WaxalNLP", "Natural speech, CC BY / CC BY-SA")
+            basis[(code, "WAXAL")] = "published"
     shares = yodas_share()
     for code, h in yodas(codes).items():
         share, other = shares.get(code, (1.0, ""))
@@ -107,12 +116,15 @@ def collect() -> list[Record]:
             note += (f". {share:.0%} of a sample of its subtitle text is in the language ({other} in other languages), "
                      f"so {h * share:,.0f} of {h:,.0f} hours are counted")
         per[code]["YODAS"] = (h * share, "YODAS2", f"{HF}/espnet/yodas2", note)
+        basis[(code, "YODAS")] = "sampled"
     for code in fleurs() & codes:
         per[code]["FLEURS"] = (FLEURS_HOURS, "FLEURS", f"{HF}/google/fleurs", "About 12 hours per language; CC BY 4.0")
+        basis[(code, "FLEURS")] = "published"
     with (CONFIG / "speech_datasets.csv").open(encoding="utf-8") as f:
         for r in csv.DictReader(f):
             if r["language"] in codes:
                 per[r["language"]][r["dataset"]] = (float(r["hours"]), r["dataset"], r["url"], f"{r['note']}; {r['licence']}")
+                basis[(r["language"], r["dataset"])] = r.get("basis") or "published"
     cvr = read_records(DATA / "records" / "common_voice.csv") if (DATA / "records" / "common_voice.csv").exists() else []
     cv = {r.language: r.value for r in cvr if r.indicator == "cv_validated_hours"}
     cvs = {r.language: r.value for r in cvr if r.indicator == "cv_spontaneous_hours"}
@@ -126,7 +138,8 @@ def collect() -> list[Record]:
     for code in sorted(codes):
         for d in datasets:
             h, src, url, note = per[code].get(d, (0, d, "", ""))
-            out.append(Record(code, f"speech_{_slug(d)}", round(h, 1), "hours", src, url, note=note))
+            out.append(Record(code, f"speech_{_slug(d)}", round(h, 1), "hours", src, url,
+                              method=basis.get((code, d), "published"), note=note))
         parts = {**{d: v[0] for d, v in per[code].items()}, "Common Voice": cv.get(code, 0),
                  "Common Voice Spontaneous": cvs.get(code, 0), "Mozilla Data Collective": mdc.get(code, 0)}
         total = sum(parts.values())

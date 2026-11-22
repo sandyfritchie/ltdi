@@ -27,7 +27,8 @@ def collect() -> list[Record]:
     spont = sum_by_language((loc, float((v.get("duration") or {}).get("validated_hrs") or 0)) for loc, v in sps.items())
     out = []
     for code in ltdi_codes():
-        out.append(Record(code, "cv_validated_hours", hours.get(code, 0.0), "hours", f"Common Voice {RELEASE}", URL))
+        out.append(Record(code, "cv_validated_hours", hours.get(code, 0.0), "hours", f"Common Voice {RELEASE}", URL,
+                          method="published"))
         out.append(Record(code, "cv_spontaneous_hours", round(spont.get(code, 0.0), 2), "hours",
-                          f"Common Voice Spontaneous Speech {SPS_RELEASE}", SPS_URL))
+                          f"Common Voice Spontaneous Speech {SPS_RELEASE}", SPS_URL, method="published"))
     return out

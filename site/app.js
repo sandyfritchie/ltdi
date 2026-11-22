@@ -949,6 +949,19 @@ function localeTile(f, vf, wname) {
 const fmtHours = h => h >= 10 ? `${Math.round(h).toLocaleString()} hours` : `${(+h).toFixed(1)} hours`;
 const nonCommercialSets = facts => Object.keys(facts).filter(i => (i.startsWith('speech_') || i === 'cv_validated_hours') && facts[i].value && RES[i] && RES[i].commercial === 'no').map(i => RES[i].name).join(', ');
 const COMMERCIAL = { yes: 'Permitted', no: 'Not permitted', varies: 'Varies' };
+// How each speech dataset's hours were obtained (the record's method; ltdi/collectors/speech.py)
+const SPEECH_BASIS = { measured: 'measured from its audio, clip by clip', sampled: 'measured from a sample of its clips and scaled to the whole',
+  published: 'as its makers publish it', listing: 'read from its listing on the Mozilla Data Collective' };
+function speechSets(l, facts) {
+  const sets = Object.entries(l.sd || {}).filter(([i]) => facts[i]).sort((a, b) => b[1] - a[1]);
+  if (!sets.length) return '';
+  const li = sets.map(([i, h]) => {
+    const f = facts[i], R = RES[i] || {}, u = (f.url || '').split(' ')[0];
+    const name = u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(R.name || f.source)}</a>` : esc(R.name || f.source);
+    return `<li>${name}: ${esc(fmtHours(h))}, ${esc(SPEECH_BASIS[f.method] || 'as its source gives it')}${R.commercial === 'no' ? ' <span class="muted">· not for commercial use</span>' : ''}</li>`;
+  }).join('');
+  return `<details class="prov sets"><summary>Where these hours come from${sets.length > 1 ? ` (${sets.length} datasets)` : ''}</summary><ul>${li}</ul></details>`;
+}
 // Every value's source, retrieval date and note, in a list that opens by click, tap or keyboard
 // (the same details are on hover over each value, which touch and keyboard users can't reach)
 const fmtDay = d => { try { return new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return d; } };
@@ -1028,7 +1041,7 @@ function dimPanel(l, key, color) {
           `<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, on the Mozilla Data Collective`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, paid === 'yes' ? 'for a fee' : 'under a data licence'].filter(Boolean).map(esc).join(', ')})`).join('; ')}</div>` : '';
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
       body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}${lic}
-        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
+        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}${ik === 'open_speech_hours' ? speechSets(l, facts) : ''}</div>`;
     }
     body += '</div>';
   }
@@ -2106,13 +2119,13 @@ function about() {
     <ul>
       <li>Web-crawled text for underrepresented languages is often not in the language at all (Kreutzer et al., 2022). FineWeb-2 filters by language identification, and MADLAD-400's authors checked a sample of every language by hand (the Index counts whichever of the two holds more for a language, never both); text mostly from Bible sites counts for less; OPUS's web-mined corpora are checked by language identification on a random sample, which catches the wrong language but not poor translations, so OPUS counts are an upper bound.</li>
       <li>Wikipedia article counts include bot-generated stubs, so articles count only up to a limit per active editor. Hugging Face datasets are counted by their language tags, and datasets tagged with dozens of languages count in part.</li>
-      <li>Open speech hours add up datasets of very different kinds: read speech, crowd-sourced recordings and video with uploaded subtitles. Datasets shared on the Mozilla Data Collective count with the hours each states, and only where they're free to download under an open or non-commercial licence; those sold for a fee or under a data licence agreement are listed on each language's page but not counted.</li>
+      <li>Open speech hours add up datasets of very different kinds: read speech, crowd-sourced recordings and video with uploaded subtitles. An hour of one person reading the Bible in a studio counts the same as an hour of many people talking about their day. Each language's page lists where its hours come from and how each figure was obtained: measured from the audio, as the makers publish it, or read from a listing. Datasets shared on the Mozilla Data Collective count with the hours each states, and only where they're free to download under an open or non-commercial licence; those sold for a fee or under a data licence agreement are listed on each language's page but not counted.</li>
       <li>Font support is checked but not scored: Noto displays nearly every language whose letters are known.</li>
     </ul>
     <h4>Technology</h4>
     <ul>
       <li>Coverage is read from each company's published language lists, which can lag behind or run ahead of what a product actually does, and "supported" means different things to different vendors. A few lists are read by hand where no page could be read automatically.</li>
-      <li>Quality is published for few languages. Only results measured independently of the service's maker, in the last ${numWord(DATA.config.dimensions.tech.quality_max_age)} years, change scores: a weak result counts for less, down to half. Elsewhere a listed service counts in full, however well it works. Companies' own figures and older results are shown on language pages but not scored.</li>
+      <li>Quality is published for few languages. Only results measured independently of the service's maker, in the last ${numWord(DATA.config.dimensions.tech.quality_max_age)} years, change scores: a weak result counts for less, down to half. Elsewhere a listed service counts in full, however well it works. Companies' own figures and older results are shown on language pages but not scored. So for most services and languages the Index records whether a language is offered, not how well it works.</li>
       <li>LLM support means the languages each company documents for its chat app (ChatGPT, Gemini, Copilot), from its official list. A model may also work, unevenly, in languages its list doesn't name; the Index counts what each company commits to, which it can check the same way for every company.</li>
       <li>Regional providers count together as one extra service, and only for the languages they offer.</li>
       <li>Voice assistants count each company's assistant across its old and new generations: Google Assistant or Gemini for Home on speakers and displays, Siri, and Alexa or Alexa+. Gemini for Home and Alexa+ are in early access and so far cover only languages the older assistants already had. Amazon publishes no language list for Alexa+, so its languages are the ones Amazon's launch announcements name, or a country's main language where they name only the country. The row counts half as much as other technologies.</li>

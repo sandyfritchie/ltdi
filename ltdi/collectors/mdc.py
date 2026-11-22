@@ -12,8 +12,9 @@ open data, so they aren't counted; they're listed in data/licensed_speech.csv fo
 
 Left out: Common Voice (counted from its own release files, common_voice.py) and copies of it; datasets
 the Index already counts from their own source (FLEURS, WAXAL, IndicVoices, ...); synthetic speech;
-evaluation sets; listings without files; untranscribed field recordings; earlier versions of a dataset
-shared again; and datasets covering several languages at once. Hours are
+evaluation sets; listings without files; untranscribed field recordings; transcripts made by a model
+(pseudo-labels); earlier versions of a dataset shared again; sample sets shared beside the full dataset
+they come from; and datasets covering several languages at once. Hours are
 read from each dataset's own name and description ("9.8h", "150 Hours", "56 minutes"): a dataset that
 doesn't state its hours is listed but adds none. The same OpenSLR corpus shared twice counts once.
 
@@ -43,7 +44,9 @@ RESTRICTED = re.compile(r"\bN[CD]\b|-N[CD]\b|NOODL", re.I)  # non-commercial, no
 # locales the catalog gives a code the Index reads differently (checked against each dataset's name)
 LOCALE_FIX = {"srk": "skr", "cn": "cmn"}
 COUNTED_ELSEWHERE = re.compile(r"\b(FLEURS|NaijaVoices|WAXAL|IndicVoices|Kathbath|Shrutilipi|Vaani|VoxPopuli|"
-                               r"Multilingual LibriSpeech|YODAS|WenetSpeech|GigaSpeech|OpenSLR|Omnilingual|African Next Voices|AfriVoices)\b", re.I)
+                               r"Multilingual LibriSpeech|YODAS|WenetSpeech|GigaSpeech|OpenSLR|Omnilingual|African Next Voices|AfriVoices|"
+                               r"Maseno)\b", re.I)  # Maseno's Dholuo set is part of AfriVoices-KE
+MACHINE = re.compile(r"pseudo[- ]?label|machine[- ]transcri|automatic(?:ally)?[- ]transcri", re.I)  # not human-checked
 SPONTANEOUS = re.compile(r"spontaneous|conversation|interview|vlog|voice[- ]notes?|free[- ]form|YouTube|"
                          r"radio|broadcast|podcast|call[- ]cent", re.I)
 HOURS = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*\+?\s*(?:hours?|hrs?|h)\b", re.I)
@@ -107,12 +110,14 @@ def collect() -> list[Record]:
         name, text = name_of(d), " ".join(filter(None, [d.get("name"), d.get("shortDescription")]))
         if d.get("task") not in ("ASR", "TTS") or org == "Mozilla Common Voice" or name.startswith("Common Voice"):
             continue
-        if re.search(r"\bsynthe(?:tic|ic|sized)\b", text, re.I) or COUNTED_ELSEWHERE.search(text) or (d.get("sizeBytes") or 0) < 5e6:
+        if re.search(r"\bsynthe(?:tic|ic|sized)\b", text, re.I) or COUNTED_ELSEWHERE.search(f"{text} {org}") or (d.get("sizeBytes") or 0) < 5e6:
             continue
         v = VERSION.search(name)
         if (int(v.group(1)) if v else 1) < latest.get(VERSION.sub("", name), 1) or SUPERSEDED.match(name):
             continue
         if re.search(r"\bAudio$", name):  # field recordings; their transcribed part is shared as its own dataset
+            continue
+        if MACHINE.search(text):  # transcripts made by a model, as with other sources' machine-labelled hours
             continue
         locs = [p.strip() for p in re.split(r"[,;]", d.get("locale") or "") if p.strip()]
         if len(locs) != 1:
@@ -141,10 +146,22 @@ def collect() -> list[Record]:
         w = csv.DictWriter(f, fieldnames=["language", "name", "steward", "task", "hours", "licence", "paid", "url"], lineterminator="\n")
         w.writeheader()
         w.writerows(sorted(licensed, key=lambda r: (r["language"], r["name"])))
+    # a sample set shared beside the full dataset it comes from ('TWB Voice Hausa TTS Sample Set' beside
+    # 'TWB Voice 1.0 - Hausa'): the sample is part of it, so it counts once
+    for (code, ind), ds in counted.items():
+        for key, (h, label) in list(ds.items()):
+            if not re.search(r"\bsample\b", label, re.I):
+                continue
+            stem = " ".join(re.sub(r"\bsample\b", "", label, flags=re.I).split()[:2]).lower()
+            if any(k != key and hh > h and " ".join(ll.split()[:2]).lower() == stem
+                   for cc_ind in [i for (c, i) in counted if c == code] for k, (hh, ll) in counted[(code, cc_ind)].items()):
+                del ds[key]
     out = []
     for (code, ind), ds in sorted(counted.items()):
+        if not ds:
+            continue
         total = sum(h for h, _ in ds.values())
-        out.append(Record(code, ind, round(total, 1), "hours", "Mozilla Data Collective", SITE, method="api",
+        out.append(Record(code, ind, round(total, 1), "hours", "Mozilla Data Collective", SITE, method="listing",
                           note="; ".join(label for _, label in sorted(ds.values(), key=lambda x: -x[0]))))
     return out
 

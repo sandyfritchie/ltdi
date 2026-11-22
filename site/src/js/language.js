@@ -199,6 +199,19 @@ function localeTile(f, vf, wname) {
 const fmtHours = h => h >= 10 ? `${Math.round(h).toLocaleString()} hours` : `${(+h).toFixed(1)} hours`;
 const nonCommercialSets = facts => Object.keys(facts).filter(i => (i.startsWith('speech_') || i === 'cv_validated_hours') && facts[i].value && RES[i] && RES[i].commercial === 'no').map(i => RES[i].name).join(', ');
 const COMMERCIAL = { yes: 'Permitted', no: 'Not permitted', varies: 'Varies' };
+// How each speech dataset's hours were obtained (the record's method; ltdi/collectors/speech.py)
+const SPEECH_BASIS = { measured: 'measured from its audio, clip by clip', sampled: 'measured from a sample of its clips and scaled to the whole',
+  published: 'as its makers publish it', listing: 'read from its listing on the Mozilla Data Collective' };
+function speechSets(l, facts) {
+  const sets = Object.entries(l.sd || {}).filter(([i]) => facts[i]).sort((a, b) => b[1] - a[1]);
+  if (!sets.length) return '';
+  const li = sets.map(([i, h]) => {
+    const f = facts[i], R = RES[i] || {}, u = (f.url || '').split(' ')[0];
+    const name = u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(R.name || f.source)}</a>` : esc(R.name || f.source);
+    return `<li>${name}: ${esc(fmtHours(h))}, ${esc(SPEECH_BASIS[f.method] || 'as its source gives it')}${R.commercial === 'no' ? ' <span class="muted">· not for commercial use</span>' : ''}</li>`;
+  }).join('');
+  return `<details class="prov sets"><summary>Where these hours come from${sets.length > 1 ? ` (${sets.length} datasets)` : ''}</summary><ul>${li}</ul></details>`;
+}
 // Every value's source, retrieval date and note, in a list that opens by click, tap or keyboard
 // (the same details are on hover over each value, which touch and keyboard users can't reach)
 const fmtDay = d => { try { return new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return d; } };
@@ -278,7 +291,7 @@ function dimPanel(l, key, color) {
           `<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, on the Mozilla Data Collective`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, paid === 'yes' ? 'for a fee' : 'under a data licence'].filter(Boolean).map(esc).join(', ')})`).join('; ')}</div>` : '';
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
       body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}${lic}
-        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
+        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}${ik === 'open_speech_hours' ? speechSets(l, facts) : ''}</div>`;
     }
     body += '</div>';
   }

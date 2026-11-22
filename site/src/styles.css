@@ -293,6 +293,9 @@ ul.checked .muted { color: var(--muted); }
 .email { font-family: var(--font-mono); font-size: .92em; user-select: all; }
 details.prov { margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 10px; font-size: 13px; }
 details.prov summary { cursor: pointer; color: var(--muted); font-weight: 600; }
+details.prov.sets { margin-top: 8px; padding-top: 6px; }
+details.prov.sets ul { margin: 6px 0 0; padding-left: 18px; }
+details.prov.sets li { margin: 2px 0; }
 details.prov summary:hover, details.prov[open] summary { color: var(--ink); }
 details.prov ul { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 4px; max-width: 80ch; }
 details.prov li { overflow-wrap: anywhere; }
