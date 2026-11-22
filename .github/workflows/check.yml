@@ -33,6 +33,8 @@ jobs:
         run: python -m ltdi.sensitivity > /dev/null
       - name: Build the site
         run: python -m ltdi.build_site
+      - name: Write the database download (not committed; the Download page reads its description)
+        run: python -m ltdi.export
       - name: The committed site and edition table match the build
         run: |
           changed=$(git status --porcelain -- site/ data/editions/ data/sensitivity.csv data/sensitivity.json)
