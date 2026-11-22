@@ -276,7 +276,7 @@ history (`ltdi/collectors/history.py`) comes from sources with a public record:
 The Plan tab (`#plan`) answers a product team's question: given what we support today, which languages
 next? Choose a technology and a starting point (nothing, a tracked service's list, a pasted list of
 codes or names, or "underrepresented languages", which counts as covered every language that at least half
-the major services tracked for the technology offer, the line behind the site's "full" coverage, and
+the major services tracked for the technology offer (or at least three of them, `full_min`), the line behind the site's "full" coverage, and
 lists the rest), and optionally a family or branch (Glottolog's, such as Narrow Bantu or Indo-Aryan),
 a region or countries. The languages not yet supported are ranked by the people they'd reach online in
 five years (voice technologies count everyone online, text technologies those also able to text), with

@@ -22,6 +22,7 @@ const REGION_OF = { A: 'Africa', S: 'South Asia', R: 'Rest of Asia', E: 'Europe'
 const ALL = DATA.languages, BY = Object.fromEntries(ALL.map(l => [l.code, l]));
 const LANGS = ALL.filter(l => !l.extinct);
 const CFG = DATA.config.dimensions, L = DATA.labels;
+const numWord = n => ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'][n] || String(n);
 // The page carries an index (every language's scores, coverage and gaps, and the top opportunities).
 // Each language's own detail (facts, opportunities, reach by country) is embedded when small,
 // otherwise fetched the first time one of its pages opens, from data/lang/<shard>.json, which holds
@@ -1869,7 +1870,7 @@ function charts() {
       <button type="button" class="reset" id="cresetf"${!regionSel.size && !countrySel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
-      <p class="sub">${P ? `Each bar splits the ${N.toLocaleString()} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N.toLocaleString() + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked; for LLMs the services are the AI assistants\u2019 official language lists, and language identification counts open models. Text technologies count spoken varieties through the standard language their speakers write. The last two segments together are the speakers with no commercial service on the Ranking page.'} Hover a segment to see which languages.</p>
+      <p class="sub">${P ? `Each bar splits the ${N.toLocaleString()} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N.toLocaleString() + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked, or by at least ' + numWord(CFG.tech.full_min) + ' of them; for LLMs the services are the AI assistants\u2019 official language lists, and language identification counts open models. Text technologies count spoken varieties through the standard language their speakers write. The last two segments together are the speakers with no commercial service on the Ranking page.'} Hover a segment to see which languages.</p>
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
       ${absent.length ? `<p class="note">No ${esc(pn)} service tracked for: ${esc(absent.join(', '))}.</p>` : ''}
@@ -2014,7 +2015,7 @@ function providersPage() {
     <p>For LLMs, the count is the languages each company documents, from its official list: for some companies the languages of its chat app's interface, for others the languages its model supports, as each publishes them (the table below says which). A language-setting list names the languages an app's interface is translated into, and both companies that publish one say their assistants can be used in others too, so a language missing from it isn't counted against the app: it counts where it names a language and is left out where it doesn't. A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company.</p>
     <h3>Which companies count, and how</h3>
     <p>A service counts as major when its company sells it worldwide, rather than mainly in one country or region, and publishes a list of the languages it supports. Every such service the Index has found is tracked; if one is missing, say so (below) and it will be added from the next edition.</p>
-    <p>For each technology, a language is offered fully when at least half of the major services tracked offer it, and is underrepresented when fewer do. Regional providers, which serve mainly one country or region, count together as one extra service where any of them offers a language. Open models count for less than commercial services, and never as a major service.</p>
+    <p>For each technology, a language is offered fully when at least half of the major services tracked offer it, or at least ${numWord(DATA.config.dimensions.tech.full_min)} of them do, and is underrepresented otherwise. The second test keeps the bar from rising each time another service is tracked. Regional providers, which serve mainly one country or region, count together as one extra service where any of them offers a language. Open models count for less than commercial services, and never as a major service.</p>
     <div class="tablebox"><table class="covtab provtab"><thead><tr><th>Technology</th><th>Service</th><th>Counted as</th><th class="num">Languages</th><th class="num">Entries in its list</th></tr></thead><tbody>${rows}</tbody></table></div>
     <p class="note">Languages are counted among the ${(DATA.coverage || {}).n?.toLocaleString() || ''} ranked languages. Entries in a list are shown where they're known.</p>
     <h3>Correcting a count</h3>
@@ -2229,8 +2230,8 @@ function planRows() {
     ({ found: supported, unknown } = planParse(plan.codes));
     baseName = 'your list';
   } else if (plan.from === 'under') {
-    // well served: at least half the major services tracked offer it (a regional provider counting as one
-    // more), the line the site uses everywhere; what's left is underrepresented
+    // well served: at least half the major services tracked offer it, or at least full_min of them (a regional
+    // provider counting as one more), the line the site uses everywhere; what's left is underrepresented
     for (const l of LANGS) if (levelOf(l, plan.t) === 'full') supported.add(l.code);
     baseName = 'the languages already well served';
   }
@@ -2482,7 +2483,7 @@ function planPage() {
       <p class="sub">Choose a technology and what your product supports today. The languages it doesn't yet support are ranked by the ${who} they'd reach in five years, with what already exists for each.</p>
       <div class="plan-controls">
         <label class="plan-l">Technology <select id="pl-t">${PLAN_TECHS.map(k => `<option value="${k}"${plan.t === k ? ' selected' : ''}>${esc(CFG.tech.technologies[k].label)}</option>`).join('')}</select></label>
-        <label class="plan-l">Starting from <select id="pl-from"><option value="none"${plan.from === 'none' ? ' selected' : ''}>Nothing yet</option><option value="under"${plan.from === 'under' ? ' selected' : ''} title="Leaves out languages that at least half the major services tracked for this technology already offer">Underrepresented languages</option><option value="list"${plan.from === 'list' ? ' selected' : ''}>A list I paste</option><optgroup label="This list">${svcOpts}</optgroup></select></label>
+        <label class="plan-l">Starting from <select id="pl-from"><option value="none"${plan.from === 'none' ? ' selected' : ''}>Nothing yet</option><option value="under"${plan.from === 'under' ? ' selected' : ''} title="Leaves out languages that at least half the major services tracked for this technology, or at least three of them, already offer">Underrepresented languages</option><option value="list"${plan.from === 'list' ? ' selected' : ''}>A list I paste</option><optgroup label="This list">${svcOpts}</optgroup></select></label>
         <label class="plan-l">Data target, in ${esc(PLAN_TARGETS[planUnit(plan.t)].label)} <select id="pl-tg" title="The table shows how far each language is short of this much open data">${PLAN_TARGETS[planUnit(plan.t)].opts.map(n => `<option value="${n}"${planTarget() === n ? ' selected' : ''}>${magn(n)}</option>`).join('')}</select></label>
         <label class="plan-l">Family or branch <input id="pl-fam" class="plan-in" list="pl-fams" autocomplete="off" placeholder="Any, or type one: Bantu, Indo-Aryan …" value="${plan.fam >= 0 ? esc(GN[plan.fam][1]) : ''}"></label>
         <datalist id="pl-fams">${P.famOpts.map(([g, [n, r]]) => `<option value="${esc(GN[g][1])}">${n.toLocaleString()} languages · ${people(r)}</option>`).join('')}</datalist>

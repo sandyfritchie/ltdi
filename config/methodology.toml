@@ -147,6 +147,10 @@ weight = 0.1
 # LLMs also use measured benchmark results (see [llm]).
 [dimensions.tech]
 label = "Technology support"
+# A language is offered fully (widely available; "underrepresented" is anything less) when at least half
+# of a technology's major services offer it, or at least this many do, so that tracking more services
+# doesn't keep raising the bar
+full_min = 3
 # Which services count for each technology, and their depth indicators, are in
 # config/services.csv: one row per service.
 

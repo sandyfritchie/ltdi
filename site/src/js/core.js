@@ -21,6 +21,7 @@ const REGION_OF = { A: 'Africa', S: 'South Asia', R: 'Rest of Asia', E: 'Europe'
 const ALL = DATA.languages, BY = Object.fromEntries(ALL.map(l => [l.code, l]));
 const LANGS = ALL.filter(l => !l.extinct);
 const CFG = DATA.config.dimensions, L = DATA.labels;
+const numWord = n => ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'][n] || String(n);
 // The page carries an index (every language's scores, coverage and gaps, and the top opportunities).
 // Each language's own detail (facts, opportunities, reach by country) is embedded when small,
 // otherwise fetched the first time one of its pages opens, from data/lang/<shard>.json, which holds

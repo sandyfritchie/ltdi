@@ -168,7 +168,8 @@ def _on(f: Record | None) -> bool:
 
 def coverage(facts: dict[str, Record], cfg: dict) -> dict:
     """Summaries the site needs for every language without loading its facts:
-    levels  per technology: full (at least half the services), part, open (open model only), none
+    levels  per technology: full (at least half the services, or at least [dimensions.tech] full_min of them),
+            part, open (open model only), none
     gaps    main technologies (and any marked gap = true) no commercial service offers: open (open model
             or benchmark only) or none
     offers  ids of the services and benchmarks that cover the language"""
@@ -183,7 +184,8 @@ def coverage(facts: dict[str, Record], cfg: dict) -> dict:
         src = stated(facts, t, cons or opn)
         r = int(any(facts.get(i) and facts[i].value for i in reg))  # regional providers: one more service, when present
         n = sum(1 for i in src if facts.get(i) and facts[i].value) + r
-        levels[name] = "full" if n and n / (len(src) + r) >= 0.5 else "part" if n else \
+        full_min = cfg["dimensions"]["tech"].get("full_min") or math.inf
+        levels[name] = "full" if n and (n / (len(src) + r) >= 0.5 or n >= full_min) else "part" if n else \
             "open" if cons and any(facts.get(i) and facts[i].value for i in opn) else "none"
         if (t.get("group") != "more" or t.get("gap")) and not any(_on(facts.get(i)) for i in cons + reg):
             gaps[name] = "open" if any(_on(facts.get(i)) for i in opn + meas) else "none"
