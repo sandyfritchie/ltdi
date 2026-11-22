@@ -9,7 +9,9 @@ Automated:
   FLEURS     about 12 hours for each of its 102 languages (language list from its card)
 Curated (config/speech_datasets.csv, from each dataset's paper or card):
   Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech, WenetSpeech,
-  GigaSpeech 2, VoxPopuli
+  GigaSpeech 2, VoxPopuli, African Next Voices (Swivuriso, AfriVoices-KE, RobotsMali's Bambara), OpenSLR,
+  Meta's Omnilingual ASR Corpus and WAXAL's TTS recordings (the last three measured file by file with
+  tools/audio_hours.py, since their cards give no hours per language)
 
 Writes one record per dataset (speech_<dataset>) and open_speech_hours, the total
 including Common Voice's Scripted and Spontaneous Speech (data/records/common_voice.csv; run common_voice first)

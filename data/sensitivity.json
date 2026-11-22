@@ -15,25 +15,25 @@
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.9
+   "within_10pct": 0.921
   },
   {
    "ranks": "201–1,000",
-   "languages": 803,
-   "median_range": 216,
-   "within_10pct": 0.173
+   "languages": 800,
+   "median_range": 285,
+   "within_10pct": 0.142
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3006,
-   "median_range": 415,
-   "within_10pct": 0.478
+   "languages": 3009,
+   "median_range": 452,
+   "within_10pct": 0.5
   }
  ],
  "scenarios": [
   {
    "label": "Voice assistants at full weight",
-   "spearman": 0.9994,
+   "spearman": 0.9996,
    "moved_10_in_top_300": 0,
    "largest": [
     {
@@ -52,20 +52,20 @@
      "to": 33
     },
     {
+     "name": "Kipsigis",
+     "from": 229,
+     "to": 227
+    },
+    {
      "name": "Hebrew",
      "from": 27,
      "to": 25
-    },
-    {
-     "name": "Greek",
-     "from": 24,
-     "to": 26
     }
    ]
   },
   {
    "label": "Voice assistants left out",
-   "spearman": 1.0,
+   "spearman": 0.9999,
    "moved_10_in_top_300": 0,
    "largest": [
     {
@@ -74,19 +74,19 @@
      "to": 29
     },
     {
+     "name": "Yue Chinese",
+     "from": 84,
+     "to": 87
+    },
+    {
      "name": "Swedish",
      "from": 19,
      "to": 22
     },
     {
-     "name": "Yue Chinese",
-     "from": 83,
-     "to": 85
-    },
-    {
      "name": "Yucateco",
-     "from": 263,
-     "to": 261
+     "from": 270,
+     "to": 268
     },
     {
      "name": "Turkish",
@@ -97,33 +97,33 @@
   },
   {
    "label": "Every technology weighted equally",
-   "spearman": 0.9977,
-   "moved_10_in_top_300": 9,
+   "spearman": 0.9971,
+   "moved_10_in_top_300": 8,
    "largest": [
     {
-     "name": "Bukusu",
-     "from": 296,
-     "to": 329
-    },
-    {
      "name": "Ladin",
-     "from": 309,
-     "to": 290
+     "from": 316,
+     "to": 296
     },
     {
      "name": "Kölsch",
-     "from": 285,
-     "to": 266
+     "from": 289,
+     "to": 273
     },
     {
      "name": "Lower Sorbian",
-     "from": 205,
-     "to": 191
+     "from": 209,
+     "to": 195
     },
     {
-     "name": "Venetian",
-     "from": 182,
-     "to": 169
+     "name": "Piemontese",
+     "from": 211,
+     "to": 198
+    },
+    {
+     "name": "Kabardian",
+     "from": 183,
+     "to": 170
     }
    ]
   }

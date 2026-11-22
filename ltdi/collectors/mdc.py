@@ -43,7 +43,7 @@ RESTRICTED = re.compile(r"\bN[CD]\b|-N[CD]\b|NOODL", re.I)  # non-commercial, no
 # locales the catalog gives a code the Index reads differently (checked against each dataset's name)
 LOCALE_FIX = {"srk": "skr", "cn": "cmn"}
 COUNTED_ELSEWHERE = re.compile(r"\b(FLEURS|NaijaVoices|WAXAL|IndicVoices|Kathbath|Shrutilipi|Vaani|VoxPopuli|"
-                               r"Multilingual LibriSpeech|YODAS|WenetSpeech|GigaSpeech)\b", re.I)
+                               r"Multilingual LibriSpeech|YODAS|WenetSpeech|GigaSpeech|OpenSLR|Omnilingual|African Next Voices|AfriVoices)\b", re.I)
 SPONTANEOUS = re.compile(r"spontaneous|conversation|interview|vlog|voice[- ]notes?|free[- ]form|YouTube|"
                          r"radio|broadcast|podcast|call[- ]cent", re.I)
 HOURS = re.compile(r"(\d[\d,]*(?:\.\d+)?)\s*\+?\s*(?:hours?|hrs?|h)\b", re.I)

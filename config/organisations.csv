@@ -58,3 +58,13 @@ speech_mdc,Mozilla Data Collective (Mozilla Foundation),Nonprofit data platform,
 speech_mdc_nc,Mozilla Data Collective (Mozilla Foundation),Nonprofit data platform,https://mozilladatacollective.com/,https://www.mozillafoundation.org/en/meet-mozilla/press-center/mozilla-data-collective-launches/
 speech_mdc_spontaneous,Mozilla Data Collective (Mozilla Foundation),Nonprofit data platform,https://mozilladatacollective.com/,https://www.mozillafoundation.org/en/meet-mozilla/press-center/mozilla-data-collective-launches/
 speech_mdc_spontaneous_nc,Mozilla Data Collective (Mozilla Foundation),Nonprofit data platform,https://mozilladatacollective.com/,https://www.mozillafoundation.org/en/meet-mozilla/press-center/mozilla-data-collective-launches/
+speech_swivuriso_african_next_voices,University of Pretoria (Data Science for Social Impact) for African Next Voices,University research lab,https://dsfsi.co.za/za-african-next-voices/,https://arxiv.org/abs/2512.02201
+speech_afrivoices_ke_african_next_voices,Maseno University and partners for African Next Voices,University research consortium,https://huggingface.co/Anv-ke,https://arxiv.org/abs/2604.08448
+speech_afrivoices_ke_scripted,Maseno University and partners for African Next Voices,University research consortium,https://huggingface.co/Anv-ke,https://arxiv.org/abs/2604.08448
+speech_african_next_voices_bambara,RobotsMali for African Next Voices,Nonprofit research lab,https://github.com/RobotsMali-AI/afvoices,https://arxiv.org/abs/2511.18557
+speech_omnilingual_asr_corpus,Meta AI (FAIR) with community partners,Company research lab,https://ai.meta.com/research/,https://ai.meta.com/research/publications/omnilingual-asr-open-source-multilingual-speech-recognition-for-1600-languages/
+speech_waxal_tts,Google Research with African partners,Company research lab,https://research.google/,https://arxiv.org/abs/2602.02734
+speech_openslr_read_speech,OpenSLR (many contributors; hosted by Daniel Povey's group),Open-source research project,https://www.openslr.org/,https://www.openslr.org/resources.php
+speech_openslr_read_speech_non_commercial,OpenSLR (many contributors),Open-source research project,https://www.openslr.org/,https://www.openslr.org/resources.php
+speech_openslr_broadcast,ALFFA project (via OpenSLR),University research project,http://alffa.imag.fr,https://www.openslr.org/25/
+speech_openslr_spontaneous,Kallaama project (via OpenSLR),University research project,https://www.openslr.org/151/,https://www.openslr.org/151/
