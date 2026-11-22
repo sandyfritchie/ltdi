@@ -15,18 +15,18 @@
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.921
+   "within_10pct": 0.914
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 285,
-   "within_10pct": 0.142
+   "median_range": 290,
+   "within_10pct": 0.141
   },
   {
    "ranks": "1,001 and below",
    "languages": 3009,
-   "median_range": 452,
+   "median_range": 448,
    "within_10pct": 0.5
   }
  ],
@@ -53,8 +53,8 @@
     },
     {
      "name": "Kipsigis",
-     "from": 229,
-     "to": 227
+     "from": 230,
+     "to": 228
     },
     {
      "name": "Hebrew",
@@ -85,8 +85,8 @@
     },
     {
      "name": "Yucateco",
-     "from": 270,
-     "to": 268
+     "from": 272,
+     "to": 270
     },
     {
      "name": "Turkish",
@@ -98,32 +98,32 @@
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9971,
-   "moved_10_in_top_300": 8,
+   "moved_10_in_top_300": 5,
    "largest": [
     {
      "name": "Ladin",
-     "from": 316,
-     "to": 296
-    },
-    {
-     "name": "Kölsch",
-     "from": 289,
-     "to": 273
+     "from": 319,
+     "to": 297
     },
     {
      "name": "Lower Sorbian",
-     "from": 209,
-     "to": 195
+     "from": 210,
+     "to": 194
     },
     {
      "name": "Piemontese",
-     "from": 211,
-     "to": 198
+     "from": 212,
+     "to": 197
+    },
+    {
+     "name": "Kölsch",
+     "from": 290,
+     "to": 275
     },
     {
      "name": "Kabardian",
-     "from": 183,
-     "to": 170
+     "from": 184,
+     "to": 171
     }
    ]
   }

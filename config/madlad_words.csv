@@ -1,0 +1,310 @@
+# MADLAD-400 clean subsets with fewer than 200,000 documents: words counted with tools/text_words.py in
+# GitHub Actions; audit_note is the dataset authors' audit; bible_share is read from it (1 where they found only
+# Bible or jw.org text, 0.5 where they mention it). Languages the audit says are mostly another language are left out.
+label,language,documents,words,bible_share,audit_note
+abt,abt,1305,1307551,1.0,fine; bible
+ace,ace,966,1058845,1.0,good; bible
+acf,acf,730,601887,1.0,good; bible
+ach,ach,915,890855,1.0,good; bible
+ada,ada,3095,4912588,0.5,good; bible; likely mixed with gaa
+adh,adh,87,42112,1.0,good; bible
+ady,ady,4206,1560707,0.0,good
+agr,agr,93,67092,1.0,good; bible
+ahk,ahk,77,124787,0.5,good; bible; crazy diacritics
+syr,aii,716,1939040,0.0,good; practictitioners should keep dialect in mind.
+ak,ak,4768,4714450,0.5,good; much but not all bible
+akb,akb,71,54471,1.0,good; bible
+alt,alt,1422,1093275,0.0,ok
+alz,alz,195,246890,1.0,good; bible
+am,am,106301,95224275,0.0,good
+amu,amu,511,443253,0.5,good; bible; crazy diacritics
+ann,ann,56,35939,0.0,good; all from wikimedia incubator
+ape,ape,814,881448,1.0,good; bible
+arn,arn,593,541839,1.0,good; bible
+as,as,33825,27928971,0.0,good
+av,av,6331,3422271,0.0,good
+awa,awa,126,98738,0.0,OK; should be used with caution and suspicion
+ay,ay,2505,1379804,0.5,good; mix of bible and other news sources
+ba,ba,90318,42091748,0.0,ok
+ban,ban,637,499644,1.0,ok bible
+bas,bas,216,362800,0.0,ok; has some fun blog stuff!
+bbc,bbc,1274,1676170,0.0,ok
+bci,bci,1329,1871469,1.0,ok bible
+bik,bcl,3092,2451011,0.0,ok. keep in mind the bik vs bcl issue.
+bew,bew,2677,1348422,0.0,mostly blogs. idk if standard Indonesian or not
+bho,bho,4121,2656795,0.0,mostly from anjoria.com. Looks like valid Bhojpuri.
+bi,bi,311,359391,0.0,good! fun!
+bim,bim,40,167427,1.0,good; bible
+bm,bm,702,583067,0.0,good
+bo,bo,6226,3409507,0.0,needs some serious script filtering. but there is some ok data in there.
+bqc,bqc,228,151565,1.0,ok; bible
+br,br,33219,21008208,0.0,ok after shortfilter
+bru,bru,1072,938075,1.0,ok; bible
+brx,brx,62,41002,0.0,quite good!
+bts,bts,869,663298,0.5,ok; mostly bible
+btx,btx,1009,907507,0.0,ok probably
+bus,bus,322,218948,0.5,ok; bible; about 50bzc
+bua,bxm,5264,2691629,0.0,ok
+bzj,bzj,404,564835,1.0,ok bible
+cab,cab,629,690839,1.0,ok jw
+cac,cac,77,54118,1.0,ok bible
+cak,cak,617,729967,1.0,ok bible
+cbk,cbk,78,64231,1.0,ok bible
+cce,cce,116,227186,1.0,ok jw
+ce,ce,14968,9609471,0.0,ok
+ceb,ceb,66164,58183851,0.0,ok
+cfm,cfm,4858,4049087,0.0,ok mostly from chinland.co
+ch,ch,449,393859,0.0,ok; not sure about WL
+chk,chk,1082,1014175,1.0,ok bible
+chr,chr,301,172254,1.0,ok bible
+ckb,ckb,148870,83304203,0.0,ok
+cnh,cnh,21556,12457681,0.0,"good, some local news! not sure if WL"
+co,co,55387,43596638,0.0,ok;l i suspect lots of MT
+crh,crh,1184,942934,0.0,ok
+crs,crs,873,1216261,0.0,ok
+ctu,ctu,366,352735,1.0,ok bible
+cuk,cuk,899,469505,1.0,ok bible
+cv,cv,47318,22216031,0.0,good
+doi,dgo,26,25466,0.0,ok actually nice!
+din,dip,611,541580,0.0,ok after SD filter
+zza,diq,6019,3850812,0.0,good
+dje,dje,100,97493,0.5,ok; mostly but not all bible
+djk,djk,246,455504,0.5,ok; bible+jw
+dln,dln,28,21536,1.0,ok bible
+dov,dov,923,967503,1.0,ok bible + jw
+dtp,dtp,1309,419425,0.0,ok; mostly from www.newsabahtimes.com.my
+dv,dv,167179,64019970,0.0,good
+dwr,dwr,215,139438,0.5,ok; bible; mixed script
+dyu,dyu,483,421797,1.0,ok bible
+dz,dz,1899,1134645,0.0,ok; hidden parallel text; maybe actually bo; mainly buddhist
+ee,ee,4536,6176205,0.5,good; mostly religious
+emp,emp,1238,998537,1.0,ok bible
+enq,enq,793,718695,1.0,ok bible
+ff,ff,26,46509,0.0,ok after shortfilter
+ffm,ffm,65,39102,1.0,ok bible; mixed fulfulde dialects; consider merging with ff
+fj,fj,3976,5166696,0.0,ok
+fo,fo,97754,48916886,0.0,good
+fon,fon,1065,1814543,0.5,ok mostly jw but not all
+frp,frp,550,230173,0.0,fair amount from wikipedia.
+gag,gag,1572,660955,0.0,has 1-2 cyrillic examples with small amts of arabic script noise
+gbm,gbm,137,99650,0.0,ok
+gd,gd,94275,84478552,0.0,ok
+gn,gn,3858,2748237,0.5,ok some broken characters some bible
+gof,gof,97,68733,0.5,ok some bible
+gom,gom,2102,1394637,0.0,ok
+gor,gor,303,227080,1.0,ok bible
+gsw,gsw,42712,22262414,0.0,wtf is happening here; keep with disclaimer; STILL BOILERPLATE
+gub,gub,271,285944,1.0,ok bible
+guc,guc,214,218058,1.0,ok bible
+guh,guh,331,328172,1.0,ok bible
+gui,gui,409,313772,1.0,ok bible
+gv,gv,1586,996167,0.0,filter short repetitive sentences; still same but keep
+gvl,gvl,126,161090,0.5,filter short boilerplate mostly bible
+gym,gym,820,1130002,0.0,ok biblle
+ha,ha,173485,109325071,0.0,ok
+haw,haw,45670,43263278,0.0,ok scam tv products
+hif,hif,2358,3174058,0.5,ok some en noise and religious
+hil,hil,10564,9175783,0.0,ok some en boilerplate
+hne,hne,146,139468,0.0,ok
+ho,ho,1466,1319891,0.0,ok
+ht,ht,110443,84261647,0.0,ok
+hui,hui,1680,1675864,0.5,ok some bible
+hus,hus,569,541889,1.0,ok bible
+hvn,hvn,200,239413,0.5,ok religioous text
+iba,iba,7638,4793535,1.0,ok jw data
+ibb,ibb,818,766447,1.0,ok bible and repeated @
+ify,ify,79,56188,1.0,ok bible
+ig,ig,54410,45652541,0.0,ok
+ilo,ilo,11754,8997654,0.5,ok some bible
+inb,inb,343,196976,1.0,ok bible
+iso,iso,1721,2737415,1.0,ok jw
+iu,iu,2537,907435,0.0,filter script some is en rest is iu script
+ium,ium,1721,1692453,0.0,filter out zh
+izz,izz,237,194438,1.0,ok bible
+jac,jac,303,270893,1.0,ok bible
+jam,jam,416,378360,1.0,ok bible
+jiv,jiv,696,418625,1.0,ok bible
+jv,jv,69473,52077296,0.0,ok
+jvn,jvn,213,185515,1.0,ok bible
+kac,kac,2567,2810249,0.0,ok
+kbd,kbd,7486,4364833,0.0,ok many .ru
+kbp,kbp,3036,2578600,0.0,not sure if right script wiki says latin
+kek,kek,782,708971,1.0,ok jw bible
+kg,kg,365,406684,1.0,ok bible jw
+kha,kha,12070,6008068,0.0,ok
+kj,kj,2062,877242,0.0,ok
+kjg,kjg,84,67014,1.0,ok bible
+kjh,kjh,672,379168,0.0,ok .ru domain
+kl,kl,46027,22260701,0.0,ok
+kmb,kmb,538,810807,1.0,ok bible jw
+knj,knj,126,171657,1.0,ok bible
+koi,koi,196,89881,0.0,ok
+kos,kos,881,779797,0.5,ok lds bible
+krc,krc,4815,2569588,0.0,ok
+kri,kri,786,995050,0.5,ok boilerplate noise bible jw
+ksd,ksd,2000,2122511,1.0,ok bible
+ksw,ksw,536,218834,1.0,ok bible
+ktu,ktu,144,196857,1.0,ok bible jw
+kum,kum,2495,1568153,0.0,ok
+kv,kv,1878,1234090,0.0,ok a lil boilerplate vibes
+kw,kw,2324,1316102,0.5,ok short boilerplate bible wiki; ok some porn
+kwi,kwi,37,23407,1.0,ok bible
+laj,laj,144,140096,1.0,ok bible
+lb,lb,145988,84971916,0.0,ok
+lg,lg,13030,6141809,0.0,ok lot of www.bukedde.co.ug in this
+lhu,lhu,377,441214,1.0,ok bible
+ln,ln,3325,3443508,1.0,ok bible jw
+lrc,lrc,587,248877,0.0,ok
+ltg,ltg,4120,1881825,0.0,ok mostly www.lakuga.lv
+lu,lu,1444,2311471,1.0,ok jw
+lus,lus,36437,31285659,0.0,ok
+mad,mad,509,386722,0.0,remove mostly short text
+mag,mag,138,543994,0.0,ok fix virama issue
+mai,mai,1240,1187144,0.0,ok mild amounts of en noise
+mak,mak,555,457396,1.0,ok bible
+mam,mam,1513,1203027,1.0,ok bible jw
+mas,mas,405,390129,0.5,ok some amount of bible
+maz,maz,170,173965,1.0,ok bible jw
+mbt,mbt,969,1279483,1.0,ok bible
+mdf,mdf,1609,670331,0.0,ok some short docs
+meo,meo,4655,1214281,0.0,ok mostly blogs
+meu,meu,1728,1380225,1.0,ok bible
+mfe,mfe,320,374794,0.5,ok mostly bible maybe some french creole short doc noise
+mg,mg,115387,76061167,0.5,ok some bible jw
+mgh,mgh,1222,1050189,1.0,ok bible jw
+mh,mh,296,393465,1.0,ok jw lds
+chm,mhr,4653,2879638,0.0,ok; fyi watch out for yandex translationese
+mi,mi,79509,73478285,0.0,ok
+min,min,1474,1419684,0.5,ok mostly wiki and bible
+miq,miq,45,80181,0.0,ok
+mkn,mkn,402,456796,1.0,ok bible
+mni,mni,290,245467,0.0,ok
+mps,mps,1239,1591085,1.0,ok bible
+mqy,mqy,119,88558,1.0,bible remove short docs
+mrj,mrj,1447,1063701,0.0,ok
+mrw,mrw,29,45706,0.0,ok
+msb,msb,41,28780,1.0,ok bible
+msi,msi,1870,440381,0.0,ok
+msm,msm,177,190451,1.0,ok bible
+raj,mup,40,81138,0.0,ok
+hmn,mww,75213,80184851,0.0,ok
+my,my,172395,96278285,0.0,filter noise and en fix virama
+myv,myv,3095,1705130,0.0,maybe has .ru urls
+new,new,1634,1424710,0.0,ok
+ngu,ngu,1534,1494896,0.0,ok
+nhe,nhe,1714,1219001,0.0,ok
+nia,nia,408,476514,0.0,ok
+nij,nij,183,186115,0.0,ok
+niq,niq,226,103411,0.0,ok
+nnb,nnb,1071,1211196,0.0,ok
+noa,noa,234,243655,0.0,ok
+nog,nog,419,200406,0.0,ok
+nr,nr,246,162538,0.0,ok
+nso,nso,4422,5272452,0.0,ok
+nut,nut,67,39752,0.0,ok
+nv,nv,12578,1093759,0.0,ok
+ny,ny,52244,34808255,0.0,ok
+nyu,nyu,195,210503,0.0,ok
+nzi,nzi,1371,1687287,0.0,ok
+oc,oc,36379,26706012,0.0,ok
+oj,oj,135,35898,0.0,ok
+om,om,18895,11175240,0.0,ok
+or,or,100530,47279126,0.0,ok
+os,os,12623,6935947,0.0,ok
+otq,otq,5554,3822163,0.0,ok
+pa,pa,150588,152747160,0.0,ok
+pag,pag,1588,1921507,1.0,bible
+pap,pap,54498,41106042,0.0,ok
+pau,pau,185,394598,0.0,ok
+pck,pck,1255,2081653,0.0,ok
+pis,pis,139,136839,1.0,bible
+pon,pon,1462,1069959,1.0,bible
+ppk,ppk,1063,801596,1.0,bible
+qu,qu,2449,1311450,0.0,ok
+quy,qu,78,37269,1.0,bible
+qub,qub,705,455277,1.0,bible
+quc,quc,1526,1118486,1.0,bible
+quf,quf,86,61821,1.0,bible
+quh,quh,501,396690,1.0,bible
+qup,qup,53,31296,1.0,bible
+qvc,qvc,27,25652,1.0,bible
+qvi,qvi,266,248874,1.0,bible
+qvz,qvz,88,50401,1.0,bible
+qxr,qxr,153,75409,1.0,bible
+rcf,rcf,2630,1151725,0.0,ok
+rki,rki,251,113666,0.0,ok
+rm,rm,33805,15821125,0.0,ok
+rmc,rmc,738,545365,0.0,ok
+rom,rmn,4187,2617510,1.0,bible
+rn,rn,323,179038,1.0,bible
+rwo,rwo,572,590270,1.0,bible
+sa,sa,7117,9873909,0.0,ok
+sah,sah,29169,17616000,0.0,ok
+sd,sd,65858,77819895,0.0,good
+sda,sda,317,218318,1.0,ok bible
+se,se,23872,10029177,0.0,good
+seh,seh,545,650541,1.0,ok jw
+sg,sg,2106,3292817,1.0,ok jw
+shn,shn,788,378379,0.0,mostly English boilerplate. filter by latin text before releasing
+shp,shp,150,96620,1.0,ok bible
+sja,sja,527,459192,0.0,ok bibe
+skr,skr,107,324016,0.0,ok; some pnb mixed in
+sm,sm,52614,53740251,0.0,ok
+smt,smt,34,36456,1.0,ok bible but lots of different bibles!
+sn,sn,60196,31624970,0.0,ok
+spp,spp,123,141680,1.0,ok bible
+srm,srm,227,445212,1.0,ok; bible + jw
+srn,srn,2281,3395268,1.0,ok bible + jw
+ss,ss,1089,568195,0.0,"good mix of data ; renamed from ""ss"""
+st,st,40360,39839387,0.0,ok
+stq,stq,809,600366,0.0,ok i think ?
+su,su,54968,39535889,0.0,good
+sus,sus,437,402720,0.5,hella sus jk ok bible
+suz,suz,186,140464,0.0,
+sxn,sxn,197,220599,1.0,ok bible ; also wild diacritics
+tab,tab,1202,538924,0.0,idk plausibly ok
+taj,taj,65,202931,1.0,ok bible
+tbz,tbz,1126,892934,0.5,good mostly bible but not all
+tca,tca,117,121523,1.0,ok bible + jw
+tcy,tcy,632,432581,0.0,good; mostly wikipedia; likely some konkani mixed in
+tdx,tdx,262,238491,1.0,ok jw
+teo,teo,274,221443,1.0,ok bible
+tet,tet,40367,22773076,0.0,good ; actually a lot of fun data!
+ti,ti,7288,8834832,0.0,ok; poor tigray
+tiv,tiv,1063,2121922,1.0,ok jw
+tk,tk,82495,43294415,0.0,ok; a few weird docs
+tks,tks,127,41454,1.0,ok bible bu again i think some mixeed dialects
+tll,tll,37,62156,1.0,ok jw
+tn,tn,4821,5499596,0.0,good
+to,to,4612,5710447,0.5,good ; news bible government
+toj,toj,452,540147,1.0,ok jw
+trp,trp,36,38984,0.0,good ; lots of random stuff
+ts,ts,5198,6520028,0.0,good
+tsc,tsc,82,93107,0.0,ok
+tsg,tsg,789,588824,0.0,much noise but somegood data too!
+tuc,tuc,635,703006,1.0,ok bible
+tvl,tvl,933,1680047,1.0,ok jw
+twu,twu,539,570911,1.0,"ok bible, but also i think it's lots of mixed similar dialects"
+tyv,tyv,9083,4677583,0.0,ok fun stuff plus some russian noise i think
+tyz,tyz,1707,1945270,1.0,ok bible bu again i think some mixeed dialects
+tzh,tzh,702,929533,1.0,ok jw
+tzj,tzj,136,150701,1.0,ok bible
+tzo,tzo,1357,1707563,1.0,ok bible + jw
+ubu,ubu,846,996359,1.0,ok bible
+udm,udm,13376,7416918,0.0,ok
+ug,ug,106549,62669269,0.0,ok
+ve,ve,1866,2050604,0.5,ok mostly bible jw
+vec,vec,11108,7787730,0.0,very noisy has wiki from other langs and .it websites so not sure if vec
+wa,wa,2772,3611338,0.0,ok lots of wiki stuff
+wal,wal,286,203338,1.0,ok bible + jw
+war,war,2928,2354711,0.0,ok but v sus. Pls filter out wikipedia
+wo,wo,871,850508,0.5,ok; mostly bible.
+xal,xal,913,449784,0.0,ok has .ru sites though
+xh,xh,53672,31208715,0.0,ok
+yap,yap,638,661217,0.0,ok
+yi,yi,64949,53935627,0.0,ok
+yo,yo,52067,46281025,0.0,ok
+yua,yua,3965,2469096,0.0,ok
+zap,zai,1803,1813211,1.0,ok JW.
+zne,zne,239,504555,1.0,ok jw
+zu,zu,53809,27226684,0.0,good

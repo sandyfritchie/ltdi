@@ -13,20 +13,26 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
+import os
 import sys
 import urllib.request
 
 HF = "https://huggingface.co"
 
 
+def _req(url: str) -> urllib.request.Request:
+    token = os.environ.get("HF_TOKEN")  # for gated datasets
+    return urllib.request.Request(url, headers={"Authorization": f"Bearer {token}"} if token else {})
+
+
 def files(dataset: str, folder: str, stem: str) -> list[str]:
-    with urllib.request.urlopen(f"{HF}/api/datasets/{dataset}/tree/main/{folder}", timeout=120) as r:
+    with urllib.request.urlopen(_req(f"{HF}/api/datasets/{dataset}/tree/main/{folder}"), timeout=120) as r:
         return sorted(x["path"] for x in json.load(r) if x["type"] == "file" and stem in x["path"])
 
 
 def count(dataset: str, path: str) -> tuple[int, int]:
     docs = words = 0
-    with urllib.request.urlopen(f"{HF}/datasets/{dataset}/resolve/main/{path}", timeout=600) as r, \
+    with urllib.request.urlopen(_req(f"{HF}/datasets/{dataset}/resolve/main/{path}"), timeout=600) as r, \
             gzip.open(r, "rt", encoding="utf-8") as f:
         for line in f:
             text = json.loads(line).get("text", "")

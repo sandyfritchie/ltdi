@@ -41,6 +41,7 @@ jobs:
         if: matrix.shard < fromJSON(inputs.shards)
         env:
           URLS: ${{ inputs.urls }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}  # for gated datasets; optional
         run: |
           if [ -n "$URLS" ]; then
             python tools/audio_hours.py --urls $URLS --shard "${{ matrix.shard }}/${{ inputs.shards }}"

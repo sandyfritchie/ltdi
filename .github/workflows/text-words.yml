@@ -32,4 +32,5 @@ jobs:
       - name: Count
         env:
           LABELS: ${{ inputs.labels }}
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}  # for gated datasets; optional
         run: python tools/text_words.py "${{ inputs.dataset }}" $LABELS --shard "${{ matrix.shard }}/8"
