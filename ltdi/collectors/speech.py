@@ -12,7 +12,8 @@ Curated (config/speech_datasets.csv, from each dataset's paper or card):
   GigaSpeech 2, VoxPopuli
 
 Writes one record per dataset (speech_<dataset>) and open_speech_hours, the total
-including Common Voice's Scripted and Spontaneous Speech (data/records/common_voice.csv; run common_voice first).
+including Common Voice's Scripted and Spontaneous Speech (data/records/common_voice.csv; run common_voice first)
+and the open and non-commercial speech shared on the Mozilla Data Collective (data/records/mdc.csv; run mdc first).
 
 Run:  python -m ltdi.collectors speech   (needs huggingface.co)
 """
@@ -113,6 +114,10 @@ def collect() -> list[Record]:
     cvr = read_records(DATA / "records" / "common_voice.csv") if (DATA / "records" / "common_voice.csv").exists() else []
     cv = {r.language: r.value for r in cvr if r.indicator == "cv_validated_hours"}
     cvs = {r.language: r.value for r in cvr if r.indicator == "cv_spontaneous_hours"}
+    mdc: dict[str, float] = {}
+    if (DATA / "records" / "mdc.csv").exists():
+        for r in read_records(DATA / "records" / "mdc.csv"):
+            mdc[r.language] = mdc.get(r.language, 0) + r.value
 
     out = []
     datasets = sorted({d for p in per.values() for d in p})
@@ -121,7 +126,7 @@ def collect() -> list[Record]:
             h, src, url, note = per[code].get(d, (0, d, "", ""))
             out.append(Record(code, f"speech_{_slug(d)}", round(h, 1), "hours", src, url, note=note))
         parts = {**{d: v[0] for d, v in per[code].items()}, "Common Voice": cv.get(code, 0),
-                 "Common Voice Spontaneous": cvs.get(code, 0)}
+                 "Common Voice Spontaneous": cvs.get(code, 0), "Mozilla Data Collective": mdc.get(code, 0)}
         total = sum(parts.values())
         breakdown = ", ".join(f"{d} {h:,.0f}" for d, h in sorted(parts.items(), key=lambda x: -x[1]) if h >= 0.5)
         out.append(Record(code, "open_speech_hours", round(total, 1), "hours", "Open speech datasets",

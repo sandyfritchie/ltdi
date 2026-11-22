@@ -15,10 +15,10 @@ from .. import DATA
 from ..crosswalk import to_ltdi
 from ..records import Record, write_records
 
-AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "openai_docs", "llm_lists", "speech_vendors", "docs_vendors", "mt_quality", "regional", "afrobench", "omnilingual", "open_tools", "ud", "speech", "benchmarks", "opus", "connectivity", "mms", "vendors", "corpuscrawler"]
+AUTOMATED = ["scripts", "cldr", "fineweb2", "common_voice", "flores200", "belebele", "whisper", "deepl", "openai_mmmlu", "openai_docs", "llm_lists", "speech_vendors", "mdc", "docs_vendors", "mt_quality", "regional", "afrobench", "omnilingual", "open_tools", "ud", "speech", "benchmarks", "opus", "connectivity", "mms", "vendors", "corpuscrawler"]
 # Slow ones (thousands of requests, the best part of an hour), run on the 3rd of each month by
 # .github/workflows/monthly-collectors.yml, or here with --monthly
-MONTHLY = ["hf_hub", "wikipedia", "hf_models", "wikipedia_views", "speech_vendors", "docs_vendors"]
+MONTHLY = ["hf_hub", "wikipedia", "hf_models", "wikipedia_views", "speech_vendors", "docs_vendors", "mdc", "speech"]
 
 
 def sum_by_language(pairs) -> dict[str, float]:
@@ -123,7 +123,7 @@ def main(argv=None) -> None:
         os.environ["LTDI_REFRESH"] = "1"
     if a.max_age is not None:
         os.environ["LTDI_MAX_CACHE_DAYS"] = str(a.max_age)
-    for name in a.names or (MONTHLY if a.monthly else AUTOMATED + MONTHLY if a.all else AUTOMATED):
+    for name in a.names or (MONTHLY if a.monthly else list(dict.fromkeys(AUTOMATED + MONTHLY)) if a.all else AUTOMATED):
         run(name, a.accept)
 
 

@@ -90,6 +90,19 @@ docs_vendors,https://news.samsung.com/ca/samsung-expands-language-support-across
 fineweb2,https://raw.githubusercontent.com/huggingface/fineweb-2/d0defb24f193bb9a5a11b8b14524a03c4858e1b6/fineweb2-language-distribution.csv,0c6e6fbcef62cb034aff493187dee8d327c6bb2c08bb14a81a9c7221b091e0a5,2026-11-08
 flores200,https://raw.githubusercontent.com/facebookresearch/flores/a6c830c6e1051fb4ac1a44b32358f00463f332bd/flores200/README.md,74ccbbe29feba9d92cb3ee472387579ab2aa5c0299d47dcec7614b2c06cd49fc,2026-11-08
 hf_models,https://huggingface.co/api/models,7693 language tags,2026-11-18
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=1,71292352ff2c5452e0b454a72e092e56aec10fb66a75f9f41237cbfca16f686e,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=10,14b0d9b18b348ae247e66ac586e7e27bb6e97c3e6d699f8e6a3aa0d27bcce5e8,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=11,5b4d8ac698bef448e03fe32e868d1c2cacff67a0b1c9ae276f48b19fb959ce71,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=12,cd898ad41515ebafcbc5599b1d702bb33a92ee066e2bc365ac27b9e14f952cd1,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=13,110ee344fe7bcd8f16ea218b0c47ec8d67d3c97c286360a6d30fe574cfc501cb,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=2,4acd343f233d374ca76f02a7a31930ca8d3a746bf3b101a49b8750aa0949bb9e,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=3,fa211d8c196c28c3f5d8e91b1a8f012463c71d570f9594cd0650db9f820c2bb2,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=4,dd4126e26e19534f41aee3682b3bac0218c41d01e060ed864be94d9a3d349cd6,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=5,5233f570665873574b93667c38cacdcd120fd72f220a5be400cca1461aab1430,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=6,f7b73ed34db69292789961a34475b3223cf6e6f8507ef3c50985c4bb549f640d,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=7,7214a19a74d7c026d6d98f0f76eb1a761649a625ba312045a9fe94dbb03cd4fe,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=8,6245f6ca5d94605dd39ac049c1c98b46e346520f73d16ffa9f1f9f42a7dcaaaa,2026-11-21
+mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=9,14eeff160f9fdf3f477665880f1377ff598939e928e269cfa14d3cd67808ad5a,2026-11-21
 mms,https://dl.fbaipublicfiles.com/mms/asr/mms1b_all_langs.html,43ae4e7cf25328656f5f09d5df8e10aac927cfc1ff66864f9b2659fe64f17a3f,2026-11-08
 mms,https://dl.fbaipublicfiles.com/mms/tts/all-tts-languages.html,41d1aeafa67315bf7c0a1a34196384faf6523ce36e974557ba8b40dfd16f039e,2026-11-08
 mt_quality,https://github.com/cmu-llab/gpt_mt_benchmark@0326b5217cb998e63b8ee90e7830c37cce16eb9b,0326b5217cb998e63b8ee90e7830c37cce16eb9b,2026-11-12

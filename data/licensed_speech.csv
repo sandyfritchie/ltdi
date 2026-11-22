@@ -1,0 +1,32 @@
+language,name,steward,task,hours,licence,paid,url
+es,Medical Domain Mexican Spanish Speech Corpus (MEDMEX),MDC Datasets,speech recognition,10.5,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmrdfjave008uo307ett7d4km
+fil,Tagalog Health Domain TTS 20 Hours Single Speaker (Female),MDC Datasets,text-to-speech,20.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmucznt9t0007kz08bq99zn2o
+fil,Tagalog Health Domain TTS 25 Hours Single Speaker (Male),MDC Datasets,text-to-speech,25.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmucnw19m01lonx076thnz3gp
+fil,Tagalog Voice Notes ASR Dataset (45 hours),MDC Datasets,speech recognition,45.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmuh4ozy804olny07mu2h0kjm
+gu,Conversational Speech in Gujarati in the Finance Domain,MDC Datasets,speech recognition,25.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmrmkr3nh01h4nu07gqsvfckc
+gu,Conversational Speech in Gujarati in the Medical Domain,MDC Datasets,speech recognition,25.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmrdfk4ao007po1070z5f4kem
+haz,Hazargi Corpus for Speech Recognition,MDC Datasets,speech recognition,10.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmrtehynr008qmm07wfw4q0ec
+id,Indonesian Accented Read Speech Corpus,MDC Datasets,speech recognition,60.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmwjngba400cu07ml5wd0kfwe
+ja,Kokoro Speech Dataset,,text-to-speech,,libribox,no,https://mozilladatacollective.com/datasets/cmmknsho4014wmf087kvq5rc6
+jv,"Errington ""Javanese conversations 1"" (PARADISEC JJE1): audio segments and time-aligned transcripts used by UHM, Lost In Transcription IN-JV",University of Hawaii at Manoa,speech recognition,17.1,Custom-by-permission,no,https://mozilladatacollective.com/datasets/cmwjfpeca009f07ntumc5o2m5
+khw,Khowar Corpus for Speech Recognition,MDC Datasets,speech recognition,10.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmtbq5syf013emf07blzvgb1y
+mni,Conversational Speech in Manipuri in the Finance Domain,MDC Datasets,speech recognition,25.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmrmkmodd01h0nu07rkbq6yu9
+mni,Conversational Speech in Manipuri in the Medical Domain,MDC Datasets,speech recognition,25.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmrm237q100yfmp07v9kl91i5
+my,Burmese Speech Collection,MDC Datasets,text-to-speech,41.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmrp30fdp0120o007a69s3nfc
+pnb,Western Punjabi Corpus for Speech Recognition,MDC Datasets,speech recognition,9.8,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmwp90a8200ub07mcxdh4u7zy
+ps,Northern Pashto Corpus for Speech Recognition,MDC Datasets,speech recognition,10.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmuh50dte04otny07ot80sg6n
+pt,Brazilian Portuguese ASR dataset (140h),Princep Pte. Ltd.,speech recognition,140.0,DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmu1atvfl03z7nx08b8k13791
+rkt,Rangpuri 10 Hours TTS (Male Speaker),MirasAI,text-to-speech,10.0,MirasAI Data License,yes,https://mozilladatacollective.com/datasets/cmwnnj36s018y07mkgg76s92x
+skr,Saraiki Corpus for Speech Recognition,MDC Datasets,speech recognition,9.5,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmwp6zxwy00t407mce4vzq0qf
+skr,"Saraiki Studio TTS Dataset — 63 Hours, 3 Speakers",MirasAI,text-to-speech,63.0,MirasAI Data License,yes,https://mozilladatacollective.com/datasets/cmw3vtz9k006e07nu9rzewuh7
+sw,Free Form Sheng (Swahili-English Code-Switching) Speech in the Mobile Money Domain,Safi Data,speech recognition,50.0,SDL 1.0,yes,https://mozilladatacollective.com/datasets/cmt7e4pfp004nnz08j3shtpcx
+syl,Sylheti 10 Hours TTS (Male Speaker),MirasAI,text-to-speech,10.0,MirasAI Data License,yes,https://mozilladatacollective.com/datasets/cmwnnjt57015p07kyegvh1ikb
+ta,Singaporean Tamil Speech Collection,MDC Datasets,text-to-speech,40.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmrp1sdsj00zemm0822j75968
+ur,Demographically-balanced Urdu Read-Speech TTS Corpus (500 hours),MDC Datasets,text-to-speech,500.0,MDC DLA,yes,https://mozilladatacollective.com/datasets/cmw574b6z00xi06mo4dchu497
+ur,"Single Speaker Urdu TTS dataset (Female Speaker, South Punjab)",MDC Datasets,text-to-speech,25.0,MDC-DLA-1.0,yes,https://mozilladatacollective.com/datasets/cmszkb3s901wvny07pkz816wx
+ur,Urdu Female Voices TTS Corpus,MDC Datasets,text-to-speech,190.0,MDC DLA,yes,https://mozilladatacollective.com/datasets/cmw6od0qp01pe06mo3ot0unri
+ur,"Urdu Multi-Speaker TTS Corpus: 7 Voices, 150 Hours",MDC Datasets,text-to-speech,150.0,MDC DLA,yes,https://mozilladatacollective.com/datasets/cmwazp5gf000n07o4fdjnm7mq
+ur,Urdu Pro Voices TTS Corpus,MDC Datasets,text-to-speech,113.0,MDC DLA,yes,https://mozilladatacollective.com/datasets/cmw6otiei01p907nu7td7zrc1
+ur,"Urdu Regional Voices TTS Corpus: Sindh, KP and Balochistan",MDC Datasets,text-to-speech,98.0,MDC DLA,yes,https://mozilladatacollective.com/datasets/cmw9dylci002007mj4iuategf
+ur,Urdu Speech Evaluation Set,MDC Datasets,text-to-speech,9.7,MDC DLA,yes,https://mozilladatacollective.com/datasets/cmw6od8wr01p507nueoj9oubb
+ur,Urdu Voice-Agent and Public-Service Speech Corpus,MDC Datasets,text-to-speech,89.0,MDC DLA,yes,https://mozilladatacollective.com/datasets/cmw6oddd301p707nu71g2foid

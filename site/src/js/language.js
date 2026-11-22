@@ -269,9 +269,13 @@ function dimPanel(l, key, color) {
       const vf = vfacts && vfacts[ik], vn = vd && vd.indicators[ik];
       // open speech: how much of it is licensed for commercial use (resources.csv)
       const usable = ik === 'open_speech_hours' && l.sh && l.shc < l.sh
-        ? `<div class="thru-line">${fmtHours(l.shc)} licensed for commercial use; the rest is for research only (${esc(nonCommercialSets(facts))})</div>` : '';
+        ? `<div class="thru-line">${l.shc >= 0.05 ? `${fmtHours(l.shc)} licensed for commercial use; the rest is for non-commercial use only` : 'None of it is licensed for commercial use'} (${esc(nonCommercialSets(facts))})</div>` : '';
+      // speech shared under a data licence or for a fee (Mozilla Data Collective): listed, not counted
+      const lic = ik === 'open_speech_hours' && l.licensed && l.licensed.length
+        ? `<div class="thru-line">Not counted, as it isn\u2019t open data: ${l.licensed.map(([name, steward, task, h, licence, paid, url]) =>
+          `<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, on the Mozilla Data Collective`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, paid === 'yes' ? 'for a fee' : 'under a data licence'].filter(Boolean).map(esc).join(', ')})`).join('; ')}</div>` : '';
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
-      body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}
+      body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}${lic}
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
     }
     body += '</div>';

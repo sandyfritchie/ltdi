@@ -3,7 +3,7 @@
  "seed": 2026,
  "edition": "2026-11",
  "varied": "technology and data weights x0.5-1.5; log-scale data goals up to 10x either way, the benchmark goal x0.5-1.5; floor 0.025-0.075",
- "nothing_recorded": 2813,
+ "nothing_recorded": 2809,
  "bands": [
   {
    "ranks": "1–60",
@@ -15,19 +15,19 @@
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.907
+   "within_10pct": 0.9
   },
   {
    "ranks": "201–1,000",
-   "languages": 802,
+   "languages": 803,
    "median_range": 216,
-   "within_10pct": 0.168
+   "within_10pct": 0.173
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3003,
-   "median_range": 413,
-   "within_10pct": 0.48
+   "languages": 3006,
+   "median_range": 415,
+   "within_10pct": 0.478
   }
  ],
  "scenarios": [
@@ -40,6 +40,11 @@
      "name": "Norwegian Bokmål",
      "from": 30,
      "to": 27
+    },
+    {
+     "name": "Slovak",
+     "from": 33,
+     "to": 35
     },
     {
      "name": "Malay",
@@ -55,11 +60,6 @@
      "name": "Greek",
      "from": 24,
      "to": 26
-    },
-    {
-     "name": "Finnish",
-     "from": 23,
-     "to": 21
     }
    ]
   },
@@ -85,8 +85,8 @@
     },
     {
      "name": "Yucateco",
-     "from": 262,
-     "to": 260
+     "from": 263,
+     "to": 261
     },
     {
      "name": "Turkish",
@@ -101,29 +101,29 @@
    "moved_10_in_top_300": 9,
    "largest": [
     {
-     "name": "Kölsch",
-     "from": 285,
-     "to": 265
+     "name": "Bukusu",
+     "from": 296,
+     "to": 329
     },
     {
      "name": "Ladin",
-     "from": 308,
+     "from": 309,
      "to": 290
     },
     {
-     "name": "Venetian",
-     "from": 181,
-     "to": 168
+     "name": "Kölsch",
+     "from": 285,
+     "to": 266
     },
     {
      "name": "Lower Sorbian",
-     "from": 204,
+     "from": 205,
      "to": 191
     },
     {
-     "name": "Kabardian",
-     "from": 180,
-     "to": 167
+     "name": "Venetian",
+     "from": 182,
+     "to": 169
     }
    ]
   }

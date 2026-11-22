@@ -321,6 +321,12 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
         with (DATA / "unnamed_locales.csv").open(encoding="utf-8") as f:
             for r in csv.DictReader(f):
                 unnamed[r["language"]][r["indicator"]] = r["counted_as"]
+    # speech datasets shared under a data licence or for a fee, not counted as open (collectors/mdc.py)
+    licensed: dict[str, list] = defaultdict(list)
+    if (DATA / "licensed_speech.csv").exists():
+        with (DATA / "licensed_speech.csv").open(encoding="utf-8") as f:
+            for r in csv.DictReader(f):
+                licensed[r["language"]].append([r[k] for k in ("name", "steward", "task", "hours", "licence", "paid", "url")])
     for l in scores["languages"]:
         facts = encode(l["code"], scores["facts"].get(l["code"], {}))
         opps = []
@@ -337,6 +343,7 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
                                           "facts": encode(l["code"], scores.get("via_facts", {}).get(l["code"], {}))}}
                                  if via else {}),
                               **({"unnamed": unnamed[l["code"]]} if l["code"] in unnamed else {}),
+                              **({"licensed": licensed[l["code"]]} if l["code"] in licensed else {}),
                               "reach_by_country": l["reach_by_country"], "evidence": l.get("evidence"),
                               "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES],
                               **({"lookalikes": eng[l["code"]]["lookalikes"]} if "lookalikes" in eng.get(l["code"], {}) else {}),
@@ -507,7 +514,8 @@ SPEECH_KIND = {
     "cv_validated_hours": "read", "speech_kathbath": "read", "speech_naijavoices": "read",
     "speech_multilingual_librispeech": "read",
     "cv_spontaneous_hours": "spontaneous", "speech_waxal": "spontaneous", "speech_indicvoices": "spontaneous",
-    "speech_vaani": "spontaneous",
+    "speech_vaani": "spontaneous", "speech_mdc_spontaneous": "spontaneous", "speech_mdc_spontaneous_nc": "spontaneous",
+    "speech_mdc": "read", "speech_mdc_nc": "read",
     "speech_shrutilipi": "broadcast", "speech_yodas": "broadcast", "speech_wenetspeech": "broadcast",
     "speech_gigaspeech_2": "broadcast", "speech_voxpopuli": "broadcast",
     "speech_fleurs": "benchmark",

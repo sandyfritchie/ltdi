@@ -54,3 +54,7 @@ mt_papago,Naver,Regional provider,https://papago.naver.com/,https://papago.naver
 speech_wenetspeech,WeNet community and Northwestern Polytechnical University,Open-source research project,https://github.com/wenet-e2e/WenetSpeech,https://arxiv.org/abs/2110.03370
 speech_gigaspeech_2,SpeechColab,Open-source research project,https://github.com/SpeechColab/GigaSpeech2,https://arxiv.org/abs/2406.11546
 speech_voxpopuli,Meta AI,Company research lab,https://ai.meta.com/research/,https://arxiv.org/abs/2101.00390
+speech_mdc,Mozilla Data Collective (Mozilla Foundation),Nonprofit data platform,https://mozilladatacollective.com/,https://www.mozillafoundation.org/en/meet-mozilla/press-center/mozilla-data-collective-launches/
+speech_mdc_nc,Mozilla Data Collective (Mozilla Foundation),Nonprofit data platform,https://mozilladatacollective.com/,https://www.mozillafoundation.org/en/meet-mozilla/press-center/mozilla-data-collective-launches/
+speech_mdc_spontaneous,Mozilla Data Collective (Mozilla Foundation),Nonprofit data platform,https://mozilladatacollective.com/,https://www.mozillafoundation.org/en/meet-mozilla/press-center/mozilla-data-collective-launches/
+speech_mdc_spontaneous_nc,Mozilla Data Collective (Mozilla Foundation),Nonprofit data platform,https://mozilladatacollective.com/,https://www.mozillafoundation.org/en/meet-mozilla/press-center/mozilla-data-collective-launches/
