@@ -31,8 +31,6 @@ speech_multilingual_librispeech,Multilingual LibriSpeech,Audiobooks,CC BY 4.0,ye
 asr_open_omnilingual,Omnilingual ASR,"Open speech recognition for 1,600+ languages (Meta)",Apache 2.0,yes,https://github.com/facebookresearch/omnilingual-asr
 lexicon_panlex,PanLex,"Words and their translations, from about 2,500 dictionaries and word lists",CC0 1.0,yes,https://panlex.org/
 wordlist_corpuscrawler,Corpus Crawler word lists,"Word-frequency lists from crawled web text, for keyboards and spelling checkers",Not stated,,https://github.com/google/corpuscrawler
-speech_wenetspeech,WenetSpeech,Mandarin from YouTube and podcasts labelled by OCR and ASR,CC BY 4.0 (non-commercial),no,https://www.openslr.org/121
-speech_gigaspeech_2,GigaSpeech 2,Thai Indonesian and Vietnamese from YouTube automatically transcribed and refined,Terms of access (non-commercial),no,https://huggingface.co/datasets/speechcolab/gigaspeech2
 speech_voxpopuli,VoxPopuli,European Parliament speeches aligned with their transcripts (Meta AI),CC0,yes,https://huggingface.co/datasets/facebook/voxpopuli
 speech_mdc,Mozilla Data Collective (open licences),"Read speech that communities and organisations share on the Mozilla Data Collective under open licences (BibleTTS, Digital Divide Data, Pashto AI, ...)",CC0 / CC BY / CC BY-SA and similar,yes,https://mozilladatacollective.com/datasets
 speech_mdc_nc,Mozilla Data Collective (non-commercial),"Read speech shared on the Mozilla Data Collective free of charge for non-commercial use (CLEAR Global's TWB Voice, MirasAI, African language datasets under NOODL, ...)",CC BY-NC / CC BY-ND / NOODL,no,https://mozilladatacollective.com/datasets

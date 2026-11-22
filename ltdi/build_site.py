@@ -523,8 +523,7 @@ SPEECH_KIND = {
     "speech_bloom_library": "read", "speech_bloom_library_non_commercial": "read",
     "speech_openslr_read_speech": "read", "speech_openslr_read_speech_non_commercial": "read",
     "speech_openslr_broadcast": "broadcast", "speech_openslr_spontaneous": "spontaneous",
-    "speech_shrutilipi": "broadcast", "speech_yodas": "broadcast", "speech_wenetspeech": "broadcast",
-    "speech_gigaspeech_2": "broadcast", "speech_voxpopuli": "broadcast",
+    "speech_shrutilipi": "broadcast", "speech_yodas": "broadcast", "speech_voxpopuli": "broadcast",
     "speech_fleurs": "benchmark",
 }
 

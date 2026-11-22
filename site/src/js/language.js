@@ -272,7 +272,9 @@ function dimPanel(l, key, color) {
       <summary><span class="mt-title">More technologies</span><span class="mt-peek">${peek.join('')}</span></summary>${more.join('')}</details>`;
   } else {
     body += '<div class="inds">';
-    for (const [ik, spec] of Object.entries(cfg.indicators)) {
+    // open speech goes last, alone in its row, so opening its list of datasets moves nothing beside it
+    const inds = Object.entries(cfg.indicators).sort(([a], [b]) => (a === 'open_speech_hours') - (b === 'open_speech_hours'));
+    for (const [ik, spec] of inds) {
       const f = facts[ik], n = d.indicators[ik];
       const hover = f ? [f.source, 'Retrieved ' + f.retrieved, f.note].filter(Boolean).join('\n') : '';
       // web text comes from FineWeb-2 or MADLAD-400, whichever holds more: the label names the one counted
@@ -290,7 +292,7 @@ function dimPanel(l, key, color) {
         ? `<div class="thru-line">Not counted, as it isn\u2019t open data: ${l.licensed.map(([name, steward, task, h, licence, paid, url]) =>
           `<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, on the Mozilla Data Collective`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, paid === 'yes' ? 'for a fee' : 'under a data licence'].filter(Boolean).map(esc).join(', ')})`).join('; ')}</div>` : '';
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
-      body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}${lic}
+      body += `<div class="ind${ik === 'open_speech_hours' ? ' ind-own' : ''}"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}${lic}
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}${ik === 'open_speech_hours' ? speechSets(l, facts) : ''}</div>`;
     }
     body += '</div>';
