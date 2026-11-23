@@ -17,10 +17,12 @@ for arg in sys.argv[1:]:
             print(f"===== {arg}\n" + "\n".join(x["id"] + (" gated" if x.get("gated") else "") for x in json.load(r)))
         continue
     url = f"{HF}/api/datasets/{ds}/tree/main?recursive=1" if not path else f"{HF}/datasets/{ds}/resolve/main/{path}"
-    req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}", "Range": "bytes=0-3000"} if token else {"Range": "bytes=0-3000"})
+    n = 40000 if path.endswith(".md") else 3000  # a dataset card is read whole
+    rng = {"Range": f"bytes=0-{n}"}
+    req = urllib.request.Request(url, headers={"Authorization": f"Bearer {token}", **rng} if token else rng)
     try:
         with urllib.request.urlopen(req, timeout=120) as r:
-            body = r.read(200000 if not path else 3000)
+            body = r.read(200000 if not path else n)
         print(f"===== {arg} OK")
         if not path:
             items = json.loads(body) if body.strip().startswith(b"[") else []
