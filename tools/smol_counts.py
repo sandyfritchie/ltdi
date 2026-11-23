@@ -82,7 +82,11 @@ def ingest(log: Path) -> None:
         if "SMOL\t" not in line:
             continue
         subset, f, src, tgt, rows, pairs = line.split("SMOL\t", 1)[1].split("\t")
-        code = to_ltdi(tgt) or to_ltdi(tgt.split("-")[0].split("_")[0])
+        # the file is named for the language and the pivot it was translated from or into: ak_en, en_ak, ru_kjh
+        stem = f.split("/")[-1].removesuffix(".jsonl")
+        lang = stem[3:] if stem[:3] in ("en_", "ru_") else stem[:-3] if stem[-3:] in ("_en", "_ru") else tgt
+        tgt = lang
+        code = to_ltdi(lang) or to_ltdi(lang.split("-")[0].split("_")[0])
         if not code:
             print(f"unresolved {tgt} ({f})", file=sys.stderr)
             continue

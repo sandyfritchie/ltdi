@@ -46,7 +46,7 @@ arq,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfr
 ars,open_speech_hours,20.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 20
 ary,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 arz,open_speech_hours,19.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 19
-as,open_speech_hours,886.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 828, Vaani 33, FLEURS 12, YODAS 10, Common Voice 3"
+as,open_speech_hours,992.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 828, SPRING-INX 106, Vaani 33, FLEURS 12, YODAS 10, Common Voice 3"
 ast,open_speech_hours,13.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"FLEURS 12, Common Voice 1"
 avl,open_speech_hours,1.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 2
 awa,open_speech_hours,0.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
@@ -96,7 +96,7 @@ bky,open_speech_hours,9.8,hours,Open speech datasets,https://github.com/sandyfri
 bm,open_speech_hours,160.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"African Next Voices Bambara 159, YODAS 1, Bloom Library (non-commercial) 0"
 bmm,open_speech_hours,19.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 19
 bmq,open_speech_hours,10.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
-bn,open_speech_hours,2194.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 652, YODAS 538, Shrutilipi 440, OpenSLR read speech 220, Vaani 162, Kathbath 116, Common Voice 54, FLEURS 12"
+bn,open_speech_hours,2922.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"SPRING-INX 728, IndicVoices 652, YODAS 538, Shrutilipi 440, OpenSLR read speech 220, Vaani 162, Kathbath 116, Common Voice 54, FLEURS 12"
 bnm,open_speech_hours,15.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 15
 bnn,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 bns,open_speech_hours,11.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Omnilingual ASR Corpus 11, Vaani 1"
@@ -255,7 +255,7 @@ gom,open_speech_hours,275.4,hours,Open speech datasets,https://github.com/sandyf
 grt,open_speech_hours,47.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Vaani 47
 gsl,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 gsw,open_speech_hours,1.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 1, Common Voice Spontaneous 1"
-gu,open_speech_hours,538.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 428, YODAS 71, Vaani 19, FLEURS 12, OpenSLR read speech 8"
+gu,open_speech_hours,809.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 428, SPRING-INX 271, YODAS 71, Vaani 19, FLEURS 12, OpenSLR read speech 8"
 gui,open_speech_hours,23.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 23
 gur,open_speech_hours,10.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 guz,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -275,7 +275,7 @@ hbb,open_speech_hours,12.5,hours,Open speech datasets,https://github.com/sandyfr
 hch,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 10
 he,open_speech_hours,225.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 207, FLEURS 12, Common Voice 5, Mozilla Data Collective 0"
 hem,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
-hi,open_speech_hours,5470.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,840, Shrutilipi 1,620, Vaani 1,004, IndicVoices 828, Kathbath 150, Common Voice 16, FLEURS 12, Bloom Library (non-commercial) 0"
+hi,open_speech_hours,5979.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 1,840, Shrutilipi 1,620, Vaani 1,004, IndicVoices 828, SPRING-INX 510, Kathbath 150, Common Voice 16, FLEURS 12, Bloom Library (non-commercial) 0"
 hia,open_speech_hours,11.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 hkk,open_speech_hours,8.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 9
 hla,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -354,7 +354,7 @@ kl,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfrit
 kls,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 km,open_speech_hours,678.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Mozilla Data Collective 586, YODAS 76, FLEURS 12, OpenSLR read speech 4"
 kmy,open_speech_hours,10.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
-kn,open_speech_hours,807.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 623, Vaani 151, FLEURS 12, YODAS 11, OpenSLR read speech 8, Bloom Library (non-commercial) 2"
+kn,open_speech_hours,904.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 623, Vaani 151, SPRING-INX 97, FLEURS 12, YODAS 11, OpenSLR read speech 8, Bloom Library (non-commercial) 2"
 kna,open_speech_hours,11.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
 knn,open_speech_hours,12.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
 ko,open_speech_hours,3916.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"YODAS 3,902, FLEURS 12, Common Voice 3"
@@ -447,14 +447,14 @@ mk,open_speech_hours,48.8,hours,Open speech datasets,https://github.com/sandyfri
 mkf,open_speech_hours,10.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 mki,open_speech_hours,9.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 mkw,open_speech_hours,5.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Mozilla Data Collective 6
-ml,open_speech_hours,827.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 675, YODAS 89, Vaani 40, FLEURS 12, OpenSLR read speech 6, Common Voice 4, Bloom Library (non-commercial) 1"
+ml,open_speech_hours,1153.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 675, SPRING-INX 327, YODAS 89, Vaani 40, FLEURS 12, OpenSLR read speech 6, Common Voice 4, Bloom Library (non-commercial) 1"
 mlq,open_speech_hours,10.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 mmc,open_speech_hours,11.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice Spontaneous 11
 mn,open_speech_hours,62.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"Common Voice 46, FLEURS 12, YODAS 4"
 mne,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 mni,open_speech_hours,437.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 437, Vaani 0"
 mqy,open_speech_hours,11.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
-mr,open_speech_hours,833.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 594, YODAS 137, Vaani 68, Common Voice 19, FLEURS 12, OpenSLR read speech 3"
+mr,open_speech_hours,1222.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 594, SPRING-INX 389, YODAS 137, Vaani 68, Common Voice 19, FLEURS 12, OpenSLR read speech 3"
 mrj,open_speech_hours,33.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 34
 mrr,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 mrt,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
@@ -534,11 +534,11 @@ ogo,open_speech_hours,10.5,hours,Open speech datasets,https://github.com/sandyfr
 oj,open_speech_hours,0.2,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 om,open_speech_hours,274.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL 223, Common Voice 26, YODAS 14, FLEURS 12"
 omw,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
-or,open_speech_hours,817.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 728, Vaani 51, YODAS 20, FLEURS 12, Common Voice 6"
+or,open_speech_hours,914.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 728, SPRING-INX 96, Vaani 51, YODAS 20, FLEURS 12, Common Voice 6"
 orc,open_speech_hours,22.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 22
 oru,open_speech_hours,21.3,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 21
 os,open_speech_hours,1.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 1
-pa,open_speech_hours,1101.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 797, Kathbath 137, Shrutilipi 90, YODAS 43, Vaani 20, FLEURS 12, Common Voice 2"
+pa,open_speech_hours,1506.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 797, SPRING-INX 405, Kathbath 137, Shrutilipi 90, YODAS 43, Vaani 20, FLEURS 12, Common Voice 2"
 pbs,open_speech_hours,10.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 11
 pbt,open_speech_hours,11.6,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 12
 pcm,open_speech_hours,25.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"WAXAL TTS 13, Common Voice 12"
@@ -655,7 +655,7 @@ swc,open_speech_hours,11.0,hours,Open speech datasets,https://github.com/sandyfr
 swv,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 syl,open_speech_hours,0.1,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,None found
 szy,open_speech_hours,13.7,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 14
-ta,open_speech_hours,2172.8,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 812, Shrutilipi 790, Common Voice 235, Kathbath 185, YODAS 105, Vaani 24, FLEURS 12, OpenSLR read speech 7, Bloom Library (non-commercial) 2"
+ta,open_speech_hours,2546.9,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,"IndicVoices 812, Shrutilipi 790, SPRING-INX 374, Common Voice 235, Kathbath 185, YODAS 105, Vaani 24, FLEURS 12, OpenSLR read speech 7, Bloom Library (non-commercial) 2"
 tan,open_speech_hours,10.4,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Omnilingual ASR Corpus 10
 tar,open_speech_hours,10.0,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 10
 tay,open_speech_hours,11.5,hours,Open speech datasets,https://github.com/sandyfritchie/ltdi/blob/main/config/speech_datasets.csv,2026-11-08,download,Common Voice 11
@@ -1390,6 +1390,17 @@ hi,speech_shrutilipi,1620.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,20
 pa,speech_shrutilipi,90.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,2026-11-08,published,All India Radio news bulletins aligned with transcripts; CC BY 4.0
 ta,speech_shrutilipi,790.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,2026-11-08,published,All India Radio news bulletins aligned with transcripts; CC BY 4.0
 ur,speech_shrutilipi,190.0,hours,Shrutilipi,https://arxiv.org/abs/2208.12666,2026-11-08,published,All India Radio news bulletins aligned with transcripts; CC BY 4.0
+*,speech_spring_inx,0,hours,SPRING-INX,,2026-11-08,published,
+as,speech_spring_inx,106.1,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+bn,speech_spring_inx,727.9,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+gu,speech_spring_inx,270.6,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+hi,speech_spring_inx,509.6,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+kn,speech_spring_inx,96.9,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+ml,speech_spring_inx,326.6,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+mr,speech_spring_inx,388.7,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+or,speech_spring_inx,96.5,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+pa,speech_spring_inx,405.4,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
+ta,speech_spring_inx,374.1,hours,SPRING-INX,https://asr.iitm.ac.in/dataset,2026-11-08,published,"Manually transcribed monologues and conversations (IIT Madras SPRING Lab, National Language Translation Mission); releases 1 and 2, as its download page gives them; CC BY 4.0"
 *,speech_swivuriso_african_next_voices,0,hours,Swivuriso (African Next Voices),,2026-11-08,published,
 nr,speech_swivuriso_african_next_voices,251.9,hours,Swivuriso (African Next Voices),https://arxiv.org/abs/2512.02201,2026-11-08,published,"South African Next Voices: scripted and unscripted speech in agriculture, health and general domains; CC BY 4.0"
 st,speech_swivuriso_african_next_voices,503.6,hours,Swivuriso (African Next Voices),https://arxiv.org/abs/2512.02201,2026-11-08,published,"South African Next Voices: scripted and unscripted speech in agriculture, health and general domains; CC BY 4.0"

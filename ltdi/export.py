@@ -122,7 +122,7 @@ PROVIDERS = {"google": "Google", "microsoft": "Microsoft", "amazon": "Amazon", "
 
 LABELS = {  # indicators the site labels in its own text
     "open_speech_hours": "Open transcribed speech, all datasets combined, overlaps removed (hours)",
-    "web_text_words": "Web text: the larger of FineWeb-2 and MADLAD-400 (words)",
+    "web_text_words": "Web text: the largest of FineWeb-2, MADLAD-400 and HPLT 3.0 (words)",
     "asr_azure_features": "Azure speech to text: features offered",
     "kb_apple_features": "iOS keyboard: features offered", "mt_azure_features": "Azure Translator: features offered",
     "mt_deepl_features": "DeepL: features offered", "ocr_azure_handwriting": "Azure OCR reads handwriting",
@@ -286,7 +286,7 @@ def build(scores: dict) -> dict[str, list[dict]]:
         f = fs.get("web_text_words")
         if not f or not f["value"]:
             continue
-        if f["source"].startswith("MADLAD"):
+        if not f["source"].startswith("FineWeb"):  # MADLAD-400 or HPLT counted instead
             m = re.search(r"FineWeb-2's ([\d,]+) words", f["note"])
             if m and int(m.group(1).replace(",", "")):
                 row("fineweb2", code, int(m.group(1).replace(",", "")), "words", "published", "web_text_fineweb2",
@@ -294,6 +294,21 @@ def build(scores: dict) -> dict[str, list[dict]]:
                     retrieved=f["retrieved"])
         else:
             row("fineweb2", code, f["value"], "words", "published", "web_text_fineweb2", f)
+    dataset("hplt3", "HPLT 3.0", "HPLT project (EU Horizon consortium)", "web text", "",
+            "Web text from the Internet Archive and Common Crawl; counted where it holds more than FineWeb-2 and MADLAD-400",
+            "CC0 1.0 (packaging; see its terms of use)", "yes", "open", True, "https://hplt-project.org/datasets/v3.0")
+    hplt = defaultdict(list)
+    for r in _csv_rows(CONFIG / "hplt_words.csv"):
+        hplt[r["language"]].append(r)
+    for code, rs in sorted(hplt.items()):
+        n = sum(int(r["words"]) for r in rs)
+        if not n:
+            continue
+        row("hplt3", code, n, "words", "sampled", "", src="https://hplt-project.org/datasets/v3.0",
+            note="; ".join(f"{r['label']}: {int(r['characters']):,} characters, {float(r['in_language_share']):.0%} in the language "
+                           f"in {r['docs_checked']} documents checked" for r in rs),
+            acc={"repository": "data.hplt-project.org", "subset": " ".join(r["label"] for r in rs),
+                 "url": f"https://data.hplt-project.org/three/sorted/{rs[0]['label']}/"})
     madlad = defaultdict(list)  # a language can have several MADLAD labels (qu and quy), summed as the Index sums them
     for r in _csv_rows(CONFIG / "madlad_words.csv"):
         madlad[r["language"]].append(r)
@@ -324,8 +339,28 @@ def build(scores: dict) -> dict[str, list[dict]]:
                     acc = {"repository": "panlex.org", "subset": u.rstrip("/").split("/")[-1], "url": u}
                 else:
                     acc = access.get((ind, code)) or {"repository": re.sub(r"^https?://(www\.)?", "", u).split("/")[0], "subset": "", "url": u}
-                row(did, code, f["value"], f["unit"], "counted", ind, f, acc=acc)
+                amount = f["value"]
+                if ind == "parallel_sentences" and (m := re.search(r"plus ([\d,]+) pairs professionally", f["note"])):
+                    amount -= int(m.group(1).replace(",", ""))  # SMOL and GATITOS have rows of their own
+                    if amount <= 0:
+                        continue
+                row(did, code, amount, f["unit"], "counted", ind, f, acc=acc)
         used.add(ind)
+    # Google's SMOL and GATITOS: professionally translated pairs, counted with OPUS's in parallel_sentences
+    dataset("smol", "SMOL and GATITOS", "Google", "parallel text", "",
+            "Professionally translated sentences (SmolSent), documents (SmolDoc) and words and phrases (GATITOS)",
+            "CC BY 4.0", "yes", "open", True, "https://huggingface.co/datasets/google/smol")
+    smol_files = defaultdict(lambda: defaultdict(list))
+    for r in _csv_rows(CONFIG / "smol_counts.csv"):
+        smol_files[r["language"]][r["subset"]].append((int(r["pairs"]), r["file"]))
+    for code, subs in sorted(smol_files.items()):
+        if code not in langs and code not in facts:
+            continue
+        n = sum(max(p for p, _ in fs) for fs in subs.values())
+        files = " ".join(f for fs in subs.values() for _, f in sorted(fs))
+        row("smol", code, n, "sentence pairs", "counted", "",
+            note="; ".join(f"{k} {max(p for p, _ in fs):,}" for k, fs in sorted(subs.items())), src="https://huggingface.co/datasets/google/smol",
+            acc={"repository": "huggingface:google/smol", "subset": files, "url": "https://huggingface.co/datasets/google/smol"})
     benches = sorted({i for fs in facts.values() for i in fs if i.startswith("bench_")})
     for i in benches:
         sample = next((fs[i] for fs in facts.values() if i in fs and fs[i]["value"]), None)

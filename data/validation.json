@@ -37,7 +37,8 @@
     "n": 18,
     "median_ltdi": 0.584,
     "tiers": {
-     "m": 6,
+     "h": 1,
+     "m": 5,
      "lc": 12
     }
    },
@@ -57,7 +58,7 @@
     "group": 4,
     "label": "4 · The Underdogs",
     "n": 18,
-    "median_ltdi": 0.871,
+    "median_ltdi": 0.872,
     "tiers": {
      "vh": 8,
      "h": 9,
@@ -105,7 +106,7 @@
    {
     "code": "mni",
     "name": "Meiteilon (Manipuri)",
-    "ltdi": 0.3047,
+    "ltdi": 0.3048,
     "rank": 142,
     "tier": "lc",
     "other": 0,
@@ -114,7 +115,7 @@
    {
     "code": "pcm",
     "name": "Nigerian Pidgin",
-    "ltdi": 0.2748,
+    "ltdi": 0.2755,
     "rank": 155,
     "tier": "lc",
     "other": 0,
@@ -141,7 +142,7 @@
    {
     "code": "shn",
     "name": "Shan",
-    "ltdi": 0.2574,
+    "ltdi": 0.2575,
     "rank": 169,
     "tier": "lc",
     "other": 0,
@@ -150,11 +151,11 @@
    {
     "code": "awa",
     "name": "Awadhi",
-    "ltdi": 0.2551,
-    "rank": 175,
+    "ltdi": 0.2552,
+    "rank": 174,
     "tier": "lc",
     "other": 0,
-    "gap": 0.483
+    "gap": 0.484
    },
    {
     "code": "lus",
@@ -195,8 +196,8 @@
    {
     "code": "bew",
     "name": "Betawi",
-    "ltdi": 0.2169,
-    "rank": 208,
+    "ltdi": 0.2183,
+    "rank": 206,
     "tier": "lc",
     "other": 0,
     "gap": 0.469
@@ -214,7 +215,7 @@
     "code": "fon",
     "name": "Fon",
     "ltdi": 0.2179,
-    "rank": 206,
+    "rank": 207,
     "tier": "lc",
     "other": 0,
     "gap": 0.469
@@ -240,7 +241,7 @@
    {
     "code": "mos",
     "name": "Mossi",
-    "ltdi": 0.2092,
+    "ltdi": 0.2093,
     "rank": 218,
     "tier": "lc",
     "other": 0,
@@ -258,17 +259,17 @@
    {
     "code": "bem",
     "name": "Bemba",
-    "ltdi": 0.1987,
-    "rank": 229,
+    "ltdi": 0.199,
+    "rank": 227,
     "tier": "lc",
     "other": 0,
-    "gap": 0.46
+    "gap": 0.461
    },
    {
     "code": "mww",
     "name": "Hmong Daw",
     "ltdi": 0.1988,
-    "rank": 227,
+    "rank": 228,
     "tier": "lc",
     "other": 0,
     "gap": 0.46
@@ -276,8 +277,8 @@
    {
     "code": "quc",
     "name": "K'iche'",
-    "ltdi": 0.1957,
-    "rank": 233,
+    "ltdi": 0.1973,
+    "rank": 232,
     "tier": "lc",
     "other": 0,
     "gap": 0.459
@@ -392,7 +393,7 @@
     "group": "Vital",
     "label": "Vital",
     "n": 10,
-    "median_ltdi": 0.582,
+    "median_ltdi": 0.583,
     "tiers": {
      "h": 2,
      "m": 3,
@@ -576,7 +577,7 @@
     "code": "cuh",
     "name": "Chuka",
     "ltdi": 0.05,
-    "rank": 3480,
+    "rank": 3481,
     "tier": "ld",
     "other": "Emerging",
     "gap": -0.48

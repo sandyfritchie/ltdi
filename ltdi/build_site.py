@@ -515,7 +515,7 @@ SPEECH_KIND = {
     "cv_validated_hours": "read", "speech_kathbath": "read", "speech_naijavoices": "read",
     "speech_multilingual_librispeech": "read",
     "cv_spontaneous_hours": "spontaneous", "speech_waxal": "spontaneous", "speech_indicvoices": "spontaneous",
-    "speech_vaani": "spontaneous", "speech_mdc_spontaneous": "spontaneous", "speech_mdc_spontaneous_nc": "spontaneous",
+    "speech_vaani": "spontaneous", "speech_spring_inx": "spontaneous", "speech_mdc_spontaneous": "spontaneous", "speech_mdc_spontaneous_nc": "spontaneous",
     "speech_mdc": "read", "speech_mdc_nc": "read",
     "speech_swivuriso_african_next_voices": "spontaneous", "speech_afrivoices_ke_african_next_voices": "spontaneous",
     "speech_afrivoices_ke_scripted": "read", "speech_african_next_voices_bambara": "spontaneous",

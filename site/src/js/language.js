@@ -277,7 +277,7 @@ function dimPanel(l, key, color) {
     for (const [ik, spec] of inds) {
       const f = facts[ik], n = d.indicators[ik];
       const hover = f ? [f.source, 'Retrieved ' + f.retrieved, f.note].filter(Boolean).join('\n') : '';
-      // web text comes from FineWeb-2 or MADLAD-400, whichever holds more: the label names the one counted
+      // web text comes from FineWeb-2, MADLAD-400 or HPLT 3.0, whichever holds most: the label names the one counted
       const name = ik === 'web_text_words' && f && f.source && ik in facts && f.source !== 'FineWeb' ? `Web text (${f.source.replace(' (clean)', '')} words)` : spec.label;
       const lab = f ? `<a class="indlink" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">${esc(name)}</a>` : esc(name);
       const nb = spec.narrowed_by && facts[spec.narrowed_by];  // e.g. how much of the web text is from Bible sites

@@ -68,3 +68,4 @@ speech_openslr_broadcast,ALFFA project (via OpenSLR),University research project
 speech_openslr_spontaneous,Kallaama project (via OpenSLR),University research project,https://www.openslr.org/151/,https://www.openslr.org/151/
 speech_bloom_library,SIL International (Bloom Library),Nonprofit,https://bloomlibrary.org/,https://huggingface.co/datasets/sil-ai/bloom-speech
 speech_bloom_library_non_commercial,SIL International (Bloom Library),Nonprofit,https://bloomlibrary.org/,https://huggingface.co/datasets/sil-ai/bloom-speech
+speech_spring_inx,"SPRING Lab, IIT Madras",University research lab,https://asr.iitm.ac.in/,https://asr.iitm.ac.in/dataset

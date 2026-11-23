@@ -87,7 +87,7 @@ docs_vendors,https://docs.x.ai/developers/model-capabilities/audio/speech-to-tex
 docs_vendors,https://docs.x.ai/developers/model-capabilities/audio/text-to-speech.md,bc3147bd2002e125d9d3b02e0a6c8895e3d0376843678444e166f1460a097772,2026-11-22
 docs_vendors,https://huggingface.co/CohereLabs/command-a-plus-05-2026/raw/main/README.md,507c57ee705b109f326392c9687d9e14b2697b88790f3048ca86faf91fb58b02,2026-11-22
 docs_vendors,https://news.samsung.com/ca/samsung-expands-language-support-across-ai-experiences-on-galaxy,a9faeb8af748822660ea5e3fe137e6af6e3b3216a59571a07e578da350eb40c0,2026-11-22
-fineweb2,https://raw.githubusercontent.com/huggingface/fineweb-2/d0defb24f193bb9a5a11b8b14524a03c4858e1b6/fineweb2-language-distribution.csv,0c6e6fbcef62cb034aff493187dee8d327c6bb2c08bb14a81a9c7221b091e0a5,2026-11-23
+fineweb2,https://raw.githubusercontent.com/huggingface/fineweb-2/d0defb24f193bb9a5a11b8b14524a03c4858e1b6/fineweb2-language-distribution.csv,0c6e6fbcef62cb034aff493187dee8d327c6bb2c08bb14a81a9c7221b091e0a5,2026-11-08
 flores200,https://raw.githubusercontent.com/facebookresearch/flores/a6c830c6e1051fb4ac1a44b32358f00463f332bd/flores200/README.md,74ccbbe29feba9d92cb3ee472387579ab2aa5c0299d47dcec7614b2c06cd49fc,2026-11-08
 hf_models,https://huggingface.co/api/models,7693 language tags,2026-11-18
 mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=1,71292352ff2c5452e0b454a72e092e56aec10fb66a75f9f41237cbfca16f686e,2026-11-21

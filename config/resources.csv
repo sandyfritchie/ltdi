@@ -48,3 +48,4 @@ speech_openslr_broadcast,OpenSLR broadcast news,"Broadcast news with transcripts
 speech_openslr_spontaneous,OpenSLR spontaneous speech,"Unscripted speech (Kallaama: Wolof, Pulaar and Sereer)",CC BY 4.0,yes,https://www.openslr.org/151/
 speech_bloom_library,Bloom Library (SIL),"Read speech aligned with the text of illustrated books from bloomlibrary.org",CC BY-SA 4.0 / CC0,yes,https://huggingface.co/datasets/sil-ai/bloom-speech
 speech_bloom_library_non_commercial,Bloom Library (SIL; non-commercial),"Read speech aligned with the text of illustrated books from bloomlibrary.org, under non-commercial licences",CC BY-NC and similar,no,https://huggingface.co/datasets/sil-ai/bloom-speech
+speech_spring_inx,SPRING-INX,"Manually transcribed monologues and conversations in 10 Indian languages (IIT Madras)",CC BY 4.0,yes,https://asr.iitm.ac.in/dataset

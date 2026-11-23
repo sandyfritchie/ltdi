@@ -8,20 +8,20 @@
   {
    "ranks": "1–60",
    "languages": 60,
-   "median_range": 5,
-   "within_10pct": 0.617
+   "median_range": 4,
+   "within_10pct": 0.633
   },
   {
    "ranks": "61–200",
    "languages": 140,
    "median_range": 15,
-   "within_10pct": 0.936
+   "within_10pct": 0.943
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
    "median_range": 294,
-   "within_10pct": 0.14
+   "within_10pct": 0.139
   },
   {
    "ranks": "1,001 and below",
@@ -69,14 +69,14 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
+     "name": "Danish",
+     "from": 25,
+     "to": 30
+    },
+    {
      "name": "Thai",
      "from": 18,
      "to": 22
-    },
-    {
-     "name": "Danish",
-     "from": 25,
-     "to": 29
     },
     {
      "name": "Yue Chinese",
@@ -89,9 +89,9 @@
      "to": 39
     },
     {
-     "name": "Yucateco",
-     "from": 274,
-     "to": 272
+     "name": "Bengali",
+     "from": 31,
+     "to": 28
     }
    ]
   },

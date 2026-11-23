@@ -26,7 +26,7 @@ from collections import defaultdict
 from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
 
-from .. import DATA
+from .. import CONFIG, DATA
 from ..crosswalk import to_ltdi
 from ..http import fetch_json
 from ..records import Record
@@ -98,6 +98,21 @@ def corpora(label: str) -> dict[str, int]:
     return out
 
 
+def smol() -> dict[str, dict[str, int]]:
+    """code -> {subset: pairs} from config/smol_counts.csv (Google's SMOL and GATITOS, which OPUS doesn't
+    include): a subset's files in either direction hold the same translations, so the larger counts."""
+    path = CONFIG / "smol_counts.csv"
+    out: dict[str, dict[str, int]] = defaultdict(dict)
+    if path.exists():
+        with path.open(encoding="utf-8") as f:
+            for r in csv.DictReader(l for l in f if not l.startswith("#")):
+                out[r["language"]][r["subset"]] = max(out[r["language"]].get(r["subset"], 0), int(r["pairs"]))
+    return out
+
+
+SMOL_NAMES = {"smolsent": "SmolSent", "smoldoc": "SmolDoc", "gatitos": "GATITOS"}
+
+
 def collect() -> list[Record]:
     labels: dict[str, list[str]] = defaultdict(list)
     for label in fetch_json(LANGUAGES)["languages"]:
@@ -108,6 +123,7 @@ def collect() -> list[Record]:
     with ThreadPoolExecutor(8) as pool:
         by_label = dict(zip(flat, pool.map(corpora, flat)))
     out, check = [], checked(lambda l: to_ltdi(l.replace("_", "-")))
+    prof = smol()
     for code in ltdi_codes():
         if code == "en":
             out.append(Record(code, "parallel_sentences", ENGLISH_NOMINAL, "sentence pairs", "OPUS",
@@ -136,6 +152,11 @@ def collect() -> list[Record]:
         if shares:
             note.append(f"{listed:,} pairs listed; checked web-mined corpora count at the share of lines "
                         f"in the language ({', '.join(shares)})")
+        if prof.get(code):  # professionally translated, so counted in full
+            n = sum(prof[code].values())
+            total += n
+            note.append(f"plus {n:,} pairs professionally translated for Google's SMOL and GATITOS ("
+                        + ", ".join(f"{SMOL_NAMES[k]} {v:,}" for k, v in sorted(prof[code].items())) + ")")
         if len(labels.get(code, [])) > 1:
             note.append("OPUS codes " + ", ".join(sorted(labels[code])))
         out.append(Record(code, "parallel_sentences", total, "sentence pairs", "OPUS",
