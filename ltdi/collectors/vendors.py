@@ -206,7 +206,7 @@ META = {
     "kb_apple": ("bool", "Apple iOS QuickType keyboard", APPLE + "#quicktype-keyboard-language-support"),
     "kb_apple_features": ("features of 4", "Apple iOS QuickType keyboard features", APPLE + "#quicktype-keyboard-autocorrection"),
     "llm_app_gemini": ("bool", "Gemini web app", GEMINI),
-    "llm_app_copilot": ("bool", "Microsoft Copilot app (text)", COPILOT),
+    "llm_app_copilot": ("bool", "Microsoft Copilot app (text and voice)", COPILOT),
     "ui_ios": ("bool", "Apple iOS system language", APPLE + "#system-language-system-language"),
     "ui_windows": ("bool", "Windows display language", WINDOWS),
     "ui_windows_level": ("levels of 2", "Windows display language", WINDOWS),
@@ -364,7 +364,10 @@ def collect() -> list[Record]:
                               "kb_swiftkey"))
     copilot = between(COPILOT, "What languages are currently supported in Microsoft Copilot prompts and responses?",
                       "Copilot Voice languages")
-    mark("llm_app_copilot", named([n for n in copilot if "accounts" not in n], "llm_app_copilot"))
+    # Copilot Voice: spoken conversations with Copilot, in languages its text list doesn't always name
+    voice = between(COPILOT, "The following spoken languages are supported for voice conversations with Copilot in a personal Microsoft account.",
+                    "What causes an unsupported-language error?")
+    mark("llm_app_copilot", named([n for n in copilot + voice if "accounts" not in n], "llm_app_copilot"))
     seen = set()
     for t in tables(page(OFFICE)):  # one table per language, for each Office version; the first set is current
         rows = t["rows"]

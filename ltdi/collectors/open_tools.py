@@ -53,7 +53,10 @@ def lists() -> dict[str, set[str]]:
     cld3 = re.findall(r"^\|?\s*([a-z]{2,3}(?:-Latn)?)\s*\|", fetch_text(CLD3), flags=re.M)
     keyman: dict[str, int] = {}
     for text in git_files(KEYMAN, "/release/**/*.kps", KEYMAN_COMMIT).values():
-        for code in present(set(re.findall(r'<Language ID="([^"]+)"', text))):
+        # Braille packs (malar_braille tags a hundred languages -Brai) and scripts Unicode doesn't encode (-Zzzz)
+        # don't give a language a keyboard for writing it
+        tags = {t for t in re.findall(r'<Language ID="([^"]+)"', text) if not re.search(r"-(brai|zzzz|qa[a-b][a-x])\b", t, re.I)}
+        for code in present(tags):
             keyman[code] = keyman.get(code, 0) + 1
     KEYBOARDS.clear()
     KEYBOARDS.update(keyman)

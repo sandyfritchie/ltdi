@@ -35,7 +35,7 @@
     "group": 2,
     "label": "2 · The Hopefuls",
     "n": 18,
-    "median_ltdi": 0.582,
+    "median_ltdi": 0.584,
     "tiers": {
      "m": 6,
      "lc": 12
@@ -45,7 +45,7 @@
     "group": 3,
     "label": "3 · The Rising Stars",
     "n": 26,
-    "median_ltdi": 0.763,
+    "median_ltdi": 0.766,
     "tiers": {
      "vh": 1,
      "h": 15,
@@ -79,7 +79,7 @@
     "code": "pih",
     "name": "Pitcairn-Norfolk",
     "ltdi": 0.05,
-    "rank": 3325,
+    "rank": 3324,
     "tier": "ld",
     "other": 1,
     "gap": -0.671
@@ -88,7 +88,7 @@
     "code": "prp",
     "name": "Parsi",
     "ltdi": 0.05,
-    "rank": 4011,
+    "rank": 4010,
     "tier": "ln",
     "other": 1,
     "gap": -0.671
@@ -96,7 +96,7 @@
    {
     "code": "prs",
     "name": "Dari",
-    "ltdi": 0.5764,
+    "ltdi": 0.5818,
     "rank": 77,
     "tier": "lc",
     "other": 0,
@@ -423,7 +423,7 @@
     "code": "cqd",
     "name": "Chuanqiandian Cluster Miao",
     "ltdi": 0.05,
-    "rank": 4011,
+    "rank": 4010,
     "tier": "ln",
     "other": "Ascending",
     "gap": -0.635
@@ -468,7 +468,7 @@
     "code": "cts",
     "name": "Northern Catanduanes Bikol",
     "ltdi": 0.05,
-    "rank": 4011,
+    "rank": 4010,
     "tier": "ln",
     "other": "Emerging",
     "gap": -0.514
@@ -576,7 +576,7 @@
     "code": "cuh",
     "name": "Chuka",
     "ltdi": 0.05,
-    "rank": 3481,
+    "rank": 3480,
     "tier": "ld",
     "other": "Emerging",
     "gap": -0.48

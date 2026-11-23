@@ -30,7 +30,7 @@ mt_amazon,mt,consumer,Amazon Translate,Translation,amazon,,,,,,,,,,,,,
 mt_cohere,mt,consumer,Cohere,Command A Translate,cohere,,,,,,,,,,,,,
 mt_open_nllb,mt,open,NLLB-200,Open model,meta,,,,,"FLORES-200 chrF++ from English (Meta, Dense 3.3B): 25 or less counts the model at half, 50 or more in full",mt_nllb_flores_chrf,25,50,2022,own,the FLORES-200 devtest,"1,012 sentences",yes
 llm_app_gemini,llm,consumer,Gemini,Official app language list,google,,,,,,,,,,,,,
-llm_app_copilot,llm,consumer,Copilot,Official app language list,microsoft,,,,,,,,,,,,,
+llm_app_copilot,llm,consumer,Copilot,Official app language list (text and voice),microsoft,,,,,,,,,,,,,
 llm_app_chatgpt,llm,consumer,ChatGPT,App language setting,openai,,,,,,,,,,,,,
 llm_app_claude,llm,consumer,Claude,App language setting,anthropic,,,,,,,,,,,,,
 llm_app_meta,llm,consumer,Meta AI,Llama 4 supported languages,meta,,,,,,,,,,,,,

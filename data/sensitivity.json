@@ -3,19 +3,19 @@
  "seed": 2026,
  "edition": "2026-11",
  "varied": "technology and data weights x0.5-1.5; log-scale data goals up to 10x either way, the benchmark goal x0.5-1.5; floor 0.025-0.075",
- "nothing_recorded": 2809,
+ "nothing_recorded": 2810,
  "bands": [
   {
    "ranks": "1–60",
    "languages": 60,
-   "median_range": 4,
-   "within_10pct": 0.7
+   "median_range": 5,
+   "within_10pct": 0.667
   },
   {
    "ranks": "61–200",
    "languages": 140,
    "median_range": 15,
-   "within_10pct": 0.929
+   "within_10pct": 0.936
   },
   {
    "ranks": "201–1,000",
@@ -25,8 +25,8 @@
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3009,
-   "median_range": 449,
+   "languages": 3008,
+   "median_range": 450,
    "within_10pct": 0.5
   }
  ],
@@ -42,9 +42,14 @@
      "to": 27
     },
     {
-     "name": "Yue Chinese",
-     "from": 81,
-     "to": 79
+     "name": "Malay",
+     "from": 36,
+     "to": 33
+    },
+    {
+     "name": "Hebrew",
+     "from": 28,
+     "to": 25
     },
     {
      "name": "Slovak",
@@ -52,14 +57,9 @@
      "to": 35
     },
     {
-     "name": "Malay",
-     "from": 35,
-     "to": 33
-    },
-    {
-     "name": "Kipsigis",
-     "from": 230,
-     "to": 228
+     "name": "Persian",
+     "from": 26,
+     "to": 28
     }
    ]
   },
