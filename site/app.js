@@ -947,6 +947,9 @@ function localeTile(f, vf, wname) {
 }
 // Commercial use: what each open resource's licence permits (resources.csv: yes, no, varies)
 const fmtHours = h => h >= 10 ? `${Math.round(h).toLocaleString()} hours` : `${(+h).toFixed(1)} hours`;
+// Licensed corpora shown on a page: the largest first (by hours where given), at most LICENSED_SHOWN
+const LICENSED_SHOWN = 6;
+const licensedShown = list => [...list].sort((a, b) => (+b[3] || 0) - (+a[3] || 0)).slice(0, LICENSED_SHOWN);
 const nonCommercialSets = facts => Object.keys(facts).filter(i => (i.startsWith('speech_') || i === 'cv_validated_hours') && facts[i].value && RES[i] && RES[i].commercial === 'no').map(i => RES[i].name).join(', ');
 const COMMERCIAL = { yes: 'Permitted', no: 'Not permitted', varies: 'Varies' };
 // How each speech dataset's hours were obtained (the record's method; ltdi/collectors/speech.py)
@@ -1037,10 +1040,10 @@ function dimPanel(l, key, color) {
       // open speech: how much of it is licensed for commercial use (resources.csv)
       const usable = ik === 'open_speech_hours' && l.sh && l.shc < l.sh
         ? `<div class="thru-line">${l.shc >= 0.05 ? `${fmtHours(l.shc)} licensed for commercial use; the rest is for non-commercial use only` : 'None of it is licensed for commercial use'} (${esc(nonCommercialSets(facts))})</div>` : '';
-      // speech shared under a data licence or for a fee (Mozilla Data Collective): listed, not counted
+      // speech shared under a data licence or for a fee (Mozilla Data Collective, ACLCLP...): listed, not counted
       const lic = ik === 'open_speech_hours' && l.licensed && l.licensed.length
-        ? `<div class="thru-line">Not counted, as it isn\u2019t open data: ${l.licensed.map(([name, steward, task, h, licence, paid, url]) =>
-          `<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, on the Mozilla Data Collective`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, paid === 'yes' ? 'for a fee' : 'under a data licence'].filter(Boolean).map(esc).join(', ')})`).join('; ')}</div>` : '';
+        ? `<div class="thru-line">Not counted, as it isn\u2019t open data: ${licensedShown(l.licensed).map(([name, steward, task, h, licence, paid, url, where]) =>
+          `<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, ${where === 'the Mozilla Data Collective' ? 'on' : 'from'} ${where}`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, (paid === 'yes' ? 'for a fee' : 'under a data licence') + (where && where !== 'the Mozilla Data Collective' ? ` from ${where}` : '')].filter(Boolean).map(esc).join(', ')})`).join('; ')}${l.licensed.length > LICENSED_SHOWN ? `; and ${l.licensed.length - LICENSED_SHOWN} more, listed in the database download` : ''}</div>` : '';
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
       body += `<div class="ind${ik === 'open_speech_hours' ? ' ind-own' : ''}"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}${lic}
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}${ik === 'open_speech_hours' ? speechSets(l, facts) : ''}</div>`;

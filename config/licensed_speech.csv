@@ -1,0 +1,9 @@
+# Speech corpora available only under a paid licence or a signed agreement: listed on each language's page and in
+# the database download, never counted (the Index counts open data). Hours as each distributor or the corpus's
+# paper gives them. The Mozilla Data Collective's licensed datasets are listed separately, by collectors/mdc.py.
+id,language,name,steward,task,hours,licence,paid,url,distributor
+aclclp_tat,nan,Taiwanese Across Taiwan (TAT-Vol1 and TAT-Vol2),National Taipei University of Technology,speech recognition,100,"Academic licence NT$2,000 a volume; commercial licence NT$20,000 a volume",yes,https://www.aclclp.org.tw/use_mat.php,ACLCLP
+aclclp_tat_tts,nan,Taiwanese Across Taiwan TTS (TAT-TTS),National Taipei University of Technology,text-to-speech,40,"Academic licence NT$20,000 a speaker; commercial licence NT$200,000 a speaker",yes,https://www.aclclp.org.tw/use_mat.php,ACLCLP
+aclclp_hat,hak,Hakka Across Taiwan (HAT): Sixian and Hailu read speech,Hakka Affairs Council (Taiwan),speech recognition,696,"Licence agreement; handling fee NT$1,000 an accent",yes,https://www.aclclp.org.tw/use_mat_c.php,ACLCLP
+aclclp_hat_media,hak,Hakka Across Taiwan (HAT): Sixian broadcast speech,Hakka Affairs Council (Taiwan),speech recognition,280,"Licence agreement; handling fee NT$1,000",yes,https://www.aclclp.org.tw/use_mat_c.php,ACLCLP
+aclclp_hat_tts,hak,Hakka Across Taiwan (HAT): Sixian and Hailu TTS,Hakka Affairs Council (Taiwan),text-to-speech,120,"Licence agreement; handling fee NT$1,000 an accent",yes,https://www.aclclp.org.tw/use_mat_c.php,ACLCLP

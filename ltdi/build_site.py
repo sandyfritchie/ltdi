@@ -323,11 +323,11 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
             for r in csv.DictReader(f):
                 unnamed[r["language"]][r["indicator"]] = r["counted_as"]
     # speech datasets shared under a data licence or for a fee, not counted as open (collectors/mdc.py)
+    # and corpora from other distributors (config/licensed_speech.csv; ltdi/licensed.py)
+    from .licensed import FIELDS, rows as licensed_rows
     licensed: dict[str, list] = defaultdict(list)
-    if (DATA / "licensed_speech.csv").exists():
-        with (DATA / "licensed_speech.csv").open(encoding="utf-8") as f:
-            for r in csv.DictReader(f):
-                licensed[r["language"]].append([r[k] for k in ("name", "steward", "task", "hours", "licence", "paid", "url")])
+    for r in licensed_rows():
+        licensed[r["language"]].append([r[k] for k in FIELDS])
     for l in scores["languages"]:
         facts = encode(l["code"], scores["facts"].get(l["code"], {}))
         opps = []

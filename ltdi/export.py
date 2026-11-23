@@ -267,15 +267,17 @@ def build(scores: dict) -> dict[str, list[dict]]:
                     r["licence"], "no" if r["indicator"].endswith("_nc") else "yes", "open", True, r["url"])
         row(did, r["language"], float(r["hours"]), "hours", "listing", "", note="", src=r["url"],
             acc={"repository": "mozilladatacollective", "subset": "", "url": r["url"]})
-    for r in _csv_rows(DATA / "licensed_speech.csv"):
-        did = "mdc_" + r["url"].rstrip("/").split("/")[-1]
+    from .licensed import rows as licensed_rows
+    for r in licensed_rows():
+        did = r["id"]
+        mdc = r["distributor"] == "the Mozilla Data Collective"
         if did not in mdc_ids:
             mdc_ids[did] = r
-            dataset(did, r["name"], r["steward"], "speech", "", f"For {r['task']}; on the Mozilla Data Collective",
+            dataset(did, r["name"], r["steward"], "speech", "", f"For {r['task']}; {'on' if mdc else 'from'} {r['distributor']}",
                     r["licence"], "varies", "licence", False, r["url"])
         row(did, r["language"], float(r["hours"]) if r["hours"] else "", "hours", "listing", "",
             note="for a fee" if r["paid"] == "yes" else "under a data licence agreement", src=r["url"],
-            acc={"repository": "mozilladatacollective", "subset": "", "url": r["url"]})
+            acc={"repository": "mozilladatacollective" if mdc else r["distributor"].lower(), "subset": "", "url": r["url"]})
 
     # Web text: FineWeb-2 and MADLAD-400, each with its own count (the Index uses the larger, never both)
     dataset("fineweb2", "FineWeb-2", "Hugging Face", "web text", "", "Filtered web text from Common Crawl", "ODC-By 1.0", "yes", "open", True,

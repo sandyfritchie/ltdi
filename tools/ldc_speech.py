@@ -7,7 +7,7 @@ corpora are licensed, mostly for a fee).
                                             from everywhere
   python tools/ldc_speech.py ingest LOG     turn a crawl's log into config/ldc_speech.csv
 
-Hours come from each corpus's introduction ("approximately 190 hours ..."), and only where the corpus has one
+Evaluation sets for recognising speakers or languages, samplers and animal calls are left out (SKIP). Hours come from each corpus's introduction ("approximately 190 hours ..."), and only where the corpus has one
 language other than English; where it has several, it's listed for each without hours.
 """
 
@@ -25,6 +25,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CAT = "https://catalog.ldc.upenn.edu"
 UA = {"User-Agent": "ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)"}
+SKIP = re.compile(r"Speaker Recognition|Language Recognition|Language Identification|Sampler|Articulograph|Emotion|"
+                  r"RATS|Keyword Spotting|Speech Activity|Evaluation|Test Set|Mixer|Call My Net|Vocalizations|Monkey", re.I)
 FIELDS = ["id", "name", "languages", "hours", "task", "licence", "nonmember", "released"]
 
 
@@ -63,7 +65,8 @@ def parse(cid: str, page: str) -> dict:
         except ValueError:
             pass
     apps = field(t, "Application(s)").lower()
-    task = "text-to-speech" if "synthesis" in apps else "speech recognition" if "recognition" in apps else "speech"
+    task = ("text-to-speech" if re.search(r"speech synthesis|text.to.speech", apps)
+            else "speech recognition" if "speech recognition" in apps else "speech")
     return {"id": cid, "name": field(t, "Item Name"), "languages": field(t, "Language ID(s)"),
             "hours": m.group(1).replace(",", "") if m else "", "task": task, "licence": field(t, "License(s)"),
             "nonmember": nm, "released": field(t, "Release Date")}
@@ -89,6 +92,11 @@ def ingest(log: str) -> None:
         if "LDCROW " not in line:
             continue
         r = json.loads(line.split("LDCROW ", 1)[1])
+        # speech corpora, not evaluation sets for recognising speakers or languages, nor animal calls
+        if SKIP.search(r["name"]):
+            continue
+        if r["task"] == "speech":
+            r["task"] = "speech research"
         codes = [c.strip() for c in r["languages"].split(",") if c.strip()]
         langs = list(dict.fromkeys(filter(None, (to_ltdi(c) for c in codes))))
         others = [c for c in langs if c != "en"]
