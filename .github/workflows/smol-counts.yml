@@ -1,0 +1,21 @@
+# Counts Google's SMOL and GATITOS translations per language (tools/smol_counts.py). The results are in the
+# job log (lines starting SMOL); ingest them with tools/smol_counts.py --ingest.
+name: SMOL counts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Count
+        run: python tools/smol_counts.py
