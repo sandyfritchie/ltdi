@@ -16,12 +16,18 @@ East Asia
                        method 2.3 a major service (Alibaba Cloud sells worldwide), read here with the rest
   Naver Papago         api.ncloud-docs.com/docs/en/ai-naver-papagonmt-translation
 India
+  Bhashini             bhashini.gov.in/ulca/model/explore-models: the Government of India's language platform; its
+                       model registry (ULCA), read through the registry's public search (POST
+                       meity-auth.ulcacontrib.org/ulca/apis/v0/model/search with each task), lists the published,
+                       hosted models and each one's language. Test entries (submitter "tester") are left out.
   Sarvam AI            docs.sarvam.ai/api-reference-docs/getting-started/models (Saaras speech
                        recognition, Bulbul v3 speech synthesis, Sarvam-Translate)
 Africa
   Lelapa AI Vulavula   docs.lelapa.ai/overview/language-support
   GhanaNLP Khaya       khaya-sdk.readthedocs.io/en/latest/languages/ (the Khaya-AI organisation's SDK)
   Sunbird AI           docs.sunbird.ai/languages (Uganda)
+  Intron Sahara        docs.voice.intron.io/docs/stt/supported-languages and
+                       docs.voice.intron.io/docs/tts/supported-languages-and-accents (Nigeria)
 """
 
 from __future__ import annotations
@@ -32,6 +38,7 @@ from ..records import Record
 from ._common import ltdi_codes
 
 RETRIEVED = "2026-11-12"
+RETRIEVED_BY = {"bhashini": "2026-11-23", "intron": "2026-11-23"}  # lists read later than the rest
 
 
 def _codes(s: str) -> list[str]:
@@ -121,6 +128,22 @@ SUNBIRD_MT = """ach, afr, aka, alz, amh, luc, teo, bam, bfa, bem, nya, dga, dag,
 kab, keo, kln, kau, kdj, kik, kin, run, kdi, kpz, rwm, laj, led, lin, tlj, lgg, rub, gwr, lug, luy, myx, nuj, luo, xog,
 mhi, mlg, nbl, pcm, orm, pok, cgg, koo, nyn, nyo, ruc, ttj, lsm, sot, tsn, sna, som, swa, wol, xho, yor, zul"""
 
+BHASHINI = "https://bhashini.gov.in/ulca/model/explore-models"
+BHASHINI_ASR = """as, bho, bn, brx, doi, en, gom, gu, hi, hne, kn, kok, ks, mai, ml, mni, mr, ne, or, pa, sa, sat, sd, ta,
+te, ur"""
+BHASHINI_TTS = """as, bhb, bho, bn, brx, doi, en, gom, gu, hi, kn, ks, mag, mai, ml, mni, mr, ne, or, pa, raj, sa, sat, saz,
+sd, ta, te, ur"""
+BHASHINI_MT = """as, awa, bho, bn, bra, brx, doi, en, gom, gon, gu, hi, hoc, kha, kn, ks, lus, mag, mai, ml, mni, mr, ne, or,
+pa, sa, sat, sd, si, ta, tcy, te, ur, xnr"""   # every one paired with the other 33
+
+INTRON_STT = "https://docs.voice.intron.io/docs/stt/supported-languages"
+INTRON_TTS = "https://docs.voice.intron.io/docs/tts/supported-languages-and-accents"
+# The page's own codes; its European languages are listed too. ff (Fulani) is listed beside seven Fulfulde varieties.
+INTRON_ASR = """af, ak, am, ar, bem, bg, cs, da, de, el, en, es, et, fi, fr, ff, fuc, fuf, fub, fuv, fuq, fue, ffm, gaa, ha,
+hr, hu, ig, it, lt, lv, lg, mt, nl, nso, nyn, om, pcm, pl, pt, ro, ru, rw, sk, sl, sn, st, sv, sw, tn, tw, uk, wo, xh,
+yo, zu, luo, kr, ki, nup, ti"""
+INTRON_TTS_CODES = "af, am, en, ha, ig, rw, lg, om, pcm, sn, sw, wo, yo"
+
 # (indicator, source, url, labels, labels are names rather than codes)
 LISTS = [
     ("mt_yandex", "Yandex Translate", YANDEX_TRANSLATE, _codes(YANDEX_TRANSLATE_NAMES), True),
@@ -140,6 +163,11 @@ LISTS = [
     ("mt_sunbird", "Sunbird AI Sunflower", SUNBIRD, _codes(SUNBIRD_MT), False),
     ("asr_sunbird", "Sunbird AI", SUNBIRD, _codes(SUNBIRD_ASR), False),
     ("tts_sunbird", "Sunbird AI", SUNBIRD, _codes(SUNBIRD_TTS), False),
+    ("asr_bhashini", "Bhashini (ULCA model registry)", BHASHINI, _codes(BHASHINI_ASR), False),
+    ("tts_bhashini", "Bhashini (ULCA model registry)", BHASHINI, _codes(BHASHINI_TTS), False),
+    ("mt_bhashini", "Bhashini (ULCA model registry)", BHASHINI, _codes(BHASHINI_MT), False),
+    ("asr_intron", "Intron Sahara", INTRON_STT, _codes(INTRON_ASR), False),
+    ("tts_intron", "Intron Sahara", INTRON_TTS, _codes(INTRON_TTS_CODES), False),
 ]
 SPEECH = ("asr_", "tts_")  # speech locales name the variety spoken there (crosswalk.to_ltdi)
 # Provider codes that mean something else in ISO 639-3: Khaya's atw is Akuapem Twi (ISO atw is Atsugewi, California)
@@ -164,5 +192,6 @@ def collect() -> list[Record]:
         have, missing = resolved(labels, names, ind.startswith(SPEECH))
         if missing:
             print(f"  {ind}: not matched {missing}")
-        out += [Record(c, ind, int(c in have), "bool", source, url, RETRIEVED, "manual") for c in codes]
+        day = next((d for k, d in RETRIEVED_BY.items() if ind.endswith("_" + k)), RETRIEVED)
+        out += [Record(c, ind, int(c in have), "bool", source, url, day, "manual") for c in codes]
     return out

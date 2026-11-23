@@ -120,7 +120,7 @@ one in Commercial.
 
 A service counts as major when its company sells it worldwide, rather than mainly in one country
 or region, and publishes a list of the languages it supports. Regional providers, which serve mainly one country or region
-(Yandex, Baidu, Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP's Khaya, Sunbird AI), count together as one extra commercial service, and only for the
+(Yandex, Baidu, Naver Papago, Sarvam AI, Bhashini, Lelapa AI, GhanaNLP's Khaya, Sunbird AI, Intron), count together as one extra commercial service, and only for the
 languages one of them offers, at the best credit among them. So a regional provider can raise a
 language's score and close a gap, but never lowers the score of a language it doesn't serve.
 
@@ -151,7 +151,7 @@ any name it can't resolve.
 | Tech | Spelling and grammar | Microsoft 365 proofing tools; LibreOffice Hunspell dictionaries and LanguageTool (open) | automated |
 | Checklists only | Word-frequency lists (not scored: the web text behind them is mostly what FineWeb-2 measures) | Corpus Crawler's language table (pinned), linking each language's list; shown in the keyboard and spelling readiness checklists and on language pages (`ltdi/collectors/corpuscrawler.py`) | automated |
 | Tech | Voice assistant (half weight) | Each company's assistant, old and new generations together: Google Assistant / Gemini for Home (speakers and displays; Gemini for Home's early-access languages are read from Google's help page), Siri, and Alexa / Alexa+ (Alexa's skills languages; Amazon publishes no language list for Alexa+, so Alexa+'s are those named in Amazon's launch announcements, or a country's main language where only the country is named; checked November 2026), and Samsung's Bixby (the languages in Samsung's October 2026 announcement, `ltdi/collectors/docs_vendors.py`) | automated |
-| Tech | Regional providers | Translation: Yandex, Baidu, Naver Papago, Sarvam AI, Lelapa AI, GhanaNLP Khaya, Sunbird AI. Speech recognition: Yandex SpeechKit, Sarvam, Lelapa, Khaya, Sunbird. Text-to-speech: Yandex SpeechKit, Sarvam, Khaya, Sunbird | read by hand from each provider's language list (`ltdi/collectors/regional.py`) |
+| Tech | Regional providers | Translation: Yandex, Baidu, Naver Papago, Sarvam AI, Bhashini, Lelapa AI, GhanaNLP Khaya, Sunbird AI. Speech recognition: Yandex SpeechKit, Sarvam, Bhashini, Lelapa, Khaya, Sunbird, Intron. Text-to-speech: Yandex SpeechKit, Sarvam, Bhashini, Khaya, Sunbird, Intron | read by hand from each provider's language list (`ltdi/collectors/regional.py`) |
 | Tech | Language identification (half weight) | GlotLID v3 and CLD3, both open; the open models are the product here | automated |
 | Tech | Locale data (half weight) | Unicode CLDR coverage level: basic, moderate or modern | automated |
 

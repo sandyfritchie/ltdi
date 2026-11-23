@@ -141,7 +141,7 @@ weight = 0.1
 # worse counts it at half, 5% or better in full.
 # Major services (services.csv role "consumer") are those sold worldwide with a
 # published language list. Regional providers (role "regional": Yandex, Baidu,
-# Naver, Sarvam AI, Lelapa AI, GhanaNLP, Sunbird AI) count together as
+# Naver, Sarvam AI, Bhashini, Lelapa AI, GhanaNLP, Sunbird AI, Intron) count together as
 # one extra commercial service, only for the languages one of them offers, at
 # the best credit among them; so they raise a score or close a gap but never
 # dilute the share for languages they don't serve.

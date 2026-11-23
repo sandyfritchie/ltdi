@@ -75,3 +75,8 @@ speech_afrivoice_digital_umuganda,Digital Umuganda,Company,https://digitalumugan
 speech_afrivoice_scripted_digital_umuganda,Digital Umuganda,Company,https://digitalumuganda.com/,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice_Kinyarwanda
 speech_nchlt_speech,CSIR Meraka Institute and North-West University (via SADiLaR),Government research council and university,https://sadilar.org/,https://repo.sadilar.org/
 speech_openslr_spontaneous_non_commercial,Jonathan D. Amith and collaborators (via OpenSLR),University research project,https://www.openslr.org/89/,https://www.openslr.org/resources.php
+asr_bhashini,"Bhashini (Ministry of Electronics and IT, Government of India)",Regional provider,https://bhashini.gov.in/,https://bhashini.gov.in/ulca/model/explore-models
+tts_bhashini,"Bhashini (Ministry of Electronics and IT, Government of India)",Regional provider,https://bhashini.gov.in/,https://bhashini.gov.in/ulca/model/explore-models
+mt_bhashini,"Bhashini (Ministry of Electronics and IT, Government of India)",Regional provider,https://bhashini.gov.in/,https://bhashini.gov.in/ulca/model/explore-models
+asr_intron,Intron,Regional provider,https://intron.io/,https://docs.voice.intron.io/docs/index/introduction
+tts_intron,Intron,Regional provider,https://intron.io/,https://docs.voice.intron.io/docs/index/introduction

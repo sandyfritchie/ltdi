@@ -91,7 +91,7 @@ def stated(facts: dict[str, Record], tech: dict, ids: list[str]) -> list[str]:
 def presence(facts: dict[str, Record], tech: dict, ids: list[str], regional: list[str] | None = None) -> float:
     """0.25 for being offered at all, plus 0.75 x the services' mean credit.
 
-    Regional providers (Yandex, Baidu, Sarvam, Sunbird...) count together as one more service, and only
+    Regional providers (Yandex, Baidu, Sarvam, Bhashini, Sunbird, Intron...) count together as one more service, and only
     for a language one of them offers, with the best of their credits: so they can raise a score but
     never dilute the share for languages they don't serve."""
     credits = [credit(facts, tech, i) for i in stated(facts, tech, ids)]

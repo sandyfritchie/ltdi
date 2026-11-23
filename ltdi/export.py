@@ -118,7 +118,7 @@ PROVIDERS = {"google": "Google", "microsoft": "Microsoft", "amazon": "Amazon", "
              "elevenlabs": "ElevenLabs", "deepgram": "Deepgram", "assemblyai": "AssemblyAI", "speechmatics": "Speechmatics",
              "abbyy": "ABBYY", "cohere": "Cohere", "xai": "xAI", "samsung": "Samsung", "open": "Open source", "yandex": "Yandex",
              "baidu": "Baidu", "naver": "Naver", "sarvam": "Sarvam AI", "lelapa": "Lelapa AI", "ghananlp": "GhanaNLP",
-             "sunbird": "Sunbird AI"}
+             "sunbird": "Sunbird AI", "bhashini": "Bhashini", "intron": "Intron"}
 
 LABELS = {  # indicators the site labels in its own text
     "open_speech_hours": "Open transcribed speech, all datasets combined, overlaps removed (hours)",
