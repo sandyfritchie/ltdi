@@ -18,6 +18,7 @@
  "llm_app_meta": 12,
  "llm_app_mistral": 43,
  "llm_app_qwen": 118,
+ "llm_open_aya": 67,
  "mt_amazon": 75,
  "mt_cohere": 23,
  "mt_google": 238,

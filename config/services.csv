@@ -37,6 +37,7 @@ llm_app_meta,llm,consumer,Meta AI,Llama 4 supported languages,meta,,,,,,,,,,,,,
 llm_app_mistral,llm,consumer,Mistral AI,Official model language list,mistral,,,,,,,,,,,,,
 llm_app_qwen,llm,consumer,Qwen,Qwen3 language list,alibaba,,,,,,,,,,,,,
 llm_app_cohere,llm,consumer,Cohere,Command A+ model languages,cohere,,,,,,,,,,,,,
+llm_open_aya,llm,open,Tiny Aya,Open model language list,cohere,,,,,,,,,,,,,
 llm_global_mmlu_rel,llm,measured,Claude Fable 5.2,"Global-MMLU, 2026",anthropic,,70,95,,Share of the English score,,,,2026,own,Global-MMLU,,yes
 llm_mmmlu_openai,llm,measured,OpenAI o3,"MMMLU, 2025",openai,,0.6,0.88,,Accuracy,,,,2025,own,MMMLU,"MMLU's 14,042 test questions, professionally translated",yes
 llm_afrobench_gpt4o,llm,measured,GPT-4o,"AfroBench translation, 2025",openai,,25,50,,chrF from English,,,,2025,independent,FLORES-200 in AfroBench,,yes

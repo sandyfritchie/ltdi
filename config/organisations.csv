@@ -69,3 +69,4 @@ speech_openslr_spontaneous,Kallaama project (via OpenSLR),University research pr
 speech_bloom_library,SIL International (Bloom Library),Nonprofit,https://bloomlibrary.org/,https://huggingface.co/datasets/sil-ai/bloom-speech
 speech_bloom_library_non_commercial,SIL International (Bloom Library),Nonprofit,https://bloomlibrary.org/,https://huggingface.co/datasets/sil-ai/bloom-speech
 speech_spring_inx,"SPRING Lab, IIT Madras",University research lab,https://asr.iitm.ac.in/,https://asr.iitm.ac.in/dataset
+llm_open_aya,Cohere Labs,Company research lab,https://cohere.com/research,https://docs.cohere.com/docs/tiny-aya

@@ -15,6 +15,11 @@ are of different kinds, as the providers publish them, and say so in the service
               not named in the regional table, is added.
   Qwen        The Qwen3 announcement's table of 119 languages and dialects, the latest list Qwen has
               published. Qwen3.5 (2026) says it supports 201 but publishes no list.
+  Tiny Aya    docs.cohere.com "Tiny Aya": the open-weight model's supported languages (Cohere Labs,
+              2026, CC BY-NC 4.0), counted as an open model. The page says 70 and names 67.
+
+Left out, since their makers publish no list of languages: Gemma 4 ("35+ out of the box, pre-trained on
+140+"), Meta's Muse Glimmer ("more than 100"), DeepSeek and Grok.
 """
 
 from __future__ import annotations
@@ -63,11 +68,21 @@ Japanese, Korean, Georgian, Basque, Haitian, Papiamento, Kabuverdianu, Tok Pisin
 # The table's "Chinese (Simplified Chinese, Traditional Chinese, Cantonese)" is Chinese and Cantonese here, and
 # "Arabic (Standard, Najdi, ...)" Arabic and each named variety; "Waray (Philippines)" is Waray.
 
+TINY_AYA = "https://docs.cohere.com/docs/tiny-aya"
+TINY_AYA_LANGS = """English, Dutch, French, Italian, Portuguese, Romanian, Spanish, Czech, Polish, Ukrainian,
+Russian, Greek, German, Danish, Swedish, Norwegian, Catalan, Galician, Welsh, Irish,
+Basque, Croatian, Latvian, Lithuanian, Slovak, Slovenian, Estonian, Finnish, Hungarian, Serbian,
+Bulgarian, Arabic, Persian, Urdu, Turkish, Maltese, Hebrew, Hindi, Marathi, Bengali,
+Gujarati, Punjabi, Tamil, Telugu, Nepali, Tagalog, Malay, Indonesian, Vietnamese, Javanese,
+Khmer, Thai, Lao, Chinese, Burmese, Japanese, Korean, Amharic, Hausa, Igbo,
+Malagasy, Shona, Swahili, Wolof, Xhosa, Yoruba, Zulu"""
+
 LISTS = (
     ("llm_app_claude", "Claude apps' interface languages", CLAUDE, CLAUDE_LANGS, []),
     ("llm_app_meta", "Llama 4 supported languages (Meta AI)", LLAMA, LLAMA_LANGS, []),
     ("llm_app_mistral", "Mistral language models' languages", MISTRAL, MISTRAL_LANGS, MISTRAL_EXTRA),
     ("llm_app_qwen", "Qwen3 languages and dialects", QWEN, QWEN_LANGS, []),
+    ("llm_open_aya", "Tiny Aya supported languages (Cohere Labs)", TINY_AYA, TINY_AYA_LANGS, []),
 )
 
 
