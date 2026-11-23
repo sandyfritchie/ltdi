@@ -14,6 +14,7 @@ from __future__ import annotations
 from functools import lru_cache
 
 import json
+import html
 import re
 from collections import defaultdict
 
@@ -121,6 +122,7 @@ def between(url: str, start: str, end: str) -> list[str]:
 # --- Apple ---------------------------------------------------------------------------------------
 
 APPLE = "https://www.apple.com/ios/feature-availability/"
+YOUTUBE = "https://support.google.com/youtube/answer/6373554?hl=en"
 # Siri lists countries; a country named without languages means its main language
 SIRI_COUNTRY = {"Australia": "en", "Austria": "de", "Brazil": "pt", "Chile": "es", "Denmark": "da",
                 "France": "fr", "Germany": "de", "Italy": "it", "Japan": "ja", "Mexico": "es",
@@ -193,6 +195,9 @@ META = {
     "asr_azure_features": ("features of 10", "Azure speech to text features", AZURE_SPEECH + "?tabs=stt"),
     "asr_apple": ("bool", "Apple iOS dictation", APPLE + "#dictation"),
     "asr_amazon": ("bool", "Amazon Transcribe", TRANSCRIBE),
+    "asr_youtube": ("bool", "YouTube automatic captions", YOUTUBE),
+    "tts_apple": ("bool", "Apple iOS VoiceOver voices", APPLE + "#accessibility-voiceover"),
+    "mt_apple": ("bool", "Apple Translate app", APPLE + "#translate-translate-app"),
     "tts_google": ("bool", "Google Cloud Text-to-Speech", " ".join(GOOGLE_TTS)),
     "tts_google_voice_types": ("types of 9", "Google Cloud TTS voice types", " ".join(GOOGLE_TTS)),
     "tts_azure": ("bool", "Azure AI Speech (text to speech)", AZURE_SPEECH + "?tabs=tts"),
@@ -414,6 +419,16 @@ def collect() -> list[Record]:
             feats[c].add(feat)
     _features(found, notes, "kb_apple_features", {c: feats.get(c, set()) for c in found["kb_apple"]})
     mark("ocr_apple", named(apple("live-text-live-text"), "ocr_apple"))
+    # VoiceOver reads the screen aloud in each of these voices: Apple's text to speech on iPhone
+    mark("tts_apple", named(apple("accessibility-voiceover"), "tts_apple", speech=True))
+    mark("mt_apple", named(apple("translate-translate-app"), "mt_apple"))
+
+    # YouTube: automatic captions, Google's speech recognition on videos and Shorts
+    t = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", page(YOUTUBE))))
+    m = re.search(r"Automatic captions are available in (.*?)\. ", t)
+    if m:
+        names = [n.strip() for n in re.split(r",\s*", m.group(1).replace(" and ", ", ")) if n.strip()]
+        mark("asr_youtube", named([{"Cantonese/Hong Kong": "Cantonese (Hong Kong)"}.get(n, n) for n in names], "asr_youtube", speech=True))
     mark("ui_ios", named(apple("system-language-system-language"), "ui_ios"))
     mark("va_siri", siri())
 

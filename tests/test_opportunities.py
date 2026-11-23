@@ -22,7 +22,8 @@ FULL = dict(kb_gboard=1, kb_apple=1, kb_apple_features=4, asr_google=1, asr_azur
             tts_openai=1, llm_app_chatgpt=1, mt_amazon=1, mt_alibaba=1, llm_app_claude=1, llm_app_meta=1,
             llm_app_mistral=1, llm_app_qwen=1, asr_elevenlabs=1, asr_deepgram=1, asr_assemblyai=1,
             asr_speechmatics=1, tts_elevenlabs=1, tts_deepgram=1, asr_xai=1, tts_xai=1, mt_cohere=1,
-            llm_app_cohere=1, ocr_abbyy=1, ocr_mistral=1, va_bixby=1, ui_android=1)
+            llm_app_cohere=1, ocr_abbyy=1, ocr_mistral=1, va_bixby=1, ui_android=1,
+            asr_youtube=1, tts_apple=1, mt_apple=1)
 
 
 class FindTests(unittest.TestCase):
@@ -34,9 +35,10 @@ class FindTests(unittest.TestCase):
         self.assertIn("A keyboard layout exists but isn't on every major platform", titles(fs, "share"))
 
     def test_tts_gap_is_share_with_data_and_collect_without(self):
-        none = {"tts_google": 0, "tts_azure": 0, "tts_amazon": 0, "tts_openai": 0, "tts_elevenlabs": 0, "tts_deepgram": 0, "tts_xai": 0}
+        none = {"tts_google": 0, "tts_azure": 0, "tts_amazon": 0, "tts_openai": 0, "tts_elevenlabs": 0, "tts_deepgram": 0, "tts_xai": 0,
+                "tts_apple": 0}
         self.assertTrue(any("text-to-speech" in t for t in titles(facts(**{**FULL, **none}), "share")))
-        self.assertIn("Text-to-speech is offered by 6 of 7 major services", titles(facts(**{**FULL, "tts_amazon": 0}), "share"))
+        self.assertIn("Text-to-speech is offered by 7 of 8 major services", titles(facts(**{**FULL, "tts_amazon": 0}), "share"))
         thin = facts(**{**FULL, **none, "cv_validated_hours": 3})
         self.assertIn("Record a single-speaker voice for text-to-speech", titles(thin, "collect"))
 
@@ -63,7 +65,7 @@ class FindTests(unittest.TestCase):
         fs = facts(**{**FULL, **no_va})
         self.assertIn("The building blocks for a voice assistant exist", titles(fs, "share"))
         self.assertEqual(titles(facts(**{**FULL, **no_va, "tts_google": 0, "tts_azure": 0, "tts_amazon": 0, "tts_openai": 0,
-                                                   "tts_elevenlabs": 0, "tts_deepgram": 0, "tts_xai": 0}), "share")
+                                                   "tts_elevenlabs": 0, "tts_deepgram": 0, "tts_xai": 0, "tts_apple": 0}), "share")
                          .count("The building blocks for a voice assistant exist"), 0)
 
     def test_open_keyboard_without_a_platform_is_share(self):

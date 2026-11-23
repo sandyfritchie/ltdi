@@ -8,19 +8,19 @@
   {
    "ranks": "1–60",
    "languages": 60,
-   "median_range": 5,
-   "within_10pct": 0.667
+   "median_range": 4,
+   "within_10pct": 0.65
   },
   {
    "ranks": "61–200",
    "languages": 140,
    "median_range": 14,
-   "within_10pct": 0.943
+   "within_10pct": 0.95
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 293,
+   "median_range": 294,
    "within_10pct": 0.146
   },
   {
@@ -47,19 +47,19 @@
      "to": 33
     },
     {
-     "name": "Dutch",
-     "from": 15,
-     "to": 12
+     "name": "Yue Chinese",
+     "from": 81,
+     "to": 79
     },
     {
-     "name": "Turkish",
-     "from": 13,
-     "to": 15
+     "name": "Standard Moroccan Tamazight",
+     "from": 265,
+     "to": 267
     },
     {
-     "name": "Thai",
-     "from": 20,
-     "to": 18
+     "name": "Persian",
+     "from": 25,
+     "to": 27
     }
    ]
   },
@@ -69,6 +69,11 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
+     "name": "Thai",
+     "from": 18,
+     "to": 22
+    },
+    {
      "name": "Danish",
      "from": 26,
      "to": 30
@@ -76,29 +81,24 @@
     {
      "name": "Yue Chinese",
      "from": 81,
-     "to": 84
+     "to": 83
+    },
+    {
+     "name": "Ukrainian",
+     "from": 21,
+     "to": 19
     },
     {
      "name": "Swedish",
-     "from": 18,
+     "from": 19,
      "to": 21
-    },
-    {
-     "name": "Malay",
-     "from": 36,
-     "to": 39
-    },
-    {
-     "name": "Yucateco",
-     "from": 276,
-     "to": 274
     }
    ]
   },
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9971,
-   "moved_10_in_top_300": 5,
+   "moved_10_in_top_300": 9,
    "largest": [
     {
      "name": "Ladin",
@@ -117,13 +117,13 @@
     },
     {
      "name": "Kölsch",
-     "from": 291,
+     "from": 290,
      "to": 278
     },
     {
-     "name": "Shan",
-     "from": 170,
-     "to": 158
+     "name": "Tuvinian",
+     "from": 241,
+     "to": 230
     }
    ]
   }

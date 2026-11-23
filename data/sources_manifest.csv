@@ -112,6 +112,7 @@ open_tools,https://github.com/keymanapp/keyboards@87aca49ac813fd7ff68a2c9ef03044
 open_tools,https://github.com/languagetool-org/languagetool@108f3543d4e413413700e1c9259a81460a7f05a5,108f3543d4e413413700e1c9259a81460a7f05a5,2026-11-08
 open_tools,https://github.com/tesseract-ocr/tessdata_best@e12c65a915945e4c28e237a9b52bc4a8f39a0cec,e12c65a915945e4c28e237a9b52bc4a8f39a0cec,2026-11-08
 open_tools,https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md,25d579570712a73c7176a02dc8651ddcf8b8aa09ae76306b6738ea50acd2dad8,2026-11-08
+open_tools,https://raw.githubusercontent.com/espeak-ng/espeak-ng/ee9fa7cc4704d683020526f47a9655f14c8d5f4c/docs/languages.md,a19e70ac02055d7f899f60546055dfeebbcccfeed6bc6f51d34adcdefb365f76,2026-11-22
 open_tools,https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md,c041b3244dea8af795f880308456b0ec7aa312bfce52ce631497cc4f877ad116,2026-11-08
 open_tools,https://raw.githubusercontent.com/mozilla-firefox/firefox/6beeccd5eef3aa453b1a9bd267f6410b0f38121e/browser/locales/all-locales,c033a681e45e42882da3cde20c25da51b6ffc33fda43ec25982d42e881276e27,2026-11-08
 openai_mmmlu,https://raw.githubusercontent.com/openai/simple-evals/652c89d0ca9df547706735883097e9537d40dc47/README.md,d9647c4a0e34cd9b2b528ff6986141734aac6f5f2f18a068eeadb2af0b29786f,2026-11-08
@@ -2860,6 +2861,7 @@ vendors,https://support.google.com/gboard/answer/6380730,514e8c5e16f69559921a047
 vendors,https://support.google.com/gemini/answer/13575153?hl=en,550317bbb824ed116d6bfda9b2141d44e72b093bf62b4a5c5248faf11dcce5ef,2026-11-13
 vendors,https://support.google.com/googlenest/answer/16618650?hl=en,aadb4a84dcf827a61931371c2f4386a82f9a3639c8c50e1d0aab76d27544c5ca,2026-11-18
 vendors,https://support.google.com/googlenest/answer/7550584,7ec188fdab4ab84a547cf4ac19a3a37f082cc9b2dcdd47f0742a4fa97ccf8e53,2026-11-13
+vendors,https://support.google.com/youtube/answer/6373554?hl=en,6a2b800429db7b8fadfb4ad83b0a35048e8539cc94227b10383f70fe13b098c7,2026-11-22
 vendors,https://support.microsoft.com/en-us/Microsoft-Copilot/supported-regions-and-languages-in-microsoft-copilot,9faabeeb6a2b0be4cb2b8b4d15587ed684b344da7deb7090eead1a85e729d5eb,2026-11-13
 vendors,https://support.microsoft.com/en-us/office/language-accessory-pack-for-microsoft-365-82ee1236-0f9a-45ee-9c72-05b026ee809f,3540c423604e6fe3cb621197e6b7bb23cf90f168ef659415b73c6084c56ba124,2026-11-13
 vendors,https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,0cd7dc365cd881f5ec3aae2d537091de37a13d7c7e271fbf1f168187e6859500,2026-11-13

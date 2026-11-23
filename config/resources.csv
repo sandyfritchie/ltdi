@@ -50,3 +50,4 @@ speech_bloom_library,Bloom Library (SIL),"Read speech aligned with the text of i
 speech_bloom_library_non_commercial,Bloom Library (SIL; non-commercial),"Read speech aligned with the text of illustrated books from bloomlibrary.org, under non-commercial licences",CC BY-NC and similar,no,https://huggingface.co/datasets/sil-ai/bloom-speech
 speech_spring_inx,SPRING-INX,"Manually transcribed monologues and conversations in 10 Indian languages (IIT Madras)",CC BY 4.0,yes,https://asr.iitm.ac.in/dataset
 llm_open_aya,Tiny Aya,"Open-weight multilingual language model, 3.35B parameters (Cohere Labs)",CC BY-NC 4.0,no,https://docs.cohere.com/docs/tiny-aya
+tts_open_espeak,eSpeak NG,"Open text-to-speech engine, the voices of the NVDA screen reader and many others",GPL-3.0,yes,https://github.com/espeak-ng/espeak-ng

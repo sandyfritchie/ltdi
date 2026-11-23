@@ -7,6 +7,8 @@
   lid_glotlid         GlotLID v3: open language identification model (labels with test scores)
   lid_cld3            CLD3: compact open language identification model
   kb_open_keyman      Keyman: open keyboard layouts (language tags in each package's .kps file)
+  tts_open_espeak     eSpeak NG: open text-to-speech (docs/languages.md), the voices of the NVDA screen reader and
+                      many others
 
 Run:  python -m ltdi.collectors open_tools   (reads four repos with git; needs git)
 """
@@ -27,6 +29,7 @@ DICTIONARIES, DICTIONARIES_COMMIT = "https://github.com/LibreOffice/dictionaries
 LANGUAGETOOL, LANGUAGETOOL_COMMIT = "https://github.com/languagetool-org/languagetool", "108f3543d4e413413700e1c9259a81460a7f05a5"
 GLOTLID = "https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md"
 CLD3 = "https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md"
+ESPEAK = "https://raw.githubusercontent.com/espeak-ng/espeak-ng/ee9fa7cc4704d683020526f47a9655f14c8d5f4c/docs/languages.md"
 KEYMAN, KEYMAN_COMMIT = "https://github.com/keymanapp/keyboards", "87aca49ac813fd7ff68a2c9ef030440e99b49af8"
 
 SOURCES = {
@@ -37,6 +40,7 @@ SOURCES = {
     "lid_glotlid": ("GlotLID v3", GLOTLID),
     "lid_cld3": ("CLD3", CLD3),
     "kb_open_keyman": ("Keyman keyboards", KEYMAN),
+    "tts_open_espeak": ("eSpeak NG voices", ESPEAK),
 }
 
 
@@ -50,6 +54,7 @@ def lists() -> dict[str, set[str]]:
     dicts = [n for n in git_tree(DICTIONARIES, DICTIONARIES_COMMIT, dirs=True) if not n.startswith(".") and n != "util"]
     lt = [n for n in git_tree(LANGUAGETOOL, LANGUAGETOOL_COMMIT, "languagetool-language-modules", dirs=True) if n != "all"]
     glot = re.findall(r"^\|\s*\d+\s*\|\s*([a-z]{3}_[A-Z][a-z]{3})\s*\|", fetch_text(GLOTLID), flags=re.M)
+    espeak = re.findall(r"^\|[^|]*\|\s*`([a-z]{2,3}(?:-[A-Za-z0-9-]+)?)`\s*\|", fetch_text(ESPEAK), flags=re.M)
     cld3 = re.findall(r"^\|?\s*([a-z]{2,3}(?:-Latn)?)\s*\|", fetch_text(CLD3), flags=re.M)
     keyman: dict[str, int] = {}
     for text in git_files(KEYMAN, "/release/**/*.kps", KEYMAN_COMMIT).values():
@@ -61,7 +66,8 @@ def lists() -> dict[str, set[str]]:
     KEYBOARDS.clear()
     KEYBOARDS.update(keyman)
     return {"kb_open_keyman": set(keyman), "ui_firefox": present(firefox), "ocr_open_tesseract": present(tess), "proof_hunspell": present(dicts),
-            "proof_languagetool": present(lt), "lid_glotlid": present(glot), "lid_cld3": present(cld3)}
+            "proof_languagetool": present(lt), "lid_glotlid": present(glot), "lid_cld3": present(cld3),
+            "tts_open_espeak": present(espeak)}
 
 
 def collect() -> list[Record]:
