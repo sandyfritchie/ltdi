@@ -963,7 +963,19 @@ function speechSets(l, facts) {
     const name = u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(R.name || f.source)}</a>` : esc(R.name || f.source);
     return `<li>${name}: ${esc(fmtHours(h))}, ${esc(SPEECH_BASIS[f.method] || 'as its source gives it')}${R.commercial === 'no' ? ' <span class="muted">· not for commercial use</span>' : ''}</li>`;
   }).join('');
-  return `<details class="prov sets"><summary>Where these hours come from${sets.length > 1 ? ` (${sets.length} datasets)` : ''}</summary><ul>${li}</ul></details>`;
+  return `<p class="prov-sub">Where these hours come from${sets.length > 1 ? ` (${sets.length} datasets)` : ''}</p><ul>${li}</ul>`;
+}
+// Open transcribed speech in detail, under its own heading in "Sources, dates and notes": the datasets the hours
+// come from, how much is licensed for commercial use, and licensed corpora that are listed but not counted
+function speechDetail(l, facts) {
+  const sets = speechSets(l, facts);
+  const usable = l.sh && l.shc < l.sh
+    ? `<p>${l.shc >= 0.05 ? `${fmtHours(l.shc)} of it are licensed for commercial use. The rest is for non-commercial use only` : 'None of it is licensed for commercial use. It is for non-commercial use only'}: ${esc(nonCommercialSets(facts).replace(/, ([^,]*)$/, ' and $1'))}.</p>` : '';
+  const lic = l.licensed && l.licensed.length
+    ? `<p class="prov-sub">Not counted, as it isn\u2019t open data</p><ul>${licensedShown(l.licensed).map(([name, steward, task, h, licence, paid, url, where]) =>
+      `<li><a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, ${where === 'the Mozilla Data Collective' ? 'on' : 'from'} ${where}`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, (paid === 'yes' ? 'for a fee' : 'under a data licence') + (where && where !== 'the Mozilla Data Collective' ? ` from ${where}` : '')].filter(Boolean).map(esc).join(', ')})</li>`).join('')}${l.licensed.length > LICENSED_SHOWN ? `<li class="muted">and ${l.licensed.length - LICENSED_SHOWN} more, listed in the database download</li>` : ''}</ul>` : '';
+  if (!sets && !usable && !lic) return '';
+  return `<div class="prov-speech"><h4>Transcribed speech</h4>${usable}${sets}${lic}</div>`;
 }
 // Every value's source, retrieval date and note, in a list that opens by click, tap or keyboard
 // (the same details are on hover over each value, which touch and keyboard users can't reach)
@@ -991,8 +1003,9 @@ function provList(l, key, facts, vfacts, wname) {
     }
     if (key === 'data') add('Word-frequency list (not scored; in the keyboard and spelling checklists)', 'wordlist_corpuscrawler');
   }
-  if (!items.length) return '';
-  return `<details class="prov"><summary>Sources, dates and notes <span class="muted">· ${items.length}</span></summary><ul>${items.join('')}</ul></details>`;
+  const speech = key === 'data' ? speechDetail(l, facts) : '';
+  if (!items.length && !speech) return '';
+  return `<details class="prov"><summary>Sources, dates and notes <span class="muted">· ${items.length}</span></summary><ul>${items.join('')}</ul>${speech}</details>`;
 }
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
@@ -1025,8 +1038,7 @@ function dimPanel(l, key, color) {
       <summary><span class="mt-title">More technologies</span><span class="mt-peek">${peek.join('')}</span></summary>${more.join('')}</details>`;
   } else {
     body += '<div class="inds">';
-    // open speech goes last, alone in its row, so opening its list of datasets moves nothing beside it
-    const inds = Object.entries(cfg.indicators).sort(([a], [b]) => (a === 'open_speech_hours') - (b === 'open_speech_hours'));
+    const inds = Object.entries(cfg.indicators);
     for (const [ik, spec] of inds) {
       const f = facts[ik], n = d.indicators[ik];
       const hover = f ? [f.source, 'Retrieved ' + f.retrieved, f.note].filter(Boolean).join('\n') : '';
@@ -1037,16 +1049,9 @@ function dimPanel(l, key, color) {
       const narrow = nb && nb.value >= 0.1 && f && f.value
         ? `<div class="missing" title="${esc(nb.note)}">${/MADLAD/.test(nb.source) ? `${nb.value >= 1 ? 'Only' : 'Partly'} Bible or jw.org text in its auditors\u2019 sample, so it counts for less` : `${Math.round(nb.value * 100)}% from Bible sites, so it counts for less`}</div>` : '';
       const vf = vfacts && vfacts[ik], vn = vd && vd.indicators[ik];
-      // open speech: how much of it is licensed for commercial use (resources.csv)
-      const usable = ik === 'open_speech_hours' && l.sh && l.shc < l.sh
-        ? `<div class="thru-line">${l.shc >= 0.05 ? `${fmtHours(l.shc)} licensed for commercial use; the rest is for non-commercial use only` : 'None of it is licensed for commercial use'} (${esc(nonCommercialSets(facts))})</div>` : '';
-      // speech shared under a data licence or for a fee (Mozilla Data Collective, ACLCLP...): listed, not counted
-      const lic = ik === 'open_speech_hours' && l.licensed && l.licensed.length
-        ? `<div class="thru-line">Not counted, as it isn\u2019t open data: ${licensedShown(l.licensed).map(([name, steward, task, h, licence, paid, url, where]) =>
-          `<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, ${where === 'the Mozilla Data Collective' ? 'on' : 'from'} ${where}`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, (paid === 'yes' ? 'for a fee' : 'under a data licence') + (where && where !== 'the Mozilla Data Collective' ? ` from ${where}` : '')].filter(Boolean).map(esc).join(', ')})`).join('; ')}${l.licensed.length > LICENSED_SHOWN ? `; and ${l.licensed.length - LICENSED_SHOWN} more, listed in the database download` : ''}</div>` : '';
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
-      body += `<div class="ind${ik === 'open_speech_hours' ? ' ind-own' : ''}"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}${lic}
-        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}${ik === 'open_speech_hours' ? speechSets(l, facts) : ''}</div>`;
+      body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}
+        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
     }
     body += '</div>';
   }
@@ -2195,7 +2200,7 @@ function about() {
     <ul>
       <li>Web-crawled text for underrepresented languages is often not in the language at all (Kreutzer et al., 2022). FineWeb-2 filters by language identification, MADLAD-400's authors checked a sample of every language by hand, and HPLT 3.0's language labels aren't audited, so the Index checks a sample of each of its languages with GlotLID and counts only the share in the language (it counts whichever of the three holds most for a language, never more than one); text mostly from Bible sites counts for less; OPUS's web-mined corpora are checked by language identification on a random sample, which catches the wrong language but not poor translations, so OPUS counts are an upper bound. Google's SMOL and GATITOS, translated by professionals for languages with little else, count in full.</li>
       <li>Wikipedia article counts include bot-generated stubs, so articles count only up to a limit per active editor. Hugging Face datasets are counted by their language tags, and datasets tagged with dozens of languages count in part.</li>
-      <li>Open speech hours add up datasets of very different kinds: read speech, crowd-sourced recordings and video with uploaded subtitles. An hour of one person reading the Bible in a studio counts the same as an hour of many people talking about their day. Each language's page lists where its hours come from and how each figure was obtained: measured from the audio, as the makers publish it, or read from a listing. Only transcripts made or corrected by people count: hours transcribed by a model (GigaSpeech 2, WenetSpeech, YouTube's automatic captions, model-labelled sets) are left out. Datasets shared on the Mozilla Data Collective count with the hours each states, and only where they're free to download under an open or non-commercial licence; those sold for a fee or under a data licence agreement are listed on each language's page but not counted.</li>
+      <li>Open speech hours add up datasets of very different kinds: read speech, crowd-sourced recordings and video with uploaded subtitles. An hour of one person reading the Bible in a studio counts the same as an hour of many people talking about their day. Each language's page lists where its hours come from, under Sources, dates and notes, and how each figure was obtained: measured from the audio, as the makers publish it, or read from a listing. Only transcripts made or corrected by people count: hours transcribed by a model (GigaSpeech 2, WenetSpeech, YouTube's automatic captions, model-labelled sets) are left out. Datasets shared on the Mozilla Data Collective count with the hours each states, and only where they're free to download under an open or non-commercial licence; those sold for a fee or under a data licence agreement are listed on each language's page but not counted, as are corpora sold by other distributors, such as the Linguistic Data Consortium and ACLCLP.</li>
       <li>Font support is checked but not scored: Noto displays nearly every language whose letters are known.</li>
     </ul>
     <h4>Technology</h4>

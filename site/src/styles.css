@@ -307,9 +307,11 @@ ul.checked .muted { color: var(--muted); }
 .email { font-family: var(--font-mono); font-size: .92em; user-select: all; }
 details.prov { margin-top: 14px; border-top: 1px solid var(--rule); padding-top: 10px; font-size: 13px; }
 details.prov summary { cursor: pointer; color: var(--muted); font-weight: 600; }
-details.prov.sets { margin-top: 8px; padding-top: 6px; }
-details.prov.sets ul { margin: 6px 0 0; padding-left: 18px; }
-details.prov.sets li { margin: 2px 0; }
+/* open transcribed speech in detail, under its own heading inside "Sources, dates and notes" */
+.prov-speech { margin-top: 14px; max-width: 80ch; }
+.prov-speech h4 { margin: 0 0 6px; font-size: 13px; font-weight: 600; color: var(--ink); }
+.prov-speech p { margin: 6px 0 0; }
+.prov-speech .prov-sub { margin-top: 10px; color: var(--muted); font-weight: 600; }
 details.prov summary:hover, details.prov[open] summary { color: var(--ink); }
 details.prov ul { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 4px; max-width: 80ch; }
 details.prov li { overflow-wrap: anywhere; }
@@ -375,7 +377,6 @@ a.tile:hover { border-color: var(--muted); }
 .ind:first-of-type { border-top: 0; }
 .inds { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
 .inds .ind:nth-child(2) { border-top: 0; }
-.inds .ind-own { grid-column: 1; }  /* starts its own row in the left column, with nothing beside it */
 @media (max-width: 860px) { .inds { grid-template-columns: 1fr; } .inds .ind:nth-child(2) { border-top: 1px solid var(--rule); } }
 .ind-top { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; }
 .ind-top b { font-weight: 600; }

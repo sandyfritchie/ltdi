@@ -213,7 +213,19 @@ function speechSets(l, facts) {
     const name = u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(R.name || f.source)}</a>` : esc(R.name || f.source);
     return `<li>${name}: ${esc(fmtHours(h))}, ${esc(SPEECH_BASIS[f.method] || 'as its source gives it')}${R.commercial === 'no' ? ' <span class="muted">· not for commercial use</span>' : ''}</li>`;
   }).join('');
-  return `<details class="prov sets"><summary>Where these hours come from${sets.length > 1 ? ` (${sets.length} datasets)` : ''}</summary><ul>${li}</ul></details>`;
+  return `<p class="prov-sub">Where these hours come from${sets.length > 1 ? ` (${sets.length} datasets)` : ''}</p><ul>${li}</ul>`;
+}
+// Open transcribed speech in detail, under its own heading in "Sources, dates and notes": the datasets the hours
+// come from, how much is licensed for commercial use, and licensed corpora that are listed but not counted
+function speechDetail(l, facts) {
+  const sets = speechSets(l, facts);
+  const usable = l.sh && l.shc < l.sh
+    ? `<p>${l.shc >= 0.05 ? `${fmtHours(l.shc)} of it are licensed for commercial use. The rest is for non-commercial use only` : 'None of it is licensed for commercial use. It is for non-commercial use only'}: ${esc(nonCommercialSets(facts).replace(/, ([^,]*)$/, ' and $1'))}.</p>` : '';
+  const lic = l.licensed && l.licensed.length
+    ? `<p class="prov-sub">Not counted, as it isn\u2019t open data</p><ul>${licensedShown(l.licensed).map(([name, steward, task, h, licence, paid, url, where]) =>
+      `<li><a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, ${where === 'the Mozilla Data Collective' ? 'on' : 'from'} ${where}`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, (paid === 'yes' ? 'for a fee' : 'under a data licence') + (where && where !== 'the Mozilla Data Collective' ? ` from ${where}` : '')].filter(Boolean).map(esc).join(', ')})</li>`).join('')}${l.licensed.length > LICENSED_SHOWN ? `<li class="muted">and ${l.licensed.length - LICENSED_SHOWN} more, listed in the database download</li>` : ''}</ul>` : '';
+  if (!sets && !usable && !lic) return '';
+  return `<div class="prov-speech"><h4>Transcribed speech</h4>${usable}${sets}${lic}</div>`;
 }
 // Every value's source, retrieval date and note, in a list that opens by click, tap or keyboard
 // (the same details are on hover over each value, which touch and keyboard users can't reach)
@@ -241,8 +253,9 @@ function provList(l, key, facts, vfacts, wname) {
     }
     if (key === 'data') add('Word-frequency list (not scored; in the keyboard and spelling checklists)', 'wordlist_corpuscrawler');
   }
-  if (!items.length) return '';
-  return `<details class="prov"><summary>Sources, dates and notes <span class="muted">· ${items.length}</span></summary><ul>${items.join('')}</ul></details>`;
+  const speech = key === 'data' ? speechDetail(l, facts) : '';
+  if (!items.length && !speech) return '';
+  return `<details class="prov"><summary>Sources, dates and notes <span class="muted">· ${items.length}</span></summary><ul>${items.join('')}</ul>${speech}</details>`;
 }
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
@@ -275,8 +288,7 @@ function dimPanel(l, key, color) {
       <summary><span class="mt-title">More technologies</span><span class="mt-peek">${peek.join('')}</span></summary>${more.join('')}</details>`;
   } else {
     body += '<div class="inds">';
-    // open speech goes last, alone in its row, so opening its list of datasets moves nothing beside it
-    const inds = Object.entries(cfg.indicators).sort(([a], [b]) => (a === 'open_speech_hours') - (b === 'open_speech_hours'));
+    const inds = Object.entries(cfg.indicators);
     for (const [ik, spec] of inds) {
       const f = facts[ik], n = d.indicators[ik];
       const hover = f ? [f.source, 'Retrieved ' + f.retrieved, f.note].filter(Boolean).join('\n') : '';
@@ -287,16 +299,9 @@ function dimPanel(l, key, color) {
       const narrow = nb && nb.value >= 0.1 && f && f.value
         ? `<div class="missing" title="${esc(nb.note)}">${/MADLAD/.test(nb.source) ? `${nb.value >= 1 ? 'Only' : 'Partly'} Bible or jw.org text in its auditors\u2019 sample, so it counts for less` : `${Math.round(nb.value * 100)}% from Bible sites, so it counts for less`}</div>` : '';
       const vf = vfacts && vfacts[ik], vn = vd && vd.indicators[ik];
-      // open speech: how much of it is licensed for commercial use (resources.csv)
-      const usable = ik === 'open_speech_hours' && l.sh && l.shc < l.sh
-        ? `<div class="thru-line">${l.shc >= 0.05 ? `${fmtHours(l.shc)} licensed for commercial use; the rest is for non-commercial use only` : 'None of it is licensed for commercial use'} (${esc(nonCommercialSets(facts))})</div>` : '';
-      // speech shared under a data licence or for a fee (Mozilla Data Collective, ACLCLP...): listed, not counted
-      const lic = ik === 'open_speech_hours' && l.licensed && l.licensed.length
-        ? `<div class="thru-line">Not counted, as it isn\u2019t open data: ${licensedShown(l.licensed).map(([name, steward, task, h, licence, paid, url, where]) =>
-          `<a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, ${where === 'the Mozilla Data Collective' ? 'on' : 'from'} ${where}`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, (paid === 'yes' ? 'for a fee' : 'under a data licence') + (where && where !== 'the Mozilla Data Collective' ? ` from ${where}` : '')].filter(Boolean).map(esc).join(', ')})`).join('; ')}${l.licensed.length > LICENSED_SHOWN ? `; and ${l.licensed.length - LICENSED_SHOWN} more, listed in the database download` : ''}</div>` : '';
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
-      body += `<div class="ind${ik === 'open_speech_hours' ? ' ind-own' : ''}"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}${usable}${lic}
-        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}${ik === 'open_speech_hours' ? speechSets(l, facts) : ''}</div>`;
+      body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}
+        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
     }
     body += '</div>';
   }
