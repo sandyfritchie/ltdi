@@ -103,7 +103,7 @@ SARVAM_TTS = "hi, bn, ta, te, gu, en, kn, ml, mr, pa, or"   # Bulbul v3 (the pag
 
 LELAPA = "https://docs.lelapa.ai/overview/language-support"
 LELAPA_ASR = "zul, eng, sot, afr, fra"                        # production ready and beta
-LELAPA_MT = "zul, eng, sot, afr, swh, yor, hau, xho, nso"     # production ready and beta
+LELAPA_MT = "zul, eng, sot, afr, swh, yor, hau, xho, nso, sna"  # production ready and beta; Shona from the translation codes table
 
 KHAYA = "https://khaya-sdk.readthedocs.io/en/latest/languages/"
 KHAYA_MT = "en, dag, ee, fat, gaa, gur, ki, mer, kus, luo, tw, yo"

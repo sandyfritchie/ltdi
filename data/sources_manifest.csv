@@ -2485,6 +2485,7 @@ speech_vendors,https://docs.speechmatics.com/speech-to-text/languages.md,9670f37
 speech_vendors,https://elevenlabs.io/docs/help-center/other/what-languages-do-you-support.md,206f7f4dd9fb8a16352d974dc141673dcafdbb6cff72f5015e06fb6ab508951e,2026-11-22
 speech_vendors,https://elevenlabs.io/docs/overview/capabilities/speech-to-text.md,a8c92dd1fa8e6f8c2ef7a3a8fd986bf7b579761f181cafc8bca6df1b3db04c22,2026-11-22
 speech_vendors,https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4.md,7401698a1930e824ccb71ee408016e5b459ff5cfaadb6060156c657a456489d3,2026-11-22
+speech_vendors,https://raw.githubusercontent.com/unicode-org/cldr-json/7d2b9cb11cec08f4d333ad73209deb3df0711c3b/cldr-json/cldr-localenames-full/main/en/territories.json,1326fb3bcdf8b8cf63df73ea02ea7f8bf7a8362cbb60bd12bcdb53f3ad22bf04,2026-11-13
 speech_vendors,https://www.assemblyai.com/docs/pre-recorded-audio/supported-languages.md,d433d2200aa8a33831ee9282b111c7fb71c7f8fa2fc5e79a01689fb1b58b3a3f,2026-11-22
 ud,https://raw.githubusercontent.com/UniversalDependencies/UD_Abaza-ATB/r2.19/stats.xml,67d6ea43b4de1cfba922c00ab513355222a9b3995a22df5d2d94de0d60c51065,2026-11-13
 ud,https://raw.githubusercontent.com/UniversalDependencies/UD_Abkhaz-AbNC/r2.19/stats.xml,d390f140d2b4eed093e77f65d8c942126b73403e1c70a328b5d17e3337115735,2026-11-13
@@ -2854,7 +2855,6 @@ vendors,https://learn.microsoft.com/azure/ai-services/computer-vision/language-s
 vendors,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=stt,0d5f3776c8b2dc331ec79060413ce418d0eb15130249f2ce87d85f9a25fc5054,2026-11-13
 vendors,https://learn.microsoft.com/azure/ai-services/speech-service/language-support?tabs=tts,0d5f3776c8b2dc331ec79060413ce418d0eb15130249f2ce87d85f9a25fc5054,2026-11-13
 vendors,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,dc343c34f26fbc586d66bd2e80b980dcfd12f8fe6d5687722c10ca8ef3e07dac,2026-11-13
-vendors,https://raw.githubusercontent.com/unicode-org/cldr-json/7d2b9cb11cec08f4d333ad73209deb3df0711c3b/cldr-json/cldr-localenames-full/main/en/territories.json,1326fb3bcdf8b8cf63df73ea02ea7f8bf7a8362cbb60bd12bcdb53f3ad22bf04,2026-11-13
 vendors,https://support.google.com/gboard/answer/6380730,514e8c5e16f69559921a047c0c046827d42d5c577c7e19bc8d7e595671d67735,2026-11-13
 vendors,https://support.google.com/gemini/answer/13575153?hl=en,550317bbb824ed116d6bfda9b2141d44e72b093bf62b4a5c5248faf11dcce5ef,2026-11-13
 vendors,https://support.google.com/googlenest/answer/16618650?hl=en,aadb4a84dcf827a61931371c2f4386a82f9a3639c8c50e1d0aab76d27544c5ca,2026-11-18

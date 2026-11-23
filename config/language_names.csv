@@ -302,3 +302,8 @@ Punjabi (Arabic),pnb,
 "Punjabi, Arabic, Transliteration",pnb,Gboard
 Punjabi (Gurmukhi India),pa,
 Malaysian,ms,Mistral
+Kurdish (Arabic),ckb,"Kurdish in Arabic script is Sorani (Apple, Gboard)"
+Arabic (Levant),apc,"SwiftKey names the region's variety, not a country"
+"Chinese, Cantonese, Traditional",yue,Gboard
+"Chinese, Cantonese",yue,Amazon Transcribe
+Arabic (Gulf),afb,"Gboard names the region's variety, not a country"

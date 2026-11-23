@@ -90,6 +90,7 @@ uk,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/la
 uz,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 vi,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 wo,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
+yue,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 zu,asr_amazon,1,bool,Amazon Transcribe,https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html,2026-11-13,scrape,
 *,asr_apple,0,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
 ar,asr_apple,1,bool,Apple iOS dictation,https://www.apple.com/ios/feature-availability/#dictation,2026-11-13,scrape,
@@ -423,6 +424,7 @@ ca,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/featur
 cho,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-13,scrape,
 chr,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-13,scrape,
 cic,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-13,scrape,
+ckb,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-13,scrape,
 cmn,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-13,scrape,
 com,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-13,scrape,
 crj,kb_apple,1,bool,Apple iOS QuickType keyboard,https://www.apple.com/ios/feature-availability/#quicktype-keyboard-language-support,2026-11-13,scrape,
@@ -637,6 +639,7 @@ ada,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6
 adx,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 ady,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 af,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
+afb,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 ahr,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 aii,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 ajg,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
@@ -648,6 +651,7 @@ ami,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6
 an,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 anp,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 anw,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
+apc,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 ar,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 as,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 ast,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
@@ -1255,6 +1259,7 @@ ymm,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6
 yo,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 yrk,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 yua,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
+yue,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 za,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 zea,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
 zgh,kb_gboard,1,bool,Gboard (Android),https://support.google.com/gboard/answer/6380730,2026-11-13,scrape,
@@ -1284,6 +1289,7 @@ am,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com
 an,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-13,scrape,
 ann,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-13,scrape,
 anv,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-13,scrape,
+apc,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-13,scrape,
 ar,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-13,scrape,
 arn,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-13,scrape,
 aro,kb_swiftkey,1,bool,Microsoft SwiftKey (Android),https://support.microsoft.com/en-us/swiftkey-keyboard/what-languages-are-currently-supported-for-microsoft-swiftkey-keyboard,2026-11-13,scrape,
@@ -2675,8 +2681,8 @@ nl,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.c
 nog,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 oc,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 os,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
-pa,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 pl,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
+pnb,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 prs,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 ps,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
 pt,ocr_azure,1,bool,Azure AI Vision OCR (printed text),https://learn.microsoft.com/azure/ai-services/computer-vision/language-support,2026-11-13,scrape,
@@ -3541,6 +3547,7 @@ nso,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us
 or,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
 pa,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
 pl,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
+pnb,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
 prs,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
 pt,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
 qu,ui_windows,1,bool,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
@@ -3642,6 +3649,7 @@ nso,ui_windows_level,1,levels of 2,Windows display language,https://learn.micros
 or,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,"Language interface pack: partly translated, over a base language"
 pa,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,"Language interface pack: partly translated, over a base language"
 pl,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
+pnb,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,"Language interface pack: partly translated, over a base language"
 prs,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,"Language interface pack: partly translated, over a base language"
 pt,ui_windows_level,2,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,
 qu,ui_windows_level,1,levels of 2,Windows display language,https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/available-language-packs-for-windows,2026-11-13,scrape,"Language interface pack: partly translated, over a base language"

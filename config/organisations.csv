@@ -27,7 +27,7 @@ speech_yodas,ESPnet,Open-source research project,https://github.com/espnet/espne
 speech_fleurs,Google Research,Company research lab,https://research.google/,https://huggingface.co/datasets/google/fleurs
 bench_global_mmlu,Cohere Labs,Company research lab,https://cohere.com/research,https://huggingface.co/datasets/CohereLabs/Global-MMLU
 bench_mmmlu,OpenAI,Company,https://openai.com/,https://huggingface.co/datasets/openai/MMMLU
-bench_include,"EPFL, ETH Zurich and Cohere Labs",Universities and company research lab,https://huggingface.co/datasets/CohereLabs/include-base-44,https://ai.epfl.ch/beyond-translation-making-ai-multicultural
+bench_include,"EPFL, ETH Zurich and Cohere Labs",Universities and company research lab,https://huggingface.co/datasets/CohereLabs/include-base-44,https://arxiv.org/abs/2411.19799
 bench_xnli,Meta AI and New York University,Company research lab and university,https://github.com/facebookresearch/XNLI,https://github.com/facebookresearch/XNLI
 bench_mgsm,Google Research,Company research lab,https://github.com/google-research/url-nlp,https://github.com/google-research/url-nlp/tree/main/mgsm
 bench_irokobench,Masakhane,Research community,https://www.masakhane.io/,https://huggingface.co/datasets/masakhane/afrixnli
@@ -64,7 +64,7 @@ speech_omnilingual_asr_corpus,Meta AI (FAIR) with community partners,Company res
 speech_waxal_tts,Google Research with African partners,Company research lab,https://research.google/,https://arxiv.org/abs/2602.02734
 speech_openslr_read_speech,OpenSLR (many contributors; hosted by Daniel Povey's group),Open-source research project,https://www.openslr.org/,https://www.openslr.org/resources.php
 speech_openslr_read_speech_non_commercial,OpenSLR (many contributors),Open-source research project,https://www.openslr.org/,https://www.openslr.org/resources.php
-speech_openslr_broadcast,ALFFA project (via OpenSLR),University research project,http://alffa.imag.fr,https://www.openslr.org/25/
+speech_openslr_broadcast,ALFFA project (via OpenSLR),University research project,https://github.com/besacier/ALFFA_PUBLIC,https://www.openslr.org/25/
 speech_openslr_spontaneous,Kallaama project (via OpenSLR),University research project,https://www.openslr.org/151/,https://www.openslr.org/151/
 speech_bloom_library,SIL International (Bloom Library),Nonprofit,https://bloomlibrary.org/,https://huggingface.co/datasets/sil-ai/bloom-speech
 speech_bloom_library_non_commercial,SIL International (Bloom Library),Nonprofit,https://bloomlibrary.org/,https://huggingface.co/datasets/sil-ai/bloom-speech

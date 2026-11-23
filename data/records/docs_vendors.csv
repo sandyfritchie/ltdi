@@ -1,6 +1,8 @@
 language,indicator,value,unit,source,url,retrieved,method,note
 *,asr_xai,0,bool,xAI Grok speech to text,https://docs.x.ai/developers/model-capabilities/audio/speech-to-text.md,2026-11-22,scrape,
+afb,asr_xai,1,bool,xAI Grok speech to text,https://docs.x.ai/developers/model-capabilities/audio/speech-to-text.md,2026-11-22,scrape,
 ar,asr_xai,1,bool,xAI Grok speech to text,https://docs.x.ai/developers/model-capabilities/audio/speech-to-text.md,2026-11-22,scrape,
+arz,asr_xai,1,bool,xAI Grok speech to text,https://docs.x.ai/developers/model-capabilities/audio/speech-to-text.md,2026-11-22,scrape,
 bg,asr_xai,1,bool,xAI Grok speech to text,https://docs.x.ai/developers/model-capabilities/audio/speech-to-text.md,2026-11-22,scrape,
 bs,asr_xai,1,bool,xAI Grok speech to text,https://docs.x.ai/developers/model-capabilities/audio/speech-to-text.md,2026-11-22,scrape,
 ca,asr_xai,1,bool,xAI Grok speech to text,https://docs.x.ai/developers/model-capabilities/audio/speech-to-text.md,2026-11-22,scrape,

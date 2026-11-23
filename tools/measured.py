@@ -45,7 +45,7 @@ OMNI, WAXAL, MADLAD = "facebook/omnilingual-asr-corpus", "google/WaxalNLP", "all
 ROWS = {
     "omnilingual": ("Omnilingual ASR Corpus", "CC BY 4.0", f"{HF}/datasets/{OMNI}",
                     "Meta's commissioned recordings of people answering questions in their own words, transcribed; hours measured from its files"),
-    "waxal_tts": ("WAXAL TTS", "CC BY 4.0", f"{HF}/datasets/{WAXAL}",
+    "waxal_tts": ("WAXAL TTS", "CC BY 4.0 or CC BY-SA 4.0", f"{HF}/datasets/{WAXAL}",
                   "Studio recordings of single speakers reading phonetically balanced scripts; hours measured from its files"),
     "bloom_open": ("Bloom Library", "CC BY-SA 4.0 or CC0", f"{HF}/datasets/sil-ai/bloom-speech",
                    "Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio"),
@@ -55,6 +55,10 @@ ROWS = {
 OPENSLR = {"read": ("OpenSLR read speech", "CC BY-SA 4.0 and other open licences"),
            "non-commercial": ("OpenSLR read speech (non-commercial)", "CC BY-NC-SA 4.0"),
            "broadcast": ("OpenSLR broadcast", "MIT"), "spontaneous": ("OpenSLR spontaneous", "CC BY 4.0")}
+# WAXAL's folder names that aren't ISO 639-3 codes, and its languages under CC BY (University of Ghana's);
+# the rest are CC BY-SA 4.0
+WAXAL_CODES = {"bau": "bci"}  # Baoulé
+WAXAL_CC_BY = {"aka", "fat", "twi", "bau", "bci", "ewe"}
 MEASURED = {r[0] for r in ROWS.values()} | {n for n, _ in OPENSLR.values()}
 
 
@@ -151,7 +155,9 @@ def ingest(folder: Path, force: bool) -> None:
             if lang not in active:
                 continue
             name, lic, url, note = ROWS["waxal_tts"]
-            code = to_ltdi(lang)
+            code = to_ltdi(WAXAL_CODES.get(lang, lang))
+            if code in codes:  # each provider's licence, as WAXAL's card lists them
+                meta[(name, code)] = ("CC BY 4.0" if lang in WAXAL_CC_BY else "CC BY-SA 4.0", url, note)
         elif src in slr:
             a = slr[src]
             (name, lic), code = OPENSLR[a["kind"]], a["language"]

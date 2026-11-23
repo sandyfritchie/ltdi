@@ -103,9 +103,14 @@ def main() -> None:
         for c in cfgs:
             if keep and not keep(c):
                 continue
-            label = re.sub(r"_(asr|tts)$", "", c)
+            label = re.sub(r"_(asr|tts)$", "", c.split("/")[-1])  # Vaani's "audio/Hindi"
+            label = {"bau": "bci"}.get(label, label) if repo == "google/WaxalNLP" else label  # WAXAL's Baoulé folder
             code = to_ltdi(label) or to_ltdi(label.split("_")[0]) or by_name(ind, label)
             add(ind, c, f"huggingface:{repo}", f"{HF}/datasets/{repo}", code)
+    # NaijaVoices: a gated repository, each language in three batches
+    for name, code in [("hausa", "ha"), ("igbo", "ig"), ("yoruba", "yo")]:
+        add("speech_naijavoices", " ".join(f"{name}-batch-{i}" for i in range(3)), "huggingface:naijavoices/naijavoices-dataset",
+            f"{HF}/datasets/naijavoices/naijavoices-dataset", code)
     # Kenya's African Next Voices: one repository per language; RobotsMali's Bambara
     for name, code in [("Dholuo", "luo"), ("kikuyu", "ki"), ("Kalenjin", "niq"), ("Kalenjin", "sgc"), ("Maasai", "mas"), ("Somali", "so")]:
         for ind in ("speech_afrivoices_ke_african_next_voices", "speech_afrivoices_ke_scripted"):

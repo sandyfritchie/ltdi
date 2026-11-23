@@ -133,6 +133,12 @@ def table_codes(t: str, start: str, speech: bool = True) -> tuple[set[str], int]
 
 def xai() -> tuple[set[str], int, set[str], int]:
     asr, an = table_codes(text(XAI_STT), "## Supported Languages")
+    # "Arabic | `ar` (Egyptian Arabic, `ar-EG`) | `ar-AE` (Emirati Arabic)": the regional codes name varieties
+    t = text(XAI_STT)
+    t = t[t.find("regional codes:"):][:1500]
+    for n, c in re.findall(r"\(([^,()]+), `([A-Za-z-]+)`\)", t) + [(n, c) for c, n in re.findall(r"`([A-Za-z-]+)` \(([^)]+)\)", t)]:
+        if (got := code(c, True, n)):
+            asr.add(got)
     tts, tn = table_codes(text(XAI_TTS), "| Language | Language Code |")
     return asr, an, tts, tn
 

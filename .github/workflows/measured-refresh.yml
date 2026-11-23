@@ -4,12 +4,19 @@
 # and new releases change them. The measuring jobs run in parallel; the last job writes the results into
 # config/, rebuilds, tests, commits and publishes. If a dataset shrank a lot (usually a failed download),
 # it writes nothing and opens an issue instead. Bloom is gated and needs the HF_TOKEN secret.
+# To finish an earlier run whose last job failed, run this by hand with from_run set to that run's id: it
+# skips measuring and ingests that run's results (kept 30 days).
 name: Measured datasets refresh
 
 on:
   schedule:
     - cron: "23 9 5 1,4,7,10 *"
   workflow_dispatch:
+    inputs:
+      from_run:
+        description: "Ingest the results of this earlier run instead of measuring again (its run id)"
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -22,6 +29,7 @@ concurrency:
 
 jobs:
   plan:
+    if: ${{ !inputs.from_run }}
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.jobs.outputs.matrix }}
@@ -32,6 +40,7 @@ jobs:
 
   measure:
     needs: plan
+    if: ${{ !inputs.from_run }}
     runs-on: ubuntu-latest
     timeout-minutes: 330
     strategy:
@@ -71,9 +80,17 @@ jobs:
         with:
           pattern: measured-*
           path: measured
+          run-id: ${{ inputs.from_run || github.run_id }}
+          github-token: ${{ github.token }}
       - name: Write the results into config/
         id: ingest
         run: python tools/measured.py ingest measured
+      # The measuring takes hours and main moves meanwhile: build on the latest main, so the commit
+      # carries only the new measurements and a site built from them
+      - name: Move to the latest main, keeping the new measurements
+        run: |
+          if git diff --quiet; then git pull --rebase origin main
+          else git stash && git pull --rebase origin main && git stash pop; fi
       - name: Collect, score and build
         run: |
           python -m ltdi.collectors speech fineweb2 --accept

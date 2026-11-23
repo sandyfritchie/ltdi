@@ -76,7 +76,7 @@ TABLES: dict[str, list[tuple[str, str, str]]] = {
         ("result", "number", "For a benchmark or quality figure: the value"), ("result_unit", "string", "Its unit"),
         ("quality_year", "integer", "Year the quality figure was measured"),
         ("quality_by", "string", "independent, or own (measured by the service's maker)"),
-        ("source_url", "string", "Where this was read"), ("retrieved", "date", "When"), ("note", "string", "Note"),
+        ("source_url", "string", "Where this was read (several pages separated by spaces)"), ("retrieved", "date", "When"), ("note", "string", "Note"),
     ],
     "datasets": [
         ("id", "string", "Dataset id"), ("name", "string", "Name"), ("organisation", "string", "Who made or shares it"),
@@ -95,13 +95,13 @@ TABLES: dict[str, list[tuple[str, str, str]]] = {
                                   "publish it), listing (read from its listing's text), or counted (from the source's own files)"),
         ("repository", "string", "Where to get it: huggingface:<owner>/<name>, commonvoice, openslr, mozilladatacollective, or a site"),
         ("subset", "string", "What the repository calls this language: a config, folder, locale or download URL (several separated by spaces)"),
-        ("access_url", "string", "A page to start from"), ("source_url", "string", "Where the amount was read"),
+        ("access_url", "string", "A page to start from"), ("source_url", "string", "Where the amount was read (several pages separated by spaces)"),
         ("retrieved", "date", "When"), ("note", "string", "Note"),
     ],
     "language_facts": [
         ("language", "string", "languages.code"), ("indicator", "string", "indicators.id"),
         ("value", "number", "The value; empty where it wasn't collected for this language"), ("unit", "string", "Unit"),
-        ("source", "string", "Source"), ("source_url", "string", "Where it was read"), ("retrieved", "date", "When"),
+        ("source", "string", "Source"), ("source_url", "string", "Where it was read (several pages separated by spaces)"), ("retrieved", "date", "When"),
         ("note", "string", "Note"),
     ],
     "not_collected": [
@@ -155,7 +155,7 @@ TEXT = {  # datasets counted outside the speech and benchmark lists: indicator -
 
 
 def _url(url: str, code: str) -> str:
-    return (url or "").split(" ")[0].replace("{lang}", code)
+    return (url or "").replace("{lang}", code)  # several pages, where a value draws on more than one, separated by spaces
 
 
 def _csv_rows(path: Path) -> list[dict]:
@@ -200,8 +200,7 @@ def build(scores: dict) -> dict[str, list[dict]]:
     for s in scores["services"]:
         sid = s["id"]
         svc_ids.add(sid)
-        urls = Counter(re.sub(r"(?<=[=:&/#])[a-z]{2,3}(?=$|[/&#?.])", "{lang}", _url(f[sid]["url"], ""))
-                       for f in facts.values() if sid in f and f[sid]["value"])
+        urls = Counter(_url(f[sid]["url"], code) for code, f in facts.items() if sid in f and f[sid]["value"])
         out["services"].append({"id": sid, "name": s["name"], "technology": s["technology"],
                                 "provider": PROVIDERS.get(s.get("provider") or "", s.get("provider") or ""),
                                 "role": s["role"], "kind": s.get("kind") or "", "listed_only": sid in listed_only,
@@ -332,9 +331,9 @@ def build(scores: dict) -> dict[str, list[dict]]:
         sample = next((fs[i] for fs in facts.values() if i in fs and fs[i]["value"]), None)
         url = (sample or {}).get("url") or META.get(i, ("", "", "", ""))[3]
         repo = url.split("huggingface.co/datasets/")[-1] if "huggingface.co/datasets/" in url else ""
-        m = META.get(i, ("", "", "", ""))
-        dataset(i, (sample or {}).get("source", i), m[0], "benchmark", "", "Public evaluation set (licence on its page)", m[1], m[2],
-                "open", True, url)
+        m, r = META.get(i, ("", "", "", "")), res.get(i.removeprefix("bench_"), {})
+        dataset(i, (sample or {}).get("source", i), m[0], "benchmark", "", r.get("what") or "Public evaluation set (licence on its page)",
+                m[1] or r.get("licence", ""), m[2] or r.get("commercial", ""), "open", True, url)
         for code, fs in facts.items():
             f = fs.get(i)
             if f and f["value"]:

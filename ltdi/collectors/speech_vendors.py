@@ -91,6 +91,9 @@ def band(heading: str) -> tuple[float, str] | None:
 WER: dict[str, dict[str, tuple[float, str]]] = {}  # indicator: {code: (midpoint, band)}
 
 
+V3_ONLY: set[str] = set()
+
+
 def elevenlabs() -> tuple[set[str], set[str], int, int]:
     stt = md(ELEVEN_STT)
     listed = name_code(section(stt, "## Supported languages", "### Breakdown"))
@@ -105,8 +108,9 @@ def elevenlabs() -> tuple[set[str], set[str], int, int]:
     asr_pairs = listed + [(n, c) for n, c in tiers if c not in seen and c != "cmn"]  # cmn: Mandarin, listed as zho
     tts_pairs = name_code(section(md(ELEVEN_TTS_V4), "Which languages does Eleven v4 support", "> **Note**"))
     v3 = name_code(section(md(ELEVEN_TTS), "The Eleven v3 model supports", "> **Note**"))
-    have = {c for _, c in tts_pairs}
-    tts_pairs += [(n, c) for n, c in v3 if c not in have]
+    have = by_codes(tts_pairs)
+    tts_pairs += [(n, c) for n, c in v3 if c not in {x for _, x in tts_pairs}]
+    V3_ONLY.update(by_codes(tts_pairs) - have)  # cited to the page that names them
     return by_codes(asr_pairs), by_codes(tts_pairs), len(asr_pairs), len(tts_pairs)
 
 
@@ -121,6 +125,20 @@ def deepgram() -> tuple[set[str], set[str], int, int]:
                 continue
             pairs += [(name, c) for c in re.findall(r"`([^`]+)`", m.group(2))]
     asr = by_codes(pairs)
+    # Nova-3's multilingual model names its languages in a list of its own: Xhosa is only there
+    for r in rows:
+        for m in re.finditer(r"Multilingual \(", r):
+            depth, i, buf, names = 1, m.end(), "", []
+            while i < len(r) and depth:
+                ch = r[i]
+                depth += (ch == "(") - (ch == ")")
+                if depth == 1 and ch == ",":
+                    names.append(buf); buf = ""
+                elif depth:
+                    buf += ch
+                i += 1
+            names.append(buf)
+            asr |= named([re.sub(r"^and ", "", n.strip()) for n in names if n.strip()], "asr_deepgram", speech=True)
     tts = re.findall(r"\*\s+\*\*([^*(]+)\(([a-z]{2,3})\)\*\*", section(md(DEEPGRAM_TTS), "## Language support", "> **Info**"))
     return asr, by_codes([(n.strip(), c) for n, c in tts]), len({n for n, _ in pairs}), len(tts)
 
@@ -163,7 +181,8 @@ def collect() -> list[Record]:
     for ind, (source, url) in META.items():
         if len(found[ind]) < (5 if ind == "tts_deepgram" else 20):
             raise RuntimeError(f"{ind}: only {len(found[ind])} languages read from {url}; has the page changed?")
-        out += [Record(c, ind, int(c in found[ind]), "bool", source, url, method="scrape") for c in ltdi_codes()]
+        out += [Record(c, ind, int(c in found[ind]), "bool", source,
+                       ELEVEN_TTS if ind == "tts_elevenlabs" and c in V3_ONLY else url, method="scrape") for c in ltdi_codes()]
     for ind, by in WER.items():
         who = "ElevenLabs" if "eleven" in ind else "AssemblyAI"
         url = ELEVEN_STT if "eleven" in ind else ASSEMBLY

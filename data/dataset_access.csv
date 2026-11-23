@@ -584,9 +584,9 @@ speech_multilingual_librispeech,it,huggingface:facebook/multilingual_librispeech
 speech_multilingual_librispeech,nl,huggingface:facebook/multilingual_librispeech,dutch,https://huggingface.co/datasets/facebook/multilingual_librispeech
 speech_multilingual_librispeech,pl,huggingface:facebook/multilingual_librispeech,polish,https://huggingface.co/datasets/facebook/multilingual_librispeech
 speech_multilingual_librispeech,pt,huggingface:facebook/multilingual_librispeech,portuguese,https://huggingface.co/datasets/facebook/multilingual_librispeech
-speech_naijavoices,ha,arxiv.org,,https://arxiv.org/abs/2505.20564
-speech_naijavoices,ig,arxiv.org,,https://arxiv.org/abs/2505.20564
-speech_naijavoices,yo,arxiv.org,,https://arxiv.org/abs/2505.20564
+speech_naijavoices,ha,huggingface:naijavoices/naijavoices-dataset,hausa-batch-0 hausa-batch-1 hausa-batch-2,https://huggingface.co/datasets/naijavoices/naijavoices-dataset
+speech_naijavoices,ig,huggingface:naijavoices/naijavoices-dataset,igbo-batch-0 igbo-batch-1 igbo-batch-2,https://huggingface.co/datasets/naijavoices/naijavoices-dataset
+speech_naijavoices,yo,huggingface:naijavoices/naijavoices-dataset,yoruba-batch-0 yoruba-batch-1 yoruba-batch-2,https://huggingface.co/datasets/naijavoices/naijavoices-dataset
 speech_omnilingual_asr_corpus,aae,huggingface:facebook/omnilingual-asr-corpus,aae_Latn,https://huggingface.co/datasets/facebook/omnilingual-asr-corpus
 speech_omnilingual_asr_corpus,aal,huggingface:facebook/omnilingual-asr-corpus,aal_Latn,https://huggingface.co/datasets/facebook/omnilingual-asr-corpus
 speech_omnilingual_asr_corpus,aao,huggingface:facebook/omnilingual-asr-corpus,aao_Arab,https://huggingface.co/datasets/facebook/omnilingual-asr-corpus
@@ -1008,13 +1008,13 @@ speech_vaani,bho,huggingface:ARTPARK-IISc/Vaani,Bhojpuri,https://huggingface.co/
 speech_vaani,bn,huggingface:ARTPARK-IISc/Vaani,Bengali,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,bns,huggingface:ARTPARK-IISc/Vaani,Bundeli,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,ccp,huggingface:ARTPARK-IISc/Vaani,Chakma,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
+speech_vaani,clk,huggingface:ARTPARK-IISc/Vaani,,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,dgo,huggingface:ARTPARK-IISc/Vaani,Dogri,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,dhd,huggingface:ARTPARK-IISc/Vaani,Marwari,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,dso,huggingface:ARTPARK-IISc/Vaani,Desia,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
-speech_vaani,dty,huggingface:ARTPARK-IISc/Vaani,Nepali,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,en,huggingface:ARTPARK-IISc/Vaani,English,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
-speech_vaani,esg,huggingface:ARTPARK-IISc/Vaani,Gondi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,gbm,huggingface:ARTPARK-IISc/Vaani,Garhwali,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
+speech_vaani,gno,huggingface:ARTPARK-IISc/Vaani,Gondi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,gom,huggingface:ARTPARK-IISc/Vaani,Konkani,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,grt,huggingface:ARTPARK-IISc/Vaani,Garo,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,gu,huggingface:ARTPARK-IISc/Vaani,Gujarati,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
@@ -1041,7 +1041,9 @@ speech_vaani,mni,huggingface:ARTPARK-IISc/Vaani,Manipuri,https://huggingface.co/
 speech_vaani,mr,huggingface:ARTPARK-IISc/Vaani,Marathi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,mtr,huggingface:ARTPARK-IISc/Vaani,Mewari,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,mup,huggingface:ARTPARK-IISc/Vaani,Malvi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
+speech_vaani,nag,huggingface:ARTPARK-IISc/Vaani,,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,nbu,huggingface:ARTPARK-IISc/Vaani,Rongmei,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
+speech_vaani,ne,huggingface:ARTPARK-IISc/Vaani,Nepali,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,njh,huggingface:ARTPARK-IISc/Vaani,Lotha,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,njm,huggingface:ARTPARK-IISc/Vaani,Angami,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,njn,huggingface:ARTPARK-IISc/Vaani,Liangmai,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
@@ -1054,12 +1056,14 @@ speech_vaani,nph,huggingface:ARTPARK-IISc/Vaani,Phom,https://huggingface.co/data
 speech_vaani,nre,huggingface:ARTPARK-IISc/Vaani,Rengma,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,nsa,huggingface:ARTPARK-IISc/Vaani,Sangtam,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,nsm,huggingface:ARTPARK-IISc/Vaani,Sumi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
+speech_vaani,nzm,huggingface:ARTPARK-IISc/Vaani,,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,or,huggingface:ARTPARK-IISc/Vaani,Odia,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,pa,huggingface:ARTPARK-IISc/Vaani,Punjabi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,pcg,huggingface:ARTPARK-IISc/Vaani,Paniya,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,pci,huggingface:ARTPARK-IISc/Vaani,Duruwa,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,pwr,huggingface:ARTPARK-IISc/Vaani,Powari,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,rjs,huggingface:ARTPARK-IISc/Vaani,Rajbanshi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
+speech_vaani,rwr,huggingface:ARTPARK-IISc/Vaani,,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,sat,huggingface:ARTPARK-IISc/Vaani,Santali,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,sck,huggingface:ARTPARK-IISc/Vaani,Sadri,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,sd,huggingface:ARTPARK-IISc/Vaani,Sindhi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
@@ -1080,6 +1084,7 @@ speech_vaani,ur,huggingface:ARTPARK-IISc/Vaani,Urdu,https://huggingface.co/datas
 speech_vaani,vap,huggingface:ARTPARK-IISc/Vaani,Vaiphei,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,wbr,huggingface:ARTPARK-IISc/Vaani,Wagdi,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_vaani,wtm,huggingface:ARTPARK-IISc/Vaani,Mewati,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
+speech_vaani,yim,huggingface:ARTPARK-IISc/Vaani,,https://huggingface.co/datasets/ARTPARK-IISc/Vaani
 speech_voxpopuli,cs,huggingface:facebook/voxpopuli,cs,https://huggingface.co/datasets/facebook/voxpopuli
 speech_voxpopuli,de,huggingface:facebook/voxpopuli,de,https://huggingface.co/datasets/facebook/voxpopuli
 speech_voxpopuli,en,huggingface:facebook/voxpopuli,en,https://huggingface.co/datasets/facebook/voxpopuli
@@ -1116,7 +1121,7 @@ speech_waxal,ti,huggingface:google/WaxalNLP,tir_asr,https://huggingface.co/datas
 speech_waxal,wal,huggingface:google/WaxalNLP,wal_asr,https://huggingface.co/datasets/google/WaxalNLP
 speech_waxal_tts,ach,huggingface:google/WaxalNLP,ach_tts,https://huggingface.co/datasets/google/WaxalNLP
 speech_waxal_tts,ak,huggingface:google/WaxalNLP,twi_tts,https://huggingface.co/datasets/google/WaxalNLP
-speech_waxal_tts,bau,huggingface:google/WaxalNLP,bau_tts,https://huggingface.co/datasets/google/WaxalNLP
+speech_waxal_tts,bci,huggingface:google/WaxalNLP,bau_tts,https://huggingface.co/datasets/google/WaxalNLP
 speech_waxal_tts,ee,huggingface:google/WaxalNLP,ewe_tts,https://huggingface.co/datasets/google/WaxalNLP
 speech_waxal_tts,fat,huggingface:google/WaxalNLP,fat_tts,https://huggingface.co/datasets/google/WaxalNLP
 speech_waxal_tts,ff,huggingface:google/WaxalNLP,ful_tts,https://huggingface.co/datasets/google/WaxalNLP

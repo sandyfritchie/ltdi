@@ -48,6 +48,8 @@ def code(label: str, speech: bool = False, name: str = "") -> str | None:
     locales, where ar-EG can be Egyptian Arabic rather than Arabic (see crosswalk.to_ltdi): but only where
     the source's own wording for the row (name) names that variety, since a country code on an Arabic
     model doesn't by itself say which Arabic it recognises."""
+    # "zh-HK (yue-HK)": the code in brackets is the more specific one (Amazon Transcribe's Cantonese)
+    label = re.sub(r"^\s*([A-Za-z-]+)\s*\(([A-Za-z]{2,3}-[A-Za-z]{2,4})\)\s*$", r"\2 or \1", label)
     for part in label.split(" or "):
         part = part.strip().replace("_", "-")
         if not part:
@@ -355,7 +357,9 @@ def collect() -> list[Record]:
     for heading, ind in (("Printed text", "ocr_azure"), ("Handwritten text", "ocr_azure_handwriting")):
         for t in tables(page(AZURE_OCR)):
             if t["heading"].startswith(heading):
-                mark(ind, {c for r in t["rows"][1:] for c in map(code, r[1::2]) if c})
+                # "Punjabi (Arabic) | pa" is Shahmukhi Punjabi, whatever its code says
+                mark(ind, {("pnb" if c == "pa" and "Arabic" in n else c) for r in t["rows"][1:]
+                           for n, c in zip(r[0::2], map(code, r[1::2])) if c})
     mark("kb_swiftkey", named(between(SWIFTKEY, "The following list is regularly updated.", "(* = no Flow)"),
                               "kb_swiftkey"))
     copilot = between(COPILOT, "What languages are currently supported in Microsoft Copilot prompts and responses?",

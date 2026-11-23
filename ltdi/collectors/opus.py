@@ -82,6 +82,12 @@ def checked(code_of) -> dict[tuple[str, str], float]:
     return out
 
 
+def page_url(label: str) -> str:
+    """The OPUS API's list of corpora for the pair (the site's old per-pair result pages are gone)."""
+    a, b = sorted(["en", label])
+    return f"https://opus.nlpl.eu/opusapi/?source={a}&target={b}&preprocessing=moses&version=latest"
+
+
 def corpora(label: str) -> dict[str, int]:
     a, b = sorted(["en", label])
     out = {}
@@ -133,5 +139,5 @@ def collect() -> list[Record]:
         if len(labels.get(code, [])) > 1:
             note.append("OPUS codes " + ", ".join(sorted(labels[code])))
         out.append(Record(code, "parallel_sentences", total, "sentence pairs", "OPUS",
-                          f"https://opus.nlpl.eu/results/en&{first}/corpus-result-table", note="; ".join(note)))
+                          page_url(first), note="; ".join(note)))
     return out
