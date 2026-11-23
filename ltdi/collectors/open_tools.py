@@ -7,6 +7,9 @@
   lid_glotlid         GlotLID v3: open language identification model (labels with test scores)
   lid_cld3            CLD3: compact open language identification model
   kb_open_keyman      Keyman: open keyboard layouts (language tags in each package's .kps file)
+  mt_open_madlad      MADLAD-400 MT (Google): open translation model; only the languages its paper evaluates
+                      (FLORES-200, NTREX and Gatones tables) and that are in MADLAD-400, as its authors note
+                      they could evaluate only some of the 400+ it was trained on
   tts_open_espeak     eSpeak NG: open text-to-speech (docs/languages.md), the voices of the NVDA screen reader and
                       many others
 
@@ -30,6 +33,18 @@ LANGUAGETOOL, LANGUAGETOOL_COMMIT = "https://github.com/languagetool-org/languag
 GLOTLID = "https://raw.githubusercontent.com/cisnlp/GlotLID/8e1992af81842155d2a48d9087b223bca66b1f13/languages-v3.md"
 CLD3 = "https://raw.githubusercontent.com/google/cld3/b48dc46512566f5a2d41118c8c1116c4f96dc661/README.md"
 ESPEAK = "https://raw.githubusercontent.com/espeak-ng/espeak-ng/ee9fa7cc4704d683020526f47a9655f14c8d5f4c/docs/languages.md"
+MADLAD_MT = "https://arxiv.org/abs/2309.04662"
+MADLAD_MT_DAY = "2026-11-23"
+# Read from the paper's evaluation tables (appendix, ar5iv.labs.arxiv.org/html/2309.04662) and its language table;
+# Berber (ber, a family label) is left out. Regional and script variants are listed as the paper gives them.
+MADLAD_MT_CODES = """ace, ady, af, ak, am, ar, ar_MA, as, av, awa, ay, az, ba, ban, bbc, bci, be, bew, bg, bho, bm, bn, bo, bs,
+ca, ce, ceb, chr, cjk, ckb, cs, cv, cy, da, de, din, doi, dv, dyu, dz, ee, el, eo, es, es_MX, et, eu, fa,
+fa_AF, ff, fi, fil, fj, fo, fon, fr, fr_CA, ga, gd, gl, gn, gom, gu, ha, he, hi, hmn, hne, hr, ht, hu, hy,
+id, ig, ilo, is, iso, it, ja, jv, ka, kac, kbp, kg, kk, kl, km, kmb, kn, ko, kri, ks, ku, ky, lb, lg, ln, lo,
+lt, ltg, lus, lv, mad, mag, mai, meo, mey, mg, mi, min, mk, ml, mn, mni, mr, ms, mt, my, nd, ne, nl, no, nso,
+ny, oc, om, or, pa, pag, pap, pl, ps, pt, pt_PT, qu, quc, quy, rn, ro, ru, rw, sa, sd, sg, shn, si, sk, skr,
+sl, sm, sn, so, sq, sr, ss, st, su, sv, sw, ta, te, tg, th, ti, tiv, tk, tn, to, tpi, tr, ts, tt, ug, uk, ur,
+uz, ve, vec, vi, war, wo, xh, yi, yo, yua, yue, zh, zu, zza"""
 KEYMAN, KEYMAN_COMMIT = "https://github.com/keymanapp/keyboards", "87aca49ac813fd7ff68a2c9ef030440e99b49af8"
 
 SOURCES = {
@@ -70,7 +85,19 @@ def lists() -> dict[str, set[str]]:
             "tts_open_espeak": present(espeak)}
 
 
+def madlad_mt() -> list[Record]:
+    from ..crosswalk import to_ltdi
+    from ._common import ltdi_codes
+    have = set()
+    for c in (c.strip() for c in MADLAD_MT_CODES.replace("\n", " ").split(",")):
+        code = to_ltdi(c.replace("_", "-")) or to_ltdi(c.split("_")[0])
+        if code:
+            have.add(code)
+    return [Record(c, "mt_open_madlad", int(c in have), "bool", "MADLAD-400 MT (languages its paper evaluates)", MADLAD_MT,
+                   MADLAD_MT_DAY, "manual") for c in ltdi_codes()]
+
+
 def collect() -> list[Record]:
     have = lists()
     notes = {"kb_open_keyman": {c: f"{n} keyboard packages" for c, n in KEYBOARDS.items()}}
-    return [r for ind in SOURCES for r in presence(ind, have[ind], *SOURCES[ind], notes=notes.get(ind))]
+    return [r for ind in SOURCES for r in presence(ind, have[ind], *SOURCES[ind], notes=notes.get(ind))] + madlad_mt()

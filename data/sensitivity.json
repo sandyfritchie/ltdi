@@ -19,15 +19,15 @@
   },
   {
    "ranks": "201–1,000",
-   "languages": 802,
+   "languages": 803,
    "median_range": 292,
-   "within_10pct": 0.133
+   "within_10pct": 0.137
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3006,
+   "languages": 3005,
    "median_range": 448,
-   "within_10pct": 0.5
+   "within_10pct": 0.501
   }
  ],
  "scenarios": [
@@ -98,11 +98,11 @@
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9971,
-   "moved_10_in_top_300": 6,
+   "moved_10_in_top_300": 4,
    "largest": [
     {
      "name": "Lower Sorbian",
-     "from": 215,
+     "from": 216,
      "to": 201
     },
     {
@@ -111,19 +111,19 @@
      "to": 165
     },
     {
-     "name": "North Ndebele",
-     "from": 298,
-     "to": 285
-    },
-    {
      "name": "Kölsch",
-     "from": 293,
-     "to": 281
+     "from": 295,
+     "to": 283
     },
     {
      "name": "Bavarian",
      "from": 266,
      "to": 254
+    },
+    {
+     "name": "Yucateco",
+     "from": 270,
+     "to": 280
     }
    ]
   }

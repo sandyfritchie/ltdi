@@ -82,3 +82,4 @@ asr_intron,Intron,Regional provider,https://intron.io/,https://docs.voice.intron
 tts_intron,Intron,Regional provider,https://intron.io/,https://docs.voice.intron.io/docs/index/introduction
 speech_wazobiaspeech_african_voices_nigeria,Data Science Nigeria and EqualyzAI,Non-profit and company,https://www.datasciencenigeria.org/,https://huggingface.co/Africanvoice
 ui_mediawiki,translatewiki.net volunteers (Wikimedia's MediaWiki),Volunteer community,https://translatewiki.net/,https://translatewiki.net/wiki/Translating:MediaWiki
+mt_open_madlad,Google Research,Company research lab,https://research.google/,https://github.com/google-research/google-research/tree/master/madlad_400
