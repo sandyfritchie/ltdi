@@ -8,26 +8,26 @@
   {
    "ranks": "1–60",
    "languages": 60,
-   "median_range": 4,
+   "median_range": 5,
    "within_10pct": 0.65
   },
   {
    "ranks": "61–200",
    "languages": 140,
-   "median_range": 14,
-   "within_10pct": 0.95
+   "median_range": 15,
+   "within_10pct": 0.957
   },
   {
    "ranks": "201–1,000",
-   "languages": 800,
-   "median_range": 294,
-   "within_10pct": 0.146
+   "languages": 801,
+   "median_range": 293,
+   "within_10pct": 0.141
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3008,
+   "languages": 3007,
    "median_range": 450,
-   "within_10pct": 0.5
+   "within_10pct": 0.499
   }
  ],
  "scenarios": [
@@ -36,6 +36,11 @@
    "spearman": 0.9996,
    "moved_10_in_top_300": 0,
    "largest": [
+    {
+     "name": "Yue Chinese",
+     "from": 82,
+     "to": 79
+    },
     {
      "name": "Norwegian Bokmål",
      "from": 31,
@@ -47,14 +52,9 @@
      "to": 33
     },
     {
-     "name": "Yue Chinese",
-     "from": 81,
-     "to": 79
-    },
-    {
      "name": "Standard Moroccan Tamazight",
-     "from": 265,
-     "to": 267
+     "from": 266,
+     "to": 268
     },
     {
      "name": "Persian",
@@ -79,11 +79,6 @@
      "to": 30
     },
     {
-     "name": "Yue Chinese",
-     "from": 81,
-     "to": 83
-    },
-    {
      "name": "Ukrainian",
      "from": 21,
      "to": 19
@@ -92,19 +87,19 @@
      "name": "Swedish",
      "from": 19,
      "to": 21
+    },
+    {
+     "name": "Russian",
+     "from": 8,
+     "to": 6
     }
    ]
   },
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9971,
-   "moved_10_in_top_300": 9,
+   "moved_10_in_top_300": 8,
    "largest": [
-    {
-     "name": "Ladin",
-     "from": 322,
-     "to": 298
-    },
     {
      "name": "Lower Sorbian",
      "from": 214,
@@ -116,9 +111,14 @@
      "to": 202
     },
     {
+     "name": "North Ndebele",
+     "from": 297,
+     "to": 283
+    },
+    {
      "name": "Kölsch",
-     "from": 290,
-     "to": 278
+     "from": 292,
+     "to": 279
     },
     {
      "name": "Tuvinian",

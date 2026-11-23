@@ -370,6 +370,15 @@ cv_validated_hours,zgh,commonvoice,zgh,https://commonvoice.mozilla.org/en/datase
 cv_validated_hours,zoc,commonvoice,zoc,https://commonvoice.mozilla.org/en/datasets
 cv_validated_hours,zu,commonvoice,zu,https://commonvoice.mozilla.org/en/datasets
 speech_african_next_voices_bambara,bm,huggingface:RobotsMali/afvoices,human-corrected,https://huggingface.co/datasets/RobotsMali/afvoices
+speech_afrivoice_digital_umuganda,gmv,huggingface:DigitalUmuganda/Afrivoice_V2,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice_V2
+speech_afrivoice_digital_umuganda,nd,huggingface:DigitalUmuganda/Afrivoice_V2,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice_V2
+speech_afrivoice_digital_umuganda,ndc,huggingface:DigitalUmuganda/Afrivoice_V2,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice_V2
+speech_afrivoice_digital_umuganda,ng,huggingface:DigitalUmuganda/Afrivoice_V2,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice_V2
+speech_afrivoice_digital_umuganda,rn,huggingface:DigitalUmuganda/Afrivoice_V2,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice_V2
+speech_afrivoice_digital_umuganda,rw,huggingface:DigitalUmuganda/Afrivoice_Kinyarwanda,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice_Kinyarwanda
+speech_afrivoice_digital_umuganda,so,huggingface:DigitalUmuganda/Afrivoice,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice
+speech_afrivoice_digital_umuganda,wo,huggingface:DigitalUmuganda/Afrivoice,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice
+speech_afrivoice_scripted_digital_umuganda,rw,huggingface:DigitalUmuganda/Afrivoice_Kinyarwanda,,https://huggingface.co/datasets/DigitalUmuganda/Afrivoice_Kinyarwanda
 speech_afrivoices_ke_african_next_voices,ki,huggingface:Anv-ke/kikuyu,,https://huggingface.co/datasets/Anv-ke/kikuyu
 speech_afrivoices_ke_african_next_voices,luo,huggingface:Anv-ke/Dholuo,,https://huggingface.co/datasets/Anv-ke/Dholuo
 speech_afrivoices_ke_african_next_voices,mas,huggingface:Anv-ke/Maasai,,https://huggingface.co/datasets/Anv-ke/Maasai
@@ -587,6 +596,17 @@ speech_multilingual_librispeech,pt,huggingface:facebook/multilingual_librispeech
 speech_naijavoices,ha,huggingface:naijavoices/naijavoices-dataset,hausa-batch-0 hausa-batch-1 hausa-batch-2,https://huggingface.co/datasets/naijavoices/naijavoices-dataset
 speech_naijavoices,ig,huggingface:naijavoices/naijavoices-dataset,igbo-batch-0 igbo-batch-1 igbo-batch-2,https://huggingface.co/datasets/naijavoices/naijavoices-dataset
 speech_naijavoices,yo,huggingface:naijavoices/naijavoices-dataset,yoruba-batch-0 yoruba-batch-1 yoruba-batch-2,https://huggingface.co/datasets/naijavoices/naijavoices-dataset
+speech_nchlt_speech,af,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,en,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,nr,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,nso,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,ss,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,st,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,tn,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,ts,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,ve,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,xh,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
+speech_nchlt_speech,zu,repository.nwu.ac.za,,https://repository.nwu.ac.za/handle/10394/26493
 speech_omnilingual_asr_corpus,aae,huggingface:facebook/omnilingual-asr-corpus,aae_Latn,https://huggingface.co/datasets/facebook/omnilingual-asr-corpus
 speech_omnilingual_asr_corpus,aal,huggingface:facebook/omnilingual-asr-corpus,aal_Latn,https://huggingface.co/datasets/facebook/omnilingual-asr-corpus
 speech_omnilingual_asr_corpus,aao,huggingface:facebook/omnilingual-asr-corpus,aao_Arab,https://huggingface.co/datasets/facebook/omnilingual-asr-corpus
@@ -969,6 +989,9 @@ speech_openslr_read_speech_non_commercial,ne,openslr,https://openslr.trmal.net/r
 speech_openslr_spontaneous,fuc,openslr,https://openslr.trmal.net/resources/151/speech_dataset_fuc.tar.gz,https://www.openslr.org/151/
 speech_openslr_spontaneous,srr,openslr,https://openslr.trmal.net/resources/151/speech_dataset_srr.tar.gz,https://www.openslr.org/151/
 speech_openslr_spontaneous,wo,openslr,https://openslr.trmal.net/resources/151/speech_dataset_wol.tar.gz,https://www.openslr.org/151/
+speech_openslr_spontaneous_non_commercial,azz,openslr.org,,https://www.openslr.org/92/
+speech_openslr_spontaneous_non_commercial,tos,openslr.org,,https://www.openslr.org/107/
+speech_openslr_spontaneous_non_commercial,xty,openslr.org,,https://www.openslr.org/89/
 speech_shrutilipi,as,huggingface:ai4bharat/Shrutilipi,assamese,https://huggingface.co/datasets/ai4bharat/Shrutilipi
 speech_shrutilipi,bn,huggingface:ai4bharat/Shrutilipi,bengali,https://huggingface.co/datasets/ai4bharat/Shrutilipi
 speech_shrutilipi,dgo,huggingface:ai4bharat/Shrutilipi,dogri,https://huggingface.co/datasets/ai4bharat/Shrutilipi
@@ -986,6 +1009,16 @@ speech_shrutilipi,sa,huggingface:ai4bharat/Shrutilipi,sanskrit,https://huggingfa
 speech_shrutilipi,ta,huggingface:ai4bharat/Shrutilipi,tamil,https://huggingface.co/datasets/ai4bharat/Shrutilipi
 speech_shrutilipi,te,huggingface:ai4bharat/Shrutilipi,telugu,https://huggingface.co/datasets/ai4bharat/Shrutilipi
 speech_shrutilipi,ur,arxiv.org,,https://arxiv.org/abs/2208.12666
+speech_spring_inx,as,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,bn,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,gu,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,hi,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,kn,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,ml,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,mr,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,or,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,pa,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
+speech_spring_inx,ta,asr.iitm.ac.in,,https://asr.iitm.ac.in/dataset
 speech_swivuriso_african_next_voices,nr,huggingface:dsfsi-anv/za-african-next-voices,nbl,https://huggingface.co/datasets/dsfsi-anv/za-african-next-voices
 speech_swivuriso_african_next_voices,st,huggingface:dsfsi-anv/za-african-next-voices,sot,https://huggingface.co/datasets/dsfsi-anv/za-african-next-voices
 speech_swivuriso_african_next_voices,tn,huggingface:dsfsi-anv/za-african-next-voices,tsn,https://huggingface.co/datasets/dsfsi-anv/za-african-next-voices

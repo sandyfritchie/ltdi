@@ -8,7 +8,8 @@ Automated:
              tools/yodas_check.py: many subtitles are English, Russian or French)
   FLEURS     about 12 hours for each of its 102 languages (language list from its card)
 Curated (config/speech_datasets.csv, from each dataset's paper or card):
-  Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech, VoxPopuli, African Next Voices (Swivuriso, AfriVoices-KE, RobotsMali's Bambara), OpenSLR,
+  Shrutilipi, Kathbath, IndicVoices, Vaani, NaijaVoices, Multilingual LibriSpeech, VoxPopuli, African Next Voices (Swivuriso, AfriVoices-KE, RobotsMali's Bambara), SPRING-INX,
+  Digital Umuganda's AfriVoice (not its languages that are WAXAL's), NCHLT Speech, OpenSLR,
   Meta's Omnilingual ASR Corpus and WAXAL's TTS recordings (the last three measured file by file with
   tools/audio_hours.py, since their cards give no hours per language)
 
