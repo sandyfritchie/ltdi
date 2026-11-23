@@ -9,7 +9,7 @@
    "ranks": "1–60",
    "languages": 60,
    "median_range": 5,
-   "within_10pct": 0.667
+   "within_10pct": 0.617
   },
   {
    "ranks": "61–200",
@@ -21,7 +21,7 @@
    "ranks": "201–1,000",
    "languages": 800,
    "median_range": 294,
-   "within_10pct": 0.139
+   "within_10pct": 0.14
   },
   {
    "ranks": "1,001 and below",
@@ -53,8 +53,8 @@
     },
     {
      "name": "Slovak",
-     "from": 33,
-     "to": 35
+     "from": 34,
+     "to": 36
     },
     {
      "name": "Persian",
@@ -81,24 +81,24 @@
     {
      "name": "Yue Chinese",
      "from": 81,
-     "to": 83
+     "to": 84
+    },
+    {
+     "name": "Malay",
+     "from": 36,
+     "to": 39
     },
     {
      "name": "Yucateco",
      "from": 274,
      "to": 272
-    },
-    {
-     "name": "Ukrainian",
-     "from": 21,
-     "to": 19
     }
    ]
   },
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9971,
-   "moved_10_in_top_300": 4,
+   "moved_10_in_top_300": 5,
    "largest": [
     {
      "name": "Ladin",
@@ -122,7 +122,7 @@
     },
     {
      "name": "Shan",
-     "from": 167,
+     "from": 169,
      "to": 157
     }
    ]

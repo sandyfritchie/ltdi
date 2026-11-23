@@ -479,7 +479,7 @@ the coalition workstream it fits.
 - Open speech hours are a sum: YODAS2 counts hours of video with manually uploaded subtitles, not checked
   transcriptions, and many subtitles are in another language (English on Georgian, Tamil or Yoruba videos), so
   each language's hours are multiplied by the share of a sample of its subtitle text that is in the language
-  (`tools/yodas_check.py` writes `config/yodas_language_share.csv`); IndicVoices is its first release and Vaani a lower bound (later releases are larger);
+  (`tools/yodas_check.py` writes `config/yodas_language_share.csv`); IndicVoices is measured from every clip's duration in its Hugging Face release (`audio_hours.py --ranged` reads only that column) and Vaani's hours are those its card gives per language;
   FLEURS is counted at a nominal 12 hours. NaijaVoices is non-commercial.
 - OPUS counts overlap between corpora, and most sentence pairs are web-mined (the share is in each note).
 - Web-crawled data for underrepresented languages is often not in the language at all (Kreutzer et al. 2022,

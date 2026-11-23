@@ -1,5 +1,5 @@
 # Quarterly: re-measures the datasets whose size the Index measures itself (tools/measured.py): the hours
-# in Meta's Omnilingual ASR Corpus, WAXAL's TTS recordings, OpenSLR's downloads and Bloom Library's read
+# in Meta's Omnilingual ASR Corpus, AI4Bharat's IndicVoices, WAXAL's TTS recordings, OpenSLR's downloads and Bloom Library's read
 # books, and the words in MADLAD-400's smaller languages. Their makers don't publish these per language,
 # and new releases change them. The measuring jobs run in parallel; the last job writes the results into
 # config/, rebuilds, tests, commits and publishes. If a dataset shrank a lot (usually a failed download),

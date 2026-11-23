@@ -24,8 +24,8 @@
     "median_ltdi": 0.242,
     "tiers": {
      "h": 1,
-     "m": 11,
-     "lc": 171,
+     "m": 12,
+     "lc": 170,
      "lo": 8,
      "ld": 2,
      "ln": 1
@@ -45,7 +45,7 @@
     "group": 3,
     "label": "3 · The Rising Stars",
     "n": 26,
-    "median_ltdi": 0.766,
+    "median_ltdi": 0.769,
     "tiers": {
      "vh": 1,
      "h": 15,
@@ -105,11 +105,11 @@
    {
     "code": "mni",
     "name": "Meiteilon (Manipuri)",
-    "ltdi": 0.2788,
-    "rank": 152,
+    "ltdi": 0.3047,
+    "rank": 142,
     "tier": "lc",
     "other": 0,
-    "gap": 0.493
+    "gap": 0.498
    },
    {
     "code": "pcm",
@@ -121,55 +121,55 @@
     "gap": 0.492
    },
    {
+    "code": "brx",
+    "name": "Bodo",
+    "ltdi": 0.2658,
+    "rank": 161,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.489
+   },
+   {
     "code": "ban",
     "name": "Balinese",
     "ltdi": 0.259,
-    "rank": 165,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.487
-   },
-   {
-    "code": "shn",
-    "name": "Shan",
-    "ltdi": 0.2574,
     "rank": 167,
     "tier": "lc",
     "other": 0,
     "gap": 0.486
    },
    {
+    "code": "shn",
+    "name": "Shan",
+    "ltdi": 0.2574,
+    "rank": 169,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.485
+   },
+   {
     "code": "awa",
     "name": "Awadhi",
     "ltdi": 0.2551,
-    "rank": 173,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.484
-   },
-   {
-    "code": "lus",
-    "name": "Mizo",
-    "ltdi": 0.2518,
-    "rank": 174,
+    "rank": 175,
     "tier": "lc",
     "other": 0,
     "gap": 0.483
    },
    {
-    "code": "brx",
-    "name": "Bodo",
-    "ltdi": 0.248,
-    "rank": 179,
+    "code": "lus",
+    "name": "Mizo",
+    "ltdi": 0.2518,
+    "rank": 176,
     "tier": "lc",
     "other": 0,
-    "gap": 0.481
+    "gap": 0.483
    },
    {
     "code": "dag",
     "name": "Dagbani",
     "ltdi": 0.2458,
-    "rank": 182,
+    "rank": 183,
     "tier": "lc",
     "other": 0,
     "gap": 0.479
@@ -392,7 +392,7 @@
     "group": "Vital",
     "label": "Vital",
     "n": 10,
-    "median_ltdi": 0.573,
+    "median_ltdi": 0.582,
     "tiers": {
      "h": 2,
      "m": 3,
