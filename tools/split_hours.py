@@ -3,7 +3,8 @@ range requests so only the duration and grouping columns of each parquet file ar
 
   python tools/split_hours.py COLUMN DATASET [DATASET ...]      (needs HF_TOKEN for gated datasets)
 
-Prints one SPLIT line per dataset and value: SPLIT <dataset> <value> <clips> <hours>."""
+Prints one SPLIT line per dataset and value: SPLIT <dataset> <value> <clips> <hours> (hours 0 where the
+files have no duration column: then the clip counts give the split)."""
 
 from __future__ import annotations
 
@@ -17,7 +18,7 @@ import pyarrow.parquet as pq
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from audio_hours import HF, RangeFile, files  # noqa: E402
 
-DURATION = ("duration", "duration_s", "duration_sec", "audio_duration")
+DURATION = ("duration", "duration_s", "duration_sec", "duration_seconds", "audio_duration")
 
 
 def main() -> None:
@@ -30,11 +31,12 @@ def main() -> None:
             f = pq.ParquetFile(RangeFile(f"{HF}/datasets/{ds}/resolve/main/{path}", headers))
             names = f.schema_arrow.names
             dur = next((n for n in names if n.lower() in DURATION), None)
-            if not dur or column not in names:
+            if column not in names:
                 print(f"SCHEMA {ds} {path} {names}", flush=True)
                 break
-            t = f.read(columns=[column, dur])
-            for v, d in zip(t.column(0).to_pylist(), t.column(1).to_pylist()):
+            t = f.read(columns=[column, dur] if dur else [column])  # no duration column: clips are counted, hours left 0
+            durs = t.column(1).to_pylist() if dur else [0.0] * t.num_rows
+            for v, d in zip(t.column(0).to_pylist(), durs):
                 totals[str(v)][0] += 1
                 totals[str(v)][1] += d or 0
             print(f"FILE {path}", flush=True)
