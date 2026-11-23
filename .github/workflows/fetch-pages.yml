@@ -9,6 +9,10 @@ on:
       urls:
         description: "URLs, one per line or separated by spaces"
         required: true
+      post:
+        description: "Optional JSON body: when given, every URL is fetched with a POST of it"
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -21,13 +25,16 @@ jobs:
       - name: Download
         env:
           URLS: ${{ inputs.urls }}
+          POST: ${{ inputs.post }}
         run: |
           mkdir pages
           i=0
+          extra=()
+          if [ -n "$POST" ]; then extra=(-X POST -H "Content-Type: application/json" --data "$POST"); fi
           for u in $URLS; do
             i=$((i+1))
             name=$(printf '%02d' "$i")-$(echo "$u" | sed -E 's#^https?://##; s#[^A-Za-z0-9.]+#_#g' | cut -c1-120)
-            curl -sSL --max-time 60 -A "ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)" -o "pages/$name" "$u" \
+            curl -sSL --max-time 60 "${extra[@]}" -A "ltdi-collector/0.1 (+https://github.com/sandyfritchie/ltdi)" -o "pages/$name" "$u" \
               -w "%{http_code} %{size_download} $u\n" || echo "failed $u"
           done
       - name: Print (the log can be read where the artifact can't be downloaded)
