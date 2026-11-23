@@ -35,7 +35,7 @@
     "group": 2,
     "label": "2 · The Hopefuls",
     "n": 18,
-    "median_ltdi": 0.585,
+    "median_ltdi": 0.587,
     "tiers": {
      "h": 1,
      "m": 5,
@@ -113,22 +113,22 @@
     "gap": 0.5
    },
    {
+    "code": "pcm",
+    "name": "Nigerian Pidgin",
+    "ltdi": 0.3104,
+    "rank": 141,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.498
+   },
+   {
     "code": "brx",
     "name": "Bodo",
     "ltdi": 0.2837,
-    "rank": 155,
+    "rank": 156,
     "tier": "lc",
     "other": 0,
-    "gap": 0.492
-   },
-   {
-    "code": "pcm",
-    "name": "Nigerian Pidgin",
-    "ltdi": 0.2738,
-    "rank": 159,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.49
+    "gap": 0.491
    },
    {
     "code": "lus",

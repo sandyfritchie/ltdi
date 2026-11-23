@@ -80,3 +80,4 @@ tts_bhashini,"Bhashini (Ministry of Electronics and IT, Government of India)",Re
 mt_bhashini,"Bhashini (Ministry of Electronics and IT, Government of India)",Regional provider,https://bhashini.gov.in/,https://bhashini.gov.in/ulca/model/explore-models
 asr_intron,Intron,Regional provider,https://intron.io/,https://docs.voice.intron.io/docs/index/introduction
 tts_intron,Intron,Regional provider,https://intron.io/,https://docs.voice.intron.io/docs/index/introduction
+speech_wazobiaspeech_african_voices_nigeria,Data Science Nigeria and EqualyzAI,Non-profit and company,https://www.datasciencenigeria.org/,https://huggingface.co/Africanvoice

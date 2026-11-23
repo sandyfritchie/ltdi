@@ -37,11 +37,6 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Yue Chinese",
-     "from": 82,
-     "to": 79
-    },
-    {
      "name": "Norwegian Bokmål",
      "from": 31,
      "to": 28
@@ -50,6 +45,11 @@
      "name": "Malay",
      "from": 36,
      "to": 33
+    },
+    {
+     "name": "Yue Chinese",
+     "from": 82,
+     "to": 80
     },
     {
      "name": "Standard Moroccan Tamazight",

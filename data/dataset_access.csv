@@ -1168,6 +1168,10 @@ speech_waxal_tts,nyn,huggingface:google/WaxalNLP,nyn_tts,https://huggingface.co/
 speech_waxal_tts,pcm,huggingface:google/WaxalNLP,pcm_tts,https://huggingface.co/datasets/google/WaxalNLP
 speech_waxal_tts,sw,huggingface:google/WaxalNLP,swa_tts,https://huggingface.co/datasets/google/WaxalNLP
 speech_waxal_tts,yo,huggingface:google/WaxalNLP,yor_tts,https://huggingface.co/datasets/google/WaxalNLP
+speech_wazobiaspeech_african_voices_nigeria,ha,huggingface:Africanvoice/hausa_african_voices,,https://huggingface.co/datasets/Africanvoice/hausa_african_voices
+speech_wazobiaspeech_african_voices_nigeria,ig,huggingface:Africanvoice/igbo_african_voice,,https://huggingface.co/datasets/Africanvoice/igbo_african_voice
+speech_wazobiaspeech_african_voices_nigeria,pcm,huggingface:Africanvoice/naija_african_voices,,https://huggingface.co/datasets/Africanvoice/naija_african_voices
+speech_wazobiaspeech_african_voices_nigeria,yo,huggingface:Africanvoice/yoruba_african_voices,,https://huggingface.co/datasets/Africanvoice/yoruba_african_voices
 speech_yodas,aa,huggingface:espnet/yodas2,aa000,https://huggingface.co/datasets/espnet/yodas2
 speech_yodas,ab,huggingface:espnet/yodas2,ab000,https://huggingface.co/datasets/espnet/yodas2
 speech_yodas,af,huggingface:espnet/yodas2,af000,https://huggingface.co/datasets/espnet/yodas2
