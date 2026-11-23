@@ -524,7 +524,7 @@ SPEECH_KIND = {
     "speech_openslr_read_speech": "read", "speech_openslr_read_speech_non_commercial": "read",
     "speech_openslr_broadcast": "broadcast", "speech_openslr_spontaneous": "spontaneous",
     "speech_openslr_spontaneous_non_commercial": "spontaneous", "speech_nchlt_speech": "read",
-    "speech_wazobiaspeech_african_voices_nigeria": "spontaneous",
+    "speech_wazobiaspeech_african_voices_nigeria": "spontaneous", "speech_wazobiaspeech_scripted_african_voices_nigeria": "read",
     "speech_afrivoice_digital_umuganda": "spontaneous", "speech_afrivoice_scripted_digital_umuganda": "read",
     "speech_shrutilipi": "broadcast", "speech_yodas": "broadcast", "speech_voxpopuli": "broadcast",
     "speech_fleurs": "benchmark",

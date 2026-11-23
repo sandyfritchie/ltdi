@@ -1172,6 +1172,8 @@ speech_wazobiaspeech_african_voices_nigeria,ha,huggingface:Africanvoice/hausa_af
 speech_wazobiaspeech_african_voices_nigeria,ig,huggingface:Africanvoice/igbo_african_voice,,https://huggingface.co/datasets/Africanvoice/igbo_african_voice
 speech_wazobiaspeech_african_voices_nigeria,pcm,huggingface:Africanvoice/naija_african_voices,,https://huggingface.co/datasets/Africanvoice/naija_african_voices
 speech_wazobiaspeech_african_voices_nigeria,yo,huggingface:Africanvoice/yoruba_african_voices,,https://huggingface.co/datasets/Africanvoice/yoruba_african_voices
+speech_wazobiaspeech_scripted_african_voices_nigeria,ha,huggingface:Africanvoice/hausa_african_voices,,https://huggingface.co/datasets/Africanvoice/hausa_african_voices
+speech_wazobiaspeech_scripted_african_voices_nigeria,pcm,huggingface:Africanvoice/naija_african_voices,,https://huggingface.co/datasets/Africanvoice/naija_african_voices
 speech_yodas,aa,huggingface:espnet/yodas2,aa000,https://huggingface.co/datasets/espnet/yodas2
 speech_yodas,ab,huggingface:espnet/yodas2,ab000,https://huggingface.co/datasets/espnet/yodas2
 speech_yodas,af,huggingface:espnet/yodas2,af000,https://huggingface.co/datasets/espnet/yodas2
