@@ -8,20 +8,20 @@
   {
    "ranks": "1–60",
    "languages": 60,
-   "median_range": 4,
-   "within_10pct": 0.633
+   "median_range": 5,
+   "within_10pct": 0.667
   },
   {
    "ranks": "61–200",
    "languages": 140,
-   "median_range": 15,
+   "median_range": 14,
    "within_10pct": 0.943
   },
   {
    "ranks": "201–1,000",
    "languages": 800,
-   "median_range": 294,
-   "within_10pct": 0.139
+   "median_range": 293,
+   "within_10pct": 0.146
   },
   {
    "ranks": "1,001 and below",
@@ -38,8 +38,8 @@
    "largest": [
     {
      "name": "Norwegian Bokmål",
-     "from": 30,
-     "to": 27
+     "from": 31,
+     "to": 28
     },
     {
      "name": "Malay",
@@ -47,19 +47,19 @@
      "to": 33
     },
     {
-     "name": "Hebrew",
-     "from": 28,
-     "to": 25
+     "name": "Dutch",
+     "from": 15,
+     "to": 12
     },
     {
-     "name": "Slovak",
-     "from": 34,
-     "to": 36
+     "name": "Turkish",
+     "from": 13,
+     "to": 15
     },
     {
-     "name": "Persian",
-     "from": 26,
-     "to": 28
+     "name": "Thai",
+     "from": 20,
+     "to": 18
     }
    ]
   },
@@ -70,13 +70,8 @@
    "largest": [
     {
      "name": "Danish",
-     "from": 25,
+     "from": 26,
      "to": 30
-    },
-    {
-     "name": "Thai",
-     "from": 18,
-     "to": 22
     },
     {
      "name": "Yue Chinese",
@@ -84,14 +79,19 @@
      "to": 84
     },
     {
+     "name": "Swedish",
+     "from": 18,
+     "to": 21
+    },
+    {
      "name": "Malay",
      "from": 36,
      "to": 39
     },
     {
-     "name": "Bengali",
-     "from": 31,
-     "to": 28
+     "name": "Yucateco",
+     "from": 276,
+     "to": 274
     }
    ]
   },
@@ -102,28 +102,28 @@
    "largest": [
     {
      "name": "Ladin",
-     "from": 321,
-     "to": 297
+     "from": 322,
+     "to": 298
+    },
+    {
+     "name": "Lower Sorbian",
+     "from": 214,
+     "to": 199
+    },
+    {
+     "name": "Piemontese",
+     "from": 216,
+     "to": 202
     },
     {
      "name": "Kölsch",
      "from": 291,
-     "to": 276
-    },
-    {
-     "name": "Lower Sorbian",
-     "from": 212,
-     "to": 198
-    },
-    {
-     "name": "Piemontese",
-     "from": 214,
-     "to": 201
+     "to": 278
     },
     {
      "name": "Shan",
-     "from": 169,
-     "to": 157
+     "from": 170,
+     "to": 158
     }
    ]
   }

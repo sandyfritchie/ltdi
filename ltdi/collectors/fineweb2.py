@@ -11,7 +11,7 @@ than FineWeb-2, its count is used instead (config/madlad_words.csv, counted with
 with its auditors' notes on Bible and jw.org text standing in for the Bible share. Where HPLT 3.0 (the
 HPLT project's web text from the Internet Archive and Common Crawl, CC0) holds more than either, its
 count is used (config/hplt_words.csv, estimated with tools/hplt_words.py); HPLT publishes no Bible
-share. The three overlap, so they're never added together.
+share, so FineWeb-2's (or MADLAD-400's notes) stands in. The three overlap, so they're never added together.
 """
 
 from __future__ import annotations
@@ -85,7 +85,16 @@ def collect() -> list[Record]:
             others = f"FineWeb-2's {words.get(code, 0.0):,.0f} words" + (f" and MADLAD-400's {mad[code][0]:,.0f}" if code in mad else "")
             out.append(Record(code, "web_text_words", round(hp[code]), "words", "HPLT 3.0", HPLT, method="estimate",
                               note=f"HPLT 3.0 holds more than {others}, so it's used instead; its words are estimated from "
-                                   f"its characters and the words per character of its sample documents"))
+                                   f"its characters, the words per character of up to 100 documents from each quality bin, "
+                                   f"and the share of them GlotLID identifies as the language"))
+            if words.get(code):  # HPLT publishes no Bible share: FineWeb-2's stands in, so Bible-heavy text still counts for less
+                b = bible.get(code, 0.0) / words[code]
+                out.append(Record(code, "web_text_bible_share", round(b, 3), "share", "FineWeb-2", URL,
+                                  note="FineWeb-2's share of the documents from Bible-related sites, standing in for HPLT 3.0's, "
+                                       "which isn't published"))
+            elif code in mad:
+                out.append(Record(code, "web_text_bible_share", round(mad[code][1], 3), "share", "MADLAD-400 (clean)", MADLAD,
+                                  note="From the MADLAD-400 auditors' notes, standing in for HPLT 3.0's, which isn't published"))
             continue
         if code in mad and mad[code][0] > words.get(code, 0.0):
             w, b, notes = mad[code]
