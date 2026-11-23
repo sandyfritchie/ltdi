@@ -12,8 +12,8 @@
     "median_ltdi": 0.05,
     "tiers": {
      "lc": 362,
-     "lo": 749,
-     "ld": 275,
+     "lo": 750,
+     "ld": 274,
      "ln": 383
     }
    },
@@ -21,7 +21,7 @@
     "group": 1,
     "label": "1 · The Scraping-Bys",
     "n": 194,
-    "median_ltdi": 0.244,
+    "median_ltdi": 0.248,
     "tiers": {
      "h": 1,
      "m": 12,
@@ -131,19 +131,19 @@
     "gap": 0.491
    },
    {
+    "code": "ban",
+    "name": "Balinese",
+    "ltdi": 0.2746,
+    "rank": 160,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.489
+   },
+   {
     "code": "lus",
     "name": "Mizo",
     "ltdi": 0.2629,
-    "rank": 168,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.486
-   },
-   {
-    "code": "ban",
-    "name": "Balinese",
-    "ltdi": 0.2607,
-    "rank": 169,
+    "rank": 170,
     "tier": "lc",
     "other": 0,
     "gap": 0.485
@@ -152,7 +152,16 @@
     "code": "awa",
     "name": "Awadhi",
     "ltdi": 0.2583,
-    "rank": 172,
+    "rank": 174,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.484
+   },
+   {
+    "code": "mag",
+    "name": "Magahi",
+    "ltdi": 0.2586,
+    "rank": 173,
     "tier": "lc",
     "other": 0,
     "gap": 0.484
@@ -161,43 +170,34 @@
     "code": "shn",
     "name": "Shan",
     "ltdi": 0.2561,
-    "rank": 174,
+    "rank": 178,
     "tier": "lc",
     "other": 0,
-    "gap": 0.483
-   },
-   {
-    "code": "mag",
-    "name": "Magahi",
-    "ltdi": 0.2445,
-    "rank": 184,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.479
+    "gap": 0.482
    },
    {
     "code": "dag",
     "name": "Dagbani",
     "ltdi": 0.244,
-    "rank": 185,
+    "rank": 187,
     "tier": "lc",
     "other": 0,
-    "gap": 0.478
+    "gap": 0.477
    },
    {
     "code": "kam",
     "name": "Kamba",
     "ltdi": 0.2264,
-    "rank": 199,
+    "rank": 201,
     "tier": "lc",
     "other": 0,
-    "gap": 0.472
+    "gap": 0.471
    },
    {
     "code": "bew",
     "name": "Betawi",
     "ltdi": 0.217,
-    "rank": 207,
+    "rank": 208,
     "tier": "lc",
     "other": 0,
     "gap": 0.469
@@ -206,7 +206,7 @@
     "code": "fon",
     "name": "Fon",
     "ltdi": 0.2179,
-    "rank": 205,
+    "rank": 206,
     "tier": "lc",
     "other": 0,
     "gap": 0.469
@@ -215,7 +215,7 @@
     "code": "dga",
     "name": "Southern Dagaare",
     "ltdi": 0.2149,
-    "rank": 210,
+    "rank": 211,
     "tier": "lc",
     "other": 0,
     "gap": 0.468
@@ -224,16 +224,16 @@
     "code": "gsw",
     "name": "Swiss German",
     "ltdi": 0.2144,
-    "rank": 211,
+    "rank": 212,
     "tier": "lc",
     "other": 0,
-    "gap": 0.468
+    "gap": 0.467
    },
    {
     "code": "kac",
     "name": "Kachin",
     "ltdi": 0.2135,
-    "rank": 213,
+    "rank": 214,
     "tier": "lc",
     "other": 0,
     "gap": 0.467
@@ -260,24 +260,15 @@
     "code": "nyn",
     "name": "Nyankole",
     "ltdi": 0.2012,
-    "rank": 226,
+    "rank": 227,
     "tier": "lc",
     "other": 0,
-    "gap": 0.461
+    "gap": 0.46
    },
    {
     "code": "bem",
     "name": "Bemba",
     "ltdi": 0.1978,
-    "rank": 230,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.459
-   },
-   {
-    "code": "mww",
-    "name": "Hmong Daw",
-    "ltdi": 0.1972,
     "rank": 231,
     "tier": "lc",
     "other": 0,
@@ -287,7 +278,16 @@
     "code": "ach",
     "name": "Acoli",
     "ltdi": 0.1936,
-    "rank": 234,
+    "rank": 235,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.458
+   },
+   {
+    "code": "mww",
+    "name": "Hmong Daw",
+    "ltdi": 0.1972,
+    "rank": 232,
     "tier": "lc",
     "other": 0,
     "gap": 0.458
@@ -296,55 +296,55 @@
     "code": "umb",
     "name": "Umbundu",
     "ltdi": 0.1934,
-    "rank": 236,
+    "rank": 237,
     "tier": "lc",
     "other": 0,
     "gap": 0.457
    },
    {
+    "code": "hil",
+    "name": "Hiligaynon",
+    "ltdi": 0.1845,
+    "rank": 251,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.452
+   },
+   {
     "code": "hyw",
     "name": "Western Armenian",
     "ltdi": 0.1818,
-    "rank": 252,
+    "rank": 256,
     "tier": "lo",
     "other": 0,
-    "gap": 0.451
-   },
-   {
-    "code": "cnh",
-    "name": "Hakha Chin",
-    "ltdi": 0.1807,
-    "rank": 255,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.45
+    "gap": 0.449
    },
    {
     "code": "lua",
     "name": "Luba-Lulua",
     "ltdi": 0.1815,
-    "rank": 254,
-    "tier": "lc",
-    "other": 0,
-    "gap": 0.45
-   },
-   {
-    "code": "dar",
-    "name": "Dargwa",
-    "ltdi": 0.1803,
-    "rank": 256,
+    "rank": 258,
     "tier": "lc",
     "other": 0,
     "gap": 0.449
    },
    {
-    "code": "gur",
-    "name": "Farefare",
-    "ltdi": 0.1773,
+    "code": "cnh",
+    "name": "Hakha Chin",
+    "ltdi": 0.1807,
     "rank": 260,
     "tier": "lc",
     "other": 0,
-    "gap": 0.447
+    "gap": 0.448
+   },
+   {
+    "code": "wal",
+    "name": "Wolaytta",
+    "ltdi": 0.1812,
+    "rank": 259,
+    "tier": "lc",
+    "other": 0,
+    "gap": 0.448
    }
   ],
   "source": "https://aclanthology.org/2020.acl-main.560/",
@@ -415,7 +415,7 @@
     "code": "irk",
     "name": "Iraqw",
     "ltdi": 0.0831,
-    "rank": 611,
+    "rank": 613,
     "tier": "lc",
     "other": "Still",
     "gap": 0.678
@@ -433,7 +433,7 @@
     "code": "wls",
     "name": "Wallisian",
     "ltdi": 0.05,
-    "rank": 2203,
+    "rank": 2205,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.531
@@ -442,7 +442,7 @@
     "code": "anu",
     "name": "Anuak",
     "ltdi": 0.05,
-    "rank": 2646,
+    "rank": 2647,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -451,7 +451,7 @@
     "code": "bfm",
     "name": "Mmen",
     "ltdi": 0.05,
-    "rank": 2636,
+    "rank": 2637,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -460,7 +460,7 @@
     "code": "bqm",
     "name": "Wumboko",
     "ltdi": 0.05,
-    "rank": 2646,
+    "rank": 2647,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -478,7 +478,7 @@
     "code": "kwu",
     "name": "Kwakum",
     "ltdi": 0.05,
-    "rank": 2503,
+    "rank": 2505,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -496,7 +496,7 @@
     "code": "ria",
     "name": "Riang",
     "ltdi": 0.05,
-    "rank": 2358,
+    "rank": 2361,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.514
@@ -514,7 +514,7 @@
     "code": "ijs",
     "name": "Southeast Ijo",
     "ltdi": 0.05,
-    "rank": 2646,
+    "rank": 2647,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.496
@@ -523,7 +523,7 @@
     "code": "mgi",
     "name": "Lijili",
     "ltdi": 0.0536,
-    "rank": 1765,
+    "rank": 1766,
     "tier": "lo",
     "other": "Still",
     "gap": 0.488
@@ -532,7 +532,7 @@
     "code": "bjk",
     "name": "Barok",
     "ltdi": 0.0533,
-    "rank": 1780,
+    "rank": 1781,
     "tier": "lo",
     "other": "Still",
     "gap": 0.485
@@ -541,7 +541,7 @@
     "code": "jal",
     "name": "Yalahatan",
     "ltdi": 0.0532,
-    "rank": 1787,
+    "rank": 1788,
     "tier": "lo",
     "other": "Still",
     "gap": 0.484
@@ -550,7 +550,7 @@
     "code": "yes",
     "name": "Nyankpa",
     "ltdi": 0.0531,
-    "rank": 1796,
+    "rank": 1797,
     "tier": "lo",
     "other": "Still",
     "gap": 0.482
@@ -559,7 +559,7 @@
     "code": "juk",
     "name": "Wapan",
     "ltdi": 0.053,
-    "rank": 1804,
+    "rank": 1805,
     "tier": "lo",
     "other": "Still",
     "gap": 0.481
@@ -577,7 +577,7 @@
     "code": "bux",
     "name": "Boghom",
     "ltdi": 0.0529,
-    "rank": 1809,
+    "rank": 1810,
     "tier": "lo",
     "other": "Still",
     "gap": 0.478
@@ -586,7 +586,7 @@
     "code": "miu",
     "name": "Cacaloxtepec Mixtec",
     "ltdi": 0.0529,
-    "rank": 1809,
+    "rank": 1810,
     "tier": "lo",
     "other": "Still",
     "gap": 0.478
@@ -595,7 +595,7 @@
     "code": "rth",
     "name": "Ratahan",
     "ltdi": 0.0522,
-    "rank": 1881,
+    "rank": 1882,
     "tier": "lo",
     "other": "Still",
     "gap": 0.473
@@ -604,7 +604,7 @@
     "code": "cng",
     "name": "Northern Qiang",
     "ltdi": 0.0513,
-    "rank": 1908,
+    "rank": 1909,
     "tier": "lc",
     "other": "Still",
     "gap": 0.461
@@ -613,7 +613,7 @@
     "code": "sya",
     "name": "Siang",
     "ltdi": 0.0513,
-    "rank": 2020,
+    "rank": 2022,
     "tier": "lo",
     "other": "Still",
     "gap": 0.461
@@ -622,7 +622,7 @@
     "code": "tks",
     "name": "Takestani",
     "ltdi": 0.0513,
-    "rank": 1918,
+    "rank": 1919,
     "tier": "lc",
     "other": "Still",
     "gap": 0.461
@@ -631,7 +631,7 @@
     "code": "xte",
     "name": "Ketengban",
     "ltdi": 0.0513,
-    "rank": 1974,
+    "rank": 1976,
     "tier": "lo",
     "other": "Still",
     "gap": 0.461
@@ -640,7 +640,7 @@
     "code": "dmk",
     "name": "Domaaki",
     "ltdi": 0.0512,
-    "rank": 2106,
+    "rank": 2108,
     "tier": "lo",
     "other": "Still",
     "gap": 0.449
@@ -649,7 +649,7 @@
     "code": "avt",
     "name": "Au",
     "ltdi": 0.05,
-    "rank": 2251,
+    "rank": 2253,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.431
@@ -658,7 +658,7 @@
     "code": "big",
     "name": "Biangai",
     "ltdi": 0.05,
-    "rank": 2243,
+    "rank": 2245,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.431
@@ -667,7 +667,7 @@
     "code": "bmh",
     "name": "Kein",
     "ltdi": 0.05,
-    "rank": 2173,
+    "rank": 2175,
     "tier": "lo",
     "other": "Emerging",
     "gap": -0.431

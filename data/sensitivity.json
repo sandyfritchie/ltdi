@@ -14,18 +14,18 @@
   {
    "ranks": "61–200",
    "languages": 140,
-   "median_range": 14,
+   "median_range": 15,
    "within_10pct": 0.957
   },
   {
    "ranks": "201–1,000",
-   "languages": 800,
+   "languages": 802,
    "median_range": 292,
-   "within_10pct": 0.136
+   "within_10pct": 0.133
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3008,
+   "languages": 3006,
    "median_range": 448,
    "within_10pct": 0.5
   }
@@ -47,19 +47,19 @@
      "to": 33
     },
     {
-     "name": "Yue Chinese",
-     "from": 82,
-     "to": 80
-    },
-    {
-     "name": "Standard Moroccan Tamazight",
-     "from": 268,
-     "to": 270
-    },
-    {
      "name": "Persian",
      "from": 25,
      "to": 27
+    },
+    {
+     "name": "Hebrew",
+     "from": 27,
+     "to": 25
+    },
+    {
+     "name": "Greek",
+     "from": 24,
+     "to": 26
     }
    ]
   },
@@ -79,14 +79,14 @@
      "to": 30
     },
     {
+     "name": "Yue Chinese",
+     "from": 79,
+     "to": 82
+    },
+    {
      "name": "Malay",
      "from": 36,
      "to": 39
-    },
-    {
-     "name": "Yue Chinese",
-     "from": 82,
-     "to": 84
     },
     {
      "name": "Ukrainian",
@@ -98,32 +98,32 @@
   {
    "label": "Every technology weighted equally",
    "spearman": 0.9971,
-   "moved_10_in_top_300": 9,
+   "moved_10_in_top_300": 6,
    "largest": [
     {
      "name": "Lower Sorbian",
-     "from": 214,
-     "to": 199
+     "from": 215,
+     "to": 201
     },
     {
-     "name": "Piemontese",
-     "from": 216,
-     "to": 202
+     "name": "Shan",
+     "from": 178,
+     "to": 165
     },
     {
      "name": "North Ndebele",
-     "from": 297,
-     "to": 284
+     "from": 298,
+     "to": 285
     },
     {
      "name": "Kölsch",
-     "from": 292,
-     "to": 280
+     "from": 293,
+     "to": 281
     },
     {
-     "name": "Cherokee",
-     "from": 271,
-     "to": 259
+     "name": "Bavarian",
+     "from": 266,
+     "to": 254
     }
    ]
   }

@@ -103,6 +103,8 @@ mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=6,f7b73ed34db6
 mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=7,7214a19a74d7c026d6d98f0f76eb1a761649a625ba312045a9fe94dbb03cd4fe,2026-11-21
 mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=8,6245f6ca5d94605dd39ac049c1c98b46e346520f73d16ffa9f1f9f42a7dcaaaa,2026-11-21
 mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=9,14eeff160f9fdf3f477665880f1377ff598939e928e269cfa14d3cd67808ad5a,2026-11-21
+mediawiki,https://github.com/wikimedia/mediawiki@d94bb4a26739278a5f125a3ba57af1af62d3705c,d94bb4a26739278a5f125a3ba57af1af62d3705c,2026-11-23
+mediawiki,https://github.com/wikimedia/mediawiki@f81b1d734181e1b6b5c5d3d7208e5f0c1804cfcf,f81b1d734181e1b6b5c5d3d7208e5f0c1804cfcf,2025-11-23
 mms,https://dl.fbaipublicfiles.com/mms/asr/mms1b_all_langs.html,43ae4e7cf25328656f5f09d5df8e10aac927cfc1ff66864f9b2659fe64f17a3f,2026-11-08
 mms,https://dl.fbaipublicfiles.com/mms/tts/all-tts-languages.html,41d1aeafa67315bf7c0a1a34196384faf6523ce36e974557ba8b40dfd16f039e,2026-11-08
 mt_quality,https://github.com/cmu-llab/gpt_mt_benchmark@0326b5217cb998e63b8ee90e7830c37cce16eb9b,0326b5217cb998e63b8ee90e7830c37cce16eb9b,2026-11-12

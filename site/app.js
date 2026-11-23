@@ -846,7 +846,7 @@ function readiness(l, t, o = { com: false, q: 'all' }) {
     llm: [['100 million words of web text', ww >= 1e8], ['Covered by a public benchmark', fl('b')], ['A published LLM result', llmResult]],
     keyboard: [unicode, ['An open keyboard layout (Keyman)', has('kb_open_keyman')], ['A spell-check dictionary or a million words of text', has('proof_hunspell') || ww >= 1e6],
       ['A word-frequency list, for predictions (Corpus Crawler)', fl('w')], cldr],
-    interface: [unicode, cldr, ['Volunteer localisers (Firefox is translated)', l._offers.has('ui_firefox')]],
+    interface: [unicode, cldr, ['Volunteer localisers (Firefox or MediaWiki is translated)', l._offers.has('ui_firefox') || l._offers.has('ui_mediawiki')]],
     ocr: [unicode, ['A Noto font', fl('n')], ['An open OCR model (Tesseract)', has('ocr_open_tesseract')], text1m(', for training')],
     proofing: [['An open spell checker (Hunspell or LanguageTool)', has('proof_hunspell') || has('proof_languagetool')], text1m(''),
       ['A word-frequency list (Corpus Crawler)', fl('w')], ['A Universal Dependencies treebank', fl('d')]],

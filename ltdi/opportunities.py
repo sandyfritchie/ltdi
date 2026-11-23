@@ -102,10 +102,10 @@ RULES = {
         "missing": "Native speakers contributing through the CLDR Survey Tool to reach modern coverage."},
     "text-collect": {"teams": ["data", "funding"], "starter": ["web_text_words", "wikipedia_articles"],
         "missing": "Digitised books, news and public-sector text, with OCR where needed and clear licences."},
-    "ui-platforms": {"teams": ["standards"], "starter": ["ui_firefox", "cldr_coverage"],
+    "ui-platforms": {"teams": ["standards"], "starter": ["ui_firefox", "ui_mediawiki", "cldr_coverage"],
         "missing": "Translators and reviewers for the remaining platforms, and a shared glossary of interface terms "
                    "so the same button reads the same everywhere."},
-    "ui-community": {"teams": ["standards"], "starter": ["ui_firefox", "cldr_coverage"],
+    "ui-community": {"teams": ["standards"], "starter": ["ui_firefox", "ui_mediawiki", "cldr_coverage"],
         "missing": "Permission to reuse the volunteer translations and terminology, and paid review before a "
                    "platform launch."},
     "ui-none": {"teams": ["standards", "funding"], "starter": ["cldr_coverage", "web_text_words"],
