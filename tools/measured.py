@@ -6,6 +6,8 @@ language, and write the results back into config. Run quarterly by .github/workf
   OpenSLR                  hours, from every clip's audio     (config/openslr_archives.csv)
   Bloom Library            hours, from every clip's audio     (Hugging Face, gated: needs HF_TOKEN)
   MADLAD-400               words, from every document         (Hugging Face; its smaller languages)
+  IndicVoices              hours, from its duration column    (Hugging Face, gated: needs HF_TOKEN; read with
+                                                               range requests, since its files are terabytes)
 
   python tools/measured.py jobs                  the Actions matrix: one entry per job and shard
   python tools/measured.py run JOB I/N           measure one shard, printing the measuring tools' lines
@@ -35,9 +37,11 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from ltdi.collectors._common import ltdi_codes  # noqa: E402
 from ltdi.crosswalk import to_ltdi  # noqa: E402
+from ltdi.names import resolve  # noqa: E402
 
 CONFIG = ROOT / "config"
-SHARDS = {"omnilingual": 8, "waxal_tts": 4, "openslr": 8, "bloom": 1, "madlad": 4}
+SHARDS = {"omnilingual": 8, "waxal_tts": 4, "openslr": 8, "bloom": 1, "madlad": 4, "indicvoices": 4}
+INDICVOICES = "ai4bharat/IndicVoices"
 HF = "https://huggingface.co"
 OMNI, WAXAL, MADLAD = "facebook/omnilingual-asr-corpus", "google/WaxalNLP", "allenai/MADLAD-400"
 
@@ -47,6 +51,8 @@ ROWS = {
                     "Meta's commissioned recordings of people answering questions in their own words, transcribed; hours measured from its files"),
     "waxal_tts": ("WAXAL TTS", "CC BY 4.0 or CC BY-SA 4.0", f"{HF}/datasets/{WAXAL}",
                   "Studio recordings of single speakers reading phonetically balanced scripts; hours measured from its files"),
+    "indicvoices": ("IndicVoices", "CC BY 4.0", f"{HF}/datasets/{INDICVOICES}",
+                    "Natural, read and conversational speech from across India (AI4Bharat), transcribed; hours from every clip's duration in the Hugging Face release (train and valid); gated: accept its terms on Hugging Face"),
     "bloom_open": ("Bloom Library", "CC BY-SA 4.0 or CC0", f"{HF}/datasets/sil-ai/bloom-speech",
                    "Read speech aligned with the text of illustrated books from bloomlibrary.org (SIL); hours measured from its audio"),
     "bloom_restricted": ("Bloom Library (non-commercial)", "CC BY-NC and similar", f"{HF}/datasets/sil-ai/bloom-speech",
@@ -103,6 +109,8 @@ def run(job: str, shard: str) -> None:
         cmd = [sys.executable, "tools/audio_hours.py", "--urls", *urls, "--shard", shard]
     elif job == "bloom":
         cmd = [sys.executable, "tools/bloom_counts.py"]
+    elif job == "indicvoices":
+        cmd = [sys.executable, "tools/audio_hours.py", INDICVOICES, "", "--ranged", "--shard", shard]
     elif job == "madlad":
         labels = [k for k, (n, _) in madlad_audit().items() if n < 200_000]
         cmd = [sys.executable, "tools/text_words.py", MADLAD, *labels, "--shard", shard]
@@ -158,6 +166,9 @@ def ingest(folder: Path, force: bool) -> None:
             code = to_ltdi(WAXAL_CODES.get(lang, lang))
             if code in codes:  # each provider's licence, as WAXAL's card lists them
                 meta[(name, code)] = ("CC BY 4.0" if lang in WAXAL_CC_BY else "CC BY-SA 4.0", url, note)
+        elif src == INDICVOICES:
+            name, lic, url, note = ROWS["indicvoices"]
+            code = resolve(path.split("/")[0].title())
         elif src in slr:
             a = slr[src]
             (name, lic), code = OPENSLR[a["kind"]], a["language"]
@@ -184,7 +195,8 @@ def ingest(folder: Path, force: bool) -> None:
     with (CONFIG / "speech_datasets.csv").open(encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
     fields = list(rows[0])
-    keep = [r for r in rows if not (r["dataset"] in hours and r.get("basis") == "measured")]
+    # IndicVoices' measured hours replace the paper's first-release figures
+    keep = [r for r in rows if not (r["dataset"] in hours and (r.get("basis") == "measured" or r["dataset"] == "IndicVoices"))]
     old = defaultdict(dict)
     for r in rows:
         if r["dataset"] in hours and r.get("basis") == "measured":

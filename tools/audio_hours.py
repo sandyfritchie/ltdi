@@ -23,6 +23,7 @@ import os
 import sys
 import tarfile
 import tempfile
+import time
 import urllib.request
 import zipfile
 
@@ -42,7 +43,54 @@ def files(dataset: str, prefix: str) -> list[str]:
     return sorted(out)
 
 
-def seconds(path: str) -> tuple[int, float]:
+class RangeFile(io.RawIOBase):
+    """A remote file read with HTTP range requests, so pyarrow fetches only the footer and the columns it
+    needs: IndicVoices' duration column is a few kilobytes of each multi-gigabyte file."""
+
+    def __init__(self, url: str, headers: dict):
+        req = urllib.request.Request(url, headers={**UA, **headers, "Range": "bytes=0-0"})
+        with urllib.request.urlopen(req, timeout=120) as r:
+            self.url = r.geturl()  # the signed download address the Hub redirects to
+            self.size = int(r.headers["Content-Range"].split("/")[1])
+        self.pos = 0
+
+    def seekable(self):
+        return True
+
+    def readable(self):
+        return True
+
+    def tell(self):
+        return self.pos
+
+    def seek(self, offset, whence=0):
+        self.pos = offset if whence == 0 else self.pos + offset if whence == 1 else self.size + offset
+        return self.pos
+
+    def read(self, n=-1):
+        end = self.size if n is None or n < 0 else min(self.size, self.pos + n)
+        if end <= self.pos:
+            return b""
+        for attempt in range(4):
+            try:
+                req = urllib.request.Request(self.url, headers={**UA, "Range": f"bytes={self.pos}-{end - 1}"})
+                with urllib.request.urlopen(req, timeout=300) as r:
+                    data = r.read()
+                break
+            except Exception:  # noqa: BLE001
+                if attempt == 3:
+                    raise
+                time.sleep(5 * (attempt + 1))
+        self.pos += len(data)
+        return data
+
+    def readinto(self, b):
+        data = self.read(len(b))
+        b[:len(data)] = data
+        return len(data)
+
+
+def seconds(path) -> tuple[int, float]:
     f = pq.ParquetFile(path)
     names = f.schema_arrow.names
     dur = next((n for n in names if n.lower() in ("duration", "duration_s", "duration_sec", "audio_duration")), None)
@@ -107,6 +155,7 @@ def main() -> None:
     ap.add_argument("prefix", nargs="?")
     ap.add_argument("--urls", nargs="*")
     ap.add_argument("--shard", default="0/1")
+    ap.add_argument("--ranged", action="store_true", help="read only a duration column, with range requests")
     a = ap.parse_args()
     i, n = map(int, a.shard.split("/"))
     if a.urls:
@@ -122,6 +171,20 @@ def main() -> None:
     print(f"{len(todo)} files in shard {a.shard}", file=sys.stderr)
     token = os.environ.get("HF_TOKEN")
     for p in todo:
+        if a.ranged:  # only the duration column is read, over HTTP
+            for attempt in range(3):
+                try:
+                    f = RangeFile(f"{HF}/datasets/{a.dataset}/resolve/main/{p}", {"Authorization": f"Bearer {token}"} if token else {})
+                    clips, secs = seconds(f)
+                    break
+                except Exception as e:  # noqa: BLE001
+                    print(f"retrying {p}: {e}", file=sys.stderr)
+                    time.sleep(20)
+            else:
+                print(f"failed {p}", file=sys.stderr)
+                continue
+            print(f"HOURS\t{a.dataset}\t{p}\t{clips}\t{secs:.1f}", flush=True)
+            continue
         with tempfile.NamedTemporaryFile(suffix=".parquet") as tmp:
             req = urllib.request.Request(f"{HF}/datasets/{a.dataset}/resolve/main/{p}",
                                          headers={"Authorization": f"Bearer {token}"} if token else {})

@@ -19,6 +19,9 @@ on:
       shards:
         description: "Parallel jobs (1-8)"
         default: "8"
+      ranged:
+        description: "Read only a duration column, with range requests (for very large datasets)"
+        default: "false"
 
 permissions:
   contents: read
@@ -46,5 +49,6 @@ jobs:
           if [ -n "$URLS" ]; then
             python tools/audio_hours.py --urls $URLS --shard "${{ matrix.shard }}/${{ inputs.shards }}"
           else
-            python tools/audio_hours.py "${{ inputs.dataset }}" "${{ inputs.prefix }}" --shard "${{ matrix.shard }}/${{ inputs.shards }}"
+            python tools/audio_hours.py "${{ inputs.dataset }}" "${{ inputs.prefix }}" --shard "${{ matrix.shard }}/${{ inputs.shards }}" \
+              $([ "${{ inputs.ranged }}" = "true" ] && echo --ranged)
           fi
