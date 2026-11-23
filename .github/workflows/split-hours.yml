@@ -1,0 +1,33 @@
+# Hours of gated Hugging Face datasets split by a column (tools/split_hours.py); results are SPLIT lines in the log.
+# gh workflow run split-hours.yml -f column=type -f datasets="Africanvoice/hausa_african_voices ..."
+name: Split hours
+
+on:
+  workflow_dispatch:
+    inputs:
+      column:
+        description: "Column to split by"
+        default: "type"
+      datasets:
+        description: "Hugging Face dataset ids, separated by spaces"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install pyarrow soundfile
+      - name: Measure
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          DATASETS: ${{ inputs.datasets }}
+          COLUMN: ${{ inputs.column }}
+        run: python tools/split_hours.py "$COLUMN" $DATASETS
