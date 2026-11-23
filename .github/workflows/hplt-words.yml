@@ -1,0 +1,21 @@
+# Estimates HPLT 3.0's words per language from its manifest and sample documents (tools/hplt_words.py).
+# The results are in the job log (lines starting HPLT); ingest them with tools/hplt_words.py --ingest.
+name: HPLT words
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  count:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Count
+        run: python tools/hplt_words.py
