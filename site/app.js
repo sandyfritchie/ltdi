@@ -1084,7 +1084,7 @@ function dimPanel(l, key, color) {
   body += provList(l, key, facts, vfacts, wname);
   // at first a single bar with "See breakdown"; the breakdown (and, for technology, Expand all and Hide all) behind it
   const open = dimOpen.has(key);
-  return `<section class="dim wide${open ? ' open' : ''}${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span class="h3r">${key === 'tech' ? '<span class="xall"><button type="button" class="chip" data-xall="1">Expand all</button><button type="button" class="chip" data-xall="0">Hide all</button></span>' : ''}<button type="button" class="chip bdbtn" data-bd="${key}" aria-expanded="${open}" aria-controls="bd-${key}">${open ? 'Hide breakdown' : 'See breakdown'}</button><span class="hs">${d.score.toFixed(2)}</span></span></h3>${bar(d.score)}
+  return `<section class="dim wide${open ? ' open' : ''}${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><div class="dim-top"><h3>${esc(CFG[key].label)}<span class="h3r">${key === 'tech' ? '<span class="xall"><button type="button" class="chip" data-xall="1">Expand all</button><button type="button" class="chip" data-xall="0">Hide all</button></span>' : ''}<button type="button" class="chip bdbtn" data-bd="${key}" aria-expanded="${open}" aria-controls="bd-${key}">${open ? 'Hide breakdown' : 'See breakdown'}</button><span class="hs">${d.score.toFixed(2)}</span></span></h3>${bar(d.score)}</div>
     <div class="dim-body" id="bd-${key}">${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</div></section>`;
 }
 
@@ -1240,8 +1240,10 @@ async function language(code) {
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
   bindTechPanel();
-  $('#view').querySelectorAll('[data-bd]').forEach(b => b.onclick = () => {
-    const sec = b.closest('section.dim'), open = !sec.classList.contains('open');
+  // the button, or a click anywhere else in the panel's top (its title, score and bar), opens or closes the breakdown
+  $('#view').querySelectorAll('.dim-top').forEach(top => top.onclick = e => {
+    if (e.target.closest('button:not(.bdbtn)')) return;  // Expand all and Hide all do their own thing
+    const b = top.querySelector('.bdbtn'), sec = top.closest('section.dim'), open = !sec.classList.contains('open');
     sec.classList.toggle('open', open); open ? dimOpen.add(b.dataset.bd) : dimOpen.delete(b.dataset.bd);
     b.setAttribute('aria-expanded', String(open)); b.textContent = open ? 'Hide breakdown' : 'See breakdown';
   });
