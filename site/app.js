@@ -768,6 +768,7 @@ document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k 
   section.focus-regional .tile[data-prov]:not([data-regional]) { opacity: .3; }</style>`);
 let provFocus = null, moreOpen = false, provsOpen = false;  // remembered while moving between languages
 const techOpen = new Set();  // the technologies whose services are shown, remembered likewise
+const dimOpen = new Set();  // the panels (tech, data) whose breakdown is shown, remembered likewise
 const ROLE_OF = Object.fromEntries(DATA.services.map(s => [s.id, s.role]));
 const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => [s.id, s.depth]));
 // A published quality measure that discounts a service where it's poor (services.csv: quality)
@@ -1081,7 +1082,10 @@ function dimPanel(l, key, color) {
     body += '</div>';
   }
   body += provList(l, key, facts, vfacts, wname);
-  return `<section class="dim wide${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span class="h3r">${key === 'tech' ? '<span class="xall"><button type="button" class="chip" data-xall="1">Expand all</button><button type="button" class="chip" data-xall="0">Hide all</button></span>' : ''}<span class="hs">${d.score.toFixed(2)}</span></span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</section>`;
+  // at first a single bar with "See breakdown"; the breakdown (and, for technology, Expand all and Hide all) behind it
+  const open = dimOpen.has(key);
+  return `<section class="dim wide${open ? ' open' : ''}${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span class="h3r">${key === 'tech' ? '<span class="xall"><button type="button" class="chip" data-xall="1">Expand all</button><button type="button" class="chip" data-xall="0">Hide all</button></span>' : ''}<button type="button" class="chip bdbtn" data-bd="${key}" aria-expanded="${open}" aria-controls="bd-${key}">${open ? 'Hide breakdown' : 'See breakdown'}</button><span class="hs">${d.score.toFixed(2)}</span></span></h3>${bar(d.score)}
+    <div class="dim-body" id="bd-${key}">${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</div></section>`;
 }
 
 // The World Bank's internet-use page for the countries the figures are weighted by (named in the note)
@@ -1236,6 +1240,11 @@ async function language(code) {
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
   bindTechPanel();
+  $('#view').querySelectorAll('[data-bd]').forEach(b => b.onclick = () => {
+    const sec = b.closest('section.dim'), open = !sec.classList.contains('open');
+    sec.classList.toggle('open', open); open ? dimOpen.add(b.dataset.bd) : dimOpen.delete(b.dataset.bd);
+    b.setAttribute('aria-expanded', String(open)); b.textContent = open ? 'Hide breakdown' : 'See breakdown';
+  });
   $('#view').querySelectorAll('[data-pv]').forEach(b => b.onclick = () => {
     provFocus = provFocus === b.dataset.pv ? null : b.dataset.pv;
     const sec = $('section.dim.techdim');

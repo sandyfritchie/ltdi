@@ -357,6 +357,11 @@ a.indlink:hover { color: var(--accent); }
 .xall { display: flex; gap: 6px; align-self: center; }
 .xall .chip { font: 12px var(--font-body); padding: 4px 9px; white-space: nowrap; }
 .xall .chip:disabled { opacity: .45; cursor: default; }
+/* a panel shows a single bar until its breakdown is opened */
+.dim > .bar { height: 10px; border-radius: 5px; } .dim > .bar i { background: var(--c); border-radius: 5px; }
+.dim:not(.open) .dim-body, .dim:not(.open) .xall { display: none; }
+.dim.open > .bar { margin-bottom: 16px; }
+.bdbtn { font: 12px var(--font-body); padding: 4px 9px; white-space: nowrap; align-self: center; min-width: 9.5em; text-align: center; }  /* the same width open or closed */
 .dim.wide { grid-column: 1 / -1; }
 .techrow { padding-block: 12px; border-top: 1px solid var(--rule); }
 .techrow:first-of-type { border-top: 0; padding-top: 0; }
