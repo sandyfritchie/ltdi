@@ -182,7 +182,7 @@ label = "Keyboard"
 weight = 1
 
 [dimensions.tech.technologies.speech_input]
-label = "Speech input"
+label = "Speech-to-text"
 weight = 1
 
 [dimensions.tech.technologies.tts]
@@ -195,7 +195,7 @@ weight = 1
 
 [dimensions.tech.technologies.llm]
 label = "LLMs"
-help = "The languages each company documents for its chat app or model, from its official list. A model may also work, unevenly, in languages its company doesn't list; the Index counts what each company commits to, the one thing it can check the same way for every company."
+help = "{name} is listed as supported here if the company documents it in its official list for its chat app or model. LLMs may also work, unevenly, in languages the companies don't list as officially supported."
 # Availability in the official language lists (the Gemini, Copilot, ChatGPT and
 # Claude apps; Meta AI's Llama 4, Mistral's and Qwen3's model lists; Cohere Labs' open
 # Tiny Aya, as an open model; a presence

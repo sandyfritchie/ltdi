@@ -159,11 +159,11 @@ COVERAGE = {
         lambda c: "Community layouts are published under an open licence. Converting one to CLDR Keyboards format "
                   "would let phone keyboards adopt it."),
     "asr-vendors": ("speech_input", "some", "share",
-        lambda c: f"Speech input is offered by {c['n']} of {c['of']} major services",
+        lambda c: f"Speech-to-text is offered by {c['n']} of {c['of']} major services",
         lambda c: f"Some services already recognise this language. Open training data includes {_hours(c['hours'])} "
                   f"of transcribed speech {c['sets']}."),
     "asr-none": ("speech_input", "open", "share",
-        lambda c: "No speech input service found among those tracked, though open resources exist",
+        lambda c: "No speech-to-text service found among those tracked, though open resources exist",
         lambda c: f"Open datasets hold {_hours(c['hours'])} of transcribed speech"
                   + (", and an open model lists the language" if c["open"] else "") + "."),
     "tts-vendors": ("tts", "some", "share",
@@ -319,7 +319,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             "of openly licensed web text, enough to train word prediction.",
             (4 - feats) / 4, ["kb_apple_features", "web_text_words"])
 
-    # Speech input: error rates and data
+    # Speech-to-text: error rates and data
     wer = _v(f, "asr_whisper_fleurs_wer")
     if wer is not None and wer >= 100:
         if cv or any(_v(f, i) for i in ASR_OPEN):  # something to measure

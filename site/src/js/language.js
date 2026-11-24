@@ -22,12 +22,6 @@ const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => 
 const QUALITY_OF = Object.fromEntries(DATA.services.filter(s => s.quality).map(s => [s.id, s]));
 // Who measured each published quality figure, and on what (services.csv: quality_by, test_set, test_size, test_public)
 const TEST_OF = Object.fromEntries(DATA.services.filter(s => s.test_set).map(s => [s.id, s]));
-const measuredShort = id => { const t = TEST_OF[id]; if (!t) return '';
-  return `measured ${t.quality_by === 'own' ? 'by its makers' : 'independently'} on ${t.test_public === 'no' ? 'test data that isn\u2019t public' : t.test_set}`; };
-const measuredLong = id => { const t = TEST_OF[id]; if (!t) return '';
-  const who = t.quality_by === 'own' ? 'Measured by the makers, so shown but not scored' : 'Measured independently';
-  return t.test_public === 'no' ? `${who} on ${t.test_set}, which isn't public, so the figure can't be checked and may read better than on other speech`
-    : `${who} on ${t.test_set} (public${t.test_size ? `; ${t.test_size}` : ''})`; };
 // Families (Glottolog): the groups above each language, and the nearest relatives with more support
 const GN = DATA.gnodes, GN_BY = Object.fromEntries(GN.map(([g], i) => [g, i]));
 const famName = l => l._gp.length ? GN[l._gp[0]][1] : l.giso ? 'Isolate' : '';
@@ -165,36 +159,36 @@ function svcTile(id, own, open, via, wname, unnamed, lname) {
   const lo = !on && LISTED_ONLY.has(id);  // an app's language setting: absence isn't a gap
   // a country locale for this variety that the company doesn't name as the variety: it counts for the standard
   const asStd = !on && unnamed && unnamed[id] ? (BY[unnamed[id]] || {}).name || unnamed[id] : '';
-  let detail = '';
-  if (f.unit === '% of English') detail = `${Math.round(f.value)}% of English`;
-  else if (f.unit === 'accuracy') detail = `${Math.round(f.value * 100)}% accuracy`;
-  else if (f.unit === 'chrF') detail = `${Math.round(f.value)} chrF from English`;
-  else if (on && DEPTH_OF[id]) detail = depthText(facts[DEPTH_OF[id]], DEPTH_OF[id]);
-  const qf = on && QUALITY_OF[id] ? facts[QUALITY_OF[id].quality] : null;
-  if (qf) detail = [detail, qualityText(qf, QUALITY_OF[id])].filter(Boolean).join(' · ');
   const measured = ['% of English', 'accuracy', 'chrF'].includes(f.unit);
-  const figure = measured || (qf && !(qf.unit === '% WER' && qf.value >= 100));  // a published figure, not 'none published'
-  if (figure && TEST_OF[id]) detail = [detail, measuredShort(id)].filter(Boolean).join(' · ');
-  const dep = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : qf;
-  const qline = qf && !['% WER', 'WER band'].includes(qf.unit) ? `${qf.source}: ${Math.round(qf.value)} ${qf.unit}. ${qf.note}` : qf ? `${qf.source}. ${qf.note}` : '';
-  const hover = [f.source, asStd ? `The company lists ${asStd} for a country where ${lname} is spoken, but doesn\u2019t say it\u2019s ${lname}, so the Index counts it for ${asStd}. It may well handle ${lname} speech; the company doesn\u2019t say.` : '', lo ? 'Not in the app\u2019s language setting. The company says the assistant can be used in other languages too, so the Index leaves this out rather than counting it as missing.' : '', qline, dep && dep !== qf && dep.note ? dep.note : qf ? '' : f.note, figure ? measuredLong(id) : ''].filter(Boolean).join('\n');
-  if (thru) detail = [`Through ${wname}`, detail].filter(Boolean).join(' · ');
+  // figures, features and levels are in "Sources, dates and notes", not on the tile; hover still has the source
+  const hover = [f.source, asStd ? `The company lists ${asStd} for a country where ${lname} is spoken, but doesn\u2019t say it\u2019s ${lname}, so the Index counts it for ${asStd}. It may well handle ${lname} speech; the company doesn\u2019t say.` : '', lo ? 'Not in the app\u2019s language setting. The company says the assistant can be used in other languages too, so the Index leaves this out rather than counting it as missing.' : ''].filter(Boolean).join('\n');
+  const detail = thru ? `Through ${wname}` : '';
   return `<a class="tile ${thru ? 'thru' : on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${thru ? '↳' : on ? '✓' : '–'}</span>
-    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : lo ? ' · not in the setting' : asStd ? ` · listed as ${esc(asStd)}` : ' · <span class="vis">Not yet</span>'}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : lo ? ' · not in the setting' : asStd ? ` · listed as ${esc(asStd)}` : ''}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
+// A technology's services, in tile order: the global providers, regional ones (where they offer it), open source,
+// and benchmarks (some only where they cover the language)
+function techIds(t, tk, facts) {
+  const ids = [...(t.consumer || []), ...regionalOn(t, facts), ...(t.open || []),
+    ...Object.keys(t.measured || {}).filter(id => facts[id] || !ONLY_IF_MEASURED.has(id)),
+    // benchmarks that are shown but not scored (measured by the makers): only where they cover the language
+    ...DATA.services.filter(s => s.technology === tk && s.role === 'measured' && !(s.id in (t.measured || {})) && facts[s.id]).map(s => s.id)];
+  const rank = id => { const i = PROV_ORDER.indexOf((SVC[id] || [])[2]); return i < 0 ? PROV_ORDER.length : i; };
+  return [...new Set(ids)].sort((a, b) => rank(a) - rank(b));
+}
 // Locale data: CLDR's coverage level, a tile of its own since no service offers it
 const CLDR_LEVEL = ['Not in CLDR', 'Basic coverage', 'Moderate coverage', 'Modern coverage'];
 function localeTile(f, vf, wname) {
   const thru = vf && (!f || vf.value > f.value);
   const g = thru ? vf : f;
   if (!g) return `<div class="tile off"><span class="mark" aria-hidden="true">–</span><div><span class="by">Unicode CLDR</span><b>Locale data</b><small>Dates, numbers, names · <span class="vis">Not in CLDR</span></small></div></div>`;
-  const lv = Math.round(g.value), det = [thru ? `Through ${wname}` : '', CLDR_LEVEL[lv]].filter(Boolean).join(' · ');
+  const lv = Math.round(g.value), det = thru ? `Through ${wname}` : '';
   const below = !lv && /below basic/.test(g.note);
   return `<a class="tile ${thru ? 'thru' : lv ? 'on' : 'off'}" href="${esc(g.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc([g.source, g.note].filter(Boolean).join('\n'))}">
     <span class="mark" aria-hidden="true">${thru ? '↳' : lv ? '✓' : '–'}</span>
-    <div><span class="by">Unicode CLDR</span><b>Locale data</b><small>Dates, numbers, names${lv ? '' : ` · <span class="vis">${below ? 'Below basic' : 'Not in CLDR'}</span>`}</small>${lv ? `<span class="det">${esc(det)}</span>` : ''}</div></a>`;
+    <div><span class="by">Unicode CLDR</span><b>Locale data</b><small>Dates, numbers, names${lv ? '' : ` · <span class="vis">${below ? 'Below basic' : 'Not in CLDR'}</span>`}</small>${det ? `<span class="det">${esc(det)}</span>` : ''}</div></a>`;
 }
 // Commercial use: what each open resource's licence permits (resources.csv: yes, no, varies)
 const fmtHours = h => h >= 10 ? `${Math.round(h).toLocaleString()} hours` : `${(+h).toFixed(1)} hours`;
@@ -231,43 +225,89 @@ function speechDetail(l, facts) {
 // Every value's source, retrieval date and note, in a list that opens by click, tap or keyboard
 // (the same details are on hover over each value, which touch and keyboard users can't reach)
 const fmtDay = d => { try { return new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }); } catch (e) { return d; } };
-function provItem(label, f, thru) {
-  const u = (f.url || '').split(' ')[0];
-  return `<li><b>${esc(label)}</b>${thru ? ` <span class="muted">through ${esc(thru)}</span>` : ''}: ${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(f.source)}</a>` : esc(f.source)}, retrieved ${esc(fmtDay(f.retrieved))}${f.note ? `. ${esc(f.note)}` : ''}</li>`;
+// One row of the sources table: what, any figure or detail, its source(s), when retrieved, and notes
+const srcLink = f => { const u = (f.url || '').split(' ')[0]; return u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(f.source)}</a>` : esc(f.source); };
+function provRow(label, f, o = {}) {
+  const more = (o.extra || []).filter(g => g && g.source && g.source !== f.source);
+  return `<tr><td><b>${esc(label)}</b>${o.thru ? ` <span class="muted">through ${esc(o.thru)}</span>` : ''}</td>${o.detailCol ? `<td>${o.detail || ''}</td>` : ''}
+    <td>${[f, ...more].map(srcLink).join('<br>')}</td><td class="nw">${esc(fmtDay(f.retrieved))}</td><td>${esc([...new Set((o.notes || [f.note]).filter(Boolean))].join(' '))}</td></tr>`;
 }
+// Who measured a quality figure, as marks on it: * by its makers, † on test data that isn't public (a key under the table)
+const MARKS = { own: '*', hidden: '\u2020' };
+const marksOf = id => { const t = TEST_OF[id]; return t ? (t.quality_by === 'own' ? MARKS.own : '') + (t.test_public === 'no' ? MARKS.hidden : '') : ''; };
+// A service's figures and details for its row: a measured result, its features or level, a quality figure
+function svcFacts(id, facts) {
+  const f = facts[id], out = { detail: '', notes: [f.note], extra: [] };
+  const on = f.unit === 'bool' ? !!f.value : true;
+  const parts = [];
+  if (f.unit === '% of English') parts.push(`${Math.round(f.value)}% of English`);
+  else if (f.unit === 'accuracy') parts.push(`${Math.round(f.value * 100)}% accuracy`);
+  else if (f.unit === 'chrF') parts.push(`${Math.round(f.value)} chrF from English`);
+  const dp = on && DEPTH_OF[id] ? facts[DEPTH_OF[id]] : null;
+  if (dp) { const t = depthText(dp, DEPTH_OF[id]); if (t) parts.push(t); out.notes.push(dp.note); out.extra.push(dp); }
+  const q = QUALITY_OF[id], qf = on && q ? facts[q.quality] : null;
+  if (qf) {
+    const fig = qf.unit === '% WER' ? depthText(qf, q.quality) : qf.unit === 'WER band' ? qf.note.replace(/, as .*/, '') : `${Math.round(qf.value)} ${qf.unit}, ${qualityText(qf, q).toLowerCase()}`;
+    parts.push(fig);
+    if (qf.unit !== 'WER band') out.notes.push(qf.note);
+    out.extra.push(qf);
+  }
+  const figure = ['% of English', 'accuracy', 'chrF'].includes(f.unit) || (qf && !(qf.unit === '% WER' && qf.value >= 100));
+  const t = TEST_OF[id];
+  if (figure && t && t.test_public !== 'no') out.notes.push(`Test set: ${t.test_set.replace(/^the /, '')}${t.test_size ? ` (${t.test_size})` : ''}.`);
+  const said = parts.join('; ').toLowerCase();
+  out.notes = out.notes.filter(n => n && n.toLowerCase() !== said);  // a note that only repeats the detail
+  out.detail = esc(parts.join('; ')) + (figure ? `<sup class="mk">${marksOf(id)}</sup>` : '');
+  out.marks = figure ? marksOf(id) : '';
+  return out;
+}
+const markKey = used => [used.includes(MARKS.own) ? `${MARKS.own} Measured by the company that makes it, so shown but not scored` : '',
+  used.includes(MARKS.hidden) ? `${MARKS.hidden} On test data that isn\u2019t public, so the figure can\u2019t be checked` : ''].filter(Boolean).map(t => `<span>${t}</span>`).join('');
 // a disclosure triangle, drawn the same for every drop-down in the panels
 const TW = '<span class="tw" aria-hidden="true"></span>';
 function provList(l, key, facts, vfacts, wname) {
-  let items = [], n = 0;
-  const add = (label, id) => {
-    if (facts[id]) items.push(provItem(label, facts[id]));
-    if (vfacts && vfacts[id] && vfacts[id] !== facts[id]) items.push(provItem(label, vfacts[id], wname));
-  };
-  if (key === 'tech') {  // grouped by technology, so its name isn't repeated on every line
+  let body = '', n = 0, marks = '';
+  const head = cols => `<thead><tr>${cols.map(c => `<th scope="col">${c}</th>`).join('')}</tr></thead>`;
+  if (key === 'tech') {  // a table, grouped by technology, so its name isn't repeated on every line
     const groups = [];
     for (const [tk, t] of Object.entries(CFG.tech.technologies)) {
-      const ids = t.indicator ? [t.indicator] : [...(t.consumer || []), ...(t.regional || []), ...(t.open || []),
-        ...Object.keys(t.measured || {}), ...Object.keys(t.depth || {}), ...Object.values(t.quality || {}).map(q => q.indicator)];
-      items = [];
-      // a service's own name; a detail of one (its features, level, voices) as "iOS features"; locale data as its source
-      const name = id => SVC[id] ? SVC[id][0] : (t.depth_owner || {})[id] && SVC[t.depth_owner[id]]
-        ? `${SVC[t.depth_owner[id]][0]} ${id.slice(t.depth_owner[id].length + 1).replace(/_/g, ' ')}` : id === t.indicator ? 'Unicode CLDR' : DATA.labels[id] || id;
-      for (const id of [...new Set(ids)]) add(name(id), id);
-      if (items.length) groups.push(`<li class="pgroup"><b>${esc(t.label)}</b><ul>${items.join('')}</ul></li>`);
-      n += items.length;
+      const rows = [];
+      const add = (fs, thru) => {
+        if (t.indicator) {
+          const f = fs && fs[t.indicator];
+          if (f) rows.push(provRow('Unicode CLDR', f, { thru, detailCol: true, detail: esc(CLDR_LEVEL[Math.round(f.value)] || '') }));
+          return;
+        }
+        for (const id of techIds(t, tk, facts)) {
+          const f = fs && fs[id];
+          if (!f || (thru && f === facts[id])) continue;
+          const x = svcFacts(id, fs);
+          marks += x.marks;
+          rows.push(provRow((SVC[id] || [])[0] || DATA.labels[id] || id, f, { thru, detailCol: true, detail: x.detail, notes: x.notes, extra: x.extra }));
+        }
+      };
+      add(facts); if (vfacts) add(vfacts, wname);
+      if (rows.length) groups.push(`<tbody><tr class="pg"><th colspan="5" scope="rowgroup">${TICON[tk] || ''}${esc(t.label)}</th></tr>${rows.join('')}</tbody>`);
+      n += rows.length;
     }
-    items = groups;
+    if (groups.length) body = `<div class="ptable"><table>${head(['Service', 'Detail', 'Source', 'Retrieved', 'Notes'])}${groups.join('')}</table></div>${marks ? `<p class="mkey">${markKey(marks)}</p>` : ''}`;
   } else {
+    const rows = [];
+    const add = (label, id) => {
+      if (facts[id]) rows.push(provRow(label, facts[id]));
+      if (vfacts && vfacts[id] && vfacts[id] !== facts[id]) rows.push(provRow(label, vfacts[id], { thru: wname }));
+    };
     for (const [ik, spec] of Object.entries(CFG[key].indicators)) {
       add(spec.label, ik);
       if (spec.narrowed_by) add(spec.label + ' · Bible-site share', spec.narrowed_by);
     }
     if (key === 'data') add('Word-frequency list (not scored; in the keyboard and spelling checklists)', 'wordlist_corpuscrawler');
+    n = rows.length;
+    if (rows.length) body = `<div class="ptable"><table>${head(['Indicator', 'Source', 'Retrieved', 'Notes'])}<tbody>${rows.join('')}</tbody></table></div>`;
   }
-  if (key !== 'tech') n = items.length;
   const speech = key === 'data' ? speechDetail(l, facts) : '';
-  if (!items.length && !speech) return '';
-  return `<details class="prov"><summary>${TW}<span class="dd-title">Sources, dates and notes</span> <span class="muted">· ${n}</span></summary><ul${key === 'tech' ? ' class="pgroups"' : ''}>${items.join('')}</ul>${speech}</details>`;
+  if (!body && !speech) return '';
+  return `<details class="prov"><summary>${TW}<span class="dd-title">Sources, dates and notes</span> <span class="muted">· ${n}</span></summary>${body}${speech}</details>`;
 }
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
@@ -281,18 +321,13 @@ function dimPanel(l, key, color) {
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
       const vs = vd && vd.indicators[tk] != null && vd.indicators[tk] !== s ? vd.indicators[tk] : null;
-      const ids = [...(t.consumer || []), ...regionalOn(t, facts), ...(t.open || []),
-        ...Object.keys(t.measured || {}).filter(id => facts[id] || !ONLY_IF_MEASURED.has(id)),
-        // benchmarks that are shown but not scored (measured by the makers): only where they cover the language
-        ...DATA.services.filter(s => s.technology === tk && s.role === 'measured' && !(s.id in (t.measured || {})) && facts[s.id]).map(s => s.id)];
-      const order = PROV_ORDER, rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
       const tiles = t.indicator ? localeTile(facts[t.indicator], vfacts && vfacts[t.indicator], wname)
-        : [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname, l.unnamed, l.name)).join('');
+        : techIds(t, tk, facts).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname, l.unnamed, l.name)).join('');
       // the score and bar always shown; the services it rests on behind the triangle
       const row = `<details class="techrow" data-tk="${tk}"${techOpen.has(tk) ? ' open' : ''}><summary>
         <div class="tech-h">${TW}${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
         ${s == null ? '' : bar(s)}</summary>
-        ${t.help ? `<p class="tech-help">${esc(t.help)}</p>` : ''}<div class="tiles">${tiles}</div></details>`;
+        ${t.help ? `<p class="tech-help">${esc(t.help.replace('{name}', l.name))}</p>` : ''}<div class="tiles">${tiles}</div></details>`;
       if (t.group === 'more') { more.push(row); peek.push(`<span title="${esc(t.label)}">${TICON[tk] || ''}<span class="sr">${esc(t.label)}</span>${sv}</span>`); }
       else main.push(row);
     }

@@ -212,7 +212,7 @@ const OBLURB = {
   improve: 'Support exists, but quality lags well behind English.',
   collect: 'The data really is scarce and has to be created.',
 };
-const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs',
+const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech-to-text', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs',
   interface: 'Interface language', ocr: 'Text recognition', proofing: 'Spelling and grammar', assistant: 'Voice assistant', langid: 'Language identification', locale: 'Locale data', writing: 'Writing system', data: 'Data' };
 // Where the floor lifts a dimension, its unfloored score: what the rank goes by among languages the floor puts level
 const rawText = l => l.raw ? `Before the floor of ${DATA.config.meta.floor}: ${DIMS.filter(([k]) => k in l.raw).map(([k]) => `${CFG[k].label.toLowerCase()} ${l.raw[k].toFixed(3)}`).join(', ')}` : '';

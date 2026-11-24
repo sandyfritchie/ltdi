@@ -74,7 +74,7 @@ function gapsCell(l) {
 // several are counted in each), the share of languages and of speakers in each tier, and the
 // speakers whose language has no commercial service for each main technology
 const pctBand = r => r >= 0.75 ? 4 : r >= 0.5 ? 3 : r >= 0.25 ? 2 : 1;  // share online, for colour
-const GAP_SHORT = { speech_input: 'Speech input', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLM app lists', keyboard: 'Keyboard', assistant: 'Voice assistant' };
+const GAP_SHORT = { speech_input: 'Speech-to-text', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLM app lists', keyboard: 'Keyboard', assistant: 'Voice assistant' };
 const GAP_TITLE = { llm: "Speakers whose language is in no major AI assistant's official language list (models may still answer in it)" };
 // technologies counted through a spoken variety's written standard ([written_standard] in the methodology)
 const WRITTEN_TECH = new Set(DATA.config.written_standard ? DATA.config.written_standard.technologies : []);
@@ -150,7 +150,7 @@ function ranking() {
     </table></div>
     <div id="rankmore"></div>
     <div id="censusnote"></div>
-    <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech input, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Languages with the same score share a rank, shown as =1,914. Select a language to see every value and its source. <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">Download the scores (CSV)</a>.</p>`;
+    <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech-to-text, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Languages with the same score share a rank, shown as =1,914. Select a language to see every value and its source. <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">Download the scores (CSV)</a>.</p>`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const all = (endSel.size ? ALL.filter(l => endSel.has(endKey(l))) : LANGS).filter(l => inView(l)

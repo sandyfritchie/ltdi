@@ -314,9 +314,18 @@ details.prov summary { cursor: pointer; }
 .prov-speech p { margin: 6px 0 0; }
 .prov-speech .prov-sub { margin-top: 10px; color: var(--muted); font-weight: 600; }
 details.prov > summary .muted { font-size: 14px; color: var(--muted); }
-details.prov ul.pgroups { list-style: none; padding-inline-start: 0; gap: 10px; }
-details.prov li.pgroup > b { font-size: 13px; }
-details.prov li.pgroup > ul { margin-top: 4px; }
+/* the sources as a table: grouped by technology on the technology panel */
+.ptable { overflow-x: auto; margin-top: 10px; }
+.ptable table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 13px; }
+.ptable th, .ptable td { text-align: start; vertical-align: top; padding: 5px 10px 5px 0; border-bottom: 1px solid var(--rule); overflow-wrap: anywhere; }
+.ptable thead th { font-weight: 600; color: var(--muted); font-size: 12px; }
+.ptable td:first-child { min-width: 9em; }
+.ptable td b { font-weight: 600; }
+.ptable .nw { white-space: nowrap; }
+.ptable tr.pg th { padding-top: 14px; font-size: 14px; font-weight: 600; color: var(--ink); border-bottom-color: var(--muted); }
+.ptable tr.pg .ticon { width: 16px; height: 16px; vertical-align: -3px; margin-inline-end: 6px; }
+sup.mk { font-size: 11px; color: var(--muted); margin-inline-start: 1px; }
+.mkey { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 8px 0 0; color: var(--muted); }
 details.prov ul { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 4px; max-width: 80ch; }
 details.prov li { overflow-wrap: anywhere; }
 .tile.thru .mark { border: 1.5px solid var(--c); color: var(--c); }
