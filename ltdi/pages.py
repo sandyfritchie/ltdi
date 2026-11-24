@@ -68,7 +68,17 @@ def write_app(page: str, data_js: str) -> str:
     return html
 
 
-def _meta(html: str, title: str, description: str, url: str, static: str) -> str:
+# Languages with their own link-preview card (site/og/<code>.png, drawn at publish time by
+# tools/og_image.py --languages): every ranked language with at least this many speakers. The rest use the
+# site's card (site/og.png).
+CARD_MIN_SPEAKERS = 1_000_000
+
+
+def has_card(l: dict) -> bool:
+    return bool(l.get("rank")) and (l.get("speakers") or 0) >= CARD_MIN_SPEAKERS
+
+
+def _meta(html: str, title: str, description: str, url: str, static: str, image: tuple[str, str] | None = None) -> str:
     t, d, u = escape(title, quote=True), escape(description, quote=True), escape(url, quote=True)
     subs = [(r"<title>.*?</title>", f"<title>{t}</title>"),
             (r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{d}">'),
@@ -77,6 +87,9 @@ def _meta(html: str, title: str, description: str, url: str, static: str) -> str
             (r'<meta property="og:url" content="[^"]*">', f'<meta property="og:url" content="{u}">'),
             (r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{u}">'),
             (r'<main id="view">.*?</main>', f'<main id="view">{static}</main>')]
+    if image:  # the language's own card
+        subs += [(r'<meta property="og:image" content="[^"]*">', f'<meta property="og:image" content="{escape(image[0], quote=True)}">'),
+                 (r'<meta property="og:image:alt" content="[^"]*">', f'<meta property="og:image:alt" content="{escape(image[1], quote=True)}">')]
     for pat, rep in subs:
         html, n = re.subn(pat, lambda _m, r=rep: r, html, count=1, flags=re.S)
         assert n == 1, pat
@@ -141,7 +154,8 @@ def write_language_pages() -> int:
     for l in scores["languages"]:
         url = f"{SITE_URL}/language/{l['code']}"
         title, desc, static = describe(l, cfg, n_ranked)
-        (out / f"{l['code']}.html").write_text(_meta(home, title, desc, url, static), encoding="utf-8")
+        image = (f"{SITE_URL}/og/{l['code']}.png", f"{l['name']}: LTDI {l['ltdi']:.3f}, rank {l['rank']:,} of {n_ranked:,}") if has_card(l) else None
+        (out / f"{l['code']}.html").write_text(_meta(home, title, desc, url, static, image), encoding="utf-8")
         if not l.get("extinct"):
             urls.append(url)
     ed = scores["edition"]

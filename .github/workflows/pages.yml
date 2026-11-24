@@ -37,6 +37,13 @@ jobs:
       # A page for every language at /language/<code>, and the sitemap (ltdi/pages.py)
       - name: Write the language pages
         run: python -m ltdi.pages
+      # A link-preview card for each language with at least a million speakers (site/og/<code>.png;
+      # tools/og_image.py), drawn here rather than committed
+      - name: Draw the language cards
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+          python tools/og_image.py --languages
       # The database download: every recorded value as CSV files and one SQLite file (ltdi/export.py)
       - name: Write the database download
         run: python -m ltdi.export
