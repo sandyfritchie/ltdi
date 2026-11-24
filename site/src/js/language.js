@@ -385,11 +385,12 @@ function placeRow(l) {
 }
 // Its codes, each linking to where it's defined or described: a small box beside the tier and rank, above the map
 function codesRow(l) {
-  const row = (label, title, href, text) => `<span class="cl" title="${title}">${label}</span><a class="code" href="${href}" target="_blank" rel="noopener">${esc(text)}</a>`;
-  return `<div class="codes" aria-label="Codes">
-    ${row('BCP 47', 'The language tag used on the web and in software', `https://r12a.github.io/app-subtags/?check=${encodeURIComponent(l.code)}`, l.code)}
-    ${l.iso_639_3 ? row('ISO 639-3', 'ISO 639-3 code: on Ethnologue', `https://www.ethnologue.com/language/${encodeURIComponent(l.iso_639_3)}/`, l.iso_639_3) : ''}
-    ${l.glottocode ? row('Glottocode', 'Glottocode: on Glottolog', `https://glottolog.org/resource/languoid/id/${encodeURIComponent(l.glottocode)}`, l.glottocode) : ''}</div>`;
+  // no labels: each says what it is on hover
+  const code = (title, href, text) => `<a class="code" href="${href}" target="_blank" rel="noopener" title="${title}">${esc(text)}</a>`;
+  return `<div class="codes" aria-label="Codes">${[
+    code('BCP 47 tag: in the IANA subtag registry', `https://r12a.github.io/app-subtags/?check=${encodeURIComponent(l.code)}`, l.code),
+    l.iso_639_3 ? code('ISO 639-3 code: on Ethnologue', `https://www.ethnologue.com/language/${encodeURIComponent(l.iso_639_3)}/`, l.iso_639_3) : '',
+    l.glottocode ? code('Glottocode: on Glottolog', `https://glottolog.org/resource/languoid/id/${encodeURIComponent(l.glottocode)}`, l.glottocode) : ''].filter(Boolean).join(' · ')}</div>`;
 }
 
 // A writing sample: Article 1 of the Universal Declaration of Human Rights, from UDHR in XML (the
@@ -498,7 +499,7 @@ async function language(code) {
       </div>
       <div class="lscore"><div class="big">${l.ltdi.toFixed(3)}</div>
         <div class="mapcol"><div class="lsub">${codesRow(l)}<div class="lrk">${tierChip(l)}
-          <div class="lrank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other language' : 'other languages'}"` : ''}>${!l.rank ? 'Extinct · not ranked' : `${l.tied ? '=' : ''}${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div>${scoreNotes(l)}</div></div>${miniMap(l)}</div></div>
+          <div class="lrank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other language' : 'other languages'}"` : ''}>${!l.rank ? 'Extinct · not ranked' : `${l.tied ? '=' : ''}${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div></div></div><div class="lnotes">${scoreNotes(l)}</div>${miniMap(l)}</div></div>
     </div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>

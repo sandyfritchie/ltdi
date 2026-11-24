@@ -335,10 +335,11 @@ details.prov li { overflow-wrap: anywhere; }
 .lsub { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 .lrk { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
 .lrk .lrank { white-space: nowrap; }
+.lnotes { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+.lnotes:empty { display: none; }
 .mapcol .minimap { margin-top: 10px; align-self: flex-end; }
-.codes { display: grid; grid-template-columns: auto auto; gap: 0 8px; align-items: baseline; padding: 4px 8px; border: 1px solid var(--rule);
-  border-radius: 6px; background: var(--surface); font-size: 11px; line-height: 1.45; color: var(--muted); text-align: start; white-space: nowrap; }
-.codes .cl { font-size: 10px; }
+.codes { padding: 3px 8px; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); font-size: 11px;
+  line-height: 1.45; color: var(--muted); white-space: nowrap; align-self: flex-start; }
 .codes a.code { font-family: var(--font-mono); font-weight: 600; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
 /* a note about a fact, behind a small "i" */
