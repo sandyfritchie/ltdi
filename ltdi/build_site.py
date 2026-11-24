@@ -348,7 +348,10 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
                               **({"unnamed": unnamed[l["code"]]} if l["code"] in unnamed else {}),
                               **({"licensed": licensed[l["code"]]} if l["code"] in licensed else {}),
                               "reach_by_country": l["reach_by_country"], "evidence": l.get("evidence"),
-                              "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES],
+                              # where it's mainly spoken: not the countries only a census adds (immigrant and
+                              # diaspora communities), unless those are all there are
+                              "countries": [c["name"] for c in l["countries"] if c["code"] not in NOT_PLACES
+                                            and (not c.get("census_only") or all(x.get("census_only") for x in l["countries"]))],
                               **({"lookalikes": eng[l["code"]]["lookalikes"]} if "lookalikes" in eng.get(l["code"], {}) else {}),
                               **({"literacy": lit[l["code"]]} if l["code"] in lit else {}),
                               **({"changes": chg[l["code"]]} if l["code"] in chg else {}),

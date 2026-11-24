@@ -330,8 +330,10 @@ function dimPanel(l, key, color) {
       body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
     }
-    // builders already at work: models made for it on Hugging Face (shown, not scored)
-    const hv = i => facts[i] && facts[i].value ? facts[i].value : 0, hf = facts.hf_models;
+    // reading and building already happening: Wikipedia page views, models made for it on Hugging Face (shown, not scored)
+    const hv = i => facts[i] && facts[i].value ? facts[i].value : 0, hf = facts.hf_models, wp = facts.wikipedia_pageviews;
+    if (wp && wp.value) body += `<div class="ind"><div class="ind-top"><b><a class="indlink" href="${esc(wp.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`${wp.source}: ${wp.note || ''}`)}">Wikipedia page views</a></b>
+        <span class="ind-val">${big(wp.value)} a year</span></div><div class="missing">Not scored.</div></div>`;
     if (hf) body += `<div class="ind"><div class="ind-top"><b>${hf ? `<a class="indlink" href="${esc(hf.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`Models tagged with it and at most five languages, downloaded at least 10 times in 30 days. ${hf.note || ''}`)}">Builders on Hugging Face</a>` : 'Builders on Hugging Face'}</b>
         <span class="ind-val">${hv('hf_models') ? `${hv('hf_models').toLocaleString()} ${hv('hf_models') === 1 ? 'model' : 'models'}` : 'No models'}</span></div>
         <div class="missing">${hv('hf_models') ? `Made for it, ${big(hv('hf_model_downloads'))} downloads in 30 days` : 'None made for it with recent downloads'}. Not scored.</div></div>`;
@@ -349,18 +351,16 @@ function wbLink(f) {
   const cs = ((f.note || '').split(': ')[1] || '').replace('\u2026', '').split(', ').filter(c => /^[A-Z]{2}$/.test(c));
   return cs.length ? `${f.url}?locations=${cs.join('-')}` : f.url;
 }
-// The people: speakers, how many are online now and in five years, how many can also text, and Wikipedia reading
+// The people: speakers, and how many are online now and in five years (World Bank internet use)
 function peopleRow(l) {
-  const f = DATA.facts[l.code] || {}, sp = l.speakers || 0, v = i => f[i] && f[i].value ? f[i].value : 0;
+  const f = DATA.facts[l.code] || {}, sp = l.speakers || 0;
   const n = k => f[k] ? sp * f[k].value : null, g = f.speaker_growth_5y ? f.speaker_growth_5y.value : 1;
   const wb = f.reach_voice_share && sp;
   return `<div class="facts">
     <span>${sp ? `Speakers <b>${people(sp)}</b>` : 'Speakers not recorded'}</span>
     ${wb ? `<span title="${esc(f.reach_voice_share.note)}">Online today <b>${people(n('reach_voice_share'))}</b></span>
     <span title="${esc(f.reach_voice_share_5y ? f.reach_voice_share_5y.note : '')}">Online in five years <b>${people(n('reach_voice_share_5y') * g)}</b></span>
-    <span title="${esc(f.reach_text_share ? f.reach_text_share.note : '')}">Online and able to text <b>${people(n('reach_text_share'))}</b></span>` : ''}
-    ${v('wikipedia_pageviews') ? `<span title="${esc(`${f.wikipedia_pageviews.source}: ${f.wikipedia_pageviews.note}`)}">Wikipedia readers <b>${big(v('wikipedia_pageviews'))}</b> page views a year</span>` : ''}
-    ${wb ? `<a href="${esc(wbLink(f.reach_voice_share))}" target="_blank" rel="noopener">World Bank data</a>` : ''}</div>`;
+    <a href="${esc(wbLink(f.reach_voice_share))}" target="_blank" rel="noopener">World Bank data</a>` : ''}</div>`;
 }
 // Where it's spoken: countries, official status, endangerment, adult literacy
 function placeRow(l) {
@@ -423,7 +423,7 @@ function bindHear() {
 // Where its speakers in a country are counted from a census (immigrant languages LinguaMeta doesn't
 // list there): which countries, and the source
 function censusInfo(l) {
-  const cs = l.census || [];
+  const cs = (l.census || []).filter(c => l.countries.includes(c[0]));  // only the countries the line shows
   if (!cs.length) return '';
   const year = c => (c[1].match(/(\d{4}(?:-\d{4})?)$/) || [])[1];
   const src = [...new Map(cs.map(c => [c[2], c[1].startsWith('UN') ? 'UN Statistics Division' : 'US Census Bureau'])).entries()];
