@@ -948,30 +948,35 @@ const fmtHours = h => h >= 10 ? `${Math.round(h).toLocaleString()} hours` : `${(
 // Licensed corpora shown on a page: the largest first (by hours where given), at most LICENSED_SHOWN
 const LICENSED_SHOWN = 6;
 const licensedShown = list => [...list].sort((a, b) => (+b[3] || 0) - (+a[3] || 0)).slice(0, LICENSED_SHOWN);
-const nonCommercialSets = facts => Object.keys(facts).filter(i => (i.startsWith('speech_') || i === 'cv_validated_hours') && facts[i].value && RES[i] && RES[i].commercial === 'no').map(i => RES[i].name).join(', ');
 const COMMERCIAL = { yes: 'Permitted', no: 'Not permitted', varies: 'Varies' };
-// How each speech dataset's hours were obtained (the record's method; ltdi/collectors/speech.py)
-const SPEECH_BASIS = { measured: 'measured from its audio, clip by clip', sampled: 'measured from a sample of its clips and scaled to the whole',
-  published: 'as its makers publish it', listing: 'read from its listing on the Mozilla Data Collective' };
+// How each speech dataset's hours were obtained (the record's method; ltdi/collectors/speech.py), as a mark on the
+// hours: none where its makers publish them (or the Mozilla Data Collective lists them), a key under the table
+const SPEECH_MARK = { measured: '*', sampled: '\u2020' };
+const SPEECH_KEY = { '*': 'measured from its audio, clip by clip', '\u2020': 'measured from a sample of its clips and scaled to the whole' };
+const fmtH = h => h >= 10 ? Math.round(h).toLocaleString() : (+h).toFixed(1);
+const ptable = (cols, rows) => `<div class="ptable"><table><thead><tr>${cols.map(c => `<th scope="col"${c === 'Hours' ? ' class="num"' : ''}>${c}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`;
 function speechSets(l, facts) {
   const sets = Object.entries(l.sd || {}).filter(([i]) => facts[i]).sort((a, b) => b[1] - a[1]);
   if (!sets.length) return '';
-  const li = sets.map(([i, h]) => {
-    const f = facts[i], R = RES[i] || {}, u = (f.url || '').split(' ')[0];
+  const used = new Set();
+  const rows = sets.map(([i, h]) => {
+    const f = facts[i], R = RES[i] || {}, u = (f.url || '').split(' ')[0], mk = SPEECH_MARK[f.method] || '';
+    if (mk) used.add(mk);
     const name = u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(R.name || f.source)}</a>` : esc(R.name || f.source);
-    return `<li>${name}: ${esc(fmtHours(h))}, ${esc(SPEECH_BASIS[f.method] || 'as its source gives it')}${R.commercial === 'no' ? ' <span class="muted">· not for commercial use</span>' : ''}</li>`;
-  }).join('');
-  return `<p class="prov-sub">Where these hours come from${sets.length > 1 ? ` (${sets.length} datasets)` : ''}</p><ul>${li}</ul>`;
+    return `<tr><td>${name}</td><td class="num">${esc(fmtH(h))}${mk ? `<sup class="mk">${mk}</sup>` : ''}</td><td class="nw">${esc(COMMERCIAL[R.commercial] || '')}</td><td>${esc(f.note || '')}</td></tr>`;
+  });
+  return `<p class="prov-sub">Where these hours come from</p>${ptable(['Dataset', 'Hours', 'Commercial use', 'Notes'], rows)}
+    <p class="mkey"><span>Hours as each dataset\u2019s makers publish them${used.size ? `, except: ${[...used].map(m => `${m} ${SPEECH_KEY[m]}`).join('; ')}` : ''}.</span></p>`;
 }
-// Open transcribed speech in detail, under its own heading in "Sources, dates and notes": the datasets the hours
-// come from, how much is licensed for commercial use, and licensed corpora that are listed but not counted
+// Open transcribed speech in detail, under its own heading in "Sources, dates and notes": how much is licensed for
+// commercial use, the datasets the hours come from, and licensed corpora that are listed but not counted
 function speechDetail(l, facts) {
   const sets = speechSets(l, facts);
   const usable = l.sh && l.shc < l.sh
-    ? `<p>${l.shc >= 0.05 ? `${fmtHours(l.shc)} of it are licensed for commercial use. The rest is for non-commercial use only` : 'None of it is licensed for commercial use. It is for non-commercial use only'}: ${esc(nonCommercialSets(facts).replace(/, ([^,]*)$/, ' and $1'))}.</p>` : '';
+    ? `<p>${l.shc >= 0.05 ? `${fmtHours(l.shc)} of the ${fmtHours(l.sh)} are licensed for commercial use.` : `None of the ${fmtHours(l.sh)} are licensed for commercial use.`}</p>` : '';
   const lic = l.licensed && l.licensed.length
-    ? `<p class="prov-sub">Not counted, as it isn\u2019t open data</p><ul>${licensedShown(l.licensed).map(([name, steward, task, h, licence, paid, url, where]) =>
-      `<li><a href="${esc(url)}" target="_blank" rel="noopener" title="${esc(`${licence}${paid === 'yes' ? ', for a fee' : ''}, ${where === 'the Mozilla Data Collective' ? 'on' : 'from'} ${where}`)}">${esc(name)}</a> (${[steward, h !== '' ? `${fmtHours(+h)} for ${task}` : task, (paid === 'yes' ? 'for a fee' : 'under a data licence') + (where && where !== 'the Mozilla Data Collective' ? ` from ${where}` : '')].filter(Boolean).map(esc).join(', ')})</li>`).join('')}${l.licensed.length > LICENSED_SHOWN ? `<li class="muted">and ${l.licensed.length - LICENSED_SHOWN} more, listed in the database download</li>` : ''}</ul>` : '';
+    ? `<p class="prov-sub">Not counted, as it isn\u2019t open data</p>${ptable(['Dataset', 'Hours', 'Access', 'Notes'], licensedShown(l.licensed).map(([name, steward, task, h, licence, paid, url, where]) =>
+      `<tr><td><a href="${esc(url)}" target="_blank" rel="noopener">${esc(name)}</a></td><td class="num">${h !== '' ? esc(fmtH(+h)) : ''}</td><td class="nw">${paid === 'yes' ? 'For a fee' : 'Data licence'}</td><td>${esc([steward, task, licence && licence[0].toLowerCase() + licence.slice(1), where && where !== 'the Mozilla Data Collective' ? `from ${where}` : 'on the Mozilla Data Collective'].filter(Boolean).join('; '))}</td></tr>`))}${l.licensed.length > LICENSED_SHOWN ? `<p class="mkey"><span>And ${l.licensed.length - LICENSED_SHOWN} more, listed in the database download</span></p>` : ''}` : '';
   if (!sets && !usable && !lic) return '';
   return `<div class="prov-speech"><h4>Transcribed speech</h4>${usable}${sets}${lic}</div>`;
 }
