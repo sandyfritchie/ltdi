@@ -117,13 +117,6 @@ def describe(l: dict, cfg: dict, n_ranked: int) -> tuple[str, str, str]:
     where = f"ranked {l['rank']:,} of {n_ranked:,}" if l.get("rank") else "not ranked (no longer spoken)"
     desc = (f"{name}{f' ({spk} speakers)' if spk else ''}: LTDI {l['ltdi']:.3f}, {where}, {tier} tier. "
             f"Data availability {d:.2f}, technology support {t:.2f}.")
-    low = lambda s: s if s[:2].isupper() else s[0].lower() + s[1:]  # "LLMs" stays, "Voice assistant" doesn't
-    gaps = [low(techs[k]["label"]) for k, g in (l.get("gaps") or {}).items() if g]
-    if gaps:
-        listed = gaps[:3]
-        more = f" No commercial service yet for {', '.join(listed[:-1]) + ' or ' + listed[-1] if len(listed) > 1 else listed[0]}{' and more' if len(gaps) > 3 else ''}."
-        if len(desc) + len(more) <= 200:
-            desc += more
     offered = [techs[k]["label"] for k, v in (l.get("levels") or {}).items() if v in ("full", "part")]
     countries = [c["name"] for c in l.get("countries", []) if not c.get("census_only")][:5]
     auto = l.get("autonym")

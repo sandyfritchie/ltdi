@@ -22,7 +22,7 @@ class PageTests(unittest.TestCase):
         title, desc, static = describe(LANG, CFG, 6817)
         self.assertEqual(title, "Yoruba: language technology support · LTDI")
         self.assertIn("Yoruba (28 million speakers): LTDI 0.586, ranked 75 of 6,817, Commercial tier.", desc)
-        self.assertIn("No commercial service yet for LLMs or voice assistant.", desc)
+        self.assertNotIn("No commercial service yet", desc)  # too strong a claim: an unlisted language may still work
         self.assertIn("Spoken in Nigeria.", static)  # census-only countries left out
         self.assertNotIn("United States", static)
         self.assertIn('<span lang="yo">Èdè Yorùbá</span>', static)

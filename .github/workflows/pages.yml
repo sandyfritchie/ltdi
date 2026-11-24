@@ -38,9 +38,10 @@ jobs:
       - name: Write the language pages
         run: python -m ltdi.pages
       # A link-preview card for each language with at least a million speakers (site/og/<code>.png;
-      # tools/og_image.py), drawn here rather than committed
+      # tools/og_image.py), drawn here rather than committed. The Noto fonts are for the endonyms' scripts
       - name: Draw the language cards
         run: |
+          sudo apt-get update -q && sudo apt-get install -y -q fonts-noto-core fonts-noto-cjk fonts-noto-extra
           pip install playwright
           python -m playwright install --with-deps chromium
           python tools/og_image.py --languages
