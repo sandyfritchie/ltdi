@@ -383,14 +383,14 @@ function placeRow(l) {
     ${top.length ? `<span title="Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it">Adult literacy ${lit}</span>` : ''}
     ${l.sample || !l.script_names.length ? '' : `<span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b>${unicodeNote(l)}${writtenInfo(l)}</span>`}</div>`;
 }
-// Its codes, each linking to where it's defined or described: a small box beside the tier and rank, above the map
+// Its codes, each linking to where it's defined or described: a small box beside the endonym
 function codesRow(l) {
   // no labels: each says what it is on hover
   const code = (title, href, text) => `<a class="code" href="${href}" target="_blank" rel="noopener" title="${title}">${esc(text)}</a>`;
-  return `<div class="codes" aria-label="Codes">${[
+  return `<span class="codes" aria-label="Codes">${[
     code('BCP 47 tag: in the IANA subtag registry', `https://r12a.github.io/app-subtags/?check=${encodeURIComponent(l.code)}`, l.code),
     l.iso_639_3 ? code('ISO 639-3 code: on Ethnologue', `https://www.ethnologue.com/language/${encodeURIComponent(l.iso_639_3)}/`, l.iso_639_3) : '',
-    l.glottocode ? code('Glottocode: on Glottolog', `https://glottolog.org/resource/languoid/id/${encodeURIComponent(l.glottocode)}`, l.glottocode) : ''].filter(Boolean).join(' · ')}</div>`;
+    l.glottocode ? code('Glottocode: on Glottolog', `https://glottolog.org/resource/languoid/id/${encodeURIComponent(l.glottocode)}`, l.glottocode) : ''].filter(Boolean).join(' · ')}</span>`;
 }
 
 // A writing sample: Article 1 of the Universal Declaration of Human Rights, from UDHR in XML (the
@@ -491,14 +491,14 @@ async function language(code) {
   await need(code);
   $('#view').innerHTML = `
     <div class="lhead lang">
-      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span>${l.note ? infoTip('About this language', esc(l.note)) : ''}</h2>
+      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span>${l.note ? infoTip('About this language', esc(l.note)) : ''} ${codesRow(l)}</h2>
         ${peopleRow(l)}
         ${placeRow(l)}
         ${sampleBlock(l)}
         ${hearBlock(l)}
       </div>
       <div class="lscore"><div class="big">${l.ltdi.toFixed(3)}</div>
-        <div class="mapcol"><div class="lsub">${codesRow(l)}<div class="lrk">${tierChip(l)}
+        <div class="mapcol"><div class="lsub"><div class="lrk">${tierChip(l)}
           <div class="lrank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other language' : 'other languages'}"` : ''}>${!l.rank ? 'Extinct · not ranked' : `${l.tied ? '=' : ''}${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div></div></div><div class="lnotes">${scoreNotes(l)}</div>${miniMap(l)}</div></div>
     </div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
