@@ -2,7 +2,10 @@
 
 // Service tiles on the technology panel: plain names (no logos), status, and what each offers
 // Service names, kinds and providers come from config/services.csv
-const SVC = Object.fromEntries(DATA.services.map(s => [s.id, [s.name, s.kind, s.provider]]));
+// a kind with a qualifier ("Open model, languages its paper evaluates"): the tile shows what comes before the comma,
+// the sources table's notes the rest
+const kindParts = k => { const i = k.search(/, [a-z]/); return i < 0 ? [k, ''] : [k.slice(0, i), k.slice(i + 2)]; };  // not "MMMLU, 2025"
+const SVC = Object.fromEntries(DATA.services.map(s => [s.id, [s.name, kindParts(s.kind)[0], s.provider, kindParts(s.kind)[1]]]));
 // Commitment signatories first (Gates Foundation, Sept 2026), then other large companies, smaller ones, open source; tiles follow this order
 const PROV = { google: 'Google', microsoft: 'Microsoft', amazon: 'Amazon', openai: 'OpenAI', anthropic: 'Anthropic', apple: 'Apple', meta: 'Meta', deepl: 'DeepL', mistral: 'Mistral AI', alibaba: 'Alibaba', elevenlabs: 'ElevenLabs', deepgram: 'Deepgram', assemblyai: 'AssemblyAI', speechmatics: 'Speechmatics', abbyy: 'ABBYY', cohere: 'Cohere', xai: 'xAI', samsung: 'Samsung', open: 'Open source' };
 // Regional providers: one highlight chip for them all on language pages (most readers know the global ones)
@@ -165,7 +168,7 @@ function svcTile(id, own, open, via, wname, unnamed, lname) {
   const detail = thru ? `Through ${wname}` : '';
   return `<a class="tile ${thru ? 'thru' : on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${thru ? '↳' : on ? '✓' : '–'}</span>
-    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured ? '' : lo ? ' · not in the setting' : asStd ? ` · listed as ${esc(asStd)}` : ''}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured || lo ? '' : asStd ? ` · listed as ${esc(asStd)}` : ''}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
 // A technology's services, in tile order: the global providers, regional ones (where they offer it), open source,
@@ -229,15 +232,16 @@ const fmtDay = d => { try { return new Date(d + 'T12:00:00').toLocaleDateString(
 const srcLink = f => { const u = (f.url || '').split(' ')[0]; return u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(f.source)}</a>` : esc(f.source); };
 function provRow(label, f, o = {}) {
   const more = (o.extra || []).filter(g => g && g.source && g.source !== f.source);
-  return `<tr><td><b>${esc(label)}</b>${o.thru ? ` <span class="muted">through ${esc(o.thru)}</span>` : ''}</td>${o.detailCol ? `<td>${o.detail || ''}</td>` : ''}
-    <td>${[f, ...more].map(srcLink).join('<br>')}</td><td class="nw">${esc(fmtDay(f.retrieved))}</td><td>${esc([...new Set((o.notes || [f.note]).filter(Boolean))].join(' '))}</td></tr>`;
+  return `<tr><td><b>${esc(label)}</b>${o.thru ? ` <span class="muted">through ${esc(o.thru)}</span>` : ''}</td>
+    <td>${[f, ...more].map(srcLink).join('<br>')}</td><td class="nw">${esc(fmtDay(f.retrieved))}</td>${o.detailCol ? `<td class="det">${o.detail || ''}</td>` : ''}<td>${esc([...new Set((o.notes || [f.note]).filter(Boolean))].join(' '))}</td></tr>`;
 }
 // Who measured a quality figure, as marks on it: * by its makers, † on test data that isn't public (a key under the table)
 const MARKS = { own: '*', hidden: '\u2020' };
 const marksOf = id => { const t = TEST_OF[id]; return t ? (t.quality_by === 'own' ? MARKS.own : '') + (t.test_public === 'no' ? MARKS.hidden : '') : ''; };
 // A service's figures and details for its row: a measured result, its features or level, a quality figure
 function svcFacts(id, facts) {
-  const f = facts[id], out = { detail: '', notes: [f.note], extra: [] };
+  const more = (SVC[id] || [])[3] && !(facts[id].source || '').toLowerCase().includes(SVC[id][3]) ? SVC[id][3] : '';  // unless the source's title says it
+  const f = facts[id], out = { detail: '', notes: [more ? more[0].toUpperCase() + more.slice(1) + '.' : '', f.note], extra: [] };
   const on = f.unit === 'bool' ? !!f.value : true;
   const parts = [];
   if (f.unit === '% of English') parts.push(`${Math.round(f.value)}% of English`);
@@ -247,10 +251,10 @@ function svcFacts(id, facts) {
   if (dp) { const t = depthText(dp, DEPTH_OF[id]); if (t) parts.push(t); out.notes.push(dp.note); out.extra.push(dp); }
   const q = QUALITY_OF[id], qf = on && q ? facts[q.quality] : null;
   if (qf) {
-    const fig = qf.unit === '% WER' ? depthText(qf, q.quality) : qf.unit === 'WER band' ? qf.note.replace(/, as .*/, '') : `${Math.round(qf.value)} ${qf.unit}, ${qualityText(qf, q).toLowerCase()}`;
+    // word error rates as WER (a key under the table)
+    const fig = qf.unit === '% WER' ? depthText(qf, q.quality).replace('% word error rate', '% WER') : qf.unit === 'WER band' ? qf.note.replace(/, as .*/, '').replace(/^Word error rate /, 'WER ') : `${Math.round(qf.value)} ${qf.unit}, ${qualityText(qf, q).toLowerCase()}`;
     parts.push(fig);
-    if (qf.unit !== 'WER band') out.notes.push(qf.note);
-    out.extra.push(qf);
+    if (qf.unit !== 'WER band') { out.notes.push(qf.note); out.extra.push(qf); }  // a band: the service's own page, one link
   }
   const figure = ['% of English', 'accuracy', 'chrF'].includes(f.unit) || (qf && !(qf.unit === '% WER' && qf.value >= 100));
   const t = TEST_OF[id];
@@ -262,7 +266,8 @@ function svcFacts(id, facts) {
   return out;
 }
 const markKey = used => [used.includes(MARKS.own) ? `${MARKS.own} Measured by the company that makes it, so shown but not scored` : '',
-  used.includes(MARKS.hidden) ? `${MARKS.hidden} On test data that isn\u2019t public, so the figure can\u2019t be checked` : ''].filter(Boolean).map(t => `<span>${t}</span>`).join('');
+  used.includes(MARKS.hidden) ? `${MARKS.hidden} On test data that isn\u2019t public, so the figure can\u2019t be checked` : '',
+  used.includes('W') ? 'WER = word error rate' : ''].filter(Boolean).map(t => `<span>${t}</span>`).join('');
 // a disclosure triangle, drawn the same for every drop-down in the panels
 const TW = '<span class="tw" aria-hidden="true"></span>';
 function provList(l, key, facts, vfacts, wname) {
@@ -282,7 +287,7 @@ function provList(l, key, facts, vfacts, wname) {
           const f = fs && fs[id];
           if (!f || (thru && f === facts[id])) continue;
           const x = svcFacts(id, fs);
-          marks += x.marks;
+          marks += x.marks + (/WER/.test(x.detail) ? 'W' : '');
           rows.push(provRow((SVC[id] || [])[0] || DATA.labels[id] || id, f, { thru, detailCol: true, detail: x.detail, notes: x.notes, extra: x.extra }));
         }
       };
@@ -290,7 +295,7 @@ function provList(l, key, facts, vfacts, wname) {
       if (rows.length) groups.push(`<tbody><tr class="pg"><th colspan="5" scope="rowgroup">${TICON[tk] || ''}${esc(t.label)}</th></tr>${rows.join('')}</tbody>`);
       n += rows.length;
     }
-    if (groups.length) body = `<div class="ptable"><table>${head(['Service', 'Detail', 'Source', 'Retrieved', 'Notes'])}${groups.join('')}</table></div>${marks ? `<p class="mkey">${markKey(marks)}</p>` : ''}`;
+    if (groups.length) body = `<div class="ptable"><table>${head(['Service', 'Source', 'Retrieved', 'Detail', 'Notes'])}${groups.join('')}</table></div>${marks ? `<p class="mkey">${markKey(marks)}</p>` : ''}`;
   } else {
     const rows = [];
     const add = (label, id) => {

@@ -321,6 +321,7 @@ details.prov > summary .muted { font-size: 14px; color: var(--muted); }
 .ptable td:first-child { min-width: 9em; }
 .ptable td b { font-weight: 600; }
 .ptable .nw { white-space: nowrap; }
+.ptable td.det { min-width: 9em; }
 .ptable tr.pg th { padding-top: 14px; font-size: 14px; font-weight: 600; color: var(--ink); border-bottom-color: var(--muted); }
 .ptable tr.pg .ticon { width: 16px; height: 16px; vertical-align: -3px; margin-inline-end: 6px; }
 sup.mk { font-size: 11px; color: var(--muted); margin-inline-start: 1px; }
