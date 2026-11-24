@@ -216,7 +216,6 @@ const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech-to-text', tts: 'Text
   interface: 'Interface language', ocr: 'Text recognition', proofing: 'Spelling and grammar', assistant: 'Voice assistant', langid: 'Language identification', locale: 'Locale data', writing: 'Writing system', data: 'Data' };
 // Where the floor lifts a dimension, its unfloored score: what the rank goes by among languages the floor puts level
 const rawText = l => l.raw ? `Before the floor of ${DATA.config.meta.floor}: ${DIMS.filter(([k]) => k in l.raw).map(([k]) => `${CFG[k].label.toLowerCase()} ${l.raw[k].toFixed(3)}`).join(', ')}` : '';
-document.getElementById('edition').textContent = `Edition ${DATA.edition} · ${LANGS.length.toLocaleString()} languages`;
 
 // A language's tier [key, label]; or of a tier key ("through German": the standard's tier)
 const tierOf = l => { const k = typeof l === 'string' ? l : l.tier; return [k, TIER_LABEL[k] || k]; };

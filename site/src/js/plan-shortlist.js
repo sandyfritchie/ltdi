@@ -199,8 +199,6 @@ const saveShortlist = () => { try { localStorage.setItem('ltdi-shortlist', JSON.
 const onShortlist = code => shortlist.includes(code);
 const slButton = l => { const on = onShortlist(l.code);
   return `<button type="button" class="slbtn" data-sl="${l.code}" aria-pressed="${on}" title="${on ? 'On your shortlist: select to remove' : 'Add to your shortlist'}" aria-label="${on ? 'Remove' : 'Add'} ${esc(l.name)} ${on ? 'from' : 'to'} the shortlist">${on ? '✓' : '+'}</button>`; };
-const slWide = l => { const on = onShortlist(l.code);
-  return `<button type="button" class="chip slwide" data-sl="${l.code}" aria-pressed="${on}">${on ? 'On your shortlist ✓' : 'Add to shortlist'}</button>`; };
 function slHash() {
   const q = new URLSearchParams({ codes: shortlist.join(','), t: plan.t });
   if (plan.com) q.set('com', '1');
@@ -215,9 +213,8 @@ function toggleShortlist(code) {
   document.querySelectorAll(`[data-sl="${code}"]`).forEach(b => {
     const on = onShortlist(code), name = (BY[code] || {}).name || code;
     b.setAttribute('aria-pressed', String(on));
-    if (b.classList.contains('slwide')) b.textContent = on ? 'On your shortlist ✓' : 'Add to shortlist';
-    else { b.textContent = on ? '✓' : '+'; b.title = on ? 'On your shortlist: select to remove' : 'Add to your shortlist';
-      b.setAttribute('aria-label', `${on ? 'Remove' : 'Add'} ${name} ${on ? 'from' : 'to'} the shortlist`); }
+    b.textContent = on ? '✓' : '+'; b.title = on ? 'On your shortlist: select to remove' : 'Add to your shortlist';
+    b.setAttribute('aria-label', `${on ? 'Remove' : 'Add'} ${name} ${on ? 'from' : 'to'} the shortlist`);
   });
   document.querySelectorAll('.slcount').forEach(x => x.textContent = shortlist.length);
   document.querySelectorAll('a.slchip').forEach(a => a.setAttribute('href', slHash()));

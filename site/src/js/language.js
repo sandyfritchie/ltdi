@@ -29,23 +29,9 @@ const TEST_OF = Object.fromEntries(DATA.services.filter(s => s.test_set).map(s =
 const GN = DATA.gnodes, GN_BY = Object.fromEntries(GN.map(([g], i) => [g, i]));
 const famName = l => l._gp.length ? GN[l._gp[0]][1] : l.giso ? 'Isolate' : '';
 const branchName = l => l._gp.length > 1 ? GN[l._gp[l._gp.length - 1]][1] : '';
-function famLine(l) {
-  if (!l._gp.length) return l.giso ? `<span title="Glottolog lists no relatives">Family <b>Isolate</b></span>` : '';
-  const path = l._gp.map(i => GN[i][1]);
-  return `<span title="${esc(path.join(' › '))} (Glottolog)">Family <b>${esc(path[0])}</b></span>`;
-}
 // Engineering flags: what makes building for a language cost more (ltdi.engineering)
 const FLAG_SHORT = { r: 'RTL', s: 'Shaping', w: 'No spaces', i: 'IME', m: 'Scripts', l: 'Look-alikes' };
 const flagLabels = l => l._fx.map(f => (DATA.flags[f] || [, f])[1]);
-const FLAG_CHIP = { r: 'Right to left', s: 'Complex shaping', w: 'No spaces between words', i: 'Input method', m: 'Several scripts', l: 'Look-alike letters' };
-function engLine(l) {
-  if (!l._fx.length) return '';
-  const look = (l.lookalikes || []).map(([a, b]) => `${a} for ${b}`).join(', ');
-  const cp = ch => [...ch].map(c => 'U+' + c.codePointAt(0).toString(16).toUpperCase().padStart(4, '0')).join(' ');
-  const lookLong = (l.lookalikes || []).map(([a, b]) => `${a} ${cp(a)} for ${b} ${cp(b)}`).join('; ');
-  const chips = l._fx.map(f => `<span class="eflag" title="${esc((DATA.flags[f] || [, ''])[1] + (f === 'l' && lookLong ? `: ${lookLong}` : ''))}">${FLAG_CHIP[f]}${f === 'l' && look ? ` <span class="code">${esc(look.length > 24 ? look.slice(0, look.lastIndexOf(',', 24)) + ' …' : look)}</span>` : ''}</span>`).join('');
-  return `<span>Engineering <span class="eflags">${chips}</span>${infoTip('Engineering flags', 'Things about how the language is written that raise the cost of building for it. Direction, shaping, word spacing and input methods are from Unicode CLDR’s data on its main script; several scripts from LinguaMeta; look-alike letters from a sample of its FineWeb-2 web text, where letters of another script stand in for its own, so one word has two spellings. Tone or vowel marks left out in everyday writing, and spelling that varies, also raise cost but aren’t recorded in the sources tracked here.')}</span>`;
-}
 const flagTags = l => l._fx.length ? `<div class="ftags" title="${esc(flagLabels(l).join('\n'))}">${l._fx.map(f => FLAG_SHORT[f]).join(' · ')}</div>` : '';
 // A figure passes the planner's quality filter: all, on public test sets, or independent only
 const qualityOK = (id, q) => { const t = TEST_OF[id]; if (!t) return false;
@@ -425,7 +411,6 @@ function writtenInfo(l) {
 // Under the score: a spoken variety's score through its written standard; the score before the floor
 function scoreNotes(l) {
   const w = BY[l.written_in], out = [];
-  if (rangeText(l)) out.push(`<div class="snote" title="Where ${esc(l.name)} ranks in 90% of ${(DATA.sensitivity || {}).draws || 1000} re-scorings that vary the weights, goalposts and floor within reasonable ranges (see About)">Rank range <b>${rangeText(l)}</b></div>`);
   if (l.via && w) {
     const [c, t] = tierOf(l.via[1]);
     out.push(`<div class="snote" title="Counting ${esc(w.name)}’s written data and text technologies, which ${esc(l.name)} speakers can typically use. The rank is on ${esc(l.name)}’s own score.">Through <a href="${LH(w.code)}">${esc(w.name)}</a> <b>${l.via[0].toFixed(3)}</b> <span class="tier ${c} sm">${esc(t)}</span></div>`);
@@ -476,26 +461,24 @@ async function language(code) {
   if (!l) return ranking();
   await need(code);
   $('#view').innerHTML = `
-    <button class="back" id="back">← All languages</button>
     <div class="lhead lang">
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span>${l.note ? infoTip('About this language', esc(l.note)) : ''}</h2>
         <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
-        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${unicodeNote(l)}${writtenInfo(l)}</span>${engLine(l)}${famLine(l)}
+        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${unicodeNote(l)}${writtenInfo(l)}</span>
         <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>${!['none', 'not_endangered'].includes(endKey(l)) ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
         ${reachLine(l)}
         ${sampleBlock(l)}
         ${hearBlock(l)}
       </div>
-      <div class="lscore"><div class="eyebrow">${!l.rank ? 'Extinct · not ranked' : l.tied ? `Joint rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()} · tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other' : 'others'}` : `Rank ${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l)}${scoreNotes(l)}${miniMap(l)}</div>
+      <div class="lscore"><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l)}
+        <div class="lrank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other language' : 'other languages'}"` : ''}>${!l.rank ? 'Extinct · not ranked' : `${l.tied ? '=' : ''}${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div>${scoreNotes(l)}${miniMap(l)}</div>
     </div>
-    <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}${l.extinct ? '' : slWide(l)}</div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     ${l.extinct ? '' : demandPanel(l)}
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>
     ${changesLine(l)}`;
-  $('#back').onclick = () => { go('ranking'); };
   bindMiniMap(l);
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
@@ -506,8 +489,7 @@ async function language(code) {
     sec.className = sec.className.replace(/ focus-\w+/g, '') + (provFocus ? ' focus-' + provFocus : '');
     $('#view').querySelectorAll('[data-pv]').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.pv === provFocus)));
   });
-  $('#cmpsel').onchange = e => { const c = pickedCode(e.target.value); if (c && c !== code) go(`compare-${code}-${c}`); };
-  navBox('go', 'Find another language name or code');
+  navBox('go', 'Find another language');
 }
 
 // The technology panel's drop-downs: each technology's services, More technologies, Providers (remembered between
@@ -531,41 +513,5 @@ function bindTechPanel() {
   sync();
 }
 
-// ---------------------------------------------------------------- compare
-async function compare(a, b) {
-  const A = BY[a], B = BY[b];
-  if (!A || !B) return ranking();
-  await need(a, b);
-  const fa = DATA.facts[a] || {}, fb = DATA.facts[b] || {};
-  const diff = (x, y) => {
-    if (x == null || y == null) return '';
-    const g = y - x; return Math.abs(g) < 0.005 ? '<span class="gap">=</span>' : `<span class="gap ${g < 0 ? 'neg' : ''}">${g > 0 ? '+' : ''}${g.toFixed(2)}</span>`;
-  };
-  let rows = `<tr><td>LTDI</td><td class="num score">${A.ltdi.toFixed(3)}</td><td class="num score">${B.ltdi.toFixed(3)}</td><td class="num">${diff(A.ltdi, B.ltdi)}</td></tr>
-    <tr><td>Speakers</td><td class="num">${people(A.speakers)}</td><td class="num">${people(B.speakers)}</td><td></td></tr>`;
-  for (const [k, , c] of DIMS) {
-    const da = A.dimensions[k], db = B.dimensions[k];
-    rows += `<tr class="sect"><td colspan="4" style="color:var(${c})">${esc(CFG[k].label)} · ${da.score.toFixed(2)} vs ${db.score.toFixed(2)}</td></tr>`;
-    if (k === 'tech') {
-      for (const [tk, t] of Object.entries(CFG.tech.technologies)) {
-        const x = da.indicators[tk], y = db.indicators[tk];
-        rows += `<tr><td>${esc(t.label)}</td><td class="num">${x == null ? 'not measured' : x.toFixed(2)}</td><td class="num">${y == null ? 'not measured' : y.toFixed(2)}</td><td class="num">${diff(x, y)}</td></tr>`;
-      }
-    } else {
-      for (const [ik, spec] of Object.entries(CFG[k].indicators)) {
-        rows += `<tr><td>${esc(spec.label)}</td><td class="num">${esc(showValue(fa[ik]))}</td><td class="num">${esc(showValue(fb[ik]))}</td><td class="num">${diff(da.indicators[ik], db.indicators[ik])}</td></tr>`;
-      }
-    }
-  }
-  $('#view').innerHTML = `
-    <button class="back" id="back">← ${esc(A.name)}</button>
-    <div class="lhead"><h2>${esc(A.name)} and ${esc(B.name)}</h2></div>
-    <p class="note">Gap column shows ${esc(B.name)} minus ${esc(A.name)} on the 0–1 scale.</p>
-    <div class="tablebox"><table class="cmp">
-      <thead><tr><th></th><th class="lang num">${esc(A.name)}</th><th class="lang num">${esc(B.name)}</th><th class="num">Gap</th></tr></thead>
-      <tbody>${rows}</tbody></table></div>`;
-  $('#back').onclick = () => { go('lang-' + a); };
-  navBox('go', 'Find another language name or code');
-}
 
 

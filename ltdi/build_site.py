@@ -593,11 +593,6 @@ def planner_fields(l: dict, facts: dict, resources: dict) -> dict:
     return out
 
 
-def edition_line(scores: dict) -> str:
-    n = sum(1 for l in scores["languages"] if l.get("rank"))
-    return f"Edition {scores['edition']} · {n:,} languages"
-
-
 def static_summary(scores: dict) -> str:
     """What the page says before (or without) JavaScript: the top 20 and where to download the scores,
     for search engines, link previews and plain fetchers."""
@@ -681,7 +676,7 @@ def main() -> None:
         if src.exists():
             shutil.copyfile(src, SITE / "data" / f"ltdi-{name}")
 
-    src = template().replace("<!--__STATIC__-->", static_summary(scores)).replace("__EDITION_LINE__", edition_line(scores))
+    src = template().replace("<!--__STATIC__-->", static_summary(scores))
     # the over-time history is only for the Charts page, so it's fetched when that opens
     (SITE / "data" / "history.json").write_text(_dump(index.pop("history", None)), encoding="utf-8")
     # likewise the top opportunities, for the Opportunities tab

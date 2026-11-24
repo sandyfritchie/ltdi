@@ -65,7 +65,7 @@ function route() {
   if (missing !== undefined) notFound(missing);
   else if ((m = h.match(/^lang-([a-z]+)$/)) && BY[m[1]]) language(m[1]);
   else if (m) notFound(m[1]);  // #lang-xx for a code the Index doesn't have
-  else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) compare(m[1], m[2]);
+  else if ((m = h.match(/^compare-([a-z]+)-([a-z]+)$/))) go('lang-' + m[1]);  // comparison pages are gone: the first language
   else if (h === 'charts') { if (!HIST) $('#view').innerHTML = ''; histData().then(() => curRoute() === 'charts' && charts()); }
   else if (h === 'map') mapPage();
   else if (h === 'about') about();
