@@ -1296,12 +1296,12 @@ async function language(code) {
   navBox('go', 'Find another language name or code');
 }
 
-// The technology panel's drop-downs: each technology's services, More technologies and Providers, remembered
-// between languages; Expand all opens every one, Hide all closes every one (each greyed out when there's nothing to do)
+// The technology panel's drop-downs: each technology's services, More technologies, Providers (remembered between
+// languages) and the sources; Expand all opens every one, Hide all closes every one (each greyed out when there's nothing to do)
 function bindTechPanel() {
   const sec = $('section.dim.techdim');
   if (!sec) return;
-  const all = () => [...sec.querySelectorAll('details.techrow, details.more-tech, details.provs')];
+  const all = () => [...sec.querySelectorAll('details.techrow, details.more-tech, details.provs, details.prov')];
   const sync = () => {
     const ds = all();
     sec.querySelector('[data-xall="1"]').disabled = ds.every(d => d.open);
@@ -1310,7 +1310,7 @@ function bindTechPanel() {
   for (const d of all()) d.addEventListener('toggle', () => {
     if (d.classList.contains('techrow')) d.open ? techOpen.add(d.dataset.tk) : techOpen.delete(d.dataset.tk);
     else if (d.classList.contains('more-tech')) moreOpen = d.open;
-    else provsOpen = d.open;
+    else if (d.classList.contains('provs')) provsOpen = d.open;
     sync();
   });
   sec.querySelectorAll('[data-xall]').forEach(b => b.onclick = () => { const o = b.dataset.xall === '1'; for (const d of all()) d.open = o; });
