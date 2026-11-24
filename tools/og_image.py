@@ -3,8 +3,8 @@
     python tools/og_image.py               the site's card (site/og.png): the title and three headline figures
                                            from the current edition's table; re-run after each edition
     python tools/og_image.py --languages   a card for each language with one (ltdi.pages.has_card), in
-                                           site/og/<code>.png: its name, code, endonym, speakers, small map, score,
-                                           tier, rank, two dimensions and the technologies it has; give codes to draw only those;
+                                           site/og/<code>.png: its name, code, endonym, speakers, score, tier,
+                                           rank, two dimensions, the main technologies it has and headline data figures; give codes to draw only those;
                                            drawn at publish time (.github/workflows/pages.yml), not committed
                                            (needs data/scores.json, from python -m ltdi.score)"""
 
@@ -65,90 +65,105 @@ FONTS = ("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500
 
 CARD = f"""<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="{FONTS}"><style>
   body {{ margin: 0; width: 1200px; height: 630px; background: #f5f7f6; color: #16201d; box-sizing: border-box;
-         padding: 44px 72px 44px; border-top: 14px solid var(--tier); font-family: "Source Sans 3", "Noto Sans", sans-serif;
+         padding: 44px 72px 50px; border-top: 14px solid var(--tier); font-family: "Source Sans 3", "Noto Sans", sans-serif;
          display: flex; flex-direction: column; justify-content: space-between; }}
   .top {{ display: flex; justify-content: space-between; font: 500 22px "IBM Plex Mono", monospace; letter-spacing: .06em;
          color: #5b6763; text-transform: uppercase; }}
   .top .url {{ color: #1c5cab; text-transform: none; letter-spacing: 0; }}
-  .head {{ display: flex; gap: 40px; align-items: flex-start; margin-top: 18px; }}
+  .head {{ display: flex; gap: 48px; align-items: flex-start; margin-top: 22px; }}
   .who {{ flex: 1; min-width: 0; }}
-  h1 {{ font-family: Archivo, "Noto Sans", sans-serif; font-weight: 800; font-size: 76px; line-height: 1.14; letter-spacing: -.02em;
-        margin: -6px 0 0; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }}
+  /* no overflow clipping here: it cuts off descenders. Long names are shrunk to fit two lines instead */
+  h1 {{ font-family: Archivo, "Noto Sans", sans-serif; font-weight: 800; font-size: 88px; line-height: 1.12; letter-spacing: -.02em;
+        margin: -8px 0 0; padding-bottom: .06em; }}
+  h1 .tail {{ white-space: nowrap; }}
   h1 .code {{ font: 500 34px "IBM Plex Mono", monospace; color: #5b6763; letter-spacing: 0; vertical-align: .55em; white-space: nowrap; }}
-  .auto {{ font-size: 38px; line-height: 1.3; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  .auto {{ font-size: 38px; line-height: 1.45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
           font-family: "Source Sans 3", "Noto Sans", "Noto Sans CJK SC", sans-serif; }}
-  .sub {{ font-size: 26px; color: #5b6763; margin-top: 10px; }}
-  .map {{ flex: none; width: 380px; height: 236px; border: 1px solid #d9e0dd; border-radius: 8px; overflow: hidden; background: #fff; }}
-  .map svg {{ display: block; width: 100%; height: 100%; }}
-  .map .land {{ fill: #e2e7e5; }}
-  .map .area {{ fill: var(--tier); fill-opacity: .8; }}
-  .map .borders {{ fill: none; stroke: #16201d; stroke-opacity: .25; stroke-width: .8px; vector-effect: non-scaling-stroke; }}
-  .map .dot {{ fill: var(--tier); stroke: #fff; stroke-width: 2px; vector-effect: non-scaling-stroke; }}
-  .map .ring {{ fill: none; stroke: #16201d; stroke-width: 2.5px; vector-effect: non-scaling-stroke; }}
-  .mid {{ display: flex; align-items: flex-end; gap: 64px; }}
-  .score {{ width: 470px; flex: none; }}
-  .score b {{ display: block; font-family: Archivo, sans-serif; font-weight: 800; font-size: 100px; line-height: .9; letter-spacing: -.02em; }}
-  .chip {{ display: inline-block; margin-top: 14px; padding: 6px 14px; border-radius: 6px; font: 600 22px "IBM Plex Mono", monospace;
+  .sub {{ font-size: 26px; line-height: 1.35; color: #5b6763; margin-top: 8px; }}
+  .score {{ flex: none; text-align: right; }}
+  .score b {{ display: block; font-family: Archivo, sans-serif; font-weight: 800; font-size: 124px; line-height: .92; letter-spacing: -.02em; }}
+  .chip {{ display: inline-block; margin-top: 16px; padding: 6px 14px; border-radius: 6px; font: 600 22px "IBM Plex Mono", monospace;
           letter-spacing: .08em; text-transform: uppercase; background: var(--tier); color: var(--tiertext); }}
-  .rank {{ font-size: 26px; color: #5b6763; margin-left: 14px; white-space: nowrap; }}
-  .dims {{ flex: 1; display: grid; gap: 20px; padding-bottom: 8px; }}
-  .dim {{ display: grid; grid-template-columns: 1fr auto; font-size: 26px; row-gap: 8px; }}
-  .dim span {{ font-weight: 600; font-family: Archivo, sans-serif; font-size: 30px; }}
+  .rank {{ font-size: 26px; color: #5b6763; margin-top: 12px; white-space: nowrap; }}
+  .foot {{ display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 72px; }}
+  .dim {{ display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; font-size: 26px; row-gap: 10px; }}
+  .dim > span {{ font-weight: 600; font-family: Archivo, sans-serif; font-size: 30px; }}
   .bar {{ grid-column: 1 / -1; height: 14px; border-radius: 7px; background: #e2e7e5; overflow: hidden; }}
   .bar i {{ display: block; height: 100%; }}
-  .techs {{ display: flex; align-items: center; gap: 10px; margin-top: 26px; }}
-  .techs .t {{ width: 46px; height: 46px; border-radius: 9px; display: grid; place-items: center; }}
-  .techs .t svg {{ width: 28px; height: 28px; }}
-  .t.c {{ background: #184f95; color: #fff; }} .t.o {{ background: #86b6ef; color: #0d2a4d; }}
-  .none {{ font-size: 24px; color: #5b6763; line-height: 46px; }}
-  .key {{ margin-left: auto; display: flex; gap: 22px; font-size: 21px; color: #5b6763; white-space: nowrap; }}
-  .key i {{ display: inline-block; width: 16px; height: 16px; border-radius: 4px; margin-right: 8px; vertical-align: -1px; }}
+  .under {{ grid-column: 1 / -1; min-width: 0; height: 50px; margin-top: 10px; display: flex; align-items: center; }}
+  .icons {{ gap: 10px; }}
+  .t {{ width: 50px; height: 50px; border-radius: 10px; display: grid; place-items: center; }}
+  .t svg {{ width: 30px; height: 30px; }}
+  .t.c {{ background: #4a4fb8; color: #fff; }} .t.o {{ background: #c9cbf0; color: #3b3f96; }}
+  .figs {{ gap: 24px; white-space: nowrap; font-size: 25px; color: #5b6763; }}
+  .figs b {{ font-family: Archivo, sans-serif; font-weight: 700; font-size: 1.24em; color: #16201d; margin-right: 6px; }}
 </style></head><body>
   <div><div class="top"><span id="ed"></span><span class="url">langtechindex.org</span></div>
-    <div class="head"><div class="who"><h1><span id="name"></span> <span class="code" id="code"></span></h1>
+    <div class="head"><div class="who"><h1 id="h1"><span id="name"></span><span class="tail"><span id="last"></span> <span class="code" id="code"></span></span></h1>
       <div class="auto" id="auto"></div><div class="sub" id="sub"></div></div>
-      <div class="map" id="map"><svg aria-hidden="true"><path class="land" id="land"/><path class="area" id="area"/>
-        <path class="borders" id="borders"/><circle class="dot" id="dot" r="0"/><circle class="ring" id="ring" r="0"/></svg></div></div></div>
-  <div><div class="mid"><div class="score"><b id="ltdi"></b><span class="chip" id="tier"></span><span class="rank" id="rank"></span></div>
-    <div class="dims">
-      <div class="dim">Data availability<span id="d"></span><div class="bar"><i id="db" style="background:#117a6a"></i></div></div>
-      <div class="dim">Technology support<span id="t"></span><div class="bar"><i id="tb" style="background:#4a4fb8"></i></div></div>
-    </div></div>
-    <div class="techs"><span id="icons" style="display:contents"></span>
-      <span class="key"><span><i style="background:#184f95"></i>Commercial</span><span><i style="background:#86b6ef"></i>Open tools only</span></span></div></div>
+      <div class="score"><b id="ltdi"></b><span class="chip" id="tier"></span><div class="rank" id="rank"></div></div></div></div>
+  <div class="foot">
+    <div class="dim">Technology support<span id="t"></span><div class="bar"><i id="tb" style="background:#4a4fb8"></i></div>
+      <div class="under icons" id="icons"></div></div>
+    <div class="dim">Data availability<span id="d"></span><div class="bar"><i id="db" style="background:#117a6a"></i></div>
+      <div class="under figs" id="figs"></div></div>
+  </div>
 </body></html>"""
 
-# Draws one card: the same framing as the small map on a language's page (site/src/js/charts-map.js,
-# bindMiniMap): its area, or a dot at its location, with room around it, and detailed coasts once zoomed in
+# Fills in one card; a long name is set smaller until it fits on two lines
 FILL = """c => {
-  const $ = id => document.getElementById(id), G = window.GEO, B = window.BORDERS, ASPECT = 236 / 380;
-  $('icons').innerHTML = c.techs.length ? c.techs.map(([k, lv, label]) => `<span class="t ${lv}" title="${label}">${window.TICON[k] || ''}</span>`).join('')
-    : '<span class="none">No technology recorded in the sources tracked</span>';  // and no key
-  document.querySelector('.key').style.visibility = c.techs.length ? '' : 'hidden';
-  for (const k of ['ed', 'name', 'sub', 'ltdi', 'tier', 'rank']) $(k).textContent = c[k];
+  const $ = id => document.getElementById(id);
+  $('icons').innerHTML = c.techs.map(([k, lv]) => `<span class="t ${lv}">${window.TICON[k] || ''}</span>`).join('');
+  $('figs').innerHTML = c.figs.map(([v, u]) => `<span><b>${v}</b>${u}</span>`).join('');
+  for (const k of ['ed', 'sub', 'ltdi', 'tier', 'rank']) $(k).textContent = c[k];
+  const cut = c.name.lastIndexOf(' ') + 1;  // the name's last word stays with the code, so the code never sits on a line alone
+  $('name').textContent = c.name.slice(0, cut); $('last').textContent = c.name.slice(cut);
   $('code').textContent = '[' + c.code + ']';
   $('auto').textContent = c.auto || ''; $('auto').lang = c.code; $('auto').style.display = c.auto ? '' : 'none';
   $('d').textContent = c.d.toFixed(2); $('t').textContent = c.t.toFixed(2);
   $('db').style.width = (100 * c.d) + '%'; $('tb').style.width = (100 * c.t) + '%';
   document.body.style.setProperty('--tier', c.bg); document.body.style.setProperty('--tiertext', c.fg);
-  const h = $('name').parentElement; let s = 80; h.style.fontSize = '';  // long names: two lines, then smaller
-  while ((h.scrollHeight > h.clientHeight + 2) && s > 44) h.style.fontSize = (s -= 4) + 'px';
-  const area = G.areas && G.areas.paths[c.code], p = G.points.find(q => q[0] === c.code);
-  $('map').style.visibility = area || p ? '' : 'hidden';
-  if (!area && !p) return;
-  const W = G.basemap.width, H = G.basemap.height, svg = $('map').querySelector('svg');
-  $('area').setAttribute('d', area || ''); $('land').setAttribute('d', G.basemap.path); $('borders').setAttribute('d', G.basemap.path);
-  let cx, cy, w, small = true;
-  if (area) {
-    const b = $('area').getBBox(), size = Math.max(b.width, b.height / ASPECT);
-    cx = b.x + b.width / 2; cy = b.y + b.height / 2; w = Math.min(W, Math.max(W / 8, size * 2.5)); small = size < w / 12;
-  } else { cx = p[2]; cy = p[3]; w = W / 7; }
-  const hh = w * ASPECT, x = w < W ? Math.min(W - w, Math.max(0, cx - w / 2)) : 0, y = hh < H ? Math.min(H - hh, Math.max(0, cy - hh / 2)) : (H - hh) / 2;
-  svg.setAttribute('viewBox', `${x} ${y} ${w} ${hh}`);
-  if (w < W / 3 && B) { $('land').setAttribute('d', B); $('borders').setAttribute('d', B); }
-  $('dot').setAttribute('cx', area ? -99 : cx); $('dot').setAttribute('cy', area ? -99 : cy); $('dot').setAttribute('r', area ? 0 : (w * 0.016).toFixed(3));
-  $('ring').setAttribute('cx', cx); $('ring').setAttribute('cy', cy); $('ring').setAttribute('r', small ? (w * 0.06).toFixed(3) : 0);
+  const h = $('h1'); let s = 88; h.style.fontSize = '';
+  const fits = () => h.getBoundingClientRect().height <= 2.3 * 1.12 * s && h.scrollWidth <= h.clientWidth + 1;
+  while (!fits() && s > 40) h.style.fontSize = (s -= 4) + 'px';
+  $('figs').style.fontSize = '';  // many or long figures: a little smaller
+  for (let f = 25; $('figs').scrollWidth > $('figs').clientWidth + 1 && f > 18; ) $('figs').style.fontSize = (f -= 1) + 'px';
 }"""
+
+# the six technologies a card shows, and its data figures with their units
+PRIMARY = ["keyboard", "speech_input", "tts", "mt", "llm", "assistant"]
+FIGS = [("web_text_words", "words", "word"), ("parallel_sentences", "pairs", "pair"),
+        ("wikipedia_articles", "articles", "article"), ("open_speech_hours", "hrs", "hr")]
+SHORT = {"United States": "USA", "United Kingdom": "UK", "United Arab Emirates": "UAE", "Central African Republic": "CAR",
+         "Bosnia & Herzegovina": "Bosnia", "Republic of the Congo": "Congo", "St. Vincent & Grenadines": "St Vincent"}
+
+
+def compact(v: float) -> str:
+    """Two significant figures with K, M, B or T: 7,263,483 -> 7.3M, 89,615 -> 90K, 0.5 -> 0.5."""
+    if v < 1:
+        return f"{v:.1f}"
+    from math import floor, log10
+    v = round(v, 1 - floor(log10(v)))  # two significant figures first, so 995,000 becomes 1M, not 1000K
+    for n, u in ((1e12, "T"), (1e9, "B"), (1e6, "M"), (1e3, "K"), (1, "")):
+        if v >= n:
+            return f"{v / n:.1f}".removesuffix(".0") + u if v / n < 10 else f"{v / n:.0f}{u}"
+
+
+def facts() -> dict[str, dict]:
+    import json
+    out = {}
+    for f in (ROOT / "site" / "data" / "lang").glob("*.json"):
+        for code, d in json.loads(f.read_text(encoding="utf-8")).items():
+            out[code] = d.get("facts") or {}
+    return out
+
+
+def place(l: dict) -> str:
+    cs = [SHORT.get(c["name"], c["name"]) for c in l.get("countries", []) if not c.get("census_only")]
+    if len(cs) <= 2:
+        return " and ".join(cs)
+    more = len(cs) - 2
+    return f"{cs[0]}, {cs[1]} & {more} other{'s' if more > 1 else ''}"
 
 
 def icons() -> dict[str, str]:
@@ -170,22 +185,26 @@ def cards() -> list[dict]:
     tiers = {k: t for k, t, *_ in cfg["tiers"]["cutoffs"]} | {k: t for k, t, *_ in cfg["tiers"]["stages"]}
     techs = cfg["dimensions"]["tech"]["technologies"]
     n = sum(1 for l in scores["languages"] if l.get("rank"))
+    fx = facts()
     out = []
     for l in scores["languages"]:
         if not has_card(l):
             continue
-        countries = [c["name"] for c in l.get("countries", []) if not c.get("census_only")][:2]
         auto = l.get("autonym") or ""
+        f = fx.get(l["code"], {})
+        levels = l.get("own_levels") or l.get("levels") or {}
         out.append({"code": l["code"], "name": l["name"], "ed": "Language Technology Development Index",
                     "auto": auto if auto.casefold() != l["name"].casefold() else "",
-                    "sub": " · ".join(filter(None, [f"{_people(l.get('speakers'))} speakers", "Mainly in " + " and ".join(countries) if countries else ""])),
+                    "sub": " · ".join(filter(None, [f"{_people(l.get('speakers'))} speakers", place(l)])),
                     "ltdi": f"{l['ltdi']:.3f}", "tier": tiers.get(l["tier"], l["tier"]), "tk": l["tier"],
-                    "rank": f"{'Joint rank' if l.get('tied') else 'Rank'} {l['rank']:,} of {n:,}",
+                    "rank": f"{'Joint ' if l.get('tied') else ''}{l['rank']:,} of {n:,} languages",
                     "d": l["dimensions"]["data"]["score"], "t": l["dimensions"]["tech"]["score"],
-                    # the technologies it has: commercial (fully or in part) or open tools only; none left out. A
-                    # variety written in a standard shows its own, as scored, not what it reaches through the standard
-                    "techs": [[k, "c" if v in ("full", "part") else "o", techs[k]["label"]]
-                              for k, v in (l.get("own_levels") or l.get("levels") or {}).items() if v in ("full", "part", "open")]})
+                    # of the six main technologies, those it has: commercial (fully or in part) or open tools only;
+                    # none left out. A variety written in a standard shows its own, not what it reaches through the standard
+                    "techs": [[k, "c" if levels.get(k) in ("full", "part") else "o"] for k in PRIMARY
+                              if levels.get(k) in ("full", "part", "open")],
+                    "figs": [[compact(f[k][0]), one if f[k][0] == 1 else many] for k, many, one in FIGS
+                             if f.get(k) and f[k][0] and f[k][0] > 0]})
     return out
 
 
@@ -195,14 +214,11 @@ def languages(only: set[str] | None = None) -> None:
     out = ROOT / "site" / "og"
     out.mkdir(parents=True, exist_ok=True)
     cs = [c for c in cards() if not only or c["code"] in only]
-    geo = (ROOT / "site" / "data" / "map.json").read_text(encoding="utf-8")
-    borders = json.loads((ROOT / "site" / "data" / "borders.json").read_text(encoding="utf-8"))
-    detail = "".join(borders["countries"].values()) + borders["other"]
     with sync_playwright() as p:
         b = p.chromium.launch()
         pg = b.new_page(viewport={"width": 1200, "height": 630})
         pg.set_content(CARD, wait_until="networkidle")
-        pg.evaluate("([g, b, t]) => { window.GEO = JSON.parse(g); window.BORDERS = b; window.TICON = t; }", [geo, detail, icons()])
+        pg.evaluate("t => { window.TICON = t; }", icons())
         pg.evaluate("document.fonts.ready")
         for c in cs:
             pg.evaluate(FILL, {**c, "bg": TIER_BG.get(c["tk"], "#1c5cab"), "fg": TIER_TEXT.get(c["tk"], "#16201d")})
