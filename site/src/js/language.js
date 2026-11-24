@@ -34,25 +34,6 @@ function famLine(l) {
   const path = l._gp.map(i => GN[i][1]);
   return `<span title="${esc(path.join(' › '))} (Glottolog)">Family <b>${esc(path[0])}</b></span>`;
 }
-function relatives(l, k = 6) {
-  if (!l._gp.length) return [];
-  const out = [];
-  for (const m of LANGS) {
-    if (m === l || !m._gp.length || m._gp[0] !== l._gp[0] || m.ltdi <= l.ltdi) continue;
-    let d = 0;
-    while (d < l._gp.length && d < m._gp.length && l._gp[d] === m._gp[d]) d++;
-    out.push([d, m]);
-  }
-  return out.sort((a, b) => b[0] - a[0] || b[1].ltdi - a[1].ltdi).slice(0, k).map(([d, m]) => ({ m, group: GN[l._gp[d - 1]][1], same: m._sc[0] && m._sc[0] === l._sc[0] }));
-}
-function relatedPanel(l) {
-  if (!l._gp.length) return '';
-  const rs = relatives(l);
-  return `<h3 class="panel-h">Related languages with more support</h3>
-    ${rs.length ? `<ul class="rel-list">${rs.map(r => `<li><a href="${LH(r.m.code)}">${esc(r.m.name)}</a> <span class="code">${r.m.code}</span> ${tierChip(r.m)} <span class="muted small">${r.m.ltdi.toFixed(3)} · both ${esc(r.group)}${r.same ? ' · same script' : ''}</span></li>`).join('')}</ul>
-    <p class="note">The nearest relatives in Glottolog's classification that score higher, closest first: tools and data for a close relative are the usual starting point for a new language. Closeness here is by family tree, not by how similar the languages are, so check before reusing anything.</p>`
-      : `<p class="note">No relative in ${esc(famName(l))} scores higher.</p>`}`;
-}
 // Engineering flags: what makes building for a language cost more (ltdi.engineering)
 const FLAG_SHORT = { r: 'RTL', s: 'Shaping', w: 'No spaces', i: 'IME', m: 'Scripts', l: 'Look-alikes' };
 const flagLabels = l => l._fx.map(f => (DATA.flags[f] || [, f])[1]);
@@ -490,18 +471,6 @@ function changesLine(l) {
   return `<h3 class="panel-h">What changed <a href="#charts" style="font-size:14px;font-weight:600">Growth over time</a></h3>
     <ul class="chg-lang">${ev.map(([a, b, s, d]) => `<li><span class="muted">${esc(whenLabel(a, b))}</span> ${esc(S[s] || s)}: ${d > 0 ? 'added' : 'no longer listed'}</li>`).join('')}</ul>`;
 }
-// Who is already working on it: the organisations behind its datasets, models, benchmarks and regional services
-function orgPanel(l) {
-  if (!l.orgs || !l.orgs.length) return '';
-  return `<h3 class="panel-h">Who’s already working on it</h3>
-    <ul class="org-list">${l.orgs.map(o => `<li><div><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.organisation)}</a> <span class="muted small">${esc(o.kind)}</span></div><div class="small">${esc(o.what.join(', '))}</div></li>`).join('')}</ul>
-    <p class="note">The organisations behind the datasets, open models, benchmarks and regional services recorded for ${esc(l.name)}, community and university work first: the likeliest partners for a new project. The global commercial services are in the technology panel above.</p>`;
-}
-function readyCard(l, t) {
-  const r = readiness(l, t);
-  return `<div class="rcard"><div class="rhead">${TICON[t] || ''}<b>${esc(TECHL[t] || t)}</b><span class="rn">${r.n} of ${r.of}</span></div>
-    <ul>${r.items.map(x => `<li class="${x.ok ? 'ok' : 'no'}"><span class="rm" aria-hidden="true">${x.ok ? '✓' : '–'}</span><span class="sronly">${x.ok ? 'Has: ' : 'Missing: '}</span>${esc(x.label)}</li>`).join('')}</ul></div>`;
-}
 async function language(code) {
   const l = BY[code];
   if (!l) return ranking();
@@ -522,11 +491,6 @@ async function language(code) {
     <div class="cmpbar">${langPicker('cmpsel', 'Choose a language to compare')}${l.extinct ? '' : slWide(l)}</div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     ${l.extinct ? '' : demandPanel(l)}
-    <h3 class="panel-h">Readiness to build</h3>
-    <div class="ready-grid">${PLAN_TECHS.map(t => readyCard(l, t)).join('')}</div>
-    <p class="note">What a team would look for before building each technology, and whether it's recorded here for ${esc(l.name)} itself. The Plan tab sorts languages on these and can count only data and models licensed for commercial use.</p>
-    ${relatedPanel(l)}
-    ${orgPanel(l)}
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>

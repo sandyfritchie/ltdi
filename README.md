@@ -306,8 +306,7 @@ shown: each is measured on held-out data from that language's own training sourc
 languages a few readers of Bible recordings, so they read far better than the model does on everyday
 speech. For speech, a tick marks the languages with a FLEURS test set. The CSV adds **readiness**, the ingredients a team would look for before
 building (transcribed speech, an open model, a published error rate, a public test set and text for a
-language model, for speech-to-text); every language page shows these checklists for all nine
-technologies. The state is kept in the address, so
+language model, for speech-to-text). The state is kept in the address, so
 a plan can be shared.
 
 The **shortlist** (`#shortlist?codes=...`) collects languages from the + in the Plan table or on
@@ -341,11 +340,6 @@ Face Hub made for it: tagged with it and at most five languages, downloaded at l
 days (`hf_models` collector). Official countries are in bold in the Plan table, and the CSV carries all
 four. First- and second-language speakers counted separately would be the most useful signal of all,
 but no open source records them across languages.
-
-**Who's already working on it** lists the organisations behind a language's datasets, open models,
-benchmarks and regional services (`config/organisations.csv`, each checked against the project's own
-page; `ltdi/organisations.py`), community and university work first. The global commercial services
-are left out, since every page already shows them.
 
 **Growth over time.** The Charts page shows how each kind of support has grown since 2019, counting
 languages or their speakers, and when each source added languages, half-year by half-year, so the

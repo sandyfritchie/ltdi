@@ -561,14 +561,6 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .dh { font: 600 11px/1.2 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .dv { font-size: 24px; font-weight: 700; margin-top: 6px; font-variant-numeric: tabular-nums; } .dn { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.35; }
 .chg-lang { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 14px; }
-.org-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 4px 18px; }
-.org-list li { padding: 7px 0; border-bottom: 1px solid var(--rule); min-width: 0; } .org-list .small { color: var(--muted); margin-top: 2px; }
-.ready-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
-.rcard { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; min-width: 0; }
-.rhead { display: flex; align-items: center; gap: 8px; } .rhead .ticon { width: 18px; height: 18px; color: var(--muted); }
-.rn { margin-left: auto; font: 600 13px var(--font-mono); white-space: nowrap; }
-.rcard ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; font-size: 13px; line-height: 1.35; }
-.rcard li { display: flex; gap: 6px; } .rcard li.no { color: var(--muted); } .rcard .rm { flex: none; width: 1em; color: var(--accent); } .rcard li.no .rm { color: var(--muted); }
 #view .code { overflow-wrap: anywhere; }  /* long addresses (the API's) wrap on phones */
 .sronly { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .plan-steps { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--muted); margin-top: 6px; }

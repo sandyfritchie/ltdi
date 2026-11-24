@@ -35,8 +35,8 @@ const fail = [];
   await at('/language/yor', '/language/yo', 'Yoruba');
   await at('/language/xx', '/language/xx', 'Not found');
   await at('/language/yo#plan', '/#plan', 'Plan');
-  await p.goto(BASE + '/language/yo'); await p.waitForTimeout(1000); await p.evaluate(() => window.__same = 1);
-  await p.click('.rel-list a'); await p.waitForTimeout(800);
+  await p.goto(BASE + '/language/arz'); await p.waitForTimeout(1000); await p.evaluate(() => window.__same = 1);
+  await p.click('#view a[href="/language/ar"]:visible'); await p.waitForTimeout(800);  // a spoken variety links to its written standard
   if (!(await p.evaluate(() => window.__same === 1 && location.pathname.startsWith('/language/')))) fail.push('a language link reloaded the page or went elsewhere');
   await p.close();
   // accessibility, both themes

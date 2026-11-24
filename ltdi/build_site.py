@@ -26,7 +26,6 @@ from collections import Counter, defaultdict
 from html import escape as html_escape
 
 from . import CONFIG, DATA, ROOT
-from .organisations import for_language
 
 SITE = ROOT / "site"
 EMBED_LIMIT = 3_000_000  # bytes of per-language data to embed in the page
@@ -289,7 +288,6 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
         chg.setdefault(code, []).append([a, b, series, d])
     from .demand import language_literacy, official
     off, lit = official(), language_literacy()  # CLDR: official status and literacy by country (ltdi.demand)
-    org_label = what_label(scores)
     node_id: dict[str, int] = {}
     for p in fam.values():
         for g in p:
@@ -351,7 +349,6 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
                               **({"lookalikes": eng[l["code"]]["lookalikes"]} if "lookalikes" in eng.get(l["code"], {}) else {}),
                               **({"literacy": lit[l["code"]]} if l["code"] in lit else {}),
                               **({"changes": chg[l["code"]]} if l["code"] in chg else {}),
-                              **({"orgs": orgs} if (orgs := for_language(set(l["offers"]), scores["facts"].get(l["code"], {}), org_label)) else {}),
                               **{k: l.get(k) for k in PROFILE}}
         langs.append({k: l.get(k) for k in SUMMARY} | {
             "scores": {k: d["score"] for k, d in l["dimensions"].items()},
@@ -468,7 +465,7 @@ def compact(index: dict) -> None:
 
 
 def what_label(scores: dict):
-    """Names what each organisations.csv id stands for, as a language page lists it."""
+    """Names what each organisations.csv id stands for, as the API lists it."""
     svc = {s["id"]: s for s in scores["services"]}
     techs = scores["config"]["dimensions"]["tech"]["technologies"]
     res = {r["indicator"]: r["name"] for r in csv.DictReader((CONFIG / "resources.csv").open(encoding="utf-8"))}
