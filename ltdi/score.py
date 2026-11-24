@@ -427,6 +427,8 @@ def main() -> None:
                         # coverage as speakers meet it: text technologies through the standard they write,
                         # as for opportunities, so a Kölsch speaker isn't counted as lacking a keyboard
                         **({"via": via} if via else {}), **coverage(opp_facts, cfg, s["ltdi"]), "opportunities": opps,
+                        # and its own, as scored, for a variety that reaches technology through a standard
+                        **({"own_levels": coverage(facts_l, cfg)["levels"]} if via else {}),
                         "evidence": evidence(facts_l, cfg),
                         "written_in": written.get(code), "shares_written": code in shared,
                         "reach_by_country": reach_by_country(lang, countries)})
