@@ -335,6 +335,11 @@ function dimPanel(l, key, color) {
   return `<section class="dim wide${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span class="h3r">${key === 'tech' ? '<span class="xall"><button type="button" class="chip" data-xall="1">Expand all</button><button type="button" class="chip" data-xall="0">Hide all</button></span>' : ''}<span class="hs">${d.score.toFixed(2)}</span></span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</section>`;
 }
 
+// The World Bank's internet-use page for the countries the figures are weighted by (named in the note)
+function wbLink(f) {
+  const cs = ((f.note || '').split(': ')[1] || '').replace('\u2026', '').split(', ').filter(c => /^[A-Z]{2}$/.test(c));
+  return cs.length ? `${f.url}?locations=${cs.join('-')}` : f.url;
+}
 function reachLine(l) {
   const f = DATA.facts[l.code] || {}, sp = l.speakers || 0;
   if (!f.reach_voice_share || !sp) return '';
@@ -344,7 +349,7 @@ function reachLine(l) {
     <span>Online today <b>${people(n('reach_voice_share'))}</b></span>
     <span>Online and able to text <b>${people(n('reach_text_share'))}</b></span>
     <span>Online in five years <b>${people(n('reach_voice_share_5y') * g)}</b></span>
-    <a href="${esc(f.reach_voice_share.url)}" target="_blank" rel="noopener">World Bank data</a></div>`;
+    <a href="${esc(wbLink(f.reach_voice_share))}" target="_blank" rel="noopener">World Bank data</a></div>`;
 }
 
 // A writing sample: Article 1 of the Universal Declaration of Human Rights, from UDHR in XML (the
@@ -357,8 +362,7 @@ function sampleBlock(l) {
   const italic = ['Latn', 'Cyrl', 'Grek'].includes(script);  // scripts with an italic style
   return `<figure class="sample">
     <blockquote lang="${esc(tag)}" dir="${dir === 'rtl' ? 'rtl' : 'ltr'}"${italic ? ' class="it"' : ''}>${esc(text)}</blockquote>
-    <figcaption title="${l.code === 'en' ? '' : 'All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.'}">Article 1 of the Universal Declaration of Human Rights,
-      <span class="src">from <a href="${UDHR}/blob/${UDHR_COMMIT}/data/udhr/udhr_${esc(f)}.xml" target="_blank" rel="noopener">UDHR in XML</a> (${esc(name)})</span></figcaption>
+    <figcaption title="${l.code === 'en' ? '' : 'All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.'}">Article 1 of the Universal Declaration of Human Rights in <a href="${UDHR}/blob/${UDHR_COMMIT}/data/udhr/udhr_${esc(f)}.xml" target="_blank" rel="noopener" title="${esc(`UDHR in XML: ${name}`)}">${esc(l.name)}</a></figcaption>
   </figure>`;
 }
 // Hear the language: a few words spoken by one speaker, from Lingua Libre (Wikimedia Commons, CC BY-SA)
@@ -370,7 +374,7 @@ function hearBlock(l) {
       <span class="ico" aria-hidden="true"></span><span lang="${esc(l.code)}">${esc(word)}</span>${gloss && gloss.length <= 28 ? `<small>${esc(gloss)}</small>` : ''}</button>`;
   return `<div class="hear" role="group" aria-label="Hear ${an} ${esc(l.name)} speaker say">${TICON.tts}
     <div class="clips">${h.clips.map(clip).join('')}</div>
-    <div class="hear-src">Recorded by <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(h.clips[0][3])}" target="_blank" rel="noopener">${esc(h.speaker)}</a> for <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></div></div>`;
+    <div class="hear-src">Recorded by <a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(h.clips[0][3])}" target="_blank" rel="noopener">${esc(h.speaker)}</a> for <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a></div></div>`;
 }
 let hearAudio = null;
 function bindHear() {
@@ -424,8 +428,8 @@ function scoreNotes(l) {
 // Countries, by number of speakers: the top three, or all of them with a link back
 function whereLine(l, all) {
   const cs = l.countries, n = cs.length - 3;
-  if (n <= 0) return `Mainly in <b>${cs.map(esc).join(', ')}</b>`;
-  return all ? `Spoken in <b>${cs.map(esc).join(', ')}</b> <button class="linkish" data-more="0">less</button>`
+  if (n <= 1) return `Mainly in <b>${cs.map(esc).join(', ')}</b>`;  // a fourth country is named, not "and 1 more"
+  return all ? `Mainly in <b>${cs.map(esc).join(', ')}</b> <button class="linkish" data-more="0">less</button>`
              : `Mainly in <b>${cs.slice(0, 3).map(esc).join(', ')}</b> <button class="linkish" data-more="1">and ${n} more</button>`;
 }
 // Demand: who could use it is the speaker count; these say who's reaching for it
