@@ -332,10 +332,14 @@ sup.mk { font-size: 11px; color: var(--muted); margin-inline-start: 1px; }
 details.prov ul { margin: 8px 0 0; padding-inline-start: 18px; display: grid; gap: 4px; max-width: 80ch; }
 details.prov li { overflow-wrap: anywhere; }
 .tile.thru .mark { border: 1.5px solid var(--c); color: var(--c); }
-.mapcol { display: flex; flex-direction: column; align-items: flex-start; margin-top: 14px; width: min-content; max-width: 100%; }  /* as wide as the map: the box wraps within it */
-.mapcol .minimap { margin-top: 6px; }
-.codes { display: flex; flex-wrap: wrap; gap: 2px 12px; padding: 4px 8px; border: 1px solid var(--rule); border-radius: 6px;
-  background: var(--surface); font-size: 12px; color: var(--muted); text-align: start; }
+.mapcol { display: flex; flex-direction: column; align-items: stretch; margin-top: 8px; width: min-content; max-width: 100%; }  /* as wide as the map */
+.lsub { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.lrk { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+.lrk .lrank { white-space: nowrap; }
+.mapcol .minimap { margin-top: 10px; align-self: flex-end; }
+.codes { display: grid; grid-template-columns: auto auto; gap: 0 8px; align-items: baseline; padding: 4px 8px; border: 1px solid var(--rule);
+  border-radius: 6px; background: var(--surface); font-size: 11px; line-height: 1.45; color: var(--muted); text-align: start; white-space: nowrap; }
+.codes .cl { font-size: 10px; }
 .codes a.code { font-family: var(--font-mono); font-weight: 600; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: 8px; color: var(--muted); font-size: 14px; }
 /* a note about a fact, behind a small "i" */
