@@ -1132,10 +1132,10 @@ function placeRow(l) {
     ${top.length ? `<span title="Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it">Adult literacy ${lit}</span>` : ''}
     ${l.sample || !l.script_names.length ? '' : `<span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b>${unicodeNote(l)}${writtenInfo(l)}</span>`}</div>`;
 }
-// Its codes, each linking to where it's defined or described
+// Its codes, each linking to where it's defined or described: a small box above the map's top left corner
 function codesRow(l) {
   const a = (href, text) => `<a class="code" href="${href}" target="_blank" rel="noopener">${esc(text)}</a>`;
-  return `<div class="facts codes">
+  return `<div class="codes" aria-label="Codes">
     <span title="The language tag used on the web and in software">BCP 47 ${a(`https://r12a.github.io/app-subtags/?check=${encodeURIComponent(l.code)}`, l.code)}</span>
     ${l.iso_639_3 ? `<span>ISO 639-3 ${a(`https://www.ethnologue.com/language/${encodeURIComponent(l.iso_639_3)}/`, l.iso_639_3)}</span>` : ''}
     ${l.glottocode ? `<span>Glottocode ${a(`https://glottolog.org/resource/languoid/id/${encodeURIComponent(l.glottocode)}`, l.glottocode)}</span>` : ''}</div>`;
@@ -1240,14 +1240,13 @@ async function language(code) {
   $('#view').innerHTML = `
     <div class="lhead lang">
       <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span>${l.note ? infoTip('About this language', esc(l.note)) : ''}</h2>
-        ${codesRow(l)}
         ${peopleRow(l)}
         ${placeRow(l)}
         ${sampleBlock(l)}
         ${hearBlock(l)}
       </div>
       <div class="lscore"><div class="big">${l.ltdi.toFixed(3)}</div>${tierChip(l)}
-        <div class="lrank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other language' : 'other languages'}"` : ''}>${!l.rank ? 'Extinct · not ranked' : `${l.tied ? '=' : ''}${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div>${scoreNotes(l)}${miniMap(l)}</div>
+        <div class="lrank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other language' : 'other languages'}"` : ''}>${!l.rank ? 'Extinct · not ranked' : `${l.tied ? '=' : ''}${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div>${scoreNotes(l)}<div class="mapcol">${codesRow(l)}${miniMap(l)}</div></div>
     </div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
