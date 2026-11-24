@@ -71,7 +71,7 @@ def write_app(page: str, data_js: str) -> str:
 # Languages with their own link-preview card (site/og/<code>.png, drawn at publish time by
 # tools/og_image.py --languages): every ranked language with at least this many speakers. The rest use the
 # site's card (site/og.png).
-CARD_MIN_SPEAKERS = 1_000_000
+CARD_MIN_SPEAKERS = 100_000
 
 
 def has_card(l: dict) -> bool:

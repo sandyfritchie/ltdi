@@ -3,8 +3,8 @@
     python tools/og_image.py               the site's card (site/og.png): the title and three headline figures
                                            from the current edition's table; re-run after each edition
     python tools/og_image.py --languages   a card for each language with one (ltdi.pages.has_card), in
-                                           site/og/<code>.png: its name, code, endonym, speakers, score, tier,
-                                           rank, two dimensions, the main technologies it has and headline data figures; give codes to draw only those;
+                                           site/og/<code>.png: its name, code, endonym, speakers, score (its tier
+                                           as the colour), rank, two dimensions, the main technologies it has and headline data figures; give codes to draw only those;
                                            drawn at publish time (.github/workflows/pages.yml), not committed
                                            (needs data/scores.json, from python -m ltdi.score)"""
 
@@ -65,11 +65,12 @@ FONTS = ("https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500
 
 CARD = f"""<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="{FONTS}"><style>
   body {{ margin: 0; width: 1200px; height: 630px; background: #f5f7f6; color: #16201d; box-sizing: border-box;
-         padding: 44px 72px 50px; border-top: 14px solid var(--tier); font-family: "Source Sans 3", "Noto Sans", sans-serif;
+         padding: 44px 72px 66px; border-top: 14px solid var(--tier); font-family: "Source Sans 3", "Noto Sans", sans-serif;
          display: flex; flex-direction: column; justify-content: space-between; }}
-  .top {{ display: flex; justify-content: space-between; font: 500 22px "IBM Plex Mono", monospace; letter-spacing: .06em;
-         color: #5b6763; text-transform: uppercase; }}
-  .top .url {{ color: #1c5cab; text-transform: none; letter-spacing: 0; }}
+  .top {{ display: flex; justify-content: space-between; align-items: center; font: 500 22px "IBM Plex Mono", monospace; }}
+  .top #ed {{ padding: 6px 14px; border-radius: 6px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+             background: var(--tier); color: var(--tiertext); }}
+  .top .url {{ color: #1c5cab; }}
   .head {{ display: flex; gap: 48px; align-items: flex-start; margin-top: 22px; }}
   .who {{ flex: 1; min-width: 0; }}
   /* no overflow clipping here: it cuts off descenders. Long names are shrunk to fit two lines instead */
@@ -79,29 +80,28 @@ CARD = f"""<!doctype html><html><head><meta charset="utf-8"><link rel="styleshee
   h1 .code {{ font: 500 34px "IBM Plex Mono", monospace; color: #5b6763; letter-spacing: 0; vertical-align: .55em; white-space: nowrap; }}
   .auto {{ font-size: 38px; line-height: 1.45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
           font-family: "Source Sans 3", "Noto Sans", "Noto Sans CJK SC", sans-serif; }}
-  .sub {{ font-size: 26px; line-height: 1.35; color: #5b6763; margin-top: 8px; }}
+  .sub {{ font-size: 26px; line-height: 1.35; color: #5b6763; margin-top: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
   .score {{ flex: none; text-align: right; }}
-  .score b {{ display: block; font-family: Archivo, sans-serif; font-weight: 800; font-size: 124px; line-height: .92; letter-spacing: -.02em; }}
-  .chip {{ display: inline-block; margin-top: 16px; padding: 6px 14px; border-radius: 6px; font: 600 22px "IBM Plex Mono", monospace;
-          letter-spacing: .08em; text-transform: uppercase; background: var(--tier); color: var(--tiertext); }}
-  .rank {{ font-size: 26px; color: #5b6763; margin-top: 12px; white-space: nowrap; }}
-  .foot {{ display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 72px; }}
+  .score b {{ display: block; font-family: Archivo, sans-serif; font-weight: 800; font-size: 128px; line-height: .92; letter-spacing: -.02em; }}
+  .score.big b {{ font-size: 160px; }}
+  .rank {{ font-size: 28px; color: #5b6763; margin-top: 16px; white-space: nowrap; }}
+  .foot {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px; }}
   .dim {{ display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; font-size: 26px; row-gap: 10px; }}
   .dim > span {{ font-weight: 600; font-family: Archivo, sans-serif; font-size: 30px; }}
   .bar {{ grid-column: 1 / -1; height: 14px; border-radius: 7px; background: #e2e7e5; overflow: hidden; }}
   .bar i {{ display: block; height: 100%; }}
-  .under {{ grid-column: 1 / -1; min-width: 0; height: 50px; margin-top: 10px; display: flex; align-items: center; }}
-  .icons {{ gap: 10px; }}
-  .t {{ width: 50px; height: 50px; border-radius: 10px; display: grid; place-items: center; }}
-  .t svg {{ width: 30px; height: 30px; }}
+  .under {{ grid-column: 1 / -1; min-width: 0; height: 70px; margin-top: 12px; display: flex; align-items: center; }}
+  .icons {{ gap: 12px; }}
+  .t {{ width: 66px; height: 66px; border-radius: 12px; display: grid; place-items: center; }}
+  .t svg {{ width: 40px; height: 40px; }}
   .t.c {{ background: #4a4fb8; color: #fff; }} .t.o {{ background: #c9cbf0; color: #3b3f96; }}
-  .figs {{ gap: 24px; white-space: nowrap; font-size: 25px; color: #5b6763; }}
-  .figs b {{ font-family: Archivo, sans-serif; font-weight: 700; font-size: 1.24em; color: #16201d; margin-right: 6px; }}
+  .figs {{ gap: 32px; white-space: nowrap; font-size: 24px; line-height: 1.15; color: #5b6763; }}
+  .figs b {{ display: block; font-family: Archivo, sans-serif; font-weight: 700; font-size: 1.75em; line-height: 1.05; color: #16201d; }}
 </style></head><body>
   <div><div class="top"><span id="ed"></span><span class="url">langtechindex.org</span></div>
     <div class="head"><div class="who"><h1 id="h1"><span id="name"></span><span class="tail"><span id="last"></span> <span class="code" id="code"></span></span></h1>
       <div class="auto" id="auto"></div><div class="sub" id="sub"></div></div>
-      <div class="score"><b id="ltdi"></b><span class="chip" id="tier"></span><div class="rank" id="rank"></div></div></div></div>
+      <div class="score" id="score"><b id="ltdi"></b><div class="rank" id="rank"></div></div></div></div>
   <div class="foot">
     <div class="dim">Technology support<span id="t"></span><div class="bar"><i id="tb" style="background:#4a4fb8"></i></div>
       <div class="under icons" id="icons"></div></div>
@@ -115,7 +115,7 @@ FILL = """c => {
   const $ = id => document.getElementById(id);
   $('icons').innerHTML = c.techs.map(([k, lv]) => `<span class="t ${lv}">${window.TICON[k] || ''}</span>`).join('');
   $('figs').innerHTML = c.figs.map(([v, u]) => `<span><b>${v}</b>${u}</span>`).join('');
-  for (const k of ['ed', 'sub', 'ltdi', 'tier', 'rank']) $(k).textContent = c[k];
+  for (const k of ['ed', 'ltdi', 'rank']) $(k).textContent = c[k];
   const cut = c.name.lastIndexOf(' ') + 1;  // the name's last word stays with the code, so the code never sits on a line alone
   $('name').textContent = c.name.slice(0, cut); $('last').textContent = c.name.slice(cut);
   $('code').textContent = '[' + c.code + ']';
@@ -123,11 +123,18 @@ FILL = """c => {
   $('d').textContent = c.d.toFixed(2); $('t').textContent = c.t.toFixed(2);
   $('db').style.width = (100 * c.d) + '%'; $('tb').style.width = (100 * c.t) + '%';
   document.body.style.setProperty('--tier', c.bg); document.body.style.setProperty('--tiertext', c.fg);
-  const h = $('h1'); let s = 88; h.style.fontSize = '';
-  const fits = () => h.getBoundingClientRect().height <= 2.3 * 1.12 * s && h.scrollWidth <= h.clientWidth + 1;
-  while (!fits() && s > 40) h.style.fontSize = (s -= 4) + 'px';
+  // the name on one line if it fits at 64px or more (a short one large, with a larger score beside it); else on two lines
+  const h = $('h1'), lines = n => h.getBoundingClientRect().height <= (n + .3) * 1.12 * s && h.scrollWidth <= h.clientWidth + 1;
+  const size = (from, to, n) => { for (s = from; s >= to; s -= 4) { h.style.fontSize = s + 'px'; if (lines(n)) return true; } return false; };
+  let s; $('score').classList.add('big');
+  if (!size(128, 100, 1)) { $('score').classList.remove('big'); if (!size(96, 64, 1)) size(80, 40, 2); }
+  // where they are spoken: the shortest wording that fits on one line
+  const sb = $('sub'), over = () => sb.scrollWidth > sb.clientWidth + 1; sb.style.fontSize = '';
+  // the fullest wording that fits at 23px or more, else the shortest at down to 20px
+  fit: for (const t of c.subs) { sb.textContent = t; for (let f = 26; f >= 23; f--) { sb.style.fontSize = f + 'px'; if (!over()) break fit; } }
+  for (let f = 22; over() && f >= 20; f--) sb.style.fontSize = f + 'px';
   $('figs').style.fontSize = '';  // many or long figures: a little smaller
-  for (let f = 25; $('figs').scrollWidth > $('figs').clientWidth + 1 && f > 18; ) $('figs').style.fontSize = (f -= 1) + 'px';
+  for (let f = 24; $('figs').scrollWidth > $('figs').clientWidth + 1 && f > 18; ) $('figs').style.fontSize = (f -= 1) + 'px';
 }"""
 
 # the six technologies a card shows, and its data figures with their units
@@ -158,12 +165,14 @@ def facts() -> dict[str, dict]:
     return out
 
 
-def place(l: dict) -> str:
+def places(l: dict) -> list[str]:
+    """Where it is mainly spoken, in ever shorter wordings: the card uses the first that fits."""
     cs = [SHORT.get(c["name"], c["name"]) for c in l.get("countries", []) if not c.get("census_only")]
+    others = lambda n: f"{n} other{'s' if n > 1 else ''}"
     if len(cs) <= 2:
-        return " and ".join(cs)
-    more = len(cs) - 2
-    return f"{cs[0]}, {cs[1]} & {more} other{'s' if more > 1 else ''}"
+        out = ["Mainly in " + " and ".join(cs)] if cs else [""]
+        return out + ([f"Mainly in {cs[0]} & 1 other"] if len(cs) == 2 else [])
+    return [f"Mainly in {cs[0]}, {cs[1]} & {others(len(cs) - 2)}", f"Mainly in {cs[0]} & {others(len(cs) - 1)}"]
 
 
 def icons() -> dict[str, str]:
@@ -195,7 +204,7 @@ def cards() -> list[dict]:
         levels = l.get("own_levels") or l.get("levels") or {}
         out.append({"code": l["code"], "name": l["name"], "ed": "Language Technology Development Index",
                     "auto": auto if auto.casefold() != l["name"].casefold() else "",
-                    "sub": " · ".join(filter(None, [f"{_people(l.get('speakers'))} speakers", place(l)])),
+                    "subs": [" · ".join(filter(None, [f"{_people(l.get('speakers'))} speakers", p])) for p in places(l)],
                     "ltdi": f"{l['ltdi']:.3f}", "tier": tiers.get(l["tier"], l["tier"]), "tk": l["tier"],
                     "rank": f"{'Joint ' if l.get('tied') else ''}{l['rank']:,} of {n:,} languages",
                     "d": l["dimensions"]["data"]["score"], "t": l["dimensions"]["tech"]["score"],
