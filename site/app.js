@@ -764,7 +764,8 @@ const PROV_ORDER = [...Object.keys(PROV).filter(k => k !== 'open'), ...Object.ke
 document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k =>
   `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}
   section.focus-regional .tile[data-prov]:not([data-regional]) { opacity: .3; }</style>`);
-let provFocus = null, moreOpen = false;  // remembered while moving between languages
+let provFocus = null, moreOpen = false, provsOpen = false;  // remembered while moving between languages
+const techOpen = new Set();  // the technologies whose services are shown, remembered likewise
 const ROLE_OF = Object.fromEntries(DATA.services.map(s => [s.id, s.role]));
 const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => [s.id, s.depth]));
 // A published quality measure that discounts a service where it's poor (services.csv: quality)
@@ -984,18 +985,28 @@ function provItem(label, f, thru) {
   const u = (f.url || '').split(' ')[0];
   return `<li><b>${esc(label)}</b>${thru ? ` <span class="muted">through ${esc(thru)}</span>` : ''}: ${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(f.source)}</a>` : esc(f.source)}, retrieved ${esc(fmtDay(f.retrieved))}${f.note ? `. ${esc(f.note)}` : ''}</li>`;
 }
+// a disclosure triangle, drawn the same for every drop-down in the panels
+const TW = '<span class="tw" aria-hidden="true"></span>';
 function provList(l, key, facts, vfacts, wname) {
-  const items = [];
+  let items = [], n = 0;
   const add = (label, id) => {
     if (facts[id]) items.push(provItem(label, facts[id]));
     if (vfacts && vfacts[id] && vfacts[id] !== facts[id]) items.push(provItem(label, vfacts[id], wname));
   };
-  if (key === 'tech') {
+  if (key === 'tech') {  // grouped by technology, so its name isn't repeated on every line
+    const groups = [];
     for (const [tk, t] of Object.entries(CFG.tech.technologies)) {
       const ids = t.indicator ? [t.indicator] : [...(t.consumer || []), ...(t.regional || []), ...(t.open || []),
         ...Object.keys(t.measured || {}), ...Object.keys(t.depth || {}), ...Object.values(t.quality || {}).map(q => q.indicator)];
-      for (const id of [...new Set(ids)]) add(`${t.label} · ${(SVC[id] || [])[0] || DATA.labels[id] || id}`, id);
+      items = [];
+      // a service's own name; a detail of one (its features, level, voices) as "iOS features"; locale data as its source
+      const name = id => SVC[id] ? SVC[id][0] : (t.depth_owner || {})[id] && SVC[t.depth_owner[id]]
+        ? `${SVC[t.depth_owner[id]][0]} ${id.slice(t.depth_owner[id].length + 1).replace(/_/g, ' ')}` : id === t.indicator ? 'Unicode CLDR' : DATA.labels[id] || id;
+      for (const id of [...new Set(ids)]) add(name(id), id);
+      if (items.length) groups.push(`<li class="pgroup"><b>${esc(t.label)}</b><ul>${items.join('')}</ul></li>`);
+      n += items.length;
     }
+    items = groups;
   } else {
     for (const [ik, spec] of Object.entries(CFG[key].indicators)) {
       add(spec.label, ik);
@@ -1003,9 +1014,10 @@ function provList(l, key, facts, vfacts, wname) {
     }
     if (key === 'data') add('Word-frequency list (not scored; in the keyboard and spelling checklists)', 'wordlist_corpuscrawler');
   }
+  if (key !== 'tech') n = items.length;
   const speech = key === 'data' ? speechDetail(l, facts) : '';
   if (!items.length && !speech) return '';
-  return `<details class="prov"><summary>Sources, dates and notes <span class="muted">· ${items.length}</span></summary><ul>${items.join('')}</ul>${speech}</details>`;
+  return `<details class="prov"><summary>${TW}<span class="dd-title">Sources, dates and notes</span> <span class="muted">· ${n}</span></summary><ul${key === 'tech' ? ' class="pgroups"' : ''}>${items.join('')}</ul>${speech}</details>`;
 }
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
@@ -1013,8 +1025,8 @@ function dimPanel(l, key, color) {
   const thru = v => `<span class="thru-v" title="Counted from ${esc(wname)}">through ${esc(wname)} ${v}</span>`;
   let body = '';
   if (key === 'tech') {
-    body += `<div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries({ ...PROV, ...(Object.values(cfg.technologies).some(t => regionalOn(t, facts).length) ? { regional: 'Regional providers' } : {}) }).map(([k, n]) =>
-      `<button class="chip prov" id="pv-${k}" data-pv="${k}" aria-pressed="${provFocus === k}" style="--p:var(--prov-${k})"${k === 'regional' ? ` title="${esc(Object.values(REGIONAL).join(', '))}"` : ''}><i></i>${esc(n)}</button>`).join('')}</div>`;
+    const provs = `<details class="provs"${provsOpen ? ' open' : ''}><summary>${TW}<span class="dd-title">Providers</span></summary><div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries({ ...PROV, ...(Object.values(cfg.technologies).some(t => regionalOn(t, facts).length) ? { regional: 'Regional providers' } : {}) }).map(([k, n]) =>
+      `<button class="chip prov" id="pv-${k}" data-pv="${k}" aria-pressed="${provFocus === k}" style="--p:var(--prov-${k})"${k === 'regional' ? ` title="${esc(Object.values(REGIONAL).join(', '))}"` : ''}><i></i>${esc(n)}</button>`).join('')}</div></details>`;
     const main = [], more = [], peek = [];
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
@@ -1026,16 +1038,18 @@ function dimPanel(l, key, color) {
       const order = PROV_ORDER, rank = id => { const i = order.indexOf((SVC[id] || [])[2]); return i < 0 ? order.length : i; };
       const tiles = t.indicator ? localeTile(facts[t.indicator], vfacts && vfacts[t.indicator], wname)
         : [...ids].sort((a, b) => rank(a) - rank(b)).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname, l.unnamed, l.name)).join('');
-      const row = `<div class="techrow">
-        <div class="tech-h">${TICON[tk] || ''}<b>${esc(t.label)}</b>${t.help ? infoTip(t.label, esc(t.help)) : ''}<span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
-        ${s == null ? '' : bar(s)}
-        <div class="tiles">${tiles}</div></div>`;
+      // the score and bar always shown; the services it rests on behind the triangle
+      const row = `<details class="techrow" data-tk="${tk}"${techOpen.has(tk) ? ' open' : ''}><summary>
+        <div class="tech-h">${TW}${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
+        ${s == null ? '' : bar(s)}</summary>
+        ${t.help ? `<p class="tech-help">${esc(t.help)}</p>` : ''}<div class="tiles">${tiles}</div></details>`;
       if (t.group === 'more') { more.push(row); peek.push(`<span title="${esc(t.label)}">${TICON[tk] || ''}<span class="sr">${esc(t.label)}</span>${sv}</span>`); }
       else main.push(row);
     }
     body += main.join('');
     if (more.length) body += `<details class="more-tech"${moreOpen ? ' open' : ''}>
-      <summary><span class="mt-title">More technologies</span><span class="mt-peek">${peek.join('')}</span></summary>${more.join('')}</details>`;
+      <summary>${TW}<span class="dd-title">More technologies</span><span class="mt-peek">${peek.join('')}</span></summary>${more.join('')}</details>`;
+    body += provs;
   } else {
     body += '<div class="inds">';
     const inds = Object.entries(cfg.indicators);
@@ -1056,7 +1070,7 @@ function dimPanel(l, key, color) {
     body += '</div>';
   }
   body += provList(l, key, facts, vfacts, wname);
-  return `<section class="dim wide${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span>${d.score.toFixed(2)}</span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${key === 'tech' ? evidenceLine(l) : ''}${body}</section>`;
+  return `<section class="dim wide${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><h3>${esc(CFG[key].label)}<span class="h3r">${key === 'tech' ? '<span class="xall"><button type="button" class="chip" data-xall="1">Expand all</button><button type="button" class="chip" data-xall="0">Hide all</button></span>' : ''}<span class="hs">${d.score.toFixed(2)}</span></span></h3>${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</section>`;
 }
 
 function reachLine(l) {
@@ -1131,13 +1145,6 @@ function writtenInfo(l) {
   const w = BY[l.written_in];
   if (l.shares_written) return infoTip('How writing is counted', `${esc(l.name)} is written in the standard form of <a href="${LH(w.code)}">${esc(w.name)}</a>, and sources label that text and its tools as ${esc(w.name)}, so ${esc(w.name)}’s written data and text technologies count as ${esc(l.name)}’s. Speech data and technologies are counted separately.`);
   return infoTip('How the standard is counted', `${esc(l.name)} speakers typically write the standard form of <a href="${LH(w.code)}">${esc(w.name)}</a>. The score and rank count only what exists for ${esc(l.name)} itself; a second score counts ${esc(w.name)}’s written data and text technologies too, as most speakers can use them. On this page, values marked “through ${esc(w.name)}” are ${esc(w.name)}’s.`);
-}
-// What the technology score rests on: language-list entries, and quality measurements with the oldest's year
-function evidenceLine(l) {
-  const e = l.evidence;
-  if (!e || !(e.listed || e.measured)) return '';
-  const n = (k, one, many) => `${k.toLocaleString()} ${k === 1 ? one : many}`;
-  return `<div class="thru-dim" title="List entries say a service supports the language; measurements say how well (benchmarks, error rates, translation scores). Most languages have no measurements, so their scores rest on lists alone.">Based on ${n(e.listed, 'language-list entry', 'language-list entries')}${e.measured ? ` and ${n(e.measured, 'quality measurement', 'quality measurements')}${e.oldest ? ` (oldest ${e.oldest})` : ''}` : ', with no quality measurements'}</div>`;
 }
 // Under the score: a spoken variety's score through its written standard; the score before the floor
 function scoreNotes(l) {
@@ -1233,8 +1240,7 @@ async function language(code) {
   bindMiniMap(l);
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
-  const mt = $('#view').querySelector('details.more-tech');
-  if (mt) mt.ontoggle = () => { moreOpen = mt.open; };
+  bindTechPanel();
   $('#view').querySelectorAll('[data-pv]').forEach(b => b.onclick = () => {
     provFocus = provFocus === b.dataset.pv ? null : b.dataset.pv;
     const sec = $('section.dim.techdim');
@@ -1243,6 +1249,27 @@ async function language(code) {
   });
   $('#cmpsel').onchange = e => { const c = pickedCode(e.target.value); if (c && c !== code) go(`compare-${code}-${c}`); };
   navBox('go', 'Find another language name or code');
+}
+
+// The technology panel's drop-downs: each technology's services, More technologies and Providers, remembered
+// between languages; Expand all opens every one, Hide all closes every one (each greyed out when there's nothing to do)
+function bindTechPanel() {
+  const sec = $('section.dim.techdim');
+  if (!sec) return;
+  const all = () => [...sec.querySelectorAll('details.techrow, details.more-tech, details.provs')];
+  const sync = () => {
+    const ds = all();
+    sec.querySelector('[data-xall="1"]').disabled = ds.every(d => d.open);
+    sec.querySelector('[data-xall="0"]').disabled = !ds.some(d => d.open);
+  };
+  for (const d of all()) d.addEventListener('toggle', () => {
+    if (d.classList.contains('techrow')) d.open ? techOpen.add(d.dataset.tk) : techOpen.delete(d.dataset.tk);
+    else if (d.classList.contains('more-tech')) moreOpen = d.open;
+    else provsOpen = d.open;
+    sync();
+  });
+  sec.querySelectorAll('[data-xall]').forEach(b => b.onclick = () => { const o = b.dataset.xall === '1'; for (const d of all()) d.open = o; });
+  sync();
 }
 
 // ---------------------------------------------------------------- compare
