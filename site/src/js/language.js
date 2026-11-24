@@ -473,6 +473,20 @@ function whereLine(l, all) {
   return all ? `Mainly in <b>${cs.map(esc).join(', ')}</b> <button class="linkish" data-more="0">less</button>`
              : `Mainly in <b>${cs.slice(0, 3).map(esc).join(', ')}</b> <button class="linkish" data-more="1">and ${n} more</button>`;
 }
+// Opportunities as a panel of compact cards, like the services on the technology panel: what to do, the one figure
+// that matters, a link to the starter kit; coloured by kind of action, highest priority first
+function oppPanel(l) {
+  const os = [...l.opportunities].sort((a, b) => prio(b) - prio(a));
+  const kinds = Object.keys(OT).filter(k => os.some(o => o.type === k));
+  const card = o => `<div class="otile" style="--c:var(${OCOLOR[o.type]})" title="${esc(`${OT[o.type].label}: ${o.title}`)}">
+      <span class="oprio" title="Priority">${prio(o).toFixed(2)}</span>
+      <b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}<a href="#opp-${o.id}">starter kit</a></div>`;
+  return `<section class="dim wide opps-panel" style="--c:var(--muted)">
+    <h3>Opportunities<span class="h3r"><a class="olink" href="#opportunities-${l.code}">Filter and compare by type</a></span></h3>
+    ${os.length ? `<div class="okey">${kinds.map(k => `<span style="--c:var(${OCOLOR[k]})"><i></i>${esc(OT[k].label)}</span>`).join('')}</div>
+    <div class="otiles">${os.map(card).join('')}</div>`
+      : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
+}
 function whenLabel(a, b) {
   const m = p => /^\d{4}-\d\d$/.test(p) ? new Date(p + '-15T12:00:00') : null, fa = m(a), fb = m(b);
   if (!fa || !fb) return `${a} to ${b}`;
@@ -502,8 +516,7 @@ async function language(code) {
           <div class="lrank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other language' : 'other languages'}"` : ''}>${!l.rank ? 'Extinct · not ranked' : `${l.tied ? '=' : ''}${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div></div></div><div class="lnotes">${scoreNotes(l)}</div>${miniMap(l)}</div></div>
     </div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
-    <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
-    ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
+    ${oppPanel(l)}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>
     ${changesLine(l)}`;
   bindMiniMap(l);

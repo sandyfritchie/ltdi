@@ -212,6 +212,39 @@ COVERAGE = {
 }
 OPEN_HOURS = {"speech_input": 20, "tts": 10}  # this much open speech also counts as an open resource
 
+# The compact form shown on a language's page: what to do, in a few words, and the one figure that matters
+SHORT = {
+    "kb-platform": "Bring the keyboard to every platform", "kb-open": "Ship a phone keyboard",
+    "kb-features": "Add predictive text", "asr-vendors": "Ship speech-to-text", "asr-none": "Ship speech-to-text",
+    "asr-measure": "Measure speech recognition", "asr-improve": "Improve speech recognition",
+    "asr-collect": "Collect speech data", "tts-vendors": "Ship text-to-speech", "tts-share": "Ship a cloud voice",
+    "tts-collect": "Record a voice", "mt-vendors": "Ship translation", "llm-measure": "Benchmark LLMs",
+    "llm-apps": "List it in AI assistants", "llm-improve": "Improve LLMs", "llm-reading": "Add it to Belebele",
+    "cldr": "Complete its CLDR locale", "text-collect": "Collect more text", "ui-platforms": "Translate more interfaces",
+    "ui-community": "Ship an interface translation", "ui-none": "Translate an interface",
+    "ocr-vendors": "Ship text recognition", "ocr-open": "Ship text recognition", "ocr-collect": "Build text recognition",
+    "proof-share": "Ship a spell-checker", "proof-build": "Build a spell-checker", "va-vendors": "Ship a voice assistant",
+    "va-ready": "Ship a voice assistant", "lid-none": "Add it to language identifiers",
+    "wiki-community": "Grow Wikipedia editing", "document": "Start documenting it",
+}
+COVERAGE_FACT = {
+    "kb-platform": lambda c: f"On {c['n']} of {c['of']} major keyboards",
+    "kb-open": lambda c: "Open layouts published",
+    "asr-vendors": lambda c: f"{c['n']} of {c['of']} services; {_hours(c['hours'])} of speech data available",
+    "asr-none": lambda c: f"{_hours(c['hours'])} of speech data available",
+    "tts-vendors": lambda c: f"{c['n']} of {c['of']} services" + ("; an open model" if c["open"] else ""),
+    "tts-share": lambda c: ("An open model; " if c["open"] else "") + f"{_hours(c['hours'])} of speech data available",
+    "tts-collect": lambda c: "No voice found, open or cloud",
+    "ui-platforms": lambda c: f"{c['n']} of {c['of']} platforms",
+    "ui-community": lambda c: "A volunteer browser translation",
+    "ui-none": lambda c: "No platform found",
+    "ocr-vendors": lambda c: f"{c['n']} of {c['of']} services" + ("; an open model" if c["open"] else ""),
+    "ocr-open": lambda c: "An open model",
+    "ocr-collect": lambda c: "None found, open or commercial",
+    "proof-share": lambda c: "An open spell-checker",
+    "va-vendors": lambda c: f"{c['n']} of {c['of']} assistants",
+}
+
 
 def _consumer(tech: str, key: str = "consumer") -> list[str]:
     """A technology's service list from config/services.csv, so rules follow the config."""
@@ -252,10 +285,12 @@ def find(f: dict[str, Record]) -> list[dict]:
     detail, gap, evidence, teams, starter kit (indicators of open resources) and what's still missing."""
     out = []
 
-    def add(key, type_, tech, title, detail, gap, evidence):
+    def add(key, type_, tech, title, detail, gap, evidence, fact=""):
+        """fact: the one figure that matters, for the compact card on a language's page (with SHORT[key])"""
         if gap > 0:
             rule = RULES[key]
             out.append({"key": key, "type": type_, "technology": tech, "title": title, "detail": detail,
+                        "short": SHORT[key], "fact": fact,
                         "gap": round(min(1.0, gap), 3), "evidence": [e for e in evidence if e in f],
                         "checked": list(dict.fromkeys(evidence)),  # every source checked, found or not
                         "teams": rule["teams"], "missing": rule["missing"], "cost": rule.get("cost"),
@@ -283,7 +318,7 @@ def find(f: dict[str, Record]) -> list[dict]:
         add("document", "collect", "data", "No data or technology found: start with documentation",
             "None of the sources tracked records text, speech or any tool for this language. Recordings and "
             "texts made with its speakers are where every technology starts. Some may already exist in "
-            "archives that no source here counts.", 1.0, [])
+            "archives that no source here counts.", 1.0, [], "Nothing recorded yet")
         return out
 
     # Prerequisites: text technologies and benchmarks need some written text to start from; measuring
@@ -309,7 +344,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             if tech == name and w == when and (has_text or key not in TEXT_RULES):
                 gap = (len(cons) - n) / len(cons) if when == "some" else 1.0
                 ev = cons + opn + (["open_speech_hours"] if name in OPEN_HOURS else [])
-                add(key, type_, tech, title(c), detail(c), gap, ev)
+                add(key, type_, tech, title(c), detail(c), gap, ev, COVERAGE_FACT[key](c))
 
     # Keyboard features
     feats = _v(f, "kb_apple_features")
@@ -317,7 +352,7 @@ def find(f: dict[str, Record]) -> list[dict]:
         add("kb-features", "share", "keyboard", "Predictive text and autocorrect could be built from open text",
             f"The iOS keyboard has {feats:.0f} of 4 typing features. The open web corpora tracked hold about {_words(words)} words "
             "of openly licensed web text, enough to train word prediction.",
-            (4 - feats) / 4, ["kb_apple_features", "web_text_words"])
+            (4 - feats) / 4, ["kb_apple_features", "web_text_words"], f"{_words(words)} words of open text")
 
     # Speech-to-text: error rates and data
     wer = _v(f, "asr_whisper_fleurs_wer")
@@ -326,16 +361,16 @@ def find(f: dict[str, Record]) -> list[dict]:
             add("asr-measure", "measure", "speech_input", "Not in the speech recognition error rates tracked here",
                 "The language isn't in the published FLEURS error-rate breakdowns we track, so builders can't "
                 "tell how usable open speech recognition is.",
-                1.0, ["asr_whisper_fleurs_wer"])
+                1.0, ["asr_whisper_fleurs_wer"], "No published error rate")
     elif wer is not None and wer >= 25:
         add("asr-improve", "improve", "speech_input", f"Speech recognition makes about {wer:.0f} errors per 100 words",
             "Measured on FLEURS with a leading open model. Below about 15% is comfortably usable for dictation.",
-            (wer - 10) / 40, ["asr_whisper_fleurs_wer"])
+            (wer - 10) / 40, ["asr_whisper_fleurs_wer"], f"{wer:.0f}% word error rate")
     if cv < 20:
         add("asr-collect", "collect", "speech_input", f"Only {_hours(cv)} of open transcribed speech found" if cv else "No open transcribed speech found in the datasets tracked",
             "Counted across the open speech datasets we track. Image-prompted field collection has worked at "
             "scale for Indian and African languages.",
-            1 - cv / 20, ["open_speech_hours"])
+            1 - cv / 20, ["open_speech_hours"], f"{_hours(cv)} of speech data available" if cv else "No open speech data")
 
     # Translation: the open model and FLORES-200 make every gap a launch
     mt_n = offered["mt"]
@@ -343,7 +378,8 @@ def find(f: dict[str, Record]) -> list[dict]:
         add("mt-vendors", "share", "mt", f"Translation is offered by {mt_n} of {len(MT)} major services",
             "An open model and the FLORES-200 evaluation set already cover this language, so the main "
             "remaining step is a product launch.",
-            (len(MT) - mt_n) / len(MT), MT + ["mt_open_nllb", "flores200"])
+            (len(MT) - mt_n) / len(MT), MT + ["mt_open_nllb", "flores200"],
+            f"{mt_n} of {len(MT)} services; an open model and test set")
 
     # LLMs
     llm = [i for i in LLM if i in f]
@@ -351,7 +387,7 @@ def find(f: dict[str, Record]) -> list[dict]:
         add("llm-measure", "measure", "llm", "Not in the LLM benchmark results tracked here",
             f"None of the {len(LLM)} published LLM benchmark results we track covers this language. Adding it "
             "would give builders and buyers a baseline.",
-            1.0, LLM)
+            1.0, LLM, "No benchmark results")
     else:
         rel = _v(f, "llm_global_mmlu_rel")
         acc = _v(f, "llm_mmmlu_openai")
@@ -359,7 +395,7 @@ def find(f: dict[str, Record]) -> list[dict]:
                             f"{acc * 100:.0f}% accuracy" if acc is not None and acc < 0.85 else None) if s]
         if weak:
             add("llm-improve", "improve", "llm", "LLMs lag behind their English performance",
-                "Benchmark results: " + "; ".join(weak) + ".", 0.5, llm)
+                "Benchmark results: " + "; ".join(weak) + ".", 0.5, llm, "; ".join(weak))
     apps_n = offered["llm"]
     apps = [i for i in APPS if i not in APPS_LISTED_ONLY or _v(f, i)]
     if any(i in f for i in apps) and apps_n < len(apps) and (apps_n or llm):
@@ -368,11 +404,11 @@ def find(f: dict[str, Record]) -> list[dict]:
             ("Some assistants already list it. " if apps_n else "")
             + ("Benchmarks show models already work in it, so listing it could be a short step."
                if llm else "Listing it would tell speakers they can rely on it."),
-            (len(apps) - apps_n) / len(apps), apps + llm)
+            (len(apps) - apps_n) / len(apps), apps + llm, f"Listed by {apps_n} of {len(apps)} assistants" if apps_n else f"Listed by none of {len(apps)} assistants")
     if not _v(f, "belebele") and has_text:
         add("llm-reading", "measure", "llm", "Not in Belebele, the reading-comprehension benchmark tracked here",
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
-            0.5, ["belebele"])
+            0.5, ["belebele"], "Not in Belebele yet")
 
     # Spelling and grammar: nothing open either, but enough text for a word list
     if "proof_office" in f and not _v(f, "proof_office") and not (_v(f, "proof_hunspell") or _v(f, "proof_languagetool")) \
@@ -380,21 +416,21 @@ def find(f: dict[str, Record]) -> list[dict]:
         add("proof-build", "share", "proofing", "A spell-checker could be built from open text",
             f"No spell-checker was found in the sources tracked. The open web corpora tracked hold about {_words(words)} words, "
             "enough for a first word list.",
-            1.0, ["proof_office", "proof_hunspell", "web_text_words"])
+            1.0, ["proof_office", "proof_hunspell", "web_text_words"], f"{_words(words)} words of open text")
 
     # Voice assistants: none yet, but speech recognition and a voice exist
     if any(i in f for i in VA) and not offered["assistant"] and offered["speech_input"] and offered["tts"]:
         add("va-ready", "share", "assistant", "The building blocks for a voice assistant exist",
             "Commercial speech recognition and a synthetic voice both exist, but no major assistant "
             "understands spoken requests in this language yet.",
-            1.0, VA + ASR + TTS)
+            1.0, VA + ASR + TTS, f"{_hours(cv)} of speech data available" if cv else "Speech recognition and a voice exist")
 
     # Language identification (open tools only)
     if any(i in f for i in LID) and not any(_v(f, i) for i in LID) and words:
         add("lid-none", "share", "langid", "Not recognised by the open language identifiers tracked",
             "Web-scale data collection starts by identifying each page's language, so text in this language "
             "is lost from open datasets.",
-            1.0, LID + ["web_text_words"])
+            1.0, LID + ["web_text_words"], f"{_words(words)} words of web text")
 
     # Writing system
     cldr = _v(f, "cldr_coverage")
@@ -408,20 +444,21 @@ def find(f: dict[str, Record]) -> list[dict]:
         add("cldr", "standardise", "locale", title,
             "Complete CLDR data (names, dates, numbers, character sets) underpins interface localisation, "
             "keyboards and reading numbers aloud in text-to-speech.",
-            (3 - cldr) / 3, ["cldr_coverage"])
+            (3 - cldr) / 3, ["cldr_coverage"], f"{['', 'Basic', 'Moderate'][int(cldr)]} coverage" if cldr
+            else "Below basic coverage" if "below" in title else "No locale yet")
 
     # Text data
     if words and words < 1e8:
         add("text-collect", "collect", "data", f"Only about {_words(words)} words of open web text found",
             "Little text online limits language models and word prediction. Digitising books and news archives "
             "is often the fastest route.",
-            1 - math.log10(max(words, 1e4) / 1e4) / 4, ["web_text_words"])
+            1 - math.log10(max(words, 1e4) / 1e4) / 4, ["web_text_words"], f"{_words(words)} words of open text")
     editors = _v(f, "wikipedia_active_editors")
     if editors is not None and editors < 100 and has_wiki:
         add("wiki-community", "collect", "data", f"Wikipedia has {editors:.0f} active editors",
             "A small editing community limits new open text. Edit-a-thons and translation drives with "
             "universities have grown communities elsewhere.",
-            1 - editors / 100, ["wikipedia_active_editors"])
+            1 - editors / 100, ["wikipedia_active_editors"], f"{editors:.0f} active editors")
     return out
 
 
