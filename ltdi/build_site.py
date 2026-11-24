@@ -17,6 +17,7 @@ so it works opened straight from disk. Otherwise serve the site folder over HTTP
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import math
 import re
@@ -688,6 +689,13 @@ def main() -> None:
     (SITE / "data" / "history.json").write_text(_dump(index.pop("history", None)), encoding="utf-8")
     # likewise the top opportunities, for the Opportunities tab
     (SITE / "data" / "top_opportunities.json").write_text(_dump(index.pop("top_opportunities", [])), encoding="utf-8")
+    # languages with neither an area nor a point on the map: their pages leave out the small map, so the
+    # space it takes is known before the map's own file (data/map.json) arrives
+    if (DATA / "world_languages.json").exists():
+        on_map = {p[0] for p in json.loads((DATA / "world_languages.json").read_text(encoding="utf-8"))}
+        if (DATA / "areas.json").exists():
+            on_map |= set(json.loads((DATA / "areas.json").read_text(encoding="utf-8")).get("paths", {}))
+        index["nomap"] = sorted(l["code"] for l in index["languages"] if l["code"] not in on_map)
     compact(index)
     page = src.replace("/*__DATA__*/", _dump(index).replace("</", "<\\/"))
     page = page.replace("/*__LANGS__*/", embed.replace("</", "<\\/"))
@@ -705,10 +713,14 @@ def main() -> None:
     # time (ltdi.pages)
     (SITE / "artifact.html").write_text(page, encoding="utf-8")
     from .pages import write_app, write_language_pages
-    data_js = ("window.LTDI_DATA=" + _dump(index) + ";\nwindow.LTDI_MAP=" + geo_text + ";\nwindow.LTDI_LANGS=" + embed + ";\n")
+    # the map's outlines, areas and points are a third of the data and only the map and language pages draw
+    # them, so the public site loads them on their own (data/map.json), after the first view is drawn
+    (SITE / "data" / "map.json").write_text(geo_text, encoding="utf-8")
+    map_url = f"/data/map.json?v={hashlib.sha256(geo_text.encode()).hexdigest()[:10]}"
+    data_js = ("window.LTDI_DATA=" + _dump(index) + ";\nwindow.LTDI_MAP_URL=" + json.dumps(map_url) + ";\nwindow.LTDI_LANGS=" + embed + ";\n")
     html = write_app(page, data_js)
     write_language_pages()
-    print(f"wrote site/index.html ({len(html.encode()) / 1e3:.0f} KB, data/index.js {len(data_js.encode()) / 1e6:.2f} MB; index {len(_dump(index).encode()) / 1e6:.2f} MB, "
+    print(f"wrote site/index.html ({len(html.encode()) / 1e3:.0f} KB, data/index.js {len(data_js.encode()) / 1e6:.2f} MB, data/map.json {len(geo_text.encode()) / 1e6:.2f} MB; index {len(_dump(index).encode()) / 1e6:.2f} MB, "
           f"{len(details)} languages in {len(shards)} files, {total / 1e6:.2f} MB, {'embedded' if embed != 'null' else 'loaded on demand'})")
 
 

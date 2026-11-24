@@ -96,6 +96,8 @@ function route() {
 }
 addEventListener('hashchange', route);
 addEventListener('popstate', route);
+// once the first view is drawn, the map's file loads in the background, ready for the Map tab
+addEventListener('load', () => setTimeout(loadGeo, 300));
 // On the public site, links to the site's own views move between them without reloading the page
 if (PATHS) document.addEventListener('click', e => {
   const a = e.target.closest('a[href]');

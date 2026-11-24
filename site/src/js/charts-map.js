@@ -74,7 +74,23 @@ function providerSelect(id) {
     <optgroup label="Regional providers">${Object.entries(REGIONAL).map(opt).join('')}</optgroup></select>`;
 }
 
-const GEO = window.LTDI_DATA ? window.LTDI_MAP || null : JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
+// The map's outlines, areas and points: inline in the preview; on the public site its own file
+// (data/map.json), loaded once the first view is drawn, or at once for a view that draws a map
+let GEO = window.LTDI_DATA ? null : JSON.parse(document.getElementById('ltdi-map').textContent || 'null');
+let geoLoading = null;
+const NOMAP = new Set(DATA.nomap || []);  // languages with no area or point: no small map on their pages
+function loadGeo() {
+  if (GEO || !window.LTDI_MAP_URL) return Promise.resolve(GEO);
+  return geoLoading ??= fetch(window.LTDI_MAP_URL).then(r => r.json()).then(g => {
+    GEO = g; AREAS = g && g.areas; OFFICIAL_AREA = new Set((AREAS && AREAS.official) || []);
+    const h = curRoute(), m = h.match(/^lang-([a-z0-9]+)$/);
+    if (h === 'map' && document.getElementById('mapwait')) mapPage();
+    else if (m && BY[m[1]] && document.getElementById('minimap')) {  // fill in the small map, in the space kept for it
+      document.getElementById('minimap').outerHTML = miniMap(BY[m[1]]); bindMiniMap(BY[m[1]]);
+    }
+    return GEO;
+  }).catch(() => null);
+}
 const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', lc: '--t-lc', lo: '--t-lo', ld: '--t-ld', ln: '--t-ln', l: '--t-l' };
 const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
 let mapR = null;  // base radii for the current render
@@ -83,7 +99,7 @@ let mapView = null;  // the map's zoom, kept while the map page redraws (switchi
 // Map view: the areas where languages are spoken, shaded by tier (Glottography), or a dot per language
 let mapMode = 'areas';
 const SOFT_MIN = 2400;  // the least blur of the language areas, as a fraction of the map's width
-const AREAS = GEO && GEO.areas;  // embedded with the basemap
+let AREAS = GEO && GEO.areas;  // embedded with the basemap
 // Natural Earth 50m outlines (data/borders.json), fetched the first time the map is zoomed to chosen
 // countries; until they arrive the world map's own (110m) are drawn, then the map redraws in place
 let BORDERS = null, bordersLoading = null;
@@ -360,7 +376,7 @@ function bindMap() {
 }
 
 // The languages whose area is where they're official (Wikipedia, via Glottography) rather than the atlas's
-const OFFICIAL_AREA = new Set((AREAS && AREAS.official) || []);
+let OFFICIAL_AREA = new Set((AREAS && AREAS.official) || []);
 function officialNames() {
   const ns = [...OFFICIAL_AREA].filter(c => BY[c]).map(c => BY[c].name).sort();
   return ns.length > 1 ? `${ns.slice(0, -1).join(', ')} and ${ns[ns.length - 1]}` : ns[0] || '';
@@ -369,7 +385,11 @@ function officialNames() {
 // Map tab frames a language found with the search box. Selecting it opens the language on the Map tab.
 const MINI_ASPECT = 0.62;
 function miniMap(l) {
-  if (!GEO || l.extinct) return '';
+  if (l.extinct || NOMAP.has(l.code)) return '';
+  if (!GEO) {  // the map's file is still on its way: keep the small map's space (the basemap is 1000 wide)
+    loadGeo();
+    return `<a class="minimap" id="minimap" href="#map" aria-label="${esc(l.name)} on the map"><svg viewBox="0 0 1000 ${1000 * MINI_ASPECT}" aria-hidden="true"></svg></a>`;
+  }
   const area = AREAS && AREAS.paths[l.code], p = GEO.points.find(q => q[0] === l.code);
   if (!area && !p) return '';
   const col = `var(${TIERC[tierOf(l)[0]]})`, land = GEO.basemap.path;
@@ -404,6 +424,7 @@ function bindMiniMap(l) {
   const a = document.getElementById('minimap'), svg = a && a.querySelector('svg');
   if (!svg) return;
   sizeMiniMap();
+  if (!GEO) return;
   const { width: W, height: H } = GEO.basemap, area = svg.querySelector('.marea'), dot = svg.querySelector('.mdot');
   let cx, cy, w, small = true;
   if (area) {
@@ -671,6 +692,11 @@ function charts() {
 // ---------------------------------------------------------------- map
 // The map has the region, country and tier filters; the search box finds a language on it
 function mapPage() {
+  if (!GEO && window.LTDI_MAP_URL) {  // the map's file is still on its way: draw the page when it arrives
+    $('#view').innerHTML = '<div id="mapwait" class="muted" role="status" style="min-height:70vh">Loading the map\u2026</div>';
+    loadGeo();
+    return;
+  }
   const N = LANGS.filter(inView).length;
   $('#view').innerHTML = `<h2 class="sronly">Map</h2>
     <div class="controls sticky"><span id="mregwrap">${regionPicker()}</span><span id="mctrywrap">${countryPicker()}</span><span id="mtierwrap">${tierPicker()}</span><span class="note" style="margin:0">${N.toLocaleString()} languages</span>
