@@ -5,7 +5,7 @@ name: Publish site
 on:
   push:
     branches: [main]
-    paths: ["site/**", "data/**", "config/**", "ltdi/**", ".github/workflows/pages.yml"]
+    paths: ["site/**", "data/**", "config/**", "ltdi/**", "tools/og_image.py", ".github/workflows/pages.yml"]
   workflow_dispatch:
 
 permissions:
