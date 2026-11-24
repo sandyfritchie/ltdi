@@ -84,22 +84,22 @@ CARD = f"""<!doctype html><html><head><meta charset="utf-8"><link rel="styleshee
   .score {{ flex: none; text-align: right; }}
   .score b {{ display: block; font-family: Archivo, sans-serif; font-weight: 800; font-size: 128px; line-height: .92; letter-spacing: -.02em; }}
   .score.big b {{ font-size: 160px; }}
-  .rank {{ font-size: 28px; color: #5b6763; margin-top: 16px; white-space: nowrap; }}
+  .rank {{ font-size: 26px; line-height: 1.35; color: #5b6763; margin-top: 14px; white-space: nowrap; }}
   .foot {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 72px; }}
   .dim {{ display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; font-size: 26px; row-gap: 10px; }}
   .dim > span {{ font-weight: 600; font-family: Archivo, sans-serif; font-size: 30px; }}
   .bar {{ grid-column: 1 / -1; height: 14px; border-radius: 7px; background: #e2e7e5; overflow: hidden; }}
   .bar i {{ display: block; height: 100%; }}
-  .under {{ grid-column: 1 / -1; min-width: 0; height: 70px; margin-top: 12px; display: flex; align-items: center; }}
+  .under {{ grid-column: 1 / -1; min-width: 0; height: 80px; margin-top: 14px; display: flex; align-items: center; }}
   .icons {{ gap: 12px; }}
-  .t {{ width: 66px; height: 66px; border-radius: 12px; display: grid; place-items: center; }}
-  .t svg {{ width: 40px; height: 40px; }}
+  .t {{ width: 72px; height: 72px; border-radius: 13px; display: grid; place-items: center; }}
+  .t svg {{ width: 44px; height: 44px; }}
   .t.c {{ background: #4a4fb8; color: #fff; }} .t.o {{ background: #c9cbf0; color: #3b3f96; }}
-  .figs {{ gap: 32px; white-space: nowrap; font-size: 24px; line-height: 1.15; color: #5b6763; }}
-  .figs b {{ display: block; font-family: Archivo, sans-serif; font-weight: 700; font-size: 1.75em; line-height: 1.05; color: #16201d; }}
+  .figs {{ gap: 30px; white-space: nowrap; font-size: 26px; line-height: 1.15; color: #5b6763; }}
+  .figs b {{ display: block; font-family: Archivo, sans-serif; font-weight: 700; font-size: 49px; line-height: 1.05; color: #16201d; }}
 </style></head><body>
   <div><div class="top"><span id="ed"></span><span class="url">langtechindex.org</span></div>
-    <div class="head"><div class="who"><h1 id="h1"><span id="name"></span><span class="tail"><span id="last"></span> <span class="code" id="code"></span></span></h1>
+    <div class="head"><div class="who" id="who"><h1 id="h1"><span id="name"></span><span class="tail"><span id="last"></span> <span class="code" id="code"></span></span></h1>
       <div class="auto" id="auto"></div><div class="sub" id="sub"></div></div>
       <div class="score" id="score"><b id="ltdi"></b><div class="rank" id="rank"></div></div></div></div>
   <div class="foot">
@@ -133,16 +133,39 @@ FILL = """c => {
   // the fullest wording that fits at 23px or more, else the shortest at down to 20px
   fit: for (const t of c.subs) { sb.textContent = t; for (let f = 26; f >= 23; f--) { sb.style.fontSize = f + 'px'; if (!over()) break fit; } }
   for (let f = 22; over() && f >= 20; f--) sb.style.fontSize = f + 'px';
-  $('figs').style.fontSize = '';  // many or long figures: a little smaller
-  for (let f = 24; $('figs').scrollWidth > $('figs').clientWidth + 1 && f > 18; ) $('figs').style.fontSize = (f -= 1) + 'px';
+  // the rank on the same line as the speakers and places, when the two are side by side: the rank moves down to
+  // that line (up to a line and a half), or the line down to the rank (as far as a line and a half)
+  const rk = $('rank'), bottom = e => e.getBoundingClientRect().bottom;
+  const align = () => {
+    rk.style.marginTop = ''; rk.style.fontSize = ''; sb.style.marginTop = '';
+    const d = bottom(sb) - bottom(rk);
+    if (d < -75 || d > 110) return;
+    rk.style.fontSize = getComputedStyle(sb).fontSize;
+    const m = parseFloat(getComputedStyle(rk).marginTop) + bottom(sb) - bottom(rk);
+    if (m >= 4) rk.style.marginTop = m + 'px';
+    else { rk.style.marginTop = '4px'; sb.style.marginTop = (8 + bottom(rk) - bottom(sb)) + 'px'; }
+  };
+  align();
+  // a tall heading: the bars sit lower, then the name is set smaller
+  const room = () => document.querySelector('.foot').getBoundingClientRect().top - Math.max(bottom($('who')), bottom($('score')));
+  document.body.style.paddingBottom = '';
+  if (room() < 24) document.body.style.paddingBottom = Math.max(44, 66 - (24 - room())) + 'px';
+  while (room() < 24 && s > 40) { h.style.fontSize = (s -= 4) + 'px'; align(); }
+  // many or long figures: closer together, then smaller units, then smaller numbers
+  const fg = $('figs'), wide = () => fg.scrollWidth > fg.clientWidth + 1, nums = fg.querySelectorAll('b');
+  fg.style.fontSize = ''; fg.style.gap = '';
+  for (let g = 30; wide() && g > 20; ) fg.style.gap = (g -= 2) + 'px';
+  for (let f = 26; wide() && f > 19; ) fg.style.fontSize = (f -= 1) + 'px';
+  for (let n = 49; wide() && n > 34; ) { n -= 1; nums.forEach(b => b.style.fontSize = n + 'px'); }
 }"""
 
 # the six technologies a card shows, and its data figures with their units
 PRIMARY = ["keyboard", "speech_input", "tts", "mt", "llm", "assistant"]
-FIGS = [("web_text_words", "words", "word"), ("parallel_sentences", "pairs", "pair"),
-        ("wikipedia_articles", "articles", "article"), ("open_speech_hours", "hrs", "hr")]
+FIGS = [("web_text_words", "words", "word"), ("parallel_sentences", "sentence pairs", "sentence pair"),
+        ("wikipedia_articles", "articles", "article"), ("open_speech_hours", "hours", "hour")]
 SHORT = {"United States": "USA", "United Kingdom": "UK", "United Arab Emirates": "UAE", "Central African Republic": "CAR",
-         "Bosnia & Herzegovina": "Bosnia", "Republic of the Congo": "Congo", "St. Vincent & Grenadines": "St Vincent"}
+         "Bosnia & Herzegovina": "Bosnia", "Republic of the Congo": "Congo", "St. Vincent & Grenadines": "St Vincent",
+         "Svalbard & Jan Mayen": "Svalbard"}
 
 
 def compact(v: float) -> str:
@@ -166,13 +189,21 @@ def facts() -> dict[str, dict]:
 
 
 def places(l: dict) -> list[str]:
-    """Where it is mainly spoken, in ever shorter wordings: the card uses the first that fits."""
-    cs = [SHORT.get(c["name"], c["name"]) for c in l.get("countries", []) if not c.get("census_only")]
-    others = lambda n: f"{n} other{'s' if n > 1 else ''}"
-    if len(cs) <= 2:
-        out = ["Mainly in " + " and ".join(cs)] if cs else [""]
-        return out + ([f"Mainly in {cs[0]} & 1 other"] if len(cs) == 2 else [])
-    return [f"Mainly in {cs[0]}, {cs[1]} & {others(len(cs) - 2)}", f"Mainly in {cs[0]} & {others(len(cs) - 1)}"]
+    """Where it is mainly spoken, in ever shorter wordings: the card uses the first that fits. Up to three
+    countries are named; never "& 1 other". Places with no permanent population are left out."""
+    sys.path.insert(0, str(ROOT))
+    from ltdi.build_site import NOT_PLACES
+    cs = [SHORT.get(c["name"], c["name"]) for c in l.get("countries", [])
+          if not c.get("census_only") and c["code"] not in NOT_PLACES]
+    if not cs:
+        return [""]
+    if len(cs) == 1:
+        return [f"Mainly in {cs[0]}"]
+    if len(cs) == 2:
+        return [f"Mainly in {cs[0]} and {cs[1]}"]
+    if len(cs) == 3:
+        return [f"Mainly in {cs[0]}, {cs[1]} and {cs[2]}", f"Mainly in {cs[0]} & 2 others"]
+    return [f"Mainly in {cs[0]}, {cs[1]} & {len(cs) - 2} others", f"Mainly in {cs[0]} & {len(cs) - 1} others"]
 
 
 def icons() -> dict[str, str]:

@@ -23,7 +23,7 @@ import shutil
 from html import escape
 
 from . import DATA
-from .build_site import SITE, add_census
+from .build_site import NOT_PLACES, SITE, add_census
 
 SITE_URL = "https://langtechindex.org"
 # The GoatCounter site code (https://<code>.goatcounter.com) that counts visits on the public site, or ""
@@ -118,7 +118,7 @@ def describe(l: dict, cfg: dict, n_ranked: int) -> tuple[str, str, str]:
     desc = (f"{name}{f' ({spk} speakers)' if spk else ''}: LTDI {l['ltdi']:.3f}, {where}, {tier} tier. "
             f"Data availability {d:.2f}, technology support {t:.2f}.")
     offered = [techs[k]["label"] for k, v in (l.get("levels") or {}).items() if v in ("full", "part")]
-    countries = [c["name"] for c in l.get("countries", []) if not c.get("census_only")][:5]
+    countries = [c["name"] for c in l.get("countries", []) if not c.get("census_only") and c["code"] not in NOT_PLACES][:5]
     auto = l.get("autonym")
     auto = f' <span lang="{escape(l["code"])}">{escape(auto)}</span>' if auto and auto != name else ""
     static = (f'<noscript><div class="static"><h2>{escape(name)}{auto}</h2>'
