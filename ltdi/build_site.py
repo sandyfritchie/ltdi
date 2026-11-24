@@ -54,7 +54,7 @@ def top_listed(top: list[dict]) -> list[dict]:
             lang[o["lang"]] += 1
     return [{k: v for k, v in o.items() if k != "_type"} for i, o in enumerate(top) if i in picked]
 SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "tied", "tier", "gaps", "endangerment")
-PROFILE = ("script_names", "script_source", "endangerment_source", "note", "source", "written_in", "shares_written", "joshi", "ud", "census")  # shown only on the language's own page
+PROFILE = ("glottocode", "script_names", "script_source", "endangerment_source", "note", "source", "written_in", "shares_written", "joshi", "ud", "census")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
 # pseudo-regions (LinguaMeta lists them without speaker counts)
 # Region filter: one letter per region group, as the page reads them
@@ -97,12 +97,15 @@ def add_census(scores: dict) -> None:
 
 
 def udhr_samples() -> dict[str, list[str]]:
-    """{language: [text, BCP 47 tag, direction, the text's name, its file, script]}: Article 1 of the Universal
-    Declaration of Human Rights (data/udhr_article1.csv, ltdi.collectors.udhr), shown on its page."""
+    """{language: [text, BCP 47 tag, direction, the text's name, its file, script, the script's name]}: Article 1
+    of the Universal Declaration of Human Rights (data/udhr_article1.csv, ltdi.collectors.udhr), shown on its page."""
+    from .backbone import script_names
     path = DATA / "udhr_article1.csv"
     if not path.exists():
         return {}
-    return {r["language"]: [r["text"], r["bcp47"], r["dir"], r["name"], r["f"], r["script"]]
+    names = {k.lower(): v for k, v in script_names().items()}
+    return {r["language"]: [r["text"], r["bcp47"], r["dir"], r["name"], r["f"], r["script"],
+                            names.get(r["script"].lower(), r["script"])]
             for r in csv.DictReader(path.open(encoding="utf-8"))}
 
 

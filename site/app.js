@@ -96,7 +96,7 @@ async function need(...codes) {
     // a spoken variety: the values counted from the standard it writes, beside its own
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
-                       script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
+                       glottocode: d.glottocode, script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
                        script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, unnamed: d.unnamed, licensed: d.licensed, lookalikes: d.lookalikes, literacy: d.literacy, changes: d.changes });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
@@ -1079,6 +1079,11 @@ function dimPanel(l, key, color) {
       body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}
         ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
     }
+    // builders already at work: models made for it on Hugging Face (shown, not scored)
+    const hv = i => facts[i] && facts[i].value ? facts[i].value : 0, hf = facts.hf_models;
+    if (hf) body += `<div class="ind"><div class="ind-top"><b>${hf ? `<a class="indlink" href="${esc(hf.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`Models tagged with it and at most five languages, downloaded at least 10 times in 30 days. ${hf.note || ''}`)}">Builders on Hugging Face</a>` : 'Builders on Hugging Face'}</b>
+        <span class="ind-val">${hv('hf_models') ? `${hv('hf_models').toLocaleString()} ${hv('hf_models') === 1 ? 'model' : 'models'}` : 'No models'}</span></div>
+        <div class="missing">${hv('hf_models') ? `Made for it, ${big(hv('hf_model_downloads'))} downloads in 30 days` : 'None made for it with recent downloads'}. Not scored.</div></div>`;
     body += '</div>';
   }
   body += provList(l, key, facts, vfacts, wname);
@@ -1093,16 +1098,39 @@ function wbLink(f) {
   const cs = ((f.note || '').split(': ')[1] || '').replace('\u2026', '').split(', ').filter(c => /^[A-Z]{2}$/.test(c));
   return cs.length ? `${f.url}?locations=${cs.join('-')}` : f.url;
 }
-function reachLine(l) {
-  const f = DATA.facts[l.code] || {}, sp = l.speakers || 0;
-  if (!f.reach_voice_share || !sp) return '';
-  const n = k => f[k] ? sp * f[k].value : null;
-  const g = f.speaker_growth_5y ? f.speaker_growth_5y.value : 1;
-  return `<div class="reach" title="${esc(f.reach_voice_share.note)}">
-    <span>Online today <b>${people(n('reach_voice_share'))}</b></span>
-    <span>Online and able to text <b>${people(n('reach_text_share'))}</b></span>
-    <span>Online in five years <b>${people(n('reach_voice_share_5y') * g)}</b></span>
-    <a href="${esc(wbLink(f.reach_voice_share))}" target="_blank" rel="noopener">World Bank data</a></div>`;
+// The people: speakers, how many are online now and in five years, how many can also text, and Wikipedia reading
+function peopleRow(l) {
+  const f = DATA.facts[l.code] || {}, sp = l.speakers || 0, v = i => f[i] && f[i].value ? f[i].value : 0;
+  const n = k => f[k] ? sp * f[k].value : null, g = f.speaker_growth_5y ? f.speaker_growth_5y.value : 1;
+  const wb = f.reach_voice_share && sp;
+  return `<div class="facts">
+    <span>${sp ? `Speakers <b>${people(sp)}</b>` : 'Speakers not recorded'}</span>
+    ${wb ? `<span title="${esc(f.reach_voice_share.note)}">Online today <b>${people(n('reach_voice_share'))}</b></span>
+    <span title="${esc(f.reach_voice_share_5y ? f.reach_voice_share_5y.note : '')}">Online in five years <b>${people(n('reach_voice_share_5y') * g)}</b></span>
+    <span title="${esc(f.reach_text_share ? f.reach_text_share.note : '')}">Online and able to text <b>${people(n('reach_text_share'))}</b></span>` : ''}
+    ${v('wikipedia_pageviews') ? `<span title="${esc(`${f.wikipedia_pageviews.source}: ${f.wikipedia_pageviews.note}`)}">Wikipedia readers <b>${big(v('wikipedia_pageviews'))}</b> page views a year</span>` : ''}
+    ${wb ? `<a href="${esc(wbLink(f.reach_voice_share))}" target="_blank" rel="noopener">World Bank data</a>` : ''}</div>`;
+}
+// Where it's spoken: countries, official status, endangerment, adult literacy
+function placeRow(l) {
+  const off = officialList(l);
+  const top = Object.entries(l._cs).filter(([c]) => !l._im.has(c)).sort((a, b) => (b[1] || 0) - (a[1] || 0)).slice(0, 3).map(([c]) => c);
+  const lit = top.filter(c => DATA.country_literacy[c] != null).map(c => `${COUNTRY_NAMES[c] || c.toUpperCase()} ${Math.round(DATA.country_literacy[c])}%${l.literacy && l.literacy[c] != null ? ` (in ${esc(l.name)}: ${Math.round(l.literacy[c])}%)` : ''}`);
+  const end = endKey(l);
+  return `<div class="facts">
+    <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>
+    ${l.extinct ? '' : `<span title="Unicode CLDR territory data: official, official in practice, or official in a region. Where a country’s constitution names a language CLDR doesn’t mark, the constitution: Hausa and Igbo in Nigeria (section 55 of the 1999 Constitution)">${off.length ? `Official in <b>${esc(off.slice(0, 3).join(', '))}</b>${off.length > 3 ? ` and ${off.length - 3} more` : ''}` : 'Not official in any country'}</span>`}
+    ${!['none', 'not_endangered'].includes(end) ? `<span title="${end === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[end])}</b></span>` : ''}
+    ${lit.length ? `<span title="Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it">Adult literacy <b>${esc(lit.join(', '))}</b></span>` : ''}
+    ${l.sample || !l.script_names.length ? '' : `<span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b>${unicodeNote(l)}${writtenInfo(l)}</span>`}</div>`;
+}
+// Its codes, each linking to where it's defined or described
+function codesRow(l) {
+  const a = (href, text) => `<a class="code" href="${href}" target="_blank" rel="noopener">${esc(text)}</a>`;
+  return `<div class="facts codes">
+    <span title="The language tag used on the web and in software">BCP 47 ${a(`https://r12a.github.io/app-subtags/?check=${encodeURIComponent(l.code)}`, l.code)}</span>
+    ${l.iso_639_3 ? `<span>ISO 639-3 ${a(`https://www.ethnologue.com/language/${encodeURIComponent(l.iso_639_3)}/`, l.iso_639_3)}</span>` : ''}
+    ${l.glottocode ? `<span>Glottocode ${a(`https://glottolog.org/resource/languoid/id/${encodeURIComponent(l.glottocode)}`, l.glottocode)}</span>` : ''}</div>`;
 }
 
 // A writing sample: Article 1 of the Universal Declaration of Human Rights, from UDHR in XML (the
@@ -1111,11 +1139,11 @@ const UDHR = 'https://github.com/eric-muller/udhr';
 const UDHR_COMMIT = '588b3f4b2d0467aff54842a4b926551b69d5a66a';
 function sampleBlock(l) {
   if (!l.sample) return '';
-  const [text, tag, dir, name, f, script] = l.sample;
+  const [text, tag, dir, name, f, script, sname] = l.sample;
   const italic = ['Latn', 'Cyrl', 'Grek'].includes(script);  // scripts with an italic style
   return `<figure class="sample">
     <blockquote lang="${esc(tag)}" dir="${dir === 'rtl' ? 'rtl' : 'ltr'}"${italic ? ' class="it"' : ''}>${esc(text)}</blockquote>
-    <figcaption title="${l.code === 'en' ? '' : 'All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.'}">Article 1 of the Universal Declaration of Human Rights in <a href="${UDHR}/blob/${UDHR_COMMIT}/data/udhr/udhr_${esc(f)}.xml" target="_blank" rel="noopener" title="${esc(`UDHR in XML: ${name}`)}">${esc(l.name)}</a></figcaption>
+    <figcaption title="${l.code === 'en' ? '' : 'All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.'}">Article 1 of the Universal Declaration of Human Rights, written in <a href="${UDHR}/blob/${UDHR_COMMIT}/data/udhr/udhr_${esc(f)}.xml" target="_blank" rel="noopener" title="${esc(`UDHR in XML: ${name}`)}">${esc(l.name)}</a> (${esc(sname || script)} script)${unicodeNote(l)}${writtenInfo(l)}</figcaption>
   </figure>`;
 }
 // Hear the language: a few words spoken by one speaker, from Lingua Libre (Wikimedia Commons, CC BY-SA)
@@ -1185,22 +1213,6 @@ function whereLine(l, all) {
   return all ? `Mainly in <b>${cs.map(esc).join(', ')}</b> <button class="linkish" data-more="0">less</button>`
              : `Mainly in <b>${cs.slice(0, 3).map(esc).join(', ')}</b> <button class="linkish" data-more="1">and ${n} more</button>`;
 }
-// Demand: who could use it is the speaker count; these say who's reaching for it
-function demandPanel(l) {
-  const f = DATA.facts[l.code] || {}, v = i => f[i] && f[i].value ? f[i].value : 0;
-  const off = officialList(l);
-  const top = Object.entries(l._cs).filter(([c]) => !l._im.has(c)).sort((a, b) => (b[1] || 0) - (a[1] || 0)).slice(0, 3).map(([c]) => c);
-  const lit = top.filter(c => DATA.country_literacy[c] != null).map(c => `${COUNTRY_NAMES[c] || c.toUpperCase()} ${Math.round(DATA.country_literacy[c])}%${l.literacy && l.literacy[c] != null ? ` (in ${esc(l.name)}: ${Math.round(l.literacy[c])}%)` : ''}`);
-  const card = (h, big, note, title) => `<div class="dcard"${title ? ` title="${esc(title)}"` : ''}><div class="dh">${h}</div><div class="dv">${big}</div><div class="dn">${note}</div></div>`;
-  return `<h3 class="panel-h">Demand signals</h3>
-    <div class="demand-grid">
-      ${card('Official status', off.length ? `${off.length} ${off.length === 1 ? 'country' : 'countries'}` : 'None recorded', off.length ? esc(off.slice(0, 6).join(', ') + (off.length > 6 ? ` and ${off.length - 6} more` : '')) : 'Not official in any country in CLDR’s territory data', 'Unicode CLDR territory data: official, official in practice, or official in a region. Where a country’s constitution names a language CLDR doesn’t mark, the constitution: Hausa and Igbo in Nigeria (section 55 of the 1999 Constitution)')}
-      ${card('Adult literacy', lit.length ? `${Math.round(DATA.country_literacy[top.find(c => DATA.country_literacy[c] != null)])}%` : '—', lit.length ? esc(lit.join('; ')) : 'Not recorded for its countries', 'Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it')}
-      ${card('Wikipedia readers', v('wikipedia_pageviews') ? big(v('wikipedia_pageviews')) : '—', v('wikipedia_pageviews') ? `page views in 12 months${v('wikipedia_active_editors') ? `; ${v('wikipedia_active_editors').toLocaleString()} active editors` : ''}` : 'No Wikipedia edition with page views', f.wikipedia_pageviews ? `${f.wikipedia_pageviews.source}: ${f.wikipedia_pageviews.note}` : '')}
-      ${card('Builders on Hugging Face', v('hf_models') ? v('hf_models').toLocaleString() + (v('hf_models') === 1 ? ' model' : ' models') : '—', v('hf_models') ? `made for it, ${big(v('hf_model_downloads'))} downloads in 30 days${v('hf_datasets') ? `; ${Math.round(v('hf_datasets')).toLocaleString()} datasets` : ''}` : `No models made for it with recent downloads${v('hf_datasets') ? `; ${Math.round(v('hf_datasets')).toLocaleString()} datasets` : ''}`, f.hf_models ? `Models tagged with it and at most five languages, downloaded at least 10 times in 30 days. ${f.hf_models.note}` : '')}
-    </div>
-    <p class="note">Speaker counts say who could use a product; these say who's reaching for one. Official status brings public-sector demand, page views show reading demand, and models with downloads show builders already at work.</p>`;
-}
 function whenLabel(a, b) {
   const m = p => /^\d{4}-\d\d$/.test(p) ? new Date(p + '-15T12:00:00') : null, fa = m(a), fb = m(b);
   if (!fa || !fb) return `${a} to ${b}`;
@@ -1219,11 +1231,10 @@ async function language(code) {
   await need(code);
   $('#view').innerHTML = `
     <div class="lhead lang">
-      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')} <span class="code" title="BCP 47 code">[${l.code}]</span></span>${l.note ? infoTip('About this language', esc(l.note)) : ''}</h2>
-        <div class="facts"><span>${l.speakers ? `<b>${people(l.speakers)}</b> speakers` : 'Speakers not recorded'}</span>${l.iso_639_3 && l.iso_639_3 !== l.code ? `<span>ISO 639-3 <b class="code">${esc(l.iso_639_3)}</b></span>` : ''}
-        <span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${l.script_names.length ? esc(l.script_names.join(', ')) : 'not recorded'}</b>${unicodeNote(l)}${writtenInfo(l)}</span>
-        <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>${!['none', 'not_endangered'].includes(endKey(l)) ? `<span title="${endKey(l) === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[endKey(l)])}</b></span>` : ''}</div>
-        ${reachLine(l)}
+      <div class="lmain"><h2>${esc(l.name)} <span class="auto">${esc(l.autonym !== l.name ? l.autonym : '')}</span>${l.note ? infoTip('About this language', esc(l.note)) : ''}</h2>
+        ${codesRow(l)}
+        ${peopleRow(l)}
+        ${placeRow(l)}
         ${sampleBlock(l)}
         ${hearBlock(l)}
       </div>
@@ -1231,7 +1242,6 @@ async function language(code) {
         <div class="lrank"${l.tied ? ` title="Tied with ${l.tied.toLocaleString()} ${l.tied === 1 ? 'other language' : 'other languages'}"` : ''}>${!l.rank ? 'Extinct · not ranked' : `${l.tied ? '=' : ''}${l.rank.toLocaleString()} of ${LANGS.length.toLocaleString()}`}</div>${scoreNotes(l)}${miniMap(l)}</div>
     </div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
-    ${l.extinct ? '' : demandPanel(l)}
     <h3 class="panel-h">Opportunities <a href="#opportunities-${l.code}" style="font-size:14px;font-weight:600">Filter and compare by type</a></h3>
     ${l.opportunities.length ? `<ol class="opps">${[...l.opportunities].sort((a, b) => prio(b) - prio(a)).map(o => oppItem(o, l, false)).join('')}</ol>` : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}
     <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>
