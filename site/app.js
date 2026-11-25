@@ -1227,7 +1227,6 @@ function oppPanel(l) {
   const os = [...l.opportunities].sort((a, b) => prio(b) - prio(a));
   const kinds = Object.keys(OT).filter(k => os.some(o => o.type === k));
   const card = o => `<div class="otile" style="--c:var(${OCOLOR[o.type]})" title="${esc(`${OT[o.type].label}: ${o.title}`)}">
-      <span class="oprio" title="Priority">${prio(o).toFixed(2)}</span>
       <b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}<a href="#opp-${o.id}">starter kit</a></div>`;
   return `<section class="dim wide opps-panel" style="--c:var(--muted)">
     <h3>Opportunities<span class="h3r"><a class="olink" href="#opportunities-${l.code}">Filter and compare by type</a></span></h3>
