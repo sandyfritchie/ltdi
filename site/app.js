@@ -885,7 +885,7 @@ function svcTile(id, own, open, via, wname, unnamed, lname) {
   const detail = thru ? `Through ${wname}` : '';
   return `<a class="tile ${thru ? 'thru' : on ? 'on' : 'off'}"${pv} href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">
     <span class="mark" aria-hidden="true">${thru ? '↳' : on ? '✓' : '–'}</span>
-    <div>${by}<b>${esc(name)}</b><small>${esc(kind)}${on || measured || lo ? '' : asStd ? ` · listed as ${esc(asStd)}` : ''}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
+    <div>${by}<b>${esc(name)}</b><small>${lo ? `Not in ${esc(kind[0].toLowerCase() + kind.slice(1))}` : esc(kind)}${on || measured || lo ? '' : asStd ? ` · listed as ${esc(asStd)}` : ''}</small>${detail ? `<span class="det">${esc(detail)}</span>` : ''}</div></a>`;
 }
 
 // A technology's services, in tile order: the global providers, regional ones (where they offer it), open source,
