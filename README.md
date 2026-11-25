@@ -98,8 +98,9 @@ availability in the official app language lists, times a quality factor from tho
 measured quality, so a poor result halves the score and an unmeasured language counts in full (being
 measured never lowers a score). A language measured by a benchmark but in no app list counts at the
 0.25 base for availability. Language identification counts open models, and voice assistants and
-locale data count, at half weight: few languages have a voice assistant, and locale data is a
-prerequisite rather than a product.
+locale data count, at half weight: a voice assistant is built mostly from parts already scored in full
+(speech-to-text, text-to-speech and, for the AI apps' voice modes, an LLM), so half weight credits the
+finished product without counting those twice; locale data is a prerequisite rather than a product.
 
 ## Ranks and tiers
 

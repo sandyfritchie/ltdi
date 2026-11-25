@@ -213,7 +213,9 @@ listed_only = ["llm_app_chatgpt", "llm_app_claude"]
 
 [dimensions.tech.technologies.assistant]
 label = "Voice assistant"
-# Half weight: two of its three sources are smart-speaker language lists.
+# Half weight: an assistant is built mostly from parts scored in full already (speech-to-text,
+# text-to-speech and, for the AI apps' voice modes, an LLM), so the row credits the finished product
+# without counting those twice.
 weight = 0.5
 
 [dimensions.tech.technologies.interface]
