@@ -35,7 +35,7 @@
     "group": 2,
     "label": "2 · The Hopefuls",
     "n": 18,
-    "median_ltdi": 0.587,
+    "median_ltdi": 0.588,
     "tiers": {
      "h": 1,
      "m": 5,
@@ -58,7 +58,7 @@
     "group": 4,
     "label": "4 · The Underdogs",
     "n": 18,
-    "median_ltdi": 0.875,
+    "median_ltdi": 0.876,
     "tiers": {
      "vh": 8,
      "h": 8,

@@ -4,9 +4,10 @@ Each is the provider's own published list, transcribed from the page on the retr
 pages aren't reachable by the collectors' fetcher); check them against the pages each edition. The lists
 are of different kinds, as the providers publish them, and say so in the service's "kind":
 
-  Claude      support.claude.com "How to use Claude in your preferred language": the languages of the
-              apps' language setting (the interface). The same article says "you can still chat with Claude
-              in any language". ChatGPT's list (openai_docs.py) is likewise its app's language setting.
+  Claude      The apps' language setting (the interface), read from the setting itself (Settings, Language)
+              on the date in DATES: 35 languages. support.claude.com "How to use Claude in your preferred
+              language" lists only 11 of them, so it lags the app; it says "you can still chat with Claude in
+              any language". ChatGPT's list (openai_docs.py) is likewise its app's language setting.
   Meta AI     Llama 4's model card: its 12 supported languages, the model behind Meta AI. Meta publishes
               no current list for the Meta AI app itself. The card says Llama 4 was pre-trained on 200
               languages and that use beyond the 12 is out of scope unless fine-tuned.
@@ -29,10 +30,18 @@ from ._common import ltdi_codes
 from .vendors import UNRESOLVED, named, save_entries
 
 RETRIEVED = "2026-11-21"
+DATES = {"llm_app_claude": "2026-11-24"}  # a list read on another day
+NOTES = {}  # filled below: what a record should say about where its list came from
 
 CLAUDE = "https://support.claude.com/en/articles/10769299"
-CLAUDE_LANGS = """English, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Portuguese (Brazilian),
-Spanish (Latin America), Spanish (Spain)"""
+# The setting's English names, in its order
+CLAUDE_LANGS = """Amharic, Bangla, Bhojpuri, Chinese (Simplified), Chinese (Traditional), Danish, Dutch,
+English (United States), Filipino, Finnish, French (France), German (Germany), Gujarati, Hausa, Hindi (India),
+Indonesian (Indonesia), Italian (Italy), Japanese (Japan), Kannada, Korean (South Korea), Malayalam, Marathi,
+Norwegian Bokmål, Portuguese (Brazil), Russian, Spanish (Latin America), Spanish (Spain), Swahili, Swedish, Tamil,
+Telugu, Thai, Turkish, Ukrainian, Vietnamese"""
+CLAUDE_NOTE = ("Read from the Claude app's Language setting on 24 November 2026: 35 languages. The help article "
+               "linked lists 11 of them.")
 
 LLAMA = "https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md"
 LLAMA_LANGS = "Arabic, English, French, German, Hindi, Indonesian, Italian, Portuguese, Spanish, Tagalog, Thai, Vietnamese"
@@ -78,12 +87,15 @@ Khmer, Thai, Lao, Chinese, Burmese, Japanese, Korean, Amharic, Hausa, Igbo,
 Malagasy, Shona, Swahili, Wolof, Xhosa, Yoruba, Zulu"""
 
 LISTS = (
-    ("llm_app_claude", "Claude apps' interface languages", CLAUDE, CLAUDE_LANGS, []),
+    ("llm_app_claude", "Claude app's language setting", CLAUDE, CLAUDE_LANGS, []),
     ("llm_app_meta", "Llama 4 supported languages (Meta AI)", LLAMA, LLAMA_LANGS, []),
     ("llm_app_mistral", "Mistral language models' languages", MISTRAL, MISTRAL_LANGS, MISTRAL_EXTRA),
     ("llm_app_qwen", "Qwen3 languages and dialects", QWEN, QWEN_LANGS, []),
     ("llm_open_aya", "Tiny Aya supported languages (Cohere Labs)", TINY_AYA, TINY_AYA_LANGS, []),
 )
+
+
+NOTES["llm_app_claude"] = CLAUDE_NOTE
 
 
 def _names(s: str) -> list[str]:
@@ -95,7 +107,8 @@ def collect() -> list[Record]:
     save_entries({ind: len(set(_names(names))) for ind, _, _, names, _ in LISTS})  # the list's own entries, not extras
     for ind, source, url, names, extra in LISTS:
         have = named(_names(names) + extra, ind)
-        out += [Record(c, ind, int(c in have), "bool", source, url, RETRIEVED, "manual") for c in ltdi_codes()]
+        out += [Record(c, ind, int(c in have), "bool", source, url, DATES.get(ind, RETRIEVED), "manual", NOTES.get(ind, ""))
+                for c in ltdi_codes()]
     for ind, names in UNRESOLVED.items():
         print(f"  unresolved for {ind}: {sorted(names)}")
     return out
