@@ -1225,10 +1225,10 @@ function whereLine(l, all) {
 function oppPanel(l) {
   const os = [...l.opportunities].sort((a, b) => prio(b) - prio(a));
   const kinds = Object.keys(OT).filter(k => os.some(o => o.type === k));
-  const card = o => `<div class="otile" style="--c:var(${OCOLOR[o.type]})" title="${esc(`${OT[o.type].label}: ${o.title}`)}">
-      <span class="osize" title="Effort, from what's openly available">${esc(o.size)}</span><b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}<a href="#opp-${o.id}">starter kit</a></div>`;
+  const card = o => `<a class="otile" href="#opp-${o.id}" style="--c:var(${OCOLOR[o.type]})" title="${esc(`${OT[o.type].label}: ${o.title}`)}">
+      <span class="osize" title="Effort, from what's openly available">${esc(o.size)}</span><b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}</a>`;
   return `<section class="dim wide opps-panel" style="--c:var(--muted)">
-    <h3>Opportunities<span class="h3r"><a class="olink" href="#opportunities-${l.code}">Filter and compare by type</a></span></h3>
+    <h3>Opportunities${os.length > 1 ? `<span class="h3r"><a class="olink" href="#opportunities-${l.code}">Filter and compare by type</a></span>` : ''}</h3>
     ${os.length ? `<div class="okey">${kinds.map(k => `<span style="--c:var(${OCOLOR[k]})"><i></i>${esc(OT[k].label)}</span>`).join('')}</div>
     <div class="otiles">${os.map(card).join('')}</div>`
       : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
