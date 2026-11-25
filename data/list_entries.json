@@ -38,6 +38,8 @@
  "ui_ios": 55,
  "va_alexa": 17,
  "va_bixby": 12,
+ "va_chatgpt_voice": 72,
+ "va_claude_voice": 22,
  "va_google_assistant": 26,
  "va_siri": 23
 }

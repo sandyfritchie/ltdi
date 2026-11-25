@@ -24,8 +24,8 @@
     "median_ltdi": 0.248,
     "tiers": {
      "h": 1,
-     "m": 12,
-     "lc": 170,
+     "m": 13,
+     "lc": 169,
      "lo": 8,
      "ld": 2,
      "ln": 1
@@ -35,7 +35,7 @@
     "group": 2,
     "label": "2 · The Hopefuls",
     "n": 18,
-    "median_ltdi": 0.588,
+    "median_ltdi": 0.589,
     "tiers": {
      "h": 1,
      "m": 5,
@@ -46,11 +46,11 @@
     "group": 3,
     "label": "3 · The Rising Stars",
     "n": 26,
-    "median_ltdi": 0.767,
+    "median_ltdi": 0.774,
     "tiers": {
      "vh": 1,
-     "h": 14,
-     "m": 9,
+     "h": 15,
+     "m": 8,
      "lc": 2
     }
    },
@@ -58,11 +58,11 @@
     "group": 4,
     "label": "4 · The Underdogs",
     "n": 18,
-    "median_ltdi": 0.876,
+    "median_ltdi": 0.88,
     "tiers": {
      "vh": 8,
-     "h": 8,
-     "m": 2
+     "h": 9,
+     "m": 1
     }
    },
    {

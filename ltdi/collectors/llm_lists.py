@@ -8,6 +8,8 @@ are of different kinds, as the providers publish them, and say so in the service
               on the date in DATES: 35 languages. support.claude.com "How to use Claude in your preferred
               language" lists only 11 of them, so it lags the app; it says "you can still chat with Claude in
               any language". ChatGPT's list (openai_docs.py) is likewise its app's language setting.
+  Claude voice mode  Its spoken-language setting (Settings, Capabilities, Voice), read the same way; counted
+              as a voice assistant (va_claude_voice).
   Meta AI     Llama 4's model card: its 12 supported languages, the model behind Meta AI. Meta publishes
               no current list for the Meta AI app itself. The card says Llama 4 was pre-trained on 200
               languages and that use beyond the 12 is out of scope unless fine-tuned.
@@ -30,7 +32,7 @@ from ._common import ltdi_codes
 from .vendors import UNRESOLVED, named, save_entries
 
 RETRIEVED = "2026-11-21"
-DATES = {"llm_app_claude": "2026-11-24"}  # a list read on another day
+DATES = {"llm_app_claude": "2026-11-24", "va_claude_voice": "2026-11-24"}  # a list read on another day
 NOTES = {}  # filled below: what a record should say about where its list came from
 
 CLAUDE = "https://support.claude.com/en/articles/10769299"
@@ -40,6 +42,11 @@ English (United States), Filipino, Finnish, French (France), German (Germany), G
 Indonesian (Indonesia), Italian (Italy), Japanese (Japan), Kannada, Korean (South Korea), Malayalam, Marathi,
 Norwegian Bokmål, Portuguese (Brazil), Russian, Spanish (Latin America), Spanish (Spain), Swahili, Swedish, Tamil,
 Telugu, Thai, Turkish, Ukrainian, Vietnamese"""
+# Voice mode's spoken languages (Settings, Capabilities, Voice), read the same day; counted as a voice assistant
+CLAUDE_VOICE = "https://support.claude.com/en/articles/11101966-use-voice-mode"
+CLAUDE_VOICE_LANGS = """English, English (India), English (United Kingdom), Cantonese, Mandarin Chinese, French, French (Canada),
+German, German (Austria), Hindi, Indonesian, Italian, Japanese, Korean, Portuguese, Portuguese (Brazil),
+Portuguese (Portugal), Russian, Spanish, Spanish (Latin America), Turkish, Ukrainian"""
 CLAUDE_NOTE = ("Read from the Claude app's Language setting on 24 November 2026: 35 languages. The help article "
                "linked lists 11 of them.")
 
@@ -88,6 +95,7 @@ Malagasy, Shona, Swahili, Wolof, Xhosa, Yoruba, Zulu"""
 
 LISTS = (
     ("llm_app_claude", "Claude app's language setting", CLAUDE, CLAUDE_LANGS, []),
+    ("va_claude_voice", "Claude voice mode's language setting", CLAUDE_VOICE, CLAUDE_VOICE_LANGS, []),
     ("llm_app_meta", "Llama 4 supported languages (Meta AI)", LLAMA, LLAMA_LANGS, []),
     ("llm_app_mistral", "Mistral language models' languages", MISTRAL, MISTRAL_LANGS, MISTRAL_EXTRA),
     ("llm_app_qwen", "Qwen3 languages and dialects", QWEN, QWEN_LANGS, []),
@@ -96,6 +104,8 @@ LISTS = (
 
 
 NOTES["llm_app_claude"] = CLAUDE_NOTE
+NOTES["va_claude_voice"] = ("Read from the Claude app's voice mode language setting on 24 November 2026: 22 entries. "
+                            "The voice mode article linked publishes no list.")
 
 
 def _names(s: str) -> list[str]:

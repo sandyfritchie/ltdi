@@ -64,6 +64,8 @@ va_google_assistant,assistant,consumer,Google Assistant / Gemini for Home,Speake
 va_siri,assistant,consumer,Siri,Voice assistant,apple,,,,,,,,,,,,,
 va_alexa,assistant,consumer,Alexa / Alexa+,Voice assistant,amazon,,,,,,,,,,,,,
 va_bixby,assistant,consumer,Bixby,Voice assistant,samsung,,,,,,,,,,,,,
+va_chatgpt_voice,assistant,consumer,ChatGPT Voice,App voice setting,openai,,,,,,,,,,,,,
+va_claude_voice,assistant,consumer,Claude voice mode,App voice setting,anthropic,,,,,,,,,,,,,
 lid_glotlid,langid,open,GlotLID,Open model,open,,,,,,,,,,,,,
 lid_cld3,langid,open,CLD3,Open model,google,,,,,,,,,,,,,
 mt_yandex,mt,regional,Yandex,Translate,yandex,,,,,,,,,,,,,

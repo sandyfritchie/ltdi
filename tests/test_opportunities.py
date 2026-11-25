@@ -17,7 +17,7 @@ FULL = dict(kb_gboard=1, kb_apple=1, kb_apple_features=4, asr_google=1, asr_azur
             mt_deepl=1, mt_open_nllb=1, llm_global_mmlu_rel=100, belebele=1, cldr_coverage=3,
             web_text_words=1e12, wikipedia_active_editors=100000,
             ui_ios=1, ui_windows=1, ui_office=1, ocr_google=1, ocr_azure=1, ocr_apple=1, proof_office=1,
-            va_google_assistant=1, va_siri=1, lid_glotlid=1, lid_cld3=1, kb_swiftkey=1, asr_amazon=1,
+            va_google_assistant=1, va_siri=1, va_chatgpt_voice=1, va_claude_voice=1, lid_glotlid=1, lid_cld3=1, kb_swiftkey=1, asr_amazon=1,
             tts_azure=1, tts_amazon=1, va_alexa=1, llm_app_gemini=1, llm_app_copilot=1,
             tts_openai=1, llm_app_chatgpt=1, mt_amazon=1, mt_alibaba=1, llm_app_claude=1, llm_app_meta=1,
             llm_app_mistral=1, llm_app_qwen=1, asr_elevenlabs=1, asr_deepgram=1, asr_assemblyai=1,
@@ -61,7 +61,7 @@ class FindTests(unittest.TestCase):
         self.assertIn("A spell-checker could be built from open text", titles(fs))
 
     def test_assistant_follows_speech_and_voice(self):
-        no_va = {"va_google_assistant": 0, "va_siri": 0, "va_alexa": 0, "va_bixby": 0}
+        no_va = {"va_google_assistant": 0, "va_siri": 0, "va_alexa": 0, "va_bixby": 0, "va_chatgpt_voice": 0, "va_claude_voice": 0}
         fs = facts(**{**FULL, **no_va})
         self.assertIn("The building blocks for a voice assistant exist", titles(fs, "share"))
         self.assertEqual(titles(facts(**{**FULL, **no_va, "tts_google": 0, "tts_azure": 0, "tts_amazon": 0, "tts_openai": 0,

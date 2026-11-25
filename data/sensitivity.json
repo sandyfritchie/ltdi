@@ -8,8 +8,8 @@
   {
    "ranks": "1–60",
    "languages": 60,
-   "median_range": 5,
-   "within_10pct": 0.633
+   "median_range": 4,
+   "within_10pct": 0.683
   },
   {
    "ranks": "61–200",
@@ -37,29 +37,29 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Norwegian Bokmål",
-     "from": 31,
-     "to": 28
+     "name": "Punjabi (Gurmukhi)",
+     "from": 48,
+     "to": 51
     },
     {
-     "name": "Malay",
-     "from": 36,
-     "to": 33
+     "name": "Yue Chinese",
+     "from": 80,
+     "to": 78
     },
     {
-     "name": "Persian",
-     "from": 25,
-     "to": 27
+     "name": "Uzbek",
+     "from": 57,
+     "to": 59
     },
     {
-     "name": "Hebrew",
-     "from": 27,
-     "to": 25
+     "name": "Thai",
+     "from": 20,
+     "to": 18
     },
     {
-     "name": "Greek",
-     "from": 24,
-     "to": 26
+     "name": "Macedonian",
+     "from": 60,
+     "to": 58
     }
    ]
   },
@@ -69,29 +69,29 @@
    "moved_10_in_top_300": 0,
    "largest": [
     {
-     "name": "Thai",
-     "from": 18,
-     "to": 22
-    },
-    {
-     "name": "Danish",
-     "from": 26,
-     "to": 30
+     "name": "Amharic",
+     "from": 72,
+     "to": 75
     },
     {
      "name": "Yue Chinese",
-     "from": 79,
+     "from": 80,
      "to": 82
     },
     {
-     "name": "Malay",
-     "from": 36,
-     "to": 39
+     "name": "Thai",
+     "from": 20,
+     "to": 22
     },
     {
-     "name": "Ukrainian",
-     "from": 21,
-     "to": 19
+     "name": "Russian",
+     "from": 8,
+     "to": 6
+    },
+    {
+     "name": "Romanian",
+     "from": 22,
+     "to": 20
     }
    ]
   },
