@@ -59,6 +59,9 @@ RULES = {
     "kb-platform": {"teams": ["keyboards", "standards"], "starter": ["kb_open_keyman", "cldr_coverage", "web_text_words"],
         "missing": "An openly licensed version of the layout in CLDR Keyboards format, then a launch on the "
                    "remaining platforms."},
+    "kb-none": {"teams": ["keyboards", "standards"], "starter": ["font_noto", "web_text_words"],
+        "missing": "A layout designed with speakers, covering every letter and mark the language uses, published "
+                   "in CLDR Keyboards format so any platform can adopt it."},
     "kb-open": {"teams": ["keyboards", "standards"], "starter": ["kb_open_keyman", "cldr_coverage", "web_text_words"],
         "missing": "Agreement from speakers on one layout, converted to CLDR Keyboards format, then a launch on the "
                    "major phone keyboards."},
@@ -164,6 +167,11 @@ COVERAGE = {
         lambda c: "A keyboard layout exists but isn't on every major platform",
         lambda c: f"A layout ships on {c['n']} of {c['of']} major keyboards. Contributing it to CLDR Keyboards, the "
                   "open interchange format for layouts, would let any platform adopt it."),
+    "kb-none": ("keyboard", "none", "share",
+        lambda c: "No keyboard layout found in the sources tracked",
+        lambda c: "No major phone keyboard or open layout collection tracked has a layout for this language. Its "
+                  "script is in Unicode, so a layout can be designed with speakers and shared in CLDR Keyboards "
+                  "format for any platform to adopt."),
     "kb-open": ("keyboard", "open", "share",
         lambda c: "Open keyboard layouts exist, but no major phone keyboard",
         lambda c: "Community layouts are published under an open licence. Converting one to CLDR Keyboards format "
@@ -225,6 +233,7 @@ OPEN_HOURS = {"speech_input": 20, "tts": 10}  # this much open speech also count
 # The compact form shown on a language's page: what to do, in a few words, and the one figure that matters
 SHORT = {
     "kb-platform": "Bring the keyboard to every platform", "kb-open": "Ship a phone keyboard",
+    "kb-none": "Design a keyboard layout",
     "kb-features": "Add predictive text", "asr-vendors": "Ship speech-to-text", "asr-none": "Ship speech-to-text",
     "asr-measure": "Measure speech recognition", "asr-improve": "Improve speech recognition",
     "asr-collect": "Collect speech data", "tts-vendors": "Ship text-to-speech", "tts-share": "Ship a cloud voice",
@@ -241,6 +250,7 @@ SHORT = {
 COVERAGE_FACT = {
     "kb-platform": lambda c: f"On {c['n']} of {c['of']} major keyboards",
     "kb-open": lambda c: "Open layouts published",
+    "kb-none": lambda c: "No layout found",
     "asr-vendors": lambda c: f"{c['n']} of {c['of']} services; {_hours(c['hours'])} of speech data available",
     "asr-none": lambda c: f"{_hours(c['hours'])} of speech data available",
     "tts-vendors": lambda c: f"{c['n']} of {c['of']} services" + ("; an open model" if c["open"] else ""),
@@ -299,7 +309,7 @@ def _assistant(x: dict) -> str:
 
 
 EFFORT = {
-    "kb-platform": lambda x: "S", "kb-open": lambda x: "S", "kb-features": lambda x: "M",
+    "kb-platform": lambda x: "S", "kb-open": lambda x: "S", "kb-none": lambda x: "M", "kb-features": lambda x: "M",
     "asr-vendors": lambda x: "S" if x["speech_input"] else "M" if x["hours"] >= 20 else "L",
     "asr-none": lambda x: "S" if x["speech_input"] else "M",
     "asr-measure": lambda x: "M",
@@ -314,7 +324,7 @@ EFFORT = {
     "llm-improve": lambda x: "M" if x["words"] >= 1e8 else "L",
     "llm-reading": lambda x: "S" if x["flores"] else "M",
     "cldr": lambda x: "S" if x["cldr"] >= 1 else "M",
-    "text-collect": lambda x: "M" if x["words"] >= 1e6 else "L",
+    "text-collect": lambda x: "M" if x["words"] >= 1e6 else "L" if x["words"] else "XL",
     "ui-platforms": lambda x: "M", "ui-community": lambda x: "S", "ui-none": lambda x: "L",
     "ocr-vendors": lambda x: "S" if x["ocr"] else "M", "ocr-open": lambda x: "S", "ocr-collect": lambda x: "L",
     "proof-share": lambda x: "S", "proof-build": lambda x: "M",
@@ -396,11 +406,15 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
     data_inds = load_config()["dimensions"]["data"]["indicators"]
     services_on = any(_v(f, i) and f[i].unit == "bool" for t in tech_cfg.values()
                       for i in (*t.get("consumer", []), *t.get("regional", []), *t.get("open", [])))
-    if not services_on and not any(_v(f, i) for i in data_inds):
+    # A share of a few large multilingual collections that tag the language among dozens of others (a
+    # Hugging Face count below one dataset) isn't data to build on
+    tagged_only = 0 < (_v(f, "hf_datasets") or 0) < 1
+    if not services_on and not any(_v(f, i) for i in data_inds if not (i == "hf_datasets" and tagged_only)):
         add("document", "collect", "data", "No data or technology found: start with documentation",
-            "None of the sources tracked records text, speech or any tool for this language. Recordings and "
-            "texts made with its speakers are where every technology starts. Some may already exist in "
-            "archives that no source here counts.", 1.0, [], "Nothing recorded yet")
+            ("Apart from a few large multilingual collections that tag it among dozens of languages, none"
+             if tagged_only else "None") + " of the sources tracked records text, speech or any tool for this "
+            "language. Recordings and texts made with its speakers are where every technology starts. Some may "
+            "already exist in archives that no source here counts.", 1.0, [], "Nothing recorded yet")
         return out
 
     # Prerequisites: text technologies and benchmarks need some written text to start from; measuring
@@ -423,7 +437,8 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
         when = ("some" if n < len(cons) else None) if n else \
             "open" if has_open or cv >= OPEN_HOURS.get(name, math.inf) else "none"
         for key, (tech, w, type_, title, detail) in COVERAGE.items():
-            if tech == name and w == when and (has_text or key not in TEXT_RULES):
+            if tech == name and w == when and (has_text or key not in TEXT_RULES) and \
+                    (key != "kb-none" or _v(f, "script_encoded")):
                 gap = (len(cons) - n) / len(cons) if when == "some" else 1.0
                 ev = cons + opn + (["open_speech_hours"] if name in OPEN_HOURS else [])
                 add(key, type_, tech, title(c), detail(c), gap, ev, COVERAGE_FACT[key](c))
@@ -511,7 +526,7 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
             "Commercial speech recognition and a synthetic voice both exist, but no major assistant "
             "understands spoken requests in this language yet.",
             1.0, VA + ASR + TTS, f"{_hours(cv)} of speech data available" if cv else "Speech recognition and a voice exist")
-    elif any(i in f for i in VA) and not offered["assistant"]:
+    elif any(i in f for i in VA) and not offered["assistant"] and (cv or any(_v(f, i) for i in ASR + ASR_OPEN)):
         add("va-none", "share", "assistant", "No voice assistant tracked understands this language",
             f"None of the {len(VA)} major voice assistants tracked understands spoken requests in this language, "
             "and commercial speech recognition or a synthetic voice is missing too.",
@@ -545,6 +560,12 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
             "Little text online limits language models and word prediction. Digitising books and news archives "
             "is often the fastest route.",
             1 - math.log10(max(words, 1e4) / 1e4) / 4, ["web_text_words"], f"{_words(words)} words of open text")
+    elif not has_text and "web_text_words" in f:
+        add("text-collect", "collect", "data", "No open text found in the sources tracked",
+            "Keyboards, spell-checkers, translation and language models all start from text. Books, news, "
+            "community writing and transcribed recordings, digitised and published under an open licence, "
+            "are the first step.", 1.0, ["web_text_words", "wikipedia_articles"], "No open text found")
+        out[-1]["short"] = "Collect text"
     editors = _v(f, "wikipedia_active_editors")
     if editors is not None and editors < 100 and has_wiki:
         add("wiki-community", "collect", "data", f"Wikipedia has {editors:.0f} active editors",

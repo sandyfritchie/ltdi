@@ -173,7 +173,8 @@ def load_language(code: str, locales: dict[str, dict], d: dict) -> dict:
 
 def apply_overrides(lang: dict, row: dict, locales: dict[str, dict]) -> None:
     """Corrections from config/language_overrides.csv, where LinguaMeta's data misleads:
-      speakers   a total, or "-" for no count (also clears the per-country counts)
+      speakers   a total, or "-" for no count (also clears the per-country counts); a total without
+                 countries scales LinguaMeta's per-country counts to match
       countries  space-separated, each "cc" or "cc:speakers"; replaces the country list, and the
                  total too when speakers is empty
       scripts    space-separated ISO 15924 codes, main script first
@@ -194,7 +195,11 @@ def apply_overrides(lang: dict, row: dict, locales: dict[str, dict]) -> None:
         for c in lang["countries"]:
             c["speakers"] = None
     elif row.get("speakers"):
-        lang["speakers"] = int(row["speakers"])
+        old, lang["speakers"] = lang["speakers"], int(row["speakers"])
+        if not row.get("countries") and old:  # a corrected total: scale the per-country counts to match
+            for c in lang["countries"]:
+                if c["speakers"]:
+                    c["speakers"] = round(c["speakers"] * lang["speakers"] / old)
     if row.get("scripts"):
         lang["scripts"] = row["scripts"].split()
         lang["script_names"] = [SCRIPT.get(sc, sc.title()) for sc in lang["scripts"]]

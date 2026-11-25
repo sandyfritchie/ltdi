@@ -3243,7 +3243,7 @@
   "iso_639_3": "adw",
   "glottocode": "amun1246",
   "scope": "LANGUAGE",
-  "speakers": 870,
+  "speakers": 81,
   "members": [],
   "scripts": [
    "latn"
@@ -3255,7 +3255,7 @@
    {
     "code": "br",
     "name": "Brazil",
-    "speakers": 870,
+    "speakers": 81,
     "scripts": [
      "latn"
     ]
@@ -3263,7 +3263,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/adw.json",
-  "note": "",
+  "note": "LinguaMeta's count of 870 is far too high: 81 (2017) is the figure in Wikipedia's Amondawa dialect article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -13171,7 +13171,7 @@
   "iso_639_3": "ars",
   "glottocode": "najd1235",
   "scope": "LANGUAGE",
-  "speakers": 1000000,
+  "speakers": 18544530,
   "members": [],
   "scripts": [
    "arab"
@@ -13183,7 +13183,7 @@
    {
     "code": "sa",
     "name": "Saudi Arabia",
-    "speakers": 1000000,
+    "speakers": 18544530,
     "scripts": [
      "arab"
     ]
@@ -13191,7 +13191,7 @@
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ars.json",
-  "note": "",
+  "note": "LinguaMeta's count of 1,000,000 is far too low: 18,544,530 (2018–2023) is the figure in Wikipedia's Najdi Arabic article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -14165,7 +14165,7 @@
   "iso_639_3": "asz",
   "glottocode": "asss1237",
   "scope": "LANGUAGE",
-  "speakers": 230,
+  "speakers": 5,
   "members": [],
   "scripts": [
    "latn"
@@ -14177,7 +14177,7 @@
    {
     "code": "id",
     "name": "Indonesia",
-    "speakers": 230,
+    "speakers": 5,
     "scripts": [
      "latn"
     ]
@@ -14185,7 +14185,7 @@
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/asz.json",
-  "note": "",
+  "note": "LinguaMeta's count of 230 is far too high: 5 (2020) is the figure in Wikipedia's As language article.",
   "extinct": false,
   "endangerment": "definitely_endangered",
   "endangerment_source": "linguameta",
@@ -21440,7 +21440,7 @@
   "iso_639_3": "bdm",
   "glottocode": "budu1265",
   "scope": "LANGUAGE",
-  "speakers": 200,
+  "speakers": 54800,
   "members": [],
   "scripts": [
    "latn"
@@ -21452,7 +21452,7 @@
    {
     "code": "cm",
     "name": "Cameroon",
-    "speakers": 200,
+    "speakers": 54800,
     "scripts": [
      "latn"
     ]
@@ -21476,7 +21476,7 @@
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bdm.json",
-  "note": "",
+  "note": "LinguaMeta's count of 200 is far too low: 54,800 (1993 census) is the figure in Wikipedia's Yedina language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -33396,7 +33396,7 @@
   "iso_639_3": "bra",
   "glottocode": "braj1242",
   "scope": "LANGUAGE",
-  "speakers": 54000,
+  "speakers": 1556314,
   "members": [],
   "scripts": [
    "deva"
@@ -33408,7 +33408,7 @@
    {
     "code": "in",
     "name": "India",
-    "speakers": 54000,
+    "speakers": 1556314,
     "scripts": [
      "deva"
     ]
@@ -33416,7 +33416,7 @@
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/bra.json",
-  "note": "",
+  "note": "LinguaMeta's count of 54,000 is far too low: 1,556,314 (2011 census) is the figure in Wikipedia's Braj Bhasha article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -44878,7 +44878,7 @@
   "iso_639_3": "chr",
   "glottocode": "cher1273",
   "scope": "LANGUAGE",
-  "speakers": 26000,
+  "speakers": 1520,
   "members": [],
   "scripts": [
    "cher",
@@ -44892,7 +44892,7 @@
    {
     "code": "us",
     "name": "United States",
-    "speakers": 26000,
+    "speakers": 1520,
     "scripts": [
      "cher",
      "latn"
@@ -44901,7 +44901,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/chr.json",
-  "note": "",
+  "note": "LinguaMeta's count of 26,000 is far too high: 1,520 (2018–2019) is the figure in Wikipedia's Cherokee language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -56937,7 +56937,7 @@
   "iso_639_3": "dim",
   "glottocode": "dime1235",
   "scope": "LANGUAGE",
-  "speakers": 330,
+  "speakers": 10700,
   "members": [],
   "scripts": [],
   "script_names": [],
@@ -56945,12 +56945,12 @@
    {
     "code": "et",
     "name": "Ethiopia",
-    "speakers": 330
+    "speakers": 10700
    }
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/dim.json",
-  "note": "",
+  "note": "LinguaMeta's count of 330 is far too low: 10,700 (2007 census) is the figure in Wikipedia's Dime language article.",
   "extinct": false,
   "endangerment": "definitely_endangered",
   "endangerment_source": "linguameta",
@@ -71554,7 +71554,7 @@
   "iso_639_3": "fur",
   "glottocode": "friu1240",
   "scope": "LANGUAGE",
-  "speakers": 37000,
+  "speakers": 420000,
   "members": [],
   "scripts": [
    "latn"
@@ -71566,7 +71566,7 @@
    {
     "code": "it",
     "name": "Italy",
-    "speakers": 37000,
+    "speakers": 420000,
     "scripts": [
      "latn"
     ]
@@ -71574,7 +71574,7 @@
   ],
   "region": "Europe",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/fur.json",
-  "note": "",
+  "note": "LinguaMeta's count of 37,000 is far too low: 420,000 (2014) is the figure in Wikipedia's Friulian language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -81399,7 +81399,7 @@
   "iso_639_3": "guk",
   "glottocode": "gumu1244",
   "scope": "LANGUAGE",
-  "speakers": 500,
+  "speakers": 161000,
   "members": [],
   "scripts": [
    "ethi"
@@ -81411,7 +81411,7 @@
    {
     "code": "et",
     "name": "Ethiopia",
-    "speakers": 500,
+    "speakers": 161000,
     "scripts": [
      "ethi"
     ]
@@ -81419,7 +81419,7 @@
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/guk.json",
-  "note": "",
+  "note": "LinguaMeta's count of 500 is far too low: 161,000 (2007 census) is the figure in Wikipedia's Gumuz language article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -94157,7 +94157,7 @@
   "iso_639_3": "iru",
   "glottocode": "irul1243",
   "scope": "LANGUAGE",
-  "speakers": 200000,
+  "speakers": 11870,
   "members": [],
   "scripts": [
    "taml"
@@ -94169,7 +94169,7 @@
    {
     "code": "in",
     "name": "India",
-    "speakers": 200000,
+    "speakers": 11870,
     "scripts": [
      "taml"
     ]
@@ -94177,7 +94177,7 @@
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/iru.json",
-  "note": "",
+  "note": "LinguaMeta's count of 200,000 is far too high: 11,870 (2011 census) is the figure in Wikipedia's Irula language article.",
   "extinct": false,
   "endangerment": "definitely_endangered",
   "endangerment_source": "linguameta",
@@ -95303,7 +95303,7 @@
   "iso_639_3": "itz",
   "glottocode": "itza1241",
   "scope": "LANGUAGE",
-  "speakers": 410,
+  "speakers": 36,
   "members": [],
   "scripts": [
    "latn"
@@ -95315,7 +95315,7 @@
    {
     "code": "gt",
     "name": "Guatemala",
-    "speakers": 410,
+    "speakers": 36,
     "scripts": [
      "latn"
     ]
@@ -95323,7 +95323,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/itz.json",
-  "note": "",
+  "note": "LinguaMeta's count of 410 is far too high: 36 (2023) is the figure in Wikipedia's Itzaʼ language article.",
   "extinct": false,
   "endangerment": "severely_endangered",
   "endangerment_source": "linguameta",
@@ -95627,7 +95627,7 @@
   "iso_639_3": "ixc",
   "glottocode": "ixca1245",
   "scope": "LANGUAGE",
-  "speakers": 200,
+  "speakers": 2,
   "members": [],
   "scripts": [
    "latn"
@@ -95639,7 +95639,7 @@
    {
     "code": "mx",
     "name": "Mexico",
-    "speakers": 200,
+    "speakers": 2,
     "scripts": [
      "latn"
     ]
@@ -95647,7 +95647,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ixc.json",
-  "note": "",
+  "note": "LinguaMeta's count of 200 is far too high: 2 (2025) is the figure in Wikipedia's Ixcatec language article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -96714,7 +96714,7 @@
   "iso_639_3": "jbe",
   "glottocode": "jude1262",
   "scope": "LANGUAGE",
-  "speakers": 3000,
+  "speakers": 200,
   "members": [],
   "scripts": [
    "hebr"
@@ -96726,12 +96726,12 @@
    {
     "code": "il",
     "name": "Israel",
-    "speakers": 3000
+    "speakers": 200
    }
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/jbe.json",
-  "note": "",
+  "note": "LinguaMeta's count of 3,000 is far too high: 200 (2023) is the figure in Wikipedia's Judeo-Berber language article.",
   "extinct": false,
   "endangerment": "severely_endangered",
   "endangerment_source": "linguameta",
@@ -99695,7 +99695,7 @@
   "iso_639_3": "jua",
   "glottocode": "juma1249",
   "scope": "LANGUAGE",
-  "speakers": 870,
+  "speakers": 3,
   "members": [],
   "scripts": [
    "latn"
@@ -99707,7 +99707,7 @@
    {
     "code": "br",
     "name": "Brazil",
-    "speakers": 870,
+    "speakers": 3,
     "scripts": [
      "latn"
     ]
@@ -99715,7 +99715,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/jua.json",
-  "note": "",
+  "note": "LinguaMeta's count of 870 is far too high: 3 (2024) is the figure in Wikipedia's Juma dialect article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -101095,7 +101095,7 @@
   "iso_639_3": "kaq",
   "glottocode": "capa1241",
   "scope": "LANGUAGE",
-  "speakers": 26000,
+  "speakers": 50,
   "members": [],
   "scripts": [
    "latn"
@@ -101107,7 +101107,7 @@
    {
     "code": "pe",
     "name": "Peru",
-    "speakers": 26000,
+    "speakers": 50,
     "scripts": [
      "latn"
     ]
@@ -101115,7 +101115,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/kaq.json",
-  "note": "",
+  "note": "LinguaMeta's count of 26,000 is far too high: 50 (2007) is the figure in Wikipedia's Capanahua language article.",
   "extinct": false,
   "endangerment": "severely_endangered",
   "endangerment_source": "linguameta",
@@ -109638,7 +109638,7 @@
   "iso_639_3": "kkm",
   "glottocode": "kion1242",
   "scope": "LANGUAGE",
-  "speakers": 100,
+  "speakers": 8,
   "members": [],
   "scripts": [
    "latn"
@@ -109650,7 +109650,7 @@
    {
     "code": "ng",
     "name": "Nigeria",
-    "speakers": 100,
+    "speakers": 8,
     "scripts": [
      "latn"
     ]
@@ -109658,7 +109658,7 @@
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/kkm.json",
-  "note": "",
+  "note": "LinguaMeta's count of 100 is far too high: 8 (2010) is the figure in Wikipedia's Kiong language article.",
   "extinct": false,
   "endangerment": "severely_endangered",
   "endangerment_source": "linguameta",
@@ -110217,7 +110217,7 @@
   "iso_639_3": "klb",
   "glottocode": "kili1268",
   "scope": "LANGUAGE",
-  "speakers": 46,
+  "speakers": 4,
   "members": [],
   "scripts": [
    "latn"
@@ -110229,7 +110229,7 @@
    {
     "code": "mx",
     "name": "Mexico",
-    "speakers": 46,
+    "speakers": 4,
     "scripts": [
      "latn"
     ]
@@ -110237,7 +110237,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/klb.json",
-  "note": "",
+  "note": "LinguaMeta's count of 46 is far too high: 4 (2018) is the figure in Wikipedia's Kiliwa language article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -110939,7 +110939,7 @@
   "iso_639_3": "klw",
   "glottocode": "lind1248",
   "scope": "LANGUAGE",
-  "speakers": 2,
+  "speakers": 2400,
   "members": [],
   "scripts": [
    "latn"
@@ -110951,7 +110951,7 @@
    {
     "code": "id",
     "name": "Indonesia",
-    "speakers": 2,
+    "speakers": 2400,
     "scripts": [
      "latn"
     ]
@@ -110959,7 +110959,7 @@
   ],
   "region": "Rest of Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/klw.json",
-  "note": "",
+  "note": "LinguaMeta's count of 2 is far too low: 2,400 (2000) is the figure in Wikipedia's Lindu language article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -123300,7 +123300,7 @@
   "iso_639_3": "kzr",
   "glottocode": "kara1478",
   "scope": "LANGUAGE",
-  "speakers": 1000,
+  "speakers": 17000,
   "members": [],
   "scripts": [
    "latn"
@@ -123312,7 +123312,7 @@
    {
     "code": "td",
     "name": "Chad",
-    "speakers": 1000,
+    "speakers": 17000,
     "scripts": [
      "latn"
     ]
@@ -123328,7 +123328,7 @@
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/kzr.json",
-  "note": "",
+  "note": "LinguaMeta's count of 1,000 is far too low: 17,000 (2007) is the figure in Wikipedia's Karang language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -129052,7 +129052,7 @@
   "iso_639_3": "lkd",
   "glottocode": "lako1248",
   "scope": "LANGUAGE",
-  "speakers": 250,
+  "speakers": 1,
   "members": [],
   "scripts": [
    "latn"
@@ -129064,7 +129064,7 @@
    {
     "code": "br",
     "name": "Brazil",
-    "speakers": 250,
+    "speakers": 1,
     "scripts": [
      "latn"
     ]
@@ -129072,7 +129072,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/lkd.json",
-  "note": "",
+  "note": "LinguaMeta's count of 250 is far too high: 1 (2012) is the figure in Wikipedia's Lakondê language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -133575,7 +133575,7 @@
   "iso_639_3": "ltn",
   "glottocode": "latu1238",
   "scope": "LANGUAGE",
-  "speakers": 250,
+  "speakers": 19,
   "members": [],
   "scripts": [
    "latn"
@@ -133587,7 +133587,7 @@
    {
     "code": "br",
     "name": "Brazil",
-    "speakers": 250,
+    "speakers": 19,
     "scripts": [
      "latn"
     ]
@@ -133595,7 +133595,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ltn.json",
-  "note": "",
+  "note": "LinguaMeta's count of 250 is far too high: 19 (2012) is the figure in Wikipedia's Latundê language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -141396,7 +141396,7 @@
   "iso_639_3": "mgy",
   "glottocode": "mbun1248",
   "scope": "LANGUAGE",
-  "speakers": 820000,
+  "speakers": 29000,
   "members": [],
   "scripts": [
    "latn"
@@ -141408,7 +141408,7 @@
    {
     "code": "tz",
     "name": "Tanzania",
-    "speakers": 820000,
+    "speakers": 29000,
     "scripts": [
      "latn"
     ]
@@ -141416,7 +141416,7 @@
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/mgy.json",
-  "note": "",
+  "note": "LinguaMeta's count of 820,000 is far too high: 29,000 (1987) is the figure in Wikipedia's Mbunga language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -144404,7 +144404,7 @@
   "iso_639_3": "mki",
   "glottocode": "dhat1238",
   "scope": "LANGUAGE",
-  "speakers": 150000,
+  "speakers": 1816400,
   "members": [],
   "scripts": [
    "arab"
@@ -144416,7 +144416,7 @@
    {
     "code": "pk",
     "name": "Pakistan",
-    "speakers": 150000,
+    "speakers": 1816400,
     "scripts": [
      "arab"
     ]
@@ -144424,7 +144424,7 @@
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/mki.json",
-  "note": "",
+  "note": "LinguaMeta's count of 150,000 is far too low: 1,816,400 (2024) is the figure in Wikipedia's Thari language article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -161513,7 +161513,7 @@
   "iso_639_3": "neg",
   "glottocode": "negi1245",
   "scope": "LANGUAGE",
-  "speakers": 75,
+  "speakers": 6,
   "members": [],
   "scripts": [
    "cyrl"
@@ -161525,7 +161525,7 @@
    {
     "code": "ru",
     "name": "Russia",
-    "speakers": 75,
+    "speakers": 6,
     "scripts": [
      "cyrl"
     ]
@@ -161533,7 +161533,7 @@
   ],
   "region": "Europe",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/neg.json",
-  "note": "",
+  "note": "LinguaMeta's count of 75 is far too high: 6 (2017) is the figure in Wikipedia's Negidal language article.",
   "extinct": false,
   "endangerment": "severely_endangered",
   "endangerment_source": "linguameta",
@@ -162031,7 +162031,7 @@
   "iso_639_3": "nez",
   "glottocode": "nezp1238",
   "scope": "LANGUAGE",
-  "speakers": 610,
+  "speakers": 20,
   "members": [],
   "scripts": [
    "latn"
@@ -162043,7 +162043,7 @@
    {
     "code": "us",
     "name": "United States",
-    "speakers": 610,
+    "speakers": 20,
     "scripts": [
      "latn"
     ]
@@ -162051,7 +162051,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/nez.json",
-  "note": "",
+  "note": "LinguaMeta's count of 610 is far too high: 20 (2007) is the figure in Wikipedia's Nez Perce language article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -165549,7 +165549,7 @@
   "iso_639_3": "nkb",
   "glottocode": "khoi1251",
   "scope": "LANGUAGE",
-  "speakers": 26000,
+  "speakers": 2000,
   "members": [],
   "scripts": [
    "latn"
@@ -165561,12 +165561,12 @@
    {
     "code": "in",
     "name": "India",
-    "speakers": 26000
+    "speakers": 2000
    }
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/nkb.json",
-  "note": "",
+  "note": "LinguaMeta's count of 26,000 is far too high: 2,000 (2024) is the figure in Wikipedia's Uipo language article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -167348,7 +167348,7 @@
   "iso_639_3": "nmi",
   "glottocode": "nyam1285",
   "scope": "LANGUAGE",
-  "speakers": 100,
+  "speakers": 1500,
   "members": [],
   "scripts": [
    "latn"
@@ -167360,7 +167360,7 @@
    {
     "code": "ng",
     "name": "Nigeria",
-    "speakers": 100,
+    "speakers": 1500,
     "scripts": [
      "latn"
     ]
@@ -167368,7 +167368,7 @@
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/nmi.json",
-  "note": "",
+  "note": "LinguaMeta's count of 100 is far too low: 1,500 (2006) is the figure in Wikipedia's Nyam language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -174258,7 +174258,7 @@
   "iso_639_3": "nyg",
   "glottocode": "nyin1248",
   "scope": "LANGUAGE",
-  "speakers": 660000,
+  "speakers": 8400,
   "members": [],
   "scripts": [
    "latn"
@@ -174270,7 +174270,7 @@
    {
     "code": "cd",
     "name": "DR Congo",
-    "speakers": 660000,
+    "speakers": 8400,
     "scripts": [
      "latn"
     ]
@@ -174278,7 +174278,7 @@
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/nyg.json",
-  "note": "",
+  "note": "LinguaMeta's count of 660,000 is far too high: 8,400 (2002) is the figure in Wikipedia's Nyindu language article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -182350,7 +182350,7 @@
   "iso_639_3": "pcp",
   "glottocode": "paca1246",
   "scope": "LANGUAGE",
-  "speakers": 600,
+  "speakers": 3,
   "members": [],
   "scripts": [
    "latn"
@@ -182362,7 +182362,7 @@
    {
     "code": "bo",
     "name": "Bolivia",
-    "speakers": 600,
+    "speakers": 3,
     "scripts": [
      "latn"
     ]
@@ -182370,7 +182370,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pcp.json",
-  "note": "",
+  "note": "LinguaMeta's count of 600 is far too high: 3 (2018) is the figure in Wikipedia's Pakawara language article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -186651,7 +186651,7 @@
   "iso_639_3": "pms",
   "glottocode": "piem1238",
   "scope": "LANGUAGE",
-  "speakers": 6200,
+  "speakers": 2000000,
   "members": [],
   "scripts": [
    "latn"
@@ -186663,7 +186663,7 @@
    {
     "code": "it",
     "name": "Italy",
-    "speakers": 6200,
+    "speakers": 2000000,
     "scripts": [
      "latn"
     ]
@@ -186671,7 +186671,7 @@
   ],
   "region": "Europe",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pms.json",
-  "note": "",
+  "note": "LinguaMeta's count of 6,200 is far too low: 2,000,000 (2012) is the figure in Wikipedia's Piedmontese language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -191731,7 +191731,7 @@
   "iso_639_3": "pyn",
   "glottocode": "poya1241",
   "scope": "LANGUAGE",
-  "speakers": 12,
+  "speakers": 1,
   "members": [],
   "scripts": [
    "latn"
@@ -191743,7 +191743,7 @@
    {
     "code": "br",
     "name": "Brazil",
-    "speakers": 12,
+    "speakers": 1,
     "scripts": [
      "latn"
     ]
@@ -191751,7 +191751,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/pyn.json",
-  "note": "",
+  "note": "LinguaMeta's count of 12 is far too high: 1 (2023) is the figure in Wikipedia's Poyanawa language article.",
   "extinct": false,
   "endangerment": "revitalizing",
   "endangerment_source": "glottolog",
@@ -195439,7 +195439,7 @@
   "iso_639_3": "rey",
   "glottocode": "reye1240",
   "scope": "LANGUAGE",
-  "speakers": 250,
+  "speakers": 12,
   "members": [],
   "scripts": [
    "latn"
@@ -195451,7 +195451,7 @@
    {
     "code": "bo",
     "name": "Bolivia",
-    "speakers": 250,
+    "speakers": 12,
     "scripts": [
      "latn"
     ]
@@ -195459,7 +195459,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/rey.json",
-  "note": "",
+  "note": "LinguaMeta's count of 250 is far too high: 12 (2011) is the figure in Wikipedia's Reyesano language article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -202062,7 +202062,7 @@
   "iso_639_3": "scu",
   "glottocode": "shum1243",
   "scope": "LANGUAGE",
-  "speakers": 45000,
+  "speakers": 2400,
   "members": [],
   "scripts": [],
   "script_names": [],
@@ -202070,12 +202070,12 @@
    {
     "code": "in",
     "name": "India",
-    "speakers": 45000
+    "speakers": 2400
    }
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/scu.json",
-  "note": "",
+  "note": "LinguaMeta's count of 45,000 is far too high: 2,400 (2022) is the figure in Wikipedia's Shumcho language article.",
   "extinct": false,
   "endangerment": "definitely_endangered",
   "endangerment_source": "linguameta",
@@ -203072,7 +203072,7 @@
   "iso_639_3": "see",
   "glottocode": "sene1264",
   "scope": "LANGUAGE",
-  "speakers": 8000,
+  "speakers": 100,
   "members": [],
   "scripts": [
    "latn"
@@ -203084,7 +203084,7 @@
    {
     "code": "us",
     "name": "United States",
-    "speakers": 8000,
+    "speakers": 100,
     "scripts": [
      "latn"
     ]
@@ -203092,7 +203092,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/see.json",
-  "note": "",
+  "note": "LinguaMeta's count of 8,000 is far too high: 100 (2007) is the figure in Wikipedia's Seneca language article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -210506,7 +210506,7 @@
   "iso_639_3": "soi",
   "glottocode": "sonh1238",
   "scope": "LANGUAGE",
-  "speakers": 1500000,
+  "speakers": 20000,
   "members": [],
   "scripts": [
    "deva"
@@ -210518,12 +210518,12 @@
    {
     "code": "np",
     "name": "Nepal",
-    "speakers": 1500000
+    "speakers": 20000
    }
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/soi.json",
-  "note": "",
+  "note": "LinguaMeta's count of 1,500,000 is far too high: 20,000 (2020) is the figure in Wikipedia's Sonha language article.",
   "extinct": false,
   "endangerment": "definitely_endangered",
   "endangerment_source": "linguameta",
@@ -219884,7 +219884,7 @@
   "iso_639_3": "tcn",
   "glottocode": "tich1238",
   "scope": "LANGUAGE",
-  "speakers": 4200000,
+  "speakers": 2700,
   "members": [],
   "scripts": [
    "tibt"
@@ -219896,12 +219896,12 @@
    {
     "code": "np",
     "name": "Nepal",
-    "speakers": 4200000
+    "speakers": 2700
    }
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/tcn.json",
-  "note": "",
+  "note": "LinguaMeta's count of 4.2 million is far too high: 2,700 speakers across eighteen villages of the Tichurong valley, Dolpa, is the figure in Budha, Daurio and Turin (2021), Tichurong (Nepal) - Language Snapshot, Language Documentation and Description 20.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -222800,7 +222800,7 @@
   "iso_639_3": "tgw",
   "glottocode": "tagw1240",
   "scope": "LANGUAGE",
-  "speakers": 2700000,
+  "speakers": 138000,
   "members": [],
   "scripts": [
    "latn"
@@ -222812,7 +222812,7 @@
    {
     "code": "ci",
     "name": "Côte d’Ivoire",
-    "speakers": 2700000,
+    "speakers": 138000,
     "scripts": [
      "latn"
     ]
@@ -222828,7 +222828,7 @@
   ],
   "region": "Africa",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/tgw.json",
-  "note": "",
+  "note": "LinguaMeta's count of 2,700,000 is far too high: 138,000 (1993) is the figure in Wikipedia's Tagwana language article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -223318,7 +223318,7 @@
   "iso_639_3": "thp",
   "glottocode": "thom1243",
   "scope": "LANGUAGE",
-  "speakers": 3100,
+  "speakers": 230,
   "members": [],
   "scripts": [
    "latn"
@@ -223330,7 +223330,7 @@
    {
     "code": "ca",
     "name": "Canada",
-    "speakers": 3100,
+    "speakers": 230,
     "scripts": [
      "latn"
     ]
@@ -223338,7 +223338,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/thp.json",
-  "note": "",
+  "note": "LinguaMeta's count of 3,100 is far too high: 230 (2021 census) is the figure in Wikipedia's Thompson language article.",
   "extinct": false,
   "endangerment": "severely_endangered",
   "endangerment_source": "linguameta",
@@ -225819,7 +225819,7 @@
   "iso_639_3": "tli",
   "glottocode": "tlin1245",
   "scope": "LANGUAGE",
-  "speakers": 1400,
+  "speakers": 50,
   "members": [],
   "scripts": [
    "latn"
@@ -225831,7 +225831,7 @@
    {
     "code": "us",
     "name": "United States",
-    "speakers": 1400,
+    "speakers": 50,
     "scripts": [
      "latn"
     ]
@@ -225839,7 +225839,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/tli.json",
-  "note": "",
+  "note": "LinguaMeta's count of 1,400 is far too high: 50 (23 June 2022) is the figure in Wikipedia's Tlingit language article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -245114,7 +245114,7 @@
   "iso_639_3": "wbq",
   "glottocode": "wadd1237",
   "scope": "LANGUAGE",
-  "speakers": 2400000,
+  "speakers": 198000,
   "members": [],
   "scripts": [
    "telu"
@@ -245126,7 +245126,7 @@
    {
     "code": "in",
     "name": "India",
-    "speakers": 2400000,
+    "speakers": 198000,
     "scripts": [
      "telu"
     ]
@@ -245134,7 +245134,7 @@
   ],
   "region": "South Asia",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/wbq.json",
-  "note": "",
+  "note": "LinguaMeta's count of 2,400,000 is far too high: 198,000 (2011 census) is the figure in Wikipedia's Waddar language article.",
   "extinct": false,
   "endangerment": "not_endangered",
   "endangerment_source": "linguameta",
@@ -246376,7 +246376,7 @@
   "iso_639_3": "wgy",
   "glottocode": "warr1255",
   "scope": "LANGUAGE",
-  "speakers": 2000,
+  "speakers": 3,
   "members": [],
   "scripts": [
    "latn"
@@ -246388,7 +246388,7 @@
    {
     "code": "au",
     "name": "Australia",
-    "speakers": 2000,
+    "speakers": 3,
     "scripts": [
      "latn"
     ]
@@ -246396,7 +246396,7 @@
   ],
   "region": "Oceania",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/wgy.json",
-  "note": "",
+  "note": "LinguaMeta's count of 2,000 is far too high: 3 (1981) is the figure in Wikipedia's Warrgamay language article.",
   "extinct": false,
   "endangerment": "critically_endangered",
   "endangerment_source": "linguameta",
@@ -258875,7 +258875,7 @@
   "iso_639_3": "xtw",
   "glottocode": "tawa1278",
   "scope": "LANGUAGE",
-  "speakers": 250,
+  "speakers": 1,
   "members": [],
   "scripts": [
    "latn"
@@ -258887,7 +258887,7 @@
    {
     "code": "br",
     "name": "Brazil",
-    "speakers": 250,
+    "speakers": 1,
     "scripts": [
      "latn"
     ]
@@ -258895,7 +258895,7 @@
   ],
   "region": "Americas",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/xtw.json",
-  "note": "",
+  "note": "LinguaMeta's count of 250 is far too high: 1 (2012) is the figure in Wikipedia's Tawandê language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",
@@ -262586,7 +262586,7 @@
   "iso_639_3": "ygm",
   "glottocode": "yago1240",
   "scope": "LANGUAGE",
-  "speakers": 1100,
+  "speakers": 20,
   "members": [],
   "scripts": [
    "latn"
@@ -262598,7 +262598,7 @@
    {
     "code": "pg",
     "name": "Papua New Guinea",
-    "speakers": 1100,
+    "speakers": 20,
     "scripts": [
      "latn"
     ]
@@ -262606,7 +262606,7 @@
   ],
   "region": "Oceania",
   "source": "https://raw.githubusercontent.com/google-research/url-nlp/main/linguameta/data/ygm.json",
-  "note": "",
+  "note": "LinguaMeta's count of 1,100 is far too high: 20 (2020) is the figure in Wikipedia's Tandɨ language article.",
   "extinct": false,
   "endangerment": "vulnerable",
   "endangerment_source": "linguameta",

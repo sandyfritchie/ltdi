@@ -219,3 +219,23 @@ class EffortTests(unittest.TestCase):
     def test_every_rule_has_an_effort(self):
         from ltdi.opportunities import EFFORT, RULES
         self.assertEqual(set(EFFORT), set(RULES))
+
+
+class FirstStepTests(unittest.TestCase):
+    def test_multilingual_tags_alone_mean_start_with_documentation(self):
+        fs = facts(hf_datasets=0.1, web_text_words=0, open_speech_hours=0, asr_google=0, script_encoded=1)
+        self.assertEqual([o["key"] for o in find(fs)], ["document"])
+
+    def test_no_text_gets_a_collect_text_card(self):
+        o = next(o for o in find(facts(web_text_words=0, open_speech_hours=3, asr_google=0)) if o["key"] == "text-collect")
+        self.assertEqual((o["short"], o["size"]), ("Collect text", "XL"))
+
+    def test_keyboard_layout_needs_the_script_in_unicode(self):
+        base = dict(web_text_words=1e5, kb_gboard=0, kb_apple=0, kb_open_keyman=0)
+        self.assertIn("kb-none", {o["key"] for o in find(facts(**base, script_encoded=1))})
+        self.assertNotIn("kb-none", {o["key"] for o in find(facts(**base, script_encoded=0))})
+
+    def test_voice_assistant_needs_some_speech_to_build_on(self):
+        base = dict(web_text_words=1e5, va_siri=0, asr_google=0)
+        self.assertNotIn("va-none", {o["key"] for o in find(facts(**base, open_speech_hours=0))})
+        self.assertIn("va-none", {o["key"] for o in find(facts(**base, open_speech_hours=2))})

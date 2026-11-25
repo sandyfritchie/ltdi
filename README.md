@@ -31,6 +31,8 @@ open speech datasets, the Hugging Face Hub and public benchmarks.
 python -m ltdi.wikipedia_speakers   # speaker counts from Wikipedia infoboxes where LinguaMeta has none
 python -m ltdi.qq              # scripts from QQ where LinguaMeta has none -> data/qq.csv (pip install qwanqwa)
 python -m ltdi.backbone        # every LinguaMeta language (macrolanguage rules in config/macrolanguages.csv)
+python tools/check_speakers.py # counts more than 10x off Wikipedia's -> .cache/speaker_check.csv, to check
+                               #   and correct in config/language_overrides.csv
 python -m ltdi.collectors      # the collectors -> data/records/*.csv (git, plus the sites each one names)
 python -m ltdi.collectors --monthly   # the slow Hugging Face and Wikipedia ones (GitHub Actions, monthly)
 python -m ltdi.collectors.history     # coverage history -> data/history.csv (clones two repos)
