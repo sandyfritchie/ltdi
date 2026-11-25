@@ -67,7 +67,6 @@ const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.
 // fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
 // the countries chosen, then priority = reach x (gap x need / cost) [x momentum], as for the global list
 let COPP = null;
-// What changed, and when (ltdi.changes): fetched the first time a language page needs it
 // The over-time history, for the Charts page only (data/history.json), fetched when that first opens
 let HIST = null, HISTP;
 const histData = () => HISTP ??= fetch('data/history.json').then(r => r.json()).catch(() => null).then(h => (HIST = h));
@@ -97,7 +96,7 @@ async function need(...codes) {
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        glottocode: d.glottocode, script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, unnamed: d.unnamed, licensed: d.licensed, lookalikes: d.lookalikes, literacy: d.literacy, changes: d.changes });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, unnamed: d.unnamed, licensed: d.licensed, lookalikes: d.lookalikes, literacy: d.literacy });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }
@@ -1236,18 +1235,6 @@ function oppPanel(l) {
     <div class="otiles">${os.map(card).join('')}</div>`
       : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
 }
-function whenLabel(a, b) {
-  const m = p => /^\d{4}-\d\d$/.test(p) ? new Date(p + '-15T12:00:00') : null, fa = m(a), fb = m(b);
-  if (!fa || !fb) return `${a} to ${b}`;
-  const mo = d => d.toLocaleDateString('en-GB', { month: 'short' });
-  return fa.getFullYear() === fb.getFullYear() ? `${mo(fa)} to ${mo(fb)} ${fb.getFullYear()}` : `${mo(fa)} ${fa.getFullYear()} to ${mo(fb)} ${fb.getFullYear()}`;
-}
-function changesLine(l) {
-  const ev = l.changes || [], S = DATA.change_series || {};
-  if (!ev.length) return '';
-  return `<h3 class="panel-h">What changed <a href="#charts" style="font-size:14px;font-weight:600">Growth over time</a></h3>
-    <ul class="chg-lang">${ev.map(([a, b, s, d]) => `<li><span class="muted">${esc(whenLabel(a, b))}</span> ${esc(S[s] || s)}: ${d > 0 ? 'added' : 'no longer listed'}</li>`).join('')}</ul>`;
-}
 async function language(code) {
   const l = BY[code];
   if (!l) return ranking();
@@ -1266,8 +1253,7 @@ async function language(code) {
     </div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     ${oppPanel(l)}
-    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>
-    ${changesLine(l)}`;
+    <p class="note">Something out of date or missing for ${esc(l.name)}? Email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>`;
   bindMiniMap(l);
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };

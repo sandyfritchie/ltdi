@@ -66,7 +66,6 @@ const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.
 // fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
 // the countries chosen, then priority = reach x (gap x need / cost) [x momentum], as for the global list
 let COPP = null;
-// What changed, and when (ltdi.changes): fetched the first time a language page needs it
 // The over-time history, for the Charts page only (data/history.json), fetched when that first opens
 let HIST = null, HISTP;
 const histData = () => HISTP ??= fetch('data/history.json').then(r => r.json()).catch(() => null).then(h => (HIST = h));
@@ -96,7 +95,7 @@ async function need(...codes) {
     if (d.via) { (DATA.via ||= {})[c] = decode(d.via.facts); l.via_dims = d.via.dimensions; }
     Object.assign(l, { dimensions: d.dimensions, reach_by_country: d.reach_by_country, countries: d.countries,
                        glottocode: d.glottocode, script_names: d.script_names, note: d.note, source: d.source, written_in: d.written_in, shares_written: d.shares_written,
-                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, unnamed: d.unnamed, licensed: d.licensed, lookalikes: d.lookalikes, literacy: d.literacy, changes: d.changes });
+                       script_source: d.script_source, endangerment_source: d.endangerment_source, joshi: d.joshi, ud: d.ud, census: d.census, sample: d.sample, hear: d.hear, evidence: d.evidence, unnamed: d.unnamed, licensed: d.licensed, lookalikes: d.lookalikes, literacy: d.literacy });
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], size })) }));
   }));
 }

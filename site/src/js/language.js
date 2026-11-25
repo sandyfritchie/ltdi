@@ -487,18 +487,6 @@ function oppPanel(l) {
     <div class="otiles">${os.map(card).join('')}</div>`
       : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
 }
-function whenLabel(a, b) {
-  const m = p => /^\d{4}-\d\d$/.test(p) ? new Date(p + '-15T12:00:00') : null, fa = m(a), fb = m(b);
-  if (!fa || !fb) return `${a} to ${b}`;
-  const mo = d => d.toLocaleDateString('en-GB', { month: 'short' });
-  return fa.getFullYear() === fb.getFullYear() ? `${mo(fa)} to ${mo(fb)} ${fb.getFullYear()}` : `${mo(fa)} ${fa.getFullYear()} to ${mo(fb)} ${fb.getFullYear()}`;
-}
-function changesLine(l) {
-  const ev = l.changes || [], S = DATA.change_series || {};
-  if (!ev.length) return '';
-  return `<h3 class="panel-h">What changed <a href="#charts" style="font-size:14px;font-weight:600">Growth over time</a></h3>
-    <ul class="chg-lang">${ev.map(([a, b, s, d]) => `<li><span class="muted">${esc(whenLabel(a, b))}</span> ${esc(S[s] || s)}: ${d > 0 ? 'added' : 'no longer listed'}</li>`).join('')}</ul>`;
-}
 async function language(code) {
   const l = BY[code];
   if (!l) return ranking();
@@ -517,8 +505,7 @@ async function language(code) {
     </div>
     <div class="dims">${['tech', 'data'].map(k => dimPanel(l, k, DIMS.find(d => d[0] === k)[2])).join('')}</div>
     ${oppPanel(l)}
-    <p class="note">Metadata from <a href="${esc(l.source)}" target="_blank" rel="noopener">LinguaMeta</a>${l.script_source === 'qq' ? `, with the script from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a>` : ''}. Something out of date or missing for ${esc(l.name)}? Email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>
-    ${changesLine(l)}`;
+    <p class="note">Something out of date or missing for ${esc(l.name)}? Email <span class="email">${CORRECTIONS_EMAIL}</span> or <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">send a correction on GitHub</a>.</p>`;
   bindMiniMap(l);
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };

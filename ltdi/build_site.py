@@ -269,11 +269,10 @@ def _dump(obj) -> str:
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
 
 
-def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str, str],
-          changes: dict) -> tuple[dict, dict[str, dict]]:
+def split(scores: dict, eng: dict, families: tuple[dict, set],
+          gnames: dict[str, str]) -> tuple[dict, dict[str, dict]]:
     """eng: engineering flags (ltdi.engineering), families: Glottolog groups above each language
-    (ltdi.families), gnames: Glottolog's names, changes: what changed (ltdi.changes), all computed once
-    in main and shared with the API."""
+    (ltdi.families), gnames: Glottolog's names, all computed once in main and shared with the API."""
     """Index for the whole site, and detail per language. Facts keep their source as an index into
     a shared table; opportunities drop what their rule or the resource catalogue already says."""
     sources: dict[tuple, int] = {}
@@ -286,9 +285,6 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
         for r in csv.DictReader((DATA / "sensitivity.csv").open(encoding="utf-8")):
             rr[r["code"]] = [int(r["rank_p5"]), int(r["rank_p95"])]
     fam, isolates = families
-    chg: dict[str, list] = {}  # each language's changes: [from, to, series, +1 or -1], newest first
-    for a, b, series, code, d in changes["events"]:
-        chg.setdefault(code, []).append([a, b, series, d])
     from .demand import language_literacy, official
     off, lit = official(), language_literacy()  # CLDR: official status and literacy by country (ltdi.demand)
     node_id: dict[str, int] = {}
@@ -354,7 +350,6 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
                                             and (not c.get("census_only") or all(x.get("census_only") for x in l["countries"]))],
                               **({"lookalikes": eng[l["code"]]["lookalikes"]} if "lookalikes" in eng.get(l["code"], {}) else {}),
                               **({"literacy": lit[l["code"]]} if l["code"] in lit else {}),
-                              **({"changes": chg[l["code"]]} if l["code"] in chg else {}),
                               **{k: l.get(k) for k in PROFILE}}
         langs.append({k: l.get(k) for k in SUMMARY} | {
             "scores": {k: d["score"] for k, d in l["dimensions"].items()},
@@ -433,7 +428,6 @@ def split(scores: dict, eng: dict, families: tuple[dict, set], gnames: dict[str,
     index["gnodes"] = [[g, gnames.get(g, g)] for g in sorted(node_id, key=node_id.get)]
     from .engineering import FLAGS
     index["flags"] = {FLAG_LETTER[k]: [k, v] for k, v in FLAGS.items()}
-    index["change_series"] = changes["series"]
     index["speech_kind"] = {i: SPEECH_KINDS.index(k) for i, k in SPEECH_KIND.items()}
     index |= {"history": hist, "languages": langs, "top_opportunities": listed, "country_names": country_names,
               "opportunity_total": len(top), "units": units,
@@ -634,7 +628,7 @@ def main() -> None:
     from .glottolog import names as glottolog_names
     eng, families, gnames = all_flags(scores["languages"]), family_paths(scores["languages"]), glottolog_names()
     changes = all_events(scores["edition"], scores.get("history"))
-    index, details = split(scores, eng, families, gnames, changes)
+    index, details = split(scores, eng, families, gnames)
     index["census_countries"] = census_countries()
     index["coverage"] = coverage(scores)
     # comparison with Joshi et al.'s classes and SIL's DLS levels (tools/validate.py)
@@ -666,7 +660,7 @@ def main() -> None:
     # each country's own top opportunities, fetched when the country filter is first used
     (SITE / "data" / "country_opportunities.json").write_text(_dump(country_opportunities(scores)), encoding="utf-8")
 
-    # what changed, and when, as an Atom feed (ltdi.changes); language pages have their own in details
+    # what changed, and when, as an Atom feed (ltdi.changes)
     from .changes import write_feed
     write_feed(SITE, changes, {l["code"]: l["name"] for l in scores["languages"]})
     (SITE / "data" / "changes.json").unlink(missing_ok=True)
