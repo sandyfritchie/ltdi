@@ -414,21 +414,23 @@ needs, and proposes one of five kinds of action:
 
 | Type | Meaning |
 | --- | --- |
-| Share or ship | The data or models exist; open them in a shared format, or launch the product |
-| Measure | No public benchmark or error rate yet |
-| Standardise | Foundational locale data (CLDR) is incomplete |
+| Share or ship | Launch the product, or open up what exists |
 | Improve | Support exists but quality lags |
 | Collect | The data really is scarce |
 
-Priority = reach × gap × need / effort, where reach is log10(potential users) − 4,
-need is 1 minus the language's current score for that technology, and effort is a T-shirt size
-(S 1, M 2, L 3, XL 4) judged from what the open world offers for the language, not any company's
-own models (`EFFORT` in `ltdi/opportunities.py`). Shipping a technology is S where an open model
-covers the language, M where only open data does, and L otherwise; collecting speech is M with
-5 hours or more of open speech, L with less and XL with none. A voice assistant joins
-speech-to-text, an LLM and text-to-speech: M where open models for all three cover the language,
-L for two and XL for one or none. Open LLMs are those whose makers publish a list of languages
-(Qwen3, Llama 4 and Tiny Aya).
+Priority = reach × gap × need × weight: the impact on the language's community if the technology
+existed. Reach is log10(potential users) − 4, need is 1 minus the language's current score for that
+technology, and weight is the technology's weight in the index (1 for data collection). Missing
+benchmarks and locale data don't get cards of their own: they join the "still needed" list of the
+technology they hold back (`FOLD` in `ltdi/opportunities.py`).
+
+Each opportunity also has an effort size, S, M, L or XL, judged from what the open world offers for
+the language, not any company's own models (`EFFORT`); it only breaks ties. Shipping a technology
+is S where an open model covers the language, M where only open data does, and L otherwise;
+collecting speech is M with 5 hours or more of open speech, L with less and XL with none. A voice
+assistant joins speech-to-text, an LLM and text-to-speech: M where open models for all three cover
+the language, L for two and XL for one or none. Open LLMs are those whose makers publish a list of
+languages (Qwen3, Llama 4 and Tiny Aya).
 
 Each rule fires only where its prerequisites exist, so the cards are about steps a team could take
 next. Text technologies, locale data, LLM and reading benchmarks need some written text (web text,

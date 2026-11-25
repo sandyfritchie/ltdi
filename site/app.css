@@ -552,6 +552,7 @@ details.method summary { cursor: pointer; font: 700 15px var(--font-display); fo
 .opp-hero h2 { font: 800 clamp(24px, 4vw, 34px)/1.1 var(--font-display); font-stretch: 82%; margin: 0; text-wrap: balance; }
 .why { font-size: 18px; margin: 0; max-width: 64ch; }
 .needed { font-size: 17px; margin: 0 0 6px; max-width: 64ch; }
+.needed-also { margin: 0 0 6px; padding-left: 20px; max-width: 64ch; display: grid; gap: 4px; }
 .vdis li { max-width: 44em; }
 .vpair { max-width: 34em; }
 .vtab .vbar { display: flex; height: 10px; min-width: 120px; border-radius: 3px; overflow: hidden; background: var(--rule); }

@@ -3,17 +3,18 @@
 Each rule compares what a language has with what the technology needs (after
 van Esch, Ritchie et al. 2024, section 2: keyboards need text and a character
 set; speech recognition needs transcribed audio; TTS needs clean speech;
-translation needs parallel text) and proposes one of five kinds of action:
+translation needs parallel text) and proposes one of three kinds of action:
 
-  share     Share or ship: the resources exist; make them open or launch the product
-  measure   Measure: no public benchmark or error rate yet
-  standardise  Standardise: foundational locale data is incomplete
+  share     Share or ship: launch the product, or open what exists
   improve   Improve: support exists but quality lags
   collect   Collect: the data really is scarce
 
-Priority = reach x gap x need / effort (see rank), so quick actions for large,
-underrepresented languages rise to the top. Effort is a T-shirt size (EFFORT), judged from what the
-open world already offers for the language, not from any company's own resources. Wording is neutral about vendors: it names platforms and
+Missing benchmarks and locale data don't make cards of their own, since they change nothing for
+speakers directly: they join the "still needed" list of the technology they hold back (FOLD).
+
+Priority = reach x gap x need x the technology's weight in the index (see rank): the impact on the
+language's community if the technology existed. Effort is shown beside it as a T-shirt size
+(EFFORT), judged from what the open world already offers for the language, and only breaks ties. Wording is neutral about vendors: it names platforms and
 open resources, never companies.
 """
 
@@ -29,8 +30,6 @@ from .records import Record
 
 TYPES = {
     "share": {"label": "Share or ship", "workstream": "Tools for builders"},
-    "measure": {"label": "Measure", "workstream": "Measurement"},
-    "standardise": {"label": "Standardise", "workstream": "Open language data"},
     "improve": {"label": "Improve", "workstream": "Tools for builders"},
     "collect": {"label": "Collect", "workstream": "Open language data"},
 }
@@ -137,6 +136,12 @@ RULES = {
     "va-ready": {"teams": ["assistants", "speech"], "starter": VA_KIT,
         "missing": "Spoken-command data (how people actually phrase requests), and local content such as names, "
                    "places and services."},
+    "va-none": {"teams": ["assistants", "speech", "llm"], "starter": VA_KIT,
+        "missing": "Speech-to-text, text-to-speech and an LLM that work in the language, then spoken-command data "
+                   "(how people actually phrase requests) and local content such as names, places and services."},
+    "llm-none": {"teams": ["llm", "data"], "starter": ["llm_open_aya", "llm_app_qwen", "web_text_words", "wikipedia_articles", "flores200"],
+        "missing": "A model trained or adapted on more text in the language, tested by native speakers on everyday "
+                   "tasks, then listed in the apps' supported languages."},
     "lid-none": {"teams": ["data", "evaluation"], "starter": ["web_text_words", "wikipedia_articles"],
         "missing": "A few thousand sentences of verified text, contributed to an open language identification "
                    "model's training set."},
@@ -192,7 +197,7 @@ COVERAGE = {
         lambda c: "Volunteers translate an open browser, but no major platform",
         lambda c: "A volunteer community already maintains a full browser translation, with terminology a platform "
                   "could build on."),
-    "ui-none": ("interface", "none", "standardise",
+    "ui-none": ("interface", "none", "share",
         lambda c: "Not found as an interface language on the platforms and open projects tracked",
         lambda c: "None of the phone and computer platforms tracked can be set to this language, so their apps are used in a second language."),
     "ocr-vendors": ("ocr", "some", "share",
@@ -229,7 +234,8 @@ SHORT = {
     "ui-community": "Ship an interface translation", "ui-none": "Translate an interface",
     "ocr-vendors": "Ship text recognition", "ocr-open": "Ship text recognition", "ocr-collect": "Build text recognition",
     "proof-share": "Ship a spell-checker", "proof-build": "Build a spell-checker", "va-vendors": "Ship a voice assistant",
-    "va-ready": "Ship a voice assistant", "lid-none": "Add it to language identifiers",
+    "va-ready": "Ship a voice assistant", "va-none": "Ship a voice assistant", "llm-none": "Ship an LLM",
+    "lid-none": "Add it to language identifiers",
     "wiki-community": "Grow Wikipedia editing", "document": "Start documenting it",
 }
 COVERAGE_FACT = {
@@ -253,9 +259,26 @@ COVERAGE_FACT = {
 
 # Effort, as a T-shirt size, from what the open world already offers for the language: open models,
 # open data and shared test sets. A company's own models aren't counted, since they differ by company.
-SIZES = {"S": 1, "M": 2, "L": 3, "XL": 4}  # the divisor in rank
+SIZES = {"S": 1, "M": 2, "L": 3, "XL": 4}  # breaks ties in rank, smallest first
 # Open-weight LLMs whose makers publish a list of languages (Gemma, DeepSeek and others publish none)
 OPEN_LLM = ["llm_open_aya", "llm_app_qwen", "llm_app_meta"]
+
+
+# Benchmarks and locale data: no card of their own; each joins the still-needed list of the first card
+# for a technology it holds back
+FOLD = {"asr-measure": ("speech_input",), "llm-measure": ("llm",), "llm-reading": ("llm",),
+        "cldr": ("interface", "keyboard", "tts")}
+
+
+def _fold(out: list[dict]) -> list[dict]:
+    keep = [o for o in out if o["key"] not in FOLD]
+    for o in out:
+        to = next((k for t in FOLD.get(o["key"], ()) for k in keep if k["technology"] == t), None)
+        if to:
+            to.setdefault("also", []).append(f"{o['title']}. {o['missing']}")
+            for k in ("checked", "evidence", "starter"):
+                to[k] = list(dict.fromkeys(to[k] + o[k]))
+    return keep
 
 
 def _effort_context(f: dict[str, Record]) -> dict:
@@ -295,7 +318,8 @@ EFFORT = {
     "ui-platforms": lambda x: "M", "ui-community": lambda x: "S", "ui-none": lambda x: "L",
     "ocr-vendors": lambda x: "S" if x["ocr"] else "M", "ocr-open": lambda x: "S", "ocr-collect": lambda x: "L",
     "proof-share": lambda x: "S", "proof-build": lambda x: "M",
-    "va-vendors": _assistant, "va-ready": _assistant,
+    "va-vendors": _assistant, "va-ready": _assistant, "va-none": _assistant,
+    "llm-none": lambda x: "S" if x["llm"] else "M" if x["words"] >= 1e9 else "L" if x["words"] >= 1e7 else "XL",
     "lid-none": lambda x: "S",
     "wiki-community": lambda x: "M" if x["editors"] >= 10 else "L",
     "document": lambda x: "XL",
@@ -310,6 +334,7 @@ def _consumer(tech: str, key: str = "consumer") -> list[str]:
 ASR = _consumer("speech_input")
 ASR_OPEN = _consumer("speech_input", "open")
 TTS = _consumer("tts")
+TTS_OPEN = _consumer("tts", "open")
 MT = _consumer("mt")
 # Every LLM benchmark tracked, scored or not: the makers' own results still show a language has been measured
 # (figures older than quality_max_age are dropped before the rules see them)
@@ -336,7 +361,7 @@ def _hours(h: float | None) -> str:
     return f"{h:,.0f} hours" if h >= 10 else f"{h:.1f} hours"
 
 
-def find(f: dict[str, Record]) -> list[dict]:
+def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
     """All opportunities for one language's facts, each with a rule key, type, technology, title,
     detail, gap, evidence, teams, starter kit (indicators of open resources) and what's still missing."""
     out = []
@@ -462,6 +487,11 @@ def find(f: dict[str, Record]) -> list[dict]:
             + ("Benchmarks show models already work in it, so listing it could be a short step."
                if llm else "Listing it would tell speakers they can rely on it."),
             (len(apps) - apps_n) / len(apps), apps + llm, f"Listed by {apps_n} of {len(apps)} assistants" if apps_n else f"Listed by none of {len(apps)} assistants")
+    elif any(i in f for i in apps) and not apps_n and has_text:
+        add("llm-none", "share", "llm", "Not in the AI assistants' language lists tracked",
+            f"None of the {len(apps)} major AI assistants tracked lists this language, and no LLM benchmark "
+            "tracked covers it, so there's no sign that any model works in it yet.",
+            1.0, apps + OPEN_LLM + LLM, f"Listed by none of {len(apps)} assistants")
     if not _v(f, "belebele") and has_text:
         add("llm-reading", "measure", "llm", "Not in Belebele, the reading-comprehension benchmark tracked here",
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",
@@ -481,6 +511,11 @@ def find(f: dict[str, Record]) -> list[dict]:
             "Commercial speech recognition and a synthetic voice both exist, but no major assistant "
             "understands spoken requests in this language yet.",
             1.0, VA + ASR + TTS, f"{_hours(cv)} of speech data available" if cv else "Speech recognition and a voice exist")
+    elif any(i in f for i in VA) and not offered["assistant"]:
+        add("va-none", "share", "assistant", "No voice assistant tracked understands this language",
+            f"None of the {len(VA)} major voice assistants tracked understands spoken requests in this language, "
+            "and commercial speech recognition or a synthetic voice is missing too.",
+            1.0, VA + ASR_OPEN + TTS_OPEN + OPEN_LLM, f"None of {len(VA)} assistants")
 
     # Language identification (open tools only)
     if any(i in f for i in LID) and not any(_v(f, i) for i in LID) and words:
@@ -516,7 +551,7 @@ def find(f: dict[str, Record]) -> list[dict]:
             "A small editing community limits new open text. Edit-a-thons and translation drives with "
             "universities have grown communities elsewhere.",
             1 - editors / 100, ["wikipedia_active_editors"], f"{editors:.0f} active editors")
-    return out
+    return _fold(out) if fold else out  # fold=False: every rule that fired, for tests of the rules themselves
 
 
 VOICE = {"speech_input", "tts", "assistant"}  # usable without reading or writing
@@ -544,7 +579,7 @@ def _reach(n: float) -> float:
 
 
 def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | None = None) -> list[dict]:
-    """Priority = reach x gap x need / effort (S 1, M 2, L 3, XL 4), computed three ways.
+    """Priority = reach x gap x need x weight: the impact if the technology existed, computed three ways.
 
     priority     reach from all speakers
     priority_now reach from speakers who can use the technology today (see users)
@@ -554,9 +589,13 @@ def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | 
     need:  1 minus the language's current score for that technology (or its
            overall LTDI where unmeasured), floored at 0.1, so the same gap matters
            more where support is weakest.
+    weight: the technology's weight in the index (voice assistants, language identification and locale
+           data count half), 1 for data collection.
+    Effort (the T-shirt size) breaks ties, smallest first.
     """
     facts = facts or {}
     tech = scores["dimensions"]["tech"]["indicators"]
+    weights = {k: t.get("weight", 1) for k, t in load_config()["dimensions"]["tech"]["technologies"].items()}
     for o in opps:
         t = TYPES[o["type"]]
         if o["technology"] in tech:
@@ -566,13 +605,13 @@ def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | 
         else:
             current = scores["ltdi"]
         need = max(0.1, 1 - current)
-        cost = SIZES[o["size"]]
-        base = o["gap"] * need / cost
+        weight = weights.get(o["technology"], 1)
+        base = o["gap"] * need * weight
         u = users(lang, facts, o["technology"])
         momentum = min(2.0, 1 + math.log2(u["5y"] / u["now"]) / 2) if u["now"] > 0 and u["5y"] > u["now"] else 1.0
         o["users"] = {k: (round(v) if isinstance(v, float) else v) for k, v in u.items()}
         o["need"] = round(need, 3)
-        o["cost"] = cost
+        o["weight"] = weight
         o["reach"] = {"speakers": round(_reach(u["speakers"]), 3), "now": round(_reach(u["now"]), 3),
                       "5y": round(_reach(u["5y"]), 3)}
         o["momentum"] = round(momentum, 3)
@@ -580,7 +619,7 @@ def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | 
         o["priority_now"] = round(_reach(u["now"]) * base, 3)
         o["priority_5y"] = round(_reach(u["5y"]) * base * momentum, 3)
         o["workstream"] = t["workstream"]
-    return sorted(opps, key=lambda o: (-o["priority_5y"], o.get("key", "")))  # ties in rule-name order, so output is stable
+    return sorted(opps, key=lambda o: (-o["priority_5y"], SIZES[o["size"]], o.get("key", "")))  # then rule name, so output is stable
 
 
 @lru_cache(maxsize=1)

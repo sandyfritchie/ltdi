@@ -65,7 +65,7 @@ let TOP = [], TOPP;
 const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.json()).catch(() => []).then(t => (TOP = t.map(o => withRule(o, o.lang))));
 // With countries chosen, the opportunities are those countries' own top ones (data/country_opportunities.json,
 // fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
-// the countries chosen, then priority = reach x (gap x need / effort) [x momentum], as for the global list
+// the countries chosen, then priority = reach x (gap x need x weight) [x momentum], as for the global list
 let COPP = null;
 // The over-time history, for the Charts page only (data/history.json), fetched when that first opens
 let HIST = null, HISTP;
@@ -204,11 +204,9 @@ const DIMS = [['tech', 't', '--tech'], ['data', 'd', '--data']];  // the order o
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const OT = DATA.opportunity_types;
-const OCOLOR = { share: '--tech', measure: '--accent', standardise: '--writing', improve: '--tier-h', collect: '--data' };
+const OCOLOR = { share: '--tech', improve: '--tier-h', collect: '--data' };
 const OBLURB = {
-  share: 'The data or models exist. Open them up in a shared format, or launch the product.',
-  measure: 'No public benchmark or error rate yet, so nobody can tell how good support is.',
-  standardise: 'Foundational locale data is incomplete, which blocks other work.',
+  share: 'Launch the product, or open up what exists.',
   improve: 'Support exists, but quality lags well behind English.',
   collect: 'The data really is scarce and has to be created.',
 };
@@ -462,7 +460,7 @@ async function opportunities(lang) {
     ${focus ? '' : censusCaveat()}
     <details class="method"><summary>How opportunities are ranked</summary>
       <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
-      <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the effort, a T-shirt size judged from what's openly available for the language: open models, open data and shared test sets (S counts 1, M 2, L 3, XL 4). A voice assistant, for example, is M where open speech-to-text, text-to-speech and LLMs all cover the language, L where two do and XL otherwise. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. The sizes are rough guides, not estimates, and a company's own models may make a step smaller for it.</p>
+      <p class="note">Priority is the impact on a language's community if the technology existed: how many people could use it, how big the gap is and how weak current support is, times the technology's weight in the index (voice assistants count half). Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. Missing benchmarks and locale data appear in the still-needed list of the technology they hold back. Each opportunity also has an effort size, S to XL, judged from what's openly available for the language: open models, open data and shared test sets. A voice assistant, for example, is M where open speech-to-text, text-to-speech and LLMs all cover the language, L where two do and XL otherwise. Effort only breaks ties. The sizes are rough guides, not estimates, and a company's own models may make a step smaller for it.</p>
       <div class="weightbar"><span>Count potential users as</span><div class="chips" role="group" aria-label="Weighting">
         ${Object.entries(WEIGHT).map(([k, w]) => `<button class="chip" id="w-${k}" data-w="${k}" aria-pressed="${weight === k}">${esc(w.label)}</button>`).join('')}
       </div></div>
@@ -511,7 +509,8 @@ async function oppDetail(id) {
     ['Gap', `${o.gap.toFixed(2)} (how much of the problem is unsolved)`],
     ['Need', `${o.need?.toFixed(2) ?? '—'} (1 minus current score for ${esc(TECHL[o.technology] || o.technology)})`],
     ['Momentum', `${o.momentum.toFixed(2)} (boost for a fast-growing user base)`],
-    ['Effort', `${esc(o.size)} (from the open models, data and test sets available; S counts 1, M 2, L 3, XL 4)`],
+    ['Weight', `${o.weight} (the technology's weight in the index)`],
+    ['Effort', `${esc(o.size)} (from the open models, data and test sets available; breaks ties only)`],
     ['Priority', `${o.priority_5y.toFixed(2)} in five years · ${o.priority_now.toFixed(2)} today · ${o.priority.toFixed(2)} all speakers`],
   ];
   const others = l.opportunities.filter(x => x.id !== o.id);
@@ -524,14 +523,14 @@ async function oppDetail(id) {
       <div class="opp-foot"><span>For teams working on ${o.teams.map(t => esc(/^[A-Z]{2}/.test(TEAMS[t]) ? TEAMS[t] : TEAMS[t][0].toLowerCase() + TEAMS[t].slice(1))).join(', ')}</span><button class="chip" id="copylink">Copy link</button></div>
     </div>
     <h3 class="panel-h">Ready to use</h3>${kit}
-    <h3 class="panel-h">Still needed</h3><p class="needed">${esc(o.missing)}</p>
+    <h3 class="panel-h">Still needed</h3><p class="needed">${esc(o.missing)}</p>${o.also ? `<ul class="needed-also">${o.also.map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
     <p class="note">${esc(o.detail)}</p>
     ${countries ? `<h3 class="panel-h">Who it would reach</h3>${countries}` : ''}
     <h3 class="panel-h">Sources checked</h3>${checked ? `<ul class="checked">${checked}</ul>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
     <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>
     <details class="method"><summary>How this ranks</summary>
       <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
-      <p class="note">Priority = reach × gap × need × momentum ÷ effort.</p></details>
+      <p class="note">Priority = reach × gap × need × weight × momentum.</p></details>
     ${others.length ? `<h3 class="panel-h">Other opportunities for ${esc(l.name)}</h3><ol class="opps">${others.map(x => oppItem(x, l, false)).join('')}</ol>` : ''}`;
   $('#back').onclick = () => { go('opportunities-' + l.code); };
   $('#copylink').onclick = async e => {
@@ -2263,7 +2262,7 @@ function about() {
     <h4>Language pages</h4>
     <ul><li>The writing sample is Article 1 of the Universal Declaration of Human Rights where there's a translation; the spoken words are volunteers' recordings for Lingua Libre, chosen automatically, so a name or an unusual word sometimes gets through.</li></ul>
     <h4>Opportunities</h4>
-    <ul><li>Opportunities are gaps in the sources tracked here, ranked by how many people could use the technology, how big the gap is and the effort, sized S to XL from the open models, data and test sets available for the language. The sizes are rough guides, not estimates, and a gap may already be filled by something no source here records.</li>
+    <ul><li>Opportunities are gaps in the sources tracked here, ranked by the impact on the community if the technology existed: how many people could use it, how big the gap is and the technology's weight in the index. Each also has an effort size, S to XL, from the open models, data and test sets available for the language. The sizes are rough guides, not estimates, and a gap may already be filled by something no source here records.</li>
       <li>The Plan tab ranks the languages a product doesn't yet support by the people they'd reach online in five years. That's an estimate from LinguaMeta's speaker counts and national connectivity averages, so it favours large languages and overstates reach in rural areas; it says nothing about demand, cost or competition. "Commercially usable" follows each dataset's and model's published licence, and isn't legal advice.</li>
       <li>Each kind of opportunity is suggested only where its first step is possible: text technologies and benchmarks need some written text, a Wikipedia card needs a Wikipedia. A language with nothing recorded gets a single card about documentation and first recordings with its speakers. Before a language is chosen, the list shows at most two cards per language.</li></ul>
 

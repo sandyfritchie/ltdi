@@ -80,9 +80,18 @@ class FindTests(unittest.TestCase):
         fs = facts(**{**FULL, "ui_ios": 0, "ui_windows": 0, "ui_office": 0, "ui_android": 0, "ui_firefox": 1})
         self.assertIn("Volunteers translate an open browser, but no major platform", titles(fs, "share"))
 
-    def test_unmeasured_llm_is_measure(self):
-        fs = facts(**{k: v for k, v in FULL.items() if k != "llm_global_mmlu_rel"})
-        self.assertIn("Not in the LLM benchmark results tracked here", titles(fs, "measure"))
+    def test_unmeasured_llm_joins_the_llm_card(self):
+        fs = facts(**{k: v for k, v in FULL.items() if k not in ("llm_global_mmlu_rel", "llm_app_copilot")})
+        opps = find(fs)
+        self.assertNotIn("llm-measure", [o["key"] for o in opps])
+        llm = next(o for o in opps if o["technology"] == "llm")
+        self.assertTrue(any(a.startswith("Not in the LLM benchmark results tracked here") for a in llm["also"]))
+
+    def test_no_assistant_and_no_building_blocks_still_gets_a_card(self):
+        fs = facts(va_google_assistant=0, va_siri=0, asr_google=0, tts_google=0, asr_open_omnilingual=1,
+                   web_text_words=1e7)
+        va = next(o for o in find(fs) if o["technology"] == "assistant")
+        self.assertEqual((va["key"], va["size"]), ("va-none", "XL"))
 
     def test_wording_never_names_companies(self):
         sparse = facts(kb_gboard=1, kb_apple=1, kb_apple_features=0, asr_google=1, cv_validated_hours=30,
@@ -101,7 +110,7 @@ class FindTests(unittest.TestCase):
 
 class RankTests(unittest.TestCase):
     def test_need_lowers_priority_for_well_supported_languages(self):
-        opp = lambda: [{"type": "measure", "technology": "llm", "gap": 1.0, "size": "S"}]
+        opp = lambda: [{"type": "share", "technology": "llm", "gap": 1.0, "size": "S"}]
         scores = lambda ltdi: {"ltdi": ltdi, "dimensions": {"tech": {"indicators": {}},
                                                              "writing": {"score": 1}, "data": {"score": 1}}}
         lang = {"speakers": 1e8}
@@ -141,7 +150,7 @@ class GateTests(unittest.TestCase):
     """Each rule fires only where its prerequisites exist (Fable's review, B4)."""
 
     def keys(self, **kw):
-        return {o["key"] for o in find(facts(**kw))}
+        return {o["key"] for o in find(facts(**kw), fold=False)}  # the rules themselves, before folding
 
     def test_nothing_recorded_gets_one_documentation_card(self):
         fs = facts(web_text_words=0, wikipedia_articles=0, wikipedia_active_editors=0, cv_validated_hours=0,
@@ -170,7 +179,7 @@ class GateTests(unittest.TestCase):
 
     def test_benchmark_count_follows_the_config(self):
         from ltdi.opportunities import LLM
-        o = next(o for o in find(facts(web_text_words=1e5)) if o["key"] == "llm-measure")
+        o = next(o for o in find(facts(web_text_words=1e5), fold=False) if o["key"] == "llm-measure")
         self.assertIn(f"None of the {len(LLM)} ", o["detail"])
 
 

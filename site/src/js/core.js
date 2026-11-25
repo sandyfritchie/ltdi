@@ -64,7 +64,7 @@ let TOP = [], TOPP;
 const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.json()).catch(() => []).then(t => (TOP = t.map(o => withRule(o, o.lang))));
 // With countries chosen, the opportunities are those countries' own top ones (data/country_opportunities.json,
 // fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
-// the countries chosen, then priority = reach x (gap x need / effort) [x momentum], as for the global list
+// the countries chosen, then priority = reach x (gap x need x weight) [x momentum], as for the global list
 let COPP = null;
 // The over-time history, for the Charts page only (data/history.json), fetched when that first opens
 let HIST = null, HISTP;
@@ -203,11 +203,9 @@ const DIMS = [['tech', 't', '--tech'], ['data', 'd', '--data']];  // the order o
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const OT = DATA.opportunity_types;
-const OCOLOR = { share: '--tech', measure: '--accent', standardise: '--writing', improve: '--tier-h', collect: '--data' };
+const OCOLOR = { share: '--tech', improve: '--tier-h', collect: '--data' };
 const OBLURB = {
-  share: 'The data or models exist. Open them up in a shared format, or launch the product.',
-  measure: 'No public benchmark or error rate yet, so nobody can tell how good support is.',
-  standardise: 'Foundational locale data is incomplete, which blocks other work.',
+  share: 'Launch the product, or open up what exists.',
   improve: 'Support exists, but quality lags well behind English.',
   collect: 'The data really is scarce and has to be created.',
 };

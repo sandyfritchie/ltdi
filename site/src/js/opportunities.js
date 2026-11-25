@@ -203,7 +203,7 @@ async function opportunities(lang) {
     ${focus ? '' : censusCaveat()}
     <details class="method"><summary>How opportunities are ranked</summary>
       <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
-      <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the effort, a T-shirt size judged from what's openly available for the language: open models, open data and shared test sets (S counts 1, M 2, L 3, XL 4). A voice assistant, for example, is M where open speech-to-text, text-to-speech and LLMs all cover the language, L where two do and XL otherwise. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. The sizes are rough guides, not estimates, and a company's own models may make a step smaller for it.</p>
+      <p class="note">Priority is the impact on a language's community if the technology existed: how many people could use it, how big the gap is and how weak current support is, times the technology's weight in the index (voice assistants count half). Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. Missing benchmarks and locale data appear in the still-needed list of the technology they hold back. Each opportunity also has an effort size, S to XL, judged from what's openly available for the language: open models, open data and shared test sets. A voice assistant, for example, is M where open speech-to-text, text-to-speech and LLMs all cover the language, L where two do and XL otherwise. Effort only breaks ties. The sizes are rough guides, not estimates, and a company's own models may make a step smaller for it.</p>
       <div class="weightbar"><span>Count potential users as</span><div class="chips" role="group" aria-label="Weighting">
         ${Object.entries(WEIGHT).map(([k, w]) => `<button class="chip" id="w-${k}" data-w="${k}" aria-pressed="${weight === k}">${esc(w.label)}</button>`).join('')}
       </div></div>
@@ -252,7 +252,8 @@ async function oppDetail(id) {
     ['Gap', `${o.gap.toFixed(2)} (how much of the problem is unsolved)`],
     ['Need', `${o.need?.toFixed(2) ?? '—'} (1 minus current score for ${esc(TECHL[o.technology] || o.technology)})`],
     ['Momentum', `${o.momentum.toFixed(2)} (boost for a fast-growing user base)`],
-    ['Effort', `${esc(o.size)} (from the open models, data and test sets available; S counts 1, M 2, L 3, XL 4)`],
+    ['Weight', `${o.weight} (the technology's weight in the index)`],
+    ['Effort', `${esc(o.size)} (from the open models, data and test sets available; breaks ties only)`],
     ['Priority', `${o.priority_5y.toFixed(2)} in five years · ${o.priority_now.toFixed(2)} today · ${o.priority.toFixed(2)} all speakers`],
   ];
   const others = l.opportunities.filter(x => x.id !== o.id);
@@ -265,14 +266,14 @@ async function oppDetail(id) {
       <div class="opp-foot"><span>For teams working on ${o.teams.map(t => esc(/^[A-Z]{2}/.test(TEAMS[t]) ? TEAMS[t] : TEAMS[t][0].toLowerCase() + TEAMS[t].slice(1))).join(', ')}</span><button class="chip" id="copylink">Copy link</button></div>
     </div>
     <h3 class="panel-h">Ready to use</h3>${kit}
-    <h3 class="panel-h">Still needed</h3><p class="needed">${esc(o.missing)}</p>
+    <h3 class="panel-h">Still needed</h3><p class="needed">${esc(o.missing)}</p>${o.also ? `<ul class="needed-also">${o.also.map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
     <p class="note">${esc(o.detail)}</p>
     ${countries ? `<h3 class="panel-h">Who it would reach</h3>${countries}` : ''}
     <h3 class="panel-h">Sources checked</h3>${checked ? `<ul class="checked">${checked}</ul>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
     <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>
     <details class="method"><summary>How this ranks</summary>
       <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
-      <p class="note">Priority = reach × gap × need × momentum ÷ effort.</p></details>
+      <p class="note">Priority = reach × gap × need × weight × momentum.</p></details>
     ${others.length ? `<h3 class="panel-h">Other opportunities for ${esc(l.name)}</h3><ol class="opps">${others.map(x => oppItem(x, l, false)).join('')}</ol>` : ''}`;
   $('#back').onclick = () => { go('opportunities-' + l.code); };
   $('#copylink').onclick = async e => {

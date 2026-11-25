@@ -206,7 +206,7 @@ def country_opportunities(scores: dict) -> dict:
     language's potential users scaled to its speakers there (LinguaMeta's per-country figures), so the
     US list is led by the languages most spoken in the US, not cut from the global top list.
 
-    {"items": [opportunity, as in top_opportunities, plus b (gap x need / cost), u (users: all, now,
+    {"items": [opportunity, as in top_opportunities, plus b (gap x need x weight), u (users: all, now,
     in five years) and m (momentum)], "by_country": {country: [[item index, speakers there], ...]}};
     the page sums speakers over the countries chosen and recomputes the priorities from b, u and m."""
     import math
@@ -230,7 +230,7 @@ def country_opportunities(scores: dict) -> dict:
                 continue
             frac = min(1.0, n / sp)
             for o in l["opportunities"]:
-                base = o["gap"] * o["need"] / o["cost"]
+                base = o["gap"] * o["need"] * o["weight"]
                 cand.setdefault(c, []).append((reach(o["users"]["5y"] * frac) * base * o["momentum"], l["code"], o["key"], n))
     items, index, by_country = [], {}, {}
     for c, xs in sorted(cand.items()):
@@ -241,7 +241,7 @@ def country_opportunities(scores: dict) -> dict:
                 o = opp[lang, key]
                 index[lang, key] = len(items)
                 items.append({k: o[k] for k in ("key", "title", "why", "priority", "priority_now", "priority_5y")}
-                             | {"lang": lang, "b": round(o["gap"] * o["need"] / o["cost"], 4),
+                             | {"lang": lang, "b": round(o["gap"] * o["need"] * o["weight"], 4),
                                 "u": [o["users"]["speakers"], o["users"]["now"], o["users"]["5y"]], "m": o["momentum"]})
             rows.append([index[lang, key], n])
         by_country[c] = rows
