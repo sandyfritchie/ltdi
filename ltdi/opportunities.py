@@ -232,18 +232,18 @@ OPEN_HOURS = {"speech_input": 20, "tts": 10}  # this much open speech also count
 
 # The compact form shown on a language's page: what to do, in a few words, and the one figure that matters
 SHORT = {
-    "kb-platform": "Bring the keyboard to every platform", "kb-open": "Ship a phone keyboard",
+    "kb-platform": "Bring the keyboard to every platform", "kb-open": "Build the first phone keyboard",
     "kb-none": "Design a keyboard layout",
-    "kb-features": "Add predictive text", "asr-vendors": "Ship speech-to-text", "asr-none": "Ship speech-to-text",
+    "kb-features": "Add predictive text", "asr-vendors": "Bring speech-to-text to every platform", "asr-none": "Build the first speech-to-text",
     "asr-measure": "Measure speech recognition", "asr-improve": "Improve speech recognition",
-    "asr-collect": "Collect speech data", "tts-vendors": "Ship text-to-speech", "tts-share": "Ship a cloud voice",
-    "tts-collect": "Record a voice", "mt-vendors": "Ship translation", "llm-measure": "Benchmark LLMs",
+    "asr-collect": "Collect speech data", "tts-vendors": "Bring text-to-speech to every platform", "tts-share": "Build the first text-to-speech",
+    "tts-collect": "Record a voice", "mt-vendors": "Bring translation to every platform", "llm-measure": "Benchmark LLMs",
     "llm-apps": "List it in AI assistants", "llm-improve": "Improve LLMs", "llm-reading": "Add it to Belebele",
     "cldr": "Complete its CLDR locale", "text-collect": "Collect more text", "ui-platforms": "Translate more interfaces",
-    "ui-community": "Ship an interface translation", "ui-none": "Translate an interface",
-    "ocr-vendors": "Ship text recognition", "ocr-open": "Ship text recognition", "ocr-collect": "Build text recognition",
-    "proof-share": "Ship a spell-checker", "proof-build": "Build a spell-checker", "va-vendors": "Ship a voice assistant",
-    "va-ready": "Ship a voice assistant", "va-none": "Ship a voice assistant", "llm-none": "Ship an LLM",
+    "ui-community": "Bring the interface translation to every platform", "ui-none": "Translate an interface",
+    "ocr-vendors": "Bring text recognition to every platform", "ocr-open": "Build the first text recognition", "ocr-collect": "Build text recognition",
+    "proof-share": "Build the first spell-checker", "proof-build": "Build a spell-checker", "va-vendors": "Bring the voice assistant to every platform",
+    "va-ready": "Build the first voice assistant", "va-none": "Build the first voice assistant", "llm-none": "Build the first LLM",
     "lid-none": "Add it to language identifiers",
     "wiki-community": "Grow Wikipedia editing", "document": "Start documenting it",
 }
@@ -477,6 +477,8 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
             "remaining step is a product launch.",
             (len(MT) - mt_n) / len(MT), MT + ["mt_open_nllb", "flores200"],
             f"{mt_n} of {len(MT)} services; an open model and test set")
+        if not mt_n:
+            out[-1]["short"] = "Build the first translation tool"
 
     # LLMs
     llm = [i for i in LLM if i in f]
