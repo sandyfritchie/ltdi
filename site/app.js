@@ -65,7 +65,7 @@ let TOP = [], TOPP;
 const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.json()).catch(() => []).then(t => (TOP = t.map(o => withRule(o, o.lang))));
 // With countries chosen, the opportunities are those countries' own top ones (data/country_opportunities.json,
 // fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
-// the countries chosen, then priority = reach x (gap x need / cost) [x momentum], as for the global list
+// the countries chosen, then priority = reach x (gap x need / effort) [x momentum], as for the global list
 let COPP = null;
 // The over-time history, for the Charts page only (data/history.json), fetched when that first opens
 let HIST = null, HISTP;
@@ -462,7 +462,7 @@ async function opportunities(lang) {
     ${focus ? '' : censusCaveat()}
     <details class="method"><summary>How opportunities are ranked</summary>
       <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
-      <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. The costs are rough guides, not estimates.</p>
+      <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the effort, a T-shirt size judged from what's openly available for the language: open models, open data and shared test sets (S counts 1, M 2, L 3, XL 4). A voice assistant, for example, is M where open speech-to-text, text-to-speech and LLMs all cover the language, L where two do and XL otherwise. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. The sizes are rough guides, not estimates, and a company's own models may make a step smaller for it.</p>
       <div class="weightbar"><span>Count potential users as</span><div class="chips" role="group" aria-label="Weighting">
         ${Object.entries(WEIGHT).map(([k, w]) => `<button class="chip" id="w-${k}" data-w="${k}" aria-pressed="${weight === k}">${esc(w.label)}</button>`).join('')}
       </div></div>
@@ -511,7 +511,7 @@ async function oppDetail(id) {
     ['Gap', `${o.gap.toFixed(2)} (how much of the problem is unsolved)`],
     ['Need', `${o.need?.toFixed(2) ?? '—'} (1 minus current score for ${esc(TECHL[o.technology] || o.technology)})`],
     ['Momentum', `${o.momentum.toFixed(2)} (boost for a fast-growing user base)`],
-    ['Cost', `${o.cost} (${esc(OT[o.type].label)}${o.cost !== OT[o.type].cost ? ', a bigger build than most of its type' : ''})`],
+    ['Effort', `${esc(o.size)} (from the open models, data and test sets available; S counts 1, M 2, L 3, XL 4)`],
     ['Priority', `${o.priority_5y.toFixed(2)} in five years · ${o.priority_now.toFixed(2)} today · ${o.priority.toFixed(2)} all speakers`],
   ];
   const others = l.opportunities.filter(x => x.id !== o.id);
@@ -531,7 +531,7 @@ async function oppDetail(id) {
     <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>
     <details class="method"><summary>How this ranks</summary>
       <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
-      <p class="note">Priority = reach × gap × need × momentum ÷ cost.</p></details>
+      <p class="note">Priority = reach × gap × need × momentum ÷ effort.</p></details>
     ${others.length ? `<h3 class="panel-h">Other opportunities for ${esc(l.name)}</h3><ol class="opps">${others.map(x => oppItem(x, l, false)).join('')}</ol>` : ''}`;
   $('#back').onclick = () => { go('opportunities-' + l.code); };
   $('#copylink').onclick = async e => {
@@ -1227,7 +1227,7 @@ function oppPanel(l) {
   const os = [...l.opportunities].sort((a, b) => prio(b) - prio(a));
   const kinds = Object.keys(OT).filter(k => os.some(o => o.type === k));
   const card = o => `<div class="otile" style="--c:var(${OCOLOR[o.type]})" title="${esc(`${OT[o.type].label}: ${o.title}`)}">
-      <b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}<a href="#opp-${o.id}">starter kit</a></div>`;
+      <span class="osize" title="Effort, from what's openly available">${esc(o.size)}</span><b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}<a href="#opp-${o.id}">starter kit</a></div>`;
   return `<section class="dim wide opps-panel" style="--c:var(--muted)">
     <h3>Opportunities<span class="h3r"><a class="olink" href="#opportunities-${l.code}">Filter and compare by type</a></span></h3>
     ${os.length ? `<div class="okey">${kinds.map(k => `<span style="--c:var(${OCOLOR[k]})"><i></i>${esc(OT[k].label)}</span>`).join('')}</div>
@@ -2263,7 +2263,7 @@ function about() {
     <h4>Language pages</h4>
     <ul><li>The writing sample is Article 1 of the Universal Declaration of Human Rights where there's a translation; the spoken words are volunteers' recordings for Lingua Libre, chosen automatically, so a name or an unusual word sometimes gets through.</li></ul>
     <h4>Opportunities</h4>
-    <ul><li>Opportunities are gaps in the sources tracked here, ranked by how many people could use the technology, how big the gap is and the rough cost of acting. The costs are rough guides, not estimates, and a gap may already be filled by something no source here records.</li>
+    <ul><li>Opportunities are gaps in the sources tracked here, ranked by how many people could use the technology, how big the gap is and the effort, sized S to XL from the open models, data and test sets available for the language. The sizes are rough guides, not estimates, and a gap may already be filled by something no source here records.</li>
       <li>The Plan tab ranks the languages a product doesn't yet support by the people they'd reach online in five years. That's an estimate from LinguaMeta's speaker counts and national connectivity averages, so it favours large languages and overstates reach in rural areas; it says nothing about demand, cost or competition. "Commercially usable" follows each dataset's and model's published licence, and isn't legal advice.</li>
       <li>Each kind of opportunity is suggested only where its first step is possible: text technologies and benchmarks need some written text, a Wikipedia card needs a Wikipedia. A language with nothing recorded gets a single card about documentation and first recordings with its speakers. Before a language is chosen, the list shows at most two cards per language.</li></ul>
 

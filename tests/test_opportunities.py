@@ -101,7 +101,7 @@ class FindTests(unittest.TestCase):
 
 class RankTests(unittest.TestCase):
     def test_need_lowers_priority_for_well_supported_languages(self):
-        opp = lambda: [{"type": "measure", "technology": "llm", "gap": 1.0}]
+        opp = lambda: [{"type": "measure", "technology": "llm", "gap": 1.0, "size": "S"}]
         scores = lambda ltdi: {"ltdi": ltdi, "dimensions": {"tech": {"indicators": {}},
                                                              "writing": {"score": 1}, "data": {"score": 1}}}
         lang = {"speakers": 1e8}
@@ -116,12 +116,12 @@ class ReachTests(unittest.TestCase):
     def test_voice_reaches_more_than_text_where_texting_is_rare(self):
         fs = facts(reach_voice_share=0.4, reach_text_share=0.2, reach_voice_share_5y=0.4,
                    reach_text_share_5y=0.2, speaker_growth_5y=1.0)
-        opps = [{"type": "share", "technology": "tts", "gap": 1.0}, {"type": "share", "technology": "mt", "gap": 1.0}]
+        opps = [{"type": "share", "technology": "tts", "gap": 1.0, "size": "S"}, {"type": "share", "technology": "mt", "gap": 1.0, "size": "S"}]
         ranked = {o["technology"]: o for o in rank({"speakers": 1e7}, opps, self.base, fs)}
         self.assertGreater(ranked["tts"]["priority_now"], ranked["mt"]["priority_now"])
 
     def test_growing_user_base_ranks_higher_in_five_years(self):
-        opp = lambda: [{"type": "share", "technology": "tts", "gap": 1.0}]
+        opp = lambda: [{"type": "share", "technology": "tts", "gap": 1.0, "size": "S"}]
         flat = facts(reach_voice_share=0.4, reach_text_share=0.4, reach_voice_share_5y=0.4,
                      reach_text_share_5y=0.4, speaker_growth_5y=1.0)
         rising = facts(reach_voice_share=0.4, reach_text_share=0.4, reach_voice_share_5y=0.8,
@@ -196,3 +196,17 @@ class WordingTests(unittest.TestCase):
             t = o["title"]
             if re.match(r"(No|Not|None)\b", t) or "don't" in t or "doesn't" in t:
                 self.assertRegex(t, r"found|tracked|in Unicode CLDR", t)
+
+
+class EffortTests(unittest.TestCase):
+    def test_voice_assistant_size_follows_open_components(self):
+        from ltdi.opportunities import _assistant
+        base = {"speech_input": True, "tts": True, "llm": True}
+        self.assertEqual(_assistant(base), "M")
+        self.assertEqual(_assistant(base | {"llm": False}), "L")
+        self.assertEqual(_assistant(base | {"llm": False, "tts": False}), "XL")
+        self.assertEqual(_assistant({k: False for k in base}), "XL")
+
+    def test_every_rule_has_an_effort(self):
+        from ltdi.opportunities import EFFORT, RULES
+        self.assertEqual(set(EFFORT), set(RULES))

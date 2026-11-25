@@ -203,7 +203,7 @@ async function opportunities(lang) {
     ${focus ? '' : censusCaveat()}
     <details class="method"><summary>How opportunities are ranked</summary>
       <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
-      <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the rough cost of acting: 1 for sharing, shipping, measuring or standardising, 2 for improving a model, 3 for collecting new data. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. The costs are rough guides, not estimates.</p>
+      <p class="note">Priority weighs how many people could use the technology, how big the gap is, and how weak current support is, divided by the effort, a T-shirt size judged from what's openly available for the language: open models, open data and shared test sets (S counts 1, M 2, L 3, XL 4). A voice assistant, for example, is M where open speech-to-text, text-to-speech and LLMs all cover the language, L where two do and XL otherwise. Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. The sizes are rough guides, not estimates, and a company's own models may make a step smaller for it.</p>
       <div class="weightbar"><span>Count potential users as</span><div class="chips" role="group" aria-label="Weighting">
         ${Object.entries(WEIGHT).map(([k, w]) => `<button class="chip" id="w-${k}" data-w="${k}" aria-pressed="${weight === k}">${esc(w.label)}</button>`).join('')}
       </div></div>
@@ -252,7 +252,7 @@ async function oppDetail(id) {
     ['Gap', `${o.gap.toFixed(2)} (how much of the problem is unsolved)`],
     ['Need', `${o.need?.toFixed(2) ?? '—'} (1 minus current score for ${esc(TECHL[o.technology] || o.technology)})`],
     ['Momentum', `${o.momentum.toFixed(2)} (boost for a fast-growing user base)`],
-    ['Cost', `${o.cost} (${esc(OT[o.type].label)}${o.cost !== OT[o.type].cost ? ', a bigger build than most of its type' : ''})`],
+    ['Effort', `${esc(o.size)} (from the open models, data and test sets available; S counts 1, M 2, L 3, XL 4)`],
     ['Priority', `${o.priority_5y.toFixed(2)} in five years · ${o.priority_now.toFixed(2)} today · ${o.priority.toFixed(2)} all speakers`],
   ];
   const others = l.opportunities.filter(x => x.id !== o.id);
@@ -272,7 +272,7 @@ async function oppDetail(id) {
     <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>
     <details class="method"><summary>How this ranks</summary>
       <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
-      <p class="note">Priority = reach × gap × need × momentum ÷ cost.</p></details>
+      <p class="note">Priority = reach × gap × need × momentum ÷ effort.</p></details>
     ${others.length ? `<h3 class="panel-h">Other opportunities for ${esc(l.name)}</h3><ol class="opps">${others.map(x => oppItem(x, l, false)).join('')}</ol>` : ''}`;
   $('#back').onclick = () => { go('opportunities-' + l.code); };
   $('#copylink').onclick = async e => {

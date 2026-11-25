@@ -11,8 +11,9 @@ translation needs parallel text) and proposes one of five kinds of action:
   improve   Improve: support exists but quality lags
   collect   Collect: the data really is scarce
 
-Priority = reach x gap x need / cost (see rank), so cheap actions for large,
-underrepresented languages rise to the top. Wording is neutral about vendors: it names platforms and
+Priority = reach x gap x need / effort (see rank), so quick actions for large,
+underrepresented languages rise to the top. Effort is a T-shirt size (EFFORT), judged from what the
+open world already offers for the language, not from any company's own resources. Wording is neutral about vendors: it names platforms and
 open resources, never companies.
 """
 
@@ -27,11 +28,11 @@ from .config import load_config, services
 from .records import Record
 
 TYPES = {
-    "share": {"label": "Share or ship", "cost": 1, "workstream": "Tools for builders"},
-    "measure": {"label": "Measure", "cost": 1, "workstream": "Measurement"},
-    "standardise": {"label": "Standardise", "cost": 1, "workstream": "Open language data"},
-    "improve": {"label": "Improve", "cost": 2, "workstream": "Tools for builders"},
-    "collect": {"label": "Collect", "cost": 3, "workstream": "Open language data"},
+    "share": {"label": "Share or ship", "workstream": "Tools for builders"},
+    "measure": {"label": "Measure", "workstream": "Measurement"},
+    "standardise": {"label": "Standardise", "workstream": "Open language data"},
+    "improve": {"label": "Improve", "workstream": "Tools for builders"},
+    "collect": {"label": "Collect", "workstream": "Open language data"},
 }
 
 TEAMS = {
@@ -49,8 +50,7 @@ TEAMS = {
     "funding": "Funding",
 }
 
-# Per rule: which teams can act, which open resources to start from, what's still missing, and
-# optionally a cost that overrides the type's (building a voice assistant is more than a launch).
+# Per rule: which teams can act, which open resources to start from, and what's still missing.
 RULES = {
     "kb-platform": {"teams": ["keyboards", "standards"], "starter": ["kb_open_keyman", "cldr_coverage", "web_text_words"],
         "missing": "An openly licensed version of the layout in CLDR Keyboards format, then a launch on the "
@@ -129,7 +129,7 @@ RULES = {
     "va-vendors": {"teams": ["assistants"], "starter": ["cv_validated_hours"],
         "missing": "Launches on the remaining assistants, with test commands from speakers of the main regional "
                    "accents."},
-    "va-ready": {"teams": ["assistants", "speech"], "starter": ["cv_validated_hours", "asr_open_omnilingual", "asr_open_whisper"], "cost": 2,
+    "va-ready": {"teams": ["assistants", "speech"], "starter": ["cv_validated_hours", "asr_open_omnilingual", "asr_open_whisper"],
         "missing": "Spoken-command data (how people actually phrase requests), and local content such as names, "
                    "places and services."},
     "lid-none": {"teams": ["data", "evaluation"], "starter": ["web_text_words", "wikipedia_articles"],
@@ -246,6 +246,57 @@ COVERAGE_FACT = {
 }
 
 
+# Effort, as a T-shirt size, from what the open world already offers for the language: open models,
+# open data and shared test sets. A company's own models aren't counted, since they differ by company.
+SIZES = {"S": 1, "M": 2, "L": 3, "XL": 4}  # the divisor in rank
+# Open-weight LLMs whose makers publish a list of languages (Gemma, DeepSeek and others publish none)
+OPEN_LLM = ["llm_open_aya", "llm_app_qwen", "llm_app_meta"]
+
+
+def _effort_context(f: dict[str, Record]) -> dict:
+    tech = load_config()["dimensions"]["tech"]["technologies"]
+    has = {t: any(_v(f, i) for i in tech[t].get("open", [])) for t in ("speech_input", "tts", "mt", "ocr")}
+    hours = _v(f, "open_speech_hours")
+    return {**has, "llm": any(_v(f, i) for i in OPEN_LLM),
+            "hours": (_v(f, "cv_validated_hours") or 0) if hours is None else hours,
+            "words": _v(f, "web_text_words") or 0, "flores": bool(_v(f, "flores200")),
+            "belebele": bool(_v(f, "belebele")), "cldr": _v(f, "cldr_coverage") or 0,
+            "editors": _v(f, "wikipedia_active_editors") or 0}
+
+
+def _assistant(x: dict) -> str:
+    """A voice assistant joins speech-to-text, an LLM and text-to-speech: all three open is M,
+    two is L, and one or none is XL."""
+    return {3: "M", 2: "L"}.get(sum((x["speech_input"], x["tts"], x["llm"])), "XL")
+
+
+EFFORT = {
+    "kb-platform": lambda x: "S", "kb-open": lambda x: "S", "kb-features": lambda x: "M",
+    "asr-vendors": lambda x: "S" if x["speech_input"] else "M" if x["hours"] >= 20 else "L",
+    "asr-none": lambda x: "S" if x["speech_input"] else "M",
+    "asr-measure": lambda x: "M",
+    "asr-improve": lambda x: "M" if x["hours"] >= 20 else "L",
+    "asr-collect": lambda x: "M" if x["hours"] >= 5 else "L" if x["hours"] else "XL",
+    "tts-vendors": lambda x: "S" if x["tts"] else "M" if x["hours"] >= 10 else "L",
+    "tts-share": lambda x: "S" if x["tts"] else "M",
+    "tts-collect": lambda x: "M" if x["hours"] else "L",
+    "mt-vendors": lambda x: "S" if x["mt"] else "M",
+    "llm-measure": lambda x: "S" if x["flores"] or x["belebele"] else "M",
+    "llm-apps": lambda x: "S",
+    "llm-improve": lambda x: "M" if x["words"] >= 1e8 else "L",
+    "llm-reading": lambda x: "S" if x["flores"] else "M",
+    "cldr": lambda x: "S" if x["cldr"] >= 1 else "M",
+    "text-collect": lambda x: "M" if x["words"] >= 1e6 else "L",
+    "ui-platforms": lambda x: "M", "ui-community": lambda x: "S", "ui-none": lambda x: "L",
+    "ocr-vendors": lambda x: "S" if x["ocr"] else "M", "ocr-open": lambda x: "S", "ocr-collect": lambda x: "L",
+    "proof-share": lambda x: "S", "proof-build": lambda x: "M",
+    "va-vendors": _assistant, "va-ready": _assistant,
+    "lid-none": lambda x: "S",
+    "wiki-community": lambda x: "M" if x["editors"] >= 10 else "L",
+    "document": lambda x: "XL",
+}
+
+
 def _consumer(tech: str, key: str = "consumer") -> list[str]:
     """A technology's service list from config/services.csv, so rules follow the config."""
     return list(load_config()["dimensions"]["tech"]["technologies"][tech].get(key, []))
@@ -284,6 +335,7 @@ def find(f: dict[str, Record]) -> list[dict]:
     """All opportunities for one language's facts, each with a rule key, type, technology, title,
     detail, gap, evidence, teams, starter kit (indicators of open resources) and what's still missing."""
     out = []
+    x = _effort_context(f)
 
     def add(key, type_, tech, title, detail, gap, evidence, fact=""):
         """fact: the one figure that matters, for the compact card on a language's page (with SHORT[key])"""
@@ -293,7 +345,7 @@ def find(f: dict[str, Record]) -> list[dict]:
                         "short": SHORT[key], "fact": fact,
                         "gap": round(min(1.0, gap), 3), "evidence": [e for e in evidence if e in f],
                         "checked": list(dict.fromkeys(evidence)),  # every source checked, found or not
-                        "teams": rule["teams"], "missing": rule["missing"], "cost": rule.get("cost"),
+                        "teams": rule["teams"], "missing": rule["missing"], "size": EFFORT[key](x),
                         "starter": [i for i in _expand(rule["starter"]) if _v(f, i)]})
 
     # Open speech datasets for this language, largest first; they replace Common Voice in starter kits
@@ -487,7 +539,7 @@ def _reach(n: float) -> float:
 
 
 def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | None = None) -> list[dict]:
-    """Priority = reach x gap x need / cost, computed three ways.
+    """Priority = reach x gap x need / effort (S 1, M 2, L 3, XL 4), computed three ways.
 
     priority     reach from all speakers
     priority_now reach from speakers who can use the technology today (see users)
@@ -509,7 +561,7 @@ def rank(lang: dict, opps: list[dict], scores: dict, facts: dict[str, Record] | 
         else:
             current = scores["ltdi"]
         need = max(0.1, 1 - current)
-        cost = o.get("cost") or t["cost"]  # a rule can override its type's cost (an assistant is a bigger build)
+        cost = SIZES[o["size"]]
         base = o["gap"] * need / cost
         u = users(lang, facts, o["technology"])
         momentum = min(2.0, 1 + math.log2(u["5y"] / u["now"]) / 2) if u["now"] > 0 and u["5y"] > u["now"] else 1.0

@@ -412,16 +412,23 @@ rest of the data; the datasets listed keep their own licences.
 `ltdi/opportunities.py` compares what each language has with what each technology
 needs, and proposes one of five kinds of action:
 
-| Type | Meaning | Cost |
-| --- | --- | --- |
-| Share or ship | The data or models exist; open them in a shared format, or launch the product | 1 |
-| Measure | No public benchmark or error rate yet | 1 |
-| Standardise | Foundational locale data (CLDR) is incomplete | 1 |
-| Improve | Support exists but quality lags | 2 |
-| Collect | The data really is scarce | 3 |
+| Type | Meaning |
+| --- | --- |
+| Share or ship | The data or models exist; open them in a shared format, or launch the product |
+| Measure | No public benchmark or error rate yet |
+| Standardise | Foundational locale data (CLDR) is incomplete |
+| Improve | Support exists but quality lags |
+| Collect | The data really is scarce |
 
-Priority = reach × gap × need / cost, where reach is log10(potential users) − 4
-and need is 1 minus the language's current score for that technology.
+Priority = reach × gap × need / effort, where reach is log10(potential users) − 4,
+need is 1 minus the language's current score for that technology, and effort is a T-shirt size
+(S 1, M 2, L 3, XL 4) judged from what the open world offers for the language, not any company's
+own models (`EFFORT` in `ltdi/opportunities.py`). Shipping a technology is S where an open model
+covers the language, M where only open data does, and L otherwise; collecting speech is M with
+5 hours or more of open speech, L with less and XL with none. A voice assistant joins
+speech-to-text, an LLM and text-to-speech: M where open models for all three cover the language,
+L for two and XL for one or none. Open LLMs are those whose makers publish a list of languages
+(Qwen3, Llama 4 and Tiny Aya).
 
 Each rule fires only where its prerequisites exist, so the cards are about steps a team could take
 next. Text technologies, locale data, LLM and reading benchmarks need some written text (web text,
