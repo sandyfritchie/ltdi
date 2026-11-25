@@ -50,6 +50,11 @@ TEAMS = {
     "funding": "Funding",
 }
 
+# A voice assistant's starter kit: the open models its effort is judged from (speech-to-text, text-to-speech
+# and LLMs; see EFFORT), then open speech to adapt them with
+VA_KIT = ["asr_open_omnilingual", "asr_open_whisper", "tts_open_mms", "tts_open_espeak",
+          "llm_app_qwen", "llm_open_aya", "llm_app_meta", "cv_validated_hours"]
+
 # Per rule: which teams can act, which open resources to start from, and what's still missing.
 RULES = {
     "kb-platform": {"teams": ["keyboards", "standards"], "starter": ["kb_open_keyman", "cldr_coverage", "web_text_words"],
@@ -126,10 +131,10 @@ RULES = {
     "proof-build": {"teams": ["proofing", "data"], "starter": ["web_text_words", "wikipedia_articles"],
         "missing": "A word list built from the open text and reviewed by native speakers, in the open Hunspell "
                    "format that most spell-checkers read."},
-    "va-vendors": {"teams": ["assistants"], "starter": ["cv_validated_hours"],
+    "va-vendors": {"teams": ["assistants"], "starter": VA_KIT,
         "missing": "Launches on the remaining assistants, with test commands from speakers of the main regional "
                    "accents."},
-    "va-ready": {"teams": ["assistants", "speech"], "starter": ["cv_validated_hours", "asr_open_omnilingual", "asr_open_whisper"],
+    "va-ready": {"teams": ["assistants", "speech"], "starter": VA_KIT,
         "missing": "Spoken-command data (how people actually phrase requests), and local content such as names, "
                    "places and services."},
     "lid-none": {"teams": ["data", "evaluation"], "starter": ["web_text_words", "wikipedia_articles"],
