@@ -232,21 +232,25 @@ OPEN_HOURS = {"speech_input": 20, "tts": 10}  # this much open speech also count
 
 # The compact form shown on a language's page: what to do, in a few words, and the one figure that matters
 SHORT = {
-    "kb-platform": "Bring the keyboard to every platform", "kb-open": "Build the first phone keyboard",
+    "kb-platform": "Bring the keyboard to every platform", "kb-open": "Bring the keyboard to every platform",
     "kb-none": "Design a keyboard layout",
-    "kb-features": "Add predictive text", "asr-vendors": "Bring speech-to-text to every platform", "asr-none": "Build the first speech-to-text",
+    "kb-features": "Add predictive text", "asr-vendors": "Bring speech-to-text to every platform", "asr-none": "Build the first speech-to-text model",
     "asr-measure": "Measure speech recognition", "asr-improve": "Improve speech recognition",
-    "asr-collect": "Collect speech data", "tts-vendors": "Bring text-to-speech to every platform", "tts-share": "Build the first text-to-speech",
+    "asr-collect": "Collect speech data", "tts-vendors": "Bring text-to-speech to every platform", "tts-share": "Build the first text-to-speech voice",
     "tts-collect": "Record a voice", "mt-vendors": "Bring translation to every platform", "llm-measure": "Benchmark LLMs",
     "llm-apps": "List it in AI assistants", "llm-improve": "Improve LLMs", "llm-reading": "Add it to Belebele",
     "cldr": "Complete its CLDR locale", "text-collect": "Collect more text", "ui-platforms": "Translate more interfaces",
     "ui-community": "Bring the interface translation to every platform", "ui-none": "Translate an interface",
-    "ocr-vendors": "Bring text recognition to every platform", "ocr-open": "Build the first text recognition", "ocr-collect": "Build text recognition",
-    "proof-share": "Build the first spell-checker", "proof-build": "Build a spell-checker", "va-vendors": "Bring the voice assistant to every platform",
+    "ocr-vendors": "Bring text recognition to every platform", "ocr-open": "Bring text recognition to every platform", "ocr-collect": "Build text recognition",
+    "proof-share": "Bring the spell-checker to every platform", "proof-build": "Build a spell-checker", "va-vendors": "Bring the voice assistant to every platform",
     "va-ready": "Build the first voice assistant", "va-none": "Build the first voice assistant", "llm-none": "Build the first LLM",
     "lid-none": "Add it to language identifiers",
     "wiki-community": "Grow Wikipedia editing", "document": "Start documenting it",
 }
+# Where an open model already exists, the step is bringing it to every platform, not building the first
+SHORT_OPEN = {"asr-none": ("speech_input", "Bring speech-to-text to every platform"),
+              "tts-share": ("tts", "Bring text-to-speech to every platform"),
+              "llm-none": ("llm", "Bring an LLM to every platform")}
 COVERAGE_FACT = {
     "kb-platform": lambda c: f"On {c['n']} of {c['of']} major keyboards",
     "kb-open": lambda c: "Open layouts published",
@@ -382,7 +386,8 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
         if gap > 0:
             rule = RULES[key]
             out.append({"key": key, "type": type_, "technology": tech, "title": title, "detail": detail,
-                        "short": SHORT[key], "fact": fact,
+                        "short": SHORT_OPEN[key][1] if key in SHORT_OPEN and x[SHORT_OPEN[key][0]] else SHORT[key],
+                        "fact": fact,
                         "gap": round(min(1.0, gap), 3), "evidence": [e for e in evidence if e in f],
                         "checked": list(dict.fromkeys(evidence)),  # every source checked, found or not
                         "teams": rule["teams"], "missing": rule["missing"], "size": EFFORT[key](x),
@@ -477,8 +482,6 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
             "remaining step is a product launch.",
             (len(MT) - mt_n) / len(MT), MT + ["mt_open_nllb", "flores200"],
             f"{mt_n} of {len(MT)} services; an open model and test set")
-        if not mt_n:
-            out[-1]["short"] = "Build the first translation tool"
 
     # LLMs
     llm = [i for i in LLM if i in f]
