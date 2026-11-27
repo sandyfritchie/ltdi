@@ -7,7 +7,7 @@
   --rule: #d9e0dd;
   --accent: #1f5f8b;
   --opp: #6b7a14; --opp-ink: #4f5a0e;
-  --yes: #1c5cab; --no: #b4481a;
+  --yes: #1c5cab; --no: #b4481a; --cross: #c62828;
   --writing: #b07a1c;
   --data: #117a6a;
   --tech: #4a4fb8;
@@ -34,7 +34,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #101614; --surface: #17201d; --ink: #e5ece9; --muted: #98a6a1; --rule: #2a3632;
-    --accent: #7db4dc; --writing: #d9a54a; --data: #3fbfa9; --tech: #9a9df0; --opp: #b3c25a; --opp-ink: #c6d36f; --yes: #8db8ea; --no: #e9a061;
+    --accent: #7db4dc; --writing: #d9a54a; --data: #3fbfa9; --tech: #9a9df0; --opp: #b3c25a; --opp-ink: #c6d36f; --yes: #8db8ea; --no: #e9a061; --cross: #ef7a7a;
     --tier-vh: #7db4dc; --tier-h: #4f87ad; --tier-m: #36607d; --tier-l: #263f50;
     --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
     --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
@@ -48,7 +48,7 @@
 }
 :root[data-theme="dark"] {
   --bg: #101614; --surface: #17201d; --ink: #e5ece9; --muted: #98a6a1; --rule: #2a3632;
-  --accent: #7db4dc; --writing: #d9a54a; --data: #3fbfa9; --tech: #9a9df0; --opp: #b3c25a; --opp-ink: #c6d36f; --yes: #8db8ea; --no: #e9a061;
+  --accent: #7db4dc; --writing: #d9a54a; --data: #3fbfa9; --tech: #9a9df0; --opp: #b3c25a; --opp-ink: #c6d36f; --yes: #8db8ea; --no: #e9a061; --cross: #ef7a7a;
   --tier-vh: #7db4dc; --tier-h: #4f87ad; --tier-m: #36607d; --tier-l: #263f50;
   --tier-ink-light: #0f1a20; --tier-ink-dark: #e5ece9; --track: #24302c; color-scheme: dark;
   --ord-full: #9ec5f4; --ord-part: #5598e7; --ord-open: #256abf; --ord-none: #26322e;
@@ -494,7 +494,7 @@ a.otile:hover b { text-decoration: underline; }
 .opp-head a { font-weight: 600; }
 .opp-title { font-weight: 600; }
 .opp-prov { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink); }
-.opp-prov i { width: 4px; height: 14px; border-radius: 2px; background: var(--p); flex: none; }
+.opp-prov .xmark { color: var(--cross); font-weight: 700; flex: none; }
 .opp-detail { color: var(--muted); font-size: 15px; max-width: 70ch; }
 .weightbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px; color: var(--muted); }
 .opp-ev { display: flex; flex-wrap: wrap; gap: 6px; font-size: 12px; }
