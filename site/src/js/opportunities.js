@@ -231,11 +231,11 @@ async function oppDetail(id) {
   const facts = DATA.facts[l.code] || {};
   // people, then their share in the ranking table's colours
   const share = (n, v) => v == null ? '—' : `${people(n * v)} <span class="pct p${pctBand(v)}">(${Math.round(v * 100)}%)</span>`;
-  const kit = o.kit.length ? `<div class="tablebox"><table>
+  const kit = o.kit.length ? `<div class="tablebox"><table class="otab">
       <thead><tr><th>Resource</th><th>What it is</th><th>Quantity/Availability</th><th>Licence</th><th>Commercial use</th></tr></thead>
-      <tbody>${o.kit.map(k => `<tr><td><a href="${esc(k.link)}" target="_blank" rel="noopener">${esc(k.name)}</a></td><td>${esc(k.what)}</td><td>${esc(k.size)}</td><td>${esc(k.licence || '—')}</td><td>${esc(COMMERCIAL[k.commercial] || '—')}</td></tr>`).join('')}</tbody></table></div>`
+      <tbody>${o.kit.map(k => `<tr><td><a href="${esc(k.link)}" target="_blank" rel="noopener">${esc(k.name)}</a></td><td>${esc(k.what)}</td><td class="nw">${esc(k.size)}</td><td class="nw">${esc(k.licence || '—')}</td><td class="nw">${esc(COMMERCIAL[k.commercial] || '—')}</td></tr>`).join('')}</tbody></table></div>`
     : '<p class="note">No open resources found yet in the sources tracked.</p>';
-  const countries = l.reach_by_country.length ? `<div class="tablebox"><table class="opp-reach">
+  const countries = l.reach_by_country.length ? `<div class="tablebox"><table class="otab opp-reach">
       <thead><tr><th>Country</th><th class="num">Speakers</th><th class="num">Online today</th><th class="num">Online and able to text</th><th class="num">Online in five years</th></tr></thead>
       <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td>${[c.online, c.text, c.online_5y].map(v => `<td class="num">${share(c.speakers, v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
   // every source this card checked, with what it records for the language (or that it doesn't list it)
@@ -243,9 +243,9 @@ async function oppDetail(id) {
   const ids = o.checked || o.evidence;
   const checked = [...ids.filter(i => facts[i]), ...ids.filter(i => !facts[i])].map(i => {
     const f = facts[i], name = (SVC[i] ? `${SVC[i][0]}${SVC[i][1] ? ` \u2013 ${SVC[i][1]}` : ''}` : '') || L[i] || (f && f.source) || i;
-    if (!f) return `<tr><td>${esc(name)}</td><td class="muted">${ROLE_OF[i] === 'measured' ? 'No published result' : 'Not listed'}</td><td>—</td><td></td></tr>`;
+    if (!f) return `<tr><td>${esc(name)}</td><td class="muted">${ROLE_OF[i] === 'measured' ? 'No published result' : 'Not listed'}</td><td class="nw">—</td><td></td></tr>`;
     const v = showValue(f), yn = v === 'Yes' ? ' class="yn-yes"' : v === 'No' ? ' class="yn-no"' : '';
-    return `<tr><td><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(name)}</a></td><td${yn}>${esc(v)}</td><td>${esc(fmtDay(f.retrieved))}</td><td class="muted">${esc(f.note || '')}</td></tr>`;
+    return `<tr><td><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(name)}</a></td><td${yn}>${esc(v)}</td><td class="nw">${esc(fmtDay(f.retrieved))}</td><td class="onote">${esc(f.note || '')}</td></tr>`;
   }).join('');
   const needs = [[o.title, o.missing], ...(o.also || [])];
   $('#view').innerHTML = `
@@ -256,11 +256,11 @@ async function oppDetail(id) {
       <div class="opp-foot"><span></span><button class="chip" id="copylink">Copy link</button></div>
     </div>
     <h3 class="panel-h">Ready to use</h3>${kit}
-    <h3 class="panel-h">Still needed</h3><div class="tablebox"><table>
+    <h3 class="panel-h">Still needed</h3><div class="tablebox"><table class="otab">
       <thead><tr><th>Gap</th><th>What's needed</th></tr></thead>
       <tbody>${needs.map(([g, w]) => `<tr><td>${esc(g)}</td><td>${esc(w)}</td></tr>`).join('')}</tbody></table></div>
     ${countries ? `<h3 class="panel-h">Who it would reach</h3>${countries}` : ''}
-    <h3 class="panel-h">Sources checked</h3>${checked ? `<div class="tablebox"><table>
+    <h3 class="panel-h">Sources checked</h3>${checked ? `<div class="tablebox"><table class="otab">
       <thead><tr><th>Source</th><th>For ${esc(l.name)}</th><th>Retrieved</th><th>Notes</th></tr></thead>
       <tbody>${checked}</tbody></table></div>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
     <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>`;
