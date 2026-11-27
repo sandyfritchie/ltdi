@@ -247,6 +247,9 @@ SHORT = {
     "lid-none": "Add it to language identifiers",
     "wiki-community": "Grow Wikipedia editing", "document": "Start documenting it",
 }
+# Data cards whose title states the gap ("Only 13 hours of open transcribed speech found")
+TITLE_GAP = {"asr-collect", "text-collect", "wiki-community", "ocr-collect"}
+
 # Where an open model already exists, the step is bringing it to every platform, not building the first
 SHORT_OPEN = {"asr-none": ("speech_input", "Bring speech-to-text to every platform"),
               "tts-share": ("tts", "Bring text-to-speech to every platform"),
@@ -380,6 +383,8 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
             out.append({"key": key, "type": type_, "technology": tech, "title": title, "detail": detail,
                         "short": SHORT_OPEN[key][1] if key in SHORT_OPEN and x[SHORT_OPEN[key][0]] else SHORT[key],
                         "fact": fact,
+                        # the gap in a few words, for "Still needed": what exists, or a data card's title
+                        "gap_text": title if key in TITLE_GAP else fact.split(", ")[0],
                         "gap": round(min(1.0, gap), 3), "evidence": [e for e in evidence if e in f],
                         "checked": list(dict.fromkeys(evidence)),  # every source checked, found or not
                         "teams": rule["teams"], "missing": rule["missing"], "size": EFFORT[key](x),

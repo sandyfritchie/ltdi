@@ -454,6 +454,9 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .otype-card b { display: block; color: var(--ink); font: 700 14px var(--font-display); font-stretch: 90%; margin-bottom: 2px; }
 /* the language page's opportunities: compact cards coloured by kind of action */
 .opps-panel { margin-top: 18px; }
+.osrc > summary { list-style: none; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.osrc > summary::-webkit-details-marker { display: none; }
+.osrc > summary:hover .panel-h { color: var(--accent); }
 .otab { font-size: 14px; }
 .otab td { padding: 6px 10px; vertical-align: top; }
 .otab th { padding: 6px 10px; }

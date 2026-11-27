@@ -247,7 +247,7 @@ async function oppDetail(id) {
     const v = showValue(f), yn = v === 'Yes' ? ' class="yn-yes"' : v === 'No' ? ' class="yn-no"' : '';
     return `<tr><td><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(name)}</a></td><td${yn}>${esc(v)}</td><td class="nw">${esc(fmtDay(f.retrieved))}</td><td class="onote">${esc(f.note || '')}</td></tr>`;
   }).join('');
-  const needs = [[o.title, o.missing], ...(o.also || [])];
+  const needs = [[o.gap_text || o.title, o.missing], ...(o.also || [])];
   $('#view').innerHTML = `
     <button class="back" id="back">← Back to ${esc(l.name)}</button>
     <div class="opp-hero" style="--c:var(--opp)">
@@ -260,9 +260,9 @@ async function oppDetail(id) {
       <thead><tr><th>Gap</th><th>What's needed</th></tr></thead>
       <tbody>${needs.map(([g, w]) => `<tr><td>${esc(g)}</td><td>${esc(w)}</td></tr>`).join('')}</tbody></table></div>
     ${countries ? `<h3 class="panel-h">Who it would reach</h3>${countries}` : ''}
-    <h3 class="panel-h">Sources checked</h3>${checked ? `<div class="tablebox"><table class="otab">
+    <details class="osrc"><summary>${TW}<h3 class="panel-h">Sources checked</h3></summary>${checked ? `<div class="tablebox"><table class="otab">
       <thead><tr><th>Source</th><th>For ${esc(l.name)}</th><th>Retrieved</th><th>Notes</th></tr></thead>
-      <tbody>${checked}</tbody></table></div>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
+      <tbody>${checked}</tbody></table></div>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}</details>
     <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>`;
   $('#back').onclick = () => { go('lang-' + l.code); };
   $('#copylink').onclick = async e => {
