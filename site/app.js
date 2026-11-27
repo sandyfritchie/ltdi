@@ -421,29 +421,25 @@ function oppItem(o, l, showLang) {
 }
 
 // Grouped by language, each language where its best opportunity ranks; languages whose one opportunity is
-// to start documenting them share a group, named by that action, with the languages as links
+// to start documenting them share a group at the end, named by that action, with the languages as links
 function oppGroups(list) {
   const by = new Map();
   for (const x of list) {
     if (!by.has(x.l.code)) by.set(x.l.code, { l: x.l, items: [] });
     by.get(x.l.code).items.push(x.o);
   }
-  const out = []; let doc = null;
-  for (const g of by.values()) {
-    if (g.items.length === 1 && g.items[0].key === 'document') {
-      if (!doc) out.push(doc = { doc: true, langs: [] });
-      doc.langs.push(g);
-    } else out.push(g);
-  }
-  return out;
+  const out = [], doc = { doc: true, langs: [] };
+  for (const g of by.values()) (g.items.length === 1 && g.items[0].key === 'document' ? doc.langs : out).push(g);
+  return doc.langs.length ? [...out, doc] : out;  // the documentation list always last
 }
 const GROUPS_SHOWN = 20, DOC_SHOWN = 60;
+const spk = l => l.speakers ? ` <span class="ospk">${people(l.speakers)}</span>` : '';  // speakers, after the name
 function oppGroup(g) {
-  if (!g.doc) return `<section class="ogroup"><h2 class="ogh"><a href="${LH(g.l.code)}">${esc(g.l.name)}</a></h2>
+  if (!g.doc) return `<section class="ogroup"><h2 class="ogh"><a href="${LH(g.l.code)}">${esc(g.l.name)}</a>${spk(g.l)}</h2>
     <div class="otiles" style="--c:var(--opp)">${g.items.map(o => oppItem(o, g.l, false)).join('')}</div></section>`;
   const names = docAll ? g.langs : g.langs.slice(0, DOC_SHOWN);
   return `<section class="ogroup"><h2 class="ogh">Start documenting it</h2>
-    <div class="ochips" style="--c:var(--opp)">${names.map(x => `<a class="ochip" href="#opp-${x.items[0].id}">${esc(x.l.name)}</a>`).join('')}${g.langs.length > names.length ? `<button type="button" class="chip" id="docall">And ${(g.langs.length - names.length).toLocaleString()} more</button>` : ''}</div></section>`;
+    <div class="ochips" style="--c:var(--opp)">${names.map(x => `<a class="ochip" href="#opp-${x.items[0].id}">${esc(x.l.name)}${spk(x.l)}</a>`).join('')}${g.langs.length > names.length ? `<button type="button" class="chip" id="docall">And ${(g.langs.length - names.length).toLocaleString()} more</button>` : ''}</div></section>`;
 }
 
 let team = 'all', shownGroups = GROUPS_SHOWN, docAll = false;
