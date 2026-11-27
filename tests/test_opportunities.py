@@ -74,7 +74,7 @@ class FindTests(unittest.TestCase):
 
     def test_benchmarked_language_missing_from_apps_is_share(self):
         fs = facts(**{**FULL, "llm_app_copilot": 0})
-        self.assertIn("7 of 8 major AI assistants list this language", titles(fs, "share"))
+        self.assertIn("Listed by 7 of 8 providers", titles(fs, "share"))
 
     def test_interface_from_volunteer_translation(self):
         fs = facts(**{**FULL, "ui_ios": 0, "ui_windows": 0, "ui_office": 0, "ui_android": 0, "ui_firefox": 1})
