@@ -539,17 +539,17 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
     apps_n = offered["llm"]
     apps = [i for i in APPS if i not in APPS_LISTED_ONLY or _v(f, i)]
     if any(i in f for i in apps) and apps_n < len(apps) and (apps_n or llm):
-        add("llm-apps", "share", "llm", (f"{apps_n} of {len(apps)} major AI assistants list this language" if apps_n
+        add("llm-apps", "share", "llm", (f"Listed by {apps_n} of {len(APPS)} providers" if apps_n
                                     else "Not in the AI assistants' language lists tracked"),
             ("Some assistants already list it. " if apps_n else "")
             + ("Benchmarks show models already work in it, so listing it could be a short step."
                if llm else "Listing it would tell speakers they can rely on it."),
-            (len(apps) - apps_n) / len(apps), apps + llm, line("llm"))
+            (len(apps) - apps_n) / len(apps), APPS + llm, line("llm"))
     elif any(i in f for i in apps) and not apps_n and has_text:
         add("llm-none", "share", "llm", "Not in the AI assistants' language lists tracked",
             f"None of the {len(apps)} major AI assistants tracked lists this language, and no LLM benchmark "
             "tracked covers it, so there's no sign that any model works in it yet.",
-            1.0, apps + OPEN_LLM + LLM, line("llm"))
+            1.0, APPS + OPEN_LLM + LLM, line("llm"))
     if not _v(f, "belebele") and has_text:
         add("llm-reading", "measure", "llm", "Not in Belebele, the reading-comprehension benchmark tracked here",
             "Belebele, the widest multilingual reading benchmark, doesn't include this language yet.",

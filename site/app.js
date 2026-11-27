@@ -496,26 +496,17 @@ async function oppDetail(id) {
       <thead><tr><th>Country</th><th class="num">Speakers</th><th class="num">Online today</th><th class="num">Online and able to text</th><th class="num">Online in five years</th></tr></thead>
       <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td>${[c.online, c.text, c.online_5y].map(v => `<td class="num">${share(c.speakers, v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
   // every source this card checked, with what it records for the language (or that it doesn't list it)
-  const checked = (o.checked || o.evidence).map(i => {
-    const f = facts[i], name = (SVC[i] ? `${SVC[i][0]}${SVC[i][1] ? ` (${SVC[i][1]})` : ''}` : '') || L[i] || (f && f.source) || i;
+  // sources that record something first, then those with no result for the language
+  const ids = o.checked || o.evidence;
+  const checked = [...ids.filter(i => facts[i]), ...ids.filter(i => !facts[i])].map(i => {
+    const f = facts[i], name = (SVC[i] ? `${SVC[i][0]}${SVC[i][1] ? ` \u2013 ${SVC[i][1]}` : ''}` : '') || L[i] || (f && f.source) || i;
     if (!f) return `<tr><td>${esc(name)}</td><td class="muted">${ROLE_OF[i] === 'measured' ? 'No published result' : 'Not listed'}</td><td>—</td><td></td></tr>`;
-    return `<tr><td><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(name)}</a></td><td>${esc(showValue(f))}</td><td>${esc(fmtDay(f.retrieved))}</td><td class="muted">${esc(f.note || '')}</td></tr>`;
+    const v = showValue(f), yn = v === 'Yes' ? ' class="yn-yes"' : v === 'No' ? ' class="yn-no"' : '';
+    return `<tr><td><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(name)}</a></td><td${yn}>${esc(v)}</td><td>${esc(fmtDay(f.retrieved))}</td><td class="muted">${esc(f.note || '')}</td></tr>`;
   }).join('');
   const needs = [[o.title, o.missing], ...(o.also || [])];
-  const u = o.users || {};
-  const factors = [
-    ['Potential users counted', u.estimated ? `${people(u['5y'])} in five years (${people(u.now)} today) · ${u.kind === 'voice' ? 'voice: everyone online' : 'text: online and able to text'}` : `${people(u.speakers)} speakers`],
-    ['Reach score', `${(o.reach || {})['5y']?.toFixed(2) ?? '—'} (log of users, 10K = 0, 1 billion = 5)`],
-    ['Gap', `${o.gap.toFixed(2)} (how much of the problem is unsolved)`],
-    ['Need', `${o.need?.toFixed(2) ?? '—'} (1 minus current score for ${esc(TECHL[o.technology] || o.technology)})`],
-    ['Momentum', `${o.momentum.toFixed(2)} (boost for a fast-growing user base)`],
-    ['Weight', `${o.weight} (the technology's weight in the index)`],
-    ['Effort', `${esc(o.size)} (from the open models, data and test sets available; breaks ties only)`],
-    ['Priority', `${o.priority_5y.toFixed(2)} in five years · ${o.priority_now.toFixed(2)} today · ${o.priority.toFixed(2)} all speakers`],
-  ];
-  const others = l.opportunities.filter(x => x.id !== o.id);
   $('#view').innerHTML = `
-    <button class="back" id="back">← ${esc(l.name)} opportunities</button>
+    <button class="back" id="back">← Back to ${esc(l.name)}</button>
     <div class="opp-hero" style="--c:var(--opp)">
       <h2>${esc(o.short || o.title)}</h2>
       ${o.fact ? `<p class="why">${esc(o.fact)}</p>` : ''}
@@ -529,12 +520,8 @@ async function oppDetail(id) {
     <h3 class="panel-h">Sources checked</h3>${checked ? `<div class="tablebox"><table>
       <thead><tr><th>Source</th><th>For ${esc(l.name)}</th><th>Retrieved</th><th>Notes</th></tr></thead>
       <tbody>${checked}</tbody></table></div>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
-    <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>
-    <details class="method"><summary>How this ranks</summary>
-      <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>
-      <p class="note">Priority = reach × gap × need × weight × momentum.</p></details>
-    ${others.length ? `<h3 class="panel-h">Other opportunities for ${esc(l.name)}</h3><ol class="opps">${others.map(x => oppItem(x, l, false)).join('')}</ol>` : ''}`;
-  $('#back').onclick = () => { go('opportunities-' + l.code); };
+    <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>`;
+  $('#back').onclick = () => { go('lang-' + l.code); };
   $('#copylink').onclick = async e => {
     const url = location.href.split('#')[0] + '#opp-' + o.id;
     try { await navigator.clipboard.writeText(url); e.target.textContent = 'Link copied'; }
