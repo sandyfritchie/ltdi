@@ -153,19 +153,14 @@ document.addEventListener('toggle', e => {
 const reopen = wrap => { const d = $(`#${wrap} details`); if (d) d.open = true; };
 const reopenCountries = wrap => { const d = $(`#${wrap} details`); if (!d) return; d.open = true;
   const f = d.querySelector('.msel-find'); if (f) { f.focus(); f.setSelectionRange(f.value.length, f.value.length); } };
+// One opportunity as on a language's page: the action, its one line and its size; the language named
+// above it where the list spans languages
 function oppItem(o, l, showLang) {
-  return `<li class="opp" style="--c:var(${OCOLOR[o.type]})">
-    <div class="prio">${prio(o).toFixed(2)}<small>priority</small></div>
-    <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span>
-      ${showLang ? `<a href="${LH(l.code)}">${esc(l.name)}</a>` : ''}</div>
-    <a class="opp-title" href="#opp-${o.id}">${esc(o.title)}</a>
-    <div class="opp-detail">${esc(o.why)}</div>
-    ${provider !== 'All' ? `<div class="opp-prov" style="--p:var(--prov-${provider})"><i></i>Not yet in ${esc(provMissing(o, l, provider).join(', '))}</div>` : ''}
-    <div class="opp-foot"><span>${o.teams.map(t => esc(TEAMS[t])).join(' · ')}</span><a href="#opp-${o.id}">Starter kit and details →</a></div>
-  </li>`;
+  return `<a class="otile" href="#opp-${o.id}" title="${esc(o.title)}">
+    <span class="osize" title="Effort, from what's openly available">${esc(o.size)}</span>${showLang ? `<span class="olang">${esc(l.name)}</span>` : ''}<b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}${provider !== 'All' ? `<small class="opp-prov" style="--p:var(--prov-${provider})"><i></i>Not yet in ${esc(provMissing(o, l, provider).join(', '))}</small>` : ''}</a>`;
 }
 
-let otype = 'all', team = 'all', showAll = false;
+let team = 'all', showAll = false;
 async function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
   if (focus) await need(focus.code);
@@ -177,28 +172,21 @@ async function opportunities(lang) {
     .sort((a, b) => prio(b.o) - prio(a.o));
   const byTeam = all.filter(x => team === 'all' || x.o.teams.includes(team));
   const tcount = Object.fromEntries(Object.keys(TEAMS).map(k => [k, all.filter(x => x.o.teams.includes(k)).length]));
-  const counts = Object.fromEntries(Object.keys(OT).map(k => [k, byTeam.filter(x => x.o.type === k).length]));
-  const list = byTeam.filter(x => otype === 'all' || x.o.type === otype);
+  const list = byTeam;
   const shown = showAll ? list : list.slice(0, 25);
-  const filtered = regionSel.size || ((tierSel.size || countrySel.size) && !focus) || provider !== 'All' || otype !== 'all' || team !== 'all' || focus;
+  const filtered = regionSel.size || ((tierSel.size || countrySel.size) && !focus) || provider !== 'All' || team !== 'all' || focus;
   $('#view').innerHTML = `
     <div class="controls">
       ${focus ? '' : `<span id="orwrap">${regionPicker()}</span><span id="octrywrap">${countryPicker()}</span><span id="otierwrap">${tierPicker()}</span>`}
       ${providerSelect('opsel')}
-      <select id="otsel" aria-label="Kind of action"><option value="all">Any kind of action</option>${Object.entries(OT).map(([k, t]) => `<option value="${k}"${otype === k ? ' selected' : ''}>${esc(t.label)} (${counts[k]})</option>`).join('')}</select>
+      <select id="tmsel" aria-label="What your team works on"><option value="all">Every team (${all.length})</option>${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<option value="${k}"${team === k ? ' selected' : ''}>${esc(t)} (${tcount[k]})</option>`).join('')}</select>
       <button type="button" class="reset" id="oresetf"${filtered ? '' : ' hidden'}>Reset filters</button>
     </div>
-    ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="${LH(focus.code)}">Language profile</a></div>`
-            : `<p class="lede ws-lede">Where a team can make the biggest difference next. Each opportunity says why it matters, which open resources are ready to start from, and what's still missing.</p>`}
-    <div class="teampick"><span class="eyebrow">What does your team work on?</span>
-      <div class="chips" role="group" aria-label="Team">
-        <button class="chip" id="tm-all" data-tm="all" aria-pressed="${team === 'all'}">Everything · ${all.length}</button>
-        ${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<button class="chip" id="tm-${k}" data-tm="${k}" aria-pressed="${team === k}">${esc(t)} · ${tcount[k]}</button>`).join('')}
-      </div></div>
+    ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="${LH(focus.code)}">Language profile</a></div>` : ''}
     ${provider !== 'All' ? `<p class="note" style="margin-top:0">Opportunities where a ${esc(PROV_ALL[provider])} service tracked here doesn't yet cover the language.</p>` : ''}
     ${!focus && countrySel.size ? `<p class="note">The top opportunities in ${esc(regionNames())}, ranked by reach there: each language counts only its speakers in ${countrySel.size > 1 ? 'these countries' : 'this country'}. Choose a language to see all of its own.</p>`
-      : !focus && DATA.opportunity_total > TOP.length ? `<p class="note">Showing ${TOP.length.toLocaleString()} of ${DATA.opportunity_total.toLocaleString()} opportunities: the highest-priority ones, with the top ones of every kind of action. Choose a language to see all of its own.</p>` : ''}
-    ${shown.length ? `<ol class="opps">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</ol>` : '<p class="note">Nothing matches these filters.</p>'}
+      : ''}
+    ${shown.length ? `<div class="otiles opp-list" style="--c:var(--opp)">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</div>` : '<p class="note">Nothing matches these filters.</p>'}
     ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}
     ${focus ? '' : censusCaveat()}
     <details class="method"><summary>How opportunities are ranked</summary>
@@ -209,15 +197,14 @@ async function opportunities(lang) {
       </div></div>
       <p class="note">Currently ranked by ${esc(WEIGHT[weight].note)}.</p>
     </details>`;
-  $('#view').querySelectorAll('[data-tm]').forEach(b => b.onclick = () => { team = b.dataset.tm; otype = 'all'; showAll = false; opportunities(lang); });
+  $('#tmsel').onchange = e => { team = e.target.value; showAll = false; opportunities(lang); };
   $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
-  $('#otsel').onchange = e => { otype = e.target.value; showAll = false; opportunities(lang); };
-  $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; otype = 'all'; team = 'all'; showAll = false;
+  $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; team = 'all'; showAll = false;
     if (lang) go('opportunities'); else opportunities(); };
   if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { showAll = false; await opportunities(lang); reopen('orwrap'); });
   if ($('#octrywrap')) wireCountries('octrywrap', async () => { showAll = false; await opportunities(lang); reopenCountries('octrywrap'); });
   if ($('#otierwrap')) wireMsel('otierwrap', tierPicker, tierSel, TIER_KEYS.length, async () => { showAll = false; await opportunities(lang); reopen('otierwrap'); });
-  $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; otype = 'all'; showAll = false; opportunities(lang); };
+  $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; showAll = false; opportunities(lang); };
   const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
   navBox('opps', 'Find a language name or code', focus ? `${focus.name} (${focus.code})` : '');
 }

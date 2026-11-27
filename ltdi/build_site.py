@@ -240,7 +240,7 @@ def country_opportunities(scores: dict) -> dict:
             if (lang, key) not in index:
                 o = opp[lang, key]
                 index[lang, key] = len(items)
-                items.append({k: o[k] for k in ("key", "title", "why", "priority", "priority_now", "priority_5y")}
+                items.append({k: o[k] for k in ("key", "title", "short", "fact", "size", "why", "priority", "priority_now", "priority_5y")}
                              | {"lang": lang, "b": round(o["gap"] * o["need"] * o["weight"], 4),
                                 "u": [o["users"]["speakers"], o["users"]["now"], o["users"]["5y"]], "m": o["momentum"]})
             rows.append([index[lang, key], n])
@@ -330,7 +330,7 @@ def split(scores: dict, eng: dict, families: tuple[dict, set],
         facts = encode(l["code"], scores["facts"].get(l["code"], {}))
         opps = []
         for o in l["opportunities"]:
-            top.append({k: o[k] for k in ("key", "title", "why", "priority", "priority_now", "priority_5y")}
+            top.append({k: o[k] for k in ("key", "title", "short", "fact", "size", "why", "priority", "priority_now", "priority_5y")}
                        | {"lang": l["code"], "_type": o["type"]})
             o = {k: v for k, v in o.items() if k not in ("teams", "missing", "starter", "id", *hoisted[o["key"]])}
             o["kit"] = [[k["indicator"], k["size"]] for k in o["kit"]]
