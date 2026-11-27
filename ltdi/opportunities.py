@@ -370,6 +370,37 @@ NOUN = {"keyboard": ("major keyboards", "On"), "interface": ("platforms", "On"),
 NEG = {"On": "Not on", "Listed by": "Not listed by", "Offered by": "Not offered by"}
 
 
+OPEN_LLM_NAMES = {"llm_app_qwen": "Qwen3", "llm_open_aya": "Tiny Aya", "llm_app_meta": "Llama 4"}
+
+
+def _va_needs(f: dict[str, Record], x: dict, offered: dict) -> list[list[str]]:
+    """A voice assistant's still-needed rows: the building blocks that are missing or weak, then the
+    assistant's own data. The assistant itself isn't a row: that's what the page is about."""
+    rows = []
+    wers = sorted((r.value, r.note if r.unit == "WER band" else f"{r.value:.0f}% word error rate ({r.source})")
+                  for i, r in f.items() if i.startswith("asr_") and i.endswith("_wer") and r.value is not None)
+    if not (offered.get("speech_input") or x["speech_input"]):
+        rows.append(["Build speech-to-text", "No speech-to-text model found, open or commercial."])
+    elif wers and wers[0][0] > 25:
+        rows.append(["Improve speech recognition",
+                     f"Publicly available quality scores indicate low quality: {wers[0][1][0].lower() + wers[0][1][1:]}."])
+    if not (offered.get("tts") or x["tts"]):
+        rows.append(["Build a text-to-speech voice", "No voice found, open or commercial."])
+    elif _v(f, "tts_open_espeak") and not any(_v(f, i) for i in TTS_OPEN if i != "tts_open_espeak"):
+        rows.append(["Build a more natural text-to-speech voice", "The only open voice is eSpeak's, which sounds robotic."])
+    llms = [OPEN_LLM_NAMES[i] for i in OPEN_LLM if _v(f, i)]
+    if not llms:
+        rows.append(["Build an LLM", "None of the open LLMs tracked lists this language."])
+    elif not any(_v(f, i) for i in LLM):
+        rows.append(["Benchmark available open LLMs",
+                     f"{_and(llms)} list{'s' if len(llms) == 1 else ''} it, but no published benchmark results cover it."])
+    rows.append(["Collect voice assistant data",
+                 "Recordings of people making requests the way they'd naturally say them (setting timers, calling and "
+                 "messaging, asking questions), transcribed and labelled with what they want done, plus local names, "
+                 "places and services."])
+    return rows
+
+
 def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
     """All opportunities for one language's facts, each with a rule key, type, technology, title,
     detail, gap, evidence, teams, starter kit (indicators of open resources) and what's still missing."""
@@ -621,6 +652,9 @@ def find(f: dict[str, Record], fold: bool = True) -> list[dict]:
             "A small editing community limits new open text. Edit-a-thons and translation drives with "
             "universities have grown communities elsewhere.",
             1 - editors / 100, ["wikipedia_active_editors"], f"{editors:.0f} active editors, {articles:,.0f} articles")
+    for o in out:
+        if o["technology"] == "assistant":
+            o["needs"] = _va_needs(f, x, offered)
     return _fold(out) if fold else out  # fold=False: every rule that fired, for tests of the rules themselves
 
 
