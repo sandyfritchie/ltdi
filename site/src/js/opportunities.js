@@ -222,6 +222,21 @@ async function opportunities(lang) {
   navBox('opps', 'Find a language name or code', focus ? `${focus.name} (${focus.code})` : '');
 }
 
+// The kind of resource, for the starter kit's subheadings (shown when a kit holds more than one kind)
+const KIT_GROUP = [[/^asr_open_/, 'Open speech-to-text models'], [/^tts_open_/, 'Open text-to-speech voices'],
+  [/^llm_/, 'Open LLMs'], [/^mt_open_/, 'Open translation models'], [/^ocr_open_/, 'Open text recognition models'],
+  [/^kb_open_/, 'Open keyboard layouts'], [/^proof_/, 'Open spell-checkers'], [/^ui_/, 'Volunteer translations'],
+  [/^(cv_|speech_|open_speech)/, 'Open speech data'], [/^parallel_/, 'Parallel text'],
+  [/^(web_text|wikipedia|ud_)/, 'Open text'], [/^(flores|belebele)/, 'Test sets'], [/^cldr/, 'Locale data'], [/^font_/, 'Fonts']];
+function kitGroups(kit) {
+  const out = new Map();
+  for (const k of kit) {
+    const g = (KIT_GROUP.find(([re]) => re.test(k.id)) || [, 'Other resources'])[1];
+    out.set(g, [...(out.get(g) || []), k]);
+  }
+  return [...out];
+}
+
 async function oppDetail(id) {
   const l = BY[id.split('-')[0]];
   if (!l) return opportunities();
@@ -233,7 +248,8 @@ async function oppDetail(id) {
   const share = (n, v) => v == null ? '—' : `${people(n * v)} <span class="pct p${pctBand(v)}">(${Math.round(v * 100)}%)</span>`;
   const kit = o.kit.length ? `<div class="tablebox"><table class="otab">
       <thead><tr><th>Resource</th><th>What it is</th><th>Quantity/Availability</th><th>Licence</th><th>Commercial use</th></tr></thead>
-      <tbody>${o.kit.map(k => `<tr><td><a href="${esc(k.link)}" target="_blank" rel="noopener">${esc(k.name)}</a></td><td>${esc(k.what)}</td><td class="nw">${esc(k.size)}</td><td class="nw">${esc(k.licence || '—')}</td><td class="nw">${esc(COMMERCIAL[k.commercial] || '—')}</td></tr>`).join('')}</tbody></table></div>`
+      <tbody>${kitGroups(o.kit).map(([g, ks], _, all) => (all.length > 1 ? `<tr class="kgroup"><th colspan="5" scope="colgroup">${esc(g)}</th></tr>` : '')
+        + ks.map(k => `<tr><td><a href="${esc(k.link)}" target="_blank" rel="noopener">${esc(k.name)}</a></td><td>${esc(k.what)}</td><td class="nw">${esc(k.size)}</td><td class="nw">${esc(k.licence || '—')}</td><td class="nw">${esc(COMMERCIAL[k.commercial] || '—')}</td></tr>`).join('')).join('')}</tbody></table></div>`
     : '<p class="note">No open resources found yet in the sources tracked.</p>';
   const countries = l.reach_by_country.length ? `<div class="tablebox"><table class="otab opp-reach">
       <thead><tr><th>Country</th><th class="num">Speakers</th><th class="num">Online today</th><th class="num">Online and able to text</th><th class="num">Online in five years</th></tr></thead>
