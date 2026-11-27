@@ -468,7 +468,6 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .otab tfoot th, .otab tfoot td { font: 600 14px var(--font-body); letter-spacing: 0; text-transform: none; color: var(--ink); border-top: 1px solid var(--rule); padding: 6px 10px; }
 .otab .onote { font-size: 12px; line-height: 1.35; color: var(--muted); }
 .yn-yes { color: var(--yes); font-weight: 600; } .yn-no { color: var(--no); font-weight: 600; }
-.opps-panel h3 .olink { font: 600 14px var(--font-body); }
 .otiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); gap: 8px; }
 .otile { position: relative; display: flex; flex-direction: column; gap: 2px; min-width: 0; padding: 8px 10px 8px 12px; border: 1px solid var(--rule);
   border-left: 4px solid var(--c); border-radius: 6px; background: color-mix(in srgb, var(--c) 7%, var(--surface)); }
