@@ -223,11 +223,11 @@ async function opportunities(lang) {
 }
 
 // The kind of resource, for the starter kit's subheadings (shown when a kit holds more than one kind)
-const KIT_GROUP = [[/^asr_open_/, 'Open speech-to-text models'], [/^tts_open_/, 'Open text-to-speech voices'],
-  [/^llm_/, 'Open LLMs'], [/^mt_open_/, 'Open translation models'], [/^ocr_open_/, 'Open text recognition models'],
-  [/^kb_open_/, 'Open keyboard layouts'], [/^proof_/, 'Open spell-checkers'], [/^ui_/, 'Volunteer translations'],
-  [/^(cv_|speech_|open_speech)/, 'Open speech data'], [/^parallel_/, 'Parallel text'],
-  [/^(web_text|wikipedia|ud_)/, 'Open text'], [/^(flores|belebele)/, 'Test sets'], [/^cldr/, 'Locale data'], [/^font_/, 'Fonts']];
+const KIT_GROUP = [[/^asr_open_/, 'Speech-to-text models'], [/^tts_open_/, 'Text-to-speech voices'],
+  [/^llm_/, 'LLMs'], [/^mt_open_/, 'Translation models'], [/^ocr_open_/, 'Text recognition models'],
+  [/^kb_open_/, 'Keyboard layouts'], [/^proof_/, 'Spell-checkers'], [/^ui_/, 'Volunteer translations'],
+  [/^(speech_fleurs|flores|belebele)/, 'Test sets'], [/^(cv_|speech_|open_speech)/, 'Speech data'],
+  [/^parallel_/, 'Parallel text'], [/^(web_text|wikipedia|ud_)/, 'Text'], [/^cldr/, 'Locale data'], [/^font_/, 'Fonts']];
 function kitGroups(kit) {
   const out = new Map();
   for (const k of kit) {

@@ -458,7 +458,7 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .osrc { margin: 28px 0 10px; }
 .osrc > summary { list-style: none; display: flex; align-items: center; gap: 8px; cursor: pointer; margin-bottom: 10px; }
 .osrc > summary .panel-h { margin: 0; }
-.otab tr.kgroup th { background: var(--bg); color: var(--ink); padding-top: 8px; }
+.otab tr.kgroup th { background: var(--bg); color: var(--ink); padding-top: 8px; font: 600 13px var(--font-body); letter-spacing: 0; text-transform: none; }
 .osrc > summary::-webkit-details-marker { display: none; }
 .osrc > summary:hover .panel-h { color: var(--accent); }
 .otab { font-size: 14px; }
