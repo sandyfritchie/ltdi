@@ -184,21 +184,9 @@ async function opportunities(lang) {
     </div>
     ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="${LH(focus.code)}">Language profile</a></div>` : ''}
     ${provider !== 'All' ? `<p class="note" style="margin-top:0">Opportunities where a ${esc(PROV_ALL[provider])} service tracked here doesn't yet cover the language.</p>` : ''}
-    ${!focus && countrySel.size ? `<p class="note">The top opportunities in ${esc(regionNames())}, ranked by reach there: each language counts only its speakers in ${countrySel.size > 1 ? 'these countries' : 'this country'}. Choose a language to see all of its own.</p>`
-      : ''}
     ${shown.length ? `<div class="otiles opp-list" style="--c:var(--opp)">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</div>` : '<p class="note">Nothing matches these filters.</p>'}
-    ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}
-    ${focus ? '' : censusCaveat()}
-    <details class="method"><summary>How opportunities are ranked</summary>
-      <div class="otypes">${Object.entries(OT).map(([k, t]) => `<div class="otype-card" style="--c:var(${OCOLOR[k]})"><b>${esc(t.label)}</b>${esc(OBLURB[k])}</div>`).join('')}</div>
-      <p class="note">Priority is the impact on a language's community if the technology existed: how many people could use it, how big the gap is and how weak current support is, times the technology's weight in the index (voice assistants count half). Voice technologies count everyone online; text technologies count only those who can also read and write text on a phone. Missing benchmarks and locale data appear in the still-needed list of the technology they hold back. Each opportunity also has an effort size, S to XL, judged from what's openly available for the language: open models, open data and shared test sets. A voice assistant, for example, is M where open speech-to-text, text-to-speech and LLMs all cover the language, L where two do and XL otherwise. Effort only breaks ties. The sizes are rough guides, not estimates, and a company's own models may make a step smaller for it.</p>
-      <div class="weightbar"><span>Count potential users as</span><div class="chips" role="group" aria-label="Weighting">
-        ${Object.entries(WEIGHT).map(([k, w]) => `<button class="chip" id="w-${k}" data-w="${k}" aria-pressed="${weight === k}">${esc(w.label)}</button>`).join('')}
-      </div></div>
-      <p class="note">Currently ranked by ${esc(WEIGHT[weight].note)}.</p>
-    </details>`;
+    ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}`;
   $('#tmsel').onchange = e => { team = e.target.value; showAll = false; opportunities(lang); };
-  $('#view').querySelectorAll('[data-w]').forEach(b => b.onclick = () => { weight = b.dataset.w; opportunities(lang); const d = $('details.method'); if (d) d.open = true; });
   $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; team = 'all'; showAll = false;
     if (lang) go('opportunities'); else opportunities(); };
   if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { showAll = false; await opportunities(lang); reopen('orwrap'); });
