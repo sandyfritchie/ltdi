@@ -62,22 +62,25 @@ for (const l of ALL) {
 const withRule = (o, lang) => ({ ...RULES[o.key], ...o, id: `${lang}-${o.key}` });
 // The top opportunities worldwide (data/top_opportunities.json), fetched when the Opportunities tab first needs them
 let TOP = [], TOPP;
-const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.json()).catch(() => []).then(t => (TOP = t.map(o => withRule(o, o.lang))));
-// With countries chosen, the opportunities are those countries' own top ones (data/country_opportunities.json,
-// fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
-// the countries chosen, then priority = reach x (gap x need x weight) [x momentum], as for the global list
+// every opportunity, its priorities worked out from b, u and m as ltdi.opportunities.rank does
+const oppReach = n => Math.max(0, Math.log10(Math.max(n, 1)) - 4);
+const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.json()).catch(() => []).then(t => (TOP = t.map(o => withRule({ ...o,
+  priority: oppReach(o.u[0]) * o.b, priority_now: oppReach(o.u[1]) * o.b, priority_5y: oppReach(o.u[2]) * o.b * o.m }, o.lang))));
+// With countries chosen, every opportunity of the languages spoken there (data/country_opportunities.json
+// lists each country's languages and speakers, fetched once), ranked by reach there: each one's potential
+// users scaled to the language's speakers in the countries chosen, then priority = reach x (gap x need x
+// weight) [x momentum], as for the global list
 let COPP = null;
 // The over-time history, for the Charts page only (data/history.json), fetched when that first opens
 let HIST = null, HISTP;
 const histData = () => HISTP ??= fetch('data/history.json').then(r => r.json()).catch(() => null).then(h => (HIST = h));
-const countryOpps = () => COPP ??= fetch('data/country_opportunities.json').then(r => r.json())
-  .then(d => ({ ...d, items: d.items.map(o => withRule(o, o.lang)) }));
+const countryOpps = () => COPP ??= fetch('data/country_opportunities.json').then(r => r.json());
 async function countryPool() {
-  const d = await countryOpps(), here = new Map();
-  for (const c of countrySel) for (const [i, n] of d.by_country[c] || []) here.set(i, (here.get(i) || 0) + n);
+  const [d] = await Promise.all([countryOpps(), topOpps()]), here = new Map();
+  for (const c of countrySel) for (const [lang, n] of d.by_country[c] || []) here.set(lang, (here.get(lang) || 0) + n);
   const reach = n => Math.max(0, Math.log10(Math.max(n, 1)) - 4);
-  return [...here].map(([i, n]) => {
-    const o = d.items[i], f = Math.min(1, n / (o.u[0] || n));
+  return TOP.filter(o => here.has(o.lang)).map(o => {
+    const f = Math.min(1, here.get(o.lang) / (o.u[0] || here.get(o.lang)));
     return { o: { ...o, priority: reach(o.u[0] * f) * o.b, priority_now: reach(o.u[1] * f) * o.b, priority_5y: reach(o.u[2] * f) * o.b * o.m }, l: BY[o.lang] };
   }).filter(x => x.l && inView(x.l));
 }
@@ -417,7 +420,33 @@ function oppItem(o, l, showLang) {
     <span class="osize" title="Effort, from what's openly available">${esc(o.size)}</span>${showLang ? `<span class="olang">${esc(l.name)}</span>` : ''}<b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}${provider !== 'All' ? `<small class="opp-prov" style="--p:var(--prov-${provider})"><i></i>Not yet in ${esc(provMissing(o, l, provider).join(', '))}</small>` : ''}</a>`;
 }
 
-let team = 'all', showAll = false;
+// Grouped by language, each language where its best opportunity ranks; languages whose one opportunity is
+// to start documenting them share a group, named by that action, with the languages as links
+function oppGroups(list) {
+  const by = new Map();
+  for (const x of list) {
+    if (!by.has(x.l.code)) by.set(x.l.code, { l: x.l, items: [] });
+    by.get(x.l.code).items.push(x.o);
+  }
+  const out = []; let doc = null;
+  for (const g of by.values()) {
+    if (g.items.length === 1 && g.items[0].key === 'document') {
+      if (!doc) out.push(doc = { doc: true, langs: [] });
+      doc.langs.push(g);
+    } else out.push(g);
+  }
+  return out;
+}
+const GROUPS_SHOWN = 20, DOC_SHOWN = 60;
+function oppGroup(g) {
+  if (!g.doc) return `<section class="ogroup"><h2 class="ogh"><a href="${LH(g.l.code)}">${esc(g.l.name)}</a></h2>
+    <div class="otiles" style="--c:var(--opp)">${g.items.map(o => oppItem(o, g.l, false)).join('')}</div></section>`;
+  const names = docAll ? g.langs : g.langs.slice(0, DOC_SHOWN);
+  return `<section class="ogroup"><h2 class="ogh">Start documenting it</h2>
+    <div class="ochips" style="--c:var(--opp)">${names.map(x => `<a class="ochip" href="#opp-${x.items[0].id}">${esc(x.l.name)}</a>`).join('')}${g.langs.length > names.length ? `<button type="button" class="chip" id="docall">And ${(g.langs.length - names.length).toLocaleString()} more</button>` : ''}</div></section>`;
+}
+
+let team = 'all', shownGroups = GROUPS_SHOWN, docAll = false;
 async function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
   if (focus) await need(focus.code);
@@ -429,8 +458,7 @@ async function opportunities(lang) {
     .sort((a, b) => prio(b.o) - prio(a.o));
   const byTeam = all.filter(x => team === 'all' || x.o.teams.includes(team));
   const tcount = Object.fromEntries(Object.keys(TEAMS).map(k => [k, all.filter(x => x.o.teams.includes(k)).length]));
-  const list = byTeam;
-  const shown = showAll ? list : list.slice(0, 25);
+  const groups = oppGroups(byTeam), shown = groups.slice(0, shownGroups);
   const filtered = regionSel.size || ((tierSel.size || countrySel.size) && !focus) || provider !== 'All' || team !== 'all' || focus;
   $('#view').innerHTML = `
     <div class="controls">
@@ -441,16 +469,17 @@ async function opportunities(lang) {
     </div>
     ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="${LH(focus.code)}">Language profile</a></div>` : ''}
     ${provider !== 'All' ? `<p class="note" style="margin-top:0">Opportunities where a ${esc(PROV_ALL[provider])} service tracked here doesn't yet cover the language.</p>` : ''}
-    ${shown.length ? `<div class="otiles opp-list" style="--c:var(--opp)">${shown.map(x => oppItem(x.o, x.l, !focus)).join('')}</div>` : '<p class="note">Nothing matches these filters.</p>'}
-    ${list.length > shown.length ? `<button class="chip more" id="showall">Show all ${list.length}</button>` : ''}`;
-  $('#tmsel').onchange = e => { team = e.target.value; showAll = false; opportunities(lang); };
-  $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; team = 'all'; showAll = false;
+    ${shown.length ? `<div class="opp-list">${shown.map(oppGroup).join('')}</div>` : '<p class="note">Nothing matches these filters.</p>'}
+    ${groups.length > shown.length ? `<button class="chip more" id="showmore">Show more languages</button>` : ''}`;
+  $('#tmsel').onchange = e => { team = e.target.value; shownGroups = GROUPS_SHOWN; docAll = false; opportunities(lang); };
+  $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; team = 'all'; shownGroups = GROUPS_SHOWN; docAll = false;
     if (lang) go('opportunities'); else opportunities(); };
-  if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { showAll = false; await opportunities(lang); reopen('orwrap'); });
-  if ($('#octrywrap')) wireCountries('octrywrap', async () => { showAll = false; await opportunities(lang); reopenCountries('octrywrap'); });
-  if ($('#otierwrap')) wireMsel('otierwrap', tierPicker, tierSel, TIER_KEYS.length, async () => { showAll = false; await opportunities(lang); reopen('otierwrap'); });
-  $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; showAll = false; opportunities(lang); };
-  const more = $('#showall'); if (more) more.onclick = () => { showAll = true; opportunities(lang); };
+  if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { shownGroups = GROUPS_SHOWN; docAll = false; await opportunities(lang); reopen('orwrap'); });
+  if ($('#octrywrap')) wireCountries('octrywrap', async () => { shownGroups = GROUPS_SHOWN; docAll = false; await opportunities(lang); reopenCountries('octrywrap'); });
+  if ($('#otierwrap')) wireMsel('otierwrap', tierPicker, tierSel, TIER_KEYS.length, async () => { shownGroups = GROUPS_SHOWN; docAll = false; await opportunities(lang); reopen('otierwrap'); });
+  $('#opsel').onchange = e => { provider = e.target.value; team = 'all'; shownGroups = GROUPS_SHOWN; docAll = false; opportunities(lang); };
+  const more = $('#showmore'); if (more) more.onclick = () => { shownGroups += GROUPS_SHOWN; opportunities(lang); };
+  const da = $('#docall'); if (da) da.onclick = () => { docAll = true; opportunities(lang); };
   navBox('opps', 'Find a language name or code', focus ? `${focus.name} (${focus.code})` : '');
 }
 
@@ -2768,10 +2797,9 @@ function route() {
   else if (h === 'plan' || h.startsWith('plan?')) { planFromHash(h); planPage(); }
   else if (h === 'shortlist' || h.startsWith('shortlist?')) { slFromHash(h); shortlistPage(); }
   else ranking();
-  // From a language (or compare) page, the Opportunities tab opens that language's opportunities
-  const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
+  // The Opportunities tab always opens the full list, with the filters left as they were
   const otab = document.getElementById('tab-opportunities');
-  if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
+  if (otab) otab.setAttribute('href', '#opportunities');
   const tab = missing !== undefined ? '' : h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about'].includes(h) ? h : h === 'providers' || h === 'download' ? 'about' : (h === '' || h === 'ranking') ? 'ranking' : '';
   tipHide();
   const lm = h.match(/^lang-([a-z0-9]+)$/), TT = { map: 'Map', charts: 'Charts', opportunities: 'Opportunities', plan: 'Plan', about: 'About', providers: 'For providers', download: 'Download the database' };

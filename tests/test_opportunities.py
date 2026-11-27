@@ -183,16 +183,6 @@ class GateTests(unittest.TestCase):
         self.assertIn(f"None of the {len(LLM)} ", o["detail"])
 
 
-class TopListTests(unittest.TestCase):
-    def test_at_most_two_per_language(self):
-        from ltdi.build_site import PER_LANGUAGE, top_listed
-        top = [{"lang": l, "key": f"k{i}", "_type": t} for i, (l, t) in
-               enumerate([("a", "share"), ("a", "collect"), ("a", "measure"), ("b", "share"), ("a", "share")])]
-        got = top_listed(top)
-        self.assertLessEqual(max(sum(1 for o in got if o["lang"] == l) for l in "ab"), PER_LANGUAGE)
-        self.assertEqual([o["key"] for o in got], ["k0", "k1", "k3"])
-
-
 class WordingTests(unittest.TestCase):
     def test_no_title_asserts_that_something_does_not_exist(self):
         """Titles say what wasn't found in the sources tracked, not that it doesn't exist (re-review R3)."""

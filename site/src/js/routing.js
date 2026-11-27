@@ -77,10 +77,9 @@ function route() {
   else if (h === 'plan' || h.startsWith('plan?')) { planFromHash(h); planPage(); }
   else if (h === 'shortlist' || h.startsWith('shortlist?')) { slFromHash(h); shortlistPage(); }
   else ranking();
-  // From a language (or compare) page, the Opportunities tab opens that language's opportunities
-  const cur = (h.match(/^(?:lang|opportunities)-([a-z]+)$/) || h.match(/^(?:compare|opp)-([a-z]+)-/) || [])[1];
+  // The Opportunities tab always opens the full list, with the filters left as they were
   const otab = document.getElementById('tab-opportunities');
-  if (otab) otab.setAttribute('href', cur ? '#opportunities-' + cur : '#opportunities');
+  if (otab) otab.setAttribute('href', '#opportunities');
   const tab = missing !== undefined ? '' : h.startsWith('opp') ? 'opportunities' : h.startsWith('plan') || h.startsWith('shortlist') ? 'plan' : ['charts', 'map', 'about'].includes(h) ? h : h === 'providers' || h === 'download' ? 'about' : (h === '' || h === 'ranking') ? 'ranking' : '';
   tipHide();
   const lm = h.match(/^lang-([a-z0-9]+)$/), TT = { map: 'Map', charts: 'Charts', opportunities: 'Opportunities', plan: 'Plan', about: 'About', providers: 'For providers', download: 'Download the database' };

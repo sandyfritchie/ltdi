@@ -30,29 +30,8 @@ from . import CONFIG, DATA, ROOT
 SITE = ROOT / "site"
 EMBED_LIMIT = 3_000_000  # bytes of per-language data to embed in the page
 SHARD_SIZE = 150  # languages per detail file
-TOP_OPPORTUNITIES = 1000  # opportunities listed on the Opportunities page before choosing a language
-COUNTRY_OPPORTUNITIES = 30  # each country's own top opportunities, ranked by reach there
-PER_TYPE = 50            # of which at least this many of each kind of action, so every kind can be browsed
-PER_LANGUAGE = 2         # and at most this many for any one language, so the list spans many languages
 
 
-def top_listed(top: list[dict]) -> list[dict]:
-    """The opportunities listed before a language is chosen: the highest-priority ones of each kind of
-    action, then the highest-priority of the rest, up to TOP_OPPORTUNITIES, in priority order; at most
-    PER_LANGUAGE for any one language (choosing a language lists all of its own)."""
-    picked, per, lang = set(), Counter(), Counter()
-    for i, o in enumerate(top):
-        if per[o["_type"]] < PER_TYPE and lang[o["lang"]] < PER_LANGUAGE:
-            picked.add(i)
-            per[o["_type"]] += 1
-            lang[o["lang"]] += 1
-    for i, o in enumerate(top):
-        if len(picked) >= TOP_OPPORTUNITIES:
-            break
-        if i not in picked and lang[o["lang"]] < PER_LANGUAGE:
-            picked.add(i)
-            lang[o["lang"]] += 1
-    return [{k: v for k, v in o.items() if k != "_type"} for i, o in enumerate(top) if i in picked]
 SUMMARY = ("code", "name", "autonym", "iso_639_3", "speakers", "region", "ltdi", "rank", "tied", "tier", "gaps", "endangerment")
 PROFILE = ("glottocode", "script_names", "script_source", "endangerment_source", "note", "source", "written_in", "shares_written", "joshi", "ud", "census")  # shown only on the language's own page
 # Left out of a language's country list: places with no permanent population, and CLDR's
@@ -201,51 +180,31 @@ def _country_name(code: str) -> str:
     return getattr(c, "common_name", None) or (c.name if c else code.upper())
 
 
+def opp_item(o: dict) -> dict:
+    """An opportunity as the Opportunities page lists it, with b (gap x need x weight), u (users: all
+    speakers, now, in five years) and m (momentum): the page works out its priorities from them, and
+    ranks it by reach in chosen countries the same way."""
+    return {k: o[k] for k in ("key", "short", "fact", "size")} | {
+        "b": round(o["gap"] * o["need"] * o["weight"], 4),
+        "u": [o["users"]["speakers"], o["users"]["now"], o["users"]["5y"]], "m": o["momentum"]}
+
+
 def country_opportunities(scores: dict) -> dict:
-    """Each country's top opportunities, ranked by reach in that country: priority recomputed with the
-    language's potential users scaled to its speakers there (LinguaMeta's per-country figures), so the
-    US list is led by the languages most spoken in the US, not cut from the global top list.
-
-    {"items": [opportunity, as in top_opportunities, plus b (gap x need x weight), u (users: all, now,
-    in five years) and m (momentum)], "by_country": {country: [[item index, speakers there], ...]}};
-    the page sums speakers over the countries chosen and recomputes the priorities from b, u and m."""
-    import math
-
-    def reach(n: float) -> float:
-        return max(0.0, math.log10(max(n, 1)) - 4)  # as opportunities._reach
-
-    cand: dict[str, list] = {}
-    opp = {}
+    """{"by_country": {country: [[language, speakers there], ...]}}: with countries chosen, the page
+    ranks every opportunity of the languages spoken there by reach there, its potential users scaled to
+    the language's speakers in those countries (LinguaMeta's per-country figures)."""
+    by_country: dict[str, list] = {}
     for l in scores["languages"]:
         sp = l.get("speakers") or 0
-        if not sp or l.get("extinct"):
+        if not sp or l.get("extinct") or not l["opportunities"]:
             continue
         cs = [(c["code"], c.get("speakers")) for c in l["countries"] if c["code"] not in NOT_PLACES]
         if len(cs) == 1 and not cs[0][1]:
             cs = [(cs[0][0], sp)]  # one country, no breakdown: all its speakers are there
-        for o in l["opportunities"]:
-            opp[l["code"], o["key"]] = o
         for c, n in cs:
-            if not n:
-                continue
-            frac = min(1.0, n / sp)
-            for o in l["opportunities"]:
-                base = o["gap"] * o["need"] * o["weight"]
-                cand.setdefault(c, []).append((reach(o["users"]["5y"] * frac) * base * o["momentum"], l["code"], o["key"], n))
-    items, index, by_country = [], {}, {}
-    for c, xs in sorted(cand.items()):
-        xs.sort(key=lambda x: (-x[0], x[1], x[2]))
-        rows = []
-        for _, lang, key, n in xs[:COUNTRY_OPPORTUNITIES]:
-            if (lang, key) not in index:
-                o = opp[lang, key]
-                index[lang, key] = len(items)
-                items.append({k: o[k] for k in ("key", "title", "short", "fact", "size", "why", "priority", "priority_now", "priority_5y")}
-                             | {"lang": lang, "b": round(o["gap"] * o["need"] * o["weight"], 4),
-                                "u": [o["users"]["speakers"], o["users"]["now"], o["users"]["5y"]], "m": o["momentum"]})
-            rows.append([index[lang, key], n])
-        by_country[c] = rows
-    return {"items": items, "by_country": by_country}
+            if n:
+                by_country.setdefault(c, []).append([l["code"], n])
+    return {"by_country": dict(sorted(by_country.items()))}
 
 
 def country_online() -> dict[str, float]:
@@ -330,8 +289,7 @@ def split(scores: dict, eng: dict, families: tuple[dict, set],
         facts = encode(l["code"], scores["facts"].get(l["code"], {}))
         opps = []
         for o in l["opportunities"]:
-            top.append({k: o[k] for k in ("key", "title", "short", "fact", "size", "why", "priority", "priority_now", "priority_5y")}
-                       | {"lang": l["code"], "_type": o["type"]})
+            top.append(opp_item(o) | {"lang": l["code"], "_p": o["priority_5y"]})
             o = {k: v for k, v in o.items() if k not in ("teams", "missing", "starter", "id", *hoisted[o["key"]])}
             o["kit"] = [[k["indicator"], k["size"]] for k in o["kit"]]
             opps.append(o)
@@ -392,8 +350,9 @@ def split(scores: dict, eng: dict, families: tuple[dict, set],
                 reach := scores["facts"].get(l["code"], {}).get("reach_voice_share")) else None,
             **planner_fields(l, scores["facts"].get(l["code"], {}), scores["resources"]),
         })
-    top.sort(key=lambda o: (-o["priority_5y"], o["lang"], o["key"]))
-    listed = top_listed(top)
+    top.sort(key=lambda o: (-o["_p"], o["lang"], o["key"]))
+    for o in top:
+        del o["_p"]
     # A fact most languages share (usually "not offered") is sent once; each language lists only its own
     # facts and the shared ones it lacks
     count: dict[str, Counter] = {}
@@ -429,8 +388,8 @@ def split(scores: dict, eng: dict, families: tuple[dict, set],
     from .engineering import FLAGS
     index["flags"] = {FLAG_LETTER[k]: [k, v] for k, v in FLAGS.items()}
     index["speech_kind"] = {i: SPEECH_KINDS.index(k) for i, k in SPEECH_KIND.items()}
-    index |= {"history": hist, "languages": langs, "top_opportunities": listed, "country_names": country_names,
-              "opportunity_total": len(top), "units": units,
+    index |= {"history": hist, "languages": langs, "top_opportunities": top, "country_names": country_names,
+              "units": units,
               "fact_defaults": {ind: json.loads(f) for ind, f in defaults.items()},
               "sources": [list(k) for k in sorted(sources, key=sources.get)]}
     return index, details

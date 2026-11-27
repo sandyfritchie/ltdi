@@ -61,22 +61,25 @@ for (const l of ALL) {
 const withRule = (o, lang) => ({ ...RULES[o.key], ...o, id: `${lang}-${o.key}` });
 // The top opportunities worldwide (data/top_opportunities.json), fetched when the Opportunities tab first needs them
 let TOP = [], TOPP;
-const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.json()).catch(() => []).then(t => (TOP = t.map(o => withRule(o, o.lang))));
-// With countries chosen, the opportunities are those countries' own top ones (data/country_opportunities.json,
-// fetched once), ranked by reach there: each one's potential users scaled to the language's speakers in
-// the countries chosen, then priority = reach x (gap x need x weight) [x momentum], as for the global list
+// every opportunity, its priorities worked out from b, u and m as ltdi.opportunities.rank does
+const oppReach = n => Math.max(0, Math.log10(Math.max(n, 1)) - 4);
+const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.json()).catch(() => []).then(t => (TOP = t.map(o => withRule({ ...o,
+  priority: oppReach(o.u[0]) * o.b, priority_now: oppReach(o.u[1]) * o.b, priority_5y: oppReach(o.u[2]) * o.b * o.m }, o.lang))));
+// With countries chosen, every opportunity of the languages spoken there (data/country_opportunities.json
+// lists each country's languages and speakers, fetched once), ranked by reach there: each one's potential
+// users scaled to the language's speakers in the countries chosen, then priority = reach x (gap x need x
+// weight) [x momentum], as for the global list
 let COPP = null;
 // The over-time history, for the Charts page only (data/history.json), fetched when that first opens
 let HIST = null, HISTP;
 const histData = () => HISTP ??= fetch('data/history.json').then(r => r.json()).catch(() => null).then(h => (HIST = h));
-const countryOpps = () => COPP ??= fetch('data/country_opportunities.json').then(r => r.json())
-  .then(d => ({ ...d, items: d.items.map(o => withRule(o, o.lang)) }));
+const countryOpps = () => COPP ??= fetch('data/country_opportunities.json').then(r => r.json());
 async function countryPool() {
-  const d = await countryOpps(), here = new Map();
-  for (const c of countrySel) for (const [i, n] of d.by_country[c] || []) here.set(i, (here.get(i) || 0) + n);
+  const [d] = await Promise.all([countryOpps(), topOpps()]), here = new Map();
+  for (const c of countrySel) for (const [lang, n] of d.by_country[c] || []) here.set(lang, (here.get(lang) || 0) + n);
   const reach = n => Math.max(0, Math.log10(Math.max(n, 1)) - 4);
-  return [...here].map(([i, n]) => {
-    const o = d.items[i], f = Math.min(1, n / (o.u[0] || n));
+  return TOP.filter(o => here.has(o.lang)).map(o => {
+    const f = Math.min(1, here.get(o.lang) / (o.u[0] || here.get(o.lang)));
     return { o: { ...o, priority: reach(o.u[0] * f) * o.b, priority_now: reach(o.u[1] * f) * o.b, priority_5y: reach(o.u[2] * f) * o.b * o.m }, l: BY[o.lang] };
   }).filter(x => x.l && inView(x.l));
 }
