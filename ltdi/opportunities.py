@@ -52,7 +52,7 @@ TEAMS = {
 # A voice assistant's starter kit: the open models its effort is judged from (speech-to-text, text-to-speech
 # and LLMs; see EFFORT), then open speech to adapt them with
 VA_KIT = ["asr_open_omnilingual", "asr_open_whisper", "tts_open_mms", "tts_open_espeak",
-          "llm_app_qwen", "llm_open_aya", "llm_app_meta", "cv_validated_hours"]
+          "llm_app_qwen", "llm_open_aya", "llm_app_meta", "massive_utterances", "cv_validated_hours"]
 
 # Per rule: which teams can act, which open resources to start from, and what's still missing.
 RULES = {
@@ -394,10 +394,16 @@ def _va_needs(f: dict[str, Record], x: dict, offered: dict) -> list[list[str]]:
     elif not any(_v(f, i) for i in LLM):
         rows.append(["Benchmark available open LLMs",
                      f"{_and(llms)} list{'s' if len(llms) == 1 else ''} it, but no published benchmark results cover it."])
-    rows.append(["Collect voice assistant data",
-                 "Recordings of people making requests the way they'd naturally say them (setting timers, calling and "
-                 "messaging, asking questions), transcribed and labelled with what they want done, plus local names, "
-                 "places and services."])
+    if _v(f, "massive_utterances"):
+        rows.append(["Record voice assistant data",
+                     f"MASSIVE has about {_abbr(_v(f, 'massive_utterances'))} assistant requests in this language as text, "
+                     "translated from English. Recordings of speakers saying them, and of requests the way people would "
+                     "naturally phrase them, with local names, places and services, would give a spoken set."])
+    else:
+        rows.append(["Collect voice assistant data",
+                     "Recordings of people making requests the way they'd naturally say them (setting timers, calling and "
+                     "messaging, asking questions), transcribed and labelled with what they want done, plus local names, "
+                     "places and services."])
     return rows
 
 
@@ -745,7 +751,7 @@ def _size(fact: Record) -> str:
     v, u = fact.value, fact.unit
     if u == "hours":
         return _abbr(v) + " hours of transcribed speech"
-    if u in ("words", "articles", "sentence pairs"):
+    if u in ("words", "articles", "sentence pairs", "utterances"):
         return f"{_abbr(v)} {u}"
     if u == "editors":
         return f"{v:.0f} active editors"

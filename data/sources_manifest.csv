@@ -90,6 +90,7 @@ docs_vendors,https://news.samsung.com/ca/samsung-expands-language-support-across
 fineweb2,https://raw.githubusercontent.com/huggingface/fineweb-2/d0defb24f193bb9a5a11b8b14524a03c4858e1b6/fineweb2-language-distribution.csv,0c6e6fbcef62cb034aff493187dee8d327c6bb2c08bb14a81a9c7221b091e0a5,2026-11-08
 flores200,https://raw.githubusercontent.com/facebookresearch/flores/a6c830c6e1051fb4ac1a44b32358f00463f332bd/flores200/README.md,74ccbbe29feba9d92cb3ee472387579ab2aa5c0299d47dcec7614b2c06cd49fc,2026-11-08
 hf_models,https://huggingface.co/api/models,7693 language tags,2026-11-18
+massive,https://huggingface.co/datasets/AmazonScience/massive/raw/main/README.md,9a74b2298db2cb509eb39725612ef5d5b9eb99d59ef7c960ab01f58526051e3d,2026-11-27
 mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=1,71292352ff2c5452e0b454a72e092e56aec10fb66a75f9f41237cbfca16f686e,2026-11-21
 mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=10,14b0d9b18b348ae247e66ac586e7e27bb6e97c3e6d699f8e6a3aa0d27bcce5e8,2026-11-21
 mdc,https://mozilladatacollective.com/api/datasets?limit=100&page=11,5b4d8ac698bef448e03fe32e868d1c2cacff67a0b1c9ae276f48b19fb959ce71,2026-11-21

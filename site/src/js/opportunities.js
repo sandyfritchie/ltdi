@@ -226,7 +226,7 @@ async function opportunities(lang) {
 const KIT_GROUP = [[/^asr_open_/, 'Speech-to-text models'], [/^tts_open_/, 'Text-to-speech voices'],
   [/^llm_/, 'LLMs'], [/^mt_open_/, 'Translation models'], [/^ocr_open_/, 'Text recognition models'],
   [/^kb_open_/, 'Keyboard layouts'], [/^proof_/, 'Spell-checkers'], [/^ui_/, 'Volunteer translations'],
-  [/^(speech_fleurs|flores|belebele)/, 'Test sets'], [/^(cv_|speech_|open_speech)/, 'Speech data'],
+  [/^massive_/, 'Voice assistant data'], [/^(speech_fleurs|flores|belebele)/, 'Test sets'], [/^(cv_|speech_|open_speech)/, 'Speech data'],
   [/^parallel_/, 'Parallel text'], [/^(web_text|wikipedia|ud_)/, 'Text'], [/^cldr/, 'Locale data'], [/^font_/, 'Fonts']];
 function kitGroups(kit) {
   const out = new Map();

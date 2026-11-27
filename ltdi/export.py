@@ -132,6 +132,7 @@ LABELS = {  # indicators the site labels in its own text
     "cldr_coverage": "Unicode CLDR locale data level", "hf_datasets": "Datasets on the Hugging Face Hub (weighted)",
     "hf_models": "Models on the Hugging Face Hub", "hf_model_downloads": "Downloads of its Hugging Face models, last 30 days",
     "web_text_bible_share": "Share of FineWeb-2 documents from Bible sites", "wikipedia_pageviews": "Wikipedia page views, 12 months",
+    "massive_utterances": "MASSIVE virtual assistant requests (text)",
     "wordlist_corpuscrawler": "Corpus Crawler word list (tokens)",
     "reach_voice_share": "Estimated share of speakers who use the internet (World Bank data, weighted by country)",
     "reach_text_share": "Estimated share of speakers who use the internet and can text on a phone (World Bank data)",

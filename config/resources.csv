@@ -59,3 +59,4 @@ speech_wazobiaspeech_african_voices_nigeria,WaZoBiaSpeech (African Voices Nigeri
 speech_wazobiaspeech_scripted_african_voices_nigeria,WaZoBiaSpeech scripted (African Voices Nigeria),"Scripted Hausa and Nigerian Pidgin speech read aloud, with human transcripts",CC BY 4.0,yes,https://huggingface.co/Africanvoice
 llm_app_qwen,Qwen3,"Open-weight language models, 0.6B to 235B parameters (Alibaba)",Apache 2.0,yes,https://qwenlm.github.io/blog/qwen3/
 llm_app_meta,Llama 4,"Open-weight language models, Scout and Maverick (Meta)",Llama 4 Community License (commercial use with conditions),yes,https://github.com/meta-llama/llama-models/blob/main/models/llama4/MODEL_CARD.md
+massive_utterances,MASSIVE,"Virtual assistant requests as text, professionally translated from English and labelled by intent (Amazon)",CC BY 4.0,yes,https://huggingface.co/datasets/AmazonScience/massive

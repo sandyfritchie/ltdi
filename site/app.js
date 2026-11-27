@@ -483,7 +483,7 @@ async function opportunities(lang) {
 const KIT_GROUP = [[/^asr_open_/, 'Speech-to-text models'], [/^tts_open_/, 'Text-to-speech voices'],
   [/^llm_/, 'LLMs'], [/^mt_open_/, 'Translation models'], [/^ocr_open_/, 'Text recognition models'],
   [/^kb_open_/, 'Keyboard layouts'], [/^proof_/, 'Spell-checkers'], [/^ui_/, 'Volunteer translations'],
-  [/^(speech_fleurs|flores|belebele)/, 'Test sets'], [/^(cv_|speech_|open_speech)/, 'Speech data'],
+  [/^massive_/, 'Voice assistant data'], [/^(speech_fleurs|flores|belebele)/, 'Test sets'], [/^(cv_|speech_|open_speech)/, 'Speech data'],
   [/^parallel_/, 'Parallel text'], [/^(web_text|wikipedia|ud_)/, 'Text'], [/^cldr/, 'Locale data'], [/^font_/, 'Fonts']];
 function kitGroups(kit) {
   const out = new Map();
@@ -1086,6 +1086,9 @@ function dimPanel(l, key, color) {
     const hv = i => facts[i] && facts[i].value ? facts[i].value : 0, hf = facts.hf_models, wp = facts.wikipedia_pageviews;
     if (wp && wp.value) body += `<div class="ind"><div class="ind-top"><b><a class="indlink" href="${esc(wp.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`${wp.source}: ${wp.note || ''}`)}">Wikipedia page views</a></b>
         <span class="ind-val">${big(wp.value)} a year</span></div><div class="missing">Not scored.</div></div>`;
+    const ms = facts.massive_utterances;
+    if (ms && ms.value) body += `<div class="ind"><div class="ind-top"><b><a class="indlink" href="${esc(ms.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`${ms.source}: ${ms.note || ''}`)}">Voice assistant data</a></b>
+        <span class="ind-val">${big(ms.value)} requests</span></div><div class="missing">Text from MASSIVE, translated from English. Not scored.</div></div>`;
     if (hf) body += `<div class="ind"><div class="ind-top"><b>${hf ? `<a class="indlink" href="${esc(hf.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`Models tagged with it and at most five languages, downloaded at least 10 times in 30 days. ${hf.note || ''}`)}">Builders on Hugging Face</a>` : 'Builders on Hugging Face'}</b>
         <span class="ind-val">${hv('hf_models') ? `${hv('hf_models').toLocaleString()} ${hv('hf_models') === 1 ? 'model' : 'models'}` : 'No models'}</span></div>
         <div class="missing">${hv('hf_models') ? `Made for it, ${big(hv('hf_model_downloads'))} downloads in 30 days` : 'None made for it with recent downloads'}. Not scored.</div></div>`;
