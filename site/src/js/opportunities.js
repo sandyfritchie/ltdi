@@ -157,7 +157,7 @@ const reopenCountries = wrap => { const d = $(`#${wrap} details`); if (!d) retur
 // above it where the list spans languages
 function oppItem(o, l, showLang) {
   return `<a class="otile" href="#opp-${o.id}" title="${esc(o.title)}">
-    <span class="osize" title="Effort, from what's openly available">${esc(o.size)}</span>${showLang ? `<span class="olang">${esc(l.name)}</span>` : ''}<b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}${provider !== 'All' ? `<small class="opp-prov"><span class="xmark" aria-label="Not in">\u2717</span>${esc(provMissing(o, l, provider).join(', '))}</small>` : ''}</a>`;
+    <span class="osize" title="Effort, from what's openly available">${esc(o.size)}</span>${showLang ? `<span class="olang">${esc(l.name)}</span>` : ''}<b>${esc(o.short || o.title)}</b>${o.fact ? `<small>${esc(o.fact)}</small>` : ''}${provider !== 'All' ? provMissing(o, l, provider).map(n => `<small class="opp-prov"><span class="xmark" aria-label="Not in">\u2717</span>${esc(n)}</small>`).join('') : ''}</a>`;
 }
 
 // Grouped by language, each language where its best opportunity ranks; languages whose one opportunity is
