@@ -520,7 +520,10 @@ async function oppDetail(id) {
       <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td>${[c.online, c.text, c.online_5y].map(v => `<td class="num">${share(c.speakers, v)}</td>`).join('')}</tr>`).join('')}</tbody>${total(l.reach_by_country)}</table></div>` : '';
   // every source this card checked, with what it records for the language (or that it doesn't list it)
   // Yes first, then the other sources that record something, then those with no result for the language
-  const ids = o.checked || o.evidence;
+  // services and benchmarks only: datasets are linked in "Ready to use" above
+  const kitIds = new Set(o.kit.map(k => k.id));
+  const isData = i => i in CFG.data.indicators || /^(cv_|speech_|massive_)/.test(i);
+  const ids = (o.checked || o.evidence).filter(i => !kitIds.has(i) && !isData(i));
   const yes = i => facts[i] && showValue(facts[i]) === 'Yes';
   const checked = [...ids.filter(yes), ...ids.filter(i => facts[i] && !yes(i)), ...ids.filter(i => !facts[i])].map(i => {
     const f = facts[i], name = (SVC[i] ? `${SVC[i][0]}${SVC[i][1] ? ` \u2013 ${SVC[i][1]}` : ''}` : '') || L[i] || (f && f.source) || i;
