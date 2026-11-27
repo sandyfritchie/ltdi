@@ -85,7 +85,7 @@ class FindTests(unittest.TestCase):
         opps = find(fs)
         self.assertNotIn("llm-measure", [o["key"] for o in opps])
         llm = next(o for o in opps if o["technology"] == "llm")
-        self.assertTrue(any(a.startswith("Not in the LLM benchmark results tracked here") for a in llm["also"]))
+        self.assertTrue(any(a[0].startswith("Not in the LLM benchmark results tracked here") for a in llm["also"]))
 
     def test_no_assistant_and_no_building_blocks_still_gets_a_card(self):
         fs = facts(va_google_assistant=0, va_siri=0, asr_google=0, tts_google=0, asr_open_omnilingual=1,

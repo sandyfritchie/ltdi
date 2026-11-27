@@ -486,22 +486,22 @@ async function oppDetail(id) {
   const o = l.opportunities.find(y => y.id === id);
   if (!o) return opportunities();
   const facts = DATA.facts[l.code] || {};
-  const pct = v => v == null ? '—' : Math.round(v * 100) + '%';
+  // people, then their share in the ranking table's colours
+  const share = (n, v) => v == null ? '—' : `${people(n * v)} <span class="pct p${pctBand(v)}">(${Math.round(v * 100)}%)</span>`;
   const kit = o.kit.length ? `<div class="tablebox"><table>
-      <thead><tr><th>Resource</th><th>What it is</th><th>For ${esc(l.name)}</th><th>Licence</th><th>Commercial use</th></tr></thead>
-      <tbody>${o.kit.map(k => `<tr><td><a href="${esc(k.link)}" target="_blank" rel="noopener">${esc(k.name)}</a></td><td>${esc(k.what)}</td><td>${esc(k.size)}</td><td>${esc(k.licence || '—')}</td><td>${esc(COMMERCIAL[k.commercial] || '—')}</td></tr>`).join('')}</tbody></table></div>
-      <p class="note">Licences as published by each project; check the terms for your use before building on them.</p>`
+      <thead><tr><th>Resource</th><th>What it is</th><th>Quantity/Availability</th><th>Licence</th><th>Commercial use</th></tr></thead>
+      <tbody>${o.kit.map(k => `<tr><td><a href="${esc(k.link)}" target="_blank" rel="noopener">${esc(k.name)}</a></td><td>${esc(k.what)}</td><td>${esc(k.size)}</td><td>${esc(k.licence || '—')}</td><td>${esc(COMMERCIAL[k.commercial] || '—')}</td></tr>`).join('')}</tbody></table></div>`
     : '<p class="note">No open resources found yet in the sources tracked.</p>';
-  const countries = l.reach_by_country.length ? `<div class="tablebox"><table>
+  const countries = l.reach_by_country.length ? `<div class="tablebox"><table class="opp-reach">
       <thead><tr><th>Country</th><th class="num">Speakers</th><th class="num">Online today</th><th class="num">Online and able to text</th><th class="num">Online in five years</th></tr></thead>
-      <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td><td class="num">${pct(c.online)}</td><td class="num">${pct(c.text)}</td><td class="num">${pct(c.online_5y)}</td></tr>`).join('')}</tbody></table></div>
-      <p class="note">Speaker counts from LinguaMeta; internet use, mobile texting and literacy from the World Bank. National averages overstate connectivity for rural and minority-language speakers.</p>` : '';
+      <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td>${[c.online, c.text, c.online_5y].map(v => `<td class="num">${share(c.speakers, v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
   // every source this card checked, with what it records for the language (or that it doesn't list it)
   const checked = (o.checked || o.evidence).map(i => {
     const f = facts[i], name = (SVC[i] ? `${SVC[i][0]}${SVC[i][1] ? ` (${SVC[i][1]})` : ''}` : '') || L[i] || (f && f.source) || i;
-    if (!f) return `<li>${esc(name)}: <span class="muted">${ROLE_OF[i] === 'measured' ? 'no published result for this language' : 'not listed'}</span></li>`;
-    return `<li><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(name)}</a>: ${esc(showValue(f))}, retrieved ${esc(fmtDay(f.retrieved))}${f.note ? ` <span class="muted">· ${esc(f.note)}</span>` : ''}</li>`;
+    if (!f) return `<tr><td>${esc(name)}</td><td class="muted">${ROLE_OF[i] === 'measured' ? 'No published result' : 'Not listed'}</td><td>—</td><td></td></tr>`;
+    return `<tr><td><a href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener">${esc(name)}</a></td><td>${esc(showValue(f))}</td><td>${esc(fmtDay(f.retrieved))}</td><td class="muted">${esc(f.note || '')}</td></tr>`;
   }).join('');
+  const needs = [[o.title, o.missing], ...(o.also || [])];
   const u = o.users || {};
   const factors = [
     ['Potential users counted', u.estimated ? `${people(u['5y'])} in five years (${people(u.now)} today) · ${u.kind === 'voice' ? 'voice: everyone online' : 'text: online and able to text'}` : `${people(u.speakers)} speakers`],
@@ -516,17 +516,19 @@ async function oppDetail(id) {
   const others = l.opportunities.filter(x => x.id !== o.id);
   $('#view').innerHTML = `
     <button class="back" id="back">← ${esc(l.name)} opportunities</button>
-    <div class="opp-hero" style="--c:var(${OCOLOR[o.type]})">
-      <div class="opp-head"><span class="otype">${esc(OT[o.type].label)}</span><span>${esc(TECHL[o.technology] || o.technology)}</span><a href="${LH(l.code)}">${esc(l.name)}</a><span>${esc(o.workstream)}</span></div>
-      <h2>${esc(o.title)}</h2>
-      <p class="why">${esc(o.why.split(' Ready to use:')[0])}</p>
-      <div class="opp-foot"><span>For teams working on ${o.teams.map(t => esc(/^[A-Z]{2}/.test(TEAMS[t]) ? TEAMS[t] : TEAMS[t][0].toLowerCase() + TEAMS[t].slice(1))).join(', ')}</span><button class="chip" id="copylink">Copy link</button></div>
+    <div class="opp-hero" style="--c:var(--opp)">
+      <h2>${esc(o.short || o.title)}</h2>
+      ${o.fact ? `<p class="why">${esc(o.fact)}</p>` : ''}
+      <div class="opp-foot"><span></span><button class="chip" id="copylink">Copy link</button></div>
     </div>
     <h3 class="panel-h">Ready to use</h3>${kit}
-    <h3 class="panel-h">Still needed</h3><p class="needed">${esc(o.missing)}</p>${o.also ? `<ul class="needed-also">${o.also.map(a => `<li>${esc(a)}</li>`).join('')}</ul>` : ''}
-    <p class="note">${esc(o.detail)}</p>
+    <h3 class="panel-h">Still needed</h3><div class="tablebox"><table>
+      <thead><tr><th>Gap</th><th>What's needed</th></tr></thead>
+      <tbody>${needs.map(([g, w]) => `<tr><td>${esc(g)}</td><td>${esc(w)}</td></tr>`).join('')}</tbody></table></div>
     ${countries ? `<h3 class="panel-h">Who it would reach</h3>${countries}` : ''}
-    <h3 class="panel-h">Sources checked</h3>${checked ? `<ul class="checked">${checked}</ul>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
+    <h3 class="panel-h">Sources checked</h3>${checked ? `<div class="tablebox"><table>
+      <thead><tr><th>Source</th><th>For ${esc(l.name)}</th><th>Retrieved</th><th>Notes</th></tr></thead>
+      <tbody>${checked}</tbody></table></div>` : '<p class="note">Every data and technology source tracked here; none records anything for this language.</p>'}
     <p class="note">Something here out of date, or a resource we've missed? <a href="${REPO_URL}/issues/new/choose" target="_blank" rel="noopener">Send a correction on GitHub</a> or email <span class="email">${CORRECTIONS_EMAIL}</span>.</p>
     <details class="method"><summary>How this ranks</summary>
       <div class="tablebox"><table><tbody>${factors.map(([k, v]) => `<tr><td>${esc(k)}</td><td>${v}</td></tr>`).join('')}</tbody></table></div>

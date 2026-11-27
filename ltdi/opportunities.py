@@ -271,7 +271,7 @@ def _fold(out: list[dict]) -> list[dict]:
     for o in out:
         to = next((k for t in FOLD.get(o["key"], ()) for k in keep if k["technology"] == t), None)
         if to:
-            to.setdefault("also", []).append(f"{o['title']}. {o['missing']}")
+            to.setdefault("also", []).append([o["title"], o["missing"]])  # the gap, then what's needed
             for k in ("checked", "evidence", "starter"):
                 to[k] = list(dict.fromkeys(to[k] + o[k]))
     return keep
@@ -693,14 +693,21 @@ def resources() -> dict[str, dict]:
         return {r["indicator"]: r for r in csv.DictReader(f)}
 
 
+def _abbr(n: float) -> str:
+    """275M, 10K, 1.2B: compact counts for the starter kit"""
+    for size, unit in ((1e9, "B"), (1e6, "M"), (1e3, "K")):
+        if n >= size:
+            v = n / size
+            return (f"{v:.1f}".rstrip("0").rstrip(".") if v < 10 else f"{v:.0f}") + unit
+    return f"{n:.1f}" if 0 < n < 10 and n != int(n) else f"{n:.0f}"
+
+
 def _size(fact: Record) -> str:
     v, u = fact.value, fact.unit
     if u == "hours":
-        return _hours(v) + " of transcribed speech"
-    if u == "words":
-        return _words(v) + " words"
-    if u == "articles":
-        return _words(v) + " articles"
+        return _abbr(v) + " hours of transcribed speech"
+    if u in ("words", "articles", "sentence pairs"):
+        return f"{_abbr(v)} {u}"
     if u == "editors":
         return f"{v:.0f} active editors"
     if u == "level 0-3":
