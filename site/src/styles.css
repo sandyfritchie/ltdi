@@ -464,6 +464,7 @@ nav.tabs a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--
 .otab td { padding: 6px 10px; vertical-align: top; }
 .otab th { padding: 6px 10px; }
 .otab .nw { white-space: nowrap; }
+.otab tfoot th, .otab tfoot td { font: 600 14px var(--font-body); letter-spacing: 0; text-transform: none; color: var(--ink); border-top: 1px solid var(--rule); padding: 6px 10px; }
 .otab .onote { font-size: 12px; line-height: 1.35; color: var(--muted); }
 .yn-yes { color: var(--yes); font-weight: 600; } .yn-no { color: var(--no); font-weight: 600; }
 .opps-panel h3 .olink { font: 600 14px var(--font-body); }

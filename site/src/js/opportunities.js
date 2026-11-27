@@ -245,6 +245,13 @@ async function oppDetail(id) {
   if (!o) return opportunities();
   const facts = DATA.facts[l.code] || {};
   // people, then their share in the ranking table's colours
+  // where it's spoken in more than one country, the totals under the counts
+  const total = cs => {
+    if (cs.length < 2) return '';
+    const spk = cs.reduce((a, c) => a + (c.speakers || 0), 0);
+    const col = k => { const known = cs.filter(c => c[k] != null); return known.length ? known.reduce((a, c) => a + c.speakers * c[k], 0) / spk : null; };
+    return `<tfoot><tr><th scope="row">Total</th><td class="num">${people(spk)}</td>${['online', 'text', 'online_5y'].map(k => `<td class="num">${share(spk, col(k))}</td>`).join('')}</tr></tfoot>`;
+  };
   const share = (n, v) => v == null ? '—' : `${people(n * v)} <span class="pct p${pctBand(v)}">(${Math.round(v * 100)}%)</span>`;
   const kit = o.kit.length ? `<div class="tablebox"><table class="otab">
       <thead><tr><th>Resource</th><th>What it is</th><th>Quantity/Availability</th><th>Licence</th><th>Commercial use</th></tr></thead>
@@ -253,11 +260,12 @@ async function oppDetail(id) {
     : '<p class="note">No open resources found yet in the sources tracked.</p>';
   const countries = l.reach_by_country.length ? `<div class="tablebox"><table class="otab opp-reach">
       <thead><tr><th>Country</th><th class="num">Speakers</th><th class="num">Online today</th><th class="num">Online and able to text</th><th class="num">Online in five years</th></tr></thead>
-      <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td>${[c.online, c.text, c.online_5y].map(v => `<td class="num">${share(c.speakers, v)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '';
+      <tbody>${l.reach_by_country.map(c => `<tr><td>${esc(c.name)}</td><td class="num">${people(c.speakers)}</td>${[c.online, c.text, c.online_5y].map(v => `<td class="num">${share(c.speakers, v)}</td>`).join('')}</tr>`).join('')}</tbody>${total(l.reach_by_country)}</table></div>` : '';
   // every source this card checked, with what it records for the language (or that it doesn't list it)
-  // sources that record something first, then those with no result for the language
+  // Yes first, then the other sources that record something, then those with no result for the language
   const ids = o.checked || o.evidence;
-  const checked = [...ids.filter(i => facts[i]), ...ids.filter(i => !facts[i])].map(i => {
+  const yes = i => facts[i] && showValue(facts[i]) === 'Yes';
+  const checked = [...ids.filter(yes), ...ids.filter(i => facts[i] && !yes(i)), ...ids.filter(i => !facts[i])].map(i => {
     const f = facts[i], name = (SVC[i] ? `${SVC[i][0]}${SVC[i][1] ? ` \u2013 ${SVC[i][1]}` : ''}` : '') || L[i] || (f && f.source) || i;
     if (!f) return `<tr><td>${esc(name)}</td><td class="muted">${ROLE_OF[i] === 'measured' ? 'No published result' : 'Not listed'}</td><td class="nw">—</td><td></td></tr>`;
     const v = showValue(f), yn = v === 'Yes' ? ' class="yn-yes"' : v === 'No' ? ' class="yn-no"' : '';

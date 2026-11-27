@@ -242,7 +242,7 @@ SHORT = {
     "cldr": "Complete its CLDR locale", "text-collect": "Collect more text", "ui-platforms": "Translate more interfaces",
     "ui-community": "Bring the interface translation to every platform", "ui-none": "Translate an interface",
     "ocr-vendors": "Bring text recognition to every platform", "ocr-open": "Bring text recognition to every platform", "ocr-collect": "Build text recognition",
-    "proof-share": "Bring the spell-checker to every platform", "proof-build": "Build a spell-checker", "va-vendors": "Bring the voice assistant to every platform",
+    "proof-share": "Bring the spell-checker to every platform", "proof-build": "Build a spell-checker", "va-vendors": "Bring a voice assistant to every platform",
     "va-ready": "Build the first voice assistant", "va-none": "Build the first voice assistant", "llm-none": "Build the first LLM",
     "lid-none": "Add it to language identifiers",
     "wiki-community": "Grow Wikipedia editing", "document": "Start documenting it",
