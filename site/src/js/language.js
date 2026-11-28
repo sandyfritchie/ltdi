@@ -17,9 +17,10 @@ const PROV_ORDER = [...Object.keys(PROV).filter(k => k !== 'open'), ...Object.ke
 document.head.insertAdjacentHTML('beforeend', `<style>${Object.keys(PROV).map(k =>
   `section.focus-${k} .tile[data-prov]:not([data-prov="${k}"]) { opacity: .3; }`).join('\n')}
   section.focus-regional .tile[data-prov]:not([data-regional]) { opacity: .3; }</style>`);
-let provFocus = null, moreOpen = false, provsOpen = false;  // remembered while moving between languages
-const techOpen = new Set();  // the technologies whose services are shown, remembered likewise
-const dimOpen = new Set();  // the panels (tech, data) whose breakdown is shown, remembered likewise
+// what's open on a language page: kept while the page redraws, reset on another language
+let provFocus = null, moreOpen = false, provsOpen = false, openFor = null;
+const techOpen = new Set();  // the technologies whose services are shown
+const dimOpen = new Set();  // the panels (tech, data) whose breakdown is shown
 const ROLE_OF = Object.fromEntries(DATA.services.map(s => [s.id, s.role]));
 const DEPTH_OF = Object.fromEntries(DATA.services.filter(s => s.depth).map(s => [s.id, s.depth]));
 // A published quality measure that discounts a service where it's poor (services.csv: quality)
@@ -521,6 +522,7 @@ function oppPanel(l) {
       : `<p class="note">${l.extinct ? 'None listed; no speakers recorded.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
 }
 async function language(code) {
+  if (code !== openFor) { provFocus = null; moreOpen = provsOpen = false; techOpen.clear(); dimOpen.clear(); openFor = code; }
   const l = BY[code];
   if (!l) return ranking();
   await need(code);
