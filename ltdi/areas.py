@@ -42,6 +42,9 @@ OFFICIAL_TAG = "v2.0"
 OFFICIAL_FILE = "cldf/languages.geojson"
 SWITCH_MARGIN = 0.15  # F-score the official-language area must gain over the atlas's
 SWITCH_MIN = 0.3
+# always drawn across the countries where they're official, as on both maps the atlas draws them only where
+# they're the main language
+ALWAYS_OFFICIAL = {"en", "fr", "es", "pt"}
 TOLERANCE = 0.5  # pixels at the basemap's 1000-pixel width
 MIN_AREA = 0.3   # square pixels: smaller fragments are dropped
 
@@ -207,7 +210,7 @@ def main() -> None:
         alt = prepare(official[code]).buffer(0)
         f_atlas = fit(langs[code], chosen[code].buffer(0), shapes, tree, ccodes, population)
         f_alt = fit(langs[code], alt, shapes, tree, ccodes, population)
-        if f_alt >= SWITCH_MIN and f_alt > f_atlas + SWITCH_MARGIN:
+        if code in ALWAYS_OFFICIAL or (f_alt >= SWITCH_MIN and f_alt > f_atlas + SWITCH_MARGIN):
             chosen[code] = alt
             switched.append(code)
             print(f"  {code}: official-language area ({f_alt:.2f}) over the atlas's ({f_atlas:.2f})")

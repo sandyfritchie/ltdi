@@ -425,24 +425,6 @@ function sizeMiniMap() {
   }
 }
 addEventListener('resize', () => { cancelAnimationFrame(sizeMiniMap.raf); sizeMiniMap.raf = requestAnimationFrame(sizeMiniMap); });
-// The window, a third of the world across, that holds the most speakers (counted by country), shrunk
-// to the countries in it: its centre and width
-function spreadFrame(l, W) {
-  const C = GEO.basemap.countries || {}, win = W / 3, hw = win / 2, hh = win * MINI_ASPECT / 2;
-  const pts = Object.entries(l._cs || {}).filter(([c, n]) => C[c] && n > 0).map(([c, n]) => {
-    const b = C[c].box; return { b, n, x: (b[0] + b[2]) / 2, y: (b[1] + b[3]) / 2 };
-  });
-  if (pts.length < 2) return null;
-  let best = null, top = 0;
-  for (const p of pts) {
-    const inside = pts.filter(q => Math.abs(q.x - p.x) <= hw && Math.abs(q.y - p.y) <= hh), sum = inside.reduce((a, q) => a + q.n, 0);
-    if (sum > top) { top = sum; best = inside; }
-  }
-  const x0 = Math.min(...best.map(q => q.b[0])), x1 = Math.max(...best.map(q => q.b[2]));
-  const y0 = Math.min(...best.map(q => q.b[1])), y1 = Math.max(...best.map(q => q.b[3]));
-  const w = Math.min(W, Math.max(W / 8, Math.max(x1 - x0, (y1 - y0) / MINI_ASPECT) * 1.15));
-  return [(x0 + x1) / 2, (y0 + y1) / 2, w];
-}
 function bindMiniMap(l) {
   const a = document.getElementById('minimap'), svg = a && a.querySelector('svg');
   if (!svg) return;
@@ -454,9 +436,6 @@ function bindMiniMap(l) {
     const b = area.getBBox(), size = Math.max(b.width, b.height / MINI_ASPECT);
     cx = b.x + b.width / 2; cy = b.y + b.height / 2;
     w = Math.min(W, Math.max(W / 8, size * 2.5)); small = size < w / 12;
-    // spread across the world (French, English): frame the part of it where most of its speakers live
-    const f = w > W / 2 && spreadFrame(l, W);
-    if (f) [cx, cy, w, small] = [...f, false];
   } else { cx = +dot.getAttribute('cx'); cy = +dot.getAttribute('cy'); w = W / 7; }
   const h = w * MINI_ASPECT;
   const x = w < W ? Math.min(W - w, Math.max(0, cx - w / 2)) : 0, y = h < H ? Math.min(H - h, Math.max(0, cy - h / 2)) : (H - h) / 2;
