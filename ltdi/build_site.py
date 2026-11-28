@@ -51,9 +51,10 @@ def add_census(scores: dict) -> None:
     path = DATA / "census_languages.csv"
     if not path.exists():
         return
+    from .demand import official
     by = {l["code"]: l for l in scores["languages"]}
     names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"]}
-    touched = set()
+    off, touched = official(), set()
     for r in csv.DictReader(path.open(encoding="utf-8")):
         l = by.get(r["language"])
         if not l or l.get("extinct") or r["country"] in NOT_PLACES:
@@ -64,8 +65,10 @@ def add_census(scores: dict) -> None:
         c = next((c for c in l["countries"] if c["code"] == r["country"]), None)
         if c and c.get("speakers"):
             continue
-        if not c:  # a country LinguaMeta doesn't list it in: spoken there by immigrant or diaspora communities
-            c = {"code": r["country"], "name": names.get(r["country"]) or _country_name(r["country"]), "census_only": True}
+        if not c:  # a country LinguaMeta doesn't list it in: spoken there by immigrant or diaspora communities,
+            # unless it's official there (CLDR), as Portuguese in Mozambique or Hungarian in Serbia
+            c = {"code": r["country"], "name": names.get(r["country"]) or _country_name(r["country"]),
+                 **({} if r["country"] in off.get(l["code"], {}) else {"census_only": True})}
             l["countries"].append(c)
         c["speakers"] = n
         l.setdefault("census", []).append([c["name"], r["source"], r["url"], n])

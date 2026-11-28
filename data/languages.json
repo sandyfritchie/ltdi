@@ -70491,7 +70491,7 @@
   "iso_639_3": "fra",
   "glottocode": "stan1290",
   "scope": "LANGUAGE",
-  "speakers": 203194940,
+  "speakers": 237876940,
   "members": [],
   "scripts": [
    "latn"
@@ -70523,6 +70523,16 @@
     "scripts": [
      "latn"
     ]
+   },
+   {
+    "code": "dz",
+    "name": "Algeria",
+    "speakers": 14904000
+   },
+   {
+    "code": "ma",
+    "name": "Morocco",
+    "speakers": 13457000
    },
    {
     "code": "ci",
@@ -70563,6 +70573,11 @@
     "scripts": [
      "latn"
     ]
+   },
+   {
+    "code": "tn",
+    "name": "Tunisia",
+    "speakers": 6321000
    },
    {
     "code": "sn",
