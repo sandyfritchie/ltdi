@@ -331,7 +331,7 @@ const COUNTRIES = Object.keys(COUNTRY_N).filter(c => COUNTRY_NAMES[c]).sort((a, 
 function areaLabels() {
   const L = (AREAS && AREAS.labels) || {}, seen = new Set(), out = [];
   for (const c of countrySel) {
-    const rows = (L[c] || []).filter(([code]) => BY[code] && !BY[code].extinct && inView(BY[code]));
+    const rows = (L[c] || []).filter(([code]) => BY[code] && !BY[code].extinct && inView(BY[code]) && onMap(BY[code]));
     rows.sort((a, b) => (BY[b[0]]._cs[c] || 0) - (BY[a[0]]._cs[c] || 0) || b[3] - a[3]);
     for (const r of rows.slice(0, 10)) if (!seen.has(r[0])) { seen.add(r[0]); out.push(r); }
   }
@@ -1436,6 +1436,10 @@ const TIERC = { vh: '--t-vh', h: '--t-h', m: '--t-m', lc: '--t-lc', lo: '--t-lo'
 const bgDots = (pts, r) => pts.map(p => `M${(p[2] - r).toFixed(2)},${p[3]}a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(2 * r).toFixed(2)},0a${r.toFixed(2)},${r.toFixed(2)} 0 1,0 ${(-2 * r).toFixed(2)},0`).join('');
 let mapR = null;  // base radii for the current render
 let mapFocus = null, mapFocusFresh = false;  // a language found with the search box while the map is showing
+// "Show major languages" off: English, French, Spanish and Portuguese left off the map
+let mapMajors = true;
+const MAP_MAJORS = new Set(['en', 'fr', 'es', 'pt']);
+function onMap(l) { return mapMajors || !MAP_MAJORS.has(l.code) || l.code === mapFocus; }
 let mapView = null;  // the map's zoom, kept while the map page redraws (switching areas and dots, say)
 // Map view: the areas where languages are spoken, shaded by tier (Glottography), or a dot per language
 let mapMode = 'areas';
@@ -1502,7 +1506,7 @@ function mapSection() {
   const tierKey = l => P ? covTier(val(l)) : tierOf(l)[0];
   const tip = l => { if (!P) return `LTDI ${l.ltdi.toFixed(3)} · ${tierOf(l)[1]} · rank ${rankLabel(l)}`;
     const c = provCoverage(l, provider); return `${esc(pn)}: ${c.n} of ${c.of} ${provWhat(provider)}`; };
-  const dots = LANGS.filter(l => pt[l.code]).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || val(a) - val(b)).map(l => {
+  const dots = LANGS.filter(l => pt[l.code] && onMap(l)).sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || val(a) - val(b)).map(l => {
     const c = tierKey(l), p = pt[l.code];
     return `<a href="${LH(l.code)}"><circle class="sdot${l.code === mapFocus ? ' hit' : ''}" cx="${p[2]}" cy="${p[3]}" r="${rs.toFixed(1)}" fill="var(${TIERC[c]})" stroke="var(--surface)" stroke-width="${sw.toFixed(1)}"
       opacity="${inView(l) ? 1 : 0.25}" tabindex="0" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/></a>`;
@@ -1523,7 +1527,7 @@ function mapSection() {
     // in the Americas, though their region group is Europe)
     const frame = regionFrame();
     const inTiers = l => !tierSel.size || tierSel.has(tierOf(l)[0]) || l.code === mapFocus;
-    const withArea = LANGS.filter(l => AREAS.paths[l.code] && inTiers(l));
+    const withArea = LANGS.filter(l => AREAS.paths[l.code] && inTiers(l) && onMap(l));
     const order = Object.fromEntries([...keys].reverse().map((k, i) => [k, i]));  // best-covered drawn on top
     // One area the atlas draws for several LTDI languages (Serbian, Croatian, Bosnian, Montenegrin) is
     // drawn once, for the one on top, so the shared area isn't darkened by stacking
@@ -2041,7 +2045,8 @@ function mapPage() {
   const N = LANGS.filter(inView).length;
   $('#view').innerHTML = `<h2 class="sronly">Map</h2>
     <div class="controls sticky"><span id="mregwrap">${regionPicker()}</span><span id="mctrywrap">${countryPicker()}</span><span id="mtierwrap">${tierPicker()}</span><span class="note" style="margin:0">${N.toLocaleString()} languages</span>
-      <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button></div>
+      <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button>
+      <label class="switch wrap" title="English, French, Spanish and Portuguese"><input type="checkbox" role="switch" id="mmajors"${mapMajors ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show major languages</label></div>
     ${mapSection()}
     ${censusCaveat()}`;
   bindTips($('#view'));
@@ -2050,6 +2055,7 @@ function mapPage() {
   wireCountries('mctrywrap', () => { const y = scrollY; mapView = null; mapPage(); reopenCountries('mctrywrap'); scrollTo(0, y); });
   wireMsel('mtierwrap', tierPicker, tierSel, TIER_KEYS.length, () => { const y = scrollY; mapPage(); reopen('mtierwrap'); scrollTo(0, y); });
   $('#mresetf').onclick = () => { const y = scrollY; regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); mapView = null; mapPage(); scrollTo(0, y); };
+  $('#mmajors').onchange = e => { mapMajors = e.target.checked; const y = scrollY; mapPage(); scrollTo(0, y); };
   navBox('map', 'Find a language name or code');
   pinBar($('.controls.sticky'));
 }
