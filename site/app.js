@@ -1533,8 +1533,8 @@ function mapSection() {
     // drawn once, for the one on top, so the shared area isn't darkened by stacking
     const drawn = withArea.sort((a, b) => (a.code === mapFocus) - (b.code === mapFocus) || order[tierKey(a)] - order[tierKey(b)] || (AREAS.area[b.code] || 0) - (AREAS.area[a.code] || 0));
     const top = new Map(drawn.map(l => [AREAS.paths[l.code], l.code]));
-    layer = `<g class="areas${mapFocus ? ' focusing' : ''}" filter="url(#soft)">${drawn.filter(l => top.get(AREAS.paths[l.code]) === l.code).map(l =>
-      `<path d="${AREAS.paths[l.code]}" data-code="${l.code}"${l.code === mapFocus ? ' class="hit" filter="url(#soft)"' : ''} fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
+    layer = `<g class="areas${mapFocus ? ' focusing' : ''}">${drawn.filter(l => top.get(AREAS.paths[l.code]) === l.code).map(l =>
+      `<path d="${AREAS.paths[l.code]}" data-code="${l.code}"${l.code === mapFocus ? ' class="hit"' : ''} fill="var(${TIERC[tierKey(l)]})" fill-opacity="0.5" data-tip="<b>${esc(l.name)}</b><br>${tip(l)}"/>`).join('')}</g>`;
     const sh = tierLandShares(withArea, tierKey, frame && frame.outline, keys), pct = v => v == null ? '' : ` · ${v > 0 && v < 0.01 ? '<1' : Math.round(v * 100)}%`;
     legend = `${keys.map(c => `<span><i class="dot" style="background:var(${TIERC[c]})"></i>${legendLabels[c]}${sh ? pct(sh[c]) : ''}</span>`).join('')}
       ${sh ? `<span><i class="dot" style="background:var(--land);box-shadow:inset 0 0 0 1px var(--t-none-edge)"></i>No area in the atlas${pct(sh.none)}</span>` : ''}`;
@@ -1558,7 +1558,7 @@ function mapSection() {
     <div class="mapwrap"><div class="mapctl">
         <button id="zin" aria-label="Zoom in" title="Zoom in">+</button><button id="zout" aria-label="Zoom out" title="Zoom out">−</button><button id="zreset" class="reset" aria-label="Reset zoom" title="Reset">⟲</button>
       </div><svg id="worldmap"${F ? ' class="focusing"' : ''} viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Map of ${GEO.points.length} languages; ${LANGS.length} scored">
-      ${areasOn ? `<defs><filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur id="softblur" stdDeviation="1"/></filter><clipPath id="landclip"><path d="${land}"/></clipPath></defs>` : ''}
+      ${areasOn ? `<defs><clipPath id="landclip"><path d="${land}"/></clipPath></defs>` : ''}
       <path d="${land}" fill="var(--land)" stroke="var(--surface)" stroke-width="0.8" vector-effect="non-scaling-stroke"/>
       ${areasOn ? `<g clip-path="url(#landclip)">${layer}</g>` : `<path id="bgdots" d="${bgPath}" fill="var(--t-none)" stroke="var(--t-none-edge)" stroke-width="0.4" fill-opacity="var(--t-none-op)" stroke-opacity="var(--t-none-op)"/>
       ${dots}`}
