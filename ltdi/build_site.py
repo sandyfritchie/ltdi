@@ -51,11 +51,16 @@ def add_census(scores: dict) -> None:
     path = DATA / "census_languages.csv"
     if not path.exists():
         return
+    # and counts from censuses outside the collector's sources (Kosovo's, Taiwan's...), added by hand
+    extra = CONFIG / "census_extra.csv"
+    rows = list(csv.DictReader(path.open(encoding="utf-8")))
+    if extra.exists():
+        rows += list(csv.DictReader(extra.open(encoding="utf-8")))
     from .demand import official
     by = {l["code"]: l for l in scores["languages"]}
     names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"]}
     off, touched = official(), set()
-    for r in csv.DictReader(path.open(encoding="utf-8")):
+    for r in rows:
         l = by.get(r["language"])
         if not l or l.get("extinct") or r["country"] in NOT_PLACES:
             continue
@@ -175,6 +180,8 @@ def census_countries() -> list[str]:
 
 
 def _country_name(code: str) -> str:
+    if code == "xk":  # not in ISO 3166, so not in pycountry
+        return "Kosovo"
     try:
         import pycountry
     except ImportError:
