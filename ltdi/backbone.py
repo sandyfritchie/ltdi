@@ -177,7 +177,8 @@ def apply_overrides(lang: dict, row: dict, locales: dict[str, dict]) -> None:
                  countries scales LinguaMeta's per-country counts to match
       countries  space-separated, each "cc" or "cc:speakers"; replaces the country list, and the
                  total too when speakers is empty. Items written "+cc:speakers" instead add those
-                 countries to LinguaMeta's list (or set their count there), adding to the total
+                 countries to LinguaMeta's list (or set their count there), adding to the total;
+                 "+cc" adds a country without a count
       scripts    space-separated ISO 15924 codes, main script first
       region     the region group, where the largest-country rule misleads
       autonym    the language's name for itself"""
@@ -188,8 +189,9 @@ def apply_overrides(lang: dict, row: dict, locales: dict[str, dict]) -> None:
             if not c:
                 c = {"code": cc, "name": COUNTRY.get(cc) or locales.get(cc, {}).get("name", cc), "speakers": None}
                 lang["countries"].append(c)
-            lang["speakers"] = (lang["speakers"] or 0) + int(n) - (c["speakers"] or 0)
-            c["speakers"] = int(n)
+            if n:  # "+cc" alone lists the country without a count
+                lang["speakers"] = (lang["speakers"] or 0) + int(n) - (c["speakers"] or 0)
+                c["speakers"] = int(n)
         lang["countries"].sort(key=lambda c: -(c["speakers"] or 0))
     elif row.get("countries"):
         lang["countries"] = []

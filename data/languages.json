@@ -190148,6 +190148,11 @@
     "scripts": [
      "latn"
     ]
+   },
+   {
+    "code": "cv",
+    "name": "Cape Verde",
+    "speakers": null
    }
   ],
   "region": "Europe",
