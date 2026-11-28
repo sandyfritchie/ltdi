@@ -32,13 +32,10 @@ const GN = DATA.gnodes, GN_BY = Object.fromEntries(GN.map(([g], i) => [g, i]));
 const famName = l => l._gp.length ? GN[l._gp[0]][1] : l.giso ? 'Isolate' : '';
 const branchName = l => l._gp.length > 1 ? GN[l._gp[l._gp.length - 1]][1] : '';
 // Engineering flags: what makes building for a language cost more (ltdi.engineering)
-const FLAG_SHORT = { r: 'RTL', s: 'Shaping', w: 'No spaces', i: 'IME', m: 'Scripts', l: 'Look-alikes' };
 const flagLabels = l => l._fx.map(f => (DATA.flags[f] || [, f])[1]);
-const flagTags = l => l._fx.length ? `<div class="ftags" title="${esc(flagLabels(l).join('\n'))}">${l._fx.map(f => FLAG_SHORT[f]).join(' · ')}</div>` : '';
 // A figure passes the planner's quality filter: all, on public test sets, or independent only
 const qualityOK = (id, q) => { const t = TEST_OF[id]; if (!t) return false;
   return q === 'pub' ? t.test_public !== 'no' : q === 'ind' ? t.quality_by === 'independent' : true; };
-const qualityShown = id => qualityOK(id, plan.q);
 // Readiness: for each technology, the ingredients a team would look for before building, and whether
 // each is recorded here. o.com counts only commercially usable data and models; o.q is the quality filter.
 const KB_ALL = ['kb_gboard', 'kb_apple', 'kb_swiftkey', 'kb_open_keyman'];
@@ -72,7 +69,6 @@ function readiness(l, t, o = { com: false, q: 'all' }) {
   }[t] || [];
   return { items: list.map(([label, ok]) => ({ label, ok: !!ok })), n: list.filter(x => x[1]).length, of: list.length };
 }
-const readyTitle = r => r.items.map(x => `${x.ok ? '✓' : '–'} ${x.label}`).join('\n');
 function qualityText(f, q) {
   if (!f) return '';
   if (f.unit === '% WER') return depthText(f, q.quality);

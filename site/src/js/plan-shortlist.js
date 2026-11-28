@@ -35,8 +35,6 @@ function speechSources(l, kind) {
 const PLAN_QCOL = {};
 const PLAN_SHORT = { asr_open_omnilingual: 'OASR' };  // short names in the narrow models column
 const planQual = l => { const Q = PLAN_QCOL[plan.t], v = Q && l.qv && l.qv[Q[0]]; return v != null ? Q[2](v) : '—'; };
-const PLAN_Q = { asr_open_whisper: ['asr_whisper_fleurs_wer', v => `${Math.round(v)}% WER`], asr_open_omnilingual: ['asr_omnilingual_cer', v => `${v < 1 ? v.toFixed(1) : Math.round(v)}% CER`],
-  mt_open_nllb: ['mt_nllb_flores_chrf', v => `chrF ${Math.round(v)}`] };
 function planFromHash(h) {
   // A link with its settings (t=...) sets them all, a setting left out being the default, so a shared
   // link shows the same table to everyone; a bare #plan (the tab) keeps the settings already chosen
@@ -182,7 +180,6 @@ function planCodes(cs, l) {
   return up.slice(0, 4).join(' ') + (up.length > 4 ? ` <span class="muted">+${up.length - 4}</span>` : '');
 }
 const OFFICIAL_LABEL = { o: 'Official', d: 'Official in practice', r: 'Official in a region' };
-const officialList = l => Object.entries(l._of).map(([c, st]) => `${(COUNTRY_NAMES[c] || c.toUpperCase())}${st === 'o' ? '' : st === 'd' ? ' (in practice)' : ' (in a region)'}`);
 function planCSV(P, sl = false) {
   const head = ['rank', 'code', 'name', 'family', 'branch', 'official_in', 'wikipedia_views_12_months', 'hf_models', 'hf_model_downloads_30_days', 'scripts', 'engineering_flags', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'ready', 'missing', 'other_services_offering', 'open_models', 'data', 'hours_read', 'hours_spontaneous', 'hours_media', 'fleurs_test_set', 'target', 'short_of_target'];
   const q = v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v;

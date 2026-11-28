@@ -103,14 +103,6 @@ async function need(...codes) {
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], id: i, size })) }));
   }));
 }
-// Language pickers: a text box with its own type-ahead list, since a menu of seven thousand names is
-// too long to scroll. It matches other names too (Cantonese finds Yue Chinese) but shows only each
-// language's name, autonym and code: other-name data is uneven, so it isn't displayed.
-function langPicker(id, placeholder, current) {
-  return `<span class="pickwrap"><input class="pick" id="${id}" autocomplete="off" role="combobox" aria-autocomplete="list"
-    aria-expanded="false" aria-controls="${id}-list" aria-label="${esc(placeholder)}" placeholder="${esc(placeholder)}"
-    value="${current ? esc(`${current.name} (${current.code})`) : ''}" onfocus="this.select()"><ul class="picklist" id="${id}-list" role="listbox" hidden></ul></span>`;
-}
 function pickMatches(q) {
   q = q.trim().toLowerCase();
   if (!q) return [];
@@ -207,14 +199,6 @@ const DIMS = [['tech', 't', '--tech'], ['data', 'd', '--data']];  // the order o
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const OT = DATA.opportunity_types;
-const OCOLOR = { share: '--tech', improve: '--tier-h', collect: '--data' };
-const OBLURB = {
-  share: 'Launch the product, or open up what exists.',
-  improve: 'Support exists, but quality lags well behind English.',
-  collect: 'The data really is scarce and has to be created.',
-};
-const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech-to-text', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs',
-  interface: 'Interface language', ocr: 'Text recognition', proofing: 'Spelling and grammar', assistant: 'Voice assistant', langid: 'Language identification', locale: 'Locale data', writing: 'Writing system', data: 'Data' };
 // Where the floor lifts a dimension, its unfloored score: what the rank goes by among languages the floor puts level
 const rawText = l => l.raw ? `Before the floor of ${DATA.config.meta.floor}: ${DIMS.filter(([k]) => k in l.raw).map(([k]) => `${CFG[k].label.toLowerCase()} ${l.raw[k].toFixed(3)}`).join(', ')}` : '';
 

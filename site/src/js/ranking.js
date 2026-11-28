@@ -59,8 +59,6 @@ function rankHead() {
     <th class="hide-sm c-gaps" title="Main technologies no commercial service offers"${aria('gaps')}>${sortBtn('gaps')}</th>`;
 }
 const RANK_PAGE = 100;  // rows shown at first and added by "Show 100 more"; searching shows every match
-// Ranking "Gaps" column: the main technologies that no commercial service offers
-const MAIN_TECH = Object.entries(CFG.tech.technologies).filter(([, t]) => t.group !== 'more').map(([k]) => k);
 const GAP_TECH = Object.entries(CFG.tech.technologies).filter(([, t]) => t.group !== 'more' || t.gap).map(([k]) => k);  // Gaps column
 function gapsCell(l) {
   return `<div class="gaps">${GAP_TECH.filter(k => l.gaps[k]).map(k => {

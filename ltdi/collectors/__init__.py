@@ -8,7 +8,6 @@ Each writes data/records/<source>.csv in the common record format.
 from __future__ import annotations
 
 import importlib
-import sys
 from collections import defaultdict
 
 from .. import DATA

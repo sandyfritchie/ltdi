@@ -92,7 +92,7 @@ def latest(c: dict, key: str) -> float | None:
 def project(series: list[tuple[int, float]], years: int = HORIZON) -> float:
     """Trend of the last six points, never downward, damped near saturation, capped."""
     pts = series[-6:]
-    last_year, last = pts[-1]
+    last = pts[-1][1]
     if len(pts) < 2:
         return last
     n = len(pts)

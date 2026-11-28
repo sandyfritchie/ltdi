@@ -37,7 +37,7 @@ def history_events(h: dict | None = None) -> tuple[list[list], dict[str, str]]:
     out = []
     for series, col in h["values"].items():
         for lang, v in col.items():
-            prev = None
+            prev = prev_p = None
             for p in sorted(v):
                 if prev is not None and v[p] > prev:
                     out.append([prev_p, p, series, lang, 1])

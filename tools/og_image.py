@@ -223,7 +223,6 @@ def cards() -> list[dict]:
     scores = json.loads((DATA / "scores.json").read_text(encoding="utf-8"))
     cfg = scores["config"]
     tiers = {k: t for k, t, *_ in cfg["tiers"]["cutoffs"]} | {k: t for k, t, *_ in cfg["tiers"]["stages"]}
-    techs = cfg["dimensions"]["tech"]["technologies"]
     n = sum(1 for l in scores["languages"] if l.get("rank"))
     fx = facts()
     out = []
@@ -249,7 +248,6 @@ def cards() -> list[dict]:
 
 
 def languages(only: set[str] | None = None) -> None:
-    import json
     from playwright.sync_api import sync_playwright
     out = ROOT / "site" / "og"
     out.mkdir(parents=True, exist_ok=True)

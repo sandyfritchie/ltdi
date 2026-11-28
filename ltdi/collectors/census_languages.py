@@ -228,7 +228,6 @@ def resolve(table: list[tuple[str, float]], idx, manual, langs, unmatched, cc: s
 def build() -> list[dict]:
     idx, langs = language_index()
     manual = manual_names()
-    notes = dict(list(csv.reader(UNDATA_NOTES.open(encoding="utf-8")))[1:]) if UNDATA_NOTES.exists() else {}
     unmatched: dict[str, float] = defaultdict(float)
     rows = []
     for country, (year, table) in sorted(undata_tables().items()):

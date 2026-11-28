@@ -65,7 +65,6 @@ OPENSLR = {"read": ("OpenSLR read speech", "CC BY-SA 4.0 and other open licences
 # the rest are CC BY-SA 4.0
 WAXAL_CODES = {"bau": "bci"}  # Baoulé
 WAXAL_CC_BY = {"aka", "fat", "twi", "bau", "bci", "ewe"}
-MEASURED = {r[0] for r in ROWS.values()} | {n for n, _ in OPENSLR.values()}
 
 
 def get(url: str) -> str:

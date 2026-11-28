@@ -104,14 +104,6 @@ async function need(...codes) {
     l.opportunities = d.opportunities.map(o => ({ ...withRule(o, c), kit: o.kit.map(([i, size]) => ({ ...RES[i], id: i, size })) }));
   }));
 }
-// Language pickers: a text box with its own type-ahead list, since a menu of seven thousand names is
-// too long to scroll. It matches other names too (Cantonese finds Yue Chinese) but shows only each
-// language's name, autonym and code: other-name data is uneven, so it isn't displayed.
-function langPicker(id, placeholder, current) {
-  return `<span class="pickwrap"><input class="pick" id="${id}" autocomplete="off" role="combobox" aria-autocomplete="list"
-    aria-expanded="false" aria-controls="${id}-list" aria-label="${esc(placeholder)}" placeholder="${esc(placeholder)}"
-    value="${current ? esc(`${current.name} (${current.code})`) : ''}" onfocus="this.select()"><ul class="picklist" id="${id}-list" role="listbox" hidden></ul></span>`;
-}
 function pickMatches(q) {
   q = q.trim().toLowerCase();
   if (!q) return [];
@@ -208,14 +200,6 @@ const DIMS = [['tech', 't', '--tech'], ['data', 'd', '--data']];  // the order o
 const $ = (s, el = document) => el.querySelector(s);
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const OT = DATA.opportunity_types;
-const OCOLOR = { share: '--tech', improve: '--tier-h', collect: '--data' };
-const OBLURB = {
-  share: 'Launch the product, or open up what exists.',
-  improve: 'Support exists, but quality lags well behind English.',
-  collect: 'The data really is scarce and has to be created.',
-};
-const TECHL = { keyboard: 'Keyboard', speech_input: 'Speech-to-text', tts: 'Text-to-speech', mt: 'Translation', llm: 'LLMs',
-  interface: 'Interface language', ocr: 'Text recognition', proofing: 'Spelling and grammar', assistant: 'Voice assistant', langid: 'Language identification', locale: 'Locale data', writing: 'Writing system', data: 'Data' };
 // Where the floor lifts a dimension, its unfloored score: what the rank goes by among languages the floor puts level
 const rawText = l => l.raw ? `Before the floor of ${DATA.config.meta.floor}: ${DIMS.filter(([k]) => k in l.raw).map(([k]) => `${CFG[k].label.toLowerCase()} ${l.raw[k].toFixed(3)}`).join(', ')}` : '';
 
@@ -614,8 +598,6 @@ function rankHead() {
     <th class="hide-sm c-gaps" title="Main technologies no commercial service offers"${aria('gaps')}>${sortBtn('gaps')}</th>`;
 }
 const RANK_PAGE = 100;  // rows shown at first and added by "Show 100 more"; searching shows every match
-// Ranking "Gaps" column: the main technologies that no commercial service offers
-const MAIN_TECH = Object.entries(CFG.tech.technologies).filter(([, t]) => t.group !== 'more').map(([k]) => k);
 const GAP_TECH = Object.entries(CFG.tech.technologies).filter(([, t]) => t.group !== 'more' || t.gap).map(([k]) => k);  // Gaps column
 function gapsCell(l) {
   return `<div class="gaps">${GAP_TECH.filter(k => l.gaps[k]).map(k => {
@@ -792,13 +774,10 @@ const GN = DATA.gnodes, GN_BY = Object.fromEntries(GN.map(([g], i) => [g, i]));
 const famName = l => l._gp.length ? GN[l._gp[0]][1] : l.giso ? 'Isolate' : '';
 const branchName = l => l._gp.length > 1 ? GN[l._gp[l._gp.length - 1]][1] : '';
 // Engineering flags: what makes building for a language cost more (ltdi.engineering)
-const FLAG_SHORT = { r: 'RTL', s: 'Shaping', w: 'No spaces', i: 'IME', m: 'Scripts', l: 'Look-alikes' };
 const flagLabels = l => l._fx.map(f => (DATA.flags[f] || [, f])[1]);
-const flagTags = l => l._fx.length ? `<div class="ftags" title="${esc(flagLabels(l).join('\n'))}">${l._fx.map(f => FLAG_SHORT[f]).join(' · ')}</div>` : '';
 // A figure passes the planner's quality filter: all, on public test sets, or independent only
 const qualityOK = (id, q) => { const t = TEST_OF[id]; if (!t) return false;
   return q === 'pub' ? t.test_public !== 'no' : q === 'ind' ? t.quality_by === 'independent' : true; };
-const qualityShown = id => qualityOK(id, plan.q);
 // Readiness: for each technology, the ingredients a team would look for before building, and whether
 // each is recorded here. o.com counts only commercially usable data and models; o.q is the quality filter.
 const KB_ALL = ['kb_gboard', 'kb_apple', 'kb_swiftkey', 'kb_open_keyman'];
@@ -832,7 +811,6 @@ function readiness(l, t, o = { com: false, q: 'all' }) {
   }[t] || [];
   return { items: list.map(([label, ok]) => ({ label, ok: !!ok })), n: list.filter(x => x[1]).length, of: list.length };
 }
-const readyTitle = r => r.items.map(x => `${x.ok ? '✓' : '–'} ${x.label}`).join('\n');
 function qualityText(f, q) {
   if (!f) return '';
   if (f.unit === '% WER') return depthText(f, q.quality);
@@ -2375,8 +2353,6 @@ function speechSources(l, kind) {
 const PLAN_QCOL = {};
 const PLAN_SHORT = { asr_open_omnilingual: 'OASR' };  // short names in the narrow models column
 const planQual = l => { const Q = PLAN_QCOL[plan.t], v = Q && l.qv && l.qv[Q[0]]; return v != null ? Q[2](v) : '—'; };
-const PLAN_Q = { asr_open_whisper: ['asr_whisper_fleurs_wer', v => `${Math.round(v)}% WER`], asr_open_omnilingual: ['asr_omnilingual_cer', v => `${v < 1 ? v.toFixed(1) : Math.round(v)}% CER`],
-  mt_open_nllb: ['mt_nllb_flores_chrf', v => `chrF ${Math.round(v)}`] };
 function planFromHash(h) {
   // A link with its settings (t=...) sets them all, a setting left out being the default, so a shared
   // link shows the same table to everyone; a bare #plan (the tab) keeps the settings already chosen
@@ -2522,7 +2498,6 @@ function planCodes(cs, l) {
   return up.slice(0, 4).join(' ') + (up.length > 4 ? ` <span class="muted">+${up.length - 4}</span>` : '');
 }
 const OFFICIAL_LABEL = { o: 'Official', d: 'Official in practice', r: 'Official in a region' };
-const officialList = l => Object.entries(l._of).map(([c, st]) => `${(COUNTRY_NAMES[c] || c.toUpperCase())}${st === 'o' ? '' : st === 'd' ? ' (in practice)' : ' (in a region)'}`);
 function planCSV(P, sl = false) {
   const head = ['rank', 'code', 'name', 'family', 'branch', 'official_in', 'wikipedia_views_12_months', 'hf_models', 'hf_model_downloads_30_days', 'scripts', 'engineering_flags', 'countries', 'locales', 'online_in_5_years', 'online_today', 'cumulative_share', 'ready', 'missing', 'other_services_offering', 'open_models', 'data', 'hours_read', 'hours_spontaneous', 'hours_media', 'fleurs_test_set', 'target', 'short_of_target'];
   const q = v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g, '""')}"` : v;

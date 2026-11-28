@@ -156,7 +156,6 @@ GOOGLE_STT = "https://docs.cloud.google.com/speech-to-text/docs/languages"
 GOOGLE_TTS = ["https://docs.cloud.google.com/text-to-speech/docs/voices",
               "https://docs.cloud.google.com/text-to-speech/docs/chirp3-hd",
               "https://docs.cloud.google.com/text-to-speech/docs/gemini-tts"]
-GOOGLE_MT = "https://docs.cloud.google.com/translate/docs/languages"
 GOOGLE_OCR = "https://cloud.google.com/vision/docs/languages"
 GBOARD = "https://support.google.com/gboard/answer/6380730"
 GEMINI = "https://support.google.com/gemini/answer/13575153?hl=en"
