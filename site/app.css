@@ -369,12 +369,15 @@ a.indlink:hover { color: var(--accent); }
 .dim h3 { flex-wrap: wrap; }
 .dim h3 .h3r { display: flex; align-items: baseline; gap: 14px; margin-inline-start: auto; }
 .dim h3 .hs { font-size: 24px; color: var(--c); }
-.dim h3 .hsum { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font: 400 13px var(--font-body, inherit); color: var(--muted); align-self: center; }
-.dim h3 .hsum:has(.hti) { gap: 4px; }
+.dim h3 .hsum { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font: 400 13px var(--font-body, inherit); color: var(--muted); align-self: center; margin-inline-start: 14px; }
+.dim.open h3 .hsum { display: none; }
+.dim h3 .hsum:has(.hti) { gap: 8px; }
 .dim h3 .hti { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; }
 .dim h3 .hti .ticon { width: 15px; height: 15px; }
 .dim h3 .hti.c { background: #4a4fb8; color: #fff; }
-.dim h3 .hti.o { background: #c9cbf0; color: #3b3f96; }
+.dim h3 .hti.c .ticon { stroke-width: 2.3; }
+.dim h3 .hti.o { background: #c9cbf0; color: #1f2163; }
+.dim h3 .hti.o .ticon { stroke-width: 2.1; }
 .dim h3 .hfig b { font-weight: 700; color: var(--ink, inherit); }
 .xall { display: flex; gap: 6px; align-self: center; }
 .xall .chip { font: 12px var(--font-body); padding: 4px 9px; white-space: nowrap; }
