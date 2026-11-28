@@ -383,13 +383,17 @@ function peopleRow(l) {
     <span title="${esc(f.reach_voice_share_5y ? f.reach_voice_share_5y.note : '')}">Online in five years <b>${people(n('reach_voice_share_5y') * g)}</b></span>
     <a href="${esc(wbLink(f.reach_voice_share))}" target="_blank" rel="noopener">World Bank data</a>` : ''}</div>`;
 }
+// Its official status by country, most speakers first: "Mexico (in practice)", "India (in a region)"
+function offList(l) {
+  const spk = c => l._cs[c] || 0;
+  return Object.entries(l._of).sort((a, b) => spk(b[0]) - spk(a[0]))
+    .map(([c, st]) => `${COUNTRY_NAMES[c] || c.toUpperCase()}${st === 'o' ? '' : st === 'd' ? ' (in practice)' : ' (in a region)'}`);
+}
 // Where it's spoken: countries, official status, endangerment, adult literacy
 function placeRow(l) {
   // official status, most speakers first, like the countries; literacy in its three main countries:
   // "63%" for one country, "98% (France) 55% (Cameroon)" for several
-  const spk = c => l._cs[c] || 0;
-  const off = Object.entries(l._of).sort((a, b) => spk(b[0]) - spk(a[0]))
-    .map(([c, st]) => `${COUNTRY_NAMES[c] || c.toUpperCase()}${st === 'o' ? '' : st === 'd' ? ' (in practice)' : ' (in a region)'}`);
+  const off = offList(l);
   const top = Object.entries(l._cs).filter(([c]) => !l._im.has(c)).sort((a, b) => (b[1] || 0) - (a[1] || 0)).slice(0, 3).map(([c]) => c)
     .filter(c => DATA.country_literacy[c] != null);
   const inLang = c => l.literacy && l.literacy[c] != null ? `${Math.round(l.literacy[c])}% in ${esc(l.name)}` : '';
@@ -399,7 +403,7 @@ function placeRow(l) {
   const end = endKey(l);
   return `<div class="facts">
     <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>
-    ${l.extinct ? '' : `<span title="Unicode CLDR territory data: official, official in practice, or official in a region. Where a country’s constitution names a language CLDR doesn’t mark, the constitution: Hausa and Igbo in Nigeria (section 55 of the 1999 Constitution)">${off.length ? `Official in <b>${esc(off.slice(0, 3).join(', '))}</b>${off.length > 3 ? ` and ${off.length - 3} more` : ''}` : 'Not official in any country'}</span>`}
+    ${l.extinct ? '' : `<span title="Unicode CLDR territory data: official, official in practice, or official in a region. Where a country’s constitution names a language CLDR doesn’t mark, the constitution: Hausa and Igbo in Nigeria (section 55 of the 1999 Constitution)">${off.length ? `<span id="offl">${offLine(off, false)}</span>` : 'Not official in any country'}</span>`}
     ${!['none', 'not_endangered'].includes(end) ? `<span title="${end === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[end])}</b></span>` : ''}
     ${top.length ? `<span title="Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it">Adult literacy ${lit}</span>` : ''}
     ${l.sample || !l.script_names.length ? '' : `<span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b>${unicodeNote(l)}${writtenInfo(l)}</span>`}</div>`;
@@ -490,6 +494,13 @@ function scoreNotes(l) {
   return out.join('');
 }
 // Countries, by number of speakers: the top three, or all of them with a link back
+// Official in: the first three, the rest behind "and N more", as in whereLine (a fourth is named, not "and 1 more")
+function offLine(off, all) {
+  const n = off.length - 3;
+  if (n <= 1) return `Official in <b>${esc(off.join(', '))}</b>`;
+  return all ? `Official in <b>${esc(off.join(', '))}</b> <button class="linkish" data-more="0">less</button>`
+             : `Official in <b>${esc(off.slice(0, 3).join(', '))}</b> <button class="linkish" data-more="1">and ${n} more</button>`;
+}
 function whereLine(l, all) {
   const cs = l.countries, n = cs.length - 3;
   if (n <= 1) return `Mainly in <b>${cs.map(esc).join(', ')}</b>`;  // a fourth country is named, not "and 1 more"
@@ -529,6 +540,8 @@ async function language(code) {
   bindMiniMap(l);
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
+  const offl = $('#offl');
+  if (offl) { const all = offList(l); offl.onclick = e => { const b = e.target.closest('[data-more]'); if (b) offl.innerHTML = offLine(all, b.dataset.more === '1'); }; }
   bindTechPanel();
   // the button, or a click anywhere else in the panel's top (its title, score and bar), opens or closes the breakdown
   $('#view').querySelectorAll('.dim-top').forEach(top => top.onclick = e => {
