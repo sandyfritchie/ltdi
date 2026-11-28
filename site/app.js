@@ -1145,16 +1145,14 @@ function placeRow(l) {
   // official status, most speakers first, like the countries; adult literacy in up to three countries where it's
   // the most widely spoken language: CLDR's rate for the language there where recorded, else the country's
   const off = offList(l);
-  const lit = Object.keys(l._cs).filter(c => DATA.country_top[c] === l.code).sort((a, b) => (l._cs[b] || 0) - (l._cs[a] || 0))
-    .map(c => [c, l.literacy && l.literacy[c] != null ? l.literacy[c] : DATA.country_literacy[c]]).filter(([, v]) => v != null).slice(0, 3)
-    .map(([c, v]) => `<b>${Math.round(v)}%</b> (${esc(COUNTRY_NAMES[c] || c.toUpperCase())})`).join(' ');
+  const lit = litList(l);
   const wp = (DATA.facts[l.code] || {}).wikipedia_pageviews;
   const end = endKey(l);
   return `<div class="facts">
     <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>
     ${l.extinct ? '' : `<span title="Unicode CLDR territory data: official, official in practice, or official in a region.">${off.length ? `<span id="offl">${offLine(off, false)}</span>` : 'Not official in any country'}</span>`}
     ${!['none', 'not_endangered'].includes(end) ? `<span title="${end === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[end])}</b></span>` : ''}
-    ${lit ? `<span title="Unicode CLDR territory data">Adult literacy ${lit}</span>` : ''}
+    ${lit.length ? `<span title="Unicode CLDR territory data" id="litl">${litLine(lit, false)}</span>` : ''}
     ${wp && wp.value ? `<span>Wikipedia page views <b>${big(wp.value)}</b> a year</span>` : ''}
     ${l.sample || !l.script_names.length ? '' : `<span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b>${unicodeNote(l)}${writtenInfo(l)}</span>`}</div>`;
 }
@@ -1244,6 +1242,20 @@ function scoreNotes(l) {
   return out.join('');
 }
 // Countries, by number of speakers: the top three, or all of them with a link back
+// Adult literacy in the countries where it's the most widely spoken language, most speakers first: CLDR's rate
+// for the language there where recorded, else the country's
+function litList(l) {
+  return Object.keys(l._cs).filter(c => DATA.country_top[c] === l.code).sort((a, b) => (l._cs[b] || 0) - (l._cs[a] || 0))
+    .map(c => [c, l.literacy && l.literacy[c] != null ? l.literacy[c] : DATA.country_literacy[c]]).filter(([, v]) => v != null)
+    .map(([c, v]) => `<b>${Math.round(v)}%</b> (${esc(COUNTRY_NAMES[c] || c.toUpperCase())})`);
+}
+// the first three, the rest behind "and N more", as in offLine
+function litLine(lit, all) {
+  const n = lit.length - 3;
+  if (n <= 1) return `Adult literacy ${lit.join(' ')}`;
+  return all ? `Adult literacy ${lit.join(' ')} <button class="linkish" data-more="0">less</button>`
+             : `Adult literacy ${lit.slice(0, 3).join(' ')} <button class="linkish" data-more="1">and ${n} more</button>`;
+}
 // Official in: the first three, the rest behind "and N more", as in whereLine (a fourth is named, not "and 1 more")
 function offLine(off, all) {
   const n = off.length - 3;
@@ -1290,6 +1302,8 @@ async function language(code) {
   bindMiniMap(l);
   bindHear();
   $('#where').onclick = e => { const b = e.target.closest('[data-more]'); if (b) $('#where').innerHTML = whereLine(l, b.dataset.more === '1'); };
+  const litl = $('#litl');
+  if (litl) { const all = litList(l); litl.onclick = e => { const b = e.target.closest('[data-more]'); if (b) litl.innerHTML = litLine(all, b.dataset.more === '1'); }; }
   const offl = $('#offl');
   if (offl) { const all = offList(l); offl.onclick = e => { const b = e.target.closest('[data-more]'); if (b) offl.innerHTML = offLine(all, b.dataset.more === '1'); }; }
   bindTechPanel();
