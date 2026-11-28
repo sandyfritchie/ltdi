@@ -443,6 +443,7 @@ function oppGroup(g) {
 }
 
 let team = 'all', shownGroups = GROUPS_SHOWN, docAll = false;
+let withVarieties = false;  // varieties whose speakers write a major standard (Egyptian Arabic, Wu): off by default, as on the Plan page
 async function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
   if (focus) await need(focus.code);
@@ -451,23 +452,26 @@ async function opportunities(lang) {
     : TOP.map(o => ({ o, l: BY[o.lang] })).filter(x => inView(x.l));
   const all = pool
     .filter(x => provider === 'All' || provMissing(x.o, x.l, provider).length)
+    .filter(x => withVarieties || !x.l.wi || focus)
     .sort((a, b) => prio(b.o) - prio(a.o));
   const byTeam = all.filter(x => team === 'all' || x.o.teams.includes(team));
   const tcount = Object.fromEntries(Object.keys(TEAMS).map(k => [k, all.filter(x => x.o.teams.includes(k)).length]));
   const groups = oppGroups(byTeam), shown = groups.slice(0, shownGroups);
-  const filtered = regionSel.size || ((tierSel.size || countrySel.size) && !focus) || provider !== 'All' || team !== 'all' || focus;
+  const filtered = regionSel.size || ((tierSel.size || countrySel.size) && !focus) || provider !== 'All' || team !== 'all' || withVarieties || focus;
   $('#view').innerHTML = `
     <div class="controls">
       ${focus ? '' : `<span id="orwrap">${regionPicker()}</span><span id="octrywrap">${countryPicker()}</span><span id="otierwrap">${tierPicker()}</span>`}
       ${providerSelect('opsel')}
       <select id="tmsel" aria-label="What your team works on"><option value="all">Every team (${all.length})</option>${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<option value="${k}"${team === k ? ' selected' : ''}>${esc(t)} (${tcount[k]})</option>`).join('')}</select>
+      <label class="switch wrap" title="Count spoken varieties whose speakers mostly read and write a major standard language (Wu, Egyptian Arabic, Bhojpuri)"><input type="checkbox" role="switch" id="op-var"${withVarieties ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Include varieties of major languages</label>
       <button type="button" class="reset" id="oresetf"${filtered ? '' : ' hidden'}>Reset filters</button>
     </div>
     ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="${LH(focus.code)}">Language profile</a></div>` : ''}
     ${shown.length ? `<div class="opp-list">${shown.map(oppGroup).join('')}</div>` : '<p class="note">Nothing matches these filters.</p>'}
     ${groups.length > shown.length ? `<button class="chip more" id="showmore">Show more languages</button>` : ''}`;
+  $('#op-var').onchange = e => { withVarieties = e.target.checked; shownGroups = GROUPS_SHOWN; docAll = false; opportunities(lang); };
   $('#tmsel').onchange = e => { team = e.target.value; shownGroups = GROUPS_SHOWN; docAll = false; opportunities(lang); };
-  $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; team = 'all'; shownGroups = GROUPS_SHOWN; docAll = false;
+  $('#oresetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); provider = 'All'; team = 'all'; withVarieties = false; shownGroups = GROUPS_SHOWN; docAll = false;
     if (lang) go('opportunities'); else opportunities(); };
   if ($('#orwrap')) wireMsel('orwrap', regionPicker, regionSel, REGIONS.length, async () => { shownGroups = GROUPS_SHOWN; docAll = false; await opportunities(lang); reopen('orwrap'); });
   if ($('#octrywrap')) wireCountries('octrywrap', async () => { shownGroups = GROUPS_SHOWN; docAll = false; await opportunities(lang); reopenCountries('octrywrap'); });
