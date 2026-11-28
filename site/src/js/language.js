@@ -455,9 +455,11 @@ function bindHear() {
 function censusInfo(l) {
   const cs = (l.census || []).filter(c => l.countries.includes(c[0]));  // only the countries the line shows
   if (!cs.length) return '';
-  const year = c => (c[1].match(/(\d{4}(?:-\d{4})?)$/) || [])[1];
-  const src = [...new Map(cs.map(c => [c[2], c[1].startsWith('UN') ? 'UN Statistics Division' : 'US Census Bureau'])).entries()];
-  return infoTip('Where these countries come from', `Countries and speaker numbers are from LinguaMeta, except in ${cs.length > 1 ? 'these countries' : 'this country'}, where they come from ${cs.length > 1 ? 'national censuses' : 'its census'} (LinguaMeta doesn't list the language there, or gives no count):
+  const year = c => (c[1].match(/(\d{4}(?:-\d{4})?)/) || [])[1];
+  // the agency: the UN's tables, the American Community Survey, or a census office's own (config/census_extra.csv)
+  const agency = c => c[1].startsWith('UN') ? 'UN Statistics Division' : /American Community|Census Bureau/.test(c[1]) ? 'US Census Bureau' : c[1].split(',')[0];
+  const src = [...new Map(cs.map(c => [c[2], agency(c)])).entries()];
+  return infoTip('Where these countries come from', `Countries and speaker numbers for the following ${cs.length > 1 ? 'countries come from national censuses' : 'country come from its national census'}:
     ${cs.map(c => `${esc(c[0])}${year(c) ? ` (${year(c).replace('-', '–')})` : ''}`).join(', ')}.
     <span class="info-src">${src.map(([u, n]) => `<a href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`).join(' · ')}</span>`);
 }
