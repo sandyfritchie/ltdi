@@ -539,6 +539,8 @@ a.otile:hover b { text-decoration: underline; }
 .legend.map { margin: 8px 0 12px; }
 @media (max-width: 640px) { .legend.map { min-height: 70px; align-content: flex-start; } }
 .mapmode { margin: 0; }
+.mapopts { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.mapopts .switch { font-size: 14px; }
 .areas path { stroke: none; cursor: pointer; outline: none; }
 .areas path:hover { fill-opacity: 0.85; }
 .mapwrap { position: relative; border-radius: 6px; overflow: hidden; touch-action: none; }

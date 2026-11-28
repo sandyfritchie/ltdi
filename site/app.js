@@ -1552,7 +1552,7 @@ function mapSection() {
       : `LTDI ${F.ltdi.toFixed(3)} · ${tierOf(F)[1]} · rank ${rankLabel(F)}${areasOn && !AREAS.paths[F.code] ? (fp ? ' · no area in the atlas, so shown at its location' : '') : ''}${!fp && !(areasOn && AREAS.paths[F.code]) ? ' · no location recorded, so not on the map' : ''}`}</span>
       <a href="${LH(F.code)}">Open its page</a><button class="x" id="mapunfocus" aria-label="Show the whole map" title="Show the whole map">×</button></div>` : '';
   return `<section class="chart">
-    <div class="maphead"><h3>The world's languages</h3>${toggle}</div>
+    <div class="maphead"><h3>The world's languages</h3><div class="mapopts"><label class="switch" title="English, French, Spanish and Portuguese"><input type="checkbox" role="switch" id="mmajors"${mapMajors ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show major languages</label>${toggle}</div></div>
     <div class="legend map">${legend}</div>
     ${focusBox}
     <div class="mapwrap"><div class="mapctl">
@@ -2045,8 +2045,7 @@ function mapPage() {
   const N = LANGS.filter(inView).length;
   $('#view').innerHTML = `<h2 class="sronly">Map</h2>
     <div class="controls sticky"><span id="mregwrap">${regionPicker()}</span><span id="mctrywrap">${countryPicker()}</span><span id="mtierwrap">${tierPicker()}</span><span class="note" style="margin:0">${N.toLocaleString()} languages</span>
-      <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button>
-      <label class="switch wrap" title="English, French, Spanish and Portuguese"><input type="checkbox" role="switch" id="mmajors"${mapMajors ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show major languages</label></div>
+      <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button></div>
     ${mapSection()}
     ${censusCaveat()}`;
   bindTips($('#view'));
