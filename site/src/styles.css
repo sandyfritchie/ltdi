@@ -372,10 +372,10 @@ a.indlink:hover { color: var(--accent); }
 .dim.open h3 .hsum { display: none; }
 .dim h3 .hsum:has(.hti) { gap: 8px; }
 .dim h3 .hti { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; }
-.dim h3 .hti .ticon { width: 15px; height: 15px; }
+.dim h3 .hti .ticon { width: 15px; height: 15px; color: inherit; }
 .dim h3 .hti.c { background: #4a4fb8; color: #fff; }
 .dim h3 .hti.c .ticon { stroke-width: 2.3; }
-.dim h3 .hti.o { background: #c9cbf0; color: #1f2163; }
+.dim h3 .hti.o { background: #c9cbf0; color: #12133f; }
 .dim h3 .hti.o .ticon { stroke-width: 2.1; }
 .dim h3 .hfig b { font-weight: 700; color: var(--ink, inherit); }
 .xall { display: flex; gap: 6px; align-self: center; }
