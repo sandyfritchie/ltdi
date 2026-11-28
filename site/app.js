@@ -1142,10 +1142,11 @@ function offList(l) {
 }
 // Where it's spoken: countries, official status, endangerment, adult literacy
 function placeRow(l) {
-  // official status, most speakers first, like the countries; adult literacy in the language itself, in each
-  // country where CLDR records it: "63% (Nigeria)"
+  // official status, most speakers first, like the countries; adult literacy in up to three countries where it's
+  // the most widely spoken language: CLDR's rate for the language there where recorded, else the country's
   const off = offList(l);
-  const lit = Object.entries(l.literacy || {}).filter(([, v]) => v != null).sort((a, b) => (l._cs[b[0]] || 0) - (l._cs[a[0]] || 0))
+  const lit = Object.keys(l._cs).filter(c => DATA.country_top[c] === l.code).sort((a, b) => (l._cs[b] || 0) - (l._cs[a] || 0))
+    .map(c => [c, l.literacy && l.literacy[c] != null ? l.literacy[c] : DATA.country_literacy[c]]).filter(([, v]) => v != null).slice(0, 3)
     .map(([c, v]) => `<b>${Math.round(v)}%</b> (${esc(COUNTRY_NAMES[c] || c.toUpperCase())})`).join(' ');
   const wp = (DATA.facts[l.code] || {}).wikipedia_pageviews;
   const end = endKey(l);
@@ -1265,7 +1266,7 @@ function oppPanel(l) {
   return `<section class="dim wide opps-panel" style="--c:var(--opp)">
     <h3>Opportunities</h3>
     ${os.length ? `<div class="otiles">${os.map(card).join('')}</div>`
-      : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
+      : `<p class="note">${l.extinct ? 'None listed; no speakers recorded.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
 }
 async function language(code) {
   const l = BY[code];
@@ -2081,7 +2082,7 @@ function validationSection() {
   const J = V.joshi, D = V.dls, B = V.between;
   const pair = (a, b, r) => `<tr><td>${a}</td><td>${b}</td><td class="num">${r.toFixed(2)}</td></tr>`;
   return `<h3>How it compares with other classifications</h3>
-    <p>Two earlier studies classify languages by their digital resources. LTDI broadly agrees with both: its median score never falls from one of their groups to the next. No two such measures agree exactly, since each draws on different, incomplete sources from a different year, so the useful question is whether LTDI differs from them more than they differ from each other.</p>
+    <p>Two earlier studies classify languages by their digital resources. LTDI broadly agrees with both: its median score never falls from one of their groups to the next. No two such measures agree exactly, since each draws on different, incomplete sources from a different year.</p>
     <h4>Joshi et al. (2020), resource classes</h4>
     <p class="note"><a href="${J.source}" target="_blank" rel="noopener">The State and Fate of Linguistic Diversity and Inclusion in the NLP World</a>: six classes by labelled and unlabelled data. ${J.n.toLocaleString()} ranked languages have a class; rank correlation with LTDI ${J.spearman.toFixed(2)}.</p>
     ${table(J, 'Class')}${dis(J, o => `class ${o}`)}
@@ -2089,7 +2090,7 @@ function validationSection() {
     <p class="note"><a href="${D.paper}" target="_blank" rel="noopener">Assessing Digital Language Support on a Global Scale</a>: five levels from 143 tools' language lists, ${esc(D.as_of)}. Only a 10% sample is public (<a href="${D.source}" target="_blank" rel="noopener">sil-ai/dls-results</a>), of which ${D.n.toLocaleString()} languages match ranked ones; rank correlation with their score ${D.spearman.toFixed(2)}, with their level ${D.spearman_level.toFixed(2)}.</p>
     ${table(D, 'Level')}${dis(D, o => o)}
     ${B ? `<h4>All three compared</h4>
-    <p>On the ${B.n} languages all three cover, LTDI agrees with each study more closely than the two studies agree with each other (rank correlations; 1 would be the same order):</p>
+    <p>The useful question is whether LTDI differs from them more than they differ from each other. On the ${B.n} languages all three cover, LTDI agrees with each study more closely than the two studies agree with each other (rank correlations; 1 would be the same order):</p>
     <div class="tablebox vpair"><table class="covtab"><thead><tr><th>Measure</th><th>Compared with</th><th class="num">Correlation</th></tr></thead>
     <tbody>${pair('Joshi et al.', 'Digital Language Support', B.joshi_dls)}${pair('LTDI', 'Joshi et al.', B.ltdi_joshi)}${pair('LTDI', 'Digital Language Support', B.ltdi_dls)}</tbody></table></div>` : ''}`;
 }
@@ -2574,7 +2575,6 @@ function shortlistPage() {
   $('#view').innerHTML = `
     <section class="chart">
       <h2 class="plan-h">Shortlist</h2>
-      <p class="sub">The languages you're weighing for a wave, side by side with the Plan tab's columns. Add them with the + beside a language in the Plan table or on its page, or type codes or names below. The link keeps the list, so a colleague who opens it sees the same table.</p>
       <div class="sl-controls">
         <label class="plan-l">Technology <select id="sl-t">${PLAN_TECHS.map(k => `<option value="${k}"${plan.t === k ? ' selected' : ''}>${esc(CFG.tech.technologies[k].label)}</option>`).join('')}</select></label>
         <label class="switch" title="Count only open data and models whose licence permits commercial use"><input type="checkbox" role="switch" id="sl-com"${plan.com ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Commercially usable data and models only</label>
@@ -2586,7 +2586,6 @@ function shortlistPage() {
       <div class="plan-tablehead"><h3>${n ? `${n} ${n === 1 ? 'language' : 'languages'}: ${people(sum5)} ${who} in five years (${pct(sum5 / (P.total || 1))} of the world's), ${people(sum0)} today` : 'No languages yet'}</h3><span><button type="button" class="chip" id="sl-csv"${n ? '' : ' disabled'}>Download CSV</button> <button type="button" class="chip" id="sl-link"${n ? '' : ' disabled'}>Copy link</button> <button type="button" class="chip" id="sl-clear" style="min-width:8.5em"${n ? '' : ' disabled'}>Clear</button></span></div>
       ${n ? `<div class="tablebox">${planHead(T, P, who, 'the world', true)}<tbody>${planSorted(P.rows, T, true).map((r, i) => planRow(r, i, T, true)).join('')}</tbody></table></div>`
           : `<p class="note">Nothing on the shortlist. Open the <a href="#plan">Plan tab</a> and select + beside the languages you want to compare, or add them above.</p>`}
-      <p class="note">Reached is the share of ${who} worldwide in five years covered by the languages so far, in the table's order; speakers of several listed languages are counted in each. Ready counts the ingredients for building ${esc(T.label.toLowerCase())} recorded for each language (hover a figure for the list). The other columns are as in the Plan tab, for the whole world.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', slHash()); const y = scrollY; shortlistPage(); scrollTo(0, y); };
   $('#sl-t').onchange = e => { plan.t = e.target.value; redraw(); };

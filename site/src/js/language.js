@@ -382,10 +382,11 @@ function offList(l) {
 }
 // Where it's spoken: countries, official status, endangerment, adult literacy
 function placeRow(l) {
-  // official status, most speakers first, like the countries; adult literacy in the language itself, in each
-  // country where CLDR records it: "63% (Nigeria)"
+  // official status, most speakers first, like the countries; adult literacy in up to three countries where it's
+  // the most widely spoken language: CLDR's rate for the language there where recorded, else the country's
   const off = offList(l);
-  const lit = Object.entries(l.literacy || {}).filter(([, v]) => v != null).sort((a, b) => (l._cs[b[0]] || 0) - (l._cs[a[0]] || 0))
+  const lit = Object.keys(l._cs).filter(c => DATA.country_top[c] === l.code).sort((a, b) => (l._cs[b] || 0) - (l._cs[a] || 0))
+    .map(c => [c, l.literacy && l.literacy[c] != null ? l.literacy[c] : DATA.country_literacy[c]]).filter(([, v]) => v != null).slice(0, 3)
     .map(([c, v]) => `<b>${Math.round(v)}%</b> (${esc(COUNTRY_NAMES[c] || c.toUpperCase())})`).join(' ');
   const wp = (DATA.facts[l.code] || {}).wikipedia_pageviews;
   const end = endKey(l);
@@ -505,7 +506,7 @@ function oppPanel(l) {
   return `<section class="dim wide opps-panel" style="--c:var(--opp)">
     <h3>Opportunities</h3>
     ${os.length ? `<div class="otiles">${os.map(card).join('')}</div>`
-      : `<p class="note">${l.extinct ? 'None listed: with no speakers recorded, there is no one for new technology to reach yet.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
+      : `<p class="note">${l.extinct ? 'None listed; no speakers recorded.' : 'No gaps found in the indicators collected so far.'}</p>`}</section>`;
 }
 async function language(code) {
   const l = BY[code];

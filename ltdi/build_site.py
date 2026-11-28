@@ -390,6 +390,14 @@ def split(scores: dict, eng: dict, families: tuple[dict, set],
     country_names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"] if c["code"] not in NOT_PLACES}
     index |= {"country_regions": {c: REGION_CODE[r] for c, r in country_region.items() if r in REGION_CODE},
               "country_online": country_online()}
+    from .demand import country_literacy
+    # each country's most widely spoken language (not counting census-only immigrant languages), for literacy
+    top = {}
+    for l in scores["languages"]:
+        for c in l["countries"]:
+            if c.get("speakers") and not c.get("census_only") and c["speakers"] > top.get(c["code"], (0, ""))[0]:
+                top[c["code"]] = (c["speakers"], l["code"])
+    index |= {"country_literacy": country_literacy(), "country_top": {c: code for c, (_, code) in top.items()}}
     index["gnodes"] = [[g, gnames.get(g, g)] for g in sorted(node_id, key=node_id.get)]
     from .engineering import FLAGS
     index["flags"] = {FLAG_LETTER[k]: [k, v] for k, v in FLAGS.items()}
