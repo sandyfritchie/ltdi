@@ -287,6 +287,24 @@ function provList(l, key, facts, vfacts, wname) {
   if (!body && !speech) return '';
   return `<details class="prov"><summary>${TW}<span class="dd-title">Sources, dates and notes</span> <span class="muted">· ${n}</span></summary>${body}${speech}</details>`;
 }
+// the share card's icons (technology) and headline figures (data), beside the panel title
+const SUM_TECH = ['keyboard', 'speech_input', 'tts', 'mt', 'llm', 'assistant'];
+const SUM_FIGS = [['web_text_words', 'words', 'word'], ['parallel_sentences', 'sentence pairs', 'sentence pair'],
+  ['wikipedia_articles', 'articles', 'article'], ['open_speech_hours', 'hours', 'hour']];
+function compact(v) {
+  if (v < 1) return v.toFixed(1);
+  v = Number(v.toPrecision(2));
+  for (const [n, u] of [[1e12, 'T'], [1e9, 'B'], [1e6, 'M'], [1e3, 'K'], [1, '']])
+    if (v >= n) return (v / n < 10 ? (v / n).toFixed(1).replace(/\.0$/, '') : (v / n).toFixed(0)) + u;
+}
+function headSum(l, key, facts) {
+  if (key === 'tech') {
+    const t = SUM_TECH.filter(k => ['full', 'part', 'open'].includes(l.levels[k]));
+    return t.length ? `<span class="hsum">${t.map(k => `<span class="hti ${l.levels[k] === 'open' ? 'o' : 'c'}" title="${esc(CFG.tech.technologies[k].label)}">${TICON[k] || ''}</span>`).join('')}</span>` : '';
+  }
+  const f = SUM_FIGS.filter(([k]) => facts[k] && facts[k].value > 0);
+  return f.length ? `<span class="hsum">${f.map(([k, many, one]) => `<span class="hfig"><b>${compact(facts[k].value)}</b> ${facts[k].value === 1 ? one : many}</span>`).join('')}</span>` : '';
+}
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
   const vfacts = (DATA.via || {})[l.code], vd = l.via_dims && l.via_dims[key], w = BY[l.written_in], wname = w ? w.name : '';
@@ -345,7 +363,7 @@ function dimPanel(l, key, color) {
   body += provList(l, key, facts, vfacts, wname);
   // at first a single bar with "See breakdown"; the breakdown (and, for technology, Expand all and Hide all) behind it
   const open = dimOpen.has(key);
-  return `<section class="dim wide${open ? ' open' : ''}${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><div class="dim-top"><h3>${esc(CFG[key].label)}<span class="h3r">${key === 'tech' ? '<span class="xall"><button type="button" class="chip" data-xall="1">Expand all</button><button type="button" class="chip" data-xall="0">Hide all</button></span>' : ''}<button type="button" class="chip bdbtn" data-bd="${key}" aria-expanded="${open}" aria-controls="bd-${key}">${open ? 'Hide breakdown' : 'See breakdown'}</button><span class="hs">${d.score.toFixed(2)}</span></span></h3>${bar(d.score)}</div>
+  return `<section class="dim wide${open ? ' open' : ''}${key === 'tech' ? ' techdim' : ''}${key === 'tech' && provFocus && body.includes(`id="pv-${provFocus}"`) ? ' focus-' + provFocus : ''}" style="--c:var(${color})"><div class="dim-top"><h3>${esc(CFG[key].label)}${headSum(l, key, facts)}<span class="h3r">${key === 'tech' ? '<span class="xall"><button type="button" class="chip" data-xall="1">Expand all</button><button type="button" class="chip" data-xall="0">Hide all</button></span>' : ''}<button type="button" class="chip bdbtn" data-bd="${key}" aria-expanded="${open}" aria-controls="bd-${key}">${open ? 'Hide breakdown' : 'See breakdown'}</button><span class="hs">${d.score.toFixed(2)}</span></span></h3>${bar(d.score)}</div>
     <div class="dim-body" id="bd-${key}">${vd && vd.score !== d.score ? `<div class="thru-dim">${esc(wname)}’s written resources counted in: ${vd.score.toFixed(2)}</div>` : ''}${d.raw < d.score ? `<div class="thru-dim">${d.raw.toFixed(3)} before the floor of ${DATA.config.meta.floor}</div>` : ''}${body}</div></section>`;
 }
 
