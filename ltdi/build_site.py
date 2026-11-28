@@ -39,6 +39,7 @@ PROFILE = ("glottocode", "script_names", "script_source", "endangerment_source",
 # Region filter: one letter per region group, as the page reads them
 REGION_CODE = {"Africa": "A", "South Asia": "S", "Rest of Asia": "R", "Europe": "E", "Americas": "M", "Oceania": "O"}
 NOT_PLACES = {"aq", "bv", "gs", "hm", "tf", "um", "xa", "xb", "zz"}
+PARTS = {"ic", "ea", "dg", "cq"}  # CLDR codes for parts of other countries: in CLDR's official lists only
 
 
 def add_census(scores: dict) -> None:
@@ -347,7 +348,10 @@ def split(scores: dict, eng: dict, families: tuple[dict, set],
             # engineering flags, one letter each (FLAG_LETTER)
             **({"fx": "".join(FLAG_LETTER[f] for f in eng[l["code"]]["flags"])} if l["code"] in eng else {}),
             # countries where it's official (CLDR): "ng", or "in:r" (regionally), "us:d" (in practice)
-            **({"of": " ".join(c + ("" if st == "o" else ":" + st) for c, st in sorted(off[l["code"]].items()))}
+            # (not CLDR's codes for parts of other countries, the Canary Islands, Ceuta & Melilla, Diego Garcia
+            # and Sark, nor uninhabited places)
+            **({"of": " ".join(c + ("" if st == "o" else ":" + st) for c, st in sorted(off[l["code"]].items())
+                               if c not in NOT_PLACES | PARTS)}
                if l["code"] in off else {}),
             # its family and the groups below it, as indexes into "gnodes" (base 36); "giso" for isolates
             **({"gp": " ".join(_b36(node_id[g]) for g in fam[l["code"]])} if l["code"] in fam else {}),
