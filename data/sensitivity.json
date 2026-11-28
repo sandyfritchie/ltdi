@@ -14,18 +14,18 @@
   {
    "ranks": "61–200",
    "languages": 140,
-   "median_range": 15,
+   "median_range": 14,
    "within_10pct": 0.957
   },
   {
    "ranks": "201–1,000",
-   "languages": 803,
-   "median_range": 292,
-   "within_10pct": 0.137
+   "languages": 805,
+   "median_range": 290,
+   "within_10pct": 0.139
   },
   {
    "ranks": "1,001 and below",
-   "languages": 3005,
+   "languages": 3003,
    "median_range": 448,
    "within_10pct": 0.501
   }
@@ -106,24 +106,24 @@
      "to": 201
     },
     {
+     "name": "Bavarian",
+     "from": 270,
+     "to": 257
+    },
+    {
      "name": "Shan",
-     "from": 178,
-     "to": 165
+     "from": 179,
+     "to": 167
     },
     {
      "name": "Kölsch",
-     "from": 295,
-     "to": 283
+     "from": 297,
+     "to": 286
     },
     {
-     "name": "Bavarian",
-     "from": 266,
-     "to": 254
-    },
-    {
-     "name": "Yucateco",
-     "from": 270,
-     "to": 280
+     "name": "Low German",
+     "from": 198,
+     "to": 188
     }
    ]
   }

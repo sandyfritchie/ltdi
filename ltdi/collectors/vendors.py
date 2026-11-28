@@ -203,7 +203,6 @@ META = {
     "tts_azure": ("bool", "Azure AI Speech (text to speech)", AZURE_SPEECH + "?tabs=tts"),
     "tts_amazon": ("bool", "Amazon Polly", POLLY),
     "mt_amazon": ("bool", "Amazon Translate", AMAZON_MT),
-    "mt_google": ("bool", "Google Cloud Translation", GOOGLE_MT),
     "mt_azure": ("bool", "Azure AI Translator", AZURE_MT),
     "mt_azure_features": ("features of 6", "Azure Translator language features", AZURE_MT),
     "kb_gboard": ("bool", "Gboard (Android)", GBOARD),
@@ -285,8 +284,7 @@ def collect() -> list[Record]:
     mark("tts_google", types)
     _features(found, notes, "tts_google_voice_types",
               {c: {t.replace(" (preview)", "") for t in ts} for c, ts in types.items()})
-    mark("mt_google", _codes(table(GOOGLE_MT, first="Language"), "ISO-639 code")
-         | _codes(table(GOOGLE_MT, heading="Translation LLM"), "Language code"))
+    # Google Translate (mt_google) is its language menu, read by hand: translate_app.py
     for r in table(GOOGLE_OCR, heading="Supported languages"):
         if (c := code(r["languageHints code"])):
             found["ocr_google"][c] = 1

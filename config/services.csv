@@ -26,7 +26,7 @@ tts_deepgram,tts,consumer,Aura,Text to speech,deepgram,,,,,,,,,,,,,
 tts_xai,tts,consumer,Grok,Text to speech,xai,,,,,,,,,,,,,
 tts_open_mms,tts,open,MMS-TTS,Open model,meta,,,,,,,,,,,,,
 tts_open_espeak,tts,open,eSpeak NG,Open text-to-speech,open,,,,,,,,,,,,,
-mt_google,mt,consumer,Google Cloud,Translation,google,,,,,"FLORES-200 chrF++ from English (Robinson et al. 2023): 25 or less counts the service at half, 50 or more in full",mt_google_flores_chrf,25,50,2023,independent,the FLORES-200 devtest,"1,012 sentences",yes
+mt_google,mt,consumer,Google Translate,Language menu,google,,,,,"FLORES-200 chrF++ from English (Robinson et al. 2023): 25 or less counts the service at half, 50 or more in full",mt_google_flores_chrf,25,50,2023,independent,the FLORES-200 devtest,"1,012 sentences",yes
 mt_azure,mt,consumer,Azure,Translator,microsoft,mt_azure_features,,6,service,,,,,,,,,
 mt_deepl,mt,consumer,DeepL,Translator,deepl,mt_deepl_features,,4,service,"Glossaries, translation memory, style rules, DeepL Write",,,,,,,,
 mt_amazon,mt,consumer,Amazon Translate,Translation,amazon,,,,,,,,,,,,,
