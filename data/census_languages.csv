@@ -175,9 +175,7 @@ bf,gux,771879,2006,"UN Statistics Division, Burkina Faso census 2006",https://da
 bf,dyu,616148,2006,"UN Statistics Division, Burkina Faso census 2006",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bf,bib,398926,2006,"UN Statistics Division, Burkina Faso census 2006",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bf,fr,170047,2006,"UN Statistics Division, Burkina Faso census 2006",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-bf,af,30367,2006,"UN Statistics Division, Burkina Faso census 2006",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bf,sif,17441,2006,"UN Statistics Division, Burkina Faso census 2006",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-bf,fuj,10301,2006,"UN Statistics Division, Burkina Faso census 2006",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bg,bg,5037607,2021,"UN Statistics Division, Bulgaria census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bg,tr,514386,2021,"UN Statistics Division, Bulgaria census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bn,ms,68558,2021,"UN Statistics Division, Brunei Darussalam census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -189,7 +187,7 @@ bo,ay,998314,2012,"UN Statistics Division, Bolivia (Plurinational State of) cens
 bo,gn,51991,2012,"UN Statistics Division, Bolivia (Plurinational State of) census 2012",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bs,en,351461,2010,"UN Statistics Division, Bahamas census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bw,tn,1697564,2022,"UN Statistics Division, Botswana census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-bw,kqe,114566,2022,"UN Statistics Division, Botswana census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
+bw,kck,114566,2022,"UN Statistics Division, Botswana census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bw,en,84268,2022,"UN Statistics Division, Botswana census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bw,hz,14392,2022,"UN Statistics Division, Botswana census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 bw,nd,13902,2022,"UN Statistics Division, Botswana census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -216,7 +214,6 @@ ca,pt,231420,2021,"UN Statistics Division, Canada census 2021",https://data.un.o
 ca,ru,226300,2021,"UN Statistics Division, Canada census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 ca,de,209920,2021,"UN Statistics Division, Canada census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 ca,ko,179750,2021,"UN Statistics Division, Canada census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-ca,af,160195,2021,"UN Statistics Division, Canada census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 ca,pl,140100,2021,"UN Statistics Division, Canada census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 ca,sr,111385,2021,"UN Statistics Division, Canada census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 ca,el,99720,2021,"UN Statistics Division, Canada census 2021",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -420,7 +417,6 @@ id,mad,7785269,2010,"UN Statistics Division, Indonesia census 2010",https://data
 id,bjn,3653280,2010,"UN Statistics Division, Indonesia census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 id,bug,3512114,2010,"UN Statistics Division, Indonesia census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 id,ban,3372261,2010,"UN Statistics Division, Indonesia census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-id,bya,3324051,2010,"UN Statistics Division, Indonesia census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 in,hi,422048642,2001,"UN Statistics Division, India census 2001",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 in,bn,83369769,2001,"UN Statistics Division, India census 2001",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 in,te,74002856,2001,"UN Statistics Division, India census 2001",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -440,6 +436,7 @@ in,ne,2871749,2001,"UN Statistics Division, India census 2001",https://data.un.o
 in,sd,2535485,2001,"UN Statistics Division, India census 2001",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 in,gom,2489015,2001,"UN Statistics Division, India census 2001",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 in,dgo,2282589,2001,"UN Statistics Division, India census 2001",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
+in,sa,14135,2001,"UN Statistics Division, India census 2001",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 kg,ky,3118919,1999,"UN Statistics Division, Kyrgyzstan census 1999",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 kg,uz,654527,1999,"UN Statistics Division, Kyrgyzstan census 1999",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 kg,ru,602806,1999,"UN Statistics Division, Kyrgyzstan census 1999",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -531,7 +528,7 @@ mw,yao,1760843,2008,"UN Statistics Division, Malawi census 2008",https://data.un
 mw,tum,1152017,2008,"UN Statistics Division, Malawi census 2008",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 mw,lai,59452,2008,"UN Statistics Division, Malawi census 2008",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 mx,es,112497368,2020,"UN Statistics Division, Mexico census 2020",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-mx,slz,774755,2020,"UN Statistics Division, Mexico census 2020",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
+mx,yua,774755,2020,"UN Statistics Division, Mexico census 2020",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 mx,tzh,589144,2020,"UN Statistics Division, Mexico census 2020",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 mx,tzo,550274,2020,"UN Statistics Division, Mexico census 2020",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 mx,ctu,254715,2020,"UN Statistics Division, Mexico census 2020",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -605,6 +602,7 @@ np,bo,4445,2011,"UN Statistics Division, Nepal census 2011",https://data.un.org/
 np,rji,3758,2011,"UN Statistics Division, Nepal census 2011",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 np,lbr,3716,2011,"UN Statistics Division, Nepal census 2011",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 np,en,2032,2011,"UN Statistics Division, Nepal census 2011",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
+np,sa,1669,2011,"UN Statistics Division, Nepal census 2011",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 np,tij,1424,2011,"UN Statistics Division, Nepal census 2011",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 np,xis,1178,2011,"UN Statistics Division, Nepal census 2011",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 nz,en,4482132,2018,"UN Statistics Division, New Zealand census 2018",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -650,7 +648,6 @@ nz,cs,2460,2018,"UN Statistics Division, New Zealand census 2018",https://data.u
 nz,tkl,2406,2018,"UN Statistics Division, New Zealand census 2018",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 nz,da,2343,2018,"UN Statistics Division, New Zealand census 2018",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 nz,my,2325,2018,"UN Statistics Division, New Zealand census 2018",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-nz,bib,2217,2018,"UN Statistics Division, New Zealand census 2018",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 nz,gil,2196,2018,"UN Statistics Division, New Zealand census 2018",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 nz,ro,1998,2018,"UN Statistics Division, New Zealand census 2018",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 nz,hu,1953,2018,"UN Statistics Division, New Zealand census 2018",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -674,7 +671,7 @@ pe,qu,3799780,2017,"UN Statistics Division, Peru census 2017",https://data.un.or
 pe,ay,450010,2017,"UN Statistics Division, Peru census 2017",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 pe,cni,73567,2017,"UN Statistics Division, Peru census 2017",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 pf,fr,168464,2022,"UN Statistics Division, French Polynesia census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-pk,pa,88915544,2023,"UN Statistics Division, Pakistan census 2023",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
+pk,pnb,88915544,2023,"UN Statistics Division, Pakistan census 2023",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 pk,ps,43633946,2023,"UN Statistics Division, Pakistan census 2023",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 pk,sd,34401564,2023,"UN Statistics Division, Pakistan census 2023",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 pk,skr,28849579,2023,"UN Statistics Division, Pakistan census 2023",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -775,13 +772,12 @@ tg,ee,2180939,2022,"UN Statistics Division, Togo census 2022",https://data.un.or
 tg,kbp,947956,2022,"UN Statistics Division, Togo census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tg,mfq,639003,2022,"UN Statistics Division, Togo census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tg,ajg,309008,2022,"UN Statistics Division, Togo census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-tg,lam,290701,2022,"UN Statistics Division, Togo census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
+tg,las,290701,2022,"UN Statistics Division, Togo census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tg,nmz,170989,2022,"UN Statistics Division, Togo census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tg,xon,170357,2022,"UN Statistics Division, Togo census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tg,fr,136623,2022,"UN Statistics Division, Togo census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 th,th,59866190,2010,"UN Statistics Division, Thailand census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 th,my,827713,2010,"UN Statistics Division, Thailand census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-th,txq,787696,2010,"UN Statistics Division, Thailand census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 th,ksw,441114,2010,"UN Statistics Division, Thailand census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 th,en,323779,2010,"UN Statistics Division, Thailand census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 th,cmn,111866,2010,"UN Statistics Division, Thailand census 2010",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -794,7 +790,7 @@ tj,uz,1093882,2020,"UN Statistics Division, Tajikistan census 2020",https://data
 tj,ky,37852,2020,"UN Statistics Division, Tajikistan census 2020",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tj,ru,28295,2020,"UN Statistics Division, Tajikistan census 2020",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tk,tkl,1055,2016,"UN Statistics Division, Tokelau census 2016",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-tl,mcs,184618,2022,"UN Statistics Division, Timor-Leste census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
+tl,mgm,184618,2022,"UN Statistics Division, Timor-Leste census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tl,mkz,133441,2022,"UN Statistics Division, Timor-Leste census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tl,bfn,68969,2022,"UN Statistics Division, Timor-Leste census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 tl,ddg,48277,2022,"UN Statistics Division, Timor-Leste census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
@@ -1048,14 +1044,12 @@ za,xh,9786928,2022,"UN Statistics Division, South Africa census 2022",https://da
 za,af,6365488,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,nso,5972255,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,en,5228301,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-za,nd,5228301,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,tn,4972787,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,st,4678964,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,ts,2784279,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-za,ss,1853881,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
+za,ss,1692719,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,sn,716967,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,ny,161162,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,pt,95161,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,ta,9308,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
-za,nmx,5917,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27
 za,sw,5917,2022,"UN Statistics Division, South Africa census 2022",https://data.un.org/legacy/Data.aspx?d=POP&f=tableCode:27

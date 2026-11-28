@@ -23,7 +23,8 @@ so scores don't change.
   python -m ltdi.collectors.census_languages           data/sources/ -> data/census_languages.csv
 
 Census names that don't match an Index language name go in config/census_names.csv: a code, several
-codes for a name the Index splits (Chinese: Mandarin, Yue...), or "-" to leave a name out.
+codes for a name the Index splits (Chinese: Mandarin, Yue...), or "-" to leave a name out. A row with a
+country code applies to that country's census only (Punjabi in Pakistan is Shahmukhi).
 """
 
 from __future__ import annotations
@@ -170,10 +171,11 @@ def language_index() -> tuple[dict[str, set[str]], dict[str, dict]]:
     return idx, langs
 
 
-def manual_names() -> dict[str, list[str]]:
+def manual_names() -> dict[tuple[str, str], list[str]]:
+    """{(country or "", normalised name): codes}; "" is every country"""
     if not NAMES.exists():
         return {}
-    return {_norm(r["name"]): ([] if r["codes"].strip() == "-" else r["codes"].split())
+    return {((r.get("country") or "").strip(), _norm(r["name"])): ([] if r["codes"].strip() == "-" else r["codes"].split())
             for r in csv.DictReader(NAMES.open(encoding="utf-8"))}
 
 
@@ -187,7 +189,7 @@ def country_code(name: str) -> str | None:
         return None
 
 
-def resolve(table: list[tuple[str, float]], idx, manual, langs, unmatched) -> dict[str, float]:
+def resolve(table: list[tuple[str, float]], idx, manual, langs, unmatched, cc: str = "") -> dict[str, float]:
     """One census table -> {language code: people}. Names matching one Index language count for it;
     several rows for one language are added up (Tagalog and Filipino). A name the Index splits
     (Chinese) is shared among its languages in proportion to those the table names itself (Mandarin,
@@ -199,7 +201,7 @@ def resolve(table: list[tuple[str, float]], idx, manual, langs, unmatched) -> di
         if not n or NOT_LANGUAGES.match(name):
             continue
         key = _norm(name)
-        codes = manual.get(key)
+        codes = manual.get((cc, key), manual.get(("", key)))  # this country's own entry first
         if codes is None:
             found = idx.get(key, set())
             if len(found) != 1:
@@ -234,11 +236,11 @@ def build() -> list[dict]:
         if country in SKIP or not cc:
             print(f"  skipped {country} {year}: {SKIP.get(country, 'no country code')}")
             continue
-        for code, n in resolve(table, idx, manual, langs, unmatched).items():
+        for code, n in resolve(table, idx, manual, langs, unmatched, cc).items():
             if n >= MIN_SPEAKERS:
                 rows.append({"country": cc, "language": code, "speakers": round(n), "year": year,
                              "source": f"UN Statistics Division, {country} census {year}", "url": UNDATA_PAGE})
-    for code, n in resolve(acs_table(), idx, manual, langs, unmatched).items():
+    for code, n in resolve(acs_table(), idx, manual, langs, unmatched, "us").items():
         if n >= MIN_SPEAKERS:
             rows.append({"country": "us", "language": code, "speakers": round(n), "year": "2017-2021",
                          "source": "US Census Bureau, American Community Survey 2017-2021", "url": ACS_PAGE})
