@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------- ranking
-let query = '', rankAll = false, sortBy = 'rank', sortDir = 1, sortChosen = false;  // until a column is chosen: by rank, or by speakers with a region or country chosen
+let query = '', rankAll = false, rankShown = 100, sortBy = 'rank', sortDir = 1, sortChosen = false;  // until a column is chosen: by rank, or by speakers with a region or country chosen
 const tierSel = new Set();  // tiers shown in the ranking; empty means all
 let showGaps = false;       // only languages with something in the Gaps column
 const endSel = new Set();   // endangerment levels shown; empty means every living language
@@ -58,7 +58,7 @@ function rankHead() {
     <th class="num c-ltdi"${aria('ltdi')}>${sortBtn('ltdi')}</th><th class="c-tier hide-sm hide-tab"${aria('tier')}>${sortBtn('tier')}</th>
     <th class="hide-sm c-gaps" title="Main technologies no commercial service offers"${aria('gaps')}>${sortBtn('gaps')}</th>`;
 }
-const RANK_PAGE = 100;  // rows shown before "Show all"; searching shows every match
+const RANK_PAGE = 100;  // rows shown at first and added by "Show 100 more"; searching shows every match
 // Ranking "Gaps" column: the main technologies that no commercial service offers
 const MAIN_TECH = Object.entries(CFG.tech.technologies).filter(([, t]) => t.group !== 'more').map(([k]) => k);
 const GAP_TECH = Object.entries(CFG.tech.technologies).filter(([, t]) => t.group !== 'more' || t.gap).map(([k]) => k);  // Gaps column
@@ -161,10 +161,12 @@ function ranking() {
     $('#rsum').innerHTML = rankSummary(all);
     $('#resetf').hidden = !regionSel.size && !countrySel.size && !tierSel.size && !endSel.size && !showGaps && !q;
     $('#rankhead').innerHTML = rankHead();
-    const rows = rankAll || q ? all : all.slice(0, RANK_PAGE);
+    const rows = rankAll || q ? all : all.slice(0, rankShown);
     $('#censusnote').innerHTML = censusCaveat();
-    $('#rankmore').innerHTML = rows.length < all.length ? `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
+    $('#rankmore').innerHTML = rows.length < all.length ? (all.length - rows.length > RANK_PAGE ? `<button class="chip more" id="rank100">Show ${RANK_PAGE} more</button> ` : '')
+      + `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
     const btn = $('#rankall'); if (btn) btn.onclick = () => { rankAll = true; draw(); };
+    const more = $('#rank100'); if (more) more.onclick = () => { rankShown += RANK_PAGE; draw(); };
     $('#rows').innerHTML = rows.map(l => `
       <tr tabindex="0" data-code="${l.code}">
         <td class="rank"${rankTitle(l) ? ` title="${esc(rankTitle(l))}"` : ''}>${rankLabel(l)}</td>
@@ -182,7 +184,7 @@ function ranking() {
   wireMsel('regwrap', regionPicker, regionSel, REGIONS.length, draw);
   navBox('filter', 'Find a language name or code', query);
   navFilter = v => { query = v; draw(); };
-  $('#resetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); endSel.clear(); showGaps = false; query = ''; rankAll = false; sortChosen = false; ranking(); };
+  $('#resetf').onclick = () => { regionSel.clear(); countrySel.clear(); countryQuery = ''; tierSel.clear(); endSel.clear(); showGaps = false; query = ''; rankAll = false; rankShown = RANK_PAGE; sortChosen = false; ranking(); };
   wireMsel('tierwrap', tierPicker, tierSel, TIER_KEYS.length, draw);
   wireCountries('ctrywrap', draw);
   wireMsel('endwrap', endPicker, endSel, 0, draw);
