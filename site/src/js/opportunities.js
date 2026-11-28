@@ -271,7 +271,7 @@ async function oppDetail(id) {
   $('#view').innerHTML = `
     <button class="back" id="back">← Back to ${esc(l.name)}</button>
     <div class="opp-hero" style="--c:var(--opp)">
-      <h2>${esc(o.short || o.title)}</h2>
+      <h2>${esc(l.name)}: ${esc(o.short || o.title)}</h2>
       ${o.fact ? `<p class="why">${esc(o.fact)}</p>` : ''}
       <div class="opp-foot"><span></span><button class="chip" id="copylink">Copy link</button></div>
     </div>
