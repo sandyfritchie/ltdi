@@ -165,7 +165,7 @@ function oppItem(o, l, showLang) {
 function oppGroups(list) {
   const by = new Map();
   for (const x of list) {
-    if (!by.has(x.l.code)) by.set(x.l.code, { l: x.l, items: [] });
+    if (!by.has(x.l.code)) by.set(x.l.code, { l: x.l, n: x.n, items: [] });
     by.get(x.l.code).items.push(x.o);
   }
   const out = [], doc = { doc: true, langs: [] };
@@ -173,13 +173,14 @@ function oppGroups(list) {
   return doc.langs.length ? [...out, doc] : out;  // the documentation list always last
 }
 const GROUPS_SHOWN = 20, DOC_SHOWN = 60;
-const spk = l => l.speakers ? ` <span class="ospk">${people(l.speakers)}</span>` : '';  // speakers, after the name
+// speakers, after the name: in the countries or regions chosen, else everywhere
+const spk = g => { const n = g.n ?? g.l.speakers; return n ? ` <span class="ospk">${people(n)}</span>` : ''; };
 function oppGroup(g) {
-  if (!g.doc) return `<section class="ogroup"><h2 class="ogh"><a href="${LH(g.l.code)}">${esc(g.l.name)}</a>${spk(g.l)}</h2>
+  if (!g.doc) return `<section class="ogroup"><h2 class="ogh"><a href="${LH(g.l.code)}">${esc(g.l.name)}</a>${spk(g)}</h2>
     <div class="otiles" style="--c:var(--opp)">${g.items.map(o => oppItem(o, g.l, false)).join('')}</div></section>`;
   const names = docAll ? g.langs : g.langs.slice(0, DOC_SHOWN);
   return `<section class="ogroup"><h2 class="ogh">Start documenting it</h2>
-    <div class="ochips" style="--c:var(--opp)">${names.map(x => `<a class="ochip" href="#opp-${x.items[0].id}">${esc(x.l.name)}${spk(x.l)}</a>`).join('')}${g.langs.length > names.length ? `<button type="button" class="chip" id="docall">And ${(g.langs.length - names.length).toLocaleString()} more</button>` : ''}</div></section>`;
+    <div class="ochips" style="--c:var(--opp)">${names.map(x => `<a class="ochip" href="#opp-${x.items[0].id}">${esc(x.l.name)}${spk(x)}</a>`).join('')}${g.langs.length > names.length ? `<button type="button" class="chip" id="docall">And ${(g.langs.length - names.length).toLocaleString()} more</button>` : ''}</div></section>`;
 }
 
 let team = 'all', shownGroups = GROUPS_SHOWN, docAll = false;
@@ -187,8 +188,9 @@ let withVarieties = false;  // varieties whose speakers write a major standard (
 async function opportunities(lang) {
   const focus = lang && BY[lang] ? BY[lang] : null;
   if (focus) await need(focus.code);
-  else if (!countrySel.size) await topOpps();
-  const pool = focus ? focus.opportunities.map(o => ({ o, l: focus })) : countrySel.size ? await countryPool()
+  else if (!narrowed()) await topOpps();
+  // with countries or regions chosen, ranked by reach there: each language's speakers in those places
+  const pool = focus ? focus.opportunities.map(o => ({ o, l: focus })) : narrowed() ? await countryPool()
     : TOP.map(o => ({ o, l: BY[o.lang] })).filter(x => inView(x.l));
   const all = pool
     .filter(x => provider === 'All' || provMissing(x.o, x.l, provider).length)

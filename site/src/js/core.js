@@ -65,7 +65,7 @@ let TOP = [], TOPP;
 const oppReach = n => Math.max(0, Math.log10(Math.max(n, 1)) - 4);
 const topOpps = () => TOPP ??= fetch('data/top_opportunities.json').then(r => r.json()).catch(() => []).then(t => (TOP = t.map(o => withRule({ ...o,
   priority: oppReach(o.u[0]) * o.b, priority_now: oppReach(o.u[1]) * o.b, priority_5y: oppReach(o.u[2]) * o.b * o.m }, o.lang))));
-// With countries chosen, every opportunity of the languages spoken there (data/country_opportunities.json
+// With countries or regions chosen, every opportunity of the languages spoken there (data/country_opportunities.json
 // lists each country's languages and speakers, fetched once), ranked by reach there: each one's potential
 // users scaled to the language's speakers in the countries chosen, then priority = reach x (gap x need x
 // weight) [x momentum], as for the global list
@@ -76,11 +76,12 @@ const histData = () => HISTP ??= fetch('data/history.json').then(r => r.json()).
 const countryOpps = () => COPP ??= fetch('data/country_opportunities.json').then(r => r.json());
 async function countryPool() {
   const [d] = await Promise.all([countryOpps(), topOpps()]), here = new Map();
-  for (const c of countrySel) for (const [lang, n] of d.by_country[c] || []) here.set(lang, (here.get(lang) || 0) + n);
+  // the countries chosen, or every country in the regions chosen
+  for (const [c, rows] of Object.entries(d.by_country)) if (countryIn(c)) for (const [lang, n] of rows) here.set(lang, (here.get(lang) || 0) + n);
   const reach = n => Math.max(0, Math.log10(Math.max(n, 1)) - 4);
   return TOP.filter(o => here.has(o.lang)).map(o => {
     const f = Math.min(1, here.get(o.lang) / (o.u[0] || here.get(o.lang)));
-    return { o: { ...o, priority: reach(o.u[0] * f) * o.b, priority_now: reach(o.u[1] * f) * o.b, priority_5y: reach(o.u[2] * f) * o.b * o.m }, l: BY[o.lang] };
+    return { o: { ...o, priority: reach(o.u[0] * f) * o.b, priority_now: reach(o.u[1] * f) * o.b, priority_5y: reach(o.u[2] * f) * o.b * o.m }, l: BY[o.lang], n: here.get(o.lang) };
   }).filter(x => x.l && inView(x.l));
 }
 async function need(...codes) {
