@@ -229,7 +229,7 @@ def add_wikipedia_count(lang: dict, row: dict) -> None:
     if len(lang["countries"]) == 1:
         lang["countries"][0]["speakers"] = lang["speakers"]
     when = f", {row['date']}" if row["date"] else ""
-    src = f"Speaker count from Wikipedia's {row['article']} article ({lang['speakers']:,}{when}), as LinguaMeta has none."
+    src = f"Speaker count from Wikipedia's {row['article']} article ({lang['speakers']:,}{when})."
     lang["note"] = f"{lang['note']} {src}".strip()
 
 

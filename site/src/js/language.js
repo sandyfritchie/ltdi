@@ -308,7 +308,6 @@ function headSum(l, key, facts) {
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
   const vfacts = (DATA.via || {})[l.code], vd = l.via_dims && l.via_dims[key], w = BY[l.written_in], wname = w ? w.name : '';
-  const thru = v => `<span class="thru-v" title="Counted from ${esc(wname)}">through ${esc(wname)} ${v}</span>`;
   let body = '';
   if (key === 'tech') {
     const provs = `<details class="provs"${provsOpen ? ' open' : ''}><summary>${TW}<span class="dd-title">Providers</span></summary><div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries({ ...PROV, ...(Object.values(cfg.technologies).some(t => regionalOn(t, facts).length) ? { regional: 'Regional providers' } : {}) }).map(([k, n]) =>
@@ -316,12 +315,11 @@ function dimPanel(l, key, color) {
     const main = [], more = [], peek = [];
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
-      const vs = vd && vd.indicators[tk] != null && vd.indicators[tk] !== s ? vd.indicators[tk] : null;
       const tiles = t.indicator ? localeTile(facts[t.indicator], vfacts && vfacts[t.indicator], wname)
         : techIds(t, tk, facts).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname, l.unnamed, l.name)).join('');
       // the score and bar always shown; the services it rests on behind the triangle
       const row = `<details class="techrow" data-tk="${tk}"${techOpen.has(tk) ? ' open' : ''}><summary>
-        <div class="tech-h">${TW}${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
+        <div class="tech-h">${TW}${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}</span></div>
         ${s == null ? '' : bar(s)}</summary>
         ${t.help ? `<p class="tech-help">${esc(t.help.replace('{name}', l.name))}</p>` : ''}<div class="tiles">${tiles}</div></details>`;
       if (t.group === 'more') { more.push(row); peek.push(`<span title="${esc(t.label)}">${TICON[tk] || ''}<span class="sr">${esc(t.label)}</span>${sv}</span>`); }
@@ -342,22 +340,15 @@ function dimPanel(l, key, color) {
       const lab = f ? `<a class="indlink" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">${esc(name)}</a>` : esc(name);
       const nb = spec.narrowed_by && facts[spec.narrowed_by];  // e.g. how much of the web text is from Bible sites
       const narrow = nb && nb.value >= 0.1 && f && f.value
-        ? `<div class="missing" title="${esc(nb.note)}">${/MADLAD/.test(nb.source) ? `${nb.value >= 1 ? 'Only' : 'Partly'} Bible or jw.org text in its auditors\u2019 sample, so it counts for less` : `${Math.round(nb.value * 100)}% from Bible sites, so it counts for less`}</div>` : '';
+        ? `<div class="missing" title="${esc(nb.note)}">${/MADLAD/.test(nb.source) ? `${nb.value >= 1 ? 'Only' : 'Partly'} Bible or jw.org text` : `${Math.round(nb.value * 100)}% from Bible sites`}</div>` : '';
       const vf = vfacts && vfacts[ik], vn = vd && vd.indicators[ik];
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
       body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}
-        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
+        ${n == null ? '' : bar(n)}${narrow}</div>`;
     }
-    // reading and building already happening: Wikipedia page views, models made for it on Hugging Face (shown, not scored)
-    const hv = i => facts[i] && facts[i].value ? facts[i].value : 0, hf = facts.hf_models, wp = facts.wikipedia_pageviews;
-    if (wp && wp.value) body += `<div class="ind"><div class="ind-top"><b><a class="indlink" href="${esc(wp.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`${wp.source}: ${wp.note || ''}`)}">Wikipedia page views</a></b>
-        <span class="ind-val">${big(wp.value)} a year</span></div><div class="missing">Not scored.</div></div>`;
     const ms = facts.massive_utterances;
     if (ms && ms.value) body += `<div class="ind"><div class="ind-top"><b><a class="indlink" href="${esc(ms.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`${ms.source}: ${ms.note || ''}`)}">Voice assistant data</a></b>
-        <span class="ind-val">${big(ms.value)} requests</span></div><div class="missing">Text from MASSIVE, translated from English. Not scored.</div></div>`;
-    if (hf) body += `<div class="ind"><div class="ind-top"><b>${hf ? `<a class="indlink" href="${esc(hf.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`Models tagged with it and at most five languages, downloaded at least 10 times in 30 days. ${hf.note || ''}`)}">Builders on Hugging Face</a>` : 'Builders on Hugging Face'}</b>
-        <span class="ind-val">${hv('hf_models') ? `${hv('hf_models').toLocaleString()} ${hv('hf_models') === 1 ? 'model' : 'models'}` : 'No models'}</span></div>
-        <div class="missing">${hv('hf_models') ? `Made for it, ${big(hv('hf_model_downloads'))} downloads in 30 days` : 'None made for it with recent downloads'}. Not scored.</div></div>`;
+        <span class="ind-val">${big(ms.value)} requests</span></div><div class="missing">Not scored.</div></div>`;
     body += '</div>';
   }
   body += provList(l, key, facts, vfacts, wname);
@@ -391,21 +382,19 @@ function offList(l) {
 }
 // Where it's spoken: countries, official status, endangerment, adult literacy
 function placeRow(l) {
-  // official status, most speakers first, like the countries; literacy in its three main countries:
-  // "63%" for one country, "98% (France) 55% (Cameroon)" for several
+  // official status, most speakers first, like the countries; adult literacy in the language itself, in each
+  // country where CLDR records it: "63% (Nigeria)"
   const off = offList(l);
-  const top = Object.entries(l._cs).filter(([c]) => !l._im.has(c)).sort((a, b) => (b[1] || 0) - (a[1] || 0)).slice(0, 3).map(([c]) => c)
-    .filter(c => DATA.country_literacy[c] != null);
-  const inLang = c => l.literacy && l.literacy[c] != null ? `${Math.round(l.literacy[c])}% in ${esc(l.name)}` : '';
-  const lit = top.length === 1
-    ? `<b>${Math.round(DATA.country_literacy[top[0]])}%</b>${inLang(top[0]) ? ` (${inLang(top[0])})` : ''}`
-    : top.map(c => `<b>${Math.round(DATA.country_literacy[c])}%</b> (${esc(COUNTRY_NAMES[c] || c.toUpperCase())}${inLang(c) ? `; ${inLang(c)}` : ''})`).join(' ');
+  const lit = Object.entries(l.literacy || {}).filter(([, v]) => v != null).sort((a, b) => (l._cs[b[0]] || 0) - (l._cs[a[0]] || 0))
+    .map(([c, v]) => `<b>${Math.round(v)}%</b> (${esc(COUNTRY_NAMES[c] || c.toUpperCase())})`).join(' ');
+  const wp = (DATA.facts[l.code] || {}).wikipedia_pageviews;
   const end = endKey(l);
   return `<div class="facts">
     <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>
-    ${l.extinct ? '' : `<span title="Unicode CLDR territory data: official, official in practice, or official in a region. Where a country’s constitution names a language CLDR doesn’t mark, the constitution: Hausa and Igbo in Nigeria (section 55 of the 1999 Constitution)">${off.length ? `<span id="offl">${offLine(off, false)}</span>` : 'Not official in any country'}</span>`}
+    ${l.extinct ? '' : `<span title="Unicode CLDR territory data: official, official in practice, or official in a region.">${off.length ? `<span id="offl">${offLine(off, false)}</span>` : 'Not official in any country'}</span>`}
     ${!['none', 'not_endangered'].includes(end) ? `<span title="${end === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[end])}</b></span>` : ''}
-    ${top.length ? `<span title="Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it">Adult literacy ${lit}</span>` : ''}
+    ${lit ? `<span title="Unicode CLDR territory data">Adult literacy ${lit}</span>` : ''}
+    ${wp && wp.value ? `<span>Wikipedia page views <b>${big(wp.value)}</b> a year</span>` : ''}
     ${l.sample || !l.script_names.length ? '' : `<span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b>${unicodeNote(l)}${writtenInfo(l)}</span>`}</div>`;
 }
 // Its codes, each linking to where it's defined or described: a small box beside the endonym

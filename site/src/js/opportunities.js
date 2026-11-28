@@ -27,15 +27,6 @@ const rangeText = l => l.rr && l.rr[0] !== l.rr[1] ? `${l.rr[0].toLocaleString()
 const rankTitle = l => [l.tied ? `Tied with ${l.tied.toLocaleString()} other ${l.tied === 1 ? 'language' : 'languages'}` : '',
   rangeText(l) ? `Ranks ${rangeText(l)} under other reasonable weightings` : ''].filter(Boolean).join('\n');
 const rankLabel = l => l.rank ? `${l.tied ? '=' : ''}${l.rank.toLocaleString()}` : '–';
-// Countries with census figures on language (immigrant languages counted); for the others a filtered
-// view says their immigrant communities' languages are missing
-const CENSUS = new Set(DATA.census_countries || []);
-function censusCaveat() {
-  const no = [...countrySel].filter(c => !CENSUS.has(c)).map(c => COUNTRY_NAMES[c] || c.toUpperCase()).sort();
-  if (!no.length) return '';
-  const list = no.length > 4 ? `${no.length} of the countries chosen` : no.length > 1 ? `${no.slice(0, -1).join(', ')} and ${no[no.length - 1]}` : no[0];
-  return `<p class="note">We couldn't find census figures on language for ${esc(list)}, so the languages of ${no.length > 1 ? 'their' : 'its'} immigrant communities aren't included: only the languages LinguaMeta lists for ${no.length > 1 ? 'them' : 'it'}.</p>`;
-}
 const COUNTRY_REGION = DATA.country_regions || {}, COUNTRY_ONLINE = DATA.country_online || {};
 // Speakers in view: with a region or country chosen, a language counts only its speakers in the
 // countries chosen (or the chosen regions' countries), from LinguaMeta's per-country figures; online,
@@ -205,7 +196,7 @@ async function opportunities(lang) {
       ${focus ? '' : `<span id="orwrap">${regionPicker()}</span><span id="octrywrap">${countryPicker()}</span><span id="otierwrap">${tierPicker()}</span>`}
       ${providerSelect('opsel')}
       <select id="tmsel" aria-label="What your team works on"><option value="all">Every team (${all.length})</option>${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<option value="${k}"${team === k ? ' selected' : ''}>${esc(t)} (${tcount[k]})</option>`).join('')}</select>
-      <label class="switch wrap" title="Count spoken varieties whose speakers mostly read and write a major standard language (Wu, Egyptian Arabic, Bhojpuri)"><input type="checkbox" role="switch" id="op-var"${withVarieties ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Include varieties of major languages</label>
+      <label class="switch wrap"><input type="checkbox" role="switch" id="op-var"${withVarieties ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Include varieties of major languages</label>
       <button type="button" class="reset" id="oresetf"${filtered ? '' : ' hidden'}>Reset filters</button>
     </div>
     ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="${LH(focus.code)}">Language profile</a></div>` : ''}

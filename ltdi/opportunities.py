@@ -788,7 +788,7 @@ def explain(lang: dict, o: dict, facts: dict[str, Record]) -> str:
     elif lang.get("speakers"):
         people = f"{name} has about {_people(lang['speakers'])} speakers."
     else:
-        people = f"LinguaMeta has no speaker count for {name}, so this can't be ranked by reach yet."
+        people = f"No speaker count for {name}, so this can't be ranked by reach yet."
     kit = [k for k in starter_kit(o, facts) if k["indicator"] not in ("kb_gboard", "wikipedia_active_editors")]
     ready = ""
     if kit and o["type"] != "collect":

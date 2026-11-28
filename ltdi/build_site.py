@@ -174,12 +174,6 @@ def coverage(scores: dict) -> dict:
             "tech": tech}
 
 
-def census_countries() -> list[str]:
-    """Countries with census figures on language (data/census_languages.csv); the page notes the others."""
-    path = DATA / "census_languages.csv"
-    return sorted({r["country"] for r in csv.DictReader(path.open(encoding="utf-8"))}) if path.exists() else []
-
-
 def _country_name(code: str) -> str:
     if code == "xk":  # not in ISO 3166, so not in pycountry
         return "Kosovo"
@@ -396,8 +390,6 @@ def split(scores: dict, eng: dict, families: tuple[dict, set],
     country_names = {c["code"]: c["name"] for l in scores["languages"] for c in l["countries"] if c["code"] not in NOT_PLACES}
     index |= {"country_regions": {c: REGION_CODE[r] for c, r in country_region.items() if r in REGION_CODE},
               "country_online": country_online()}
-    from .demand import country_literacy
-    index["country_literacy"] = country_literacy()
     index["gnodes"] = [[g, gnames.get(g, g)] for g in sorted(node_id, key=node_id.get)]
     from .engineering import FLAGS
     index["flags"] = {FLAG_LETTER[k]: [k, v] for k, v in FLAGS.items()}
@@ -602,7 +594,6 @@ def main() -> None:
     eng, families, gnames = all_flags(scores["languages"]), family_paths(scores["languages"]), glottolog_names()
     changes = all_events(scores["edition"], scores.get("history"))
     index, details = split(scores, eng, families, gnames)
-    index["census_countries"] = census_countries()
     index["coverage"] = coverage(scores)
     # comparison with Joshi et al.'s classes and SIL's DLS levels (tools/validate.py)
     if (DATA / "sensitivity.json").exists():

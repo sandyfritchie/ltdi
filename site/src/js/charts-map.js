@@ -585,7 +585,7 @@ function charts() {
       </svg></div>`).join('')}
       <div class="added-row"><div></div><svg viewBox="0 0 ${AW} 16" aria-hidden="true">${P.map((p, i) => p.endsWith('-12') ? `<text x="${(ax(i)).toFixed(1)}" y="12" text-anchor="middle" font-size="11" fill="var(--muted)">${p.slice(0, 4)}</text>` : '').join('')}</svg></div></div>` : '';
     multiples = series.length ? `<div class="multiples">${multiples}</div>`
-      : `<p class="note">No history collected yet for ${esc(pn)}'s services. History so far comes from DeepL's docs, Meta's NLLB-200 and Belebele, OpenAI's Whisper, Common Voice and CLDR.</p>`;
+      : `<p class="note">No history collected yet for ${esc(pn)}'s services.</p>`;
   }
   const table2 = H ? `<div class="tablebox"><table><thead><tr><th>Kind of support</th>${H.periods.filter(p => p.endsWith('-12')).map(p => `<th class="num">${p.slice(0, 4)}</th>`).join('')}</tr></thead>
     <tbody>${Object.entries(H.series).filter(([k]) => provider === 'All' || SERIES_PROV[k] === provider).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.map((p, pi) => [p, pi]).filter(([p]) => p.endsWith('-12')).map(([, pi]) => { const col = H.values[k] || {}; let n = 0, any = false;
@@ -636,16 +636,14 @@ function charts() {
     <circle id="strip-hit" r="7" fill="none" stroke="var(--ink)" stroke-width="2" visibility="hidden" pointer-events="none"/>
   </svg>`;
   const fmtS = v => v == null ? '—' : P ? Math.round(v * 100) + '%' : v.toFixed(3);
-  const stripTable = `<div class="tablebox"><table><thead><tr><th>Region</th><th class="num">Languages</th><th class="num">Mean ${P ? 'share' : 'LTDI'}</th><th class="num" title="Each language counted by its speakers: the score of the average speaker's language">Mean, by speakers</th><th>Highest</th><th>Lowest</th></tr></thead><tbody>${stripRows.map(([r, n, mean, wmean, hi, lo]) =>
-    `<tr><td>${esc(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${fmtS(mean)}</td><td class="num">${fmtS(wmean)}</td><td>${esc(hi)}</td><td>${esc(lo)}</td></tr>`).join('')}</tbody></table>
-    <p class="note">Mean by speakers counts each language by its speakers, so it's the score of the average speaker's language; with all languages spoken in a region, the large international languages lift it.</p></div>`;
+  const stripTable = `<div class="tablebox"><table><thead><tr><th>Region</th><th class="num">Languages</th><th class="num">Mean ${P ? 'share' : 'LTDI'}</th><th class="num">Mean, by speakers</th><th>Highest</th><th>Lowest</th></tr></thead><tbody>${stripRows.map(([r, n, mean, wmean, hi, lo]) =>
+    `<tr><td>${esc(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${fmtS(mean)}</td><td class="num">${fmtS(wmean)}</td><td>${esc(hi)}</td><td>${esc(lo)}</td></tr>`).join('')}</tbody></table></div>`;
 
   $('#view').innerHTML = `<h2 class="sronly">Charts</h2>
     <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span><span id="cctrywrap">${countryPicker()}</span><span id="ctierwrap">${tierPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
       <button type="button" class="reset" id="cresetf"${!regionSel.size && !countrySel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
-      <p class="sub">${P ? `Each bar splits the ${N.toLocaleString()} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N.toLocaleString() + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked, or by at least ' + numWord(CFG.tech.full_min) + ' of them; for LLMs the services are the AI assistants\u2019 official language lists, and language identification counts open models. Text technologies count spoken varieties through the standard language their speakers write. The last two segments together are the speakers with no commercial service on the Ranking page.'} Hover a segment to see which languages.</p>
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
       ${absent.length ? `<p class="note">No ${esc(pn)} service tracked for: ${esc(absent.join(', '))}.</p>` : ''}
@@ -655,31 +653,24 @@ function charts() {
     </section>
     <section class="chart">
       <h3>How many speakers each technology reaches today</h3>
-      <p class="sub">The same split, with each language counted by its speakers: ${people(SP)} in all, added up per language, so people who speak several languages are counted in each.</p>
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rowsS}</div>
       <details class="tbl"><summary>Show as a table</summary>${tableS}</details>
     </section>
     ${P && !Object.keys(H ? H.series : {}).some(k => SERIES_PROV[k] === provider) ? '' : `<section class="chart">
       <div class="plan-tablehead"><h3>How support has grown since 2019</h3><span class="chips" role="group" aria-label="Count">${[['langs', 'Languages'], ['speakers', 'Speakers']].map(([k, lab]) => `<button type="button" class="chip" data-hm="${k}" aria-pressed="${histMode === k}">${lab}</button>`).join('')}</span></div>
-      <p class="sub">How many of these languages have each kind of support, or how many people speak them (added up per language), at mid-year and year-end. Lines start when the source's history does. Hover for the languages added.</p>
       ${multiples}
-      <p class="note">Common Voice, CLDR, DeepL and Universal Dependencies from each project's release history. Open models and benchmarks are counted from their release dates using today's language lists.</p>
       <details class="tbl"><summary>Show as a table</summary>${table2}</details>
     </section>
     ${added ? `<section class="chart">
       <h3>When languages were added</h3>
-      <p class="sub">The languages each source added in each half-year, or their speakers, on one scale, so the big expansions stand out, like Common Voice's September 2025 release and DeepL's additions that October. Hover a bar for the languages.</p>
       ${added}
-      <p class="note">Counted from each source's own release records. A language counts in the half-year it first appears; one that dropped out and came back counts again when it returns. To follow additions as they happen, add <span class="code">https://langtechindex.org/changes.xml</span> to a feed reader.</p>
     </section>` : ''}`}
     <section class="chart">
       <div class="plan-tablehead"><h3>Where each language stands</h3><span class="chips" role="group" aria-label="Which languages">${[['all', 'All languages spoken there'], ['home', 'Languages from the region']].map(([k, lab]) => `<button type="button" class="chip" data-sm="${k}" aria-pressed="${stripMode === k}">${lab}</button>`).join('')}</span></div>
-      <p class="sub">${P ? `Share of ${esc(pn)}'s ${provWhat(provider)} tracked here that cover each language, by region.` : 'Language Technology Development Index by region.'} Each dot is a language, with the lowest named below its row and the highest above; select one to open its profile. <b>All languages spoken there</b> puts a language in every region where it's spoken, so English, French and Spanish appear in several; <b>Languages from the region</b> puts each in its home region only (the region of the country it's from, or where most of its speakers live).</p>
       ${strip}
       <details class="tbl"><summary>Show as a table</summary>${stripTable}</details>
-    </section>
-    ${censusCaveat()}`;
+    </section>`;
   bindTips($('#view'));
   bindStrip();
   // keep the page where it is when a filter redraws the charts below
@@ -706,8 +697,7 @@ function mapPage() {
   $('#view').innerHTML = `<h2 class="sronly">Map</h2>
     <div class="controls sticky"><span id="mregwrap">${regionPicker()}</span><span id="mctrywrap">${countryPicker()}</span><span id="mtierwrap">${tierPicker()}</span><span class="note" style="margin:0">${N.toLocaleString()} languages</span>
       <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button></div>
-    ${mapSection()}
-    ${censusCaveat()}`;
+    ${mapSection()}`;
   bindTips($('#view'));
   bindMap();
   wireMsel('mregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; mapView = null; mapPage(); reopen('mregwrap'); scrollTo(0, y); });

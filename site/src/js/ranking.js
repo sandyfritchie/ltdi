@@ -8,7 +8,7 @@ const END_LEVELS = [['not_endangered', 'Not endangered'], ['vulnerable', 'Vulner
   ['severely_endangered', 'Severely endangered'], ['critically_endangered', 'Critically endangered'], ['revitalizing', 'Revitalizing'],
   ['extinct', 'Extinct'], ['none', 'Not assessed']];
 const END_LABEL = Object.fromEntries(END_LEVELS);
-const END_SOURCE = { linguameta: 'from LinguaMeta', glottolog: 'from Glottolog 5.4 (LinguaMeta gives none)',
+const END_SOURCE = { linguameta: 'from LinguaMeta', glottolog: 'from Glottolog 5.4',
   member: 'from its most-spoken member language', review: 'reviewed by the LTDI team' };
 const endKey = l => l.extinct ? 'extinct' : l.endangerment || 'none';
 const endPicker = () => msel('endsel', endSel, END_LEVELS.map(([k, t]) => [k, t, '']), 'Any endangerment', null, '', 'Clear');
@@ -133,7 +133,7 @@ function ranking() {
       <span id="regwrap">${regionPicker()}</span>
       <span id="ctrywrap">${countryPicker()}</span>
       <span id="tierwrap">${tierPicker()}</span>
-      <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta (Glottolog where LinguaMeta gives none). Extinct languages are listed only when chosen here">${endPicker()}</span>
+      <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta and Glottolog. Extinct languages are listed only when chosen here">${endPicker()}</span>
       <label class="switch" title="Show only languages with a gap: a main technology with no commercial service, or only an open model or benchmark"><input type="checkbox" role="switch" id="gapsw"${showGaps ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show gaps</label>
       <button type="button" class="reset" id="resetf" hidden>Reset filters</button>
     </div>
@@ -149,8 +149,7 @@ function ranking() {
       <tbody id="rows"></tbody>
     </table></div>
     <div id="rankmore"></div>
-    <div id="censusnote"></div>
-    <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech-to-text, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Languages with the same score share a rank, shown as =1,914. Select a language to see every value and its source. <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">Download the scores (CSV)</a>.</p>`;
+`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const all = (endSel.size ? ALL.filter(l => endSel.has(endKey(l))) : LANGS).filter(l => inView(l)
@@ -162,7 +161,6 @@ function ranking() {
     $('#resetf').hidden = !regionSel.size && !countrySel.size && !tierSel.size && !endSel.size && !showGaps && !q;
     $('#rankhead').innerHTML = rankHead();
     const rows = rankAll || q ? all : all.slice(0, rankShown);
-    $('#censusnote').innerHTML = censusCaveat();
     $('#rankmore').innerHTML = rows.length < all.length ? (all.length - rows.length > RANK_PAGE ? `<button class="chip more" id="rank100">Show ${RANK_PAGE} more</button> ` : '')
       + `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
     const btn = $('#rankall'); if (btn) btn.onclick = () => { rankAll = true; draw(); };

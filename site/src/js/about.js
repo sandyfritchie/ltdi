@@ -17,9 +17,7 @@ function stabilitySection() {
   return `<h3>How stable the ranks are</h3>
     <p>The weights, goalposts and floor are working choices. To see how much the ranking depends on them, every language was re-scored ${S.draws.toLocaleString()} times with different choices drawn at random: each weight from half to one and a half times its value, each data goal up to ten times higher or lower, and the floor from 0.025 to 0.075. The table shows how far ranks move in 90% of these re-scorings.</p>
     <div class="tablebox"><table class="covtab"><thead><tr><th>Ranks</th><th class="num">Languages</th><th class="num">Typical range</th><th class="num">Within ±10% of rank</th></tr></thead>
-    <tbody>${S.bands.map(b => `<tr><td>${esc(b.ranks)}</td><td class="num">${b.languages.toLocaleString()}</td><td class="num">${b.median_range.toLocaleString()} places</td><td class="num">${Math.round(b.within_10pct * 100)}%</td></tr>`).join('')}</tbody></table></div>
-    <p class="note">The ${S.nothing_recorded.toLocaleString()} languages with nothing recorded always rank last together. The top of the ranking barely moves; from about rank 200 down, where scores are close together, ranks shift by hundreds of places, so the tier says more than the exact rank.
-    ${S.scenarios.map(s => `${esc(s.label)}: ${s.moved_10_in_top_300 ? `${s.moved_10_in_top_300} of the top 300 move more than 10 places` : 'no language in the top 300 moves more than 10 places'}.`).join(' ')}</p>`;
+    <tbody>${S.bands.map(b => `<tr><td>${esc(b.ranks)}</td><td class="num">${b.languages.toLocaleString()}</td><td class="num">${b.median_range.toLocaleString()} places</td><td class="num">${Math.round(b.within_10pct * 100)}%</td></tr>`).join('')}</tbody></table></div>`;
 }
 // How LTDI compares with Joshi et al.'s resource classes and SIL's Digital Language Support levels
 // (tools/validate.py): a table per classification, with LTDI's median and tiers in each group, and
@@ -40,16 +38,16 @@ function validationSection() {
   const pair = (a, b, r) => `<tr><td>${a}</td><td>${b}</td><td class="num">${r.toFixed(2)}</td></tr>`;
   return `<h3>How it compares with other classifications</h3>
     <p>Two earlier studies classify languages by their digital resources. LTDI broadly agrees with both: its median score never falls from one of their groups to the next. No two such measures agree exactly, since each draws on different, incomplete sources from a different year, so the useful question is whether LTDI differs from them more than they differ from each other.</p>
-    ${B ? `<p>It doesn't. On the ${B.n} languages all three cover, LTDI agrees with each study more closely than the two studies agree with each other (rank correlations; 1 would be the same order):</p>
-    <div class="tablebox vpair"><table class="covtab"><thead><tr><th>Measure</th><th>Compared with</th><th class="num">Correlation</th></tr></thead>
-    <tbody>${pair('Joshi et al.', 'Digital Language Support', B.joshi_dls)}${pair('LTDI', 'Joshi et al.', B.ltdi_joshi)}${pair('LTDI', 'Digital Language Support', B.ltdi_dls)}</tbody></table></div>` : ''}
-    <p class="note">The languages where they disagree most are listed below each table. Some differences are progress since the studies, some are imperfect data on either side.</p>
     <h4>Joshi et al. (2020), resource classes</h4>
     <p class="note"><a href="${J.source}" target="_blank" rel="noopener">The State and Fate of Linguistic Diversity and Inclusion in the NLP World</a>: six classes by labelled and unlabelled data. ${J.n.toLocaleString()} ranked languages have a class; rank correlation with LTDI ${J.spearman.toFixed(2)}.</p>
     ${table(J, 'Class')}${dis(J, o => `class ${o}`)}
     <h4>Simons, Thomas and White (2022), Digital Language Support</h4>
     <p class="note"><a href="${D.paper}" target="_blank" rel="noopener">Assessing Digital Language Support on a Global Scale</a>: five levels from 143 tools' language lists, ${esc(D.as_of)}. Only a 10% sample is public (<a href="${D.source}" target="_blank" rel="noopener">sil-ai/dls-results</a>), of which ${D.n.toLocaleString()} languages match ranked ones; rank correlation with their score ${D.spearman.toFixed(2)}, with their level ${D.spearman_level.toFixed(2)}.</p>
-    ${table(D, 'Level')}${dis(D, o => o)}`;
+    ${table(D, 'Level')}${dis(D, o => o)}
+    ${B ? `<h4>All three compared</h4>
+    <p>On the ${B.n} languages all three cover, LTDI agrees with each study more closely than the two studies agree with each other (rank correlations; 1 would be the same order):</p>
+    <div class="tablebox vpair"><table class="covtab"><thead><tr><th>Measure</th><th>Compared with</th><th class="num">Correlation</th></tr></thead>
+    <tbody>${pair('Joshi et al.', 'Digital Language Support', B.joshi_dls)}${pair('LTDI', 'Joshi et al.', B.ltdi_joshi)}${pair('LTDI', 'Digital Language Support', B.ltdi_dls)}</tbody></table></div>` : ''}`;
 }
 // How a service's languages are counted, said wherever a count appears (About, Charts, For providers)
 const COUNTING_NOTE = "Each count is the number of distinct languages in the company's own published list, read from the page linked on every language's profile. A list often has several entries for one language: English for each country, a language in two scripts, or both a language and its varieties. Those count once here, so a count is usually lower than the company's own figure, which may count them separately.";
@@ -205,10 +203,14 @@ function about() {
     <h4>Data</h4>
     ${table(C.data.map(([l, n]) => row(esc(l), n)).join(''), 'Indicator')}
     <h4>Technology</h4>
-    <p class="note">Languages offered by at least one service of each kind; open a technology for each service. Quality is measured, by benchmarks, for far fewer languages than services offer.</p>
-    <p class="note" id="counting">${COUNTING_NOTE} Where the number of entries in a list is known, it's shown beside the count. <a href="#providers">For providers: how to correct a count</a>.</p>
     ${table(techRows, 'Technology')}
 
+    <h3>The Plan tab's columns</h3>
+    <p>Online in 5 years is the number of a language's speakers expected to be online in five years (for text technologies, online and able to text), with their share of its speakers. Countries are ISO 3166 codes, most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK).</p>
+    <p>Open models are those listed for the language; † marks a licence that doesn't permit commercial use, and the commercial-use switch leaves them out. Their makers publish quality figures, each on their own test data, which say too little to compare languages by, so they aren't shown.</p>
+    <p>Speech is counted in hours of transcribed speech in the open datasets tracked, in three kinds. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech, NCHLT Speech, and read speech shared on the Mozilla Data Collective (BibleTTS, Digital Divide Data and others). Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, AfriVoice, WaZoBiaSpeech, IndicVoices, SPRING-INX, Vaani. Media: Shrutilipi's radio news, VoxPopuli's European Parliament speeches, and YouTube videos with their uploaders' subtitles in YODAS2, counted by the share of a sample of subtitles that is in the language. Total hours adds the three. A tick under FLEURS test set means the language is one of the 102 in FLEURS, Google's public test set of about 12 hours of read speech a language; it stays out of training, so it doesn't count towards the data target.</p>
+    <p>Sentence pairs with English are those in OPUS, plus those professionally translated for Google's SMOL and GATITOS. Words of web text are those in FineWeb-2, or MADLAD-400 or HPLT 3.0 where one holds more. Short of the target is how many more are needed to reach the data target chosen. With the commercial-use switch on, only speech datasets whose licence permits commercial use are counted; OPUS corpora carry their own licences, which aren't checked.</p>
+    <p>The CSV adds each language's readiness and the commercial services that offer it.</p>
     <h3>Caveats and shortcomings</h3>
     <h4>Languages and speakers</h4>
     <ul>
@@ -271,7 +273,7 @@ function about() {
     <h3>Data for your own tools</h3>
     <p>Each language is also a JSON file at a stable address, such as <span class="code">https://langtechindex.org/api/v1/languages/yo.json</span>, with its scores, the technologies and services that cover it, every recorded value with its source, its countries and locales, family, engineering flags and opportunities. <span class="code">api/v1/index.json</span> lists every language, and <span class="code">api/v1/schema.json</span> describes the files. Within version 1, fields are only added, never renamed or removed; values change with each edition, and a change of method raises the methodology version. Anything that would break a reader goes to version 2, with version 1 kept beside it for at least one edition.</p>
     <h3>Sources and credits</h3>
-    <p>Language metadata from LinguaMeta, with scripts from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a> (CC BY-SA 4.0, so data derived from it carries the same licence), endangerment from Glottolog where LinguaMeta gives none, and speaker counts from Wikipedia where neither does. Census figures from the UN Statistics Division and the US Census Bureau; connectivity from the World Bank. Language areas from <a href="https://glottography.github.io" target="_blank" rel="noopener">Glottography</a> (CC BY 4.0); map from Natural Earth. Writing samples from <a href="https://github.com/eric-muller/udhr" target="_blank" rel="noopener">UDHR in XML</a>; spoken words from <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a>, recorded by volunteers and shared on Wikimedia Commons under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Every other value names its source on the language's page. The method builds on van Esch, Ritchie et al. (2024), <a href="https://aclanthology.org/2024.lrec-main.331/" target="_blank" rel="noopener">Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages</a>.</p>
+    <p>Language metadata from LinguaMeta, with scripts from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a> (CC BY-SA 4.0, so data derived from it carries the same licence), endangerment from Glottolog where LinguaMeta gives none, and speaker counts from Wikipedia where neither does. Census figures from the UN Statistics Division, the US Census Bureau and national statistics offices; connectivity from the World Bank. Language areas from <a href="https://glottography.github.io" target="_blank" rel="noopener">Glottography</a> (CC BY 4.0); map from Natural Earth. Writing samples from <a href="https://github.com/eric-muller/udhr" target="_blank" rel="noopener">UDHR in XML</a>; spoken words from <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a>, recorded by volunteers and shared on Wikimedia Commons under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Every other value names its source on the language's page. The method builds on van Esch, Ritchie et al. (2024), <a href="https://aclanthology.org/2024.lrec-main.331/" target="_blank" rel="noopener">Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages</a>.</p>
   </article>`;
 }
 

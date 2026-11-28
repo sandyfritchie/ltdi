@@ -288,15 +288,6 @@ const rangeText = l => l.rr && l.rr[0] !== l.rr[1] ? `${l.rr[0].toLocaleString()
 const rankTitle = l => [l.tied ? `Tied with ${l.tied.toLocaleString()} other ${l.tied === 1 ? 'language' : 'languages'}` : '',
   rangeText(l) ? `Ranks ${rangeText(l)} under other reasonable weightings` : ''].filter(Boolean).join('\n');
 const rankLabel = l => l.rank ? `${l.tied ? '=' : ''}${l.rank.toLocaleString()}` : '–';
-// Countries with census figures on language (immigrant languages counted); for the others a filtered
-// view says their immigrant communities' languages are missing
-const CENSUS = new Set(DATA.census_countries || []);
-function censusCaveat() {
-  const no = [...countrySel].filter(c => !CENSUS.has(c)).map(c => COUNTRY_NAMES[c] || c.toUpperCase()).sort();
-  if (!no.length) return '';
-  const list = no.length > 4 ? `${no.length} of the countries chosen` : no.length > 1 ? `${no.slice(0, -1).join(', ')} and ${no[no.length - 1]}` : no[0];
-  return `<p class="note">We couldn't find census figures on language for ${esc(list)}, so the languages of ${no.length > 1 ? 'their' : 'its'} immigrant communities aren't included: only the languages LinguaMeta lists for ${no.length > 1 ? 'them' : 'it'}.</p>`;
-}
 const COUNTRY_REGION = DATA.country_regions || {}, COUNTRY_ONLINE = DATA.country_online || {};
 // Speakers in view: with a region or country chosen, a language counts only its speakers in the
 // countries chosen (or the chosen regions' countries), from LinguaMeta's per-country figures; online,
@@ -466,7 +457,7 @@ async function opportunities(lang) {
       ${focus ? '' : `<span id="orwrap">${regionPicker()}</span><span id="octrywrap">${countryPicker()}</span><span id="otierwrap">${tierPicker()}</span>`}
       ${providerSelect('opsel')}
       <select id="tmsel" aria-label="What your team works on"><option value="all">Every team (${all.length})</option>${Object.entries(TEAMS).filter(([k]) => tcount[k]).map(([k, t]) => `<option value="${k}"${team === k ? ' selected' : ''}>${esc(t)} (${tcount[k]})</option>`).join('')}</select>
-      <label class="switch wrap" title="Count spoken varieties whose speakers mostly read and write a major standard language (Wu, Egyptian Arabic, Bhojpuri)"><input type="checkbox" role="switch" id="op-var"${withVarieties ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Include varieties of major languages</label>
+      <label class="switch wrap"><input type="checkbox" role="switch" id="op-var"${withVarieties ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Include varieties of major languages</label>
       <button type="button" class="reset" id="oresetf"${filtered ? '' : ' hidden'}>Reset filters</button>
     </div>
     ${focus ? `<div class="lhead"><h2>${esc(focus.name)} <span class="auto">${all.length} opportunities</span></h2><a href="${LH(focus.code)}">Language profile</a></div>` : ''}
@@ -572,7 +563,7 @@ const END_LEVELS = [['not_endangered', 'Not endangered'], ['vulnerable', 'Vulner
   ['severely_endangered', 'Severely endangered'], ['critically_endangered', 'Critically endangered'], ['revitalizing', 'Revitalizing'],
   ['extinct', 'Extinct'], ['none', 'Not assessed']];
 const END_LABEL = Object.fromEntries(END_LEVELS);
-const END_SOURCE = { linguameta: 'from LinguaMeta', glottolog: 'from Glottolog 5.4 (LinguaMeta gives none)',
+const END_SOURCE = { linguameta: 'from LinguaMeta', glottolog: 'from Glottolog 5.4',
   member: 'from its most-spoken member language', review: 'reviewed by the LTDI team' };
 const endKey = l => l.extinct ? 'extinct' : l.endangerment || 'none';
 const endPicker = () => msel('endsel', endSel, END_LEVELS.map(([k, t]) => [k, t, '']), 'Any endangerment', null, '', 'Clear');
@@ -697,7 +688,7 @@ function ranking() {
       <span id="regwrap">${regionPicker()}</span>
       <span id="ctrywrap">${countryPicker()}</span>
       <span id="tierwrap">${tierPicker()}</span>
-      <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta (Glottolog where LinguaMeta gives none). Extinct languages are listed only when chosen here">${endPicker()}</span>
+      <span id="endwrap" title="UNESCO's endangerment level, from LinguaMeta and Glottolog. Extinct languages are listed only when chosen here">${endPicker()}</span>
       <label class="switch" title="Show only languages with a gap: a main technology with no commercial service, or only an open model or benchmark"><input type="checkbox" role="switch" id="gapsw"${showGaps ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Show gaps</label>
       <button type="button" class="reset" id="resetf" hidden>Reset filters</button>
     </div>
@@ -713,8 +704,7 @@ function ranking() {
       <tbody id="rows"></tbody>
     </table></div>
     <div id="rankmore"></div>
-    <div id="censusnote"></div>
-    <p class="note"><strong>About this edition.</strong> ${LANGS.length < 100 ? `A ${LANGS.length}-language slice to test the method.` : `${LANGS.length.toLocaleString()} languages.`}${ALL.length > LANGS.length ? ` ${(ALL.length - LANGS.length).toLocaleString()} extinct languages are left out; choose Extinct in the endangerment drop-down to list them.` : ''} Each technology scores by the share of services that offer it, weighted by how fully each one does (features, voice types, error rates). The Gaps column shows which of the six main technologies (keyboard, speech-to-text, text-to-speech, translation, LLMs, voice assistants) no commercial service offers; hover an icon for details. Languages with the same score share a rank, shown as =1,914. Select a language to see every value and its source. <a href="data/ltdi-${DATA.edition}.csv" target="_blank" rel="noopener">Download the scores (CSV)</a>.</p>`;
+`;
   const draw = () => {
     const q = query.trim().toLowerCase();
     const all = (endSel.size ? ALL.filter(l => endSel.has(endKey(l))) : LANGS).filter(l => inView(l)
@@ -726,7 +716,6 @@ function ranking() {
     $('#resetf').hidden = !regionSel.size && !countrySel.size && !tierSel.size && !endSel.size && !showGaps && !q;
     $('#rankhead').innerHTML = rankHead();
     const rows = rankAll || q ? all : all.slice(0, rankShown);
-    $('#censusnote').innerHTML = censusCaveat();
     $('#rankmore').innerHTML = rows.length < all.length ? (all.length - rows.length > RANK_PAGE ? `<button class="chip more" id="rank100">Show ${RANK_PAGE} more</button> ` : '')
       + `<button class="chip more" id="rankall">Show all ${all.length.toLocaleString()} languages</button>` : '';
     const btn = $('#rankall'); if (btn) btn.onclick = () => { rankAll = true; draw(); };
@@ -1079,7 +1068,6 @@ function headSum(l, key, facts) {
 function dimPanel(l, key, color) {
   const d = l.dimensions[key], facts = DATA.facts[l.code] || {}, cfg = CFG[key];
   const vfacts = (DATA.via || {})[l.code], vd = l.via_dims && l.via_dims[key], w = BY[l.written_in], wname = w ? w.name : '';
-  const thru = v => `<span class="thru-v" title="Counted from ${esc(wname)}">through ${esc(wname)} ${v}</span>`;
   let body = '';
   if (key === 'tech') {
     const provs = `<details class="provs"${provsOpen ? ' open' : ''}><summary>${TW}<span class="dd-title">Providers</span></summary><div class="provkey" role="group" aria-label="Highlight a provider"><span>Highlight</span>${Object.entries({ ...PROV, ...(Object.values(cfg.technologies).some(t => regionalOn(t, facts).length) ? { regional: 'Regional providers' } : {}) }).map(([k, n]) =>
@@ -1087,12 +1075,11 @@ function dimPanel(l, key, color) {
     const main = [], more = [], peek = [];
     for (const [tk, t] of Object.entries(cfg.technologies)) {
       const s = d.indicators[tk], sv = s == null ? 'not measured' : s.toFixed(2);
-      const vs = vd && vd.indicators[tk] != null && vd.indicators[tk] !== s ? vd.indicators[tk] : null;
       const tiles = t.indicator ? localeTile(facts[t.indicator], vfacts && vfacts[t.indicator], wname)
         : techIds(t, tk, facts).map(id => svcTile(id, facts, (t.open || []).includes(id), vfacts, wname, l.unnamed, l.name)).join('');
       // the score and bar always shown; the services it rests on behind the triangle
       const row = `<details class="techrow" data-tk="${tk}"${techOpen.has(tk) ? ' open' : ''}><summary>
-        <div class="tech-h">${TW}${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}${vs == null ? '' : ` ${thru(vs.toFixed(2))}`}</span></div>
+        <div class="tech-h">${TW}${TICON[tk] || ''}<b>${esc(t.label)}</b><span class="ind-val">${sv}</span></div>
         ${s == null ? '' : bar(s)}</summary>
         ${t.help ? `<p class="tech-help">${esc(t.help.replace('{name}', l.name))}</p>` : ''}<div class="tiles">${tiles}</div></details>`;
       if (t.group === 'more') { more.push(row); peek.push(`<span title="${esc(t.label)}">${TICON[tk] || ''}<span class="sr">${esc(t.label)}</span>${sv}</span>`); }
@@ -1113,22 +1100,15 @@ function dimPanel(l, key, color) {
       const lab = f ? `<a class="indlink" href="${esc(f.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(hover)}">${esc(name)}</a>` : esc(name);
       const nb = spec.narrowed_by && facts[spec.narrowed_by];  // e.g. how much of the web text is from Bible sites
       const narrow = nb && nb.value >= 0.1 && f && f.value
-        ? `<div class="missing" title="${esc(nb.note)}">${/MADLAD/.test(nb.source) ? `${nb.value >= 1 ? 'Only' : 'Partly'} Bible or jw.org text in its auditors\u2019 sample, so it counts for less` : `${Math.round(nb.value * 100)}% from Bible sites, so it counts for less`}</div>` : '';
+        ? `<div class="missing" title="${esc(nb.note)}">${/MADLAD/.test(nb.source) ? `${nb.value >= 1 ? 'Only' : 'Partly'} Bible or jw.org text` : `${Math.round(nb.value * 100)}% from Bible sites`}</div>` : '';
       const vf = vfacts && vfacts[ik], vn = vd && vd.indicators[ik];
       const vline = vf && vn != null && vn !== n ? `<div class="thru-line">Through <a href="${LH(w.code)}">${esc(wname)}</a>: ${esc(showValue(vf))}</div>` : '';
       body += `<div class="ind"><div class="ind-top"><b>${lab}</b><span class="ind-val">${esc(showValue(f))}</span></div>${vline}
-        ${n == null ? '<div class="missing">Not collected yet; left out of this score</div>' : bar(n)}${narrow}</div>`;
+        ${n == null ? '' : bar(n)}${narrow}</div>`;
     }
-    // reading and building already happening: Wikipedia page views, models made for it on Hugging Face (shown, not scored)
-    const hv = i => facts[i] && facts[i].value ? facts[i].value : 0, hf = facts.hf_models, wp = facts.wikipedia_pageviews;
-    if (wp && wp.value) body += `<div class="ind"><div class="ind-top"><b><a class="indlink" href="${esc(wp.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`${wp.source}: ${wp.note || ''}`)}">Wikipedia page views</a></b>
-        <span class="ind-val">${big(wp.value)} a year</span></div><div class="missing">Not scored.</div></div>`;
     const ms = facts.massive_utterances;
     if (ms && ms.value) body += `<div class="ind"><div class="ind-top"><b><a class="indlink" href="${esc(ms.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`${ms.source}: ${ms.note || ''}`)}">Voice assistant data</a></b>
-        <span class="ind-val">${big(ms.value)} requests</span></div><div class="missing">Text from MASSIVE, translated from English. Not scored.</div></div>`;
-    if (hf) body += `<div class="ind"><div class="ind-top"><b>${hf ? `<a class="indlink" href="${esc(hf.url.split(' ')[0])}" target="_blank" rel="noopener" title="${esc(`Models tagged with it and at most five languages, downloaded at least 10 times in 30 days. ${hf.note || ''}`)}">Builders on Hugging Face</a>` : 'Builders on Hugging Face'}</b>
-        <span class="ind-val">${hv('hf_models') ? `${hv('hf_models').toLocaleString()} ${hv('hf_models') === 1 ? 'model' : 'models'}` : 'No models'}</span></div>
-        <div class="missing">${hv('hf_models') ? `Made for it, ${big(hv('hf_model_downloads'))} downloads in 30 days` : 'None made for it with recent downloads'}. Not scored.</div></div>`;
+        <span class="ind-val">${big(ms.value)} requests</span></div><div class="missing">Not scored.</div></div>`;
     body += '</div>';
   }
   body += provList(l, key, facts, vfacts, wname);
@@ -1162,21 +1142,19 @@ function offList(l) {
 }
 // Where it's spoken: countries, official status, endangerment, adult literacy
 function placeRow(l) {
-  // official status, most speakers first, like the countries; literacy in its three main countries:
-  // "63%" for one country, "98% (France) 55% (Cameroon)" for several
+  // official status, most speakers first, like the countries; adult literacy in the language itself, in each
+  // country where CLDR records it: "63% (Nigeria)"
   const off = offList(l);
-  const top = Object.entries(l._cs).filter(([c]) => !l._im.has(c)).sort((a, b) => (b[1] || 0) - (a[1] || 0)).slice(0, 3).map(([c]) => c)
-    .filter(c => DATA.country_literacy[c] != null);
-  const inLang = c => l.literacy && l.literacy[c] != null ? `${Math.round(l.literacy[c])}% in ${esc(l.name)}` : '';
-  const lit = top.length === 1
-    ? `<b>${Math.round(DATA.country_literacy[top[0]])}%</b>${inLang(top[0]) ? ` (${inLang(top[0])})` : ''}`
-    : top.map(c => `<b>${Math.round(DATA.country_literacy[c])}%</b> (${esc(COUNTRY_NAMES[c] || c.toUpperCase())}${inLang(c) ? `; ${inLang(c)}` : ''})`).join(' ');
+  const lit = Object.entries(l.literacy || {}).filter(([, v]) => v != null).sort((a, b) => (l._cs[b[0]] || 0) - (l._cs[a[0]] || 0))
+    .map(([c, v]) => `<b>${Math.round(v)}%</b> (${esc(COUNTRY_NAMES[c] || c.toUpperCase())})`).join(' ');
+  const wp = (DATA.facts[l.code] || {}).wikipedia_pageviews;
   const end = endKey(l);
   return `<div class="facts">
     <span><span id="where">${whereLine(l, false)}</span>${censusInfo(l)}</span>
-    ${l.extinct ? '' : `<span title="Unicode CLDR territory data: official, official in practice, or official in a region. Where a country’s constitution names a language CLDR doesn’t mark, the constitution: Hausa and Igbo in Nigeria (section 55 of the 1999 Constitution)">${off.length ? `<span id="offl">${offLine(off, false)}</span>` : 'Not official in any country'}</span>`}
+    ${l.extinct ? '' : `<span title="Unicode CLDR territory data: official, official in practice, or official in a region.">${off.length ? `<span id="offl">${offLine(off, false)}</span>` : 'Not official in any country'}</span>`}
     ${!['none', 'not_endangered'].includes(end) ? `<span title="${end === 'revitalizing' ? `Listed as extinct or dormant in ${l.endangerment_source === 'glottolog' ? 'Glottolog' : 'LinguaMeta'}, but with speakers recorded today, often through revival` : `UNESCO's endangerment scale, ${esc(END_SOURCE[l.endangerment_source] || 'from LinguaMeta')}`}">Endangerment <b>${esc(END_LABEL[end])}</b></span>` : ''}
-    ${top.length ? `<span title="Unicode CLDR territory data: adult literacy in each of its main countries, and in the language itself where CLDR records it">Adult literacy ${lit}</span>` : ''}
+    ${lit ? `<span title="Unicode CLDR territory data">Adult literacy ${lit}</span>` : ''}
+    ${wp && wp.value ? `<span>Wikipedia page views <b>${big(wp.value)}</b> a year</span>` : ''}
     ${l.sample || !l.script_names.length ? '' : `<span>${l.script_names.length > 1 ? 'Scripts' : 'Script'} <b>${esc(l.script_names.join(', '))}</b>${unicodeNote(l)}${writtenInfo(l)}</span>`}</div>`;
 }
 // Its codes, each linking to where it's defined or described: a small box beside the endonym
@@ -1940,7 +1918,7 @@ function charts() {
       </svg></div>`).join('')}
       <div class="added-row"><div></div><svg viewBox="0 0 ${AW} 16" aria-hidden="true">${P.map((p, i) => p.endsWith('-12') ? `<text x="${(ax(i)).toFixed(1)}" y="12" text-anchor="middle" font-size="11" fill="var(--muted)">${p.slice(0, 4)}</text>` : '').join('')}</svg></div></div>` : '';
     multiples = series.length ? `<div class="multiples">${multiples}</div>`
-      : `<p class="note">No history collected yet for ${esc(pn)}'s services. History so far comes from DeepL's docs, Meta's NLLB-200 and Belebele, OpenAI's Whisper, Common Voice and CLDR.</p>`;
+      : `<p class="note">No history collected yet for ${esc(pn)}'s services.</p>`;
   }
   const table2 = H ? `<div class="tablebox"><table><thead><tr><th>Kind of support</th>${H.periods.filter(p => p.endsWith('-12')).map(p => `<th class="num">${p.slice(0, 4)}</th>`).join('')}</tr></thead>
     <tbody>${Object.entries(H.series).filter(([k]) => provider === 'All' || SERIES_PROV[k] === provider).map(([k, lab]) => `<tr><td>${esc(lab)}</td>${H.periods.map((p, pi) => [p, pi]).filter(([p]) => p.endsWith('-12')).map(([, pi]) => { const col = H.values[k] || {}; let n = 0, any = false;
@@ -1991,16 +1969,14 @@ function charts() {
     <circle id="strip-hit" r="7" fill="none" stroke="var(--ink)" stroke-width="2" visibility="hidden" pointer-events="none"/>
   </svg>`;
   const fmtS = v => v == null ? '—' : P ? Math.round(v * 100) + '%' : v.toFixed(3);
-  const stripTable = `<div class="tablebox"><table><thead><tr><th>Region</th><th class="num">Languages</th><th class="num">Mean ${P ? 'share' : 'LTDI'}</th><th class="num" title="Each language counted by its speakers: the score of the average speaker's language">Mean, by speakers</th><th>Highest</th><th>Lowest</th></tr></thead><tbody>${stripRows.map(([r, n, mean, wmean, hi, lo]) =>
-    `<tr><td>${esc(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${fmtS(mean)}</td><td class="num">${fmtS(wmean)}</td><td>${esc(hi)}</td><td>${esc(lo)}</td></tr>`).join('')}</tbody></table>
-    <p class="note">Mean by speakers counts each language by its speakers, so it's the score of the average speaker's language; with all languages spoken in a region, the large international languages lift it.</p></div>`;
+  const stripTable = `<div class="tablebox"><table><thead><tr><th>Region</th><th class="num">Languages</th><th class="num">Mean ${P ? 'share' : 'LTDI'}</th><th class="num">Mean, by speakers</th><th>Highest</th><th>Lowest</th></tr></thead><tbody>${stripRows.map(([r, n, mean, wmean, hi, lo]) =>
+    `<tr><td>${esc(r)}</td><td class="num">${n.toLocaleString()}</td><td class="num">${fmtS(mean)}</td><td class="num">${fmtS(wmean)}</td><td>${esc(hi)}</td><td>${esc(lo)}</td></tr>`).join('')}</tbody></table></div>`;
 
   $('#view').innerHTML = `<h2 class="sronly">Charts</h2>
     <div class="controls sticky"><span id="cregwrap">${regionPicker()}</span><span id="cctrywrap">${countryPicker()}</span><span id="ctierwrap">${tierPicker()}</span>${providerSelect('cpsel')}<span class="note" style="margin:0">${N.toLocaleString()} languages${P ? ` · ${esc(pn)}'s services only` : ''}</span>
       <button type="button" class="reset" id="cresetf"${!regionSel.size && !countrySel.size && !tierSel.size && !P ? ' hidden' : ''}>Reset filters</button></div>
     <section class="chart">
       <h3>How many languages each technology reaches today</h3>
-      <p class="sub">${P ? `Each bar splits the ${N.toLocaleString()} languages by whether ${esc(pn)}'s services checked here offer them. Technologies are shown where ${esc(pn)} has at least one service we track.` : 'Each bar splits the ' + N.toLocaleString() + ' languages by how widely a technology is available in them. Widely available means offered by at least half of the services checked, or by at least ' + numWord(CFG.tech.full_min) + ' of them; for LLMs the services are the AI assistants\u2019 official language lists, and language identification counts open models. Text technologies count spoken varieties through the standard language their speakers write. The last two segments together are the speakers with no commercial service on the Ranking page.'} Hover a segment to see which languages.</p>
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rows.map(r => r.html).join('')}</div>
       ${absent.length ? `<p class="note">No ${esc(pn)} service tracked for: ${esc(absent.join(', '))}.</p>` : ''}
@@ -2010,31 +1986,24 @@ function charts() {
     </section>
     <section class="chart">
       <h3>How many speakers each technology reaches today</h3>
-      <p class="sub">The same split, with each language counted by its speakers: ${people(SP)} in all, added up per language, so people who speak several languages are counted in each.</p>
       <div class="legend ord">${LV.map(([lv, lab]) => `<span><i class="sw" style="background:var(--ord-${lv})"></i>${esc(lab)}</span>`).join('')}</div>
       <div class="covrows">${rowsS}</div>
       <details class="tbl"><summary>Show as a table</summary>${tableS}</details>
     </section>
     ${P && !Object.keys(H ? H.series : {}).some(k => SERIES_PROV[k] === provider) ? '' : `<section class="chart">
       <div class="plan-tablehead"><h3>How support has grown since 2019</h3><span class="chips" role="group" aria-label="Count">${[['langs', 'Languages'], ['speakers', 'Speakers']].map(([k, lab]) => `<button type="button" class="chip" data-hm="${k}" aria-pressed="${histMode === k}">${lab}</button>`).join('')}</span></div>
-      <p class="sub">How many of these languages have each kind of support, or how many people speak them (added up per language), at mid-year and year-end. Lines start when the source's history does. Hover for the languages added.</p>
       ${multiples}
-      <p class="note">Common Voice, CLDR, DeepL and Universal Dependencies from each project's release history. Open models and benchmarks are counted from their release dates using today's language lists.</p>
       <details class="tbl"><summary>Show as a table</summary>${table2}</details>
     </section>
     ${added ? `<section class="chart">
       <h3>When languages were added</h3>
-      <p class="sub">The languages each source added in each half-year, or their speakers, on one scale, so the big expansions stand out, like Common Voice's September 2025 release and DeepL's additions that October. Hover a bar for the languages.</p>
       ${added}
-      <p class="note">Counted from each source's own release records. A language counts in the half-year it first appears; one that dropped out and came back counts again when it returns. To follow additions as they happen, add <span class="code">https://langtechindex.org/changes.xml</span> to a feed reader.</p>
     </section>` : ''}`}
     <section class="chart">
       <div class="plan-tablehead"><h3>Where each language stands</h3><span class="chips" role="group" aria-label="Which languages">${[['all', 'All languages spoken there'], ['home', 'Languages from the region']].map(([k, lab]) => `<button type="button" class="chip" data-sm="${k}" aria-pressed="${stripMode === k}">${lab}</button>`).join('')}</span></div>
-      <p class="sub">${P ? `Share of ${esc(pn)}'s ${provWhat(provider)} tracked here that cover each language, by region.` : 'Language Technology Development Index by region.'} Each dot is a language, with the lowest named below its row and the highest above; select one to open its profile. <b>All languages spoken there</b> puts a language in every region where it's spoken, so English, French and Spanish appear in several; <b>Languages from the region</b> puts each in its home region only (the region of the country it's from, or where most of its speakers live).</p>
       ${strip}
       <details class="tbl"><summary>Show as a table</summary>${stripTable}</details>
-    </section>
-    ${censusCaveat()}`;
+    </section>`;
   bindTips($('#view'));
   bindStrip();
   // keep the page where it is when a filter redraws the charts below
@@ -2061,8 +2030,7 @@ function mapPage() {
   $('#view').innerHTML = `<h2 class="sronly">Map</h2>
     <div class="controls sticky"><span id="mregwrap">${regionPicker()}</span><span id="mctrywrap">${countryPicker()}</span><span id="mtierwrap">${tierPicker()}</span><span class="note" style="margin:0">${N.toLocaleString()} languages</span>
       <button type="button" class="reset" id="mresetf"${!regionSel.size && !countrySel.size && !tierSel.size ? ' hidden' : ''}>Reset filters</button></div>
-    ${mapSection()}
-    ${censusCaveat()}`;
+    ${mapSection()}`;
   bindTips($('#view'));
   bindMap();
   wireMsel('mregwrap', regionPicker, regionSel, REGIONS.length, () => { const y = scrollY; mapView = null; mapPage(); reopen('mregwrap'); scrollTo(0, y); });
@@ -2093,9 +2061,7 @@ function stabilitySection() {
   return `<h3>How stable the ranks are</h3>
     <p>The weights, goalposts and floor are working choices. To see how much the ranking depends on them, every language was re-scored ${S.draws.toLocaleString()} times with different choices drawn at random: each weight from half to one and a half times its value, each data goal up to ten times higher or lower, and the floor from 0.025 to 0.075. The table shows how far ranks move in 90% of these re-scorings.</p>
     <div class="tablebox"><table class="covtab"><thead><tr><th>Ranks</th><th class="num">Languages</th><th class="num">Typical range</th><th class="num">Within ±10% of rank</th></tr></thead>
-    <tbody>${S.bands.map(b => `<tr><td>${esc(b.ranks)}</td><td class="num">${b.languages.toLocaleString()}</td><td class="num">${b.median_range.toLocaleString()} places</td><td class="num">${Math.round(b.within_10pct * 100)}%</td></tr>`).join('')}</tbody></table></div>
-    <p class="note">The ${S.nothing_recorded.toLocaleString()} languages with nothing recorded always rank last together. The top of the ranking barely moves; from about rank 200 down, where scores are close together, ranks shift by hundreds of places, so the tier says more than the exact rank.
-    ${S.scenarios.map(s => `${esc(s.label)}: ${s.moved_10_in_top_300 ? `${s.moved_10_in_top_300} of the top 300 move more than 10 places` : 'no language in the top 300 moves more than 10 places'}.`).join(' ')}</p>`;
+    <tbody>${S.bands.map(b => `<tr><td>${esc(b.ranks)}</td><td class="num">${b.languages.toLocaleString()}</td><td class="num">${b.median_range.toLocaleString()} places</td><td class="num">${Math.round(b.within_10pct * 100)}%</td></tr>`).join('')}</tbody></table></div>`;
 }
 // How LTDI compares with Joshi et al.'s resource classes and SIL's Digital Language Support levels
 // (tools/validate.py): a table per classification, with LTDI's median and tiers in each group, and
@@ -2116,16 +2082,16 @@ function validationSection() {
   const pair = (a, b, r) => `<tr><td>${a}</td><td>${b}</td><td class="num">${r.toFixed(2)}</td></tr>`;
   return `<h3>How it compares with other classifications</h3>
     <p>Two earlier studies classify languages by their digital resources. LTDI broadly agrees with both: its median score never falls from one of their groups to the next. No two such measures agree exactly, since each draws on different, incomplete sources from a different year, so the useful question is whether LTDI differs from them more than they differ from each other.</p>
-    ${B ? `<p>It doesn't. On the ${B.n} languages all three cover, LTDI agrees with each study more closely than the two studies agree with each other (rank correlations; 1 would be the same order):</p>
-    <div class="tablebox vpair"><table class="covtab"><thead><tr><th>Measure</th><th>Compared with</th><th class="num">Correlation</th></tr></thead>
-    <tbody>${pair('Joshi et al.', 'Digital Language Support', B.joshi_dls)}${pair('LTDI', 'Joshi et al.', B.ltdi_joshi)}${pair('LTDI', 'Digital Language Support', B.ltdi_dls)}</tbody></table></div>` : ''}
-    <p class="note">The languages where they disagree most are listed below each table. Some differences are progress since the studies, some are imperfect data on either side.</p>
     <h4>Joshi et al. (2020), resource classes</h4>
     <p class="note"><a href="${J.source}" target="_blank" rel="noopener">The State and Fate of Linguistic Diversity and Inclusion in the NLP World</a>: six classes by labelled and unlabelled data. ${J.n.toLocaleString()} ranked languages have a class; rank correlation with LTDI ${J.spearman.toFixed(2)}.</p>
     ${table(J, 'Class')}${dis(J, o => `class ${o}`)}
     <h4>Simons, Thomas and White (2022), Digital Language Support</h4>
     <p class="note"><a href="${D.paper}" target="_blank" rel="noopener">Assessing Digital Language Support on a Global Scale</a>: five levels from 143 tools' language lists, ${esc(D.as_of)}. Only a 10% sample is public (<a href="${D.source}" target="_blank" rel="noopener">sil-ai/dls-results</a>), of which ${D.n.toLocaleString()} languages match ranked ones; rank correlation with their score ${D.spearman.toFixed(2)}, with their level ${D.spearman_level.toFixed(2)}.</p>
-    ${table(D, 'Level')}${dis(D, o => o)}`;
+    ${table(D, 'Level')}${dis(D, o => o)}
+    ${B ? `<h4>All three compared</h4>
+    <p>On the ${B.n} languages all three cover, LTDI agrees with each study more closely than the two studies agree with each other (rank correlations; 1 would be the same order):</p>
+    <div class="tablebox vpair"><table class="covtab"><thead><tr><th>Measure</th><th>Compared with</th><th class="num">Correlation</th></tr></thead>
+    <tbody>${pair('Joshi et al.', 'Digital Language Support', B.joshi_dls)}${pair('LTDI', 'Joshi et al.', B.ltdi_joshi)}${pair('LTDI', 'Digital Language Support', B.ltdi_dls)}</tbody></table></div>` : ''}`;
 }
 // How a service's languages are counted, said wherever a count appears (About, Charts, For providers)
 const COUNTING_NOTE = "Each count is the number of distinct languages in the company's own published list, read from the page linked on every language's profile. A list often has several entries for one language: English for each country, a language in two scripts, or both a language and its varieties. Those count once here, so a count is usually lower than the company's own figure, which may count them separately.";
@@ -2281,10 +2247,14 @@ function about() {
     <h4>Data</h4>
     ${table(C.data.map(([l, n]) => row(esc(l), n)).join(''), 'Indicator')}
     <h4>Technology</h4>
-    <p class="note">Languages offered by at least one service of each kind; open a technology for each service. Quality is measured, by benchmarks, for far fewer languages than services offer.</p>
-    <p class="note" id="counting">${COUNTING_NOTE} Where the number of entries in a list is known, it's shown beside the count. <a href="#providers">For providers: how to correct a count</a>.</p>
     ${table(techRows, 'Technology')}
 
+    <h3>The Plan tab's columns</h3>
+    <p>Online in 5 years is the number of a language's speakers expected to be online in five years (for text technologies, online and able to text), with their share of its speakers. Countries are ISO 3166 codes, most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK).</p>
+    <p>Open models are those listed for the language; † marks a licence that doesn't permit commercial use, and the commercial-use switch leaves them out. Their makers publish quality figures, each on their own test data, which say too little to compare languages by, so they aren't shown.</p>
+    <p>Speech is counted in hours of transcribed speech in the open datasets tracked, in three kinds. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech, NCHLT Speech, and read speech shared on the Mozilla Data Collective (BibleTTS, Digital Divide Data and others). Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, AfriVoice, WaZoBiaSpeech, IndicVoices, SPRING-INX, Vaani. Media: Shrutilipi's radio news, VoxPopuli's European Parliament speeches, and YouTube videos with their uploaders' subtitles in YODAS2, counted by the share of a sample of subtitles that is in the language. Total hours adds the three. A tick under FLEURS test set means the language is one of the 102 in FLEURS, Google's public test set of about 12 hours of read speech a language; it stays out of training, so it doesn't count towards the data target.</p>
+    <p>Sentence pairs with English are those in OPUS, plus those professionally translated for Google's SMOL and GATITOS. Words of web text are those in FineWeb-2, or MADLAD-400 or HPLT 3.0 where one holds more. Short of the target is how many more are needed to reach the data target chosen. With the commercial-use switch on, only speech datasets whose licence permits commercial use are counted; OPUS corpora carry their own licences, which aren't checked.</p>
+    <p>The CSV adds each language's readiness and the commercial services that offer it.</p>
     <h3>Caveats and shortcomings</h3>
     <h4>Languages and speakers</h4>
     <ul>
@@ -2347,7 +2317,7 @@ function about() {
     <h3>Data for your own tools</h3>
     <p>Each language is also a JSON file at a stable address, such as <span class="code">https://langtechindex.org/api/v1/languages/yo.json</span>, with its scores, the technologies and services that cover it, every recorded value with its source, its countries and locales, family, engineering flags and opportunities. <span class="code">api/v1/index.json</span> lists every language, and <span class="code">api/v1/schema.json</span> describes the files. Within version 1, fields are only added, never renamed or removed; values change with each edition, and a change of method raises the methodology version. Anything that would break a reader goes to version 2, with version 1 kept beside it for at least one edition.</p>
     <h3>Sources and credits</h3>
-    <p>Language metadata from LinguaMeta, with scripts from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a> (CC BY-SA 4.0, so data derived from it carries the same licence), endangerment from Glottolog where LinguaMeta gives none, and speaker counts from Wikipedia where neither does. Census figures from the UN Statistics Division and the US Census Bureau; connectivity from the World Bank. Language areas from <a href="https://glottography.github.io" target="_blank" rel="noopener">Glottography</a> (CC BY 4.0); map from Natural Earth. Writing samples from <a href="https://github.com/eric-muller/udhr" target="_blank" rel="noopener">UDHR in XML</a>; spoken words from <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a>, recorded by volunteers and shared on Wikimedia Commons under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Every other value names its source on the language's page. The method builds on van Esch, Ritchie et al. (2024), <a href="https://aclanthology.org/2024.lrec-main.331/" target="_blank" rel="noopener">Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages</a>.</p>
+    <p>Language metadata from LinguaMeta, with scripts from <a href="https://github.com/WPoelman/qwanqwa" target="_blank" rel="noopener">QQ</a> (CC BY-SA 4.0, so data derived from it carries the same licence), endangerment from Glottolog where LinguaMeta gives none, and speaker counts from Wikipedia where neither does. Census figures from the UN Statistics Division, the US Census Bureau and national statistics offices; connectivity from the World Bank. Language areas from <a href="https://glottography.github.io" target="_blank" rel="noopener">Glottography</a> (CC BY 4.0); map from Natural Earth. Writing samples from <a href="https://github.com/eric-muller/udhr" target="_blank" rel="noopener">UDHR in XML</a>; spoken words from <a href="https://lingualibre.org" target="_blank" rel="noopener">Lingua Libre</a>, recorded by volunteers and shared on Wikimedia Commons under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. Every other value names its source on the language's page. The method builds on van Esch, Ritchie et al. (2024), <a href="https://aclanthology.org/2024.lrec-main.331/" target="_blank" rel="noopener">Connecting Language Technologies with Rich, Diverse Data Sources Covering Thousands of Languages</a>.</p>
   </article>`;
 }
 
@@ -2702,7 +2672,6 @@ function planPage() {
     <div class="plan-top">
     <section class="chart planhead">
       <h2 class="plan-h">Plan which languages to add next</h2>
-      <p class="sub">Choose a technology and what your product supports today. The languages it doesn't yet support are ranked by the ${who} they'd reach in five years, with what already exists for each.</p>
       <div class="plan-controls">
         <label class="plan-l">Technology <select id="pl-t">${PLAN_TECHS.map(k => `<option value="${k}"${plan.t === k ? ' selected' : ''}>${esc(CFG.tech.technologies[k].label)}</option>`).join('')}</select></label>
         <label class="plan-l">Starting from <select id="pl-from"><option value="none"${plan.from === 'none' ? ' selected' : ''}>Nothing yet</option><option value="under"${plan.from === 'under' ? ' selected' : ''} title="Leaves out only well-served languages: offered by most major services, and comfortably Medium or above overall, or with enough open data for the technology">Underrepresented languages</option><option value="list"${plan.from === 'list' ? ' selected' : ''}>A list I paste</option><optgroup label="This list">${svcOpts}</optgroup></select></label>
@@ -2714,13 +2683,12 @@ function planPage() {
       ${plan.from === 'list' ? `<div class="plan-paste"><textarea id="pl-codes" rows="3" placeholder="Language codes or names, separated by commas, spaces or new lines: en, es, yo, Hausa ...">${esc(plan.codes)}</textarea>
         <p class="note">${P.supported.size.toLocaleString()} recognised${P.unknown.length ? `; not recognised: ${esc(P.unknown.slice(0, 12).join(', '))}${P.unknown.length > 12 ? ' …' : ''}` : ''}.</p></div>` : ''}
       <div class="plan-toggles">
-        <label class="switch" title="Count spoken varieties whose speakers mostly read and write a major standard language (Wu, Egyptian Arabic, Bhojpuri). When off, they're left out unless your list includes them"><input type="checkbox" role="switch" id="pl-ex"${plan.ex ? '' : ' checked'}><span class="track" aria-hidden="true"></span>Include varieties of major languages</label>
+        <label class="switch" title="Count spoken varieties whose speakers mostly read and write a major standard language (Wu, Egyptian Arabic, Bhojpuri)"><input type="checkbox" role="switch" id="pl-ex"${plan.ex ? '' : ' checked'}><span class="track" aria-hidden="true"></span>Include varieties of major languages</label>
         <label class="switch" title="Count only open data and models whose licence permits commercial use"><input type="checkbox" role="switch" id="pl-com"${plan.com ? ' checked' : ''}><span class="track" aria-hidden="true"></span>Commercially usable data and models only</label>
       </div>
     </section>
     <section class="chart plangraph">
       <h3>${P.rows.length ? `From ${pct(P.base / (P.total || 1))} to 100% of ${who} in ${esc(scopeName)}` : 'Nothing left to add'}</h3>
-      <p class="sub">${P.baseName ? `Starting from ${esc(P.baseName)}: ${P.nSupported.toLocaleString()} ${P.nSupported === 1 ? 'language' : 'languages'} reaching ${people(P.base)} of ${people(P.total)} in five years.` : `Starting from nothing: ${people(P.total)} ${who} in five years across ${P.rows.length.toLocaleString()} languages.`}${P.nAttention ? ` ${P.nAttention.toLocaleString()} of the languages listed are offered by most major services, but aren't comfortably Medium or above overall and are short of open data or have poor measured accuracy, so they stay on the list.` : ''}${plan.fam >= 0 ? ` Only ${esc(GN[plan.fam][1])} languages are counted.` : ''}${plan.ex ? ' Varieties of major languages are left out of the list and the totals.' : ' Varieties of major languages are counted in the list and the totals.'} Each step adds the next language in the table below.</p>
       ${planCurve(P.rows, P.base, P.total)}
     </section>
     </div>
@@ -2729,9 +2697,6 @@ function planPage() {
       <div class="tablebox">${planHead(T, P, who, scopeName, false)}
       <tbody>${shown.map((r, i) => planRow(r, i, T, false)).join('')}</tbody></table></div>
       ${P.rows.length > shown.length ? `<button type="button" class="chip" id="pl-more">Show ${Math.min(50, P.rows.length - shown.length)} more of ${(P.rows.length - shown.length).toLocaleString()}</button>` : ''}
-      <p class="note">Online in 5 years: ${who} in five years, estimated from LinguaMeta's speaker counts and the World Bank's connectivity data, with their share of the language's speakers. Countries are ISO 3166 codes, most speakers first, leaving out countries where only immigrant communities speak it, so the code, script and a country give a locale (pnb-Arab-PK); hover the countries for the locales.</p>
-      <p class="note">Open models are those listed for the language; † marks a licence that doesn't permit commercial use (the commercial-use switch leaves them out).${plan.t === 'speech_input' ? " OASR is Meta's Omnilingual ASR." : ''} Their makers publish quality figures, each on their own test data, which say too little to compare languages by, so they aren't shown.</p>
-      <p class="note">${P.voice ? `Read, Spontaneous and Media are hours of transcribed speech in the open datasets tracked; hover a figure for the datasets behind it. Read: Common Voice, Kathbath, NaijaVoices, Multilingual LibriSpeech, NCHLT Speech, and read speech shared on the Mozilla Data Collective (BibleTTS, Digital Divide Data and others). Spontaneous, people speaking in their own words: Common Voice Spontaneous Speech, WAXAL, AfriVoice, WaZoBiaSpeech, IndicVoices, SPRING-INX, Vaani. Media: Shrutilipi's radio news, VoxPopuli's European Parliament speeches, and YouTube videos with their uploaders' subtitles in YODAS2, counted by the share of a sample of subtitles that is in the language. A tick under FLEURS test set means the language is one of the 102 in FLEURS, Google's public test set of about 12 hours of read speech a language, the usual way to measure and compare speech recognition; it stays out of training, so it doesn't count towards the target. Total hours adds the three; hover it for how far it is from the data target.` : `${plan.t === 'mt' ? 'Sentence pairs with English are those in OPUS, plus those professionally translated for Google\u2019s SMOL and GATITOS' : 'Words of web text are those in FineWeb-2, or MADLAD-400 or HPLT 3.0 where one holds more'}; Short of ${esc(magn(planTarget()))} is how many more are needed to reach the data target.`}${plan.com ? (P.voice ? ' Only datasets whose licence permits commercial use are counted.' : plan.t === 'mt' ? " OPUS corpora carry their own licences, which aren't checked here." : '') : ''} Licences are as each project publishes them; this isn't legal advice.${plan.from === 'under' ? ` Underrepresented means not well served. Well served is offered by at least half of the major services tracked for ${esc(T.label.toLowerCase())} (a regional provider counts as one more) or by at least ${numWord(CFG.tech.full_min)} of them, and either comfortably Medium or above overall (an LTDI of at least ${CFG.tech.served_min}), or else with enough open data for the technology and no poor accuracy measured independently.` : ''} The CSV adds each language's readiness and the commercial services that offer it.</p>
     </section>`;
   const redraw = () => { history.replaceState(null, '', planHash()); const y = scrollY; planPage(); scrollTo(0, y); };
   $('#pl-t').onchange = e => { plan.t = e.target.value; if (plan.from.startsWith('svc:')) plan.from = 'none'; plan.n = 50; plan.tg = 0; redraw(); };  // the target's unit changes too
